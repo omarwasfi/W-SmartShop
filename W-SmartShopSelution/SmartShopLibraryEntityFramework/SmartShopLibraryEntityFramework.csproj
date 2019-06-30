@@ -45,5 +45,20 @@
     </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DataAccess\EntityContext.cs" />
+    <Compile Include="DataModels\FormModel.cs" />
+    <Compile Include="DataModels\Goods\BrandModel.cs" />
+    <Compile Include="DataModels\Goods\CategoryModel.cs" />
+    <Compile Include="DataModels\Goods\ProductModel.cs" />
+    <Compile Include="DataModels\Goods\StockModel.cs" />
+    <Compile Include="DataModels\Humans\CustomerModel.cs" />
+    <Compile Include="DataModels\Humans\PersonModel.cs" />
+    <Compile Include="DataModels\Humans\StaffModel.cs" />
+    <Compile Include="DataModels\Humans\SupplierModel.cs" />
+    <Compile Include="DataModels\PermissionModel.cs" />
+    <Compile Include="DataModels\StoreModel.cs" />
+    <Compile Include="Program.cs" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

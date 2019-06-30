@@ -37,17 +37,28 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataAccess\SqlConnection.cs" />
+    <Compile Include="DataModels\CashOrder\OrderModel.cs" />
+    <Compile Include="DataModels\CashOrder\OrderProductModel.cs" />
     <Compile Include="DataModels\Goods\BrandModel.cs" />
     <Compile Include="DataModels\Goods\CategoryModel.cs" />
     <Compile Include="DataModels\Goods\ProductModel.cs" />
     <Compile Include="DataModels\Goods\StockModel.cs" />
     <Compile Include="DataModels\Humans\CustomerModel.cs" />
     <Compile Include="DataModels\FormModel.cs" />
+    <Compile Include="DataModels\IncomeOrder\IncomeOrderModel.cs" />
+    <Compile Include="DataModels\IncomeOrder\IncomeOrderProduct.cs" />
+    <Compile Include="DataModels\Installment\InstallmentDetailsModel.cs" />
+    <Compile Include="DataModels\Installment\InstallmentModel.cs" />
+    <Compile Include="DataModels\Installment\InstallmentProductModel.cs" />
     <Compile Include="DataModels\PermissionModel.cs" />
     <Compile Include="DataModels\Humans\PersonModel.cs" />
     <Compile Include="DataModels\Humans\StaffModel.cs" />
     <Compile Include="DataModels\StoreModel.cs" />
     <Compile Include="DataModels\Humans\SupplierModel.cs" />
+    <Compile Include="Interfaces\IOrder.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="SqlRoles.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
