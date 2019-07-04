@@ -58,7 +58,7 @@
     <Compile Include="Interfaces\IOrder.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="SqlRoles.txt" />
+    <Content Include="WPF Planing\SqlRoles.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

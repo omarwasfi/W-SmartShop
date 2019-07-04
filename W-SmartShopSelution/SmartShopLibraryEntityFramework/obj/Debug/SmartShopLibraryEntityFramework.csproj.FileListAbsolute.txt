@@ -10,3 +10,8 @@ C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\SmartShopLibrary
 C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\SmartShopLibraryEntityFramework\obj\Debug\SmartShopLibraryEntityFramework.csproj.CopyComplete
 C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\SmartShopLibraryEntityFramework\obj\Debug\SmartShopLibraryEntityFramework.exe
 C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\SmartShopLibraryEntityFramework\obj\Debug\SmartShopLibraryEntityFramework.pdb
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\SmartShopLibraryEntityFramework\bin\Debug\Dragablz.dll
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\SmartShopLibraryEntityFramework\bin\Debug\MaterialDesignColors.dll
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\SmartShopLibraryEntityFramework\bin\Debug\Dragablz.pdb
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\SmartShopLibraryEntityFramework\bin\Debug\Dragablz.xml
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\SmartShopLibraryEntityFramework\bin\Debug\MaterialDesignColors.pdb

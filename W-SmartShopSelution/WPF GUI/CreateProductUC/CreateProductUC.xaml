@@ -1,0 +1,49 @@
+﻿<UserControl x:Class="WPF_GUI.CreateProduct.CreateProductUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WPF_GUI.CreateProduct"
+             mc:Ignorable="d" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             d:DesignHeight="680" d:DesignWidth="1343">
+    <Grid Margin="10,0,10,10">
+        <Button  Margin="1008,23,33,0" VerticalAlignment="Top" Height="66"  >
+            <Grid Width="254">
+                <materialDesign:PackIcon Kind="PlusBox" Width="50" Height="46"/>
+                <TextBlock FontSize="19" Text="Create New Category" Margin="50,10,10,10"/>
+            </Grid>
+        </Button>
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="12,18,0,0" ><Run Text="Category : "/></TextBlock>
+        <ComboBox x:Name="CategoryCB_Sell" HorizontalAlignment="Left" Margin="136,23,0,0" VerticalAlignment="Top" Width="207" />
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="12,56,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" Width="82" ><Run Text="Brand : "/></TextBlock>
+        <ComboBox x:Name="BrandCB_Sell" HorizontalAlignment="Left" Margin="136,61,0,0" VerticalAlignment="Top" Width="207" />
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="12,94,0,0" ><Run Text="Product Name : "/></TextBlock>
+        <Grid Margin="1070,626,10,10">
+            <Button Content="Close" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" Margin="166,0,0,0"/>
+            <Button Content="Clear" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" Margin="86,0,0,0"/>
+            <Button Content="Create" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="81"/>
+        </Grid>
+        <Button  Margin="1008,99,33,0" VerticalAlignment="Top" Height="66"  >
+            <Grid Width="254">
+                <materialDesign:PackIcon Kind="PlusBox" Width="50" Height="46"/>
+                <TextBlock FontSize="19" Text="Create New Brand" Margin="50,10,10,10"/>
+            </Grid>
+        </Button>
+        <TextBox HorizontalAlignment="Left" Height="24" Margin="195,103,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="335"/>
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="12,132,0,0" ><Run Text="Sale price : "/></TextBlock>
+        <TextBox HorizontalAlignment="Left" Height="24" Margin="195,141,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="78"/>
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="12,170,0,0" ><Run Text="Income price : "/></TextBlock>
+        <TextBox HorizontalAlignment="Left" Height="24" Margin="195,179,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="78"/>
+        <GroupBox Header="Stock Info" HorizontalAlignment="Left" Height="204" Margin="12,248,0,0" VerticalAlignment="Top" Width="518">
+            <Grid>
+                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="10,30,0,0" ><Run Text="Store Name : "/></TextBlock>
+                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="10,83,0,0" ><Run Text="Quantity In this store : "/></TextBlock>
+                <TextBox HorizontalAlignment="Left" Height="24" Margin="265,92,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="78"/>
+                <ComboBox x:Name="CategoryCB_Sell_Copy" HorizontalAlignment="Left" Margin="164,35,0,0" VerticalAlignment="Top" Width="207" />
+
+            </Grid>
+        </GroupBox>
+
+    </Grid>
+</UserControl>
