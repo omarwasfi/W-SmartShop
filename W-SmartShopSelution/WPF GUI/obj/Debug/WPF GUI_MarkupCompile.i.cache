@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\App.xaml
-6-141775632
+9-892488739
 
-111597781681
-16-493822431
-CreateProductUC\CreateProductUC.xaml;Login\LoginForm.xaml;MainForm\MainForm.xaml;ModifyProductUC\ModifyProductUC.xaml;ProductManagerUC\ProductManagerUC.xaml;SellUC\SellUC.xaml;
+141087413353
+17-776238762
+CreateBrandUC\CreateBrandUC.xaml;CreateCategory\CreateCategoryUC.xaml;CreateCutomerUC\CreateCustomerUC.xaml;CreateProductUC\CreateProductUC.xaml;Login\LoginForm.xaml;MainForm\MainForm.xaml;ModifyProductUC\ModifyProductUC.xaml;ProductManagerUC\ProductManagerUC.xaml;SellUC\SellUC.xaml;
 
-False
+True
 

@@ -1,0 +1,13 @@
+﻿Sell only
+
+- login
+- MainForm
+
+
+- CreateCustomer UC
+- Sell UC
+- CreateProduct uc
+- CreateCustomer UC
+- CreateCategory UC
+- CreateBrand UC
+

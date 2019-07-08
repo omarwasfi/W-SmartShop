@@ -64,6 +64,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CreateBrandUC\CreateBrandUC.xaml.cs">
+      <DependentUpon>CreateBrandUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CreateCategory\CreateCategoryUC.xaml.cs">
+      <DependentUpon>CreateCategoryUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CreateCutomerUC\CreateCustomerUC.xaml.cs">
+      <DependentUpon>CreateCustomerUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CreateProductUC\CreateProductUC.xaml.cs">
       <DependentUpon>CreateProductUC.xaml</DependentUpon>
     </Compile>
@@ -76,6 +85,18 @@
     <Compile Include="SellUC\SellUC.xaml.cs">
       <DependentUpon>SellUC.xaml</DependentUpon>
     </Compile>
+    <Page Include="CreateBrandUC\CreateBrandUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CreateCategory\CreateCategoryUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CreateCutomerUC\CreateCustomerUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CreateProductUC\CreateProductUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -147,6 +168,15 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="InventoryUC\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SmartShopClassLibrary\SmartShopClassLibrary.csproj">
+      <Project>{8f37c142-611c-4c2a-8db8-d20df1e525b6}</Project>
+      <Name>SmartShopClassLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Library;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,6 +26,7 @@ namespace WPF_GUI
         public MainForm()
         {
             InitializeComponent();
+            GlobalConfig.InitializeConnection();
         }
 
        

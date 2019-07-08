@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library", "Library\Library.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF GUI", "WPF GUI\WPF GUI.csproj", "{C5D9CF08-E3A7-4FBF-BD90-DDCD575E5923}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartShopClassLibrary", "SmartShopClassLibrary\SmartShopClassLibrary.csproj", "{8F37C142-611C-4C2A-8DB8-D20DF1E525B6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{C5D9CF08-E3A7-4FBF-BD90-DDCD575E5923}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C5D9CF08-E3A7-4FBF-BD90-DDCD575E5923}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C5D9CF08-E3A7-4FBF-BD90-DDCD575E5923}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F37C142-611C-4C2A-8DB8-D20DF1E525B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F37C142-611C-4C2A-8DB8-D20DF1E525B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F37C142-611C-4C2A-8DB8-D20DF1E525B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F37C142-611C-4C2A-8DB8-D20DF1E525B6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
