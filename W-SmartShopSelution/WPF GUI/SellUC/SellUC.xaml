@@ -35,13 +35,13 @@
                 <ComboBox x:Name="BrandValue_Sell" HorizontalAlignment="Left" Margin="423,10,0,0" VerticalAlignment="Top" Width="163" IsTextSearchEnabled="True" TextSearch.TextPath="Name" SelectionChanged="FilterProductsByCategoryAndBrand"  />
 
                 <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="0,38,0,0" ><Run Text="Product : "/></TextBlock>
-                <ComboBox x:Name="ProductValue_Sell" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="476" Margin="110,43,0,0" />
+                <ComboBox x:Name="ProductValue_Sell" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="476" Margin="110,43,0,0" SelectionChanged="ProductValue_Sell_SelectionChanged" />
 
                 <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="0,76,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Serial Number : "/></TextBlock>
                 <TextBox x:Name="SerialNumberValue_Sell" HorizontalAlignment="Left" Height="23" Margin="182,86,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="404"/>
 
                 <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="58,114,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Quantity : "/></TextBlock>
-                <TextBox x:Name="QuantityValue" HorizontalAlignment="Left" Height="23" Margin="177,124,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="58" RenderTransformOrigin="0.544,-0.652"/>
+                <TextBox x:Name="QuantityValue_Sell"  HorizontalAlignment="Left" Height="23" Margin="177,124,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="58" RenderTransformOrigin="0.544,-0.652"/>
 
                 <TextBox x:Name="PriceValue_Sell" HorizontalAlignment="Left" Height="23" Margin="317,124,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="58" RenderTransformOrigin="0.544,-0.652"/>
                 <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="240,114,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Price : "/></TextBlock>
@@ -53,6 +53,8 @@
                 <Button x:Name="ClearProductButton_Sell" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Red"   VerticalAlignment="Top" Height="52" Margin="525,187,10,0"  >
                     <materialDesign:PackIcon Kind="Clear" Width="50" Height="46"/>
                 </Button>
+                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="58,159,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Total Price : "/></TextBlock>
+                <TextBox x:Name="TotalProductPriceValue_Sell" IsReadOnly="True" HorizontalAlignment="Left" Height="23" Margin="195,169,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="58" RenderTransformOrigin="0.544,-0.652"/>
             </Grid>
 
         </GroupBox>

@@ -32,6 +32,12 @@ namespace WPF_GUI.Sell
         /// </summary>
         public List<ProductModel> FProducts { get; set; }
 
+        /// <summary>
+        /// Manage If we can Filter Products or not 
+        /// Use when user done choose the product
+        /// </summary>
+        bool CanFilterProducts = true;
+
         public SellUC()
         {
             InitializeComponent();
@@ -73,7 +79,7 @@ namespace WPF_GUI.Sell
             Update_ProductValue_Sell();
         }
 
-        
+
 
         /// <summary>
         /// Update CategoryValue_Sell combobox from the database
@@ -84,7 +90,7 @@ namespace WPF_GUI.Sell
             CategoryValue_Sell.ItemsSource = Categories;
             CategoryValue_Sell.DisplayMemberPath = "Name";
             CategoryValue_Sell.SelectedItem = null;
-            
+
         }
 
         /// <summary>
@@ -117,12 +123,109 @@ namespace WPF_GUI.Sell
         /// <param name="e"></param>
         private void FilterProductsByCategoryAndBrand(object sender, SelectionChangedEventArgs e)
         {
+            if (CanFilterProducts)
+            {
+                FProducts = GlobalConfig.Connection.GetProductsByCategoryAndBrand(Products, (CategoryModel)CategoryValue_Sell.SelectedItem, (BrandModel)BrandValue_Sell.SelectedItem);
+                ProductValue_Sell.ItemsSource = null;
+                ProductValue_Sell.ItemsSource = FProducts;
+                ProductValue_Sell.DisplayMemberPath = "Name";
+                ProductValue_Sell.SelectedItem = null;
+            }
+        }
 
-            FProducts = GlobalConfig.Connection.GetProductsByCategoryAndBrand(Products, (CategoryModel)CategoryValue_Sell.SelectedItem, (BrandModel)BrandValue_Sell.SelectedItem);
-            ProductValue_Sell.ItemsSource = null;
-            ProductValue_Sell.ItemsSource = FProducts;
-            ProductValue_Sell.DisplayMemberPath = "Name";
-            ProductValue_Sell.SelectedItem = null;
+        /// <summary>
+        /// Fill the Product info on the entire UC
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ProductValue_Sell_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ProductModel product = (ProductModel)ProductValue_Sell.SelectedItem;
+            if (product == null)
+            {
+                ClearProductInfo();
+            }
+            else
+            {
+                UpdateProductInfo(product);
+            }
+
+        }
+
+        /// <summary>
+        /// get the index of brand if it in the BrandValue_Sell
+        /// </summary>
+        /// <param name="brand"></param>
+        /// <returns> index of this brand </returns>
+        private int Get_BrandValue_Sell_Index(BrandModel brand)
+        {
+            int i = 0;
+            var lst = BrandValue_Sell.Items.Cast<BrandModel>();
+            foreach (var s in lst)
+            {
+                if (s.Id == brand.Id)
+                    return i;
+
+                i++;
+            }
+            return 0;
+        }
+
+        /// <summary>
+        /// get the index of categry if it in the CategoryValue_Sell
+        /// </summary>
+        /// <param name="category"></param>
+        /// <returns> index of this category </returns>
+        private int Get_CategoryValue_Sell_Index(CategoryModel category)
+        {
+            int i = 0;
+            var lst = CategoryValue_Sell.Items.Cast<CategoryModel>();
+            foreach (var s in lst)
+            {
+                if (s.Id == category.Id)
+                    return i;
+
+                i++;
+            }
+            return 0;
+        }
+
+        /// <summary>
+        /// Update product info
+        /// Category , Brand ,  Serial Number , Sale Price
+        /// </summary>
+        /// <param name="product"></param>
+        private void UpdateProductInfo(ProductModel product)
+        {
+            SerialNumberValue_Sell.Text = product.SerialNumber;
+            PriceValue_Sell.Text = product.SalePrice.ToString();
+            DiscountValue_Sell.Text = "0";
+            QuantityValue_Sell.Text = "1";
+            CanFilterProducts = false;
+            CategoryValue_Sell.SelectedIndex = Get_CategoryValue_Sell_Index(product.Category);
+            BrandValue_Sell.SelectedIndex = Get_BrandValue_Sell_Index(product.Brand);
+            CanFilterProducts = true;
+        }
+
+        /// <summary>
+        /// Clear product info
+        /// Serial Number , Sale Price
+        /// </summary>
+        private void ClearProductInfo()
+        {
+            SerialNumberValue_Sell.Text = "";
+            PriceValue_Sell.Text = "";
+            DiscountValue_Sell.Text = "";
+            QuantityValue_Sell.Text = "";
+        }
+
+        /// <summary>
+        /// Calculate Product money 
+        /// 
+        /// </summary>
+        private void CalculatingProductMoney(ProductModel product,int quantity,decimal salePrice,decimal discount)
+        {
+
         }
     }
 }

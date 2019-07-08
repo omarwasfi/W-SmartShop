@@ -23,6 +23,11 @@ namespace Library
         public string Name { get; set; }
 
         /// <summary>
+        /// Product SerialNumber ( Has to be Unique )
+        /// </summary>
+        public string SerialNumber { get; set; }
+
+        /// <summary>
         /// Current Sale Price of the product
         /// </summary>
         public decimal SalePrice { get; set;}

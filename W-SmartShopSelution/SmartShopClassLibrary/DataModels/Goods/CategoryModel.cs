@@ -25,6 +25,6 @@ namespace Library
         /// <summary>
         /// List of the products of this category
         /// </summary>
-        public List<ProductModel> Products { get; set; }
+        //public List<ProductModel> Products { get; set; }
     }
 }
