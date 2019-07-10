@@ -22,11 +22,16 @@ namespace WPF_GUI.Sell
     /// </summary>
     public partial class SellUC : UserControl
     {
+#region Main Variabels
 
         public List<CategoryModel> Categories { get; set; }
         public List<BrandModel> Brands { get; set; }
         public List<ProductModel> Products { get; set; }
 
+#endregion
+
+
+#region Helpfull variabels
         /// <summary>
         /// List Of Products after Filtring
         /// </summary>
@@ -38,14 +43,18 @@ namespace WPF_GUI.Sell
         /// </summary>
         bool CanFilterProducts = true;
 
+#endregion
+
+
         public SellUC()
         {
             InitializeComponent();
             UpdateLists();
         }
 
+#region set tha Main variabels from the database
         /// <summary>
-        /// Get All the categories from the Database
+        /// Get All the categories from the Database`
         /// </summary>
         private void GetCategoriesFromDatabase()
         {
@@ -114,7 +123,9 @@ namespace WPF_GUI.Sell
             ProductValue_Sell.DisplayMemberPath = "Name";
             ProductValue_Sell.SelectedItem = null;
         }
+        #endregion
 
+        #region Product Groopbox events
 
         /// <summary>
         /// Private event called when CategoryValue_Sell combobox OR BrandValue_Sell combobox sellection  changed to filter the products combobox by selected category or brand
@@ -227,5 +238,7 @@ namespace WPF_GUI.Sell
         {
 
         }
+
+        #endregion
     }
 }
