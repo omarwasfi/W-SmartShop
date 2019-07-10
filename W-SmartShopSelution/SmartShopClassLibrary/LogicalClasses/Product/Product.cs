@@ -127,5 +127,30 @@ namespace Library
             }
 
         }
+
+
+        /// <summary>
+        /// Check if the product with this serial number exist
+        /// </summary>
+        /// <param name="products"> List Of products </param>
+        /// <param name="SerialNumber"> serial number </param>
+        /// <returns></returns>
+        public static ProductModel GetProductBySerialNumber(List<ProductModel> products ,string SerialNumber )
+        {
+            ProductModel product;
+
+            foreach(ProductModel p in products)
+            {
+                if (p.SerialNumber == SerialNumber)
+                {
+                    product = p;
+                    return product;
+                }
+            }
+
+            return null;
+        }
+
+        
     }
 }

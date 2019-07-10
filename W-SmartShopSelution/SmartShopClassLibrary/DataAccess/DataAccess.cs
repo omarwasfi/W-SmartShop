@@ -38,6 +38,8 @@ namespace Library
             return categories ;
         }
 
+        
+
         /// <summary>
         /// Get All brands from the databse
         /// </summary>
@@ -47,6 +49,8 @@ namespace Library
             List<BrandModel> brands = Brand.GetBrands(db);
             return brands;
         }
+
+        #region Product Functions
 
         /// <summary>
         /// Get All Products from the databse
@@ -86,5 +90,48 @@ namespace Library
             List<ProductModel> FProducts = Product.GetProductsByCategoryAndBrand(products, category, DefaultCategoryId, brand, DefaultBrandId);
             return FProducts;
         }
+
+        /// <summary>
+        /// Check if the product with this serial number exist
+        /// </summary>
+        /// <param name="products"> List Of products </param>
+        /// <param name="SerialNumber"> serial number </param>
+        /// <returns></returns>
+        public ProductModel GetProductBySerialNumber(List<ProductModel> products, string SerialNumber)
+        {
+            ProductModel product = Product.GetProductBySerialNumber(products, SerialNumber);
+
+            return product;
+        }
+        #endregion
+
+        #region Order Product
+
+        /// <summary>
+        /// Get the Price and Quantity to return Total Price
+        /// Total Price = Price * Quantity ( Trigers When Product Selected Or Quantity Increased)
+        /// </summary>
+        /// <param name="price"> Product Price </param>
+        /// <param name="quantity"> Quantity </param>
+        /// <returns></returns>
+        public  decimal GetTotalPriceValue(decimal price, int quantity)
+        {
+            return OrderProduct.GetTotalPriceValue(price,quantity);
+        }
+
+        /// <summary>
+        /// Get product model and discount 
+        /// to calculate the price 
+        /// // Price = OldPrice - Discount (Trigger When Discount change)
+        /// </summary>
+        /// <param name="discount"></param>
+        /// <param name="product"></param>
+        /// <returns></returns>
+        public  decimal GetPriceValue(decimal discount, ProductModel product)
+        {
+            return OrderProduct.GetPriceValue(discount, product);
+        }
+
+        #endregion
     }
 }

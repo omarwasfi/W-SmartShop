@@ -28,10 +28,14 @@ namespace WPF_GUI.Sell
         public List<BrandModel> Brands { get; set; }
         public List<ProductModel> Products { get; set; }
 
-#endregion
+        public List<OrderProductModel> Orders { get; set; }
+
+        public OrderModel Order { get; set; }
+
+        #endregion
 
 
-#region Helpfull variabels
+        #region Helpfull variabels
         /// <summary>
         /// List Of Products after Filtring
         /// </summary>
@@ -49,8 +53,12 @@ namespace WPF_GUI.Sell
         public SellUC()
         {
             InitializeComponent();
-            UpdateLists();
+            FillStartupData();
+
+            
         }
+
+       
 
 #region set tha Main variabels from the database
         /// <summary>
@@ -81,11 +89,14 @@ namespace WPF_GUI.Sell
         /// Update All the lists in the UC , 
         /// initialize the uc OR to clear the uc OR Update everything from the database
         /// </summary>
-        private void UpdateLists()
+        private void FillStartupData()
         {
             Update_CategoryValue_Sell();
             Update_BrandValue_Sell();
             Update_ProductValue_Sell();
+
+
+
         }
 
 
@@ -202,16 +213,25 @@ namespace WPF_GUI.Sell
         }
 
         /// <summary>
-        /// Update product info
-        /// Category , Brand ,  Serial Number , Sale Price
+        /// Update product info Called after User choose the product
+        /// Category , Brand ,  Serial Number , Sale Price , discount , quantity Total Price
         /// </summary>
         /// <param name="product"></param>
         private void UpdateProductInfo(ProductModel product)
         {
             SerialNumberValue_Sell.Text = product.SerialNumber;
+
+            PriceValue_Sell.IsEnabled = true;
             PriceValue_Sell.Text = product.SalePrice.ToString();
+
+            DiscountValue_Sell.IsEnabled = true;
             DiscountValue_Sell.Text = "0";
+
+            QuantityValue_Sell.IsEnabled = true;
             QuantityValue_Sell.Text = "1";
+
+            TotalProductPriceValue_Sell.Text = product.SalePrice.ToString();
+
             CanFilterProducts = false;
             CategoryValue_Sell.SelectedIndex = Get_CategoryValue_Sell_Index(product.Category);
             BrandValue_Sell.SelectedIndex = Get_BrandValue_Sell_Index(product.Brand);
@@ -225,20 +245,75 @@ namespace WPF_GUI.Sell
         private void ClearProductInfo()
         {
             SerialNumberValue_Sell.Text = "";
+
+            PriceValue_Sell.IsEnabled = false;
             PriceValue_Sell.Text = "";
+
+            DiscountValue_Sell.IsEnabled = false;
             DiscountValue_Sell.Text = "";
+
+            QuantityValue_Sell.IsEnabled = false;
             QuantityValue_Sell.Text = "";
         }
 
+        
         /// <summary>
-        /// Calculate Product money 
-        /// 
+        /// Enter key Pressed while selecting SerialNumberValue_Sell
         /// </summary>
-        private void CalculatingProductMoney(ProductModel product,int quantity,decimal salePrice,decimal discount)
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SerialNumberValue_Sell_EventHundler(object sender, KeyEventArgs e)
         {
+            if (e.Key == Key.Enter)
+            {
+                ProductModel product = GlobalConfig.Connection.GetProductBySerialNumber(Products, SerialNumberValue_Sell.Text);
+                if(product == null)
+                {
+                    MessageBox.Show("This Serial Number Not Exist");
+                }
+                else
+                {
+                    ProductValue_Sell.SelectedItem = product;
+                }
+            }
+        }
+
+
+        private void QuantityValue_Sell_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                ProductModel product = (ProductModel)ProductValue_Sell.SelectedItem;
+                decimal price = new decimal();
+                int quantity = new int();
+                if (int.TryParse(QuantityValue_Sell.Text, out quantity))
+                {
+                    if (decimal.TryParse(PriceValue_Sell.Text, out price))
+                    {
+                        TotalProductPriceValue_Sell.Text =  GlobalConfig.Connection.GetTotalPriceValue(price, quantity).ToString();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Price is not valid");
+                        PriceValue_Sell.Text = product.SalePrice.ToString();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Quantity is not Valid");
+                    QuantityValue_Sell.Text = "1";
+                }
+                
+            }
 
         }
 
+
+
+
+
         #endregion
+
+
     }
 }
