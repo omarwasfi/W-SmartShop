@@ -37,6 +37,38 @@ namespace Library
             else {return product.SalePrice - discount; }
 
         }
-        // Discount = Old Price - Price (Trigger when Price Change)
+
+
+
+        /// <summary>
+        /// Get discount when price value changes
+        /// // Discount = Old Price - Price (Trigger when Price Change)
+        /// </summary>
+        /// <param name="price"></param>
+        /// <param name="product"></param>
+        /// <returns>
+        /// -1 if price < 0
+        /// 0 if there is no discount
+        /// discount value
+        /// </returns>
+        public static decimal GetDiscountValue(decimal price,ProductModel product)
+        {
+            decimal discount;
+            if(price > product.SalePrice)
+            {
+                return 0;
+
+            }
+            else if (price < 0)
+            {
+                return -1;
+            }
+            else
+            {
+                discount = product.SalePrice - price;
+                return discount;
+            }
+
+        }
     }
 }

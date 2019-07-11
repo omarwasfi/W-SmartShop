@@ -28,7 +28,7 @@ namespace WPF_GUI.Sell
         public List<BrandModel> Brands { get; set; }
         public List<ProductModel> Products { get; set; }
 
-        public List<OrderProductModel> Orders { get; set; }
+        public List<OrderProductModel> Orders { get; set; } = new List<OrderProductModel>();
 
         public OrderModel Order { get; set; }
 
@@ -254,6 +254,8 @@ namespace WPF_GUI.Sell
 
             QuantityValue_Sell.IsEnabled = false;
             QuantityValue_Sell.Text = "";
+
+            TotalProductPriceValue_Sell.Text = "";
         }
 
         
@@ -279,6 +281,12 @@ namespace WPF_GUI.Sell
         }
 
 
+        /// <summary>
+        /// Triggers after Enter key down while selecting QuantityValue_Sell.
+        /// Update the Total Price Product value
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void QuantityValue_Sell_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
@@ -309,11 +317,135 @@ namespace WPF_GUI.Sell
         }
 
 
+        /// <summary>
+        /// Triggers after Enter key down while selecting DiscountValue_Sell.
+        /// Update the Total Price Product value and Price value
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DiscountValue_Sell_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                ProductModel product = (ProductModel)ProductValue_Sell.SelectedItem;
+                decimal price = product.SalePrice;
+                decimal discount = new decimal();
+                int quantity = new int();
+                if (int.TryParse(QuantityValue_Sell.Text, out quantity))
+                {
+                    if (decimal.TryParse(DiscountValue_Sell.Text, out discount))
+                    {
+                        price = GlobalConfig.Connection.GetPriceValue(discount, product);
+                        if (price == -1)
+                        {
+                            MessageBox.Show("Discount is Not valid");
+                        }
+                        else
+                        {
+                            PriceValue_Sell.Text = price.ToString();
+                            TotalProductPriceValue_Sell.Text = GlobalConfig.Connection.GetTotalPriceValue(price,quantity ).ToString();
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Discount is not valid");
+                        DiscountValue_Sell.Text = "0";
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Quantity is not valid");
+                    QuantityValue_Sell.Text = "1";
+                }
+
+            }
+        }
+
+        /// <summary>
+        /// Triggers when enter key down while selecting pricevalue to update the discount value and total product price value 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void PriceValue_Sell_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                ProductModel product = (ProductModel)ProductValue_Sell.SelectedItem;
+                decimal price = new decimal();
+                decimal discount = new decimal();
+                int quantity = new int();
+
+                if (int.TryParse(QuantityValue_Sell.Text, out quantity))
+                {
+                    if (decimal.TryParse(PriceValue_Sell.Text,out price))
+                    {
+                        discount = GlobalConfig.Connection.GetDiscountValue(price, product);
+                        if(discount == -1)
+                        {
+                            MessageBox.Show("Price is less than 0");
+                            PriceValue_Sell.Text = product.SalePrice.ToString();
+                        }
+                        else
+                        {
+                            DiscountValue_Sell.Text = discount.ToString();
+                            TotalProductPriceValue_Sell.Text = GlobalConfig.Connection.GetTotalPriceValue(price,quantity).ToString();
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Price is not valid");
+                        PriceValue_Sell.Text = product.SalePrice.ToString();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Quantity is not valid");
+                    QuantityValue_Sell.Text = "1";
+                }
+
+            }
+        }
+
+        /// <summary>
+        /// Reset Choose Product groupe box By set category and brand to null
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ClearProductButton_Sell_Click(object sender, RoutedEventArgs e)
+        {
+            CategoryValue_Sell.SelectedItem = null;
+            BrandValue_Sell.SelectedItem = null;
+        }
 
 
 
+        
+
+        /// <summary>
+        /// Add button clicked 
+        /// Craete orderproduct model and add it to orders list
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void AddProductButton_Sell_Click(object sender, RoutedEventArgs e)
+        {
+            ProductModel product = (ProductModel)ProductValue_Sell.SelectedItem;
+            if (product == null)
+            {
+                MessageBox.Show("Select Product First");
+            }
+            else
+            {
+                OrderProductModel orderProduct = new OrderProductModel();
+                orderProduct.Product = product;
+                orderProduct.SalePrice = decimal.Parse(PriceValue_Sell.Text);
+                orderProduct.Discount = decimal.Parse(DiscountValue_Sell.Text);
+                orderProduct.Quantity = int.Parse(QuantityValue_Sell.Text);
+                Orders.Add(orderProduct);
+
+            }
+
+        }
         #endregion
-
-
     }
 }

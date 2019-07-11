@@ -132,6 +132,23 @@ namespace Library
             return OrderProduct.GetPriceValue(discount, product);
         }
 
+        /// <summary>
+        /// Get discount when price value changes
+        /// // Discount = Old Price - Price (Trigger when Price Change)
+        /// </summary>
+        /// <param name="price"></param>
+        /// <param name="product"></param>
+        /// <returns> 
+        /// -1 if price < 0
+        /// 0 if there is no discount
+        /// discount value
+        /// </returns>
+        public  decimal GetDiscountValue(decimal price, ProductModel product)
+        {
+            return OrderProduct.GetDiscountValue(price, product);
+
+        }
+
         #endregion
     }
 }

@@ -45,14 +45,14 @@
                 <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="58,114,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Quantity : "/></TextBlock>
                 <TextBox x:Name="QuantityValue_Sell" KeyDown="QuantityValue_Sell_KeyDown" HorizontalAlignment="Left" Height="23" Margin="177,124,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="58" RenderTransformOrigin="0.544,-0.652" IsEnabled="False" />
 
-                <TextBox x:Name="PriceValue_Sell" HorizontalAlignment="Left" Height="23" Margin="317,124,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="58" RenderTransformOrigin="0.544,-0.652" IsEnabled="False" />
+                <TextBox x:Name="PriceValue_Sell" KeyDown="PriceValue_Sell_KeyDown" HorizontalAlignment="Left" Height="23" Margin="317,124,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="58" RenderTransformOrigin="0.544,-0.652" IsEnabled="False" />
                 <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="240,114,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Price : "/></TextBlock>
 
                 <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="380,114,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Discount :"/></TextBlock>
-                <TextBox x:Name="DiscountValue_Sell" HorizontalAlignment="Left" Height="23" Margin="494,124,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="58" RenderTransformOrigin="0.544,-0.652" IsEnabled="False" />
+                <TextBox x:Name="DiscountValue_Sell" KeyDown="DiscountValue_Sell_KeyDown" HorizontalAlignment="Left" Height="23" Margin="494,124,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="58" RenderTransformOrigin="0.544,-0.652" IsEnabled="False" />
 
-                <Button x:Name="AddProductButton_Sell" Content="ADD" HorizontalAlignment="Left" Margin="365,169,0,0" VerticalAlignment="Top" Width="155" Height="70" FontSize="36" FontWeight="Bold"/>
-                <Button x:Name="ClearProductButton_Sell" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Red"   VerticalAlignment="Top" Height="52" Margin="525,187,10,0"  >
+                <Button x:Name="AddProductButton_Sell" Click="AddProductButton_Sell_Click" Content="ADD" HorizontalAlignment="Left" Margin="365,169,0,0" VerticalAlignment="Top" Width="155" Height="70" FontSize="36" FontWeight="Bold"/>
+                <Button x:Name="ClearProductButton_Sell" Click="ClearProductButton_Sell_Click" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Red"   VerticalAlignment="Top" Height="52" Margin="525,187,10,0"  >
                     <materialDesign:PackIcon Kind="Clear" Width="50" Height="46"/>
                 </Button>
                 <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="58,159,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Total Price : "/></TextBlock>
