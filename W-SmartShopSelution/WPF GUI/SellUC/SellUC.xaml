@@ -6,19 +6,26 @@
              xmlns:local="clr-namespace:WPF_GUI.Sell"
              mc:Ignorable="d" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-
              d:DesignHeight="680" d:DesignWidth="1343">
     <Grid>
         <!--<Rectangle RadiusY="8" RadiusX="8" Fill="White"/>-->
 
-        <DataGrid x:Name="ChoosenProductList_Sell" HorizontalAlignment="Left" Height="274" Margin="10,314,0,0" VerticalAlignment="Top" Width="1323" Background="LightGray"/>
+        <DataGrid x:Name="ChoosenProductList_Sell" IsReadOnly="True" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="274" Margin="10,314,0,0" VerticalAlignment="Top" Width="1323" Background="LightGray">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Product Name" Binding="{Binding Path=Product.Name}" />
+                <DataGridTextColumn Header="Quantity" Binding="{Binding Path=Quantity}" />
+                <DataGridTextColumn Header="Price" Binding="{Binding Path=SalePrice}"/>
+                <DataGridTextColumn Header="Discount" Binding="{Binding Path= Discount}"/>
+                <DataGridTextColumn Header="Total Price" Binding="{Binding Path=TotalProductPrice}"/>
+            </DataGrid.Columns>
+        </DataGrid>
 
         <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="1038,587,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Total Price : "/></TextBlock>
         <TextBox x:Name="TotalPriceValue_Sell" HorizontalAlignment="Left" Height="23" Margin="1175,597,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="78" RenderTransformOrigin="0.544,-0.652"/>
         <Button x:Name="ConfirmButton_UC" Content="Confirm" HorizontalAlignment="Left" Margin="1077,638,0,0" VerticalAlignment="Top" Width="93"/>
         <Button x:Name="ClearButton_UC" Content="Clear" HorizontalAlignment="Left" Margin="1175,638,0,0" VerticalAlignment="Top" Width="75"/>
 
-        <Button x:Name="RemoveSelectedProductButton_Sell" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Red"  Margin="15,597,1073,0" VerticalAlignment="Top" Height="60"  >
+        <Button x:Name="RemoveSelectedProductButton_Sell" Click="RemoveSelectedProductButton_Sell_Click" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Red"  Margin="15,597,1073,0" VerticalAlignment="Top" Height="60"  >
             <Grid Width="229">
                 <materialDesign:PackIcon Kind="RemoveCircle" Width="50" Height="46"/>
                 <TextBlock FontSize="20" Text="Remove Selected" Margin="50,10,10,10"/>
@@ -64,7 +71,7 @@
             <Grid>
                 <Button x:Name="NewCustomerButton_Sell" Content="New Customer" HorizontalAlignment="Left" Margin="502,197,0,0" VerticalAlignment="Top" Width="143" Height="40" FontSize="15" FontWeight="Bold"/>
                 <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="10,10,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" Width="133" Text="Full Name : " />
-                <TextBox x:Name="CustomerNameValue_Sell" HorizontalAlignment="Left" Margin="148,18,0,0" VerticalAlignment="Top" Width="206" />
+                <TextBox x:Name="CustomerNameValue_Sell" TextChanged="CustomerNameValue_Sell_TextChanged" KeyDown="CustomerNameValue_Sell_KeyDown" HorizontalAlignment="Left" Margin="208,18,0,0" VerticalAlignment="Top" Width="437" />
                 <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="10,48,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" Width="193" Text="Phone Number : " />
                 <TextBox x:Name="PhoneNumberValue_Sell" HorizontalAlignment="Left" Height="23" Margin="208,58,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="437"/>
                 <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="10,86,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" Width="209" Text="National Number : " />

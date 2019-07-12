@@ -22,10 +22,23 @@ namespace Library
         /// </summary>
         public string FirstName { get; set; }
 
+
         /// <summary>
         /// the lastName For the person
         /// </summary>
         public string LastName { get; set; }
+
+
+        /// <summary>
+        /// Get Full Name For the person
+        /// </summary>
+        public string FullName
+        {
+            get
+            {
+              return FirstName + " " + LastName;
+            }
+        }
 
         /// <summary>
         ///  the PhoneNumber of the person
@@ -58,6 +71,5 @@ namespace Library
         public string Country { get; set; }
 
         
-
     }
 }

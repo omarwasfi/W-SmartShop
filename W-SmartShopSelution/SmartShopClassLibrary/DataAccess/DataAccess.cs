@@ -26,7 +26,10 @@ namespace Library
         /// </summary>
         private const int DefaultBrandId = 10000;
 
-
+        /// <summary>
+        /// The Default Id in the Perosn table in the database
+        /// </summary>
+        private const int DefaultPerson = 1000000;
 
         /// <summary>
         /// Get All categories from the databse
@@ -150,5 +153,29 @@ namespace Library
         }
 
         #endregion
+
+        #region Customer
+
+        /// <summary>
+        /// Get all customers and set the person model for each one
+        /// </summary>
+        /// <param name="db"></param>
+        /// <returns></returns>
+        public  List<CustomerModel> GetCustomers()
+        {
+            return Customer.GetCustomers(db);
+        }
+
+        /// <summary>
+        /// Get the default Customer 
+        /// </summary>
+        /// <param name=""></param>
+        /// <returns></returns>
+        public  CustomerModel GetDefaultCustomer( )
+        {
+            return Customer.GetDefaultCustomer();
+        }
+        #endregion
+
     }
 }

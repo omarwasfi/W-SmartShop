@@ -19,5 +19,7 @@ namespace Library
 
         public decimal Discount { get; set; }
 
+        public decimal TotalProductPrice { get; set; }
+
     }
 }

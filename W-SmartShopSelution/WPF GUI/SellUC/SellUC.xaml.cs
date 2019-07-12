@@ -1,6 +1,7 @@
 ﻿using Library;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,14 +25,19 @@ namespace WPF_GUI.Sell
     {
 #region Main Variabels
 
+        // Goods
         public List<CategoryModel> Categories { get; set; }
         public List<BrandModel> Brands { get; set; }
         public List<ProductModel> Products { get; set; }
 
+        // order chash
         public List<OrderProductModel> Orders { get; set; } = new List<OrderProductModel>();
-
         public OrderModel Order { get; set; }
 
+        // Customer
+
+        public List<CustomerModel>  Customers { get; set; }
+        public List<string> CustomersFullNames { get; set; } = new List<string>();
         #endregion
 
 
@@ -54,8 +60,9 @@ namespace WPF_GUI.Sell
         {
             InitializeComponent();
             FillStartupData();
-
             
+
+
         }
 
        
@@ -86,6 +93,15 @@ namespace WPF_GUI.Sell
         }
 
         /// <summary>
+        /// Get All Customers from the database
+        /// </summary>
+        private void GetCustomersFromDatabase()
+        {
+            // TODO - Get Customers from database
+            Customers = GlobalConfig.Connection.GetCustomers();
+        }
+
+        /// <summary>
         /// Update All the lists in the UC , 
         /// initialize the uc OR to clear the uc OR Update everything from the database
         /// </summary>
@@ -95,11 +111,31 @@ namespace WPF_GUI.Sell
             Update_BrandValue_Sell();
             Update_ProductValue_Sell();
 
+            // For CustomerNameValue_Sell
+            Update_CustomerNamesVariablesAndEvents();
+
 
 
         }
 
+        /// <summary>
+        /// Add Customers full Names into 1 list 
+        /// Add delete pressed event for CustomerNameValue_Sell
+        /// </summary>
+        private void Update_CustomerNamesVariablesAndEvents()
+        {
+            GetCustomersFromDatabase();
+            foreach (CustomerModel customer in Customers)
+            {
 
+                CustomersFullNames.Add(customer.Person.FullName);
+            }
+
+            CustomerNameValue_Sell.PreviewKeyDown += DelPressed;
+
+            UpdateCustomerInfo(GlobalConfig.Connection.GetDefaultCustomer());
+        }
+        
 
         /// <summary>
         /// Update CategoryValue_Sell combobox from the database
@@ -441,11 +477,146 @@ namespace WPF_GUI.Sell
                 orderProduct.SalePrice = decimal.Parse(PriceValue_Sell.Text);
                 orderProduct.Discount = decimal.Parse(DiscountValue_Sell.Text);
                 orderProduct.Quantity = int.Parse(QuantityValue_Sell.Text);
+                orderProduct.TotalProductPrice = decimal.Parse(TotalProductPriceValue_Sell.Text);
                 Orders.Add(orderProduct);
-
+                // Update Choosen product list datagrid
+                UpadateChoosenProductList_Sell();
             }
 
         }
         #endregion
+
+        #region ChoosenProductList_Sell Data Grid
+
+        /// <summary>
+        /// update the choosen product list with orders list
+        /// </summary>
+        private void UpadateChoosenProductList_Sell()
+        {
+            ChoosenProductList_Sell.ItemsSource = null;
+            ChoosenProductList_Sell.ItemsSource = Orders;
+
+            // Updates Total Price
+            UpdateTotalPrice();
+        }
+
+        /// <summary>
+        /// Remove selected ordermodel from the orders list
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void RemoveSelectedProductButton_Sell_Click(object sender, RoutedEventArgs e)
+        {
+            OrderProductModel orderProduct;
+            orderProduct = (OrderProductModel)ChoosenProductList_Sell.SelectedItem;
+            Orders.Remove(orderProduct);
+            UpadateChoosenProductList_Sell();
+        }
+
+
+        #endregion
+
+        #region Hole form
+
+        /// <summary>
+        /// Updates Total Price
+        /// gets order list and calculate the total price
+        /// </summary>
+        private void UpdateTotalPrice()
+        {
+            decimal TotalPrice = new decimal();
+            foreach(OrderProductModel orderProduct in Orders)
+            {
+                TotalPrice += orderProduct.TotalProductPrice;
+            }
+            TotalPriceValue_Sell.Text = TotalPrice.ToString();
+            
+        }
+
+        #endregion
+        #region Customer GroupeBox
+
+
+        /// <summary>
+        /// Events for CustomerValue changes to auto complete
+        /// source : https://stackoverflow.com/questions/950770/autocomplete-textbox-in-wpf
+        /// </summary>
+        private bool InProg_CustomerNameValue_Sell;
+        private void CustomerNameValue_Sell_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var change = e.Changes.FirstOrDefault();
+            if (!InProg_CustomerNameValue_Sell)
+            {
+                InProg_CustomerNameValue_Sell = true;
+                var culture = new CultureInfo(CultureInfo.CurrentCulture.Name);
+                var source = ((TextBox)sender);
+                if (((change.AddedLength - change.RemovedLength) > 0 || source.Text.Length > 0) && !DelKeyPressed_CustomerNameValue_Sell)
+                {
+                    if (CustomersFullNames.Where(x => x.IndexOf(source.Text, StringComparison.CurrentCultureIgnoreCase) == 0).Count() > 0)
+                    {
+                        var _appendtxt = CustomersFullNames.FirstOrDefault(ap => (culture.CompareInfo.IndexOf(ap, source.Text, CompareOptions.IgnoreCase) == 0));
+                        _appendtxt = _appendtxt.Remove(0, change.Offset + 1);
+                        source.Text += _appendtxt;
+                        source.SelectionStart = change.Offset + 1;
+                        source.SelectionLength = source.Text.Length;
+                    }
+                }
+                InProg_CustomerNameValue_Sell = false;
+            }
+        }
+        private static bool DelKeyPressed_CustomerNameValue_Sell;
+        internal static void DelPressed(object sender, KeyEventArgs e)
+        { if (e.Key == Key.Back) { DelKeyPressed_CustomerNameValue_Sell = true; } else { DelKeyPressed_CustomerNameValue_Sell = false; } }
+
+        /// <summary>
+        /// Trigers when enter key down while selecting customerNameValue
+        /// Compares the current value of the customerNameValue with customers list
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CustomerNameValue_Sell_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                
+                foreach(CustomerModel c in Customers)
+                {
+                    if(c.Person.FullName.Equals(CustomerNameValue_Sell.Text,StringComparison.OrdinalIgnoreCase))
+                    {
+                        UpdateCustomerInfo(c);
+                        
+                    }
+                    
+                }
+            }
+        }
+
+        /// <summary>
+        /// Called when customer changes to update his info
+        /// </summary>
+        /// <param name="customer"></param>
+        private void UpdateCustomerInfo(CustomerModel customer)
+        {
+        InProg_CustomerNameValue_Sell = true;
+
+        CustomerNameValue_Sell.Text = "";
+            PhoneNumberValue_Sell.Text = "";
+            NationalNumberValue_Sell.Text = "";
+
+            CustomerNameValue_Sell.Text = customer.Person.FullName;
+
+            if(customer.Person.PhoneNumber != null)
+                PhoneNumberValue_Sell.Text = customer.Person.PhoneNumber;
+            if (customer.Person.NationalNumber != null)
+                NationalNumberValue_Sell.Text = customer.Person.NationalNumber;
+
+            InProg_CustomerNameValue_Sell = false;
+
+        }
+        #endregion
+
+
     }
+
 }
+
