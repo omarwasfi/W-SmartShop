@@ -69,7 +69,7 @@
         </GroupBox>
         <GroupBox Header="Customer" HorizontalAlignment="Left" Height="299" Margin="660,10,0,0" VerticalAlignment="Top" Width="673">
             <Grid>
-                <Button x:Name="NewCustomerButton_Sell" Content="New Customer" HorizontalAlignment="Left" Margin="502,197,0,0" VerticalAlignment="Top" Width="143" Height="40" FontSize="15" FontWeight="Bold"/>
+                <Button x:Name="NewCustomerButton_Sell" Click="NewCustomerButton_Sell_Click" Content="New Customer" HorizontalAlignment="Left" Margin="502,197,0,0" VerticalAlignment="Top" Width="143" Height="40" FontSize="15" FontWeight="Bold"/>
                 <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="10,10,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" Width="133" Text="Full Name : " />
                 <TextBox x:Name="CustomerNameValue_Sell" TextChanged="CustomerNameValue_Sell_TextChanged" KeyDown="CustomerNameValue_Sell_KeyDown" HorizontalAlignment="Left" Margin="224,18,0,0" VerticalAlignment="Top" Width="421" />
                 <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="10,48,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" Width="193" Text="Phone Number : " />

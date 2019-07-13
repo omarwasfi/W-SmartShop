@@ -175,6 +175,32 @@ namespace Library
         {
             return Customer.GetDefaultCustomer();
         }
+
+        /// <summary>
+        /// Create customer in the database and get the customer model back with the new customerId
+        /// - Check if this person in the database or not By Comparing the NationalNumber to all people in the database
+        /// - if he in the database The return customer with id of -1
+        /// - If Not :
+        /// - Create person and get the person model 
+        /// - Create customer and set the person model for this customer
+        /// </summary>
+        /// <returns></returns>
+        public CustomerModel CreateCustomer(CustomerModel customer)
+        {
+            if( Person.IsThisPersonInTheDataBase(customer.Person, Person.GetAllPeople(db)) == true)
+            {
+                customer.Id = -1;
+                return customer;
+            }
+            else
+            {
+                PersonModel personModel = Person.CreatePerson(customer.Person, db); ;
+                customer.Person = new PersonModel();
+                customer.Person = personModel;
+                return Customer.CreateCustomer(customer, db);
+            }
+           
+        }
         #endregion
 
         #region order

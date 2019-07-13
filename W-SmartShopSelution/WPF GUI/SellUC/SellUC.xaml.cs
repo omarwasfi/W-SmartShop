@@ -14,7 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using WPF_GUI.CreateCutomer;
 
 namespace WPF_GUI.Sell
 {
@@ -25,7 +25,7 @@ namespace WPF_GUI.Sell
     /// <summary>
     /// Interaction logic for SellUC.xaml
     /// </summary>
-    public partial class SellUC : UserControl
+    public partial class SellUC : UserControl , ICustomerRequester
     {
         #region Main Variabels
 
@@ -851,6 +851,38 @@ namespace WPF_GUI.Sell
             ChoosenProductList_Sell.ItemsSource = null;
             TotalPriceValue_Sell.Text = "";
         }
+
+
+        /// <summary>
+        /// Show the user Control in a new window 
+        /// source: https://stackoverflow.com/questions/1262115/how-do-you-display-a-custom-usercontrol-as-a-dialog
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void NewCustomerButton_Sell_Click(object sender, RoutedEventArgs e)
+        {
+            CreateCustomerUC createCustomer = new CreateCustomerUC(this);
+            Window window = new Window
+            {
+                Title = "Create User",
+                Content = createCustomer,
+                SizeToContent = SizeToContent.WidthAndHeight,
+                ResizeMode = ResizeMode.NoResize
+            };
+            window.ShowDialog();
+        }
+
+        /// <summary>
+        /// Implemnted from interface to set the customer If this Customer is new
+        /// </summary>
+        /// <param name="customer"></param>
+        public void CustomerComplete(CustomerModel customer)
+        {
+            Customers.Add(customer);
+            CustomersFullNames.Add(customer.Person.FullName);
+            UpdateCustomerInfo(customer);
+        }
+
 
 
 
