@@ -12,18 +12,19 @@ namespace Library
     {
 
         /// <summary>
-        /// save the order to the database, 
-        /// each orderproduct will be add to the orderproduct table in the database
+        /// Gets Empty Order that have Id  , 
+        /// The order should Have The main info of thist variables:
+        /// CustomerId, DataTimeOfTheOrder, StoreId, StaffId,TotalPrice
         /// </summary>
         /// <param name="order">order model</param>
-        /// <param name="db"></param>
-        public static void SaveOrderToDatabase(OrderModel order, string db)
+        /// <param name="db"> Database Connection Name </param>
+        public static OrderModel GetEmptyOrderFromTheDatabase(OrderModel order, string db)
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnVal(db)))
             {
-                
+
                 var p = new DynamicParameters();
-                p.Add("@CustomerId" , order.Customer.Id);
+                p.Add("@CustomerId", order.Customer.Id);
                 p.Add("@DateTimeOfTheOrder", order.DateTimeOfTheOrder);
                 p.Add("@StoreId", order.Store.Id);
                 p.Add("@StaffId", order.Staff.Id);
@@ -31,21 +32,10 @@ namespace Library
                 p.Add("@Id", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
                 connection.Execute("dbo.spOrders_CreateOrder", p, commandType: CommandType.StoredProcedure);
                 order.Id = p.Get<int>("@Id");
-
-                
-                foreach (OrderProductModel orderProduct in order.Products)
-                {
-                    var o = new DynamicParameters();
-                    o.Add("@OrderId", order.Id);
-                    o.Add("@ProductId", orderProduct.Product.Id);
-                    o.Add("@SalePrice", orderProduct.SalePrice);
-                    o.Add("@Discount", orderProduct.Discount);
-                    o.Add("@Quantity", orderProduct.Quantity);
-                  connection.Execute("dbo.spOrderProduct_Create", o, commandType: CommandType.StoredProcedure);
-
-                }
-
             }
+            return order;
+                
+            
         }
 
     }

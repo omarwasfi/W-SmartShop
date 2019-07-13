@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Dapper;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,6 +10,31 @@ namespace Library
 {
     public static class OrderProduct
     {
+
+        /// <summary>
+        /// Loop throw each OrderProduct in the order
+        /// save each one in the orderProdcut table with tha Id of the order
+        /// </summary>
+        /// <param name="order"> Order Model Has An Id From Order.GetEmptyOrder </param>
+        /// <param name="db"> Database Connection Name </param>
+        public static void SaveOrderProductListToTheDatabase(OrderModel order, string db)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnVal(db)))
+            {
+                foreach (OrderProductModel orderProduct in order.Products)
+                {
+                    var o = new DynamicParameters();
+                    o.Add("@OrderId", order.Id);
+                    o.Add("@ProductId", orderProduct.Product.Id);
+                    o.Add("@SalePrice", orderProduct.SalePrice);
+                    o.Add("@Discount", orderProduct.Discount);
+                    o.Add("@Quantity", orderProduct.Quantity);
+                    connection.Execute("dbo.spOrderProduct_Create", o, commandType: CommandType.StoredProcedure);
+
+                }
+            }
+        }
+
         /// <summary>
         /// Get the Price and Quantity to return Total Price
         /// Total Price = Price * Quantity ( Trigers When Product Selected Or Quantity Increased)

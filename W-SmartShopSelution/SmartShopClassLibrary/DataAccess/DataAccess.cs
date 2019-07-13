@@ -180,14 +180,16 @@ namespace Library
         #region order
 
         /// <summary>
-        /// save the order to the database, 
+        /// save the order to the database by :
+        /// Calling order.getemptyorder to get Id for the order
+        /// then save each orderProdcut alone in the database throw func. OrderProduct.saveOrderProductListToTheDataBase
         /// each orderproduct will be add to the orderproduct table in the database
         /// </summary>
         /// <param name="order">order model</param>
         /// <param name="db"></param>
         public  void SaveOrderToDatabase(OrderModel order)
         {
-            Order.SaveOrderToDatabase(order, db);
+            OrderProduct.SaveOrderProductListToTheDatabase(Order.GetEmptyOrderFromTheDatabase(order, db), db);
         }
 
         #endregion

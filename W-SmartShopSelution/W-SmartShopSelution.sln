@@ -3,10 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29009.5
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartShopLibraryEntityFramework", "SmartShopLibraryEntityFramework\SmartShopLibraryEntityFramework.csproj", "{9C32A0C1-7F03-44BE-9894-C4345C7F5583}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library", "Library\Library.csproj", "{D7517488-4AB5-4378-9ECC-E35BA6DDFF53}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF GUI", "WPF GUI\WPF GUI.csproj", "{C5D9CF08-E3A7-4FBF-BD90-DDCD575E5923}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartShopClassLibrary", "SmartShopClassLibrary\SmartShopClassLibrary.csproj", "{8F37C142-611C-4C2A-8DB8-D20DF1E525B6}"
@@ -17,14 +13,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{9C32A0C1-7F03-44BE-9894-C4345C7F5583}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9C32A0C1-7F03-44BE-9894-C4345C7F5583}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9C32A0C1-7F03-44BE-9894-C4345C7F5583}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9C32A0C1-7F03-44BE-9894-C4345C7F5583}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D7517488-4AB5-4378-9ECC-E35BA6DDFF53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D7517488-4AB5-4378-9ECC-E35BA6DDFF53}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D7517488-4AB5-4378-9ECC-E35BA6DDFF53}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D7517488-4AB5-4378-9ECC-E35BA6DDFF53}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C5D9CF08-E3A7-4FBF-BD90-DDCD575E5923}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C5D9CF08-E3A7-4FBF-BD90-DDCD575E5923}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C5D9CF08-E3A7-4FBF-BD90-DDCD575E5923}.Release|Any CPU.ActiveCfg = Release|Any CPU
