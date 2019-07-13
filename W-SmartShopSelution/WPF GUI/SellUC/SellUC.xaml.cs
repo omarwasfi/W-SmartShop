@@ -18,12 +18,24 @@ using System.Windows.Shapes;
 
 namespace WPF_GUI.Sell
 {
+    // TODO - Close Tab Button 
+    // TODO - Print Button
+    // TODO - In customer group box Create new customer button ,  Selected customer log button
+
     /// <summary>
     /// Interaction logic for SellUC.xaml
     /// </summary>
     public partial class SellUC : UserControl
     {
-#region Main Variabels
+        #region Main Variabels
+
+        // TODO - Set the store the Current store
+        // Store
+        public StoreModel Store { get; set; } = new StoreModel { Id = 500, Name = "Default" };
+
+        // TODO - Set the current staff
+        // Staff
+        public StaffModel Staff { get; set; } = new StaffModel { Id = 1000 };
 
         // Goods
         public List<CategoryModel> Categories { get; set; }
@@ -32,12 +44,14 @@ namespace WPF_GUI.Sell
 
         // order chash
         public List<OrderProductModel> Orders { get; set; } = new List<OrderProductModel>();
-        public OrderModel Order { get; set; }
-
+        public OrderModel Order { get; set; } = new OrderModel();
+        public CustomerModel Customer { get; set; } = new CustomerModel();
         // Customer
 
         public List<CustomerModel>  Customers { get; set; }
         public List<string> CustomersFullNames { get; set; } = new List<string>();
+        public List<string> CustomersPhoneNumbers { get; set; } = new List<string>();
+        public List<string> CustomersNationalNumbers { get; set; } = new List<string>();
         #endregion
 
 
@@ -120,6 +134,8 @@ namespace WPF_GUI.Sell
 
         /// <summary>
         /// Add Customers full Names into 1 list 
+        /// Add customers PhoneNumbers into 1 list
+        /// Add Customers NationalNumbers into 1 list
         /// Add delete pressed event for CustomerNameValue_Sell
         /// </summary>
         private void Update_CustomerNamesVariablesAndEvents()
@@ -129,9 +145,19 @@ namespace WPF_GUI.Sell
             {
 
                 CustomersFullNames.Add(customer.Person.FullName);
-            }
 
-            CustomerNameValue_Sell.PreviewKeyDown += DelPressed;
+                if (customer.Person.PhoneNumber != null)
+                    CustomersPhoneNumbers.Add(customer.Person.PhoneNumber);
+
+                if (customer.Person.NationalNumber != null)
+                    CustomersNationalNumbers.Add(customer.Person.NationalNumber);
+               
+            }
+            CustomerNameValue_Sell.PreviewKeyDown +=DelPressed_CustomerNameValue_Sell ;
+            PhoneNumberValue_Sell.PreviewKeyDown += DelPressed_PhoneNumberValue_Sell;
+            NationalNumberValue_Sell.PreviewKeyDown += DelPressed_NationalNumberValue_Sell;
+
+            
 
             UpdateCustomerInfo(GlobalConfig.Connection.GetDefaultCustomer());
         }
@@ -516,24 +542,7 @@ namespace WPF_GUI.Sell
 
         #endregion
 
-        #region Hole form
-
-        /// <summary>
-        /// Updates Total Price
-        /// gets order list and calculate the total price
-        /// </summary>
-        private void UpdateTotalPrice()
-        {
-            decimal TotalPrice = new decimal();
-            foreach(OrderProductModel orderProduct in Orders)
-            {
-                TotalPrice += orderProduct.TotalProductPrice;
-            }
-            TotalPriceValue_Sell.Text = TotalPrice.ToString();
-            
-        }
-
-        #endregion
+        
         #region Customer GroupeBox
 
 
@@ -565,8 +574,71 @@ namespace WPF_GUI.Sell
             }
         }
         private static bool DelKeyPressed_CustomerNameValue_Sell;
-        internal static void DelPressed(object sender, KeyEventArgs e)
+        internal static void DelPressed_CustomerNameValue_Sell(object sender, KeyEventArgs e)
         { if (e.Key == Key.Back) { DelKeyPressed_CustomerNameValue_Sell = true; } else { DelKeyPressed_CustomerNameValue_Sell = false; } }
+
+
+        /// <summary>
+        /// Events for PhoneNumberValue_Sell changes to auto complete
+        /// source : https://stackoverflow.com/questions/950770/autocomplete-textbox-in-wpf
+        /// </summary>
+        private bool InProg_PhoneNumberValue_Sell;
+        private void PhoneNumberValue_Sell_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var change = e.Changes.FirstOrDefault();
+            if (!InProg_PhoneNumberValue_Sell)
+            {
+                InProg_PhoneNumberValue_Sell = true;
+                var culture = new CultureInfo(CultureInfo.CurrentCulture.Name);
+                var source = ((TextBox)sender);
+                if (((change.AddedLength - change.RemovedLength) > 0 || source.Text.Length > 0) && !DelKeyPressed_PhoneNumberValue_Sell)
+                {
+                    if (CustomersPhoneNumbers.Where(x => x.IndexOf(source.Text, StringComparison.CurrentCultureIgnoreCase) == 0).Count() > 0)
+                    {
+                        var _appendtxt = CustomersPhoneNumbers.FirstOrDefault(ap => (culture.CompareInfo.IndexOf(ap, source.Text, CompareOptions.IgnoreCase) == 0));
+                        _appendtxt = _appendtxt.Remove(0, change.Offset + 1);
+                        source.Text += _appendtxt;
+                        source.SelectionStart = change.Offset + 1;
+                        source.SelectionLength = source.Text.Length;
+                    }
+                }
+                InProg_PhoneNumberValue_Sell = false;
+            }
+        }
+        private static bool DelKeyPressed_PhoneNumberValue_Sell;
+        internal static void DelPressed_PhoneNumberValue_Sell(object sender, KeyEventArgs e)
+        { if (e.Key == Key.Back) { DelKeyPressed_PhoneNumberValue_Sell = true; } else { DelKeyPressed_PhoneNumberValue_Sell = false; } }
+
+        /// <summary>
+        /// Events for PhoneNumberValue_Sell changes to auto complete
+        /// source : https://stackoverflow.com/questions/950770/autocomplete-textbox-in-wpf
+        /// </summary>
+        private bool InProg_NationalNumberValue_Sell;
+        private void NationalNumberValue_Sell_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var change = e.Changes.FirstOrDefault();
+            if (!InProg_NationalNumberValue_Sell)
+            {
+                InProg_NationalNumberValue_Sell = true;
+                var culture = new CultureInfo(CultureInfo.CurrentCulture.Name);
+                var source = ((TextBox)sender);
+                if (((change.AddedLength - change.RemovedLength) > 0 || source.Text.Length > 0) && !DelKeyPressed_NationalNumberValue_Sell)
+                {
+                    if (CustomersNationalNumbers.Where(x => x.IndexOf(source.Text, StringComparison.CurrentCultureIgnoreCase) == 0).Count() > 0)
+                    {
+                        var _appendtxt = CustomersNationalNumbers.FirstOrDefault(ap => (culture.CompareInfo.IndexOf(ap, source.Text, CompareOptions.IgnoreCase) == 0));
+                        _appendtxt = _appendtxt.Remove(0, change.Offset + 1);
+                        source.Text += _appendtxt;
+                        source.SelectionStart = change.Offset + 1;
+                        source.SelectionLength = source.Text.Length;
+                    }
+                }
+                InProg_NationalNumberValue_Sell = false;
+            }
+        }
+        private static bool DelKeyPressed_NationalNumberValue_Sell;
+        internal static void DelPressed_NationalNumberValue_Sell(object sender, KeyEventArgs e)
+        { if (e.Key == Key.Back) { DelKeyPressed_NationalNumberValue_Sell = true; } else { DelKeyPressed_NationalNumberValue_Sell = false; } }
 
         /// <summary>
         /// Trigers when enter key down while selecting customerNameValue
@@ -592,16 +664,78 @@ namespace WPF_GUI.Sell
         }
 
         /// <summary>
+        /// Trigers when enter key down while selecting PhoneNumberValue_Sell
+        /// Compares the current value of the PhoneNumberValue_Sell with customersPhones  list
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void PhoneNumberValue_Sell_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+
+                foreach (CustomerModel customer in Customers)
+                {
+                    if (customer.Person.PhoneNumber != null)
+                    {
+                        if (customer.Person.PhoneNumber.Equals(PhoneNumberValue_Sell.Text))
+                        {
+                            UpdateCustomerInfo(customer);
+
+                        }
+                    }
+
+                }
+            }
+        }
+
+        /// <summary>
+        /// Trigers when enter key down while selecting NationalNumberValue_Sell
+        /// Compares the current value of the NationalNumberValue_Sell with customersNationalNumbers  list
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void NationalNumberValue_Sell_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+
+                foreach (CustomerModel customer in Customers)
+                {
+                    if (customer.Person.NationalNumber != null)
+                    {
+                        if (customer.Person.NationalNumber.Equals(NationalNumberValue_Sell.Text))
+                        {
+                            UpdateCustomerInfo(customer);
+
+                        }
+                    }
+
+                }
+            }
+        }
+
+        /// <summary>
+        /// Cleare Customer button event
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ClearCustomerButton_Sell_Click(object sender, RoutedEventArgs e)
+        {
+            ClearCustomerInfo();
+        }
+
+        /// <summary>
         /// Called when customer changes to update his info
         /// </summary>
         /// <param name="customer"></param>
         private void UpdateCustomerInfo(CustomerModel customer)
         {
-        InProg_CustomerNameValue_Sell = true;
-
-        CustomerNameValue_Sell.Text = "";
-            PhoneNumberValue_Sell.Text = "";
-            NationalNumberValue_Sell.Text = "";
+            Customer = customer;
+            ClearCustomerInfo();
+            InProg_CustomerNameValue_Sell = true;
+            InProg_PhoneNumberValue_Sell = true;
+            InProg_NationalNumberValue_Sell = true;
 
             CustomerNameValue_Sell.Text = customer.Person.FullName;
 
@@ -611,11 +745,118 @@ namespace WPF_GUI.Sell
                 NationalNumberValue_Sell.Text = customer.Person.NationalNumber;
 
             InProg_CustomerNameValue_Sell = false;
+            InProg_PhoneNumberValue_Sell = false;
+            InProg_NationalNumberValue_Sell = false;
+
+        }
+
+        /// <summary>
+        /// Cleare customer  Customer data from the customer groupbox
+        /// </summary>
+        private void ClearCustomerInfo()
+        {
+            InProg_CustomerNameValue_Sell = true;
+            InProg_PhoneNumberValue_Sell = true;
+            InProg_NationalNumberValue_Sell = true;
+
+            CustomerNameValue_Sell.Text = "";
+            PhoneNumberValue_Sell.Text = "";
+            NationalNumberValue_Sell.Text = "";
+
+            InProg_CustomerNameValue_Sell = false;
+            InProg_PhoneNumberValue_Sell = false;
+            InProg_NationalNumberValue_Sell = false;
 
         }
         #endregion
 
+        #region Hole form
 
+        /// <summary>
+        /// Updates Total Price called by UpadateChoosenProductList_Sell
+        /// gets order list and calculate the total price
+        /// </summary>
+        private void UpdateTotalPrice()
+        {
+            decimal TotalPrice = new decimal();
+            foreach (OrderProductModel orderProduct in Orders)
+            {
+                TotalPrice += orderProduct.TotalProductPrice;
+            }
+            TotalPriceValue_Sell.Text = TotalPrice.ToString();
+
+        }
+
+
+        /// <summary>
+        /// Make sure that customer and ordercount is not null
+        /// Create the order and save it to the database
+        /// reset the form at the end
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ConfirmButton_UC_Click(object sender, RoutedEventArgs e)
+        {
+            if (Customer == null)
+            {
+                MessageBox.Show("choose Customer first");
+
+            }
+            else
+            {
+                if (Orders.Count < 1)
+                {
+                    MessageBox.Show("Add Products to the order");
+                }
+                else
+                {
+                    Order.Staff = Staff;
+                    Order.Store = Store;
+                    Order.Products = Orders;
+                    Order.Customer = Customer;
+                    Order.DateTimeOfTheOrder = DateTime.Now;
+                    Order.TotalPrice = decimal.Parse(TotalPriceValue_Sell.Text);
+
+                    GlobalConfig.Connection.SaveOrderToDatabase(Order);
+                    ResetSellUC();
+                }
+
+                
+            }
+            
+
+        }
+
+        /// <summary>
+        /// event to reset the uc
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ClearButton_UC_Click(object sender, RoutedEventArgs e)
+        {
+            ResetSellUC();
+
+        }
+
+        /// <summary>
+        /// Clear the product info and the customer info
+        /// reset the choosen products datagrid
+        /// </summary>
+        private void ResetSellUC()
+        {
+            ClearCustomerInfo();
+            CategoryValue_Sell.SelectedItem = null;
+            BrandValue_Sell.SelectedItem = null;
+            Orders = new List<OrderProductModel>();
+            ChoosenProductList_Sell.ItemsSource = null;
+            TotalPriceValue_Sell.Text = "";
+        }
+
+
+
+        #endregion
+
+        
     }
 
 }

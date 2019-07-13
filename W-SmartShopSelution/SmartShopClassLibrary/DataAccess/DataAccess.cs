@@ -177,5 +177,20 @@ namespace Library
         }
         #endregion
 
+        #region order
+
+        /// <summary>
+        /// save the order to the database, 
+        /// each orderproduct will be add to the orderproduct table in the database
+        /// </summary>
+        /// <param name="order">order model</param>
+        /// <param name="db"></param>
+        public  void SaveOrderToDatabase(OrderModel order)
+        {
+            Order.SaveOrderToDatabase(order, db);
+        }
+
+        #endregion
+
     }
 }

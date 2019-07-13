@@ -70,6 +70,7 @@
     <Compile Include="LogicalClasses\CashOrder\OrderProduct.cs" />
     <Compile Include="LogicalClasses\Category\Category.cs" />
     <Compile Include="LogicalClasses\Customer\Customer.cs" />
+    <Compile Include="LogicalClasses\Order\Order.cs" />
     <Compile Include="LogicalClasses\Product\Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

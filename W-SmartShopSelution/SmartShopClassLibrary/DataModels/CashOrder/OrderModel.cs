@@ -25,7 +25,7 @@ namespace Library
         /// <summary>
         /// The Date and the time of this order
         /// </summary>
-        public DateTime DateTime { get; set; }
+        public DateTime DateTimeOfTheOrder { get; set; }
 
         /// <summary>
         /// store model
