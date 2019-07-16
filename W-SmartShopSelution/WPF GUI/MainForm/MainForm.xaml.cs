@@ -26,7 +26,7 @@ namespace WPF_GUI
         public MainForm()
         {
             InitializeComponent();
-            GlobalConfig.InitializeConnection();
+            
         }
 
        

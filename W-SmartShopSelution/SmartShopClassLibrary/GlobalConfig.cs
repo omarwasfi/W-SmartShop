@@ -21,5 +21,21 @@ namespace Library
         {
             return ConfigurationManager.ConnectionStrings[name].ConnectionString;
         }
+
+        /// <summary>
+        /// Called At the Login Screen to Make sure that the store is in the database
+        /// if in the database return store model
+        /// if not return storemodel with Id = -1
+        /// </summary>
+        /// <returns> store model </returns>
+        public static StoreModel GetTheStoreFromTheDatabase()
+        {
+            
+            return Connection.CheckByEnumIsThisStoreExist(StoreName.CairoStore);
+                    
+            
+
+        }
+
     }
 }

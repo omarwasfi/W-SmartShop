@@ -64,6 +64,7 @@
     <Compile Include="DataModels\Installment\InstallmentProductModel.cs" />
     <Compile Include="DataModels\PermissionModel.cs" />
     <Compile Include="DataModels\StoreModel.cs" />
+    <Compile Include="Enums.cs" />
     <Compile Include="GlobalConfig.cs" />
     <Compile Include="Interfaces\IOrder.cs" />
     <Compile Include="Interfaces\WPFInterfaces\ICustomerRequester.cs" />
@@ -74,6 +75,7 @@
     <Compile Include="LogicalClasses\Order\Order.cs" />
     <Compile Include="LogicalClasses\Person\Person.cs" />
     <Compile Include="LogicalClasses\Product\Product.cs" />
+    <Compile Include="LogicalClasses\Store\Store.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

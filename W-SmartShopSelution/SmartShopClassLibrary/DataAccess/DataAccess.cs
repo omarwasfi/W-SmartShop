@@ -220,5 +220,59 @@ namespace Library
 
         #endregion
 
+        #region store
+
+        /// <summary>
+        /// get all stores from the database
+        /// </summary>
+        /// <param name="db"></param>
+        /// <returns></returns>
+        public  List<StoreModel> GetAllStores()
+        {
+            return Store.GetAllStores(db);
+        }
+
+        /// <summary>
+        /// Check if this store exist in the list of the stores By Name
+        /// gets StoreNameEnum Compare to each StoreName case IF exist:
+        /// check if is exist in the database
+        /// </summary>
+        /// <param name="store"></param>
+        /// <param name="stores"></param>
+        /// <returns></returns>
+        public StoreModel CheckByEnumIsThisStoreExist(StoreName storeName_Enum )
+        {
+            List<StoreModel> stores = GetAllStores();
+            if(storeName_Enum == StoreName.CairoStore)
+            {
+                StoreModel store = new StoreModel { Name = "CairoStore" };
+                if(Store.IsThisStoreExist(store, stores))
+                {
+                    return store;
+                }
+            }
+            if(storeName_Enum == StoreName.FayedStore)
+            {
+                StoreModel store = new StoreModel { Name = "FayedStore" };
+                if (Store.IsThisStoreExist(store, stores))
+                {
+                    return store;
+                }
+            }
+            if (storeName_Enum == StoreName.Ma3adiStore)
+            {
+                StoreModel store = new StoreModel { Name = "Ma3adiStore" };
+                if (Store.IsThisStoreExist(store, stores))
+                {
+                    return store;
+                }
+            }
+            
+                
+            return new StoreModel { Id = -1} ;
+            
+        }
+        #endregion
+
     }
 }
