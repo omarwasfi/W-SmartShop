@@ -274,5 +274,54 @@ namespace Library
         }
         #endregion
 
+        #region Staff
+
+        /// <summary>
+        /// Gets all staff table from the database
+        /// - set the person model for each staff
+        /// </summary>
+        /// <returns></returns>
+        public List<StaffModel> GetStaffs()
+        {
+           return Staff.GetStaffs(db);
+        }
+
+        /// <summary>
+        /// Check if the staff username and password in the database
+        /// check if the staff can login from this sore
+        /// return staff model if he can,
+        /// if not return staff model with id of -1
+        /// </summary>
+        /// <param name="staff"></param>
+        /// <param name="store"></param>
+        /// <returns></returns>
+        public StaffModel CheckIfStaffValid(StaffModel staff , StoreModel store)
+        {
+            List<StaffModel> staffs = GetStaffs();
+            foreach(StaffModel s in staffs)
+            {
+                if(s.Username == staff.Username)
+                {
+                    if (s.Password == staff.Password)
+                    {
+                        staff = s;
+                        foreach (StoreModel WorkingStores in staff.Stores)
+                        {
+                            if (store.Id == WorkingStores.Id)
+                            {
+                                return s;
+                            }
+                        }
+                    }
+                }
+                
+            }
+
+            return new StaffModel { Id = -1 };
+
+        }
+
+
+        #endregion
     }
 }

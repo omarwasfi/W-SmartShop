@@ -31,7 +31,7 @@ namespace Library
         public static StoreModel GetTheStoreFromTheDatabase()
         {
             
-            return Connection.CheckByEnumIsThisStoreExist(StoreName.CairoStore);
+            return Connection.CheckByEnumIsThisStoreExist(StoreName.Ma3adiStore);
                     
             
 

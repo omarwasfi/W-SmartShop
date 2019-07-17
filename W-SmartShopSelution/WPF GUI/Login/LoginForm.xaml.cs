@@ -24,9 +24,17 @@ namespace WPF_GUI
 
         #region Main Variabels
 
+        /// <summary>
+        /// Contain the current store 
+        /// </summary>
         private StoreModel Store { get; set; } 
 
+
+        private StaffModel Staff { get; set; }
+
         #endregion
+
+        #region Fist Step in the program
 
         /// <summary>
         /// InitializeConnection database connection
@@ -52,6 +60,56 @@ namespace WPF_GUI
             }
         }
 
+
+        #endregion
+
+        #region UserLogin
+
+        private void LoginButton_Click(object sender, RoutedEventArgs e)
+        {
+
+            
+            if (VerifyTheIncomeUser())
+            {
+                OpenMainForm();
+            }
+            else
+            {
+                MessageBox.Show("Username Or Password is wrong");
+            }
+            
+        }
+
+        /// <summary>
+        /// Check the staff username and password and if he can login in this store or not
+        /// </summary>
+        /// <returns></returns>
+        private bool VerifyTheIncomeUser()
+        {
+            StaffModel staff = new StaffModel { Username = UsernameValue.Text, Password = PasswordValue.Password };
+            StaffModel outStaff = GlobalConfig.Connection.CheckIfStaffValid(staff,Store);
+            if(outStaff.Id == -1)
+            {
+                return false;
+            }
+            else
+            {
+                Staff = outStaff;
+                return true;
+            }
+        }
+
+        /// <summary>
+        /// Opens Main Form after user login 
+        /// </summary>
+        private void OpenMainForm()
+        {
+            MainForm mainForm = new MainForm();
+            mainForm.Show();
+
+            this.Close();
+        }
+
         /// <summary>
         /// Close The Program
         /// </summary>
@@ -61,14 +119,6 @@ namespace WPF_GUI
         {
             System.Windows.Application.Current.Shutdown();
         }
-
-        private void LoginButton_Click(object sender, RoutedEventArgs e)
-        {
-            
-            MainForm mainForm = new MainForm();
-            mainForm.Show();
-
-            this.Close();
-        }
+        #endregion
     }
 }
