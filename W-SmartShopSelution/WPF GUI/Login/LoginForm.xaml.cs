@@ -27,10 +27,10 @@ namespace WPF_GUI
         /// <summary>
         /// Contain the current store 
         /// </summary>
-        private StoreModel Store { get; set; } 
+        public StoreModel Store { get; set; } 
 
 
-        private StaffModel Staff { get; set; }
+        public  StaffModel Staff { get; set; }
 
         #endregion
 
@@ -49,6 +49,9 @@ namespace WPF_GUI
 
         /// <summary>
         /// Get the Store if the store is not in the database the program will close after message box 
+        /// Set the LoginStoreStocks in the public variables class
+        /// set the Categories in the public variables class
+        /// set the brands in the public variables class
         /// </summary>
         private void GetStore()
         {
@@ -57,6 +60,14 @@ namespace WPF_GUI
             {
                 MessageBox.Show("Program Need Lisence To work");
                 this.Close();
+            }
+
+            else
+            {
+                PublicVariables.Store = Store;
+                PublicVariables.LoginStoreStocks = GlobalConfig.Connection.FilterStocksByStore(Store);
+                PublicVariables.Categories = GlobalConfig.Connection.GetCategories();
+                PublicVariables.Brands = GlobalConfig.Connection.GetBrands();
             }
         }
 
@@ -71,7 +82,9 @@ namespace WPF_GUI
             
             if (VerifyTheIncomeUser())
             {
+
                 OpenMainForm();
+
             }
             else
             {
@@ -82,6 +95,7 @@ namespace WPF_GUI
 
         /// <summary>
         /// Check the staff username and password and if he can login in this store or not
+        /// if staff valid set the staff public variable to this staff memeber
         /// </summary>
         /// <returns></returns>
         private bool VerifyTheIncomeUser()
@@ -95,6 +109,7 @@ namespace WPF_GUI
             else
             {
                 Staff = outStaff;
+                PublicVariables.Staff = Staff;
                 return true;
             }
         }

@@ -12,17 +12,29 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Library;
+
 
 namespace WPF_GUI.ProductManager
 {
+
+
     /// <summary>
     /// Interaction logic for ProductManagerUC.xaml
     /// </summary>
     public partial class ProductManagerUC : UserControl
     {
+        private StoreModel Store { get; set; } = PublicVariables.Store;
+
+        private StaffModel staff = PublicVariables.Staff;
+
+        private List<StockModel> AllStocks { get; set; } 
+
         public ProductManagerUC()
         {
             InitializeComponent();
+
+            AllStocks = GlobalConfig.Connection.FilterStocksByStore(Store);
         }
     }
 }

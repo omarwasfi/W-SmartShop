@@ -13,11 +13,15 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using WPF_GUI.CreateProduct;
+using WPF_GUI.Inventory;
 using WPF_GUI.ProductManager;
 using WPF_GUI.Sell;
 
 namespace WPF_GUI
 {
+
+    // TODO - Add Permetions System to contol the menu
+
     /// <summary>
     /// Interaction logic for MainForm.xaml
     /// </summary>
@@ -29,11 +33,17 @@ namespace WPF_GUI
             
         }
 
-       
+       /// <summary>
+       ///  close the application
+       /// </summary>
+       /// <param name="sender"></param>
+       /// <param name="e"></param>
         private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
             System.Windows.Application.Current.Shutdown();
         }
+
+        #region Menu Events
 
         private void SellViewItem_Selected(object sender, RoutedEventArgs e)
         {
@@ -45,7 +55,10 @@ namespace WPF_GUI
 
         private void InventoryViewItem_Selected(object sender, RoutedEventArgs e)
         {
-
+            InventoryUC inventoryUC = new InventoryUC();
+            TabItem inventoryTab = new TabItem { Header = "Inventory Tab" };
+            inventoryTab.Content = inventoryUC;
+            MainTab.Items.Add(inventoryTab);
         }
 
         private void ProductsViewItem_Selected(object sender, RoutedEventArgs e)
@@ -63,5 +76,6 @@ namespace WPF_GUI
             CreateProductTab.Content = createProductUC;
             MainTab.Items.Add(CreateProductTab);
         }
+        #endregion
     }
 }

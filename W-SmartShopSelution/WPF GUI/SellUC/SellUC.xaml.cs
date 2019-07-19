@@ -21,37 +21,41 @@ namespace WPF_GUI.Sell
     // TODO - Close Tab Button 
     // TODO - Print Button
     // TODO - In customer group box Create new customer button ,  Selected customer log button
+    // TODO - Update Stocks After the PublicVariables changes 
+    // TODO - Needs Change For how the products list set -> set from the public stocks list
 
     /// <summary>
     /// Interaction logic for SellUC.xaml
     /// </summary>
-    public partial class SellUC : UserControl , ICustomerRequester
+    public partial class SellUC : UserControl , ICustomerRequester 
     {
         #region Main Variabels
 
-        // TODO - Set the store the Current store
-        // Store
-        public StoreModel Store { get; set; } = new StoreModel { Id = 500, Name = "Default" };
 
-        // TODO - Set the current staff
+        // Store
+        private StoreModel Store { get; set; } = PublicVariables.Store;
+
+
         // Staff
-        public StaffModel Staff { get; set; } = new StaffModel { Id = 1000 };
+        private StaffModel Staff { get; set; } = PublicVariables.Staff;
 
         // Goods
-        public List<CategoryModel> Categories { get; set; }
-        public List<BrandModel> Brands { get; set; }
-        public List<ProductModel> Products { get; set; }
+        private List<CategoryModel> Categories { get; set; }
+        private List<BrandModel> Brands { get; set; }
+        private List<ProductModel> Products { get; set; }
+        private List<StockModel> Stocks { get; set; }
+
 
         // order chash
-        public List<OrderProductModel> Orders { get; set; } = new List<OrderProductModel>();
-        public OrderModel Order { get; set; } = new OrderModel();
-        public CustomerModel Customer { get; set; } = new CustomerModel();
+        private List<OrderProductModel> Orders { get; set; } = new List<OrderProductModel>();
+        private OrderModel Order { get; set; } = new OrderModel();
+        private CustomerModel Customer { get; set; } = new CustomerModel();
         // Customer
 
-        public List<CustomerModel>  Customers { get; set; }
-        public List<string> CustomersFullNames { get; set; } = new List<string>();
-        public List<string> CustomersPhoneNumbers { get; set; } = new List<string>();
-        public List<string> CustomersNationalNumbers { get; set; } = new List<string>();
+        private List<CustomerModel>  Customers { get; set; }
+        private List<string> CustomersFullNames { get; set; } = new List<string>();
+        private List<string> CustomersPhoneNumbers { get; set; } = new List<string>();
+        private List<string> CustomersNationalNumbers { get; set; } = new List<string>();
         #endregion
 
 
@@ -99,10 +103,21 @@ namespace WPF_GUI.Sell
         }
 
         /// <summary>
+        /// Get The Stocks for this store from the database
+        /// </summary>
+        private void GetStocksFormTheDatabase()
+        {
+            Stocks = GlobalConfig.Connection.FilterStocksByStore(Store);
+        }
+
+        /// <summary>
         /// Get All Products from the database
         /// </summary>
         private void GetProductsFromDatabase()
         {
+            // TODO - Fegure how we will fill the product list
+            // get stocks 
+            // get the products in this stocks
             Products = GlobalConfig.Connection.GetProducts();
         }
 
@@ -121,6 +136,8 @@ namespace WPF_GUI.Sell
         /// </summary>
         private void FillStartupData()
         {
+            GetStocksFormTheDatabase();
+
             Update_CategoryValue_Sell();
             Update_BrandValue_Sell();
             Update_ProductValue_Sell();
@@ -888,7 +905,7 @@ namespace WPF_GUI.Sell
 
         #endregion
 
-        
+
     }
 
 }

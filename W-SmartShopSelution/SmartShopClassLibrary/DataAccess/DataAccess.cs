@@ -106,6 +106,9 @@ namespace Library
 
             return product;
         }
+
+        
+
         #endregion
 
         #region Order Product
@@ -319,6 +322,76 @@ namespace Library
 
             return new StaffModel { Id = -1 };
 
+        }
+
+
+        #endregion
+
+        #region Stock
+
+        // TODO - filter stockes by product to know What store has this product
+
+
+
+        /// <summary>
+        /// Get all stocks from the database 
+        /// - set the product for each stock
+        /// - set store for each stock
+        /// </summary>
+        /// <returns></returns>
+        public List<StockModel> GetStocks()
+        {
+            List<StockModel> stocks = Stock.GetStocks(db,GetProducts(),GetAllStores());
+            return stocks;
+        }
+
+
+        /// <summary>
+        /// Filter all stock list by store
+        /// </summary>
+        /// <param name="stocks"> list of stocks foom the database</param>
+        /// <param name="store"> store model </param>
+        /// <returns></returns>
+        public  List<StockModel> FilterStocksByStore( StoreModel store)
+        {
+            return Stock.FilterStocksByStore(GetStocks(), store);
+        }
+
+        /// <summary>
+        /// Filter list of stocks by category and brand of the products in the stock list
+        /// </summary>
+        /// <param name="stocks"> list of stock model </param>
+        /// <param name="category"> category model </param>
+        /// <param name="brand">Brand model</param>
+        /// <returns> list of filterd stocks by category and brand</returns>
+        public List<StockModel> FilterStocksByCategoryAndBrand(List<StockModel> stocks , CategoryModel category,BrandModel brand)
+        {
+            return Stock.FilterStocksByCategoryAndBrand(stocks, category, DefaultCategoryId, brand, DefaultBrandId);
+        }
+
+
+        /// <summary>
+        /// return list of filterd stocks if the product name foreach one Contains String name
+        /// </summary>
+        /// <param name="stocks"> list of stock model </param>
+        /// <param name="name"> name that we search for </param>
+        /// <returns></returns>
+        public List<StockModel> FilterStocksByName(List<StockModel> stocks , string name)
+        {
+            return Stock.FilterStocksByName(stocks,name);
+        }
+
+        /// <summary>
+        ///  return list of filterd stocks if the product name foreach one Contains SerialNumber
+        ///  source of the search way: https://stackoverflow.com/a/3355561/6421951
+        /// </summary>
+        /// <param name="stocks">  list of stock model  </param>
+        /// <param name="serialNumber"> serialNumber that we search for </param>
+        /// <returns></returns>
+        public  List<StockModel> FilterStocksBySerialNumber(List<StockModel> stocks, string serialNumber)
+        {
+            
+            return Stock.FilterStocksBySerialNumber(stocks,serialNumber);
         }
 
 

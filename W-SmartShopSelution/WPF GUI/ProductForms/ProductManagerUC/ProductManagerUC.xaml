@@ -33,8 +33,14 @@
             <Button Content="Close" HorizontalAlignment="Left" Margin="1235,618,0,0" VerticalAlignment="Top" Width="75"/>
             <Button Content="Clear" HorizontalAlignment="Left" Margin="1155,618,0,0" VerticalAlignment="Top" Width="75"/>
             <Button Content="Print" HorizontalAlignment="Left" Margin="1069,618,0,0" VerticalAlignment="Top" Width="81"/>
-           
+
+            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="11,16,0,0" ><Run Text="Category : "/></TextBlock>
+            <ComboBox x:Name="CategoryValue_ProductManager" HorizontalAlignment="Left" Margin="135,21,0,0" VerticalAlignment="Top" Width="207" IsTextSearchEnabled="True" TextSearch.TextPath="Name"/>
             
+            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="390,16,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" Width="82" ><Run Text="Brand : "/></TextBlock>
+            <ComboBox x:Name="BrandValue_ProductManager" HorizontalAlignment="Left" Margin="478,21,0,0" VerticalAlignment="Top" Width="162" IsTextSearchEnabled="True" TextSearch.TextPath="Name"   />
+
+
 
 
 
