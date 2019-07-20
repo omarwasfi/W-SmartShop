@@ -20,9 +20,8 @@ namespace WPF_GUI.Sell
 {
     // TODO - Close Tab Button 
     // TODO - Print Button
-    // TODO - In customer group box Create new customer button ,  Selected customer log button
-    // TODO - Update Stocks After the PublicVariables changes 
-    // TODO - Needs Change For how the products list set -> set from the public stocks list
+    // TODO - Selected customer log button
+    // TODO - Fix Bux If user press add before conferm the quantity , saleprice or discount
 
     /// <summary>
     /// Interaction logic for SellUC.xaml
@@ -40,9 +39,11 @@ namespace WPF_GUI.Sell
         private StaffModel Staff { get; set; } = PublicVariables.Staff;
 
         // Goods
-        private List<CategoryModel> Categories { get; set; }
+        private List<CategoryModel> Categories { get; set; } 
         private List<BrandModel> Brands { get; set; }
-        private List<ProductModel> Products { get; set; }
+
+        //private List<ProductModel> Productss { get; set; }
+
         private List<StockModel> Stocks { get; set; }
 
 
@@ -63,13 +64,17 @@ namespace WPF_GUI.Sell
         /// <summary>
         /// List Of Products after Filtring
         /// </summary>
-        public List<ProductModel> FProducts { get; set; }
+        //public List<ProductModel> FProducts { get; set; }
+
+        private List<StockModel> FStocks { get; set; }
+
 
         /// <summary>
         /// Manage If we can Filter Products or not 
         /// Use when user done choose the product
         /// </summary>
         bool CanFilterProducts = true;
+
 
 #endregion
 
@@ -83,51 +88,41 @@ namespace WPF_GUI.Sell
 
         }
 
-       
 
-#region set tha Main variabels from the database
+
+        #region set tha Main variabels from the database
         /// <summary>
-        /// Get All the categories from the Database`
+        /// Get All the categories from the PublicVariables
         /// </summary>
-        private void GetCategoriesFromDatabase()
+        private void GetCategoriesFromPublicVariables()
         {
-            Categories = GlobalConfig.Connection.GetCategories();
+            Categories = PublicVariables.Categories;
         }
 
         /// <summary>
-        /// Get All brands from the database
+        /// Get All brands from the PublicVariables
         /// </summary>
-        private void GetBrandsFromDatabase()
+        private void GetBrandsFromPublicVariables()
         {
-            Brands = GlobalConfig.Connection.GetBrands();
+            Brands = PublicVariables.Brands;
         }
 
         /// <summary>
-        /// Get The Stocks for this store from the database
+        /// Get The Stocks for this store from the PublicVariables
         /// </summary>
-        private void GetStocksFormTheDatabase()
+        private void GetStocksFormThePublicVariables()
         {
-            Stocks = GlobalConfig.Connection.FilterStocksByStore(Store);
+            Stocks = PublicVariables.LoginStoreStocks;
         }
 
-        /// <summary>
-        /// Get All Products from the database
-        /// </summary>
-        private void GetProductsFromDatabase()
-        {
-            // TODO - Fegure how we will fill the product list
-            // get stocks 
-            // get the products in this stocks
-            Products = GlobalConfig.Connection.GetProducts();
-        }
+        
 
         /// <summary>
-        /// Get All Customers from the database
+        /// Get All Customers from the PublicVariables
         /// </summary>
-        private void GetCustomersFromDatabase()
+        private void GetCustomersFromPublicVariables()
         {
-            // TODO - Get Customers from database
-            Customers = GlobalConfig.Connection.GetCustomers();
+            Customers = PublicVariables.Customers;
         }
 
         /// <summary>
@@ -136,7 +131,6 @@ namespace WPF_GUI.Sell
         /// </summary>
         private void FillStartupData()
         {
-            GetStocksFormTheDatabase();
 
             Update_CategoryValue_Sell();
             Update_BrandValue_Sell();
@@ -157,7 +151,7 @@ namespace WPF_GUI.Sell
         /// </summary>
         private void Update_CustomerNamesVariablesAndEvents()
         {
-            GetCustomersFromDatabase();
+            GetCustomersFromPublicVariables();
             foreach (CustomerModel customer in Customers)
             {
 
@@ -185,7 +179,7 @@ namespace WPF_GUI.Sell
         /// </summary>
         private void Update_CategoryValue_Sell()
         {
-            GetCategoriesFromDatabase();
+            GetCategoriesFromPublicVariables();
             CategoryValue_Sell.ItemsSource = Categories;
             CategoryValue_Sell.DisplayMemberPath = "Name";
             CategoryValue_Sell.SelectedItem = null;
@@ -197,7 +191,7 @@ namespace WPF_GUI.Sell
         /// </summary>
         private void Update_BrandValue_Sell()
         {
-            GetBrandsFromDatabase();
+            GetBrandsFromPublicVariables();
             BrandValue_Sell.ItemsSource = Brands;
             BrandValue_Sell.DisplayMemberPath = "Name";
             BrandValue_Sell.SelectedItem = null;
@@ -208,9 +202,9 @@ namespace WPF_GUI.Sell
         /// </summary>
         private void Update_ProductValue_Sell()
         {
-            GetProductsFromDatabase();
-            ProductValue_Sell.ItemsSource = Products;
-            ProductValue_Sell.DisplayMemberPath = "Name";
+            GetStocksFormThePublicVariables();
+            ProductValue_Sell.ItemsSource = Stocks;
+            ProductValue_Sell.DisplayMemberPath = "Product.Name";
             ProductValue_Sell.SelectedItem = null;
         }
         #endregion
@@ -226,11 +220,21 @@ namespace WPF_GUI.Sell
         {
             if (CanFilterProducts)
             {
-                FProducts = GlobalConfig.Connection.GetProductsByCategoryAndBrand(Products, (CategoryModel)CategoryValue_Sell.SelectedItem, (BrandModel)BrandValue_Sell.SelectedItem);
-                ProductValue_Sell.ItemsSource = null;
-                ProductValue_Sell.ItemsSource = FProducts;
-                ProductValue_Sell.DisplayMemberPath = "Name";
-                ProductValue_Sell.SelectedItem = null;
+                FStocks = GlobalConfig.Connection.FilterStocksByCategoryAndBrand(Stocks, (CategoryModel)CategoryValue_Sell.SelectedItem, (BrandModel)BrandValue_Sell.SelectedItem);
+                if (FStocks.Count > 0)
+                {
+                    ProductValue_Sell.ItemsSource = null;
+                    ProductValue_Sell.ItemsSource = FStocks;
+                    ProductValue_Sell.DisplayMemberPath = "Product.Name";
+                    ProductValue_Sell.SelectedItem = null;
+                }
+                else
+                {
+                    ProductValue_Sell.ItemsSource = null;
+                    ProductValue_Sell.ItemsSource = Stocks;
+                    ProductValue_Sell.DisplayMemberPath = "Product.Name";
+                    ProductValue_Sell.SelectedItem = null;
+                }
             }
         }
 
@@ -241,7 +245,7 @@ namespace WPF_GUI.Sell
         /// <param name="e"></param>
         private void ProductValue_Sell_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ProductModel product = (ProductModel)ProductValue_Sell.SelectedItem;
+            StockModel product = (StockModel)ProductValue_Sell.SelectedItem;
             if (product == null)
             {
                 ClearProductInfo();
@@ -296,12 +300,14 @@ namespace WPF_GUI.Sell
         /// Category , Brand ,  Serial Number , Sale Price , discount , quantity Total Price
         /// </summary>
         /// <param name="product"></param>
-        private void UpdateProductInfo(ProductModel product)
+        private void UpdateProductInfo(StockModel product)
         {
-            SerialNumberValue_Sell.Text = product.SerialNumber;
+            SerialNumberValue_Sell.Text = product.Product.SerialNumber;
+
+            InStockValue_Sell.Text = product.Quantity.ToString();
 
             PriceValue_Sell.IsEnabled = true;
-            PriceValue_Sell.Text = product.SalePrice.ToString();
+            PriceValue_Sell.Text = product.Product.SalePrice.ToString();
 
             DiscountValue_Sell.IsEnabled = true;
             DiscountValue_Sell.Text = "0";
@@ -309,11 +315,11 @@ namespace WPF_GUI.Sell
             QuantityValue_Sell.IsEnabled = true;
             QuantityValue_Sell.Text = "1";
 
-            TotalProductPriceValue_Sell.Text = product.SalePrice.ToString();
+            TotalProductPriceValue_Sell.Text = product.Product.SalePrice.ToString();
 
             CanFilterProducts = false;
-            CategoryValue_Sell.SelectedIndex = Get_CategoryValue_Sell_Index(product.Category);
-            BrandValue_Sell.SelectedIndex = Get_BrandValue_Sell_Index(product.Brand);
+            CategoryValue_Sell.SelectedIndex = Get_CategoryValue_Sell_Index(product.Product.Category);
+            BrandValue_Sell.SelectedIndex = Get_BrandValue_Sell_Index(product.Product.Brand);
             CanFilterProducts = true;
         }
 
@@ -323,7 +329,12 @@ namespace WPF_GUI.Sell
         /// </summary>
         private void ClearProductInfo()
         {
+
+
             SerialNumberValue_Sell.Text = "";
+
+            InStockValue_Sell.Text = "";
+
 
             PriceValue_Sell.IsEnabled = false;
             PriceValue_Sell.Text = "";
@@ -347,14 +358,14 @@ namespace WPF_GUI.Sell
         {
             if (e.Key == Key.Enter)
             {
-                ProductModel product = GlobalConfig.Connection.GetProductBySerialNumber(Products, SerialNumberValue_Sell.Text);
-                if(product == null)
+                StockModel stock = GlobalConfig.Connection.GetStockBySerialNumber(Stocks, SerialNumberValue_Sell.Text);
+                if(stock == null)
                 {
                     MessageBox.Show("This Serial Number Not Exist");
                 }
                 else
                 {
-                    ProductValue_Sell.SelectedItem = product;
+                    ProductValue_Sell.SelectedItem = stock;
                 }
             }
         }
@@ -370,20 +381,33 @@ namespace WPF_GUI.Sell
         {
             if (e.Key == Key.Enter)
             {
-                ProductModel product = (ProductModel)ProductValue_Sell.SelectedItem;
+                
+
+                StockModel stock = (StockModel)ProductValue_Sell.SelectedItem;
                 decimal price = new decimal();
                 int quantity = new int();
                 if (int.TryParse(QuantityValue_Sell.Text, out quantity))
                 {
-                    if (decimal.TryParse(PriceValue_Sell.Text, out price))
+                    if(quantity > int.Parse(InStockValue_Sell.Text))
                     {
-                        TotalProductPriceValue_Sell.Text =  GlobalConfig.Connection.GetTotalPriceValue(price, quantity).ToString();
+
+                        MessageBox.Show("No enough peaces in the stock");
+
+                       
                     }
                     else
                     {
-                        MessageBox.Show("Price is not valid");
-                        PriceValue_Sell.Text = product.SalePrice.ToString();
+                        if (decimal.TryParse(PriceValue_Sell.Text, out price))
+                        {
+                            TotalProductPriceValue_Sell.Text = GlobalConfig.Connection.GetTotalPriceValue(price, quantity).ToString();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Price is not valid");
+                            PriceValue_Sell.Text = stock.Product.SalePrice.ToString();
+                        }
                     }
+                   
                 }
                 else
                 {
@@ -406,15 +430,17 @@ namespace WPF_GUI.Sell
         {
             if (e.Key == Key.Enter)
             {
-                ProductModel product = (ProductModel)ProductValue_Sell.SelectedItem;
-                decimal price = product.SalePrice;
+                
+
+                StockModel stock = (StockModel)ProductValue_Sell.SelectedItem;
+                decimal price = stock.Product.SalePrice;
                 decimal discount = new decimal();
                 int quantity = new int();
                 if (int.TryParse(QuantityValue_Sell.Text, out quantity))
                 {
                     if (decimal.TryParse(DiscountValue_Sell.Text, out discount))
                     {
-                        price = GlobalConfig.Connection.GetPriceValue(discount, product);
+                        price = GlobalConfig.Connection.GetPriceValue(discount, stock.Product);
                         if (price == -1)
                         {
                             MessageBox.Show("Discount is Not valid");
@@ -449,7 +475,9 @@ namespace WPF_GUI.Sell
         {
             if (e.Key == Key.Enter)
             {
-                ProductModel product = (ProductModel)ProductValue_Sell.SelectedItem;
+                
+
+                StockModel stock = (StockModel)ProductValue_Sell.SelectedItem;
                 decimal price = new decimal();
                 decimal discount = new decimal();
                 int quantity = new int();
@@ -458,11 +486,11 @@ namespace WPF_GUI.Sell
                 {
                     if (decimal.TryParse(PriceValue_Sell.Text,out price))
                     {
-                        discount = GlobalConfig.Connection.GetDiscountValue(price, product);
+                        discount = GlobalConfig.Connection.GetDiscountValue(price, stock.Product);
                         if(discount == -1)
                         {
                             MessageBox.Show("Price is less than 0");
-                            PriceValue_Sell.Text = product.SalePrice.ToString();
+                            PriceValue_Sell.Text = stock.Product.SalePrice.ToString();
                         }
                         else
                         {
@@ -473,7 +501,7 @@ namespace WPF_GUI.Sell
                     else
                     {
                         MessageBox.Show("Price is not valid");
-                        PriceValue_Sell.Text = product.SalePrice.ToString();
+                        PriceValue_Sell.Text = stock.Product.SalePrice.ToString();
                     }
                 }
                 else
@@ -501,6 +529,7 @@ namespace WPF_GUI.Sell
         
 
         /// <summary>
+        /// Check 
         /// Add button clicked 
         /// Craete orderproduct model and add it to orders list
         /// </summary>
@@ -508,15 +537,95 @@ namespace WPF_GUI.Sell
         /// <param name="e"></param>
         private void AddProductButton_Sell_Click(object sender, RoutedEventArgs e)
         {
-            ProductModel product = (ProductModel)ProductValue_Sell.SelectedItem;
-            if (product == null)
+
+            bool Save = true;
+            // check each case
+
+            StockModel stock = (StockModel)ProductValue_Sell.SelectedItem;
+            if (stock == null)
             {
                 MessageBox.Show("Select Product First");
             }
+
             else
             {
+                decimal salePrice = new decimal();
+                decimal discount = new decimal();
+                int quantity = new int();
+
+                if(int.TryParse(QuantityValue_Sell.Text, out quantity))
+                {
+                    if(quantity > 0)
+                    {
+                        if(quantity > int.Parse(InStockValue_Sell.Text))
+                        {
+                            MessageBox.Show("No enough in the stock , reduse the number of quantity");
+                            MessageBox.Show("Make Sure to confirm by Press {enter} after Change any of (Price , Discount , Quantity)");
+                        }
+                        else
+                        {
+                            if (decimal.TryParse(PriceValue_Sell.Text, out salePrice))
+                            {
+                                if (salePrice >= 0)
+                                {
+                                    if (decimal.TryParse(DiscountValue_Sell.Text, out discount))
+                                    {
+                                        if (discount > stock.Product.SalePrice)
+                                        {
+                                            MessageBox.Show("Discount Invalid");
+                                            MessageBox.Show("Make Sure to confirm by Press {enter} after Change any of (Price , Discount , Quantity)");
+                                            Save = false;
+                                        }
+                                        else
+                                        {
+
+                                        }
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("Discount Invalid");
+                                        MessageBox.Show("Make Sure to confirm by Press {enter} after Change any of (Price , Discount , Quantity)");
+                                        Save = false;
+                                    }
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Price less than 0");
+                                    MessageBox.Show("Make Sure to confirm by Press {enter} after Change any of (Price , Discount , Quantity)");
+                                    Save = false;
+                                }
+
+                            }
+                            else
+                            {
+                                MessageBox.Show("Price Invalid");
+                                MessageBox.Show("Make Sure to confirm by Press {enter} after Change any of (Price , Discount , Quantity)");
+                                Save = false;
+                            }
+                        }
+                        
+                    }
+                    else
+                    {
+                        MessageBox.Show("Quantity Is less than 1");
+                        MessageBox.Show("Make Sure to confirm by Press {enter} after Change any of (Price , Discount , Quantity)");
+                        Save = false;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Quantity Invalid");
+                    MessageBox.Show("Make Sure to confirm by Press {enter} after Change any of (Price , Discount , Quantity)");
+                    Save = false;
+                }
+
+
+            }
+            if (Save)
+            {
                 OrderProductModel orderProduct = new OrderProductModel();
-                orderProduct.Product = product;
+                orderProduct.Stock = stock;
+                orderProduct.Product = stock.Product;
                 orderProduct.SalePrice = decimal.Parse(PriceValue_Sell.Text);
                 orderProduct.Discount = decimal.Parse(DiscountValue_Sell.Text);
                 orderProduct.Quantity = int.Parse(QuantityValue_Sell.Text);
@@ -525,6 +634,7 @@ namespace WPF_GUI.Sell
                 // Update Choosen product list datagrid
                 UpadateChoosenProductList_Sell();
             }
+            
 
         }
         #endregion
@@ -557,9 +667,10 @@ namespace WPF_GUI.Sell
         }
 
 
+        
         #endregion
 
-        
+
         #region Customer GroupeBox
 
 
@@ -835,6 +946,15 @@ namespace WPF_GUI.Sell
                     Order.TotalPrice = decimal.Parse(TotalPriceValue_Sell.Text);
 
                     GlobalConfig.Connection.SaveOrderToDatabase(Order);
+
+
+                    foreach(OrderProductModel orderProduct in Orders)
+                    {
+                        GlobalConfig.Connection.ReduseStock(orderProduct.Stock, orderProduct.Quantity);
+                    }
+
+                    PublicVariables.LoginStoreStocks = GlobalConfig.Connection.FilterStocksByStore(Store);
+                    
                     ResetSellUC();
                 }
 
@@ -862,6 +982,7 @@ namespace WPF_GUI.Sell
         private void ResetSellUC()
         {
             ClearCustomerInfo();
+            Stocks = PublicVariables.LoginStoreStocks;
             CategoryValue_Sell.SelectedItem = null;
             BrandValue_Sell.SelectedItem = null;
             Orders = new List<OrderProductModel>();
@@ -903,9 +1024,11 @@ namespace WPF_GUI.Sell
 
 
 
+
+
         #endregion
 
-
+        
     }
 
 }

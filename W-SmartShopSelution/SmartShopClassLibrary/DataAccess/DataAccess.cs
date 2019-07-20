@@ -347,7 +347,7 @@ namespace Library
 
 
         /// <summary>
-        /// Filter all stock list by store
+        /// Get stocks in This store only
         /// </summary>
         /// <param name="stocks"> list of stocks foom the database</param>
         /// <param name="store"> store model </param>
@@ -392,6 +392,44 @@ namespace Library
         {
             
             return Stock.FilterStocksBySerialNumber(stocks,serialNumber);
+        }
+
+
+        /// <summary>
+        /// Get stock by serialNumber If exist
+        /// If Not : return null
+        /// </summary>
+        /// <param name="stocks"></param>
+        /// <param name="SerialNumber"></param>
+        /// <returns></returns>
+        public StockModel GetStockBySerialNumber(List<StockModel> stocks, string SerialNumber)
+        {
+
+            return GetStockBySerialNumber(stocks, SerialNumber);
+        }
+
+
+        /// <summary>
+        /// Resuce the quantity of stock in the database
+        /// </summary>
+        /// <param name="stock"></param>
+        /// <param name="quantity"> the number that u want to decreace </param>
+        /// <param name="db"></param>
+        public  void ReduseStock(StockModel stock, int quantity)
+        {
+            Stock.ReduseStock(stock, quantity, db);
+
+        }
+
+        /// <summary>
+        /// Increace the quantity of stock in the database
+        /// </summary>
+        /// <param name="stock"></param>
+        /// <param name="quantity"> the number that u want to increase </param>
+        /// <param name="db"></param>
+        public void IncreaseStock(StockModel stock, int quantity)
+        {
+            Stock.IncreaseStock(stock, quantity, db);
         }
 
 

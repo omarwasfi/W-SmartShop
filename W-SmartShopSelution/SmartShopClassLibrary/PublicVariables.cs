@@ -37,6 +37,11 @@ namespace Library
         /// </summary>
         public static List<BrandModel> Brands { get; set; }
 
+        /// <summary>
+        /// All Customer in the database
+        /// set first when the program opens
+        /// </summary>
+        public static List<CustomerModel> Customers { get; set; }
 
 
     }

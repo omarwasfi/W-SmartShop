@@ -11,6 +11,11 @@ namespace Library
     {
         public int Id { get; set; }
 
+        /// <summary>
+        /// used Just to hold the stock during the selling operation
+        /// </summary>
+        public StockModel Stock { get; set; }
+
         public ProductModel Product { get; set; }
 
         public int Quantity { get; set; }

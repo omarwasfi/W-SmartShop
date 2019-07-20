@@ -198,5 +198,67 @@ namespace Library
             return FStocks;
         }
 
+        /// <summary>
+        /// Get stock by serialNumber If exist
+        /// If Not : return null
+        /// </summary>
+        /// <param name="stocks"></param>
+        /// <param name="SerialNumber"></param>
+        /// <returns></returns>
+        public static StockModel GetStockBySerialNumber(List<StockModel> stocks , string SerialNumber)
+        {
+            StockModel stock;
+
+            foreach (StockModel s in stocks)
+            {
+                if (s.Product.SerialNumber == SerialNumber)
+                {
+                    stock = s;
+                    return stock;
+                }
+            }
+
+            return null;
+        }
+
+
+
+        /// <summary>
+        /// Resuce the quantity of stock in the database
+        /// </summary>
+        /// <param name="stock"></param>
+        /// <param name="quantity"> the number that u want to decreace </param>
+        /// <param name="db"></param>
+        public static void ReduseStock(StockModel stock , int quantity , string db)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnVal(db)))
+            {
+                var p = new DynamicParameters();
+                p.Add("@StockId", stock.Id);
+                p.Add("@Quantity", quantity);
+                connection.Execute("dbo.spStock_ReduseStock", p, commandType: CommandType.StoredProcedure);
+
+            }
+
+        }
+
+        /// <summary>
+        /// Increace the quantity of stock in the database
+        /// </summary>
+        /// <param name="stock"></param>
+        /// <param name="quantity"> the number that u want to increase </param>
+        /// <param name="db"></param>
+        public static void IncreaseStock(StockModel stock , int quantity , string db)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnVal(db)))
+            {
+                var p = new DynamicParameters();
+                p.Add("@StockId", stock.Id);
+                p.Add("@Quantity", quantity);
+                connection.Execute("dbo.spStock_IncreaseStock", p, commandType: CommandType.StoredProcedure);
+            }
+
+        }
+
     }
 }

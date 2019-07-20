@@ -68,6 +68,7 @@ namespace WPF_GUI
                 PublicVariables.LoginStoreStocks = GlobalConfig.Connection.FilterStocksByStore(Store);
                 PublicVariables.Categories = GlobalConfig.Connection.GetCategories();
                 PublicVariables.Brands = GlobalConfig.Connection.GetBrands();
+                PublicVariables.Customers = GlobalConfig.Connection.GetCustomers();
             }
         }
 
