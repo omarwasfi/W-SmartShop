@@ -39,10 +39,10 @@ namespace Library
         public List<StoreModel> Stores { get; set; }
 
         /// <summary>
-        /// The permissions That the staff member can have
-        /// the permission model identify the forms that the customer can use 
+        /// The permission That the staff member can have
+        /// the permission model identify the forms(UC) that the customer can use 
         /// </summary>
-        public List<PermissionModel> Permissions { get; set; }
+        public PermissionModel Permission { get; set; }
 
 
 

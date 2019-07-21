@@ -27,12 +27,53 @@ namespace WPF_GUI
     /// </summary>
     public partial class MainForm : Window
     {
+        #region Main Variables
+        /// <summary>
+        /// The staff memeber who uses the program
+        /// </summary>
+        private StaffModel Staff { get; set; } = PublicVariables.Staff;
+
+        #endregion
+
+
         public MainForm()
         {
             InitializeComponent();
-            
+
+            FillStartupData();
+
+            InitialViewItems(Staff);
         }
 
+        /// <summary>
+        /// - set the staffButton contant to the staff FullName
+        /// </summary>
+        private void FillStartupData()
+        {
+            StaffButton_MainForm.Content = Staff.Person.FullName;
+
+        }
+
+        /// <summary>
+        /// Initial the ViewItems Or the button that the user can perss to open the uc
+        /// </summary>
+        private void InitialViewItems(StaffModel staff)
+        {
+            if (staff.Permission.CanSellUC)
+            {
+                SellViewItem.Visibility = Visibility.Visible;
+            }
+            if (staff.Permission.CanInventoryUC)
+            {
+                InventoryViewItem.Visibility = Visibility.Visible;
+            }
+            if (staff.Permission.CanProductManagerUC)
+            {
+                ProductsManagerViewItem.Visibility = Visibility.Visible;
+            }
+
+        }
+        
        /// <summary>
        ///  close the application
        /// </summary>
@@ -69,13 +110,7 @@ namespace WPF_GUI
             MainTab.Items.Add(productManagerTab);
         }
 
-        private void CraeteNewProductViewItem_Selected(object sender, RoutedEventArgs e)
-        {
-            CreateProductUC createProductUC = new CreateProductUC();
-            TabItem CreateProductTab = new TabItem { Header = "Create Product Tab" };
-            CreateProductTab.Content = createProductUC;
-            MainTab.Items.Add(CreateProductTab);
-        }
+        
         #endregion
     }
 }

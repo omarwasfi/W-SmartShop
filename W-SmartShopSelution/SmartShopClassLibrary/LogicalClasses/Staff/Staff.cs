@@ -29,7 +29,7 @@ namespace Library
                     var p = new DynamicParameters();
                     p.Add("@StaffId", staff.Id);
                     staff.Person = connection.QuerySingle<PersonModel>("spStaff_GetPersonByStaffId", p, commandType: CommandType.StoredProcedure);
-
+                    staff.Permission = connection.QuerySingle<PermissionModel>("spStaff_GetPermissionByStaffId", p, commandType: CommandType.StoredProcedure);
 
                     // Add The List of stores that the saff work in
                     staff.Stores = new List<StoreModel>();

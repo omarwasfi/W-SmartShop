@@ -62,7 +62,7 @@
     <Compile Include="DataModels\Installment\InstallmentDetailsModel.cs" />
     <Compile Include="DataModels\Installment\InstallmentModel.cs" />
     <Compile Include="DataModels\Installment\InstallmentProductModel.cs" />
-    <Compile Include="DataModels\PermissionModel.cs" />
+    <Compile Include="DataModels\Humans\PermissionModel.cs" />
     <Compile Include="DataModels\StoreModel.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="GlobalConfig.cs" />

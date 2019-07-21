@@ -55,7 +55,7 @@
                     <Button Content="FAQ" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FFA2A2A2" FontSize="15" FontWeight="Bold" VerticalAlignment="Center"/>
                     <Button Content="Contact" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FFA2A2A2" FontSize="15" FontWeight="Bold" VerticalAlignment="Center"/>
                     <Button Content="OrderStatus" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FFA2A2A2" FontSize="15" FontWeight="Bold" VerticalAlignment="Center"/>
-                    <Button Content="MyAccount" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FFA2A2A2" FontSize="15" FontWeight="Bold" VerticalAlignment="Center"/>
+                    <Button Name="StaffButton_MainForm" Content="Staff Member Name" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FFA2A2A2" FontSize="15" FontWeight="Bold" VerticalAlignment="Center"/>
                     <Button x:Name="ExitButton" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FFA2A2A2" VerticalAlignment="Center" Click="ExitButton_Click" >
                         <materialDesign:PackIcon Kind="Power" Width="25" Height="25" />
                     </Button>
@@ -90,122 +90,30 @@
                 <StackPanel>
                     <Image Height="140" Source="Assets/mountains.jpg" Stretch="Fill"/>
                     <ListView Foreground="#FF313131" FontFamily="Champagne &amp; Limousines" FontSize="18">
-                        <ListViewItem x:Name="SellViewItem" Height="45" Padding="0" Selected="SellViewItem_Selected">
+                        
+                        <ListViewItem x:Name="SellViewItem" Visibility="Collapsed" Height="45" Padding="0" Selected="SellViewItem_Selected">
                             <StackPanel Orientation="Horizontal" Margin="10 0">
                                 <materialDesign:PackIcon Kind="Money100" Width="20" Height="20" Foreground="Gray" Margin="5" VerticalAlignment="Center"/>
                                 <TextBlock Text="Sell" Margin="10"/>
                             </StackPanel>
                         </ListViewItem>
-                        <ListViewItem Name="InventoryViewItem" Height="45" Padding="0" Selected="InventoryViewItem_Selected" >
+                        
+                        
+                        <ListViewItem Name="InventoryViewItem" Visibility="Collapsed" Height="45" Padding="0" Selected="InventoryViewItem_Selected" >
                             <StackPanel Orientation="Horizontal" Margin="10 0">
                                 <materialDesign:PackIcon Kind="Store" Width="20" Height="20" Foreground="Gray" Margin="5" VerticalAlignment="Center"/>
                                 <TextBlock Text="Inventory" Margin="10"/>
                             </StackPanel>
                         </ListViewItem>
-                        <ListViewItem Name="ProductsViewItem" Height="45" Padding="0" Selected="ProductsViewItem_Selected" >
-                            <StackPanel Orientation="Horizontal" Margin="10 0">
-                                <materialDesign:PackIcon Kind="Package" Width="20" Height="20" Foreground="Gray" Margin="5" VerticalAlignment="Center"/>
-                                <TextBlock Text="Products" Margin="10"/>
-                            </StackPanel>
-                        </ListViewItem>
-                        <ListViewItem Name="CraeteNewProductViewItem" Height="45" Padding="0" Selected="CraeteNewProductViewItem_Selected" >
-                            <StackPanel Orientation="Horizontal" Margin="10 0">
-                                <materialDesign:PackIcon Kind="Package" Width="20" Height="20" Foreground="Gray" Margin="5" VerticalAlignment="Center"/>
-                                <TextBlock Text="Create new Product" Margin="10"/>
-                            </StackPanel>
-                        </ListViewItem>
-                        <ListViewItem Height="45" Padding="0" >
-                            <StackPanel Orientation="Horizontal" Margin="10 0">
-                                <materialDesign:PackIcon Kind="HelpCircleOutline" Width="20" Height="20" Foreground="#FFF08033" Margin="5" VerticalAlignment="Center"/>
-                                <TextBlock Text="Help" Margin="10"/>
-                            </StackPanel>
-                        </ListViewItem>
-                        <ListViewItem Height="45" Padding="0">
-                            <StackPanel Orientation="Horizontal" Margin="10 0">
-                                <materialDesign:PackIcon Kind="Lightbulb" Width="20" Height="20" Foreground="Green" Margin="5" VerticalAlignment="Center"/>
-                                <TextBlock Text="Send Feedback" Margin="10"/>
-                            </StackPanel>
-                        </ListViewItem>
-                        <ListViewItem Height="45" Padding="0">
-                            <StackPanel Orientation="Horizontal" Margin="10 0">
-                                <materialDesign:PackIcon Kind="Heart" Width="20" Height="20" Foreground="#FFD41515" Margin="5" VerticalAlignment="Center"/>
-                                <TextBlock Text="Recommend" Margin="10"/>
-                            </StackPanel>
-                        </ListViewItem>
-                        <ListViewItem Height="45" Padding="0">
-                            <StackPanel Orientation="Horizontal" Margin="10 0">
-                                <materialDesign:PackIcon Kind="StarCircle" Width="20" Height="20" Foreground="#FFE6A701" Margin="5" VerticalAlignment="Center"/>
-                                <TextBlock Text="Premium Subscription" Margin="10"/>
-                            </StackPanel>
-                        </ListViewItem>
-                        <ListViewItem Height="45" Padding="0">
-                            <StackPanel Orientation="Horizontal" Margin="10 0">
-                                <materialDesign:PackIcon Kind="Settings" Width="20" Height="20" Foreground="#FF0069C1" Margin="5" VerticalAlignment="Center"/>
-                                <TextBlock Text="Settings" Margin="10"/>
-                            </StackPanel>
-                        </ListViewItem>
                         
                         
-                        <ListViewItem Height="45" Padding="0" >
+                        <ListViewItem Name="ProductsManagerViewItem" Visibility="Collapsed" Height="45" Padding="0" Selected="ProductsViewItem_Selected" >
                             <StackPanel Orientation="Horizontal" Margin="10 0">
-                                <materialDesign:PackIcon Kind="Recycle" Width="20" Height="20" Foreground="Gray" Margin="5" VerticalAlignment="Center"/>
-                                <TextBlock Text="Recycle" Margin="10"/>
+                                <materialDesign:PackIcon Kind="Package" Width="20" Height="20" Foreground="Gray" Margin="5" VerticalAlignment="Center"/>
+                                <TextBlock Text="Products Manager" Margin="10"/>
                             </StackPanel>
                         </ListViewItem>
-                        <ListViewItem Height="45" Padding="0" >
-                            <StackPanel Orientation="Horizontal" Margin="10 0">
-                                <materialDesign:PackIcon Kind="Recycle" Width="20" Height="20" Foreground="Gray" Margin="5" VerticalAlignment="Center"/>
-                                <TextBlock Text="Recycle" Margin="10"/>
-                            </StackPanel>
-                        </ListViewItem>
-                        <ListViewItem Height="45" Padding="0" >
-                            <StackPanel Orientation="Horizontal" Margin="10 0">
-                                <materialDesign:PackIcon Kind="Recycle" Width="20" Height="20" Foreground="Gray" Margin="5" VerticalAlignment="Center"/>
-                                <TextBlock Text="Recycle" Margin="10"/>
-                            </StackPanel>
-                        </ListViewItem>
-                        <ListViewItem Height="45" Padding="0" >
-                            <StackPanel Orientation="Horizontal" Margin="10 0">
-                                <materialDesign:PackIcon Kind="Recycle" Width="20" Height="20" Foreground="Gray" Margin="5" VerticalAlignment="Center"/>
-                                <TextBlock Text="Recycle" Margin="10"/>
-                            </StackPanel>
-                        </ListViewItem>
-                        <ListViewItem Height="45" Padding="0">
-                            <StackPanel Orientation="Horizontal" Margin="10 0">
-                                <materialDesign:PackIcon Kind="Heart" Width="20" Height="20" Foreground="#FFD41515" Margin="5" VerticalAlignment="Center"/>
-                                <TextBlock Text="Recommend" Margin="10"/>
-                            </StackPanel>
-                        </ListViewItem>
-                        <ListViewItem Height="45" Padding="0">
-                            <StackPanel Orientation="Horizontal" Margin="10 0">
-                                <materialDesign:PackIcon Kind="Heart" Width="20" Height="20" Foreground="#FFD41515" Margin="5" VerticalAlignment="Center"/>
-                                <TextBlock Text="Recommend" Margin="10"/>
-                            </StackPanel>
-                        </ListViewItem>
-                        <ListViewItem Height="45" Padding="0">
-                            <StackPanel Orientation="Horizontal" Margin="10 0">
-                                <materialDesign:PackIcon Kind="HelpCircleOutline" Width="20" Height="20" Foreground="#FFF08033" Margin="5" VerticalAlignment="Center"/>
-                                <TextBlock Text="Help" Margin="10"/>
-                            </StackPanel>
-                        </ListViewItem>
-                        <ListViewItem Height="45" Padding="0">
-                            <StackPanel Orientation="Horizontal" Margin="10 0">
-                                <materialDesign:PackIcon Kind="HelpCircleOutline" Width="20" Height="20" Foreground="#FFF08033" Margin="5" VerticalAlignment="Center"/>
-                                <TextBlock Text="Help" Margin="10"/>
-                            </StackPanel>
-                        </ListViewItem>
-                        <ListViewItem Height="45" Padding="0">
-                            <StackPanel Orientation="Horizontal" Margin="10 0">
-                                <materialDesign:PackIcon Kind="HelpCircleOutline" Width="20" Height="20" Foreground="#FFF08033" Margin="5" VerticalAlignment="Center"/>
-                                <TextBlock Text="Help" Margin="10"/>
-                            </StackPanel>
-                        </ListViewItem>
-                        <ListViewItem Height="45" Padding="0">
-                            <StackPanel Orientation="Horizontal" Margin="10 0">
-                                <materialDesign:PackIcon Kind="HelpCircleOutline" Width="20" Height="20" Foreground="#FFF08033" Margin="5" VerticalAlignment="Center"/>
-                                <TextBlock Text="Help" Margin="10"/>
-                            </StackPanel>
-                        </ListViewItem>
+
                     </ListView>
                 </StackPanel>
             </ScrollViewer>

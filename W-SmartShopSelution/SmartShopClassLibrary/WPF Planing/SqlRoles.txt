@@ -10,6 +10,9 @@ StaffTable
 	Id Auto Increment Starts From 1,000
 	the Default person id = Default Person
 
+PermissionTable
+	Id auto Increment starts From 300,000
+
 StoreTable
 	Id Auto Increment Starts From 500
 

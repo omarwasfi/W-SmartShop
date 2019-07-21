@@ -529,7 +529,7 @@ namespace WPF_GUI.Sell
         
 
         /// <summary>
-        /// Check 
+        /// Check each senario of error and send message box to ask the guid the user
         /// Add button clicked 
         /// Craete orderproduct model and add it to orders list
         /// </summary>
