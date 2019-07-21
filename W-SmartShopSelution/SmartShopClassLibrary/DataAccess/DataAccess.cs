@@ -107,7 +107,29 @@ namespace Library
             return product;
         }
 
-        
+        /// <summary>
+        /// return list of filterd Products if the product name Contains String name
+        /// </summary>
+        /// <param name="products"> list of Product model </param>
+        /// <param name="name"> name that we search for </param>
+        /// <returns></returns>
+        public  List<ProductModel> FilterProductsByName(List<ProductModel> products, string name)
+        {
+           
+            return Product.FilterProductsByName(products,name);
+        }
+
+        /// <summary>
+        ///  return list of filterd products if the product serial number  Contains SerialNumber  
+        /// </summary>
+        /// <param name="products"> list of Product model  </param>
+        /// <param name="serialNumber"></param>
+        /// <returns></returns>
+        public  List<ProductModel> FilterProductsBySerialNumber(List<ProductModel> products, string serialNumber)
+        {
+
+            return Product.FilterProductsBySerialNumber(products, serialNumber);
+        }
 
         #endregion
 

@@ -9,15 +9,15 @@
              d:DesignHeight="680" d:DesignWidth="1343">
     <Grid>
         <!-- Category comoBox & category textblock -->
-        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="20,0,0,0" ><Run Text="Category : "/></TextBlock>
-        <ComboBox x:Name="CategoryValue_InventoryUC" HorizontalAlignment="Left" Margin="144,5,0,0" VerticalAlignment="Top" Width="206" IsTextSearchEnabled="True" TextSearch.TextPath="Name" SelectionChanged="FilterStocksByCategoryAndBrand"/>
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="6,18,0,0" ><Run Text="Category : "/></TextBlock>
+        <ComboBox x:Name="CategoryValue_InventoryUC" HorizontalAlignment="Left" Margin="130,23,0,0" VerticalAlignment="Top" Width="206" IsTextSearchEnabled="True" TextSearch.TextPath="Name" SelectionChanged="FilterStocksByCategoryAndBrand"/>
 
-        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="356,5,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" Width="82" ><Run Text="Brand : "/></TextBlock>
-        <ComboBox x:Name="BrandValue_InventoryUC" HorizontalAlignment="Left" Margin="443,5,0,0" VerticalAlignment="Top" Width="164" IsTextSearchEnabled="True" TextSearch.TextPath="Name" SelectionChanged="FilterStocksByCategoryAndBrand"  />
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="342,23,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" Width="82" ><Run Text="Brand : "/></TextBlock>
+        <ComboBox x:Name="BrandValue_InventoryUC" HorizontalAlignment="Left" Margin="430,23,0,0" VerticalAlignment="Top" Width="164" IsTextSearchEnabled="True" TextSearch.TextPath="Name" SelectionChanged="FilterStocksByCategoryAndBrand"  />
 
-        <TextBox x:Name ="ProductSearchValue_InventoryUC" HorizontalAlignment="Left" Height="28" Margin="619,10,0,0" TextWrapping="Wrap" Text="Search... " VerticalAlignment="Top" Width="396" />
-        <ComboBox x:Name="ProductSearchType_InventoryUC" HorizontalAlignment="Left" Margin="1020,5,0,0" VerticalAlignment="Top" Width="120" Height="33" />
-        <Button Name="ProductSearchButton_InventoryUC" Click="ProductSearchButton_InventoryUC_Click" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FFA2A2A2" VerticalAlignment="Center"  Margin="1145,5,100,637"  Height="38" >
+        <TextBox x:Name ="ProductSearchValue_InventoryUC" HorizontalAlignment="Left" Height="28" Margin="606,28,0,0" TextWrapping="Wrap" Text="Search... " VerticalAlignment="Top" Width="396" />
+        <ComboBox x:Name="ProductSearchType_InventoryUC" HorizontalAlignment="Left" Margin="1006,23,0,0" VerticalAlignment="Top" Width="120" Height="33" />
+        <Button Name="ProductSearchButton_InventoryUC" Click="ProductSearchButton_InventoryUC_Click" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FFA2A2A2" VerticalAlignment="Center"  Margin="1132,23,113,619"  Height="38" >
             <materialDesign:PackIcon Kind="Search" Width="25" Height="25" />
         </Button>
 
@@ -57,6 +57,9 @@
                 <TextBlock FontSize="20" Text="Add New Product to the Inventory" Margin="50,10,10,10" Grid.ColumnSpan="2"/>
             </Grid>
         </Button>
+        <Button Content="Close" HorizontalAlignment="Left" Margin="1235,618,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Clear" HorizontalAlignment="Left" Margin="1155,618,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Print" HorizontalAlignment="Left" Margin="1069,618,0,0" VerticalAlignment="Top" Width="81"/>
 
     </Grid>
 </UserControl>

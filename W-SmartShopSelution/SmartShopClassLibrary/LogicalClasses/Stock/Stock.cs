@@ -175,7 +175,7 @@ namespace Library
         }
 
         /// <summary>
-        ///  return list of filterd stocks if the product name foreach one Contains SerialNumber
+        ///  return list of filterd stocks if the product serial number foreach one Contains SerialNumber
         ///  source of the search way: https://stackoverflow.com/a/3355561/6421951
         /// </summary>
         /// <param name="stocks"></param>

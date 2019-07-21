@@ -84,7 +84,16 @@ namespace WPF_GUI
             System.Windows.Application.Current.Shutdown();
         }
 
+
+
         #region Menu Events
+
+        /*
+         * Adding any new ViewItem requaries:
+         * - Change the permissionModel
+         * - Change the spStaff_GetPermissionByStaffId PROCEDURE in the database
+         * - change the Permission table in the database
+         */
 
         private void SellViewItem_Selected(object sender, RoutedEventArgs e)
         {

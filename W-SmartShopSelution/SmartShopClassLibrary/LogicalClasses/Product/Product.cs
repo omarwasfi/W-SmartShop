@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 
@@ -151,6 +152,51 @@ namespace Library
             return null;
         }
 
-        
+
+        /// <summary>
+        /// return list of filterd Products if the product name Contains String name
+        /// source of the search way: https://stackoverflow.com/a/3355561/6421951
+        /// </summary>
+        /// <param name="products"> list of Product model  </param>
+        /// <param name="name"> name that we search for </param>
+        /// <returns></returns>
+        public static List<ProductModel> FilterProductsByName(List<ProductModel> products, string name)
+        {
+            List<ProductModel> FProducts = new List<ProductModel>();
+            foreach (ProductModel product in products)
+            {
+                if (Regex.IsMatch(product.Name, Regex.Escape(name), RegexOptions.IgnoreCase))
+                {
+                    FProducts.Add(product);
+                }
+            }
+            return FProducts;
+        }
+
+        /// <summary>
+        ///  return list of filterd products if the product serial number  Contains SerialNumber
+        ///  source of the search way: https://stackoverflow.com/a/3355561/6421951
+        /// </summary>
+        /// <param name="products"></param>
+        /// <param name="serialNumber"></param>
+        /// <returns></returns>
+        public static List<ProductModel> FilterProductsBySerialNumber(List<ProductModel> products, string serialNumber)
+        {
+            List<ProductModel> FProducts = new List<ProductModel>();
+            foreach (ProductModel product in products)
+            {
+                if (product.SerialNumber != null)
+                {
+
+                    if (Regex.IsMatch(product.SerialNumber, Regex.Escape(serialNumber), RegexOptions.IgnoreCase))
+                    {
+                        FProducts.Add(product);
+                    }
+                }
+            }
+            return FProducts;
+        }
+
+
     }
 }

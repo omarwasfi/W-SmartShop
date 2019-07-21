@@ -51,11 +51,33 @@
                         <ComboBoxItem Content="EN"/>
                     </ComboBox>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="20 0">
-                    <Button Content="FAQ" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FFA2A2A2" FontSize="15" FontWeight="Bold" VerticalAlignment="Center"/>
-                    <Button Content="Contact" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FFA2A2A2" FontSize="15" FontWeight="Bold" VerticalAlignment="Center"/>
-                    <Button Content="OrderStatus" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FFA2A2A2" FontSize="15" FontWeight="Bold" VerticalAlignment="Center"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    
+                    <Button  Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FFA2A2A2" FontSize="15" FontWeight="Bold" VerticalAlignment="Center">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Lightbulb" Width="16" Height="16" Foreground="Green" Margin="5" VerticalAlignment="Center"/>
+                            <TextBlock Text="Send Feedback" />
+                        </StackPanel>
+                    </Button>
+                    
+                    <Button  Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FFA2A2A2" FontSize="15" FontWeight="Bold" VerticalAlignment="Center" >
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="HelpCircleOutline" Width="16" Height="16" Foreground="#FFF08033" Margin="5" VerticalAlignment="Center"/>
+                            <TextBlock Text="Help" />
+                        </StackPanel>
+                    </Button>
+
+                    <Button  Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FFA2A2A2" FontSize="15" FontWeight="Bold" VerticalAlignment="Center">
+                        <StackPanel Orientation="Horizontal" Margin="10 0">
+                            <materialDesign:PackIcon Kind="Settings" Width="16" Height="16" Foreground="#FF0069C1" Margin="5" VerticalAlignment="Center"/>
+                            <TextBlock Text="Program Settings" />
+                        </StackPanel>
+                    </Button>
+
+
                     <Button Name="StaffButton_MainForm" Content="Staff Member Name" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FFA2A2A2" FontSize="15" FontWeight="Bold" VerticalAlignment="Center"/>
+                    
+                    
                     <Button x:Name="ExitButton" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FFA2A2A2" VerticalAlignment="Center" Click="ExitButton_Click" >
                         <materialDesign:PackIcon Kind="Power" Width="25" Height="25" />
                     </Button>
