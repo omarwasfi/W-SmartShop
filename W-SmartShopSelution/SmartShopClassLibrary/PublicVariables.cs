@@ -43,6 +43,13 @@ namespace Library
         /// </summary>
         public static List<CustomerModel> Customers { get; set; }
 
+        /// <summary>
+        /// All Products list
+        /// - Set after create new product
+        /// - set when opening produts manager 
+        /// </summary>
+        public static  List<ProductModel> Products { get; set; }
+
 
     }
 }

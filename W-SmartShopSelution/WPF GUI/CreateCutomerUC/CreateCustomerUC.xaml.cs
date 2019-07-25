@@ -13,15 +13,20 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Library;
+using WPF_GUI.CreateProduct;
 
 namespace WPF_GUI.CreateCutomer
 {
+    //  class event publisher inherits the CustomerCreated Interface
     /// <summary>
     /// Interaction logic for CreateCustomerUC.xaml
     /// </summary>
-    public partial class CreateCustomerUC : UserControl
+    public partial class CreateCustomerUC : UserControl 
     {
         ICustomerRequester customerRequester;
+
+        
+        
 
         /// <summary>
         /// Equal the customerRequester to the callingUC
@@ -88,7 +93,7 @@ namespace WPF_GUI.CreateCutomer
                 else
                 {
                     customerRequester.CustomerComplete(customer);
-
+                   
                     Close();
                 }
 
@@ -126,6 +131,11 @@ namespace WPF_GUI.CreateCutomer
         {
             var parent = this.Parent as Window;
             if (parent != null) { parent.DialogResult = true; parent.Close(); }
+        }
+
+        private void CloseButton_CreateCustomer_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }

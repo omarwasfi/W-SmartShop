@@ -260,5 +260,28 @@ namespace Library
 
         }
 
+        /// <summary>
+        /// Insert new stock to the stock table in the database
+        /// return stock with the new id
+        /// </summary>
+        /// <param name="NewStock">stock has product , quantity and store</param>
+        /// <returns></returns>
+        public static StockModel AddStockToTheDatabase(StockModel NewStock, string db)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnVal(db)))
+            {
+                var p = new DynamicParameters();
+                p.Add("@StoreId", NewStock.Store.Id);
+                p.Add("@ProductId", NewStock.Product.Id);
+                p.Add("@Quantity", NewStock.Quantity);
+
+
+                p.Add("@Id", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
+                connection.Execute("dbo.spStock_Create", p, commandType: CommandType.StoredProcedure);
+                NewStock.Id = p.Get<int>("@Id");
+            }
+            return NewStock;
+        }
+
     }
 }

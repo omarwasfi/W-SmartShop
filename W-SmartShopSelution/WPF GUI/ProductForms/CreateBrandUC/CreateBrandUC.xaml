@@ -8,11 +8,11 @@
              d:DesignHeight="680" d:DesignWidth="1343">
     <Grid Margin="10">
         <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="10,10,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" Width="150" ><Run Text="Brand Name : "/></TextBlock>
-        <TextBox x:Name="BrandCB_Sell" HorizontalAlignment="Left" Margin="165,15,0,0" VerticalAlignment="Top" Width="208" />
+        <TextBox x:Name="BrandNameValue_CreateBrandUC"  HorizontalAlignment="Left" Margin="165,15,0,0" VerticalAlignment="Top" Width="208" />
         <Grid Margin="1070,613,10,10">
-            <Button Content="Close" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" Margin="166,0,0,0"/>
-            <Button Content="Clear" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" Margin="86,0,0,0"/>
-            <Button Content="Create" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="81"/>
+            <Button x:Name="CloseButton_CreateBrandUC" Click="CloseButton_CreateBrandUC_Click" Content="Close" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" Margin="166,0,0,0"/>
+            <Button x:Name="ClearButton_CreateBrandUC" Click="ClearButton_CreateBrandUC_Click" Content="Clear" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" Margin="86,0,0,0"/>
+            <Button x:Name="CreateButton_CreateBrandUC" Click="CreateButton_CreateBrandUC_Click" Content="Create" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="81"/>
         </Grid>
     </Grid>
 </UserControl>

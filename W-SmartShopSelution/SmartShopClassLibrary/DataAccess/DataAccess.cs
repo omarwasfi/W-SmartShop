@@ -31,6 +31,9 @@ namespace Library
         /// </summary>
         private const int DefaultPerson = 1000000;
 
+        #region Categoty Functions
+
+
         /// <summary>
         /// Get All categories from the databse
         /// </summary>
@@ -41,7 +44,32 @@ namespace Library
             return categories ;
         }
 
-        
+        /// <summary>
+        /// Get list of categories , if the category name in the database return false
+        /// </summary>
+        /// <param name="categories"> list of category model </param>
+        /// <param name="newName"> the new name of the category to check  </param>
+        /// <returns></returns>
+        public  bool CheckIfTheCategoryNameUnique(List<CategoryModel> categories, string newName)
+        {
+            return Category.CheckIfTheCategoryNameUnique(categories, newName);
+        }
+
+        /// <summary>
+        /// Add the category to the database , return the category with the new Id
+        /// </summary>
+        /// <param name="newCategory"></param>
+        /// <param name="db"></param>
+        /// <returns></returns>
+        public  CategoryModel AddCategoryToTheDatabase(CategoryModel newCategory)
+        {
+            return Category.AddCategoryToTheDatabase(newCategory, db);
+        }
+
+        #endregion
+
+        #region Brand Functions
+
 
         /// <summary>
         /// Get All brands from the databse
@@ -53,6 +81,30 @@ namespace Library
             return brands;
         }
 
+        /// <summary>
+        /// Get list of brands , if the brand name in the database return false
+        /// </summary>
+        /// <param name="brands"> list of brand model </param>
+        /// <param name="newName"> the new name of the brand to check  </param>
+        /// <returns></returns>
+        public bool CheckIfTheBrandNameUnique(List<BrandModel> brands, string newName)
+        {
+
+            return Brand.CheckIfTheBrandNameUnique(brands, newName);
+        }
+
+        /// <summary>
+        /// Save new brand to the database , return the new brand with new Id
+        /// </summary>
+        /// <param name="newBrand"> the new brand model </param>
+        /// <param name="db"></param>
+        /// <returns></returns>
+        public BrandModel AddBrandToTheDatabase(BrandModel newBrand)
+        {
+            return Brand.AddBrandToTheDatabase(newBrand, db);
+        }
+
+        #endregion
         #region Product Functions
 
         /// <summary>
@@ -131,6 +183,45 @@ namespace Library
             return Product.FilterProductsBySerialNumber(products, serialNumber);
         }
 
+        /// <summary>
+        /// Check if the product name is Unique In the list of products
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns> 
+        /// true if unique
+        /// flase if Exist
+        /// </returns>
+        public bool CheckIfTheProductNameUnique(List<ProductModel> products, string name)
+        {
+            return Product.CheckIfTheProductNameUnique(products, name);
+        }
+
+        /// <summary>
+        /// Check if the product SerialNumber is Unique In the list of products
+        /// </summary>
+        /// <param name="serialNumber"></param>
+        /// <returns> 
+        /// true if unique
+        /// flase if Exist
+        /// </returns>
+        public bool CheckIfTheProductSerialNumberUnique(List<ProductModel> products,string serialNumber)
+        {
+            return Product.CheckIfTheProductSerialNumberUnique(products, serialNumber);
+        }
+
+
+        /// <summary>
+        /// Insert product to the database that Has all the information,
+        /// return product model with the new Id
+        /// </summary>
+        /// <param name="newProduct"></param>
+        /// <param name="db"></param>
+        /// <returns></returns>
+        public ProductModel AddProductToTheDatabase(ProductModel newProduct)
+        {
+
+            return Product.AddProductToTheDatabase(newProduct, db);
+        }
         #endregion
 
         #region Order Product
@@ -249,10 +340,11 @@ namespace Library
 
         /// <summary>
         /// get all stores from the database
+        /// each store model contain ID , Name
         /// </summary>
         /// <param name="db"></param>
         /// <returns></returns>
-        public  List<StoreModel> GetAllStores()
+        public List<StoreModel> GetAllStores()
         {
             return Store.GetAllStores(db);
         }
@@ -427,7 +519,7 @@ namespace Library
         public StockModel GetStockBySerialNumber(List<StockModel> stocks, string SerialNumber)
         {
 
-            return GetStockBySerialNumber(stocks, SerialNumber);
+            return Stock.GetStockBySerialNumber(stocks, SerialNumber);
         }
 
 
@@ -454,6 +546,16 @@ namespace Library
             Stock.IncreaseStock(stock, quantity, db);
         }
 
+        /// <summary>
+        /// Insert new stock to the stock table in the database
+        /// return stock with the new id
+        /// </summary>
+        /// <param name="NewStock">stock has product , quantity and store</param>
+        /// <returns></returns>
+        public  StockModel AddStockToTheDatabase(StockModel NewStock)
+        {
+            return Stock.AddStockToTheDatabase(NewStock, db);
+        }
 
         #endregion
     }

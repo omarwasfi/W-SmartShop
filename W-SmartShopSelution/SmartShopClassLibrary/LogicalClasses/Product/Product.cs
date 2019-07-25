@@ -198,5 +198,76 @@ namespace Library
         }
 
 
+        /// <summary>
+        /// Check if the product name is Unique In the list of products
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns> 
+        /// true if unique
+        /// flase if Exist
+        /// </returns>
+        public static bool CheckIfTheProductNameUnique(List<ProductModel> products, string name)
+        {
+            foreach(ProductModel product in products)
+            {
+                if (product.Name == name)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// Check if the product SerialNumber is Unique In the list of products
+        /// </summary>
+        /// <param name="serialNumber"></param>
+        /// <returns> 
+        /// true if unique
+        /// flase if Exist
+        /// </returns>
+        public static bool CheckIfTheProductSerialNumberUnique(List<ProductModel> products, string serialNumber)
+        {
+            foreach (ProductModel product in products)
+            {
+                if (product.SerialNumber == serialNumber)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+
+        /// <summary>
+        /// Insert product to the database that Has all the information,
+        /// return product model with the new Id
+        /// </summary>
+        /// <param name="newProduct"></param>
+        /// <param name="db"></param>
+        /// <returns></returns>
+        public static ProductModel AddProductToTheDatabase(ProductModel newProduct , string db)
+        {
+            
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnVal(db)))
+            {
+                var p = new DynamicParameters();
+                p.Add("@ProductName" , newProduct.Name);
+                p.Add("@SerialNumber", newProduct.SerialNumber);
+                p.Add("@IncomePrice", newProduct.IncomePrice);
+                p.Add("@SalePrice", newProduct.SalePrice);
+                p.Add("@BrandId", newProduct.Brand.Id);
+                p.Add("@CategoryId", newProduct.Category.Id);
+
+
+
+                p.Add("@Id", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
+                connection.Execute("dbo.spProduct_Create", p, commandType: CommandType.StoredProcedure);
+                newProduct.Id = p.Get<int>("@Id");
+            }
+            return newProduct;
+        }
+
+
     }
 }

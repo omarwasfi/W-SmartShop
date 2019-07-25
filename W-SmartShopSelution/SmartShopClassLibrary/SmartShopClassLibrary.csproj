@@ -66,6 +66,7 @@
     <Compile Include="DataModels\StoreModel.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="GlobalConfig.cs" />
+    <Compile Include="Interfaces\WPFInterfaces\ICustomerCreated.cs" />
     <Compile Include="Interfaces\WPFInterfaces\ICustomerRequester.cs" />
     <Compile Include="LogicalClasses\Brand\Brand.cs" />
     <Compile Include="LogicalClasses\CashOrder\OrderProduct.cs" />

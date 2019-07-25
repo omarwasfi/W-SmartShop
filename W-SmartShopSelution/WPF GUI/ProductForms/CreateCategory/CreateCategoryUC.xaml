@@ -8,11 +8,14 @@
              d:DesignHeight="680" d:DesignWidth="1343">
     <Grid>
         <Grid Margin="1085,633,10,10">
-            <Button Content="Close" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" Margin="166,0,0,0"/>
-            <Button Content="Clear" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" Margin="86,0,0,0"/>
-            <Button Content="Create" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="81"/>
+            <Button Name="CloseButton_CreateCategoryUC" Click="CloseButton_CreateCategoryUC_Click" Content="Close"  HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" Margin="166,0,0,0"/>
+            <Button Name="ClearButton_CreateCategoryUC" Click="ClearButton_CreateCategoryUC_Click" Content="Clear" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" Margin="86,0,0,0"/>
+            <Button Name="CreateButton_CreateCategoryUC" Click="CreateButton_CreateCategoryUC_Click" Content="Create"  HorizontalAlignment="Left"  VerticalAlignment="Top" Width="81"/>
         </Grid>
+        
+        
         <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="12,18,0,0" Width="192" ><Run Text="Category Name : "/></TextBlock>
-        <ComboBox x:Name="CategoryCB_Sell" HorizontalAlignment="Left" Margin="209,23,0,0" VerticalAlignment="Top" Width="208" />
+        <TextBox x:Name="CategoryName_CreateCategoryUC" HorizontalAlignment="Left" Height="33" Margin="209,18,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="335"/>
+        
     </Grid>
 </UserControl>

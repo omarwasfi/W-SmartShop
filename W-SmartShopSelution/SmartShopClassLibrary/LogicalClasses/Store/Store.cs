@@ -13,7 +13,8 @@ namespace Library
     {
 
         /// <summary>
-        /// get all stores from the database
+        /// get all stores from the database ,
+        /// each store model contain ID , Name
         /// </summary>
         /// <param name="db"></param>
         /// <returns></returns>

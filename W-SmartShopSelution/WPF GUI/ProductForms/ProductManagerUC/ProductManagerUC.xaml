@@ -12,7 +12,7 @@
         <Rectangle RadiusY="8" RadiusX="8" Fill="White"/>
         <!--<GroupBox Header="Products List" HorizontalAlignment="Left" Height="660" Margin="10,10,0,0" VerticalAlignment="Top" Width="1323">-->
         <Grid Margin="10,10,10,10">
-            <Button  Margin="5,580,1036,0" VerticalAlignment="Top" Height="70"  >
+            <Button x:Name="CreateNewProductButton_ProductManagerUC" Click="CreateNewProductButton_ProductManagerUC_Click"  Margin="5,580,1036,0" VerticalAlignment="Top" Height="70"  >
                 <Grid Width="254">
                     <materialDesign:PackIcon Kind="PlusBox" Width="50" Height="46"/>
                     <TextBlock FontSize="20" Text="Create New Product" Margin="50,10,10,10"/>

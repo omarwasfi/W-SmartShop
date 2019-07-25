@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Library;
-
+using WPF_GUI.CreateProduct;
 
 namespace WPF_GUI.ProductManager
 {
@@ -80,10 +80,14 @@ namespace WPF_GUI.ProductManager
             BrandValue_ProductManagerUC.DisplayMemberPath = "Name";
         }
 
-
+        /// <summary>
+        /// Update the produts from the database
+        /// - set the Products in Public variable
+        /// </summary>
         private void UpdateProductsFromTheDatabase()
         {
             Products = GlobalConfig.Connection.GetProducts();
+            PublicVariables.Products = Products;
         }
 
         /// <summary>
@@ -163,7 +167,28 @@ namespace WPF_GUI.ProductManager
                 MessageBox.Show("CHoose the search type first");
             }
         }
+
+        /// <summary>
+        /// SHow CreateProductUC in new window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CreateNewProductButton_ProductManagerUC_Click(object sender, RoutedEventArgs e)
+        {
+            CreateProductUC createProduct = new CreateProductUC();
+            Window window = new Window
+            {
+                Title = "Create Product",
+                Content = createProduct,
+                SizeToContent = SizeToContent.WidthAndHeight,
+                ResizeMode = ResizeMode.NoResize
+            };
+            window.ShowDialog();
+            SetInitialValues();
+        }
+
         #endregion
 
+       
     }
 }
