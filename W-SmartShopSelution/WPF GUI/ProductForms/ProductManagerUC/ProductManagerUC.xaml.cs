@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Library;
 using WPF_GUI.CreateProduct;
+using WPF_GUI.ModifyProduct;
 
 namespace WPF_GUI.ProductManager
 {
@@ -187,8 +188,30 @@ namespace WPF_GUI.ProductManager
             SetInitialValues();
         }
 
+
         #endregion
 
-       
+        private void ModifySelectedButton_ProductManagerUC_Click(object sender, RoutedEventArgs e)
+        {
+            if (ProductsList_ProductManagerUC.SelectedItem != null)
+            {
+                ModifyProductUC modifyProduct = new ModifyProductUC((ProductModel)ProductsList_ProductManagerUC.SelectedItem);
+                Window window = new Window
+                {
+                    Title = "Modify Product",
+                    Content = modifyProduct,
+                    SizeToContent = SizeToContent.WidthAndHeight,
+                    ResizeMode = ResizeMode.NoResize
+                };
+                window.ShowDialog();
+                SetInitialValues();
+            }
+            else
+            {
+                MessageBox.Show("There is no selected Product to modify");
+            }
+            
+            
+        }
     }
 }

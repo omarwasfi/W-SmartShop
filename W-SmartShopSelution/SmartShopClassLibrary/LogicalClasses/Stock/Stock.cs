@@ -283,5 +283,46 @@ namespace Library
             return NewStock;
         }
 
+        /// <summary>
+        /// Return the prodcut's stocks
+        /// </summary>
+        /// <param name="stocks"> list of stock </param>
+        /// <param name="product"> product model </param>
+        /// <returns></returns>
+        public static List<StockModel> GetStocksByProduct(List<StockModel> stocks , ProductModel product)
+        {
+            List<StockModel> FStocks = new List<StockModel>();
+
+            foreach(StockModel stock in stocks)
+            {
+                if(stock.Product.Id == product.Id)
+                {
+                    FStocks.Add(stock);
+                }
+            }
+
+            return FStocks;
+        }
+        
+
+        /// <summary>
+        /// Update the stock quantity If the stock exist
+        /// </summary>
+        /// <param name="updatedStock"></param>
+        /// <param name="db"></param>
+        public static void UpdateStockData(StockModel updatedStock , string db)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnVal(db)))
+            {
+                var p = new DynamicParameters();
+                p.Add("@Id", updatedStock.Id);
+                p.Add("Quantity", updatedStock.Quantity);
+
+                connection.Execute("dbo.spStock_Update", p, commandType: CommandType.StoredProcedure);
+
+            }
+        }
+
+
     }
 }

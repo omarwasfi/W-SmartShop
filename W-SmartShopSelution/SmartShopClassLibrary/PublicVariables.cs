@@ -50,6 +50,12 @@ namespace Library
         /// </summary>
         public static  List<ProductModel> Products { get; set; }
 
+        /// <summary>
+        /// All Stocks
+        /// set when modifyProductUC fired
+        /// </summary>
+        public static List<StockModel> Stocks { get; set; }
+
 
     }
 }

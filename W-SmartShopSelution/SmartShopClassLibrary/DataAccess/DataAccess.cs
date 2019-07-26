@@ -222,6 +222,17 @@ namespace Library
 
             return Product.AddProductToTheDatabase(newProduct, db);
         }
+
+
+        /// <summary>
+        /// Update the   ProductName ,SerialNumber ,IncomePrice,SalePrice ,BrandId ,CategoryId Values with the database
+        /// </summary>
+        /// <param name="updatedProduct"></param>
+        /// <param name="db"></param>
+        public void UpdateProdcutData(ProductModel updatedProduct)
+        {
+            Product.UpdateProdcutData(updatedProduct, db);
+        }
         #endregion
 
         #region Order Product
@@ -443,8 +454,17 @@ namespace Library
 
         #region Stock
 
-        // TODO - filter stockes by product to know What store has this product
 
+        /// <summary>
+        /// Return the prodcut's stocks
+        /// </summary>
+        /// <param name="stocks"> list of stock </param>
+        /// <param name="product"> product model </param>
+        /// <returns></returns>
+        public List<StockModel> GetStocksByProduct(List<StockModel> stocks , ProductModel product)
+        {
+            return Stock.GetStocksByProduct(stocks,product);
+        }
 
 
         /// <summary>
@@ -555,6 +575,16 @@ namespace Library
         public  StockModel AddStockToTheDatabase(StockModel NewStock)
         {
             return Stock.AddStockToTheDatabase(NewStock, db);
+        }
+
+        /// <summary>
+        /// Update the stock quantity If the stock exist
+        /// </summary>
+        /// <param name="updatedStock"></param>
+        /// <param name="db"></param>
+        public void UpdateStockData(StockModel updatedStock)
+        {
+            Stock.UpdateStockData(updatedStock,db);
         }
 
         #endregion

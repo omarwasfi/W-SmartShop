@@ -210,8 +210,8 @@ namespace WPF_GUI.CreateProduct
                 ProductModel product = new ProductModel();
                 product.Name = ProductNameValue_CreateProductUC.Text;
                 product.SerialNumber = SerialNumberValue_CreateProductUC.Text;
-                product.IncomePrice = int.Parse(IncomeValue_CreateproductUC.Text);
-                product.SalePrice = int.Parse(SalePriceValue_CreateproductUC.Text);
+                product.IncomePrice = decimal.Parse(IncomeValue_CreateproductUC.Text);
+                product.SalePrice = decimal.Parse(SalePriceValue_CreateproductUC.Text);
                 product.Brand = (BrandModel)BrandValue_CreateProductUC.SelectedItem;
                 product.Category = (CategoryModel)CategoryValue_CreateProductUC.SelectedItem;
                 // save the product to the database
@@ -300,7 +300,7 @@ namespace WPF_GUI.CreateProduct
                 int quantity;
                 if(int.TryParse(QuantityInThisStoreValue_CreateProductUC.Text,out quantity))
                 {
-                    if(quantity > 0)
+                    if(quantity >= 0)
                     {
                         StockModel stock = new StockModel();
                         stock.Quantity = quantity;
@@ -313,7 +313,7 @@ namespace WPF_GUI.CreateProduct
                     }
                     else
                     {
-                        MessageBox.Show("Quantity Can't be Less than 1");
+                        MessageBox.Show("Quantity Can't be Less than 0");
                     }
                 }
                 else

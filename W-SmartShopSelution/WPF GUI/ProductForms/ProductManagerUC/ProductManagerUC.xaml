@@ -18,7 +18,7 @@
                     <TextBlock FontSize="20" Text="Create New Product" Margin="50,10,10,10"/>
                 </Grid>
             </Button>
-            <Button  Margin="292,580,778,0" VerticalAlignment="Top" Height="70"  >
+            <Button x:Name="ModifySelectedButton_ProductManagerUC" Click="ModifySelectedButton_ProductManagerUC_Click" Margin="292,580,778,0" VerticalAlignment="Top" Height="70"  >
                 <Grid Width="254">
                     <materialDesign:PackIcon Kind="Pencil"  Width="50" Height="46"/>
                     <TextBlock FontSize="20" Text="Modify selected" Margin="50,10,10,10"/>
@@ -56,6 +56,8 @@
                 <DataGridTextColumn Header="Serial Number" Binding="{Binding SerialNumber}"/>
                 <DataGridTextColumn Header="Sale Price" Binding="{Binding SalePrice}"/>
                 <DataGridTextColumn Header="Income Price" Binding="{Binding IncomePrice}"/>
+                <DataGridTextColumn Header="Category" Binding="{Binding Category.Name}"/>
+                <DataGridTextColumn Header="Brand" Binding="{Binding Brand.Name}"/>
 
 
             </DataGrid.Columns>

@@ -268,6 +268,28 @@ namespace Library
             return newProduct;
         }
 
+        /// <summary>
+        /// Update the   ProductName ,SerialNumber ,IncomePrice,SalePrice ,BrandId ,CategoryId Values with the database
+        /// </summary>
+        /// <param name="updatedProduct"></param>
+        /// <param name="db"></param>
+        public static void UpdateProdcutData(ProductModel updatedProduct , string db)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnVal(db)))
+            {
+                var p = new DynamicParameters();
+                p.Add("@Id",updatedProduct.Id);
+                p.Add("@ProductName", updatedProduct.Name);
+                p.Add("@SerialNumber", updatedProduct.SerialNumber);
+                p.Add("@IncomePrice", updatedProduct.IncomePrice);
+                p.Add("@SalePrice", updatedProduct.SalePrice);
+                p.Add("@BrandId", updatedProduct.Brand.Id);
+                p.Add("@CategoryId", updatedProduct.Category.Id);
+                connection.Execute("dbo.spProduct_Update", p, commandType: CommandType.StoredProcedure);
+                
+            }
+        }
+
 
     }
 }
