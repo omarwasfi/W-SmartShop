@@ -16,6 +16,7 @@ using WPF_GUI.CreateProduct;
 using WPF_GUI.Inventory;
 using WPF_GUI.ProductManager;
 using WPF_GUI.Sell;
+using WPF_GUI.Staff.StaffsManagerUC;
 
 namespace WPF_GUI
 {
@@ -71,6 +72,10 @@ namespace WPF_GUI
             {
                 ProductsManagerViewItem.Visibility = Visibility.Visible;
             }
+            if (staff.Permission.CanStaffsManagerUC)
+            {
+                StaffsManagerViewItem.Visibility = Visibility.Visible;
+            }
 
         }
         
@@ -119,7 +124,15 @@ namespace WPF_GUI
             MainTab.Items.Add(productManagerTab);
         }
 
-        
+        private void StaffsManagerViewItem_Selected(object sender, RoutedEventArgs e)
+        {
+            StaffsManagerUC staffsManagerUC = new StaffsManagerUC();
+            TabItem staffsManagerTab = new TabItem { Header = "Staffs Manager" };
+            staffsManagerTab.Content = staffsManagerUC;
+            MainTab.Items.Add(staffsManagerTab);
+        }
         #endregion
+
+
     }
 }

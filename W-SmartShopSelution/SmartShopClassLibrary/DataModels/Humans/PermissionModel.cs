@@ -35,6 +35,11 @@ namespace Library
         /// </summary>
         public Boolean CanProductManagerUC { get; set; }
 
+        /// <summary>
+        /// Boolean value says if the user can Open StaffsManagerUC or not
+        /// </summary>
+        public Boolean CanStaffsManagerUC { get; set; }
+
 
     }
 }

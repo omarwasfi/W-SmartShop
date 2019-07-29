@@ -407,6 +407,8 @@ namespace Library
         /// <summary>
         /// Gets all staff table from the database
         /// - set the person model for each staff
+        /// - set the list of stores that he works in 
+        /// - set the permission 
         /// </summary>
         /// <returns></returns>
         public List<StaffModel> GetStaffs()
@@ -447,6 +449,93 @@ namespace Library
 
             return new StaffModel { Id = -1 };
 
+        }
+
+        /// <summary>
+        /// Get the Staffs whoes works in store
+        /// get list of all staffs and store model
+        /// return the staffs that works in the store model
+        /// </summary>
+        /// <param name="staffs"></param>
+        /// <param name="store"></param>
+        /// <returns></returns>
+        public List<StaffModel> FilterStaffsByStore(List<StaffModel> staffs , StoreModel store)
+        {
+            return Staff.FilterStaffsByStore(staffs, store);
+        }
+
+        /// <summary>
+        /// Filter staffs by person name 
+        /// get list of staffs and fullName 
+        /// return list of staffs if the personName matches
+        /// </summary>
+        /// <param name="staffs"></param>
+        /// <param name="fullName"></param>
+        /// <returns></returns>
+        public List<StaffModel> FilterSatffsByPersonFullName(List<StaffModel> staffs, string fullName)
+        {
+            return Staff.FilterSatffsByPersonFullName(staffs, fullName);
+        }
+
+        /// <summary>
+        /// Filter staffs by username 
+        /// get list of staffs and userName 
+        /// return list of staffs if the personName matches
+        /// </summary>
+        /// <param name="staffs"></param>
+        /// <param name="username"></param>
+        /// <returns></returns>
+        public List<StaffModel> FilterSatffsByUsername(List<StaffModel> staffs, string username)
+        {
+            return Staff.FilterSatffsByUsername(staffs, username);
+        }
+
+
+        /// <summary>
+        /// Check if the user name unique 
+        /// If unique return true
+        /// if NOT return false
+        /// </summary>
+        /// <param name="staffs"></param>
+        /// <param name="newUsername"></param>
+        /// <returns></returns>
+        public  bool CheckIfTheUsernameUnique(List<StaffModel> staffs, string newUsername)
+        {
+            return Staff.CheckIfTheUsernameUnique(staffs, newUsername);
+        }
+
+        /// <summary>
+        /// Update staff member data From username , password and permissionId
+        /// </summary>
+        /// <param name="staff"></param>
+        /// <param name="db"></param>
+        public  void UpdateStaffData(StaffModel staff)
+        {
+            Staff.UpdateStaffData(staff, db);
+        }
+
+        #endregion
+
+        #region StoreStaff 
+
+        /// <summary>
+        /// Add store staff in the database
+        /// </summary>
+        /// <param name="store"> store model</param>
+        /// <param name="staff">staff model </param>
+        public void AddStoreStaffToTheDatabase(StoreModel store, StaffModel staff)
+        {
+            StoreStaff.AddStoreStaffToTheDatabase(store, staff,db);
+        }
+
+        /// <summary>
+        /// Remove store staff in the database
+        /// </summary>
+        /// <param name="store"> store model</param>
+        /// <param name="staff">staff model </param>
+        public void RemoveStoreStaffToTheDatabase(StoreModel store, StaffModel staff)
+        {
+            StoreStaff.RemoveStoreStaffToTheDatabase(store, staff,db);
         }
 
 

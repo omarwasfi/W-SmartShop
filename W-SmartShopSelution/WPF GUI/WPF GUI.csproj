@@ -73,6 +73,9 @@
     <Compile Include="Inventory\InventoryUC.xaml.cs">
       <DependentUpon>InventoryUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ModifyPersonUC\ModifyPersonUC.xaml.cs">
+      <DependentUpon>ModifyPersonUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ProductForms\CreateBrandUC\CreateBrandUC.xaml.cs">
       <DependentUpon>CreateBrandUC.xaml</DependentUpon>
     </Compile>
@@ -94,11 +97,21 @@
     <Compile Include="SellUC\SellUC.xaml.cs">
       <DependentUpon>SellUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Staff\ModifyStaffUC\ModifyStaffUC.xaml.cs">
+      <DependentUpon>ModifyStaffUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Staff\StaffsManagerUC\StaffsManagerUC.xaml.cs">
+      <DependentUpon>StaffsManagerUC.xaml</DependentUpon>
+    </Compile>
     <Page Include="Inventory\AddCurrentStock.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Inventory\InventoryUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ModifyPersonUC\ModifyPersonUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -143,6 +156,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SellUC\SellUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Staff\ModifyStaffUC\ModifyStaffUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Staff\StaffsManagerUC\StaffsManagerUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

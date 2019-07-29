@@ -45,6 +45,56 @@ namespace Library
         public PermissionModel Permission { get; set; }
 
 
+        /// <summary>
+        /// Get all stores names in one string subrate with space
+        /// </summary>
+        public string AllStores
+        {
+            get
+            {
+                string allStores = "";
+                foreach(StoreModel store in Stores)
+                {
+                    allStores += " ";
+                    allStores += store.Name ;
+                }
+                return allStores;
+                
+            }
+        }
 
+        /// <summary>
+        /// Get all Avalible permissions Name in one string with space and ','
+        /// </summary>
+        public string AllTruePermissions
+        {
+            get
+            {
+                string allTruePermissions = "";
+
+                if (Permission.CanSellUC)
+                {
+                    allTruePermissions += " ";
+                    allTruePermissions += "Selling";
+                }
+                if (Permission.CanInventoryUC)
+                {
+                    allTruePermissions += " ,";
+                    allTruePermissions += "Inventory";
+                }
+                if (Permission.CanProductManagerUC)
+                {
+                    allTruePermissions += " ,";
+                    allTruePermissions += "Prodcut Manager";
+                }
+                if (Permission.CanStaffsManagerUC)
+                {
+                    allTruePermissions += " ,";
+                    allTruePermissions += "Staffs Manager";
+                }
+
+                return allTruePermissions;
+            }
+        }
     }
 }

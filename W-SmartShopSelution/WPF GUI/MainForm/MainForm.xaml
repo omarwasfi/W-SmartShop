@@ -136,6 +136,14 @@
                             </StackPanel>
                         </ListViewItem>
 
+                        <ListViewItem Name="StaffsManagerViewItem" Visibility="Collapsed" Height="45" Padding="0" Selected="StaffsManagerViewItem_Selected" >
+                            <StackPanel Orientation="Horizontal" Margin="10 0">
+                                <materialDesign:PackIcon Kind="People" Width="20" Height="20" Foreground="Gray" Margin="5" VerticalAlignment="Center"/>
+                                <TextBlock Text="Staffs Manager" Margin="10"/>
+                            </StackPanel>
+                        </ListViewItem>
+
+
                     </ListView>
                 </StackPanel>
             </ScrollViewer>

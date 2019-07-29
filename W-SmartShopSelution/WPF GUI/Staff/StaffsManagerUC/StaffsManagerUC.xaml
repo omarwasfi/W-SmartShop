@@ -1,0 +1,51 @@
+﻿<UserControl x:Class="WPF_GUI.Staff.StaffsManagerUC.StaffsManagerUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WPF_GUI.Staff.StaffsManagerUC"
+             mc:Ignorable="d" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+
+             d:DesignHeight="680" d:DesignWidth="1343">
+    <Grid>
+        <TextBox x:Name ="StaffSearchValue_StaffsManagerUC" HorizontalAlignment="Left" Height="28" Margin="606,28,0,0" TextWrapping="Wrap" Text="Search... " VerticalAlignment="Top" Width="396" />
+        <ComboBox x:Name="StaffSearchType_StaffsManagerUC" HorizontalAlignment="Left" Margin="1006,23,0,0" VerticalAlignment="Top" Width="120" Height="33" />
+
+        <Button x:Name="StaffSearchButton_StaffsManagerUC" Click="StaffSearchButton_StaffsManagerUC_Click" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FFA2A2A2" VerticalAlignment="Center"  Margin="1132,23,113,619"  Height="38" >
+            <materialDesign:PackIcon Kind="Search" Width="25" Height="25" />
+        </Button>
+        <Button x:Name="ResetStaffsResultsButton_StaffsManagerUC" Click="ResetStaffsResultsButton_StaffsManagerUC_Click" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Red"   VerticalAlignment="Top" Height="52" Margin="1252,10,10,0"  >
+            <materialDesign:PackIcon Kind="Clear" Width="50" Height="46"/>
+        </Button>
+
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="6,18,0,0" ><Run Text="Store : "/></TextBlock>
+        <ComboBox x:Name="StoreValue_StaffsManagerUC" SelectionChanged="StoreValue_StaffsManagerUC_SelectionChanged" HorizontalAlignment="Left" Margin="87,23,0,0" VerticalAlignment="Top" Width="206" IsTextSearchEnabled="True"  />
+        <DataGrid x:Name="StaffsList_StaffsManagerUC" IsReadOnly="True" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="491" Margin="10,66,0,0" VerticalAlignment="Top" Width="1323" Background="LightGray" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Staff Name" Binding="{Binding Person.FullName}"/>
+
+                <DataGridTextColumn Header="UserName" Binding="{Binding Username}"/>
+                <DataGridTextColumn x:Name="PasswordDataGrid" Visibility="Collapsed" Header="Password" Binding="{Binding Password}"/>
+                <DataGridTextColumn Header="Stores" Binding="{Binding AllStores}"/>
+                <DataGridTextColumn Header="Permissions" Binding="{Binding AllTruePermissions}"/>
+
+
+
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <CheckBox Name="ShowPasswordCheckBox_StaffsManagerUC" Click="ShowPasswordCheckBox_StaffsManagerUC_Click" Content="Show Passwords" HorizontalAlignment="Left" Margin="320,36,0,0" VerticalAlignment="Top"/>
+        <Button Name="CloseButton_StaffsManagerUC" Content="Close" HorizontalAlignment="Left" Margin="1235,618,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Print" HorizontalAlignment="Left" Margin="1149,618,0,0" VerticalAlignment="Top" Width="81"/>
+
+        <Button x:Name="ModifySelectedButton_StaffsManagerUC"  Click="ModifySelectedButton_StaffsManagerUC_Click" Margin="20,580,1050,0" VerticalAlignment="Top" Height="70"  >
+            <Grid Width="254">
+                <materialDesign:PackIcon Kind="Pencil"  Width="50" Height="46"/>
+                <TextBlock FontSize="20" Text="Modify selected" Margin="50,10,10,10"/>
+            </Grid>
+        </Button>
+        <!--<CheckBox Name="EnableEditCheckBox_StaffsManagerUC" Content="Enable Edit" HorizontalAlignment="Left" Margin="440,36,0,0" VerticalAlignment="Top"/>-->
+
+    </Grid>
+</UserControl>

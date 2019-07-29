@@ -41,6 +41,7 @@ namespace WPF_GUI
         /// </summary>
         public LoginForm()
         {
+            
             InitializeComponent();
             GlobalConfig.InitializeConnection();
             
@@ -121,6 +122,7 @@ namespace WPF_GUI
         private void OpenMainForm()
         {
             MainForm mainForm = new MainForm();
+            mainForm.Title = Store.Name;
             mainForm.Show();
 
             this.Close();

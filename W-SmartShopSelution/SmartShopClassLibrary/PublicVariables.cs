@@ -56,6 +56,16 @@ namespace Library
         /// </summary>
         public static List<StockModel> Stocks { get; set; }
 
+        /// <summary>
+        /// All Staffs of all stors
+        /// set when staffs manager UC fires
+        /// </summary>
+        public static List<StaffModel> Staffs { get; set; }
 
+        /// <summary>
+        /// All Stores 
+        /// - set when StaffManagerUC Fires
+        /// </summary>
+        public static List<StoreModel> Stores { get; set; }
     }
 }
