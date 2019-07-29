@@ -105,6 +105,7 @@ namespace Library
         }
 
         #endregion
+
         #region Product Functions
 
         /// <summary>
@@ -330,6 +331,34 @@ namespace Library
         }
         #endregion
 
+        #region Person
+
+        /// <summary>
+        /// Check if the national number used before If It is return false
+        /// If it is unique return true
+        /// </summary>
+        /// <param name="people"></param>
+        /// <param name="nationalNumber"></param>
+        /// <returns></returns>
+        public  bool CheckIfTheNationalNumberUnique(string nationalNumber)
+        {
+
+            return Person.CheckIfTheNationalNumberUnique(Person.GetAllPeople(db), nationalNumber);
+
+        }
+
+        /// <summary>
+        /// Update person data with the database
+        /// </summary>
+        /// <param name="person"></param>
+        /// <param name="db"></param>
+        public void UpdatePersonData(PersonModel person)
+        {
+            Person.UpdatePersonData(person, db);
+        }
+
+        #endregion
+
         #region order
 
         /// <summary>
@@ -340,7 +369,7 @@ namespace Library
         /// </summary>
         /// <param name="order">order model</param>
         /// <param name="db"></param>
-        public  void SaveOrderToDatabase(OrderModel order)
+        public void SaveOrderToDatabase(OrderModel order)
         {
             OrderProduct.SaveOrderProductListToTheDatabase(Order.GetEmptyOrderFromTheDatabase(order, db), db);
         }

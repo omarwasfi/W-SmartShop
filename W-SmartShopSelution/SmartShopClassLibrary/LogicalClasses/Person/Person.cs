@@ -127,5 +127,109 @@ namespace Library
 
             return false;
         }
+
+        /// <summary>
+        /// Check if the national number used before If It is return false
+        /// If it is unique OR null Or White space return true
+        /// </summary>
+        /// <param name="people"></param>
+        /// <param name="nationalNumber"></param>
+        /// <returns></returns>
+        public static bool CheckIfTheNationalNumberUnique(List<PersonModel> people , string nationalNumber)
+        {
+            if (String.IsNullOrWhiteSpace(nationalNumber))
+            {
+                return true;
+            }
+
+            foreach(PersonModel person in people)
+            {
+                if(person.NationalNumber == nationalNumber)
+                {
+                    return false;
+                }
+            }
+            return true;
+
+        }
+
+        /// <summary>
+        /// Update person data with the database
+        /// </summary>
+        /// <param name="person"></param>
+        /// <param name="db"></param>
+        public static void UpdatePersonData(PersonModel person, string db)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnVal(db)))
+            {
+
+                var p = new DynamicParameters();
+                p.Add("@Id", person.Id);
+                p.Add("@FirstName", person.FirstName);
+                if (!string.IsNullOrWhiteSpace(person.LastName))
+                {
+                    p.Add("@LastName", person.LastName);
+                }
+                else
+                {
+                    p.Add("@LastName", null);
+                }
+                if (!string.IsNullOrWhiteSpace(person.PhoneNumber))
+                {
+                    p.Add("@PhoneNumber", person.PhoneNumber);
+                }
+                else
+                {
+                    p.Add("@PhoneNumber", null);
+
+                }
+                if (!string.IsNullOrWhiteSpace(person.NationalNumber))
+                {
+                    p.Add("@NationalNumber", person.NationalNumber);
+                }
+                else
+                {
+                    p.Add("@NationalNumber", null);
+
+                }
+                if (!string.IsNullOrWhiteSpace(person.Email))
+                {
+                    p.Add("@Email", person.Email);
+                }
+                else
+                {
+                    p.Add("@Email", null);
+
+                }
+                if (!string.IsNullOrWhiteSpace(person.Address))
+                {
+                    p.Add("@Address", person.Address);
+                }
+                else
+                {
+                    p.Add("@Address", null);
+
+                }
+                if (!string.IsNullOrWhiteSpace(person.City))
+                {
+                    p.Add("@City", person.City);
+                }
+                else
+                {
+                    p.Add("@City", null);
+
+                }
+                if (!string.IsNullOrWhiteSpace(person.Country))
+                {
+                    p.Add("@Country", person.Country);
+                }
+                else
+                {
+                    p.Add("@Country", null);
+
+                }
+                connection.Execute("dbo.spPerson_Update", p, commandType: CommandType.StoredProcedure);
+            }
+        }
     }
 }

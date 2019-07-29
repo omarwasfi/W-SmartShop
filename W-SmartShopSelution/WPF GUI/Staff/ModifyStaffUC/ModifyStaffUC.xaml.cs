@@ -466,6 +466,27 @@ namespace WPF_GUI.Staff.ModifyStaffUC
             }
         }
 
+        /// <summary>
+        /// Open modifyPersonUC to edit the person data
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void EditPersonButton_ModifyStaffUC_Click(object sender, RoutedEventArgs e)
+        {
+            ModifyPersonUC.ModifyPersonUC modifyPersonUC = new ModifyPersonUC.ModifyPersonUC(Staff.Person);
+            Window window = new Window
+            {
+                Title = "Modify Person",
+                Content = modifyPersonUC,
+                SizeToContent = SizeToContent.WidthAndHeight,
+                ResizeMode = ResizeMode.NoResize
+            };
+            window.ShowDialog();
+            SetInitialValues();
+        }
+
         #endregion
+
+
     }
 }

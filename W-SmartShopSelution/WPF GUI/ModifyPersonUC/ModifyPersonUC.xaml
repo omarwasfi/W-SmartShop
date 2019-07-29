@@ -5,10 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WPF_GUI.ModifyPersonUC"
              mc:Ignorable="d" 
-                                       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-
-             d:DesignHeight="680" d:DesignWidth="1343">
-    <Grid>
+                                       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" Height="632.68" Width="1281.659">
+    <Grid Margin="10">
         <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="12,18,0,0" Width="192" Height="30" ><Run Text="First Name : "/></TextBlock>
         <TextBox x:Name="FirstNameValue_ModifyPersonUC" HorizontalAlignment="Left" Margin="303,23,0,0" VerticalAlignment="Top" Width="368" />
 
@@ -34,8 +32,8 @@
         <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="10,263,0,0" Width="210" Height="30" ><Run Text="Country : "/></TextBlock>
         <TextBox x:Name="CountryValue_ModifyPersonUC" HorizontalAlignment="Left" Margin="303,268,0,0" VerticalAlignment="Top" Width="114" />
 
-        <Button x:Name="CloseButton_ModifyPersonUC"  Content="Close" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" Margin="1208,618,0,0"/>
-        <Button x:Name="ClearButton_ModifyPersonUC"  Content="Reset" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" Margin="1128,618,0,0"/>
-        <Button x:Name="ConfirmButton_ModifyPersonUC" Content="Confirm" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="103" Margin="1020,618,0,0"/>
+        <Button x:Name="CloseButton_ModifyPersonUC" Click="CloseButton_ModifyPersonUC_Click" Content="Close" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" Margin="1143,540,0,0" RenderTransformOrigin="0.374,-2.702"/>
+        <Button x:Name="ResetButton_ModifyPersonUC" Click="ResetButton_ModifyPersonUC_Click" Content="Reset" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" Margin="1063,540,0,0"/>
+        <Button x:Name="ConfirmButton_ModifyPersonUC" Click="ConfirmButton_ModifyPersonUC_Click" Content="Confirm" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="103" Margin="955,540,0,0"/>
     </Grid>
 </UserControl>

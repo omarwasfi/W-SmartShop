@@ -46,7 +46,7 @@
             <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="18" Margin="666,29,0,0" ><Run Text="- Edit staff permissions  "/></TextBlock>
 
         </Grid>
-        <Button  x:Name="EditPersonButton_ModifyStaffUC"  Margin="1060,10,10,0" VerticalAlignment="Top" Height="70"  >
+        <Button  x:Name="EditPersonButton_ModifyStaffUC" Click="EditPersonButton_ModifyStaffUC_Click"  Margin="1060,10,10,0" VerticalAlignment="Top" Height="70"  >
             <Grid Width="254">
                 <materialDesign:PackIcon Kind="Pencil"  Width="50" Height="46"/>
                 <TextBlock FontSize="20" Text="Edit As a Person" Margin="50,10,10,10"/>
