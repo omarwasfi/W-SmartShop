@@ -374,6 +374,35 @@ namespace Library
             OrderProduct.SaveOrderProductListToTheDatabase(Order.GetEmptyOrderFromTheDatabase(order, db), db);
         }
 
+        /// <summary>
+        /// get all the orders from the database , 
+        /// - set the customerModel foreach order
+        /// - set the storemodel foreach order,
+        /// - set the staffModel foreach order,
+        /// - set the list OrderProdcut for each order
+        /// - set the prodcut foreach OrderProdcut 
+        /// </summary>
+        /// <param name="db"></param>
+        /// <returns></returns>
+        public  List<OrderModel> GetOrders()
+        {
+            return Order.GetOrders(db);
+                 
+        }
+
+        /// <summary>
+        /// Filter list of orders by Customer
+        /// </summary>
+        /// <param name="orders"></param>
+        /// <param name="customer"></param>
+        /// <returns></returns>
+        public List<OrderModel> FilterOrdersByCustomer(List<OrderModel> orders, CustomerModel customer)
+        {
+            return Order.FilterOrdersByCustomer(orders, customer);
+
+        }
+
+
         #endregion
 
         #region store

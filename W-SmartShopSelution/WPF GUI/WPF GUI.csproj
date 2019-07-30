@@ -67,6 +67,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CustomerLogUC\CustomerLogUC.xaml.cs">
+      <DependentUpon>CustomerLogUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Inventory\AddCurrentStock.xaml.cs">
       <DependentUpon>AddCurrentStock.xaml</DependentUpon>
     </Compile>
@@ -103,6 +106,10 @@
     <Compile Include="Staff\StaffsManagerUC\StaffsManagerUC.xaml.cs">
       <DependentUpon>StaffsManagerUC.xaml</DependentUpon>
     </Compile>
+    <Page Include="CustomerLogUC\CustomerLogUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Inventory\AddCurrentStock.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

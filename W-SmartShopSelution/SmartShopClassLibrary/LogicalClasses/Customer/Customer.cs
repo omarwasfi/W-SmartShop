@@ -27,7 +27,7 @@ namespace Library
                 {
                     var p = new DynamicParameters();
                     p.Add("@CustomerId", customer.Id);
-                    customer.Person = connection.QuerySingle<PersonModel>("spCategory_GetPersonByCategoryId", p, commandType: CommandType.StoredProcedure);
+                    customer.Person = connection.QuerySingle<PersonModel>("spCustomer_GetPersonByCustomerId", p, commandType: CommandType.StoredProcedure);
                 }
             }
             return customers;

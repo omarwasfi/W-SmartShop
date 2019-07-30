@@ -38,5 +38,107 @@ namespace Library
             
         }
 
+
+        /// <summary>
+        /// get all the orders from the database , 
+        /// - set the customerModel foreach order
+        ///     - Set the PersonModel for the customer
+        /// - set the storemodel foreach order,
+        /// - set the staffModel foreach order,
+        /// - set the list OrderProdcut for each order
+        /// - set the prodcut foreach OrderProdcut 
+        /// </summary>
+        /// <param name="db"></param>
+        /// <returns></returns>
+        public static List<OrderModel> GetOrders(string db)
+        {
+            List<OrderModel> orders = new List<OrderModel>();
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnVal(db)))
+            {                
+                orders = connection.Query<OrderModel>("dbo.spOrders_GetAll").ToList();
+
+                List<StoreModel> stores = new List<StoreModel>();
+                stores = connection.Query<StoreModel>("select * from Store").ToList();
+                foreach (StoreModel s in stores)
+                {
+                    s.Name = connection.QuerySingle<string>("select Neme from Store where Id = " + s.Id + ";");
+                }
+
+                foreach (OrderModel order in orders)
+                {
+                    var p = new DynamicParameters();
+                    p.Add("@OrderId", order.Id);
+
+                    // set the customer model for the order , set the personModel for this customer
+                    order.Customer = connection.QuerySingle<CustomerModel>("spOrders_GetCustomerByOrderId", p, commandType: CommandType.StoredProcedure);
+                    var c = new DynamicParameters();
+                    c.Add("@CustomerId", order.Customer.Id);
+                    order.Customer.Person = connection.QuerySingle<PersonModel>("spCustomer_GetPersonByCustomerId", c, commandType: CommandType.StoredProcedure);
+
+
+                    // set the store model for the order 
+                    order.Store = connection.QuerySingle<StoreModel>("spOrders_GetStoreIdByOrderId", p, commandType: CommandType.StoredProcedure);
+
+
+                    foreach (StoreModel s in stores)
+                    {
+                        if(s.Id == order.Store.Id)
+                        {
+                            order.Store = s;
+                        }
+                    }
+
+
+                    // set the Staff model for the order ,   set the person model for this staff , Set the permission model for the staff 
+                    // TODO - Do we need to set all stores for this staff member
+                    order.Staff = connection.QuerySingle<StaffModel>("spOrders_GetStaffByOrderId", p, commandType: CommandType.StoredProcedure);
+                    var ss = new DynamicParameters();
+                    ss.Add("@StaffId", order.Staff.Id);
+                    order.Staff.Person = connection.QuerySingle<PersonModel>("spStaff_GetPersonByStaffId", ss, commandType: CommandType.StoredProcedure);
+                    order.Staff.Permission = connection.QuerySingle<PermissionModel>("spStaff_GetPermissionByStaffId", ss, commandType: CommandType.StoredProcedure);
+                   
+
+
+                    order.Products = connection.Query<OrderProductModel>("dbo.spOrders_GetOrderProductsByOrderId", p, commandType: CommandType.StoredProcedure).ToList();
+                    foreach(OrderProductModel orderProduct in order.Products)
+                    {
+                        var o = new DynamicParameters();
+                        o.Add("@OrderProductId", orderProduct.Id);
+                        orderProduct.Product = connection.QuerySingle<ProductModel>("spOrders_GetProdcutByOrderProductId", o, commandType: CommandType.StoredProcedure);
+                        
+
+
+                    }
+
+                }
+            }
+            return orders;
+
+
+
+        }
+
+        /// <summary>
+        /// Filter list of orders by Customer
+        /// </summary>
+        /// <param name="orders"></param>
+        /// <param name="customer"></param>
+        /// <returns></returns>
+        public static List<OrderModel> FilterOrdersByCustomer(List<OrderModel> orders , CustomerModel customer )
+        {
+            List<OrderModel> FOrders = new List<OrderModel>();
+
+            foreach(OrderModel order in orders)
+            {
+                if (order.Customer.Id == customer.Id)
+                {
+                    FOrders.Add(order);
+                }
+            }
+
+            return FOrders;
+
+        }
+
     }
 }

@@ -67,5 +67,11 @@ namespace Library
         /// - set when StaffManagerUC Fires
         /// </summary>
         public static List<StoreModel> Stores { get; set; }
+
+        /// <summary>
+        /// All Store Orders
+        /// - Set In the loginUC
+        /// </summary>
+        public static List<OrderModel> Orders { get; set; }
     }
 }

@@ -28,7 +28,7 @@ namespace WPF_GUI.Sell
     /// </summary>
     public partial class SellUC : UserControl , ICustomerRequester 
     {
-        #region Main Variabels
+        #region Main Variables
 
 
         // Store
@@ -988,6 +988,8 @@ namespace WPF_GUI.Sell
             Orders = new List<OrderProductModel>();
             ChoosenProductList_Sell.ItemsSource = null;
             TotalPriceValue_Sell.Text = "";
+
+            PublicVariables.Orders = GlobalConfig.Connection.GetOrders();
         }
 
 
@@ -1023,12 +1025,26 @@ namespace WPF_GUI.Sell
 
 
 
+        private void SelectedCustomerLogButton_Sell_Click(object sender, RoutedEventArgs e)
+        {
+
+            CustomerLogUC.CustomerLogUC customerLogUC = new CustomerLogUC.CustomerLogUC( Customer);
+            Window window = new Window
+            {
+                Title = "Customer Log",
+                Content = customerLogUC,
+                SizeToContent = SizeToContent.WidthAndHeight,
+                ResizeMode = ResizeMode.NoResize
+            };
+            window.ShowDialog();
+            
+        }
 
 
 
         #endregion
 
-        
+
     }
 
 }
