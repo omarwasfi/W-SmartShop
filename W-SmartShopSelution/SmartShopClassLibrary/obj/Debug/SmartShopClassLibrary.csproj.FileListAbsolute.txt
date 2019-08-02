@@ -1,5 +1,4 @@
 C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\SmartShopClassLibrary\obj\Debug\SmartShopClassLibrary.csproj.CoreCompileInputs.cache
-C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\SmartShopClassLibrary\obj\Debug\SmartShopClassLibrary.csprojAssemblyReference.cache
 C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\SmartShopClassLibrary\bin\Debug\SmartShopClassLibrary.dll
 C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\SmartShopClassLibrary\bin\Debug\SmartShopClassLibrary.pdb
 C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\SmartShopClassLibrary\bin\Debug\Dapper.dll
@@ -7,3 +6,4 @@ C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\SmartShopClassLi
 C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\SmartShopClassLibrary\obj\Debug\SmartShopClassLibrary.csproj.CopyComplete
 C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\SmartShopClassLibrary\obj\Debug\SmartShopClassLibrary.dll
 C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\SmartShopClassLibrary\obj\Debug\SmartShopClassLibrary.pdb
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\SmartShopClassLibrary\obj\Debug\SmartShopClassLibrary.csprojAssemblyReference.cache

@@ -14,7 +14,12 @@ namespace Library
         /// <summary>
         /// Database name
         /// </summary>
-        private const string db = "SmartShopConnection";
+        //private const string db = "SmartShopConnection";
+
+        private const string db = "SmartShopLocalConnection";
+
+
+         
 
         /// <summary>
         /// The Default Id in the category table in the database
