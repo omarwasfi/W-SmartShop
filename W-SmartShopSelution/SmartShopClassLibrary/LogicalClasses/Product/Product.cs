@@ -291,5 +291,38 @@ namespace Library
         }
 
 
+        /// <summary>
+        /// Get list of Products , List of stocks 
+        /// Return list of products not in the stocks
+        /// </summary>
+        /// <returns></returns>
+        public static List<ProductModel> GetTheProductsNotInTheStocks(List<ProductModel> products, List<StockModel> stocks)
+        {
+            List<ProductModel> FProducts = new List<ProductModel>();
+            bool exist = false;
+
+            foreach(ProductModel product in products)
+            {
+                exist = false;
+                foreach(StockModel stock in stocks)
+                {
+                    if(stock.Product.Id == product.Id)
+                    {
+                        exist = true;
+                        break;
+                    }
+                }
+                if(exist == false)
+                {
+                    FProducts.Add(product);
+                }
+            }
+
+
+            return FProducts;
+
+        }
+
+
     }
 }

@@ -178,9 +178,25 @@ namespace WPF_GUI.Inventory
                 MessageBox.Show("CHoose the search type first");
             }
         }
+
+        private void AddNewProdcutToTheInventoryButton_InventoryUC_Click(object sender, RoutedEventArgs e)
+        {
+            
+            AddStockToStoreUC addStockToStoreUC = new AddStockToStoreUC(false);
+            Window window = new Window
+            {
+                Title = "Add Prodcut to the inventory",
+                Content = addStockToStoreUC,
+                SizeToContent = SizeToContent.Height,
+                Width = 1350,
+                ResizeMode = ResizeMode.NoResize
+            };
+            window.ShowDialog();
+            SetInitialValues();
+
+        }
+
         #endregion
 
-
-       
     }
 }

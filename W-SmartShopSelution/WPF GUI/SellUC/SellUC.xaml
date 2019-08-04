@@ -31,8 +31,12 @@
 
         <Button x:Name="RemoveSelectedProductButton_Sell" Click="RemoveSelectedProductButton_Sell_Click" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Red"  Margin="15,308.5,1073,0" VerticalAlignment="Top" Height="60" Grid.Row="1"  >
             <Grid Width="229">
-                <materialDesign:PackIcon Kind="RemoveCircle" Width="50" Height="46"/>
-                <TextBlock FontSize="20" Text="Remove Selected" Margin="50,10,10,10"/>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="5*"/>
+                    <RowDefinition Height="42*"/>
+                </Grid.RowDefinitions>
+                <materialDesign:PackIcon Kind="RemoveCircle" Width="50" Height="46" Grid.RowSpan="2"/>
+                <TextBlock FontSize="20" Text="Remove Selected" Margin="50,5,10,10" Grid.Row="1"/>
             </Grid>
         </Button>
 
@@ -68,7 +72,7 @@
                 </Button>
                 <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="5,212,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Total Price : "/></TextBlock>
                 <TextBox x:Name="TotalProductPriceValue_Sell"  IsReadOnly="True" HorizontalAlignment="Left" Height="23" Margin="137,222,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="58" RenderTransformOrigin="0.544,-0.652"/>
-                
+
                 <TextBox x:Name="InStockValue_Sell" KeyDown="PriceValue_Sell_KeyDown" HorizontalAlignment="Left" Height="24" Margin="111,132,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="58" RenderTransformOrigin="0.544,-0.652" IsEnabled="True" IsReadOnly="True" />
                 <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="0,123,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="In Stock : "/></TextBlock>
             </Grid>
@@ -83,7 +87,7 @@
                 <TextBox x:Name="PhoneNumberValue_Sell" TextChanged="PhoneNumberValue_Sell_TextChanged" KeyDown="PhoneNumberValue_Sell_KeyDown" HorizontalAlignment="Left" Height="23" Margin="224,58,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="421"/>
                 <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="10,86,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" Width="209" Text="National Number : " />
                 <TextBox x:Name="NationalNumberValue_Sell" KeyDown="NationalNumberValue_Sell_KeyDown" TextChanged="NationalNumberValue_Sell_TextChanged" HorizontalAlignment="Left" Margin="224,94,0,0" VerticalAlignment="Top" Width="421" />
-                
+
                 <Button x:Name="SelectedCustomerLogButton_Sell" Click="SelectedCustomerLogButton_Sell_Click" Content="Selected Customer log" HorizontalAlignment="Left" Margin="10,148,0,0" VerticalAlignment="Top" Width="193" Height="40" FontSize="15" FontWeight="Bold"/>
                 <Button x:Name="ClearCustomerButton_Sell" Click="ClearCustomerButton_Sell_Click" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Red"   VerticalAlignment="Top" Height="50" Margin="569,138,10,0"  >
                     <materialDesign:PackIcon Kind="Clear" Width="50" Height="46"/>

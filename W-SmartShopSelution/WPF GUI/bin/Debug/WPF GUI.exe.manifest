@@ -90,26 +90,26 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SmartShopClassLibrary.dll" size="49664">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SmartShopClassLibrary.dll" size="50176">
       <assemblyIdentity name="SmartShopClassLibrary" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>fBYN34ZXmC2dUUTq3ou46GdhldTiztFvglQjedxMARY=</dsig:DigestValue>
+        <dsig:DigestValue>lKPf8puuQfz9XAIzFr9AVlSTn2Sg4E5wcqTxKBxmRkQ=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="WPF GUI.exe" size="303016">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="WPF GUI.exe" size="313768">
       <assemblyIdentity name="WPF GUI" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>MXTwq7/6ydjRhPCpQZQTa8w3mSRhWhefA9G2r2dXIXg=</dsig:DigestValue>
+        <dsig:DigestValue>WUxA3QU5NQaG4tGq/1AWNB0Po6m1Cyjibtlz2+rp12g=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -125,13 +125,13 @@
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="WPF GUI.exe.config" size="1273">
+  <file name="WPF GUI.exe.config" size="853">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>cmNO0fdXgKFmLNuZJXfiiVGxqQv42nuwsz4jSrviEbE=</dsig:DigestValue>
+      <dsig:DigestValue>2GlsRFVP6CJ1cI3FV/pGhQI5vYGgyY243nhK5OAogcU=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>

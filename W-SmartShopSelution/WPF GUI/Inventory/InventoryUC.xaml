@@ -47,7 +47,7 @@
             </Grid>
         </Button>
 
-        <Button  Margin="5,580,925,0" VerticalAlignment="Top" Height="70"  >
+        <Button Name="AddNewProdcutToTheInventoryButton_InventoryUC" Click="AddNewProdcutToTheInventoryButton_InventoryUC_Click"  Margin="5,580,925,0" VerticalAlignment="Top" Height="70"  >
             <Grid Width="372">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="78*"/>

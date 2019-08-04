@@ -26,25 +26,15 @@ namespace Library
         /// <returns></returns>
         public static string CnnVal(string name)
         {
-            /* string LocalConnection = @"Data Source=.\SQLEXPRESS;
-                           AttachDbFilename=C:\Program Files\Microsoft SQL Server\MSSQL14.SQLEXPRESS\MSSQL\DATA\SmartShopDatabase.mdf;
-                           Integrated Security=True;
-                           Connect Timeout=30;
-                           User Instance=True";
-            string path = @"C:\Program Files\Microsoft SQL Server\MSSQL14.SQLEXPRESS\MSSQL\DATA";
-            string databaseName = "SmartShopDatabase.mdf";
-            string LocalConnection = @"Data Source=(localdb)\v11.0;AttachDbFilename=C:\Users\omerw\Documents\GitHub\W-SmartShop\Database\SQL\SmartShopDatabase.mdf;Integrated Security=True";
+           
 
+            return ConfigurationManager.ConnectionStrings[name].ConnectionString;
 
-            return LocalConnection;*/
-
-            //return ConfigurationManager.ConnectionStrings[name].ConnectionString;
-
-             string path = Path.GetFullPath(Environment.CurrentDirectory);
-             string databaseName = "SmartShopDatabase.mdf";
+            //string path = Path.GetFullPath(Environment.CurrentDirectory);
+            // string databaseName = "SmartShopDatabase.mdf";
 
             //return @" data source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + path + @"\" + databaseName + ";Integrated Security=True";
-            return @" data source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\SSData"+@"\" + databaseName + ";Integrated Security=True";
+            //return @" data source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\SSData"+@"\" + databaseName + ";Integrated Security=True";
 
 
         }
@@ -58,7 +48,7 @@ namespace Library
         public static StoreModel GetTheStoreFromTheDatabase()
         {
             
-            return Connection.CheckByEnumIsThisStoreExist(StoreName.FayedStore);
+            return Connection.CheckByEnumIsThisStoreExist(StoreName.Ma3adiStore);
                     
             
 

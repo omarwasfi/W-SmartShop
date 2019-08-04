@@ -47,12 +47,14 @@ namespace Library
         /// All Products list
         /// - Set after create new product
         /// - set when opening produts manager 
+        /// - Set in the LoginUC
         /// </summary>
         public static  List<ProductModel> Products { get; set; }
 
         /// <summary>
         /// All Stocks
         /// set when modifyProductUC fired
+        ///  - Set in the LoginUC
         /// </summary>
         public static List<StockModel> Stocks { get; set; }
 
@@ -65,6 +67,7 @@ namespace Library
         /// <summary>
         /// All Stores 
         /// - set when StaffManagerUC Fires
+        /// - Set In the loginU
         /// </summary>
         public static List<StoreModel> Stores { get; set; }
 

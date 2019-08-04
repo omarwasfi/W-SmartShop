@@ -14,9 +14,8 @@ namespace Library
         /// <summary>
         /// Database name
         /// </summary>
-        //private const string db = "SmartShopConnection";
+        private const string db = "SmartShopConnection";
 
-        private const string db = "SmartShopLocalConnection";
 
 
          
@@ -239,6 +238,18 @@ namespace Library
         {
             Product.UpdateProdcutData(updatedProduct, db);
         }
+
+        /// <summary>
+        /// Get list of Products , List of stocks 
+        /// Return list of products not in the stocks
+        /// </summary>
+        /// <returns>list of products not in the stocks</returns>
+        public List<ProductModel> GetTheProductsNotInTheStocks(List<ProductModel> products, List<StockModel> stocks)
+        {
+            return Product.GetTheProductsNotInTheStocks(products, stocks);
+
+        }
+
         #endregion
 
         #region Order Product
@@ -633,7 +644,7 @@ namespace Library
 
 
         /// <summary>
-        /// Get stocks in This store only
+        /// Get stocks in This store only From the database 
         /// </summary>
         /// <param name="stocks"> list of stocks foom the database</param>
         /// <param name="store"> store model </param>
@@ -642,6 +653,17 @@ namespace Library
         {
             return Stock.FilterStocksByStore(GetStocks(), store);
         }
+
+        /// <summary>
+        /// Filter list of Stocks by store 
+        /// </summary>
+        /// <param name="store"></param>
+        /// <returns></returns>
+        public List<StockModel> FilterStocksListByStore(List<StockModel> stocks , StoreModel store)
+        {
+            return Stock.FilterStocksByStore(stocks, store);
+        }
+
 
         /// <summary>
         /// Filter list of stocks by category and brand of the products in the stock list

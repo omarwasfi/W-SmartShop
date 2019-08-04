@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\App.xaml
-151111500794
+15527259732
 
-192071768219
+19-1036601848
 18-177570211
-CustomerLogUC\CustomerLogUC.xaml;Inventory\AddCurrentStock.xaml;Inventory\InventoryUC.xaml;ModifyPersonUC\ModifyPersonUC.xaml;ProductForms\CreateBrandUC\CreateBrandUC.xaml;ProductForms\CreateCategory\CreateCategoryUC.xaml;CreateCutomerUC\CreateCustomerUC.xaml;ProductForms\CreateProductUC\CreateProductUC.xaml;Login\LoginForm.xaml;MainForm\MainForm.xaml;ProductForms\ModifyProductUC\ModifyProductUC.xaml;ProductForms\ProductManagerUC\ProductManagerUC.xaml;SellUC\SellUC.xaml;Staff\ModifyStaffUC\ModifyStaffUC.xaml;Staff\StaffsManagerUC\StaffsManagerUC.xaml;
+AddStockToStoreUC\AddStockToStoreUC.xaml;CustomerLogUC\CustomerLogUC.xaml;Inventory\InventoryUC.xaml;ModifyPersonUC\ModifyPersonUC.xaml;ProductForms\CreateBrandUC\CreateBrandUC.xaml;ProductForms\CreateCategory\CreateCategoryUC.xaml;CreateCutomerUC\CreateCustomerUC.xaml;ProductForms\CreateProductUC\CreateProductUC.xaml;Login\LoginForm.xaml;MainForm\MainForm.xaml;ProductForms\ModifyProductUC\ModifyProductUC.xaml;ProductForms\ProductManagerUC\ProductManagerUC.xaml;SellUC\SellUC.xaml;Staff\ModifyStaffUC\ModifyStaffUC.xaml;Staff\StaffsManagerUC\StaffsManagerUC.xaml;
 
 False
 

@@ -95,11 +95,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddStockToStoreUC\AddStockToStoreUC.xaml.cs">
+      <DependentUpon>AddStockToStoreUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CustomerLogUC\CustomerLogUC.xaml.cs">
       <DependentUpon>CustomerLogUC.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Inventory\AddCurrentStock.xaml.cs">
-      <DependentUpon>AddCurrentStock.xaml</DependentUpon>
     </Compile>
     <Compile Include="Inventory\InventoryUC.xaml.cs">
       <DependentUpon>InventoryUC.xaml</DependentUpon>
@@ -134,11 +134,11 @@
     <Compile Include="Staff\StaffsManagerUC\StaffsManagerUC.xaml.cs">
       <DependentUpon>StaffsManagerUC.xaml</DependentUpon>
     </Compile>
-    <Page Include="CustomerLogUC\CustomerLogUC.xaml">
+    <Page Include="AddStockToStoreUC\AddStockToStoreUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Inventory\AddCurrentStock.xaml">
+    <Page Include="CustomerLogUC\CustomerLogUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
