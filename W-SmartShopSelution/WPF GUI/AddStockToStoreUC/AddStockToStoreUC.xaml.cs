@@ -19,14 +19,9 @@ namespace WPF_GUI
     /// <summary>
     /// Interaction logic for AddStockToStoreUC.xaml
     /// 
-    /// if GlobalStocks true : 
-    /// - set the store model to the current store 
-    /// - set the storevalue to this store model And set is as read only
-    /// - get the products that the store don't have
-    /// If Global Stocks false:
-    /// - set the items source to the storevalue to stores 
-    /// - each change in store value : - get the products that the store don't have
-    ///                                - get the new stocks and set the item source For the new stocks list
+    /// Get store
+    /// get the products no in the stock of this store 
+    /// add the selected products to the store
     /// </summary>
     public partial class AddStockToStoreUC : UserControl
     {
@@ -73,7 +68,6 @@ namespace WPF_GUI
         /// <summary>
         /// Are we working with the global stocks or not
         /// </summary>
-        private Boolean GlobalStocks { get; set; }
 
         private List<CategoryModel> Categories { get; set; }
         private List<BrandModel> Brands { get; set; }
@@ -91,12 +85,12 @@ namespace WPF_GUI
         /// is global stocks False the user will be able to Add  stocks to his store ONLY
         /// If True the user can Add  stocks to all stores
         /// </summary>
-        /// <param name="GlobalStocks"></param>
-        public AddStockToStoreUC(bool GlobalStocks)
+        /// <param name="store"> The store that we want to add the new products in </param>
+        public AddStockToStoreUC(StoreModel store )
         {
             InitializeComponent();
 
-            this.GlobalStocks = GlobalStocks;
+            Store = store;
 
             SetInitialValues();
         }
@@ -104,47 +98,12 @@ namespace WPF_GUI
 
         private void SetInitialValues()
         {
-            // TODO - Make the UC work well with mulible stores Case GlobalStocks = true
 
             // set the ProductSearchType_InventoryUC values
             ProductSearchType_AddStockToStoreUC.ItemsSource = null;
             ProductSearchType_AddStockToStoreUC.ItemsSource = SearchTypes;
 
-            if (GlobalStocks)
-            {
-                QuantityValue_AddStockToStoreUC.Text = "1";
-
-
-                UpdateStores();
-                StoreValue_AddStockToStoreUC.ItemsSource = null;
-                StoreValue_AddStockToStoreUC.ItemsSource = Stores;
-                StoreValue_AddStockToStoreUC.DisplayMemberPath = "Name";
-                StoreValue_AddStockToStoreUC.IsEditable = true;
-
-                UpdateStocksFromThePublicVaribles();
-
-                UpdateProductsFromThePublicVaribles();
-
-                FProductsList_AddStockToStoreUC.ItemsSource = null;
-
-                UpdateCategoriesFromThePublicVaribles();
-                CategoryValue_AddStockToStoreUC.ItemsSource = null;
-                CategoryValue_AddStockToStoreUC.ItemsSource = Categories;
-                CategoryValue_AddStockToStoreUC.DisplayMemberPath = "Name";
-
-
-                UpdateBrandsFromThePublicVaribles();
-                BrandValue_AddStockToStoreUC.ItemsSource = null;
-                BrandValue_AddStockToStoreUC.ItemsSource = Brands;
-                BrandValue_AddStockToStoreUC.DisplayMemberPath = "Name";
-
-
-
-            }
-
-            else
-            {
-                Store = PublicVariables.Store;
+            
                 List<StoreModel> stores = new List<StoreModel>();
                 stores.Add(Store);
 
@@ -176,7 +135,7 @@ namespace WPF_GUI
                 StoreValue_AddStockToStoreUC.SelectedValue = Store;
 
 
-            }
+           
 
 
 
@@ -408,9 +367,39 @@ namespace WPF_GUI
         }
 
 
+
+        /// <summary>
+        /// Called when search button clicked 
+        /// check the search type 
+        /// if it serialNumber Or Name Filter by The selected
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ProductSearchButton_AddStockToStoreUC_Click(object sender, RoutedEventArgs e)
+        {
+            if (ProductSearchType_AddStockToStoreUC.Text == "SerialNumber")
+            {
+                FProductsList_AddStockToStoreUC.ItemsSource = null;
+                FProductsList_AddStockToStoreUC.ItemsSource =
+                    GlobalConfig.Connection.FilterProductsBySerialNumber(FProducts, ProductSearchValue_AddStockToStoreUC.Text);
+
+            }
+            else if (ProductSearchType_AddStockToStoreUC.Text == "Name")
+            {
+                FProductsList_AddStockToStoreUC.ItemsSource = null;
+
+                FProductsList_AddStockToStoreUC.ItemsSource =
+                    GlobalConfig.Connection.FilterProductsByName(FProducts, ProductSearchValue_AddStockToStoreUC.Text);
+            }
+            else
+            {
+                MessageBox.Show("CHoose the search type first");
+            }
+        }
+
+
+
         #endregion
-
-
 
 
     }

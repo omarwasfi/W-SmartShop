@@ -323,6 +323,23 @@ namespace Library
             }
         }
 
+        /// <summary>
+        /// Remove stock from the database
+        /// </summary>
+        /// <param name="stock"></param>
+        /// <param name="db"></param>
+        public static void RemoveStockFromTheDatabase(StockModel stock , string db)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnVal(db)))
+            {
+                var p = new DynamicParameters();
+                p.Add("@Id", stock.Id);
+
+                connection.Execute("dbo.spStock_Delete", p, commandType: CommandType.StoredProcedure);
+
+            }
+        }
+
 
     }
 }

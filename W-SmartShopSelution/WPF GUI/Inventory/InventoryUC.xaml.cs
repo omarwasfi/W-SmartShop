@@ -182,7 +182,7 @@ namespace WPF_GUI.Inventory
         private void AddNewProdcutToTheInventoryButton_InventoryUC_Click(object sender, RoutedEventArgs e)
         {
             
-            AddStockToStoreUC addStockToStoreUC = new AddStockToStoreUC(false);
+            AddStockToStoreUC addStockToStoreUC = new AddStockToStoreUC(PublicVariables.Store);
             Window window = new Window
             {
                 Title = "Add Prodcut to the inventory",
@@ -196,7 +196,34 @@ namespace WPF_GUI.Inventory
 
         }
 
+        private void ModifySelectedButton_InventoryUC_Click(object sender, RoutedEventArgs e)
+        {
+            StockModel stock = new StockModel();
+            stock = (StockModel)StocksList_Inventory.SelectedItem;
+            if(stock != null)
+            {
+
+                ModifyStockUC modifyStockUC = new ModifyStockUC(stock);
+                Window window = new Window
+                {
+                    Title = "Modify Stock",
+                    Content = modifyStockUC,
+                    SizeToContent = SizeToContent.WidthAndHeight,
+                    ResizeMode = ResizeMode.NoResize
+                };
+                window.ShowDialog();
+                SetInitialValues();
+
+            }
+            else
+            {
+                MessageBox.Show("There is no product selected !");
+            }
+
+        }
+
         #endregion
+
 
     }
 }

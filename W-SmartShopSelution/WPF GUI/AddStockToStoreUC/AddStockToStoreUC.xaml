@@ -27,7 +27,7 @@
 
         <TextBox x:Name="ProductSearchValue_AddStockToStoreUC" Width="356" VerticalAlignment="Top" Text="Search... " TextWrapping="Wrap" Margin="10,70,0,0" Height="28" HorizontalAlignment="Left"/>
         <ComboBox x:Name="ProductSearchType_AddStockToStoreUC" Width="120" VerticalAlignment="Top" Margin="371,65,0,0" Height="33" HorizontalAlignment="Left"/>
-        <Button x:Name="ProductSearchButton_AddStockToStoreUC"  Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FFA2A2A2" VerticalAlignment="Center"  Margin="496,70,729,552"  Height="38" >
+        <Button x:Name="ProductSearchButton_AddStockToStoreUC" Click="ProductSearchButton_AddStockToStoreUC_Click"  Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FFA2A2A2" VerticalAlignment="Center"  Margin="496,70,729,552"  Height="38" >
             <materialDesign:PackIcon Kind="Search" Width="25" Height="25" />
         </Button>
 
@@ -69,11 +69,12 @@
         <Button x:Name="RemoveSelectedStockButton_AddStockToStoreUC" Click="RemoveSelectedStockButton_AddStockToStoreUC_Click" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Red"  Margin="1055,133,13,0" VerticalAlignment="Top" Height="60"  >
             <Grid Width="229">
                 <Grid.RowDefinitions>
+                    <RowDefinition/>
                     <RowDefinition Height="5*"/>
-                    <RowDefinition Height="42*"/>
+                    <RowDefinition Height="2*"/>
                 </Grid.RowDefinitions>
-                <materialDesign:PackIcon Kind="RemoveCircle" Width="50" Height="46" Grid.RowSpan="2"/>
-                <TextBlock FontSize="20" Text="Remove Selected" Margin="50,5,10,10" Grid.Row="1"/>
+                <materialDesign:PackIcon Kind="RemoveCircle" Width="50" Height="46" Grid.RowSpan="3"/>
+                <TextBlock FontSize="20" Text="Remove Selected" Margin="50,5.468,10,9.132" Grid.Row="1" Grid.RowSpan="2"/>
             </Grid>
         </Button>
 

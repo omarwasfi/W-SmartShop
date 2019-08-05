@@ -761,6 +761,10 @@ namespace Library
             Stock.UpdateStockData(updatedStock,db);
         }
 
+        public void RemoveStockFromTheDatabase(StockModel stock)
+        {
+            Stock.RemoveStockFromTheDatabase(stock, db);
+        }
         #endregion
     }
 }

@@ -107,6 +107,9 @@
     <Compile Include="ModifyPersonUC\ModifyPersonUC.xaml.cs">
       <DependentUpon>ModifyPersonUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ModifyStockUC\ModifyStockUC.xaml.cs">
+      <DependentUpon>ModifyStockUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ProductForms\CreateBrandUC\CreateBrandUC.xaml.cs">
       <DependentUpon>CreateBrandUC.xaml</DependentUpon>
     </Compile>
@@ -147,6 +150,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ModifyPersonUC\ModifyPersonUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ModifyStockUC\ModifyStockUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

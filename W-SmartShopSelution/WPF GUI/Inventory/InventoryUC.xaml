@@ -36,7 +36,7 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <Button  Margin="442,580,629,0" VerticalAlignment="Top" Height="70"  >
+        <Button Name="ModifySelectedButton_InventoryUC" Click="ModifySelectedButton_InventoryUC_Click" Margin="442,580,629,0" VerticalAlignment="Top" Height="70"  >
             <Grid Width="254">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="111*"/>
