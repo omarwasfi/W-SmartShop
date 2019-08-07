@@ -68,6 +68,10 @@ namespace WPF_GUI
             {
                 InventoryViewItem.Visibility = Visibility.Visible;
             }
+            if (staff.Permission.CanGlobalInventory)
+            {
+                GlobalInventoryViewItem.Visibility = Visibility.Visible;
+            }
             if (staff.Permission.CanProductManagerUC)
             {
                 ProductsManagerViewItem.Visibility = Visibility.Visible;
@@ -114,6 +118,14 @@ namespace WPF_GUI
             TabItem inventoryTab = new TabItem { Header = "Inventory Tab" };
             inventoryTab.Content = inventoryUC;
             MainTab.Items.Add(inventoryTab);
+        }
+
+        private void GlobalInventoryViewItem_Selected(object sender, RoutedEventArgs e)
+        {
+            GlobalInventoryUC globalInventoryUC = new GlobalInventoryUC();
+            TabItem globalInventoryTab  = new TabItem { Header = "Global Inventory Tab" };
+            globalInventoryTab.Content = globalInventoryUC;
+            MainTab.Items.Add(globalInventoryTab);
         }
 
         private void ProductsViewItem_Selected(object sender, RoutedEventArgs e)

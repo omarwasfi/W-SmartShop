@@ -30,6 +30,13 @@ namespace Library
         /// </summary>
         public Boolean CanInventoryUC { get; set; }
 
+
+        // TODO - Add this option in the database
+        /// <summary>
+        /// Boolean value says if the user can open the GlobalInventoryUC
+        /// </summary>
+        public Boolean CanGlobalInventory { get; set; }
+
         /// <summary>
         /// Boolean value says if the user can Open ProductManager or not
         /// </summary>

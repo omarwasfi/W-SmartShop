@@ -101,6 +101,9 @@
     <Compile Include="CustomerLogUC\CustomerLogUC.xaml.cs">
       <DependentUpon>CustomerLogUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GlobalInventoryUC\GlobalInventoryUC.xaml.cs">
+      <DependentUpon>GlobalInventoryUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Inventory\InventoryUC.xaml.cs">
       <DependentUpon>InventoryUC.xaml</DependentUpon>
     </Compile>
@@ -142,6 +145,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CustomerLogUC\CustomerLogUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GlobalInventoryUC\GlobalInventoryUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -273,5 +280,6 @@
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
