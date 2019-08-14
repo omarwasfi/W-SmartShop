@@ -76,5 +76,11 @@ namespace Library
         /// - Set In the loginUC
         /// </summary>
         public static List<OrderModel> Orders { get; set; }
+
+        /// <summary>
+        /// All The Suppliers
+        /// Set in the LoginUC
+        /// </summary>
+        public static List<SupplierModel> Suppliers { get; set; }
     }
 }

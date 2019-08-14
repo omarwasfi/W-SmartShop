@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\App.xaml
-17208491330
+20-1694033973
 
-21731186640
+24-1726103895
 18-177570211
-AddStockToStoreUC\AddStockToStoreUC.xaml;CustomerLogUC\CustomerLogUC.xaml;GlobalInventoryUC\GlobalInventoryUC.xaml;Inventory\InventoryUC.xaml;ModifyPersonUC\ModifyPersonUC.xaml;ModifyStockUC\ModifyStockUC.xaml;ProductForms\CreateBrandUC\CreateBrandUC.xaml;ProductForms\CreateCategory\CreateCategoryUC.xaml;CreateCutomerUC\CreateCustomerUC.xaml;ProductForms\CreateProductUC\CreateProductUC.xaml;Login\LoginForm.xaml;MainForm\MainForm.xaml;ProductForms\ModifyProductUC\ModifyProductUC.xaml;ProductForms\ProductManagerUC\ProductManagerUC.xaml;SellUC\SellUC.xaml;Staff\ModifyStaffUC\ModifyStaffUC.xaml;Staff\StaffsManagerUC\StaffsManagerUC.xaml;
+Store\AddStockToStoreUC\AddStockToStoreUC.xaml;Human\Supplier\CreateSupplierUC\CreateSupplierUC.xaml;Human\Customer\CustomerLogUC\CustomerLogUC.xaml;Store\GlobalInventoryUC\GlobalInventoryUC.xaml;Orders\In\IncomeOrder\IncomeOrderUC.xaml;Store\Inventory\InventoryUC.xaml;Human\ModifyPersonUC\ModifyPersonUC.xaml;Store\ModifyStockUC\ModifyStockUC.xaml;ProductForms\CreateBrandUC\CreateBrandUC.xaml;ProductForms\CreateCategory\CreateCategoryUC.xaml;Human\Customer\CreateCutomerUC\CreateCustomerUC.xaml;ProductForms\CreateProductUC\CreateProductUC.xaml;Login\LoginForm.xaml;MainForm\MainForm.xaml;ProductForms\ModifyProductUC\ModifyProductUC.xaml;ProductForms\ProductManagerUC\ProductManagerUC.xaml;Orders\Out\SellUC\SellUC.xaml;Human\Staff\ModifyStaffUC\ModifyStaffUC.xaml;Human\Staff\StaffsManagerUC\StaffsManagerUC.xaml;Human\Supplier\SupplierLogUC\SupplierLogUC.xaml;
 
 False
 

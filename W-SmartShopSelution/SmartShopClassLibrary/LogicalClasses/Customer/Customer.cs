@@ -66,5 +66,24 @@ namespace Library
             }
             return customer;
         }
+
+
+
+        /// <summary>
+        /// Create Customer in the database and no return value Use CreateCustomer To get the new customerModel
+        /// </summary>
+        public static void CreateCustomer_NoReturn(CustomerModel customer, string db)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnVal(db)))
+            {
+
+                var p = new DynamicParameters();
+                p.Add("@PersonId", customer.Person.Id);
+
+                p.Add("@Id", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
+                connection.Execute("dbo.spCustomer_Create", p, commandType: CommandType.StoredProcedure);
+                customer.Id = p.Get<int>("@Id");
+            }
+        }
     }
 }

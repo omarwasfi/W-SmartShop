@@ -345,6 +345,15 @@ namespace Library
             }
            
         }
+
+        /// <summary>
+        /// Create Customer in the database and no return value Use CreateCustomer To get the new customerModel
+        /// </summary>
+        public void CreateCustomer_NoReturn(CustomerModel customer)
+        {
+            Customer.CreateCustomer_NoReturn(customer, db);
+        }
+
         #endregion
 
         #region Person
@@ -372,6 +381,18 @@ namespace Library
         {
             Person.UpdatePersonData(person, db);
         }
+
+        /// <summary>
+        /// Get person model 
+        /// Add to the person table in the database 
+        /// Get the Id of this Person
+        /// </summary>
+        public PersonModel CreatePerson(PersonModel person)
+        {
+
+            return Person.CreatePerson(person, db); ;
+        }
+
 
         #endregion
 
@@ -766,5 +787,37 @@ namespace Library
             Stock.RemoveStockFromTheDatabase(stock, db);
         }
         #endregion
+
+        #region Income Order
+
+        #endregion
+
+        #region Supplier
+
+        /// <summary>
+        /// Get the all the suppliers in the database And set the personModel for each one
+        /// </summary>
+        /// <param name="db"></param>
+        /// <returns></returns>
+        public List<SupplierModel> GetSuppliers()
+        {
+
+            return Supplier.GetSuppliers(db);
+            
+        }
+
+        /// <summary>
+        /// Add a new supplier to the database
+        /// </summary>
+        /// <param name="supplier"></param>
+        /// <param name="db"></param>
+        public void CreateSupplier(SupplierModel supplier)
+        {
+            Supplier.CreateSupplier(supplier, db);
+        }
+
+        #endregion
+
+
     }
 }

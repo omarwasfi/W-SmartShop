@@ -21,5 +21,10 @@ namespace Library
         /// person Model describe everything everything about the supplier person
         /// </summary>
         public PersonModel Person { get; set; }
+
+        /// <summary>
+        /// The company of the supplier
+        /// </summary>
+        public String Company { get; set; }
     }
 }

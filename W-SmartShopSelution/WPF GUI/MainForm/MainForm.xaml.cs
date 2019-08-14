@@ -21,7 +21,6 @@ using WPF_GUI.Staff.StaffsManagerUC;
 namespace WPF_GUI
 {
 
-    // TODO - Add Permetions System to contol the menu
 
     /// <summary>
     /// Interaction logic for MainForm.xaml
@@ -71,6 +70,10 @@ namespace WPF_GUI
             if (staff.Permission.CanGlobalInventory)
             {
                 GlobalInventoryViewItem.Visibility = Visibility.Visible;
+            }
+            if (staff.Permission.CanIncomeOrderUC)
+            {
+                IncomeOrderViewItem.Visibility = Visibility.Visible;
             }
             if (staff.Permission.CanProductManagerUC)
             {
@@ -142,6 +145,14 @@ namespace WPF_GUI
             TabItem staffsManagerTab = new TabItem { Header = "Staffs Manager" };
             staffsManagerTab.Content = staffsManagerUC;
             MainTab.Items.Add(staffsManagerTab);
+        }
+
+        private void IncomeOrderViewItem_Selected(object sender, RoutedEventArgs e)
+        {
+            IncomeOrderUC incomeOrderUC = new IncomeOrderUC();
+            TabItem incomeOrderTab = new TabItem { Header = "Income Order" };
+            incomeOrderTab.Content = incomeOrderUC;
+            MainTab.Items.Add(incomeOrderTab);
         }
         #endregion
 

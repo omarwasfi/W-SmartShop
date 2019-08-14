@@ -14,13 +14,18 @@ namespace Library
 
         public string BillNumber { get; set; }
 
+        public decimal ShippingExpenses { get; set; }
+
         public DateTime DateTime { get; set; }
 
         public StoreModel Store { get; set; }
 
         public StaffModel Staff { get; set; }
 
-        public List<IncomeOrderProduct> Products { get; set; }
+        /// <summary>
+        /// List of OncomeOrderProdcutModel
+        /// </summary>
+        public List<IncomeOrderProductModel> Products { get; set; }
 
     }
 }

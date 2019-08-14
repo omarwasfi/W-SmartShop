@@ -24,7 +24,6 @@ namespace Library
 
         public decimal Discount { get; set; }
 
-        // TODO - Calculate Total Quanitity Price in the get
         public decimal TotalProductPrice { get; set; }
 
         /// <summary>

@@ -40,5 +40,11 @@ OrderTable
 OrderProductTable
 	Id Auto Increment Starts From 50,000
 
+IncomeOrderTable
+	Id Auto Increment starts From 60,000
+
+IncomeOrderProductTable
+	Id Auto Increment starts From 70,000
+
 
 	

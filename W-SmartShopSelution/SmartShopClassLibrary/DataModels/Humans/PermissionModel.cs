@@ -47,6 +47,11 @@ namespace Library
         /// </summary>
         public Boolean CanStaffsManagerUC { get; set; }
 
+        // TODO - Add this option in the database
+        /// <summary>
+        /// Boolean value says if the user can open the CanIncomeOrderUC
+        /// </summary>
+        public Boolean CanIncomeOrderUC { get; set; }
 
     }
 }

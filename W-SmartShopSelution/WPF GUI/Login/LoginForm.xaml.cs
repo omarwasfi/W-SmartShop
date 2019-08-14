@@ -74,6 +74,7 @@ namespace WPF_GUI
                 PublicVariables.Brands = GlobalConfig.Connection.GetBrands();
                 PublicVariables.Customers = GlobalConfig.Connection.GetCustomers();
                 PublicVariables.Orders = GlobalConfig.Connection.GetOrders();
+                PublicVariables.Suppliers = GlobalConfig.Connection.GetSuppliers();
             }
         }
 

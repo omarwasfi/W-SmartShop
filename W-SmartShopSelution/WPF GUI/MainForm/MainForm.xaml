@@ -135,6 +135,12 @@
                             </StackPanel>
                         </ListViewItem>
 
+                        <ListViewItem Name="IncomeOrderViewItem" Visibility="Visible" Height="45" Padding="0" Selected="IncomeOrderViewItem_Selected" >
+                            <StackPanel Orientation="Horizontal" Margin="10 0">
+                                <materialDesign:PackIcon Kind="InboxArrowDown" Width="20" Height="20" Foreground="Gray" Margin="5" VerticalAlignment="Center"/>
+                                <TextBlock Text="Income Order" Margin="10"/>
+                            </StackPanel>
+                        </ListViewItem>
 
                         <ListViewItem Name="ProductsManagerViewItem" Visibility="Visible" Height="45" Padding="0" Selected="ProductsViewItem_Selected" >
                             <StackPanel Orientation="Horizontal" Margin="10 0">

@@ -1,0 +1,818 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+using Library;
+using WPF_GUI.CreateProduct;
+
+namespace WPF_GUI
+{
+    /// <summary>
+    /// Interaction logic for IncomeOrderUC.xaml
+    /// 
+    /// Get the products 
+    /// add it to the grid as a stock
+    /// check if this stock exist :  if exist -> Increase the number of it 
+    ///                              if not -> Create a new stock
+    ///
+    /// 
+    /// </summary>
+    public partial class IncomeOrderUC : UserControl
+    {
+
+        #region Main Variables
+
+        /// <summary>
+        /// The Logedin store 
+        /// </summary>
+        private StoreModel Store { get; set; }
+
+        /// <summary>
+        /// All The products in the database
+        /// </summary>
+        private List<ProductModel> Products { get; set; }
+
+        /// <summary>
+        /// The logedin staff member
+        /// </summary>
+        private StaffModel Staff { get; set; }
+
+        /// <summary>
+        /// The Supplier 
+        /// </summary>
+        private SupplierModel Supplier { get; set; }
+
+        
+
+        /// <summary>
+        /// The new income order model
+        /// </summary>
+        private IncomeOrderModel IncomeOrder { get; set; } = new IncomeOrderModel();
+
+        /// <summary>
+        /// The new list of IncomeOrderProduct That Will be seted to the IncomeOrder
+        /// </summary>
+        private List<IncomeOrderProductModel> IncomeOrderProducts { get; set; } = new List<IncomeOrderProductModel>();
+
+      
+        
+
+        #endregion
+
+        #region Help Variables
+
+        /// <summary>
+        /// All Categories in the database
+        /// </summary>
+        private List<CategoryModel> Categories { get; set; }
+
+        /// <summary>
+        /// All brands in the database
+        /// </summary>
+        private List<BrandModel> Brands { get; set; }
+
+        /// <summary>
+        /// The Selected product
+        /// </summary>
+        private ProductModel Product { get; set; }
+
+        /// <summary>
+        /// Filtered Products after the category Or Brands get changed
+        /// </summary>
+        private List<ProductModel> FProducts { get; set; } = new List<ProductModel>();
+
+        /// <summary>
+        /// the loged in store stocks
+        /// </summary>
+        private List<StockModel> LogedInStoreStocks { get; set; }
+
+        /// <summary>
+        /// All suppliers in the database
+        /// </summary>
+        private List<SupplierModel> Suppliers { get; set; }
+        private List<string> SuppliersFullNames { get; set; } = new List<string>();
+        private List<string> SuppliersPhoneNumbers { get; set; } = new List<string>();
+        private List<string> SuppliersNationalNumbers { get; set; } = new List<string>();
+
+        private bool CanFilterProducts { get; set; } = new bool();
+
+        #endregion
+
+        #region set the initianl values
+
+
+        public IncomeOrderUC()
+        {
+            InitializeComponent();
+
+
+            SetInitialValues();
+
+        }
+
+        private void SetInitialValues()
+        {
+            UpdateTheProductsFromThePublicVariables();
+            ProductValue_IncomeOrderUC.ItemsSource = null;
+            ProductValue_IncomeOrderUC.ItemsSource = Products;
+            ProductValue_IncomeOrderUC.DisplayMemberPath = "Name";
+
+            UpdateTheStaffFromThePublicVariables();
+
+            UpdateLogedInStoreStocks();
+
+            CanFilterProducts = true;
+            ClearProductInfo();
+
+
+            Update_SuppliersVariablesAndEvents();
+            InProg_SupplierNameValue_IncomeOrderUC = false;
+            InProg_PhoneNumberValue_IncomeOrderUC = false;
+            InProg_NationalNumberValue_IncomeOrderUC = false;
+
+
+            UpdateTheStoreFromThePublicVariables();
+
+            UpdateTheCategoriesFromThePublicVariables();
+            CategoryValue_IncomeOrderUC.ItemsSource = null;
+            CategoryValue_IncomeOrderUC.ItemsSource = Categories;
+            CategoryValue_IncomeOrderUC.DisplayMemberPath = "Name";
+
+            UpdateTheBrandsFromThePublicVariables();
+            BrandValue_IncomeOrderUC.ItemsSource = null;
+            BrandValue_IncomeOrderUC.ItemsSource = Brands;
+            BrandValue_IncomeOrderUC.DisplayMemberPath = "Name";
+        }
+
+
+        /// <summary>
+        /// Update And get the products From the publicVariables
+        /// </summary>
+        private void UpdateTheProductsFromThePublicVariables()
+        {
+            PublicVariables.Products = null;
+            PublicVariables.Products = GlobalConfig.Connection.GetProducts();
+            Products = null;
+            Products = PublicVariables.Products;
+            Products.RemoveAt(0);
+
+        }
+
+        /// <summary>
+        /// Update and get logedInStoreStock from the public variables
+        /// </summary>
+        private void UpdateLogedInStoreStocks()
+        {
+            PublicVariables.LoginStoreStocks = null;
+            PublicVariables.LoginStoreStocks = GlobalConfig.Connection.FilterStocksByStore(PublicVariables.Store);
+            LogedInStoreStocks = null;
+            LogedInStoreStocks = PublicVariables.LoginStoreStocks;
+        }
+
+        /// <summary>
+        /// Update and get the Suppliers from the database
+        /// add suppliers full names , phonenumbers and national numbers in one list
+        /// add delete pressed events
+        /// </summary>
+        private void  Update_SuppliersVariablesAndEvents()
+        {
+            UpdateTheSuppliersFromThePublicVariables();
+
+            foreach (SupplierModel supplier in Suppliers)
+            {
+                SuppliersFullNames.Add(supplier.Person.FullName);
+
+                if (supplier.Person.PhoneNumber != null)
+                {
+                    SuppliersPhoneNumbers.Add(supplier.Person.PhoneNumber);
+                }
+                if (supplier.Person.NationalNumber != null)
+                {
+                    SuppliersNationalNumbers.Add(supplier.Person.NationalNumber);
+                }
+            }
+
+            SupplierNameValue_IncomeOrderUC.PreviewKeyDown += DelPressed_SupplierNameValue_IncomeOrderUC;
+            PhoneNumberValue_IncomeOrderUC.PreviewKeyDown += DelPressed_PhoneNumberValue_IncomeOrderUC;
+            NationalNumberValue_IncomeOrderUC.PreviewKeyDown += DelPressed_NationalNumberValue_IncomeOrderUC;
+
+
+        }
+
+
+
+        /// <summary>
+        /// Update and get the Suppliers from the database
+        /// </summary>
+        private void UpdateTheSuppliersFromThePublicVariables()
+        {
+            PublicVariables.Suppliers = null;
+            PublicVariables.Suppliers = GlobalConfig.Connection.GetSuppliers();
+            Suppliers = null;
+            Suppliers = PublicVariables.Suppliers;
+        }
+
+
+        
+
+        /// <summary>
+        /// get the logedin staff member from the database
+        /// </summary>
+        private void UpdateTheStaffFromThePublicVariables()
+        {
+            Staff = null;
+            Staff = PublicVariables.Staff;
+        }
+
+        /// <summary>
+        /// Get the store from the database
+        /// </summary>
+        private void UpdateTheStoreFromThePublicVariables()
+        {
+            Store = null;
+            Store = PublicVariables.Store;
+        }
+
+        /// <summary>
+        /// Update and get the categories from the database
+        /// </summary>
+        private void UpdateTheCategoriesFromThePublicVariables()
+        {
+            PublicVariables.Categories = null;
+            PublicVariables.Categories = GlobalConfig.Connection.GetCategories();
+            Categories = null;
+            Categories = PublicVariables.Categories;
+            //Categories.RemoveAt(0);
+        }
+
+
+        /// <summary>
+        /// Update and get the brands from the database
+        /// </summary>
+        private void UpdateTheBrandsFromThePublicVariables()
+        {
+            PublicVariables.Brands = null;
+            PublicVariables.Brands = GlobalConfig.Connection.GetBrands();
+            Brands = null;
+            Brands = PublicVariables.Brands;
+            //Brands.RemoveAt(0);
+
+        }
+
+
+
+
+
+        #endregion
+
+        #region Supplier Group Box Events
+
+        // Supplier events & search Functions
+
+        private bool InProg_SupplierNameValue_IncomeOrderUC;
+        /// <summary>
+        /// Events for SupplierValue changes to auto complete
+        /// source : https://stackoverflow.com/questions/950770/autocomplete-textbox-in-wpf
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SupplierNameValue_IncomeOrderUC_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var change = e.Changes.FirstOrDefault();
+            if (!InProg_SupplierNameValue_IncomeOrderUC)
+            {
+                InProg_SupplierNameValue_IncomeOrderUC = true;
+                var culture = new CultureInfo(CultureInfo.CurrentCulture.Name);
+                var source = ((TextBox)sender);
+                if (((change.AddedLength - change.RemovedLength) > 0 || source.Text.Length > 0) && !DelKeyPressed_SupplierNameValue_IncomeOrderUC)
+                {
+                    if (SuppliersFullNames.Where(x => x.IndexOf(source.Text, StringComparison.CurrentCultureIgnoreCase) == 0).Count() > 0)
+                    {
+                        var _appendtxt = SuppliersFullNames.FirstOrDefault(ap => (culture.CompareInfo.IndexOf(ap, source.Text, CompareOptions.IgnoreCase) == 0));
+                        _appendtxt = _appendtxt.Remove(0, change.Offset + 1);
+                        source.Text += _appendtxt;
+                        source.SelectionStart = change.Offset + 1;
+                        source.SelectionLength = source.Text.Length;
+                    }
+                }
+                InProg_SupplierNameValue_IncomeOrderUC = false;
+            }
+        }
+        private static bool DelKeyPressed_SupplierNameValue_IncomeOrderUC;
+        internal static void DelPressed_SupplierNameValue_IncomeOrderUC(object sender, KeyEventArgs e)
+        { if (e.Key == Key.Back) { DelKeyPressed_SupplierNameValue_IncomeOrderUC = true; } else { DelKeyPressed_SupplierNameValue_IncomeOrderUC = false; } }
+
+        /// <summary>
+        ///  Trigers when enter key down while selecting customerNameValue
+        /// Compares the current value of the customerNameValue with customers list
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SupplierNameValue_IncomeOrderUC_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+
+                foreach (SupplierModel c in Suppliers)
+                {
+                    if (c.Person.FullName.Equals(SupplierNameValue_IncomeOrderUC.Text, StringComparison.OrdinalIgnoreCase))
+                    {
+                        UpdateSupplierInfo(c);
+                            }
+
+                }
+            }
+        }
+
+
+        /// <summary>
+        /// Events for PhoneNumberValue_IncomeOrderUC changes to auto complete
+        /// source : https://stackoverflow.com/questions/950770/autocomplete-textbox-in-wpf
+        /// </summary>
+        private bool InProg_PhoneNumberValue_IncomeOrderUC;
+        private void PhoneNumberValue_IncomeOrderUC_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var change = e.Changes.FirstOrDefault();
+            if (!InProg_PhoneNumberValue_IncomeOrderUC)
+            {
+                InProg_PhoneNumberValue_IncomeOrderUC = true;
+                var culture = new CultureInfo(CultureInfo.CurrentCulture.Name);
+                var source = ((TextBox)sender);
+                if (((change.AddedLength - change.RemovedLength) > 0 || source.Text.Length > 0) && !DelKeyPressed_PhoneNumberValue_IncomeOrderUC)
+                {
+                    if (SuppliersPhoneNumbers.Where(x => x.IndexOf(source.Text, StringComparison.CurrentCultureIgnoreCase) == 0).Count() > 0)
+                    {
+                        var _appendtxt = SuppliersPhoneNumbers.FirstOrDefault(ap => (culture.CompareInfo.IndexOf(ap, source.Text, CompareOptions.IgnoreCase) == 0));
+                        _appendtxt = _appendtxt.Remove(0, change.Offset + 1);
+                        source.Text += _appendtxt;
+                        source.SelectionStart = change.Offset + 1;
+                        source.SelectionLength = source.Text.Length;
+                    }
+                }
+                InProg_PhoneNumberValue_IncomeOrderUC = false;
+            }
+        }
+        private static bool DelKeyPressed_PhoneNumberValue_IncomeOrderUC;
+        internal static void DelPressed_PhoneNumberValue_IncomeOrderUC(object sender, KeyEventArgs e)
+        { if (e.Key == Key.Back) { DelKeyPressed_PhoneNumberValue_IncomeOrderUC = true; } else { DelKeyPressed_PhoneNumberValue_IncomeOrderUC = false; } }
+
+
+        /// <summary>
+        ///  Trigers when enter key down while selecting customerNameValue
+        /// Compares the current value of the customerNameValue with customers list
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SupplierPhoneNumberValue_IncomeOrderUC_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+
+                foreach (SupplierModel c in Suppliers)
+                {
+                    if (c.Person.PhoneNumber != null)
+                    {
+                        if (c.Person.PhoneNumber.Equals(PhoneNumberValue_IncomeOrderUC.Text, StringComparison.OrdinalIgnoreCase))
+                        {
+                            UpdateSupplierInfo(c);
+                        }
+                    }
+                }
+            }
+        }
+
+
+        /// <summary>
+        /// Events for PhoneNumberValue_Sell changes to auto complete
+        /// source : https://stackoverflow.com/questions/950770/autocomplete-textbox-in-wpf
+        /// </summary>
+        private bool InProg_NationalNumberValue_IncomeOrderUC;
+        private void NationalNumberValue_IncomeOrderUC_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var change = e.Changes.FirstOrDefault();
+            if (!InProg_NationalNumberValue_IncomeOrderUC)
+            {
+                InProg_NationalNumberValue_IncomeOrderUC = true;
+                var culture = new CultureInfo(CultureInfo.CurrentCulture.Name);
+                var source = ((TextBox)sender);
+                if (((change.AddedLength - change.RemovedLength) > 0 || source.Text.Length > 0) && !DelKeyPressed_NationalNumberValue_IncomeOrderUC)
+                {
+                    if (SuppliersNationalNumbers.Where(x => x.IndexOf(source.Text, StringComparison.CurrentCultureIgnoreCase) == 0).Count() > 0)
+                    {
+                        var _appendtxt = SuppliersNationalNumbers.FirstOrDefault(ap => (culture.CompareInfo.IndexOf(ap, source.Text, CompareOptions.IgnoreCase) == 0));
+                        _appendtxt = _appendtxt.Remove(0, change.Offset + 1);
+                        source.Text += _appendtxt;
+                        source.SelectionStart = change.Offset + 1;
+                        source.SelectionLength = source.Text.Length;
+                    }
+                }
+                InProg_NationalNumberValue_IncomeOrderUC = false;
+            }
+        }
+        private static bool DelKeyPressed_NationalNumberValue_IncomeOrderUC;
+        internal static void DelPressed_NationalNumberValue_IncomeOrderUC(object sender, KeyEventArgs e)
+        { if (e.Key == Key.Back) { DelKeyPressed_NationalNumberValue_IncomeOrderUC = true; } else { DelKeyPressed_NationalNumberValue_IncomeOrderUC = false; } }
+
+
+        /// <summary>
+        /// Trigers when enter key down while selecting NationalNumberValue_Sell
+        /// Compares the current value of the NationalNumberValue_Sell with customersNationalNumbers  list
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void NationalNumberValue_IncomeOrderUC_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+
+                foreach (SupplierModel supplier in Suppliers)
+                {
+                    if (supplier.Person.NationalNumber != null)
+                    {
+                        if (supplier.Person.NationalNumber.Equals(NationalNumberValue_IncomeOrderUC.Text))
+                        {
+                            UpdateSupplierInfo(supplier);
+
+                        }
+                    }
+
+                }
+            }
+        }
+
+
+        /// <summary>
+        /// Update supplier data in the gui
+        /// </summary>
+        /// <param name="supplier"></param>
+        private void  UpdateSupplierInfo(SupplierModel supplier)
+        {
+            Supplier = supplier;
+            ClearSupplierInfo();
+            InProg_SupplierNameValue_IncomeOrderUC = true;
+            InProg_PhoneNumberValue_IncomeOrderUC = true;
+            InProg_NationalNumberValue_IncomeOrderUC = true;
+
+            SupplierNameValue_IncomeOrderUC.Text = supplier.Person.FullName;
+            if (supplier.Person.PhoneNumber != null)
+                PhoneNumberValue_IncomeOrderUC.Text = supplier.Person.PhoneNumber;
+            if (supplier.Person.NationalNumber != null)
+                NationalNumberValue_IncomeOrderUC.Text = supplier.Person.NationalNumber;
+            if(supplier.Company != null)
+                CompanyNameValue_IncomeOrderUC.Text = supplier.Company;
+
+            InProg_SupplierNameValue_IncomeOrderUC = false;
+            InProg_PhoneNumberValue_IncomeOrderUC = false;
+            InProg_NationalNumberValue_IncomeOrderUC = false;
+
+        }
+
+        /// <summary>
+        /// Clear supplier date from the supplier groupbox
+        /// </summary>
+        private void ClearSupplierInfo()
+        {
+            InProg_SupplierNameValue_IncomeOrderUC = true;
+            InProg_PhoneNumberValue_IncomeOrderUC = true;
+            InProg_NationalNumberValue_IncomeOrderUC = true;
+
+            SupplierNameValue_IncomeOrderUC.Text = "";
+            PhoneNumberValue_IncomeOrderUC.Text = "";
+            NationalNumberValue_IncomeOrderUC.Text = "";
+            CompanyNameValue_IncomeOrderUC.Text = "";
+
+            InProg_SupplierNameValue_IncomeOrderUC = false;
+            InProg_PhoneNumberValue_IncomeOrderUC = false;
+            InProg_NationalNumberValue_IncomeOrderUC = false;
+        }
+
+
+
+
+        /// <summary>
+        /// Open new window contain createSupplierUC 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void NewSupplierButton_IncomeOrderUC_Click(object sender, RoutedEventArgs e)
+        {
+            CreateSupplierUC createSupplierUC = new CreateSupplierUC();
+            Window window = new Window
+            {
+                Title = "Add Supplier",
+                Content = createSupplierUC,
+                SizeToContent = SizeToContent.WidthAndHeight,
+                ResizeMode = ResizeMode.NoResize
+            };
+            window.ShowDialog();
+            SetInitialValues();
+        }
+
+        private void ClearSupplierButton_IncomeOrderUC_Click(object sender, RoutedEventArgs e)
+        {
+            ClearSupplierInfo();
+        }
+
+
+        #endregion
+
+
+        #region Choose Product GroupBox Events
+
+        /// <summary>
+        /// Private event called when CategoryValue_IncomeOrderUC combobox OR BrandValue_IncomeOrderUC combobox sellection  changed to filter the ProductValue_IncomeOrderUC gridView by selected category or brand
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void FilterProductsByCategoryAndBrand(object sender, SelectionChangedEventArgs e)
+        {
+            if (CanFilterProducts)
+            {
+                FProducts = GlobalConfig.Connection.GetProductsByCategoryAndBrand(Products, (CategoryModel)CategoryValue_IncomeOrderUC.SelectedItem, (BrandModel)BrandValue_IncomeOrderUC.SelectedItem);
+
+                ProductValue_IncomeOrderUC.ItemsSource = null;
+                ProductValue_IncomeOrderUC.ItemsSource = FProducts;
+                ProductValue_IncomeOrderUC.DisplayMemberPath = "Name";
+            }
+            
+
+
+        }
+
+        /// <summary>
+        /// Each selection change if it not null update the info
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ProductValue_IncomeOrderUC_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Product = (ProductModel)ProductValue_IncomeOrderUC.SelectedItem;
+
+            if (Product != null)
+            {
+                UpdateProductInfo(Product);
+            }
+            else
+            {
+                ClearProductInfo();
+            }
+
+        }
+
+
+        /// <summary>
+        /// Update the product data in the gui
+        /// check if it in stocks and update InStockValue
+        /// </summary>
+        /// <param name="product"></param>
+        private void UpdateProductInfo(ProductModel product)
+        {
+            ClearProductInfo();
+
+            CanFilterProducts = false;
+            CategoryValue_IncomeOrderUC.SelectedIndex = Get_CategoryValue_IncomeOrderUC_Index(Product.Category);
+            BrandValue_IncomeOrderUC.SelectedIndex = Get_BrandValue_IncomeOrderUC_Index(Product.Brand);
+            CanFilterProducts = true;
+                       
+
+            SerialNumberValue_IncomeOrderUC.Text = Product.SerialNumber;
+            SalePriceValue_IncomeOrderUC.Text = Product.SalePrice.ToString();
+            IncomeValue_IncomeOrderUC.Text = Product.IncomePrice.ToString();
+            QuantityValue_IncomeOrderUC.Text = "0";
+            TotalProductPriceValue_IncomeOrderUC.Text = "0";
+
+            List<StockModel> productStock = new List<StockModel>();
+            productStock = GlobalConfig.Connection.GetStocksByProduct(LogedInStoreStocks, Product);
+            if (productStock.Count > 0)
+            {
+                foreach (StockModel stock in productStock)
+                {
+                    InStockValue_IncomeOrderUC.Text = stock.Quantity.ToString();
+                }
+            }
+            else
+            {
+                InStockValue_IncomeOrderUC.Text = "0";
+            }
+
+        }
+
+        /// <summary>
+        /// Clear the product info in the gui
+        /// </summary>
+        private void ClearProductInfo()
+        {
+            SerialNumberValue_IncomeOrderUC.Text = "";
+            SalePriceValue_IncomeOrderUC.Text = "";
+            IncomeValue_IncomeOrderUC.Text = "";
+            QuantityValue_IncomeOrderUC.Text = "";
+            TotalProductPriceValue_IncomeOrderUC.Text = "";
+
+         
+           InStockValue_IncomeOrderUC.Text = "";
+            
+        }
+
+
+        /// <summary>
+        /// get the index of brand if it in the BrandValue_IncomeOrderUC
+        /// </summary>
+        /// <param name="brand"></param>
+        /// <returns> index of this brand </returns>
+        private int Get_BrandValue_IncomeOrderUC_Index(BrandModel brand)
+        {
+            int i = 0;
+            var lst = BrandValue_IncomeOrderUC.Items.Cast<BrandModel>();
+            foreach (var s in lst)
+            {
+                if (s.Id == brand.Id)
+                    return i;
+
+                i++;
+            }
+            return 0;
+        }
+
+        /// <summary>
+        /// get the index of categry if it in the CategoryValue_IncomeOrderUC
+        /// </summary>
+        /// <param name="category"></param>
+        /// <returns> index of this category </returns>
+        private int Get_CategoryValue_IncomeOrderUC_Index(CategoryModel category)
+        {
+            int i = 0;
+            var lst = CategoryValue_IncomeOrderUC.Items.Cast<CategoryModel>();
+            foreach (var s in lst)
+            {
+                if (s.Id == category.Id)
+                    return i;
+
+                i++;
+            }
+            return 0;
+        }
+
+        /// <summary>
+        /// Enter key Pressed while selecting SerialNumberValue_IncomeOrderUC
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SerialNumberValue_IncomeOrderUC_EventHundler(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                ProductModel product = GlobalConfig.Connection.GetProductBySerialNumber(Products, SerialNumberValue_IncomeOrderUC.Text);
+                if (product == null)
+                {
+                    MessageBox.Show("This Serial Number Not Exist");
+                }
+                else
+                {
+                    ProductValue_IncomeOrderUC.SelectedItem = product;
+                }
+            }
+        }
+
+
+        private void ClearProductButton_IncomeOrderUC_Click(object sender, RoutedEventArgs e)
+        {
+            ClearProductInfo();
+        }
+
+
+        private void CreateNewProductButton_IncomeOrderUC_Click(object sender, RoutedEventArgs e)
+        {
+            CreateProductUC createProduct = new CreateProductUC();
+            Window window = new Window
+            {
+                Title = "Create Product",
+                Content = createProduct,
+                SizeToContent = SizeToContent.WidthAndHeight,
+                ResizeMode = ResizeMode.NoResize
+            };
+            window.ShowDialog();
+            SetInitialValues();
+        }
+
+
+
+        /// <summary>
+        /// Check choose product valus if it vaild or not
+        /// </summary>
+        /// <returns> 
+        /// true if vaild 
+        /// false if not </returns>
+        private bool ChooseProduct_IsValid()
+        {
+            if (Product != null)
+            {
+                decimal salePrice = new decimal();
+                if(decimal.TryParse(SalePriceValue_IncomeOrderUC.Text,out salePrice))
+                {
+                    if(salePrice > 0 )
+                    {
+                        decimal incomePrice = new decimal();
+                        
+                        if (decimal.TryParse(IncomeValue_IncomeOrderUC.Text, out incomePrice))
+                        {
+                            if (incomePrice > 0 )
+                            {
+                                int quantity = new int();
+                                if (int.TryParse(QuantityValue_IncomeOrderUC.Text, out quantity))
+                                {
+                                    if (quantity > 0)
+                                    {
+                                        return true;
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("Quantity can't be less than 1");
+                                        QuantityValue_IncomeOrderUC.Text = "0";
+                                        return false;
+                                    }
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Quantity should be a number");
+                                    QuantityValue_IncomeOrderUC.Text = "0";
+                                    return false;
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("Income Price Can't be less than 0.001");
+                                IncomeValue_IncomeOrderUC.Text = Product.IncomePrice.ToString();
+                                return false;
+                            }
+
+                        }
+                        else
+                        {
+                            MessageBox.Show("Income Price Should be a number !");
+                            IncomeValue_IncomeOrderUC.Text = Product.IncomePrice.ToString();
+                            return false;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Sale Price Can't be less than 0.001");
+                        SalePriceValue_IncomeOrderUC.Text = Product.SalePrice.ToString();
+                        return false;
+                    }
+
+                }
+                else
+                {
+                    MessageBox.Show("Sale Price value should be a number");
+                    SalePriceValue_IncomeOrderUC.Text = Product.SalePrice.ToString();
+                    return false;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Choose product , If it not exist press Create new Product");
+                return false;
+            }
+
+        }
+
+        private void IncomeValue_IncomeOrderUC_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                if (ChooseProduct_IsValid())
+                {
+                    TotalProductPriceValue_IncomeOrderUC.Text =
+                        GlobalConfig.Connection.GetTotalPriceValue(decimal.Parse(IncomeValue_IncomeOrderUC.Text), int.Parse(QuantityValue_IncomeOrderUC.Text)).ToString();
+                }
+            }
+        }
+
+        private void QuantityValue_IncomeOrderUC_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                if (ChooseProduct_IsValid())
+                {
+                    TotalProductPriceValue_IncomeOrderUC.Text =
+                        GlobalConfig.Connection.GetTotalPriceValue(decimal.Parse(IncomeValue_IncomeOrderUC.Text), int.Parse(QuantityValue_IncomeOrderUC.Text)).ToString();
+                }
+            }
+        }
+
+        #endregion
+
+
+    }
+}
