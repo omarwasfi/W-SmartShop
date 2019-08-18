@@ -188,9 +188,6 @@ namespace WPF_GUI.ProductManager
             SetInitialValues();
         }
 
-
-        #endregion
-
         private void ModifySelectedButton_ProductManagerUC_Click(object sender, RoutedEventArgs e)
         {
             if (ProductsList_ProductManagerUC.SelectedItem != null)
@@ -210,8 +207,17 @@ namespace WPF_GUI.ProductManager
             {
                 MessageBox.Show("There is no selected Product to modify");
             }
-            
-            
+
+
         }
+
+        private void RefreshButton_ProductManagerUC_Click(object sender, RoutedEventArgs e)
+        {
+            SetInitialValues();
+        }
+
+        #endregion
+
+
     }
 }

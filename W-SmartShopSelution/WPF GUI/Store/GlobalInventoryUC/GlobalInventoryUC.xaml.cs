@@ -292,6 +292,11 @@ namespace WPF_GUI
             }
         }
 
+        private void RefreshButton_GlobalInventoryUC_Click(object sender, RoutedEventArgs e)
+        {
+            SetInitialValues();
+        }
+
         #endregion
 
 

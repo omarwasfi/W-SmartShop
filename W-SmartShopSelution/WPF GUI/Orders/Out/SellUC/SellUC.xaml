@@ -97,6 +97,9 @@
         </GroupBox>
         <Button x:Name="CloseButton_UC"  Content="Close" HorizontalAlignment="Left" Margin="1258,349.5,0,0" VerticalAlignment="Top" Width="75" Grid.Row="1"/>
         <Button x:Name="PrintButton_UC" Content="Print" HorizontalAlignment="Left" Margin="991,349.5,0,0" VerticalAlignment="Top" Width="81" Grid.Row="1"/>
+        <Button x:Name="RefreshButton_Sell" Click="RefreshButton_Sell_Click" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray"   VerticalAlignment="Top" Height="52" Margin="907,329,357,0"  Grid.Row="1"  >
+            <materialDesign:PackIcon Kind="Reload" Width="50" Height="46"/>
+        </Button>
 
     </Grid>
 </UserControl>

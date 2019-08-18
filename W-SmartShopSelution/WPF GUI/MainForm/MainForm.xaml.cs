@@ -154,8 +154,9 @@ namespace WPF_GUI
             incomeOrderTab.Content = incomeOrderUC;
             MainTab.Items.Add(incomeOrderTab);
         }
+
         #endregion
 
-
+       
     }
 }

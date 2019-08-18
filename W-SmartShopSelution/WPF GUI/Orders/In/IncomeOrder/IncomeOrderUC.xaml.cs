@@ -1044,6 +1044,14 @@ namespace WPF_GUI
                 IncomeOrderProducts = new List<IncomeOrderProductModel>();
                 StocksList_IncomeOrderUC.ItemsSource = null;
                 IncomeOrder = new IncomeOrderModel();
+                BillNumberValue_IncomeOrderUC.Text = "";
+                ShippingExpensesValue_IncomeOrderUC.Text = "";
+                Supplier = new SupplierModel();
+                SupplierNameValue_IncomeOrderUC.Text = "";
+                PhoneNumberValue_IncomeOrderUC.Text = "";
+                NationalNumberValue_IncomeOrderUC.Text = "";
+                CompanyNameValue_IncomeOrderUC.Text = "";
+                TotalPriceValue_IncomeOrderUC.Text = "";
 
                 SetInitialValues();
 
@@ -1085,6 +1093,10 @@ namespace WPF_GUI
             }
         }
 
+        private void RefreshButton_IncomeOrderUC_Click(object sender, RoutedEventArgs e)
+        {
+            SetInitialValues();
+        }
         #endregion
 
 

@@ -1040,6 +1040,11 @@ namespace WPF_GUI.Sell
         }
 
 
+        private void RefreshButton_Sell_Click(object sender, RoutedEventArgs e)
+        {
+            ResetSellUC();
+        }
+
 
         #endregion
 

@@ -60,6 +60,9 @@
         <Button Content="Close" HorizontalAlignment="Left" Margin="1235,618,0,0" VerticalAlignment="Top" Width="75"/>
         <Button Content="Clear" HorizontalAlignment="Left" Margin="1155,618,0,0" VerticalAlignment="Top" Width="75"/>
         <Button Content="Print" HorizontalAlignment="Left" Margin="1069,618,0,0" VerticalAlignment="Top" Width="81"/>
+        <Button x:Name="RefreshButton_InventoryUC" Click="RefreshButton_InventoryUC_Click" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray"   VerticalAlignment="Top" Height="52" Margin="972,598,279,0"  >
+            <materialDesign:PackIcon Kind ="Reload" Width="50" Height="46"/>
+        </Button>
 
     </Grid>
 </UserControl>

@@ -225,6 +225,11 @@ namespace WPF_GUI.Inventory
 
         }
 
+        private void RefreshButton_InventoryUC_Click(object sender, RoutedEventArgs e)
+        {
+            SetInitialValues();
+        }
+
         #endregion
 
 
