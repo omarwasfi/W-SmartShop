@@ -811,6 +811,280 @@ namespace WPF_GUI
             }
         }
 
+        private void SalePriceValue_IncomeOrderUC_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                ChooseProduct_IsValid();
+                
+            }
+        }
+
+
+        private void AddProductButton_IncomeOrderUC_Click(object sender, RoutedEventArgs e)
+        {
+            if (ChooseProduct_IsValid())
+            {
+                Product.IncomePrice = decimal.Parse(IncomeValue_IncomeOrderUC.Text);
+                Product.SalePrice = decimal.Parse(SalePriceValue_IncomeOrderUC.Text);
+                
+                IncomeOrderProductModel incomeOrderProduct = new IncomeOrderProductModel();
+                incomeOrderProduct.Product = Product;
+                incomeOrderProduct.IncomePrice = Product.IncomePrice;
+                incomeOrderProduct.Quantity = int.Parse(QuantityValue_IncomeOrderUC.Text);
+                
+
+                IncomeOrderProducts.Add(incomeOrderProduct);
+
+                StocksList_IncomeOrderUC.ItemsSource = null;
+                StocksList_IncomeOrderUC.ItemsSource = IncomeOrderProducts;
+
+                SetTheTotalPriceValue();
+
+
+            }
+        }
+
+
+        #endregion
+
+        #region Hole Form Events
+
+        private void RemoveSelectedStockButton_IncomeOrderUC_Click(object sender, RoutedEventArgs e)
+        {
+            IncomeOrderProductModel incomeOrderProduct = new IncomeOrderProductModel();
+            incomeOrderProduct = (IncomeOrderProductModel)StocksList_IncomeOrderUC.SelectedItem;
+            if (incomeOrderProduct != null)
+            {
+                IncomeOrderProducts.Remove(incomeOrderProduct);
+                StocksList_IncomeOrderUC.ItemsSource = null;
+                StocksList_IncomeOrderUC.ItemsSource = IncomeOrderProducts;
+            }
+            else
+            {
+                MessageBox.Show("There is no product selected !!");
+            }
+
+            SetTheTotalPriceValue();
+
+        }
+
+        private void SetTheTotalPriceValue()
+        {
+
+            decimal totalPrice = new decimal();
+            totalPrice = 0;
+            if(IncomeOrder.ShippingExpenses > 0)
+            {
+                totalPrice += IncomeOrder.ShippingExpenses;
+            }
+            foreach(IncomeOrderProductModel incomeOrderProduct in IncomeOrderProducts)
+            {
+                totalPrice += incomeOrderProduct.Product.IncomePrice * incomeOrderProduct.Quantity;
+            }
+            TotalPriceValue_IncomeOrderUC.Text = totalPrice.ToString();
+
+        }
+       
+        private bool HoleForm_IsValid()
+        {
+            if(BillNumberValue_IncomeOrderUC.Text.Length > 0)
+            {
+                string billNumber = BillNumberValue_IncomeOrderUC.Text;
+                if (GlobalConfig.Connection.IsBillNumberUnique(PublicVariables.IncomeOrders, billNumber))
+                {
+                    IncomeOrder.BillNumber = billNumber;
+                }
+                else
+                {
+                    if (MessageBox.Show("This bill Number is used before !", "Do you want to continue ?", MessageBoxButton.YesNo) == MessageBoxResult.No)
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        IncomeOrder.BillNumber = billNumber;
+                    }
+                }
+            }
+            else
+            {
+                if(MessageBox.Show("You didn't enter a Bill Number !", "Do you want to continue ?", MessageBoxButton.YesNo) == MessageBoxResult.No)
+                {
+                    return false;
+                } 
+            }
+            if(ShippingExpensesValue_IncomeOrderUC.Text.Length > 0)
+            {
+                decimal shippingExpenses = new decimal();
+                if (decimal.TryParse(ShippingExpensesValue_IncomeOrderUC.Text,out shippingExpenses))
+                {
+                    if(shippingExpenses >= 0)
+                    {
+                        IncomeOrder.ShippingExpenses = shippingExpenses;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Shipping expenses Can't be less than 0");
+                        ShippingExpensesValue_IncomeOrderUC.Text = "";
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("The shippling expenses should be a number !");
+                    ShippingExpensesValue_IncomeOrderUC.Text = "";
+                }
+            }
+            else
+            {
+                if (MessageBox.Show("You didn't enter the Shipping expenses !", "Do you want to continue ?", MessageBoxButton.YesNo) == MessageBoxResult.No)
+                {
+                    return false;
+                }
+            }
+
+            if(IncomeOrderProducts.Count > 0)
+            {
+                
+            }
+            else
+            {
+                MessageBox.Show("You should add at least 1 product to make this order");
+                return false;
+            }
+            if (Supplier != null)
+            {
+
+            }
+            else
+            {
+                MessageBox.Show("You didn't select a supplier !! ,  you can search for the default supplier");
+                return false;
+            }
+
+            SetTheTotalPriceValue();
+
+
+            return true;
+        }
+
+
+        /// <summary>
+        /// Check if the form valid and set the income order values if it is !!
+        /// - get empty IncomeOrder From the database
+        /// - loop throw each product - IncomeOrderProduct - 
+        ///  -- if the product not in the stock of the logedin shop  -> Create new stock with the new quantity
+        ///  -- if the product in the stock of the logedin shop -> increase the quantity in the stock
+        ///  -- Update the product Values {Sale Price and income Price}
+        /// - save the list of the products - IncomeOrderProduct Models -  in the database
+        /// 
+        /// Set the INitial values
+        /// Reset the thing and prepare it to the next new incomeorder
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ConfirmButton_IncomeOrderUC_Click(object sender, RoutedEventArgs e)
+        {
+            if (HoleForm_IsValid())
+            {
+                IncomeOrder.Products = IncomeOrderProducts;
+                IncomeOrder.Supplier = Supplier;
+                IncomeOrder.Store = PublicVariables.Store;
+                IncomeOrder.Staff = PublicVariables.Staff;
+                IncomeOrder.TotalPrice = decimal.Parse(TotalPriceValue_IncomeOrderUC.Text);
+                IncomeOrder.Date = DateTime.Now;
+
+                // Get empty IncomeOrder From the database
+                GlobalConfig.Connection.GetEmptyIncomeOrderFromTheDatabase(IncomeOrder);
+
+                /*
+                 * - loop throw each product - IncomeOrderProduct - 
+                 *  -- if the product not in the stock of the logedin shop  -> Create new stock with the new quantity
+                 *  -- if the product in the stock of the logedin shop -> increase the quantity in the stock
+                 */
+                foreach (IncomeOrderProductModel incomeOrderProduct in IncomeOrder.Products)
+                {
+
+                    List<StockModel> productStock = new List<StockModel>();
+                    productStock = GlobalConfig.Connection.GetStocksByProduct(LogedInStoreStocks, incomeOrderProduct.Product);
+                    if (productStock.Count > 0)
+                    {
+                        foreach (StockModel stock in productStock)
+                        {
+                            // increase the number  of this stock by the quantity
+
+                            GlobalConfig.Connection.IncreaseStock(stock, incomeOrderProduct.Quantity);
+                            
+                        }
+                    }
+                    else
+                    {
+                        // Create new stock with the new quantity
+
+                        StockModel NewStock = new StockModel();
+                        NewStock.Product = incomeOrderProduct.Product;
+                        NewStock.Quantity = incomeOrderProduct.Quantity;
+                        NewStock.Store = IncomeOrder.Store;
+
+                        // Save the stock to the database
+                        GlobalConfig.Connection.AddStockToTheDatabase(NewStock);
+                    }
+
+                    // Update the product data
+                    GlobalConfig.Connection.UpdateProdcutData(incomeOrderProduct.Product);
+
+                }
+
+                // save the list of the products - IncomeOrderProduct Models -  in the database
+
+                GlobalConfig.Connection.SaveIncomeOrderProductListToTheDatabase(IncomeOrder);
+
+                PublicVariables.LoginStoreStocks = GlobalConfig.Connection.FilterStocksByStore(PublicVariables.Store);
+
+                IncomeOrderProducts = new List<IncomeOrderProductModel>();
+                StocksList_IncomeOrderUC.ItemsSource = null;
+                IncomeOrder = new IncomeOrderModel();
+
+                SetInitialValues();
+
+            }
+            else
+            {
+                 
+            }
+
+            
+        }
+
+        private void ShippingExpensesValue_IncomeOrderUC_KeyDown(object sender, KeyEventArgs e)
+        {
+             if (e.Key == Key.Enter)
+            {
+                if (ShippingExpensesValue_IncomeOrderUC.Text.Length > 0)
+                {
+                    decimal shippingExpenses = new decimal();
+                    if (decimal.TryParse(ShippingExpensesValue_IncomeOrderUC.Text, out shippingExpenses))
+                    {
+                        if (shippingExpenses >= 0)
+                        {
+                            IncomeOrder.ShippingExpenses = shippingExpenses;
+                            SetTheTotalPriceValue();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Shipping expenses Can't be less than 0");
+                            ShippingExpensesValue_IncomeOrderUC.Text = "";
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("The shippling expenses should be a number !");
+                        ShippingExpensesValue_IncomeOrderUC.Text = "";
+                    }
+                }
+            }
+        }
+
         #endregion
 
 

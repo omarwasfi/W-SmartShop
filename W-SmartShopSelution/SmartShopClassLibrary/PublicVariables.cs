@@ -78,6 +78,12 @@ namespace Library
         public static List<OrderModel> Orders { get; set; }
 
         /// <summary>
+        /// All the IncomeOrders
+        /// - Set in the loginUC
+        /// </summary>
+        public static List<IncomeOrderModel> IncomeOrders { get; set; }
+
+        /// <summary>
         /// All The Suppliers
         /// Set in the LoginUC
         /// </summary>

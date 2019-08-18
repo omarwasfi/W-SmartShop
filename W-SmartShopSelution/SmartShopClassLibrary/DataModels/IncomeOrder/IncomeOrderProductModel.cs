@@ -17,5 +17,10 @@ namespace Library
 
         public int Quantity { get; set; }
 
+        /// <summary>
+        /// Return the total price of this IncomeOrderProduct
+        /// </summary>
+        public decimal TotalProductPrice { get { return Quantity * IncomePrice; }  }
+
     }
 }

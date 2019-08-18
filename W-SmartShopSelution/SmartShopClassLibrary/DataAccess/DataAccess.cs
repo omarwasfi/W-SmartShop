@@ -790,6 +790,61 @@ namespace Library
 
         #region Income Order
 
+        /// <summary>
+        /// get all the The incomeOrders from the database
+        /// - set the supplier
+        ///     - set the personModel To the Supplier
+        /// - set the store
+        /// - set the staff
+        ///     - set the personModel for the staff
+        /// - set the list of products - incomeOrderProducts - 
+        ///     - set the product foreach incomeOrderProduct
+        /// </summary>
+        /// <returns></returns>
+        public List<IncomeOrderModel> GetIncomeOrders()
+        {
+            return IncomeOrder.GetIncomeOrders(db);
+        }
+
+        /// <summary>
+        /// If the bill number used before return false
+        /// In not return true
+        /// </summary>
+        /// <param name="incomeOrders"> list of IncomeOrderModels </param>
+        /// <param name="billNumber"> the bill number to check </param>
+        /// <returns></returns>
+        public bool IsBillNumberUnique(List<IncomeOrderModel> incomeOrders, string billNumber)
+        {
+            return IncomeOrder.IsBillNumberUnique(incomeOrders , billNumber);
+        }
+
+        /// <summary>
+        /// Get incomeOrder with a new Id
+        /// The IncomeOrder should Have The main info of thist variables:
+        /// SupplierId , DataTimeOfTheOrder, StoreId, StaffId,TotalPrice
+        /// </summary>
+        /// <param name="incomeOrder"></param>
+        /// <param name="db"></param>
+        /// <returns></returns>
+        public IncomeOrderModel GetEmptyIncomeOrderFromTheDatabase(IncomeOrderModel incomeOrder)
+        {
+            return IncomeOrder.GetEmptyIncomeOrderFromTheDatabase(incomeOrder, db);
+        }
+        #endregion
+
+        #region IncomeOrderProduct
+
+        /// <summary>
+        /// Loop throw each IncomeOrderProduct in the IncomeOrder
+        /// save each one in the IncomeOrderProdcut table with tha Id of the IncomeOrder
+        /// </summary>
+        /// <param name="order"> IncomeOrder Model Has An Id From IncomeOrder.GetEmptyIncomeOrder </param>
+        /// <param name="db"> Database Connection Name </param>
+        public void SaveIncomeOrderProductListToTheDatabase(IncomeOrderModel incomeOrder)
+        {
+            IncomeOrderProduct.SaveIncomeOrderProductListToTheDatabase(incomeOrder, db);
+        }
+
         #endregion
 
         #region Supplier

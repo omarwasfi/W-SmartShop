@@ -16,11 +16,13 @@ namespace Library
 
         public decimal ShippingExpenses { get; set; }
 
-        public DateTime DateTime { get; set; }
+        public DateTime Date { get; set; }
 
         public StoreModel Store { get; set; }
 
         public StaffModel Staff { get; set; }
+
+        public decimal TotalPrice { get; set; }
 
         /// <summary>
         /// List of OncomeOrderProdcutModel

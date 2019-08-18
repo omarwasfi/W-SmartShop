@@ -56,7 +56,9 @@ namespace Library
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnVal(db)))
             {                
                 orders = connection.Query<OrderModel>("dbo.spOrders_GetAll").ToList();
+                
 
+                // Is here couse store bugs skip it to the next foreach ->>> this is just to set the store model foreach order !!
                 List<StoreModel> stores = new List<StoreModel>();
                 stores = connection.Query<StoreModel>("select * from Store").ToList();
                 foreach (StoreModel s in stores)

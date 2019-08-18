@@ -28,13 +28,13 @@
                 <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="0,161,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Quantity : "/></TextBlock>
                 <TextBox x:Name="QuantityValue_IncomeOrderUC" KeyDown="QuantityValue_IncomeOrderUC_KeyDown"  HorizontalAlignment="Left" Height="23" Margin="124,171,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="58" RenderTransformOrigin="0.544,-0.652"  />
 
-                <TextBox x:Name="SalePriceValue_IncomeOrderUC"  HorizontalAlignment="Left" Height="24" Margin="311,132,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="58" RenderTransformOrigin="0.544,-0.652"  />
+                <TextBox x:Name="SalePriceValue_IncomeOrderUC" KeyDown="SalePriceValue_IncomeOrderUC_KeyDown" HorizontalAlignment="Left" Height="24" Margin="311,132,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="58" RenderTransformOrigin="0.544,-0.652"  />
                 <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="182,123,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Sale Price : "/></TextBlock>
 
                 <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="374,123,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Income Price :"/></TextBlock>
                 <TextBox x:Name="IncomeValue_IncomeOrderUC" KeyDown="IncomeValue_IncomeOrderUC_KeyDown"  HorizontalAlignment="Left" Height="24" Margin="533,132,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="58" RenderTransformOrigin="0.544,-0.652"  />
 
-                <Button x:Name="AddProductButton_IncomeOrderUC" Content="ADD" HorizontalAlignment="Left" Margin="393,171,0,0" VerticalAlignment="Top" Width="127" Height="52" FontSize="36" FontWeight="Bold"/>
+                <Button x:Name="AddProductButton_IncomeOrderUC" Click="AddProductButton_IncomeOrderUC_Click" Content="ADD" HorizontalAlignment="Left" Margin="393,171,0,0" VerticalAlignment="Top" Width="127" Height="52" FontSize="36" FontWeight="Bold"/>
                 <Button x:Name="ClearProductButton_IncomeOrderUC" Click="ClearProductButton_IncomeOrderUC_Click" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Red"   VerticalAlignment="Top" Height="52" Margin="525,171,10,0"  >
                     <materialDesign:PackIcon Kind="Clear" Width="50" Height="46"/>
                 </Button>
@@ -77,14 +77,14 @@
         </GroupBox>
         <DataGrid x:Name="StocksList_IncomeOrderUC" IsReadOnly="True" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="215" Margin="10,360,0,0" VerticalAlignment="Top" Width="1303" Background="LightGray">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Product Name" Binding="{Binding }" />
-                <DataGridTextColumn Header="Quantity" Binding="{Binding }" />
-                <DataGridTextColumn Header="Income Price" Binding="{Binding }"/>
-                <DataGridTextColumn Header="Sale Price" Binding="{Binding }"/>
-                <DataGridTextColumn Header="Total Price" Binding="{Binding }"/>
+                <DataGridTextColumn Header="Product Name" Binding="{Binding Product.Name }" />
+                <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}" />
+                <DataGridTextColumn Header="Income Price" Binding="{Binding IncomePrice}"/>
+                <DataGridTextColumn Header="Sale Price" Binding="{Binding Product.SalePrice}"/>
+                <DataGridTextColumn Header="Total Price" Binding="{Binding TotalProductPrice }"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="RemoveSelectedStockButton_IncomeOrderUC"  Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Red"  Margin="10,590,1058,0" VerticalAlignment="Top" Height="60"  >
+        <Button x:Name="RemoveSelectedStockButton_IncomeOrderUC" Click="RemoveSelectedStockButton_IncomeOrderUC_Click" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Red"  Margin="10,590,1058,0" VerticalAlignment="Top" Height="60"  >
             <Grid Width="229">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="5*"/>
@@ -99,12 +99,12 @@
         <TextBox x:Name="BillNumberValue_IncomeOrderUC"  HorizontalAlignment="Left" Margin="817,291,0,0" VerticalAlignment="Top" Width="487" />
 
         <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="664,321,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" Width="225" Text="Shipping expenses : " />
-        <TextBox x:Name="ShippingExpensesValue_IncomeOrderUC"  HorizontalAlignment="Left" Margin="894,330,0,0" VerticalAlignment="Top" Width="71" />
+        <TextBox x:Name="ShippingExpensesValue_IncomeOrderUC" KeyDown="ShippingExpensesValue_IncomeOrderUC_KeyDown"  HorizontalAlignment="Left" Margin="894,330,0,0" VerticalAlignment="Top" Width="71" />
 
         <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="1052,580,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Total Price : "/></TextBlock>
         <TextBox x:Name="TotalPriceValue_IncomeOrderUC" IsReadOnly="True" HorizontalAlignment="Left" Height="23" Margin="1189,590,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="78" RenderTransformOrigin="0.544,-0.652"/>
 
-        <Button x:Name="ConfirmButton_IncomeOrderUC"  Content="Confirm" HorizontalAlignment="Left" Margin="1058,618,0,0" VerticalAlignment="Top" Width="93"/>
+        <Button x:Name="ConfirmButton_IncomeOrderUC" Click="ConfirmButton_IncomeOrderUC_Click"  Content="Confirm" HorizontalAlignment="Left" Margin="1058,618,0,0" VerticalAlignment="Top" Width="93"/>
         <Button x:Name="ClearButton_IncomeOrderUC"  Content="Clear" HorizontalAlignment="Left" Margin="1156,618,0,0" VerticalAlignment="Top" Width="75"/>
         <Button x:Name="CloseButton_IncomeOrderUC"  Content="Close" HorizontalAlignment="Left" Margin="1239,618,0,0" VerticalAlignment="Top" Width="75"/>
         <Button x:Name="PrintButton_IncomeOrderUC" Content="Print" HorizontalAlignment="Left" Margin="972,618,0,0" VerticalAlignment="Top" Width="81"/>
