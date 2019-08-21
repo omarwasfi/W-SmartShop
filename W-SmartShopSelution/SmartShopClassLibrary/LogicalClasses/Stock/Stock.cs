@@ -148,7 +148,7 @@ namespace Library
             // No Filtering
             else
             {
-                return FStocks;
+                return stocks;
             }
 
         }

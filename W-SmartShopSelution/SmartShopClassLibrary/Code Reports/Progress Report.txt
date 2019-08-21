@@ -1,0 +1,7 @@
+﻿
+
+After 2 test : 
+
+- Update the Tab Control Buttons Icons
+- Fix The bug.  Stock.cs FilterStocksByCategoryAndBrand -> Choose Default Category & Default Brand
+- 

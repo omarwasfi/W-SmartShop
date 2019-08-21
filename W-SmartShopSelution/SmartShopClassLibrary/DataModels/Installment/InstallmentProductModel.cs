@@ -13,10 +13,20 @@ namespace Library
 
         public ProductModel Product { get; set; }
 
-        public decimal Deposit { get; set; }
+        public int Quantity { get; set; }
 
         public decimal InstallmentPrice { get; set; }
 
         public decimal Discount { get; set; }
+
+        /// <summary>
+        /// Get the total Installment Price
+        /// </summary>
+        public decimal GetTotalInstallmentPrice { get { return InstallmentPrice * Quantity; } }
+
+        /// <summary>
+        /// Get the total price before installment 
+        /// </summary>
+        public decimal GetTotalPriceBeforeInstallment { get { return Product.SalePrice * Quantity; } }
     }
 }

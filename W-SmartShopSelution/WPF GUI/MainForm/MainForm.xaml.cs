@@ -83,6 +83,10 @@ namespace WPF_GUI
             {
                 StaffsManagerViewItem.Visibility = Visibility.Visible;
             }
+            if (staff.Permission.CanInstallmentOrderUC)
+            {
+                InstallmentOrderViewItem.Visibility = Visibility.Visible;
+            }
 
         }
         
@@ -155,8 +159,15 @@ namespace WPF_GUI
             MainTab.Items.Add(incomeOrderTab);
         }
 
+        private void InstallmentOrderViewItem_Selected(object sender, RoutedEventArgs e)
+        {
+            InstallmentOrderUC installmentOrderUC = new InstallmentOrderUC();
+            TabItem installmentOrderTab = new TabItem { Header = "Installment" };
+            installmentOrderTab.Content = installmentOrderUC;
+            MainTab.Items.Add(installmentOrderTab);
+        }
         #endregion
 
-       
+
     }
 }

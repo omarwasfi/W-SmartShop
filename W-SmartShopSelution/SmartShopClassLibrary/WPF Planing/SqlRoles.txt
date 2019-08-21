@@ -47,4 +47,13 @@ IncomeOrderProductTable
 	Id Auto Increment starts From 70,000
 
 
+InstallmentTable
+	Id Auto Increment starts From 400,000
+
+InstallmentDetails
+	Id Auto Increment starts From 500,000
+
+InstallmentProduct
+	Id Auto Increment starts From 600,000
+
 	

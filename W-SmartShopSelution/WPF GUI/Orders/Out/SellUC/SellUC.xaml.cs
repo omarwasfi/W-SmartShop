@@ -30,49 +30,75 @@ namespace WPF_GUI.Sell
         #region Main Variables
 
 
-        // Store
+        /// <summary>
+        /// The logedIn Store
+        /// </summary>
         private StoreModel Store { get; set; } = PublicVariables.Store;
 
 
-        // Staff
+
+        /// <summary>
+        /// The Login Staff Member
+        /// </summary>
         private StaffModel Staff { get; set; } = PublicVariables.Staff;
 
-        // Goods
-        private List<CategoryModel> Categories { get; set; } 
+        /// <summary>
+        /// All the categories
+        /// </summary>
+        private List<CategoryModel> Categories { get; set; }
+        
+        /// <summary>
+        /// All The brands
+        /// </summary>
         private List<BrandModel> Brands { get; set; }
 
-        //private List<ProductModel> Productss { get; set; }
-
+        /// <summary>
+        /// The LogedIN Store Stocks
+        /// </summary>
         private List<StockModel> Stocks { get; set; }
 
 
         // order chash
+        /// <summary>
+        /// List Of the new OrderProduct
+        /// </summary>
         private List<OrderProductModel> Orders { get; set; } = new List<OrderProductModel>();
+
+        /// <summary>
+        /// The New Order
+        /// </summary>
         private OrderModel Order { get; set; } = new OrderModel();
+
+        /// <summary>
+        /// The Customer Model
+        /// </summary>
         private CustomerModel Customer { get; set; } = new CustomerModel();
         // Customer
 
-        private List<CustomerModel>  Customers { get; set; }
-        private List<string> CustomersFullNames { get; set; } = new List<string>();
-        private List<string> CustomersPhoneNumbers { get; set; } = new List<string>();
-        private List<string> CustomersNationalNumbers { get; set; } = new List<string>();
+
         #endregion
 
 
-        #region Helpfull variabels
+        #region Help Variables
+
         /// <summary>
-        /// List Of Products after Filtring
+        /// 
+        /// All The Customer
         /// </summary>
-        //public List<ProductModel> FProducts { get; set; }
+        private List<CustomerModel> Customers { get; set; }
+        private List<string> CustomersFullNames { get; set; } = new List<string>();
+        private List<string> CustomersPhoneNumbers { get; set; } = new List<string>();
+        private List<string> CustomersNationalNumbers { get; set; } = new List<string>();
+
 
         private List<StockModel> FStocks { get; set; }
 
 
         /// <summary>
         /// Manage If we can Filter Products or not 
-        /// Use when user done choose the product
+        /// Use when user done choose the Stocks
         /// </summary>
-        bool CanFilterProducts = true;
+        bool CanFilterStocks = true;
 
 
 #endregion
@@ -81,7 +107,7 @@ namespace WPF_GUI.Sell
         public SellUC()
         {
             InitializeComponent();
-            FillStartupData();
+            SetInitialValues();
             
 
 
@@ -95,6 +121,9 @@ namespace WPF_GUI.Sell
         /// </summary>
         private void GetCategoriesFromPublicVariables()
         {
+            PublicVariables.Categories = null;
+            PublicVariables.Categories = GlobalConfig.Connection.GetCategories();
+            Categories = null;
             Categories = PublicVariables.Categories;
         }
 
@@ -103,6 +132,9 @@ namespace WPF_GUI.Sell
         /// </summary>
         private void GetBrandsFromPublicVariables()
         {
+            PublicVariables.Brands = null;
+            PublicVariables.Brands = GlobalConfig.Connection.GetBrands();
+            Brands = null;
             Brands = PublicVariables.Brands;
         }
 
@@ -111,6 +143,9 @@ namespace WPF_GUI.Sell
         /// </summary>
         private void GetStocksFormThePublicVariables()
         {
+            PublicVariables.LoginStoreStocks = null;
+            PublicVariables.LoginStoreStocks = GlobalConfig.Connection.FilterStocksByStore(PublicVariables.Store);
+            Stocks = null;
             Stocks = PublicVariables.LoginStoreStocks;
         }
 
@@ -121,6 +156,9 @@ namespace WPF_GUI.Sell
         /// </summary>
         private void GetCustomersFromPublicVariables()
         {
+            PublicVariables.Customers = null;
+            PublicVariables.Customers = GlobalConfig.Connection.GetCustomers();
+            Customers = null;
             Customers = PublicVariables.Customers;
         }
 
@@ -128,7 +166,7 @@ namespace WPF_GUI.Sell
         /// Update All the lists in the UC , 
         /// initialize the uc OR to clear the uc OR Update everything from the database
         /// </summary>
-        private void FillStartupData()
+        private void SetInitialValues()
         {
 
             Update_CategoryValue_Sell();
@@ -217,7 +255,7 @@ namespace WPF_GUI.Sell
         /// <param name="e"></param>
         private void FilterProductsByCategoryAndBrand(object sender, SelectionChangedEventArgs e)
         {
-            if (CanFilterProducts)
+            if (CanFilterStocks)
             {
                 FStocks = GlobalConfig.Connection.FilterStocksByCategoryAndBrand(Stocks, (CategoryModel)CategoryValue_Sell.SelectedItem, (BrandModel)BrandValue_Sell.SelectedItem);
                 if (FStocks.Count > 0)
@@ -227,13 +265,7 @@ namespace WPF_GUI.Sell
                     ProductValue_Sell.DisplayMemberPath = "Product.Name";
                     ProductValue_Sell.SelectedItem = null;
                 }
-                else
-                {
-                    ProductValue_Sell.ItemsSource = null;
-                    ProductValue_Sell.ItemsSource = Stocks;
-                    ProductValue_Sell.DisplayMemberPath = "Product.Name";
-                    ProductValue_Sell.SelectedItem = null;
-                }
+                
             }
         }
 
@@ -316,10 +348,10 @@ namespace WPF_GUI.Sell
 
             TotalProductPriceValue_Sell.Text = product.Product.SalePrice.ToString();
 
-            CanFilterProducts = false;
+            CanFilterStocks = false;
             CategoryValue_Sell.SelectedIndex = Get_CategoryValue_Sell_Index(product.Product.Category);
             BrandValue_Sell.SelectedIndex = Get_BrandValue_Sell_Index(product.Product.Brand);
-            CanFilterProducts = true;
+            CanFilterStocks = true;
         }
 
         /// <summary>

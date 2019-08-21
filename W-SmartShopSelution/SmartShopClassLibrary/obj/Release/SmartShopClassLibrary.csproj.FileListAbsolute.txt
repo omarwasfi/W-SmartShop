@@ -6,3 +6,4 @@ C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\SmartShopClassLi
 C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\SmartShopClassLibrary\obj\Release\SmartShopClassLibrary.csproj.CopyComplete
 C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\SmartShopClassLibrary\obj\Release\SmartShopClassLibrary.dll
 C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\SmartShopClassLibrary\obj\Release\SmartShopClassLibrary.pdb
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\SmartShopClassLibrary\obj\Release\SmartShopClassLibrary.csprojAssemblyReference.cache

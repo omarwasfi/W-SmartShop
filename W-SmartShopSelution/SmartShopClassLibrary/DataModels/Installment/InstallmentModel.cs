@@ -12,7 +12,29 @@ namespace Library
 
         public CustomerModel Customer { get; set; }
 
-        public DateTime DateTime { get; set; }
+        public DateTime Date { get; set; }
+
+        /// <summary>
+        /// The Number of monthes
+        /// </summary>
+        public int NumberOfMonths { get; set; }
+
+        /// <summary>
+        /// The amount of money customer pay each time
+        /// </summary>
+        public decimal EMI { get; set; }
+
+        /// <summary>
+        /// the rate of Interest * (total price before installment - deposit) = TotalInstallmentPrice
+        /// </summary>
+        public double RateOfInterest { get; set; }
+
+        public decimal Deposit { get; set; }
+
+        /// <summary>
+        /// The total price of the installment
+        /// </summary>
+        public decimal TotaInstallmentPrice { get; set; }
 
         public StoreModel Store { get; set; }
 
@@ -21,5 +43,7 @@ namespace Library
         public List<InstallmentProductModel> Products { get; set; }
 
         public InstallmentDetailsModel InstallmentDetails { get; set; }
+
+       
     }
 }

@@ -95,6 +95,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Orders\Out\InstallmentOrderUC\InstallmentOrderUC.xaml.cs">
+      <DependentUpon>InstallmentOrderUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Store\AddStockToStoreUC\AddStockToStoreUC.xaml.cs">
       <DependentUpon>AddStockToStoreUC.xaml</DependentUpon>
     </Compile>
@@ -149,6 +152,10 @@
     <Compile Include="Human\Supplier\SupplierLogUC\SupplierLogUC.xaml.cs">
       <DependentUpon>SupplierLogUC.xaml</DependentUpon>
     </Compile>
+    <Page Include="Orders\Out\InstallmentOrderUC\InstallmentOrderUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Store\AddStockToStoreUC\AddStockToStoreUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

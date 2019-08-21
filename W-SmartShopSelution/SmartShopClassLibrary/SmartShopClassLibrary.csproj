@@ -68,6 +68,7 @@
     <Compile Include="Interfaces\WPFInterfaces\ICustomerRequester.cs" />
     <Compile Include="LogicalClasses\Brand\Brand.cs" />
     <Compile Include="LogicalClasses\IncomeOrderProduct\IncomeOrderProduct.cs" />
+    <Compile Include="LogicalClasses\Installment\Installment.cs" />
     <Compile Include="LogicalClasses\OrderProduct\OrderProduct.cs" />
     <Compile Include="LogicalClasses\Category\Category.cs" />
     <Compile Include="LogicalClasses\Customer\Customer.cs" />
@@ -85,6 +86,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Code Reports\Bug Report.txt" />
+    <Content Include="Code Reports\Progress Report.txt" />
+    <Content Include="WPF Logic Planning\InstallmentOrderUC Logic.txt" />
     <Content Include="WPF Logic Planning\SellUCLogic.txt" />
     <Content Include="WPF Planing\FirstPhase.txt" />
     <Content Include="WPF Planing\SqlRoles.txt" />

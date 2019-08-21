@@ -156,6 +156,13 @@
                             </StackPanel>
                         </ListViewItem>
 
+                        <ListViewItem Name="InstallmentOrderViewItem" Visibility="Visible" Height="45" Padding="0" Selected="InstallmentOrderViewItem_Selected" >
+                            <StackPanel Orientation="Horizontal" Margin="10 0">
+                                <materialDesign:PackIcon Kind="Money" Width="20" Height="20" Foreground="Gray" Margin="5" VerticalAlignment="Center"/>
+                                <TextBlock Text="Installment" Margin="10"/>
+                            </StackPanel>
+                        </ListViewItem>
+
 
                     </ListView>
                 </StackPanel>
