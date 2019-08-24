@@ -258,13 +258,12 @@ namespace WPF_GUI.Sell
             if (CanFilterStocks)
             {
                 FStocks = GlobalConfig.Connection.FilterStocksByCategoryAndBrand(Stocks, (CategoryModel)CategoryValue_Sell.SelectedItem, (BrandModel)BrandValue_Sell.SelectedItem);
-                if (FStocks.Count > 0)
-                {
+                
                     ProductValue_Sell.ItemsSource = null;
                     ProductValue_Sell.ItemsSource = FStocks;
                     ProductValue_Sell.DisplayMemberPath = "Product.Name";
                     ProductValue_Sell.SelectedItem = null;
-                }
+                
                 
             }
         }
@@ -412,9 +411,17 @@ namespace WPF_GUI.Sell
         {
             if (e.Key == Key.Enter)
             {
-                
 
                 StockModel stock = (StockModel)ProductValue_Sell.SelectedItem;
+
+                if (ChooseStock_IsValid())
+                {
+                    TotalProductPriceValue_Sell.Text =
+                        GlobalConfig.Connection.GetTotalPriceValue(decimal.Parse(PriceValue_Sell.Text), int.Parse(QuantityValue_Sell.Text)).ToString();
+
+                }
+
+                /*StockModel stock = (StockModel)ProductValue_Sell.SelectedItem;
                 decimal price = new decimal();
                 int quantity = new int();
                 if (int.TryParse(QuantityValue_Sell.Text, out quantity))
@@ -444,8 +451,8 @@ namespace WPF_GUI.Sell
                 {
                     MessageBox.Show("Quantity is not Valid");
                     QuantityValue_Sell.Text = "1";
-                }
-                
+                }*/
+
             }
 
         }
@@ -461,9 +468,17 @@ namespace WPF_GUI.Sell
         {
             if (e.Key == Key.Enter)
             {
-                
-
                 StockModel stock = (StockModel)ProductValue_Sell.SelectedItem;
+
+                if (ChooseStock_IsValid())
+                {
+                    PriceValue_Sell.Text = GlobalConfig.Connection.GetPriceValue(decimal.Parse(DiscountValue_Sell.Text), stock.Product).ToString();
+                    TotalProductPriceValue_Sell.Text =
+                        GlobalConfig.Connection.GetTotalPriceValue(decimal.Parse(PriceValue_Sell.Text), int.Parse(QuantityValue_Sell.Text)).ToString();
+
+                }
+
+                /*StockModel stock = (StockModel)ProductValue_Sell.SelectedItem;
                 decimal price = stock.Product.SalePrice;
                 decimal discount = new decimal();
                 int quantity = new int();
@@ -492,7 +507,7 @@ namespace WPF_GUI.Sell
                 {
                     MessageBox.Show("Quantity is not valid");
                     QuantityValue_Sell.Text = "1";
-                }
+                }*/
 
             }
         }
@@ -506,9 +521,19 @@ namespace WPF_GUI.Sell
         {
             if (e.Key == Key.Enter)
             {
-                
+
+
+               
 
                 StockModel stock = (StockModel)ProductValue_Sell.SelectedItem;
+                if (ChooseStock_IsValid())
+                {
+                    DiscountValue_Sell.Text = GlobalConfig.Connection.GetDiscountValue(decimal.Parse(PriceValue_Sell.Text), stock.Product).ToString();
+                    TotalProductPriceValue_Sell.Text =
+                        GlobalConfig.Connection.GetTotalPriceValue(decimal.Parse(PriceValue_Sell.Text), int.Parse(QuantityValue_Sell.Text)).ToString();
+                }
+
+                /*
                 decimal price = new decimal();
                 decimal discount = new decimal();
                 int quantity = new int();
@@ -539,7 +564,7 @@ namespace WPF_GUI.Sell
                 {
                     MessageBox.Show("Quantity is not valid");
                     QuantityValue_Sell.Text = "1";
-                }
+                }*/
 
             }
         }
@@ -569,90 +594,92 @@ namespace WPF_GUI.Sell
         private void AddProductButton_Sell_Click(object sender, RoutedEventArgs e)
         {
 
-            bool Save = true;
+            // bool Save = true;
             // check each case
 
+            /* if (stock == null)
+             {
+                 MessageBox.Show("Select Product First");
+             }
+
+             else
+             {
+                 decimal salePrice = new decimal();
+                 decimal discount = new decimal();
+                 int quantity = new int();
+
+                 if(int.TryParse(QuantityValue_Sell.Text, out quantity))
+                 {
+                     if(quantity > 0)
+                     {
+                         if(quantity > int.Parse(InStockValue_Sell.Text))
+                         {
+                             MessageBox.Show("No enough in the stock , reduse the number of quantity");
+                             MessageBox.Show("Make Sure to confirm by Press {enter} after Change any of (Price , Discount , Quantity)");
+                         }
+                         else
+                         {
+                             if (decimal.TryParse(PriceValue_Sell.Text, out salePrice))
+                             {
+                                 if (salePrice >= 0)
+                                 {
+                                     if (decimal.TryParse(DiscountValue_Sell.Text, out discount))
+                                     {
+                                         if (discount > stock.Product.SalePrice)
+                                         {
+                                             MessageBox.Show("Discount Invalid");
+                                             MessageBox.Show("Make Sure to confirm by Press {enter} after Change any of (Price , Discount , Quantity)");
+                                             Save = false;
+                                         }
+                                         else
+                                         {
+
+                                         }
+                                     }
+                                     else
+                                     {
+                                         MessageBox.Show("Discount Invalid");
+                                         MessageBox.Show("Make Sure to confirm by Press {enter} after Change any of (Price , Discount , Quantity)");
+                                         Save = false;
+                                     }
+                                 }
+                                 else
+                                 {
+                                     MessageBox.Show("Price less than 0");
+                                     MessageBox.Show("Make Sure to confirm by Press {enter} after Change any of (Price , Discount , Quantity)");
+                                     Save = false;
+                                 }
+
+                             }
+                             else
+                             {
+                                 MessageBox.Show("Price Invalid");
+                                 MessageBox.Show("Make Sure to confirm by Press {enter} after Change any of (Price , Discount , Quantity)");
+                                 Save = false;
+                             }
+                         }
+
+                     }
+                     else
+                     {
+                         MessageBox.Show("Quantity Is less than 1");
+                         MessageBox.Show("Make Sure to confirm by Press {enter} after Change any of (Price , Discount , Quantity)");
+                         Save = false;
+                     }
+                 }
+                 else
+                 {
+                     MessageBox.Show("Quantity Invalid");
+                     MessageBox.Show("Make Sure to confirm by Press {enter} after Change any of (Price , Discount , Quantity)");
+                     Save = false;
+                 }
+
+
+             }*/
+
             StockModel stock = (StockModel)ProductValue_Sell.SelectedItem;
-            if (stock == null)
-            {
-                MessageBox.Show("Select Product First");
-            }
 
-            else
-            {
-                decimal salePrice = new decimal();
-                decimal discount = new decimal();
-                int quantity = new int();
-
-                if(int.TryParse(QuantityValue_Sell.Text, out quantity))
-                {
-                    if(quantity > 0)
-                    {
-                        if(quantity > int.Parse(InStockValue_Sell.Text))
-                        {
-                            MessageBox.Show("No enough in the stock , reduse the number of quantity");
-                            MessageBox.Show("Make Sure to confirm by Press {enter} after Change any of (Price , Discount , Quantity)");
-                        }
-                        else
-                        {
-                            if (decimal.TryParse(PriceValue_Sell.Text, out salePrice))
-                            {
-                                if (salePrice >= 0)
-                                {
-                                    if (decimal.TryParse(DiscountValue_Sell.Text, out discount))
-                                    {
-                                        if (discount > stock.Product.SalePrice)
-                                        {
-                                            MessageBox.Show("Discount Invalid");
-                                            MessageBox.Show("Make Sure to confirm by Press {enter} after Change any of (Price , Discount , Quantity)");
-                                            Save = false;
-                                        }
-                                        else
-                                        {
-
-                                        }
-                                    }
-                                    else
-                                    {
-                                        MessageBox.Show("Discount Invalid");
-                                        MessageBox.Show("Make Sure to confirm by Press {enter} after Change any of (Price , Discount , Quantity)");
-                                        Save = false;
-                                    }
-                                }
-                                else
-                                {
-                                    MessageBox.Show("Price less than 0");
-                                    MessageBox.Show("Make Sure to confirm by Press {enter} after Change any of (Price , Discount , Quantity)");
-                                    Save = false;
-                                }
-
-                            }
-                            else
-                            {
-                                MessageBox.Show("Price Invalid");
-                                MessageBox.Show("Make Sure to confirm by Press {enter} after Change any of (Price , Discount , Quantity)");
-                                Save = false;
-                            }
-                        }
-                        
-                    }
-                    else
-                    {
-                        MessageBox.Show("Quantity Is less than 1");
-                        MessageBox.Show("Make Sure to confirm by Press {enter} after Change any of (Price , Discount , Quantity)");
-                        Save = false;
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Quantity Invalid");
-                    MessageBox.Show("Make Sure to confirm by Press {enter} after Change any of (Price , Discount , Quantity)");
-                    Save = false;
-                }
-
-
-            }
-            if (Save)
+            if (ChooseStock_IsValid())
             {
                 OrderProductModel orderProduct = new OrderProductModel();
                 orderProduct.Stock = stock;
@@ -668,6 +695,90 @@ namespace WPF_GUI.Sell
             
 
         }
+
+
+        /// <summary>
+        /// Check choose stock valus if it vaild or not
+        /// </summary>
+        /// <returns> 
+        /// true if vaild 
+        /// false if not </returns>
+        private bool ChooseStock_IsValid()
+        {
+            StockModel stock = (StockModel)ProductValue_Sell.SelectedItem;
+
+            if (stock != null)
+            {
+                decimal salePrice = new decimal();
+                if (decimal.TryParse(PriceValue_Sell.Text, out salePrice))
+                {
+                    if (salePrice > 0)
+                    {
+                        decimal discount = new decimal();
+
+                        if (decimal.TryParse(DiscountValue_Sell.Text, out discount))
+                        {
+                            if (discount >= 0 && discount < stock.Product.SalePrice)
+                            {
+                                int quantity = new int();
+                                if (int.TryParse(QuantityValue_Sell.Text, out quantity))
+                                {
+                                    if (quantity > 0 && quantity <= stock.Quantity)
+                                    {
+                                        return true;
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("Quantity can't be less than 1 OR more than the number of stock quantity");
+                                        QuantityValue_Sell.Text = "0";
+                                        return false;
+                                    }
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Quantity should be a number");
+                                    QuantityValue_Sell.Text = "0";
+                                    return false;
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("Income Price Can't be less than 0.001 And Can't be more than the product sale Price");
+                                DiscountValue_Sell.Text = "";
+                                return false;
+                            }
+
+                        }
+                        else
+                        {
+                            MessageBox.Show("Discount Should be a number !");
+                            DiscountValue_Sell.Text = "";
+                            return false;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Sale Price Can't be less than 0.001");
+                        PriceValue_Sell.Text = stock.Product.SalePrice.ToString();
+                        return false;
+                    }
+
+                }
+                else
+                {
+                    MessageBox.Show("Sale Price value should be a number");
+                    PriceValue_Sell.Text = stock.Product.SalePrice.ToString();
+                    return false;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Choose product , If it not exist press Create new Product");
+                return false;
+            }
+
+        }
+
         #endregion
 
         #region ChoosenProductList_Sell Data Grid
@@ -995,16 +1106,7 @@ namespace WPF_GUI.Sell
 
         }
 
-        /// <summary>
-        /// event to reset the uc
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ClearButton_UC_Click(object sender, RoutedEventArgs e)
-        {
-            ResetSellUC();
 
-        }
 
         /// <summary>
         /// Clear the product info and the customer info
@@ -1072,11 +1174,12 @@ namespace WPF_GUI.Sell
         }
 
 
-        private void RefreshButton_Sell_Click(object sender, RoutedEventArgs e)
+
+        private void ReloadTabButton_SellUC_Click(object sender, RoutedEventArgs e)
         {
             ResetSellUC();
-        }
 
+        }
 
         #endregion
 
