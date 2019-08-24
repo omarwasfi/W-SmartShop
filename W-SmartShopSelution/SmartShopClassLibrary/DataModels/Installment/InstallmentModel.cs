@@ -29,6 +29,11 @@ namespace Library
         /// </summary>
         public double RateOfInterest { get; set; }
 
+        /// <summary>
+        /// The Loan Amount = TotaInstallmentPrice - Deposit
+        /// </summary>
+        public decimal LoanAmount { get; set; }
+
         public decimal Deposit { get; set; }
 
         /// <summary>

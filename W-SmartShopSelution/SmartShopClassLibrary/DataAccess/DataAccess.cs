@@ -873,6 +873,22 @@ namespace Library
 
         #endregion
 
+        #region Installment
+
+        /// <summary>
+        /// Calculate the EMI of loan When create the installment order
+        /// </summary>
+        /// <param name="loanAmount"> The Amount of money </param>
+        /// <param name="rateOfInterest"> rate Of Interest per year </param>
+        /// <param name="numberOfMonths"> Number Of months or PaymentPeriods  </param>
+        /// <returns></returns>
+        public decimal CalculateTheEMI_RateOfInterestByYear(decimal loanAmount, double rateOfInterest, int numberOfMonths)
+        {
+            return Installment.CalculateTheEMI_RateOfInterestByYear(loanAmount,rateOfInterest,numberOfMonths);
+        }
+
+
+        #endregion
 
     }
 }

@@ -90,12 +90,11 @@
                 <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}" />
                 <DataGridTextColumn Header="Sale Price" Binding="{Binding Product.SalePrice}"/>
                 <DataGridTextColumn Header="Discount" Binding="{Binding Discount}"/>
-                <DataGridTextColumn Header="Price before Installment" Binding="{Binding GetTotalPriceBeforeInstallment}"/>
-                <DataGridTextColumn Header="Price After Installment" Binding="{Binding GetTotalInstallmentPrice}"/>
+                <DataGridTextColumn Header="Total Price" Binding="{Binding GetTotalInstallmentPrice}"/>
             </DataGrid.Columns>
         </DataGrid>
 
-        <Button x:Name="RemoveSelectedProductButton_InstallmentOrderUC"  Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Red"  Margin="10,510,1058,0" VerticalAlignment="Top" Height="60"  >
+        <Button x:Name="RemoveSelectedProductButton_InstallmentOrderUC" Click="RemoveSelectedProductButton_InstallmentOrderUC_Click"  Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Red"  Margin="10,510,1058,0" VerticalAlignment="Top" Height="60"  >
             <Grid Width="229">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="5*"/>
@@ -107,26 +106,30 @@
         </Button>
 
         <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="10,570,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" Text="Total Price Before installment : " />
-        <TextBox x:Name="TotalPriceBeforeInstallmentValue_InstallmentOrderUC" IsReadOnly="True" HorizontalAlignment="Left" Height="33" Margin="349,575,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="78" RenderTransformOrigin="0.544,-0.652"/>
+        <TextBox x:Name="TotalPriceBeforeInstallmentValue_InstallmentOrderUC" IsReadOnly="True" HorizontalAlignment="Left" Height="33" Margin="349,575,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="191" RenderTransformOrigin="0.544,-0.652"/>
 
         <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="10,613,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" Text="Total Price After installment : " />
-        <TextBox x:Name="TotalPriceAfterInstallmentValue_InstallmentOrderUC" IsReadOnly="True" HorizontalAlignment="Left" Height="33" Margin="349,613,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="78" RenderTransformOrigin="0.544,-0.652"/>
+        <TextBox x:Name="TotalPriceAfterInstallmentValue_InstallmentOrderUC" IsReadOnly="True" HorizontalAlignment="Left" Height="33" Margin="349,613,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="191" RenderTransformOrigin="0.544,-0.652"/>
 
         <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="443,522,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" Text="Diposit : " Width="97" />
-        <TextBox x:Name="DipositValue_InstallmentOrderUC"  HorizontalAlignment="Left" Height="33" Margin="545,522,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="94" RenderTransformOrigin="0.544,-0.652"/>
+        <TextBox x:Name="DipositValue_InstallmentOrderUC" KeyDown="DipositValue_InstallmentOrderUC_KeyDown"  HorizontalAlignment="Left" Height="33" Margin="545,522,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="94" RenderTransformOrigin="0.544,-0.652"/>
 
         <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="644,522,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" Text="Number of months : " />
-        <TextBox x:Name="NumberOfMonthsValue_InstallmentOrderUC"  HorizontalAlignment="Left" Height="33" Margin="879,522,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="39" RenderTransformOrigin="0.544,-0.652"/>
+        <TextBox x:Name="NumberOfMonthsValue_InstallmentOrderUC" KeyDown="NumberOfMonthsValue_InstallmentOrderUC_KeyDown"  HorizontalAlignment="Left" Height="33" Margin="879,522,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="39" RenderTransformOrigin="0.544,-0.652"/>
 
-        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="701,575,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" Text="EMI:" />
-        <TextBox x:Name="EMIValue_InstallmentOrderUC" HorizontalAlignment="Left" Height="33" Margin="753,575,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="78" RenderTransformOrigin="0.544,-0.652"/>
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="928,575,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" Text="EMI:" />
+        <TextBox x:Name="EMIValue_InstallmentOrderUC" IsReadOnly="True" HorizontalAlignment="Left" Height="33" Margin="985,575,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="186" RenderTransformOrigin="0.544,-0.652"/>
 
-        <TextBox x:Name="RateOfInterestValue_InstallmentOrderUC"  HorizontalAlignment="Left" Height="33" Margin="1114,522,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="37" RenderTransformOrigin="0.544,-0.652"/>
+        <TextBox x:Name="RateOfInterestValue_InstallmentOrderUC" KeyDown="RateOfInterestValue_InstallmentOrderUC_KeyDown"  HorizontalAlignment="Left" Height="33" Margin="1114,522,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="37" RenderTransformOrigin="0.544,-0.652"/>
         <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="923,522,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" Text="Rate of Interest  :" Width="191" />
         <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="1156,522,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" Text="%" Width="25" />
-        
-        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="443,570,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" Text="Loan Amount : " />
-        <TextBox x:Name="DipositValue_InstallmentOrderUC_Copy"  HorizontalAlignment="Left" Height="33" Margin="616,570,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="80" RenderTransformOrigin="0.544,-0.652"/>
+
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="618,570,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" Text="Loan Amount : " />
+        <TextBox x:Name="LoanAmountValue_InstallmentOrderUC" IsReadOnly="True"  HorizontalAlignment="Left" Height="33" Margin="791,570,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="127" RenderTransformOrigin="0.544,-0.652"/>
+
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="618,613,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" Text="payments starting from :" />
+        <DatePicker Name="PaymentsStartDate_InstallmentOrderUC" HorizontalAlignment="Left" Margin="893,621,0,0" VerticalAlignment="Top" FirstDayOfWeek="Monday" />
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="1186,522,-54,0" RenderTransformOrigin="0.596,0.438" FontSize="25" Text="per annum" Width="191" />
 
     </Grid>
 </UserControl>
