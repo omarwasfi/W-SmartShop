@@ -1,5 +1,4 @@
-﻿ - The program work on one resolution even if the task bar menu not hide the user can't use it
+﻿ - The program work on one resolution 
 	* The program should work with any resolution with max of 1366*768
 	* using sliders maybe a quick selution
 
-- In SellUC : If user press add before confirm the quantity , saleprice or discount 

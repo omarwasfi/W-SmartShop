@@ -38,7 +38,12 @@ namespace WPF_GUI
 
         public MainForm()
         {
+            
+            
+
             InitializeComponent();
+
+           
 
             FillStartupData();
 
@@ -166,8 +171,20 @@ namespace WPF_GUI
             installmentOrderTab.Content = installmentOrderUC;
             MainTab.Items.Add(installmentOrderTab);
         }
-        #endregion
 
+    
+        /// <summary>
+        /// To move the MainForm Around the screen
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+                this.DragMove();
+        }
+
+        #endregion
 
     }
 }
