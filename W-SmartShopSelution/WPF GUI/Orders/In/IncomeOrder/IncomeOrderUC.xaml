@@ -7,21 +7,39 @@
              mc:Ignorable="d" 
                           xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              d:DesignHeight="680" d:DesignWidth="1343">
-    <Grid Margin="10">
-        <GroupBox Header="Choose Product" HorizontalAlignment="Left" Height="345" Margin="10,10,0,0" VerticalAlignment="Top" Width="645">
+    <Grid>
+        <Grid Margin="1117,0,0,651">
+            <Button x:Name="CloseButton_IncomeOrderUC" Visibility="Collapsed" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Red"   VerticalAlignment="Top"  Margin="3,0,170,0" Height="25"  >
+                <materialDesign:PackIcon Kind="Close" Width="20" Height="20"/>
+            </Button>
+
+            <Button x:Name="RefreshButton_IncomeOrderUC"  Click="RefreshButton_IncomeOrderUC_Click" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray"   VerticalAlignment="Top"  Margin="171,0,0,0" Height="25"  >
+                <materialDesign:PackIcon Kind="Reload" Width="20" Height="20"/>
+            </Button>
+
+            <Button x:Name="PrintButton_IncomeOrderUC" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray"   VerticalAlignment="Top"  Margin="115,0,55,0" Height="25"  >
+                <materialDesign:PackIcon Kind="Printer" Width="20" Height="20"/>
+            </Button>
+
+            <Button x:Name="ConfirmButton_IncomeOrderUC" Click="ConfirmButton_IncomeOrderUC_Click" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Green"   VerticalAlignment="Top"  Margin="56,0,111,0" Height="25"  >
+                <materialDesign:PackIcon Kind="Done" Width="20" Height="20"/>
+            </Button>
+
+        </Grid>
+        <GroupBox Header="Choose Product" HorizontalAlignment="Left" Height="344" Margin="10,29,0,0" VerticalAlignment="Top" Width="645">
             <Grid Width="627" Margin="0,0,0,2">
                 <!-- Category comoBox & category textblock -->
                 <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Category : "/></TextBlock>
                 <ComboBox x:Name="CategoryValue_IncomeOrderUC" SelectionChanged="FilterProductsByCategoryAndBrand" HorizontalAlignment="Left" Margin="124,5,0,0" VerticalAlignment="Top" Width="207" />
 
-                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="336,5,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" Width="82" ><Run Text="Brand : "/></TextBlock>
-                <ComboBox x:Name="BrandValue_IncomeOrderUC" SelectionChanged="FilterProductsByCategoryAndBrand" HorizontalAlignment="Left" Margin="423,10,0,0" VerticalAlignment="Top" Width="163" />
+                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="367,5,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" Width="82" ><Run Text="Brand : "/></TextBlock>
+                <ComboBox x:Name="BrandValue_IncomeOrderUC" SelectionChanged="FilterProductsByCategoryAndBrand" HorizontalAlignment="Left" Margin="454,10,0,0" VerticalAlignment="Top" Width="163" />
 
                 <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="0,38,0,0" ><Run Text="Product : "/></TextBlock>
-                <ComboBox x:Name="ProductValue_IncomeOrderUC" SelectionChanged="ProductValue_IncomeOrderUC_SelectionChanged" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="476" Margin="110,43,0,0"  />
+                <ComboBox x:Name="ProductValue_IncomeOrderUC" SelectionChanged="ProductValue_IncomeOrderUC_SelectionChanged" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="507" Margin="110,43,0,0"  />
 
                 <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="0,76,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Serial Number : "/></TextBlock>
-                <TextBox x:Name="SerialNumberValue_IncomeOrderUC" KeyDown="SerialNumberValue_IncomeOrderUC_EventHundler" HorizontalAlignment="Left" Height="33" Margin="182,76,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="422"  />
+                <TextBox x:Name="SerialNumberValue_IncomeOrderUC" KeyDown="SerialNumberValue_IncomeOrderUC_EventHundler" HorizontalAlignment="Left" Height="33" Margin="182,76,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="435"  />
 
 
 
@@ -52,7 +70,7 @@
             </Grid>
 
         </GroupBox>
-        <GroupBox Header="Supplier" HorizontalAlignment="Left" Height="265" Margin="660,10,0,0" VerticalAlignment="Top" Width="653">
+        <GroupBox Header="Supplier" HorizontalAlignment="Left" Height="264" Margin="664,29,0,0" VerticalAlignment="Top" Width="669">
             <Grid>
                 <Button x:Name="NewSupplierButton_IncomeOrderUC" Click="NewSupplierButton_IncomeOrderUC_Click" Content="New Supplier" HorizontalAlignment="Left" Margin="266,154,0,0" VerticalAlignment="Top" Width="143" Height="53" FontSize="15" FontWeight="Bold"/>
 
@@ -75,7 +93,7 @@
 
             </Grid>
         </GroupBox>
-        <DataGrid x:Name="StocksList_IncomeOrderUC" IsReadOnly="True" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="215" Margin="10,360,0,0" VerticalAlignment="Top" Width="1303" Background="LightGray">
+        <DataGrid x:Name="StocksList_IncomeOrderUC" IsReadOnly="True" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="240" Margin="10,380,0,0" VerticalAlignment="Top" Width="1323" Background="LightGray">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Product Name" Binding="{Binding Product.Name }" />
                 <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}" />
@@ -84,7 +102,7 @@
                 <DataGridTextColumn Header="Total Price" Binding="{Binding TotalProductPrice }"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="RemoveSelectedStockButton_IncomeOrderUC" Click="RemoveSelectedStockButton_IncomeOrderUC_Click" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Red"  Margin="10,590,1058,0" VerticalAlignment="Top" Height="60"  >
+        <Button x:Name="RemoveSelectedStockButton_IncomeOrderUC" Click="RemoveSelectedStockButton_IncomeOrderUC_Click" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Red"  Margin="0,620,1068,0" VerticalAlignment="Top" Height="60"  >
             <Grid Width="229">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="5*"/>
@@ -95,23 +113,18 @@
             </Grid>
         </Button>
 
-        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="664,283,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" Width="148" Text="Bill Number : " />
-        <TextBox x:Name="BillNumberValue_IncomeOrderUC"  HorizontalAlignment="Left" Margin="817,291,0,0" VerticalAlignment="Top" Width="487" />
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="664,302,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" Width="148" Text="Bill Number : " />
+        <TextBox x:Name="BillNumberValue_IncomeOrderUC"  HorizontalAlignment="Left" Margin="817,310,0,0" VerticalAlignment="Top" Width="487" />
 
-        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="664,321,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" Width="225" Text="Shipping expenses : " />
-        <TextBox x:Name="ShippingExpensesValue_IncomeOrderUC" KeyDown="ShippingExpensesValue_IncomeOrderUC_KeyDown"  HorizontalAlignment="Left" Margin="894,330,0,0" VerticalAlignment="Top" Width="71" />
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="664,340,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" Width="225" Text="Shipping expenses : " />
+        <TextBox x:Name="ShippingExpensesValue_IncomeOrderUC" KeyDown="ShippingExpensesValue_IncomeOrderUC_KeyDown"  HorizontalAlignment="Left" Margin="894,350,0,0" VerticalAlignment="Top" Width="71" />
 
-        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="1052,580,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Total Price : "/></TextBlock>
-        <TextBox x:Name="TotalPriceValue_IncomeOrderUC" IsReadOnly="True" HorizontalAlignment="Left" Height="23" Margin="1189,590,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="78" RenderTransformOrigin="0.544,-0.652"/>
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="1013,620,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Total Price : "/></TextBlock>
+        <TextBox x:Name="TotalPriceValue_IncomeOrderUC" IsReadOnly="True" HorizontalAlignment="Left" Height="23" Margin="1145,630,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="78" RenderTransformOrigin="0.544,-0.652"/>
 
-        <Button x:Name="ConfirmButton_IncomeOrderUC" Click="ConfirmButton_IncomeOrderUC_Click"  Content="Confirm" HorizontalAlignment="Left" Margin="1058,618,0,0" VerticalAlignment="Top" Width="93"/>
-        <Button x:Name="ClearButton_IncomeOrderUC"  Content="Clear" HorizontalAlignment="Left" Margin="1156,618,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="CloseButton_IncomeOrderUC"  Content="Close" HorizontalAlignment="Left" Margin="1239,618,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="PrintButton_IncomeOrderUC" Content="Print" HorizontalAlignment="Left" Margin="972,618,0,0" VerticalAlignment="Top" Width="81"/>
-        
-        <Button x:Name="RefreshButton_IncomeOrderUC" Click="RefreshButton_IncomeOrderUC_Click" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray"   VerticalAlignment="Top" Height="52" Margin="873,598,358,0"  >
-            <materialDesign:PackIcon Kind ="Reload" Width="50" Height="46"/>
-        </Button>
+
+
+
 
     </Grid>
 </UserControl>

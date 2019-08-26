@@ -3,7 +3,9 @@
 After 2 test : 
 
 - Update the Tab Control Buttons Icons
-- move the program around the screen
+- ability  to move the windows around the screen
+- Update the menu logo 
+- Add the close button to the tabs header
 - Fix The bug.  Stock.cs FilterStocksByCategoryAndBrand -> Choose Default Category & Default Brand
 - Fix The bug.  The taskBar don't hide in screens 1366x768 or less
 - Fix The bug.  In SellUC : If user press add before confirm the quantity , saleprice or discount 

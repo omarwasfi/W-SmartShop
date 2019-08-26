@@ -9,19 +9,19 @@
              d:DesignHeight="680" d:DesignWidth="1343">
     <Grid>
         <Grid Margin="1117,0,0,651">
-            <Button x:Name="CloseTabButton_SellUC" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Red"   VerticalAlignment="Top"  Margin="173,0,0,0" Height="25"  >
+            <Button x:Name="CloseTabButton_SellUC" Visibility="Collapsed" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Red"   VerticalAlignment="Top"  Margin="3,0,170,0" Height="25"  >
                 <materialDesign:PackIcon Kind="Close" Width="20" Height="20"/>
             </Button>
 
-            <Button x:Name="ReloadTabButton_SellUC" Click="ReloadTabButton_SellUC_Click" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray"   VerticalAlignment="Top"  Margin="117,0,54,0" Height="25"  >
+            <Button x:Name="ReloadTabButton_SellUC" Click="ReloadTabButton_SellUC_Click" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray"   VerticalAlignment="Top"  Margin="171,0,0,0" Height="25"  >
                 <materialDesign:PackIcon Kind="Reload" Width="20" Height="20"/>
             </Button>
 
-            <Button x:Name="PrintButton_SellUC" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray"   VerticalAlignment="Top"  Margin="60,0,110,0" Height="25"  >
+            <Button x:Name="PrintButton_SellUC" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray"   VerticalAlignment="Top"  Margin="115,0,55,0" Height="25"  >
                 <materialDesign:PackIcon Kind="Printer" Width="20" Height="20"/>
             </Button>
 
-            <Button x:Name="ConfitmButton_SellUC" Click="ConfirmButton_UC_Click" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Green"   VerticalAlignment="Top"  Margin="0,0,167,0" Height="25"  >
+            <Button x:Name="ConfitmButton_SellUC" Click="ConfirmButton_UC_Click" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Green"   VerticalAlignment="Top"  Margin="56,0,111,0" Height="25"  >
                 <materialDesign:PackIcon Kind="Done" Width="20" Height="20"/>
             </Button>
 

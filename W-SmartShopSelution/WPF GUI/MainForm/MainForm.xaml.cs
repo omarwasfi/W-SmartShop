@@ -122,6 +122,7 @@ namespace WPF_GUI
             TabItem sellTab = new TabItem { Header = "Sell Tab" };
             sellTab.Content = sellUc;
             MainTab.Items.Add(sellTab);
+            
         }
 
         private void InventoryViewItem_Selected(object sender, RoutedEventArgs e)

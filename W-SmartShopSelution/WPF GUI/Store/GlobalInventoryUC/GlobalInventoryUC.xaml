@@ -10,26 +10,26 @@
     <Grid>
 
         <!-- Category comoBox & category textblock -->
-        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="6,18,0,0" ><Run Text="Category : "/></TextBlock>
-        <ComboBox x:Name="CategoryValue_GlobalInventoryUC" HorizontalAlignment="Left" Margin="130,23,0,0" VerticalAlignment="Top" Width="142" IsTextSearchEnabled="True" TextSearch.TextPath="Name" SelectionChanged="FilterStocksByCategoryAndBrand"/>
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="6,35,0,0" ><Run Text="Category : "/></TextBlock>
+        <ComboBox x:Name="CategoryValue_GlobalInventoryUC" HorizontalAlignment="Left" Margin="130,40,0,0" VerticalAlignment="Top" Width="142" IsTextSearchEnabled="True" TextSearch.TextPath="Name" SelectionChanged="FilterStocksByCategoryAndBrand"/>
 
-        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="277,18,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" Width="82" ><Run Text="Brand : "/></TextBlock>
-        <ComboBox x:Name="BrandValue_GlobalInventoryUC" HorizontalAlignment="Left" Margin="364,23,0,0" VerticalAlignment="Top" Width="152" IsTextSearchEnabled="True" TextSearch.TextPath="Name" SelectionChanged="FilterStocksByCategoryAndBrand"  />
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="277,35,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" Width="82" ><Run Text="Brand : "/></TextBlock>
+        <ComboBox x:Name="BrandValue_GlobalInventoryUC" HorizontalAlignment="Left" Margin="364,40,0,0" VerticalAlignment="Top" Width="152" IsTextSearchEnabled="True" TextSearch.TextPath="Name" SelectionChanged="FilterStocksByCategoryAndBrand"  />
 
-        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="531,24,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" Width="82" ><Run Text="Store : "/></TextBlock>
-        <ComboBox x:Name="StoreValue_GlobalInventoryUC" SelectionChanged="StoreValue_GlobalInventoryUC_SelectionChanged" HorizontalAlignment="Left" Margin="603,28,0,0" VerticalAlignment="Top" Width="129"  />
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="521,35,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" Width="82" ><Run Text="Store : "/></TextBlock>
+        <ComboBox x:Name="StoreValue_GlobalInventoryUC" SelectionChanged="StoreValue_GlobalInventoryUC_SelectionChanged" HorizontalAlignment="Left" Margin="608,40,0,0" VerticalAlignment="Top" Width="129"  />
 
-        <TextBox x:Name ="ProductSearchValue_GlobalInventoryUC" HorizontalAlignment="Left" Height="28" Margin="742,28,0,0" TextWrapping="Wrap" Text="Search... " VerticalAlignment="Top" Width="293" />
-        <ComboBox x:Name="ProductSearchType_GlobalInventoryUC" HorizontalAlignment="Left" Margin="1040,23,0,0" VerticalAlignment="Top" Width="110" Height="33" />
-        <Button x:Name="ProductSearchButton_GlobalInventoryUC" Click="ProductSearchButton_GlobalInventoryUC_Click" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FFA2A2A2" VerticalAlignment="Center"  Margin="1149,23,96,619"  Height="38" >
+        <TextBox x:Name ="ProductSearchValue_GlobalInventoryUC" HorizontalAlignment="Left" Height="28" Margin="742,40,0,0" TextWrapping="Wrap" Text="Search... " VerticalAlignment="Top" Width="312" />
+        <ComboBox x:Name="ProductSearchType_GlobalInventoryUC" HorizontalAlignment="Left" Margin="1059,35,0,0" VerticalAlignment="Top" Width="110" Height="33" />
+        <Button x:Name="ProductSearchButton_GlobalInventoryUC" Click="ProductSearchButton_GlobalInventoryUC_Click" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FFA2A2A2" VerticalAlignment="Center"  Margin="1174,30,71,612"  Height="38" >
             <materialDesign:PackIcon Kind="Search" Width="25" Height="25" />
         </Button>
 
-        <Button x:Name="ResetStockResultsButton_GlobalInventoryUC" Click="ResetStockResultsButton_GlobalInventoryUC_Click" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Red"   VerticalAlignment="Top" Height="52" Margin="1252,10,10,0"  >
-            <materialDesign:PackIcon Kind="Clear" Width="50" Height="46"/>
+        <Button x:Name="ResetStockResultsButton_GlobalInventoryUC" Click="ResetStockResultsButton_GlobalInventoryUC_Click" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Red"   VerticalAlignment="Top" Height="34" Margin="1277,34,10,0"  >
+            <materialDesign:PackIcon Kind="Clear" Width="30" Height="30"/>
         </Button>
 
-        <DataGrid x:Name="StocksList_GlobalInventoryUC" IsReadOnly="True" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="493" Margin="10,66,0,0" VerticalAlignment="Top" Width="1323" Background="LightGray">
+        <DataGrid x:Name="StocksList_GlobalInventoryUC" IsReadOnly="True" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="522" Margin="10,73,0,0" VerticalAlignment="Top" Width="1323" Background="LightGray">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Product Name" Binding="{Binding Product.Name}"/>
                 <DataGridTextColumn Header="Store Name" Binding="{Binding Store.Name}"/>
@@ -44,7 +44,7 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <Button x:Name="ModifySelectedButton_GlobalInventoryUC" Click="ModifySelectedButton_GlobalInventoryUC_Click"  Margin="442,580,629,0" VerticalAlignment="Top" Height="70"  >
+        <Button x:Name="ModifySelectedButton_GlobalInventoryUC" Click="ModifySelectedButton_GlobalInventoryUC_Click"  Margin="428,600,643,0" VerticalAlignment="Top" Height="70"  >
             <Grid Width="254">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="111*"/>
@@ -55,7 +55,7 @@
             </Grid>
         </Button>
 
-        <Button x:Name="AddProductToTheSelectedStoreButton_GlobalInventoryUC" Click="AddProductToTheSelectedStoreButton_GlobalInventoryUC_Click"  Margin="5,580,925,0" VerticalAlignment="Top" Height="70"  >
+        <Button x:Name="AddProductToTheSelectedStoreButton_GlobalInventoryUC" Click="AddProductToTheSelectedStoreButton_GlobalInventoryUC_Click"  Margin="10,600,920,0" VerticalAlignment="Top" Height="70"  >
             <Grid Width="372">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="78*"/>
@@ -65,14 +65,26 @@
                 <TextBlock FontSize="20" Text="Add Product to the Selected Store" Margin="50,10,10,10" Grid.ColumnSpan="2"/>
             </Grid>
         </Button>
-        
-        <Button Content="Close" HorizontalAlignment="Left" Margin="1235,618,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button Content="Clear" HorizontalAlignment="Left" Margin="1155,618,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button Content="Print" HorizontalAlignment="Left" Margin="1069,618,0,0" VerticalAlignment="Top" Width="81"/>
-        
-        <Button x:Name="RefreshButton_GlobalInventoryUC" Click="RefreshButton_GlobalInventoryUC_Click" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray"   VerticalAlignment="Top" Height="52" Margin="972,598,279,0"  >
-            <materialDesign:PackIcon Kind ="Reload" Width="50" Height="46"/>
-        </Button>
+
+       
+        <Grid Margin="1117,0,0,651">
+            <Button x:Name="CloseTabButton_GlobalInventoryUC" Visibility="Collapsed" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Red"   VerticalAlignment="Top"  Margin="3,0,170,0" Height="25"  >
+                <materialDesign:PackIcon Kind="Close" Width="20" Height="20"/>
+            </Button>
+
+            <Button x:Name="RefreshButton_GlobalInventoryUC" Click="RefreshButton_GlobalInventoryUC_Click" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray"   VerticalAlignment="Top"  Margin="171,0,0,0" Height="25"  >
+                <materialDesign:PackIcon Kind="Reload" Width="20" Height="20"/>
+            </Button>
+
+            <Button x:Name="PrintButton_GlobalInventoryUC" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray"   VerticalAlignment="Top"  Margin="115,0,55,0" Height="25"  >
+                <materialDesign:PackIcon Kind="Printer" Width="20" Height="20"/>
+            </Button>
+
+            <Button x:Name="ConfitmButton_GlobalInventoryUC" Visibility="Collapsed" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Green"   VerticalAlignment="Top"  Margin="56,0,111,0" Height="25"  >
+                <materialDesign:PackIcon Kind="Done" Width="20" Height="20"/>
+            </Button>
+
+        </Grid>
 
 
     </Grid>

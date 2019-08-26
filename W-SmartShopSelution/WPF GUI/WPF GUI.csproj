@@ -280,9 +280,6 @@
     <Resource Include="Login\Assets\welcome.jpeg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="MainForm\Assets\mountains.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
       <Visible>False</Visible>
       <ProductName>Microsoft .NET Framework 4.7.2 %28x86 and x64%29</ProductName>
@@ -308,6 +305,14 @@
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Login\Assets\Icon.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="MainForm\Assets\Icon.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="MainForm\Assets\AshesMenuLogo.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

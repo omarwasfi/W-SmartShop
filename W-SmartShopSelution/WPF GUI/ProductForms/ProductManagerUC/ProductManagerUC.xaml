@@ -9,63 +9,76 @@
 
              d:DesignHeight="680" d:DesignWidth="1343">
     <Grid>
-        <Rectangle RadiusY="8" RadiusX="8" Fill="White"/>
         <!--<GroupBox Header="Products List" HorizontalAlignment="Left" Height="660" Margin="10,10,0,0" VerticalAlignment="Top" Width="1323">-->
-        <Grid Margin="10,10,10,10">
-            <Button x:Name="CreateNewProductButton_ProductManagerUC" Click="CreateNewProductButton_ProductManagerUC_Click"  Margin="5,580,1036,0" VerticalAlignment="Top" Height="70"  >
+        <Grid>
+            <Button x:Name="CreateNewProductButton_ProductManagerUC" Click="CreateNewProductButton_ProductManagerUC_Click"  Margin="10,610,1031,0" VerticalAlignment="Top" Height="70"  >
                 <Grid Width="254">
                     <materialDesign:PackIcon Kind="PlusBox" Width="50" Height="46"/>
                     <TextBlock FontSize="20" Text="Create New Product" Margin="50,10,10,10"/>
                 </Grid>
             </Button>
-            <Button x:Name="ModifySelectedButton_ProductManagerUC" Click="ModifySelectedButton_ProductManagerUC_Click" Margin="292,580,778,0" VerticalAlignment="Top" Height="70"  >
+            <Button x:Name="ModifySelectedButton_ProductManagerUC" Click="ModifySelectedButton_ProductManagerUC_Click" Margin="317,610,753,0" VerticalAlignment="Top" Height="70"  >
                 <Grid Width="254">
                     <materialDesign:PackIcon Kind="Pencil"  Width="50" Height="46"/>
                     <TextBlock FontSize="20" Text="Modify selected" Margin="50,10,10,10"/>
                 </Grid>
             </Button>
 
-            <Button Content="Close" HorizontalAlignment="Left" Margin="1235,618,0,0" VerticalAlignment="Top" Width="75"/>
-            <Button Content="Clear" HorizontalAlignment="Left" Margin="1155,618,0,0" VerticalAlignment="Top" Width="75"/>
-            <Button Content="Print" HorizontalAlignment="Left" Margin="1069,618,0,0" VerticalAlignment="Top" Width="81"/>
-            
-            <Button x:Name="RefreshButton_ProductManagerUC" Click="RefreshButton_ProductManagerUC_Click" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray"   VerticalAlignment="Top" Height="52" Margin="972,598,259,0"  >
-                <materialDesign:PackIcon Kind ="Reload" Width="50" Height="46"/>
+
+
+          
+            <Grid Margin="1117,0,0,651">
+                <Button x:Name="CloseTabButton_ProductManagerUC" Visibility="Collapsed" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Red"   VerticalAlignment="Top"  Margin="3,0,170,0" Height="25"  >
+                    <materialDesign:PackIcon Kind="Close" Width="20" Height="20"/>
+                </Button>
+
+                <Button x:Name="RefreshButton_ProductManagerUC" Click="RefreshButton_ProductManagerUC_Click" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray"   VerticalAlignment="Top"  Margin="171,0,0,0" Height="25"  >
+                    <materialDesign:PackIcon Kind="Reload" Width="20" Height="20"/>
+                </Button>
+
+                <Button x:Name="PrintButton_ProductManagerUC" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray"   VerticalAlignment="Top"  Margin="115,0,55,0" Height="25"  >
+                    <materialDesign:PackIcon Kind="Printer" Width="20" Height="20"/>
+                </Button>
+
+                <Button x:Name="ConfitmButton_ProductManagerUC" Visibility="Collapsed" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Green"   VerticalAlignment="Top"  Margin="56,0,111,0" Height="25"  >
+                    <materialDesign:PackIcon Kind="Done" Width="20" Height="20"/>
+                </Button>
+
+            </Grid>
+
+            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="10,39,0,0" ><Run Text="Category : "/></TextBlock>
+            <ComboBox x:Name="CategoryValue_ProductManagerUC" SelectionChanged="FilterProductsByCategoryAndBrand" HorizontalAlignment="Left" Margin="134,44,0,0" VerticalAlignment="Top" Width="206" IsTextSearchEnabled="True" TextSearch.TextPath="Name" />
+
+            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="345,39,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" Width="82" ><Run Text="Brand : "/></TextBlock>
+            <ComboBox x:Name="BrandValue_ProductManagerUC" SelectionChanged="FilterProductsByCategoryAndBrand" HorizontalAlignment="Left" Margin="432,44,0,0" VerticalAlignment="Top" Width="164" IsTextSearchEnabled="True" TextSearch.TextPath="Name"   />
+
+            <TextBox x:Name ="ProductSearchValue_ProductManagerUC" HorizontalAlignment="Left" Height="28" Margin="625,44,0,0" TextWrapping="Wrap" Text="Search... " VerticalAlignment="Top" Width="418" />
+            <ComboBox x:Name="ProductSearchType_ProductManagerUC" HorizontalAlignment="Left" Margin="1048,39,0,0" VerticalAlignment="Top" Width="120" Height="33" />
+
+            <Button x:Name="ProductSearchButton_ProductManagerUC" Click="ProductSearchButton_ProductManagerUC_Click" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FFA2A2A2" VerticalAlignment="Center"  Margin="1173,34,72,608"  Height="38" >
+                <materialDesign:PackIcon Kind="Search" Width="25" Height="25" />
             </Button>
 
+            <Button x:Name="ResetProductResultsButton_ProductManagerUC" Click="ResetProductsResultsButton_ProductManagerUC_Click" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Red"   VerticalAlignment="Top" Height="35" Margin="1276,37,10,0"  >
+                <materialDesign:PackIcon Kind="Clear" Width="30" Height="30"/>
+            </Button>
+            <DataGrid x:Name="ProductsList_ProductManagerUC" IsReadOnly="True" AutoGenerateColumns="False" HorizontalAlignment="Right" Height="527" Margin="0,77,10,0" VerticalAlignment="Top" Width="1323" Background="LightGray">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Product Name" Binding="{Binding Name}"/>
+                    <DataGridTextColumn Header="Serial Number" Binding="{Binding SerialNumber}"/>
+                    <DataGridTextColumn Header="Sale Price" Binding="{Binding SalePrice}"/>
+                    <DataGridTextColumn Header="Income Price" Binding="{Binding IncomePrice}"/>
+                    <DataGridTextColumn Header="Category" Binding="{Binding Category.Name}"/>
+                    <DataGridTextColumn Header="Brand" Binding="{Binding Brand.Name}"/>
 
+
+                </DataGrid.Columns>
+            </DataGrid>
 
 
 
         </Grid>
-        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="6,18,0,0" ><Run Text="Category : "/></TextBlock>
-        <ComboBox x:Name="CategoryValue_ProductManagerUC" SelectionChanged="FilterProductsByCategoryAndBrand" HorizontalAlignment="Left" Margin="130,23,0,0" VerticalAlignment="Top" Width="206" IsTextSearchEnabled="True" TextSearch.TextPath="Name" />
 
-        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="342,23,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" Width="82" ><Run Text="Brand : "/></TextBlock>
-        <ComboBox x:Name="BrandValue_ProductManagerUC" SelectionChanged="FilterProductsByCategoryAndBrand" HorizontalAlignment="Left" Margin="430,23,0,0" VerticalAlignment="Top" Width="164" IsTextSearchEnabled="True" TextSearch.TextPath="Name"   />
-
-        <TextBox x:Name ="ProductSearchValue_ProductManagerUC" HorizontalAlignment="Left" Height="28" Margin="606,28,0,0" TextWrapping="Wrap" Text="Search... " VerticalAlignment="Top" Width="396" />
-        <ComboBox x:Name="ProductSearchType_ProductManagerUC" HorizontalAlignment="Left" Margin="1006,23,0,0" VerticalAlignment="Top" Width="120" Height="33" />
-
-        <Button x:Name="ProductSearchButton_ProductManagerUC" Click="ProductSearchButton_ProductManagerUC_Click" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FFA2A2A2" VerticalAlignment="Center"  Margin="1132,23,113,619"  Height="38" >
-            <materialDesign:PackIcon Kind="Search" Width="25" Height="25" />
-        </Button>
-
-        <Button x:Name="ResetProductResultsButton_ProductManagerUC" Click="ResetProductsResultsButton_ProductManagerUC_Click" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Red"   VerticalAlignment="Top" Height="52" Margin="1252,10,10,0"  >
-            <materialDesign:PackIcon Kind="Clear" Width="50" Height="46"/>
-        </Button>
-        <DataGrid x:Name="ProductsList_ProductManagerUC" IsReadOnly="True" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="493" Margin="10,66,0,0" VerticalAlignment="Top" Width="1323" Background="LightGray">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Product Name" Binding="{Binding Name}"/>
-                <DataGridTextColumn Header="Serial Number" Binding="{Binding SerialNumber}"/>
-                <DataGridTextColumn Header="Sale Price" Binding="{Binding SalePrice}"/>
-                <DataGridTextColumn Header="Income Price" Binding="{Binding IncomePrice}"/>
-                <DataGridTextColumn Header="Category" Binding="{Binding Category.Name}"/>
-                <DataGridTextColumn Header="Brand" Binding="{Binding Brand.Name}"/>
-
-
-            </DataGrid.Columns>
-        </DataGrid>
         <!-- </GroupBox> -->
     </Grid>
 </UserControl>
