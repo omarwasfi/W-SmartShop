@@ -71,6 +71,8 @@
     <Compile Include="Interfaces\WPFInterfaces\ICustomerRequester.cs" />
     <Compile Include="LogicalClasses\Brand\Brand.cs" />
     <Compile Include="LogicalClasses\IncomeOrderProduct\IncomeOrderProduct.cs" />
+    <Compile Include="LogicalClasses\InstallmentDetails\InstallmentDetails.cs" />
+    <Compile Include="LogicalClasses\InstallmentProduct\InstallmentProduct.cs" />
     <Compile Include="LogicalClasses\Installment\Installment.cs" />
     <Compile Include="LogicalClasses\OrderProduct\OrderProduct.cs" />
     <Compile Include="LogicalClasses\Category\Category.cs" />

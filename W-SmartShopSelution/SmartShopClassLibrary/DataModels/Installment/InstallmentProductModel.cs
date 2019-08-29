@@ -15,6 +15,9 @@ namespace Library
 
         public int Quantity { get; set; }
 
+        /// <summary>
+        /// The price of one peace after Discount
+        /// </summary>
         public decimal InstallmentPrice { get; set; }
 
         public decimal Discount { get; set; }

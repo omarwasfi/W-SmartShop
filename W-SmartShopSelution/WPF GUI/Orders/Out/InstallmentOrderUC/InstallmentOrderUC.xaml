@@ -9,19 +9,19 @@
              d:DesignHeight="680" d:DesignWidth="1343">
     <Grid Margin="10">
         <Grid Margin="1101,0,0,635">
-            <Button x:Name="CloseTabButton_InstallmentOrderUC" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Red"   VerticalAlignment="Top"  Margin="173,0,0,0" Height="25"  >
+            <Button x:Name="CloseTabButton_InstallmentOrderUC" Visibility="Collapsed" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Red"   VerticalAlignment="Top"  Margin="0,0,172,0" Height="25"  >
                 <materialDesign:PackIcon Kind="Close" Width="20" Height="20"/>
             </Button>
 
-            <Button x:Name="ReloadTabButton_InstallmentOrderUC" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray"   VerticalAlignment="Top"  Margin="117,0,54,0" Height="25"  >
+            <Button x:Name="ReloadTabButton_InstallmentOrderUC"  Click="ReloadTabButton_InstallmentOrderUC_Click" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray"   VerticalAlignment="Top"  Margin="171,0,0,0" Height="25"  >
                 <materialDesign:PackIcon Kind="Reload" Width="20" Height="20"/>
             </Button>
 
-            <Button x:Name="PrintButton_InstallmentOrderUC" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray"   VerticalAlignment="Top"  Margin="60,0,110,0" Height="25"  >
+            <Button x:Name="PrintButton_InstallmentOrderUC" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray"   VerticalAlignment="Top"  Margin="114,0,56,0" Height="25"  >
                 <materialDesign:PackIcon Kind="Printer" Width="20" Height="20"/>
             </Button>
 
-            <Button x:Name="ConfitmButton_InstallmentOrderUC" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Green"   VerticalAlignment="Top"  Margin="0,0,167,0" Height="25"  >
+            <Button x:Name="ConfitmButton_InstallmentOrderUC" Click="ConfitmButton_InstallmentOrderUC_Click" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Green"   VerticalAlignment="Top"  Margin="54,0,113,0" Height="25"  >
                 <materialDesign:PackIcon Kind="Done" Width="20" Height="20"/>
             </Button>
 
@@ -128,7 +128,7 @@
         <TextBox x:Name="LoanAmountValue_InstallmentOrderUC" IsReadOnly="True"  HorizontalAlignment="Left" Height="33" Margin="791,570,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="127" RenderTransformOrigin="0.544,-0.652"/>
 
         <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="618,613,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" Text="payments starting from :" />
-        <DatePicker Name="PaymentsStartDate_InstallmentOrderUC" HorizontalAlignment="Left" Margin="893,621,0,0" VerticalAlignment="Top" FirstDayOfWeek="Monday" />
+        <DatePicker Name="PaymentsStartDate_InstallmentOrderUC" SelectedDateFormat="Long"  HorizontalAlignment="Left" Margin="893,621,0,0" VerticalAlignment="Top" FirstDayOfWeek="Monday" />
         <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="1186,522,-54,0" RenderTransformOrigin="0.596,0.438" FontSize="25" Text="per annum" Width="191" />
 
     </Grid>

@@ -118,6 +118,12 @@ namespace WPF_GUI
       
         private void SetInitialValues()
         {
+            Installment = new InstallmentModel();
+            InstallmentProducts = new List<InstallmentProductModel>();
+
+            ChoosenProductList_InstallmentOrderUC.ItemsSource = null;
+            ChoosenProductList_InstallmentOrderUC.ItemsSource = InstallmentProducts;
+
 
             Update_CustomerNamesVariablesAndEvents();
 
@@ -132,6 +138,7 @@ namespace WPF_GUI
             BrandValue_InstallmentOrderUC.SelectedItem = null;
 
             GetStocksFormThePublicVariables();
+            ProductValue_InstallmentOrderUC.ItemsSource = null;
             ProductValue_InstallmentOrderUC.ItemsSource = Stocks;
             ProductValue_InstallmentOrderUC.DisplayMemberPath = "Product.Name";
             ProductValue_InstallmentOrderUC.SelectedItem = null;
@@ -139,7 +146,9 @@ namespace WPF_GUI
             ClearStockInfo();
 
             // Set the default installment valus
+            PaymentsStartDate_InstallmentOrderUC.DisplayDateStart = DateTime.Now;
             Installment.Date = DateTime.Now;
+            Installment.PaymentsStartDate = DateTime.Now;
             Installment.NumberOfMonths = 1;
             NumberOfMonthsValue_InstallmentOrderUC.Text = Installment.NumberOfMonths.ToString();
             Installment.Deposit = 0;
@@ -689,6 +698,16 @@ namespace WPF_GUI
                                 {
                                     if (quantity > 0 && quantity <= Stock.Quantity)
                                     {
+
+                                        foreach(InstallmentProductModel installmentProduct in InstallmentProducts)
+                                        {
+                                            if(Stock.Product.Id == installmentProduct.Product.Id)
+                                            {
+                                                MessageBox.Show("This item is in the list if u want to modify it remove it from the list and add again");
+                                                return false;
+                                            }
+                                        }
+
                                         return true;
                                     }
                                     else
@@ -821,6 +840,7 @@ namespace WPF_GUI
             {
                 totalPriceBeforeInstallment += installmentProduct.GetTotalInstallmentPrice;
             }
+            totalPriceBeforeInstallment = Math.Round( totalPriceBeforeInstallment , 2);
             TotalPriceBeforeInstallmentValue_InstallmentOrderUC.Text = totalPriceBeforeInstallment.ToString();
 
 
@@ -831,20 +851,8 @@ namespace WPF_GUI
 
                 InstallmentCalculations();
 
-                PaymentsStartDate_InstallmentOrderUC.DisplayDateStart = DateTime.Now;
 
-
-                if (Installment.Date >= DateTime.Now)
-                {
-                    PaymentsStartDate_InstallmentOrderUC.SelectedDate = Installment.Date;
-                }
-                else
-                {
-                    Installment.Date = DateTime.Now;
-                    PaymentsStartDate_InstallmentOrderUC.SelectedDate = Installment.Date;
-                }
-
-
+                Installment.Date = DateTime.Now;
                 DipositValue_InstallmentOrderUC.Text = Installment.Deposit.ToString();
                 NumberOfMonthsValue_InstallmentOrderUC.Text = Installment.NumberOfMonths.ToString();
                 RateOfInterestValue_InstallmentOrderUC.Text = Installment.RateOfInterest.ToString();
@@ -868,12 +876,13 @@ namespace WPF_GUI
         {
            
             
-                Installment.LoanAmount = decimal.Parse(TotalPriceBeforeInstallmentValue_InstallmentOrderUC.Text) - Installment.Deposit;
-                Installment.EMI = GlobalConfig.Connection.CalculateTheEMI_RateOfInterestByYear(Installment.LoanAmount, Installment.RateOfInterest, Installment.NumberOfMonths);
-                Installment.TotaInstallmentPrice = Installment.EMI * Installment.NumberOfMonths ;
+            Installment.LoanAmount = Math.Round( decimal.Parse(TotalPriceBeforeInstallmentValue_InstallmentOrderUC.Text) - Installment.Deposit , 2);
+            Installment.EMI = Math.Round( GlobalConfig.Connection.CalculateTheEMI_RateOfInterestByYear(Installment.LoanAmount, Installment.RateOfInterest, Installment.NumberOfMonths) , 2);
+            Installment.TotaInstallmentPrice = Math.Round( Installment.EMI * Installment.NumberOfMonths , 2 );
             Installment.TotaInstallmentPrice += Installment.Deposit;
-            
-           
+            Installment.TotaInstallmentPrice = Math.Round(Installment.TotaInstallmentPrice , 2);
+
+
         }
 
 
@@ -885,100 +894,149 @@ namespace WPF_GUI
         /// <returns></returns>
         private bool InstallmentValues_IsValid()
         {
-            if(DipositValue_InstallmentOrderUC.Text.Length > 0)
-            {
-                decimal diposit = new decimal();
-                if(decimal.TryParse(DipositValue_InstallmentOrderUC.Text , out diposit))
+            
+                if (Customer != null)
                 {
-                    if(diposit >= 0 && diposit <= decimal.Parse(TotalPriceBeforeInstallmentValue_InstallmentOrderUC.Text) )
+                    Installment.Customer = Customer;
+
+                    if (DipositValue_InstallmentOrderUC.Text.Length > 0)
                     {
-                        Installment.Deposit = diposit;
-
-                        if(NumberOfMonthsValue_InstallmentOrderUC.Text.Length > 0)
+                        decimal diposit = new decimal();
+                        if (decimal.TryParse(DipositValue_InstallmentOrderUC.Text, out diposit))
                         {
-                            int numberOfMonths = new int();
-                            if(int.TryParse(NumberOfMonthsValue_InstallmentOrderUC.Text , out numberOfMonths))
+                            if (diposit >= 0 && diposit <= decimal.Parse(TotalPriceBeforeInstallmentValue_InstallmentOrderUC.Text))
                             {
+                                Installment.Deposit = diposit;
 
-                                if(numberOfMonths >= 1)
+                                if (NumberOfMonthsValue_InstallmentOrderUC.Text.Length > 0)
                                 {
-                                    Installment.NumberOfMonths = numberOfMonths;
-
-                                    if(RateOfInterestValue_InstallmentOrderUC.Text.Length > 0)
+                                    int numberOfMonths = new int();
+                                    if (int.TryParse(NumberOfMonthsValue_InstallmentOrderUC.Text, out numberOfMonths))
                                     {
-                                        double rateOfInterest = new double();
-                                        if (double.TryParse(RateOfInterestValue_InstallmentOrderUC.Text ,out rateOfInterest))
+
+                                        if (numberOfMonths >= 1)
                                         {
-                                            if(rateOfInterest > 1)
+                                            Installment.NumberOfMonths = numberOfMonths;
+
+                                            if (RateOfInterestValue_InstallmentOrderUC.Text.Length > 0)
                                             {
-                                                Installment.RateOfInterest = rateOfInterest;
+                                                double rateOfInterest = new double();
+                                                if (double.TryParse(RateOfInterestValue_InstallmentOrderUC.Text, out rateOfInterest))
+                                                {
+                                                    if (rateOfInterest > 1)
+                                                    {
+                                                        Installment.RateOfInterest = rateOfInterest;
+
+
+                                                        if (PaymentsStartDate_InstallmentOrderUC.SelectedDate >= DateTime.Now)
+                                                        {
+                                                            if (PaymentsStartDate_InstallmentOrderUC.SelectedDate.Value.Day == 29 || PaymentsStartDate_InstallmentOrderUC.SelectedDate.Value.Day == 30 || PaymentsStartDate_InstallmentOrderUC.SelectedDate.Value.Day == 31)
+                                                            {
+                                                                Installment.PaymentsStartDate = (DateTime)PaymentsStartDate_InstallmentOrderUC.SelectedDate;
+                                                                Installment.PaymentsStartDate = Installment.PaymentsStartDate.AddMonths(1);
+                                                                Installment.PaymentsStartDate = new DateTime(Installment.PaymentsStartDate.Year, Installment.PaymentsStartDate.Month, 1);
+                                                                MessageBox.Show("Payments can't start from day 29 , 30 , 31. The Payments Starts 1st day in the next month");
+                                                                PaymentsStartDate_InstallmentOrderUC.SelectedDate = Installment.PaymentsStartDate;
+                                                            }
+                                                            else
+                                                            {
+                                                                Installment.PaymentsStartDate = (DateTime)PaymentsStartDate_InstallmentOrderUC.SelectedDate;
+                                                            }
+
+                                                        }
+                                                        else
+                                                        {
+                                                            Installment.PaymentsStartDate = DateTime.Now;
+                                                            if (Installment.PaymentsStartDate.Day == 29 || Installment.PaymentsStartDate.Day == 30 || Installment.PaymentsStartDate.Day == 31)
+                                                            {
+                                                                Installment.PaymentsStartDate = Installment.PaymentsStartDate.AddMonths(1);
+                                                                Installment.PaymentsStartDate = new DateTime(Installment.PaymentsStartDate.Year, Installment.PaymentsStartDate.Month, 1);
+                                                                PaymentsStartDate_InstallmentOrderUC.SelectedDate = Installment.PaymentsStartDate;
+                                                            }
+                                                            else
+                                                            {
+                                                                PaymentsStartDate_InstallmentOrderUC.SelectedDate = Installment.PaymentsStartDate;
+                                                            }
+                                                        }
+
+                                                    }
+                                                    else
+                                                    {
+                                                        MessageBox.Show("Rate Of interest should be more than 1 ");
+                                                        RateOfInterestValue_InstallmentOrderUC.Text = "1.1";
+                                                        return false;
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    MessageBox.Show("Rate of interest should be a number");
+                                                    RateOfInterestValue_InstallmentOrderUC.Text = "1.1";
+                                                    return false;
+
+                                                }
                                             }
                                             else
                                             {
-                                                MessageBox.Show("Rate Of interest should be more than 1 ");
+                                                MessageBox.Show("Rate Of intereset EMPTY !");
                                                 RateOfInterestValue_InstallmentOrderUC.Text = "1.1";
                                                 return false;
                                             }
+
                                         }
                                         else
                                         {
-                                            MessageBox.Show("Rate of interest should be a number");
-                                            RateOfInterestValue_InstallmentOrderUC.Text = "1.1";
+                                            MessageBox.Show("Number OF months should be more 1 or more");
+                                            NumberOfMonthsValue_InstallmentOrderUC.Text = "1";
                                             return false;
-
                                         }
                                     }
                                     else
                                     {
-                                        MessageBox.Show("Rate Of intereset EMPTY !");
-                                        RateOfInterestValue_InstallmentOrderUC.Text = "1.1";
+                                        MessageBox.Show("Enter a valid Number Of months");
+                                        NumberOfMonthsValue_InstallmentOrderUC.Text = "1";
                                         return false;
                                     }
-
                                 }
                                 else
                                 {
-                                    MessageBox.Show("Number OF months should be more 1 or more");
+                                    MessageBox.Show("Number Of Months Value is empty !");
                                     NumberOfMonthsValue_InstallmentOrderUC.Text = "1";
                                     return false;
                                 }
                             }
                             else
                             {
-                                MessageBox.Show("Enter a valid Number Of months");
-                                NumberOfMonthsValue_InstallmentOrderUC.Text = "1";
+                                MessageBox.Show("Diposit value Should be more than 0 And less Than Total price before installment ");
+                                DipositValue_InstallmentOrderUC.Text = "0";
                                 return false;
                             }
                         }
                         else
                         {
-                            MessageBox.Show("Number Of Months Value is empty !");
-                            NumberOfMonthsValue_InstallmentOrderUC.Text = "1";
+                            MessageBox.Show("Diposit Value should be a number");
+                            DipositValue_InstallmentOrderUC.Text = "0";
                             return false;
                         }
                     }
                     else
                     {
-                        MessageBox.Show("Diposit value Should be more than 0 And less Than Total price before installment ");
+                        MessageBox.Show("Diposit Value is empty !");
                         DipositValue_InstallmentOrderUC.Text = "0";
                         return false;
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Diposit Value should be a number");
-                    DipositValue_InstallmentOrderUC.Text = "0";
+                    MessageBox.Show("Please select a customer Or add a new one , You can use the default customer.");
                     return false;
-                }
-            }
-            else
-            {
-                MessageBox.Show("Diposit Value is empty !");
-                DipositValue_InstallmentOrderUC.Text = "0";
-                return false;
-            }
 
-         
+                }
+            
+            
+
+
+
+
             return true;
         }
 
@@ -1008,6 +1066,9 @@ namespace WPF_GUI
         }
 
 
+
+       
+
         private void RemoveSelectedProductButton_InstallmentOrderUC_Click(object sender, RoutedEventArgs e)
         {
             InstallmentProductModel installmentProduct = (InstallmentProductModel)ChoosenProductList_InstallmentOrderUC.SelectedItem;
@@ -1016,12 +1077,67 @@ namespace WPF_GUI
                 InstallmentProducts.Remove(installmentProduct);
                 ChoosenProductList_InstallmentOrderUC.ItemsSource = null;
                 ChoosenProductList_InstallmentOrderUC.ItemsSource = InstallmentProducts;
+
+                // not in the right place but i had to do it here
+                DipositValue_InstallmentOrderUC.Text = "0";
+
                 UpdateInstallmentValues();
             }
             else
             {
                 MessageBox.Show("Select a Product to remove from the list !");
             }
+        }
+
+        /// <summary>
+        /// Save the installment and get the new Id
+        /// Save each InstallmentProduct
+        /// Create the InstallmentDetails:
+        ///     - initial the InstallmentDetail Lists countOf(numberOfMonths)
+        ///     - Fill the DueToPay each InstallmentDetail
+        ///     - Save To the database
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ConfitmButton_InstallmentOrderUC_Click(object sender, RoutedEventArgs e)
+        {
+            if (InstallmentValues_IsValid())
+            {
+                if (InstallmentProducts.Count > 0)
+                {
+                    Installment.Staff = Staff;
+                    Installment.Store = Store;
+                    Installment.Products = InstallmentProducts;
+                    Installment.Id = GlobalConfig.Connection.GetEmptyInstallmentFromTheDatabase(Installment).Id;
+                    GlobalConfig.Connection.SaveInstallmentProductToTheDatabase(Installment);
+                    GlobalConfig.Connection.CreateAndSaveInstallmentDetailsToTheDatabase(Installment);
+
+                    foreach(InstallmentProductModel installmentProduct in Installment.Products)
+                    {
+                        List<StockModel> stock = new List<StockModel>();
+                        stock = GlobalConfig.Connection.GetStocksByProduct(Stocks, installmentProduct.Product);
+                        GlobalConfig.Connection.ReduseStock(stock[0], installmentProduct.Quantity);
+                    }
+
+                    SetInitialValues();
+
+                    // TODO - Update the Installments in the publicVariables
+                    
+
+                }
+                else
+                {
+                    MessageBox.Show("The product List is empty !");
+                }
+
+            }
+           
+        }
+
+
+        private void ReloadTabButton_InstallmentOrderUC_Click(object sender, RoutedEventArgs e)
+        {
+            SetInitialValues();
         }
 
         #endregion

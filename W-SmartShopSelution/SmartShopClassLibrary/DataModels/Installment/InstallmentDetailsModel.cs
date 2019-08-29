@@ -10,8 +10,14 @@ namespace Library
     {
         public int Id { get; set; }
 
-        public List<DateTime> DueToPay { get; set; }
+        /// <summary>
+        /// The date of payment
+        /// </summary>
+        public DateTime DueToPay { get; set; }
 
-        public List<DateTime> PaymentDate { get; set; }
+        /// <summary>
+        /// Equals 1/1/1755 if it not payed
+        /// </summary>
+        public DateTime PaymentDate { get; set; }
     }
 }

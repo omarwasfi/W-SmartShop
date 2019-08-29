@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Dapper;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -40,6 +42,40 @@ namespace Library
             return (decimal)EMIInDouble;
         }
 
+
+        /// <summary>
+        /// Create installment to the database
+        /// requires : CustomerModel,Date,NumberOfMonths,PaymentsStartDate,EMI,RateOfInterest,LoanAmount,Deposit,TotalInstallmentPrice,StoreModel,StaffModel
+        /// </summary>
+        /// <param name="installment"></param>
+        /// <param name="db"></param>
+        /// <returns></returns>
+        public static InstallmentModel GetEmptyInstallmentFromTheDatabase(InstallmentModel installment , string db)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnVal(db)))
+            {
+                var p = new DynamicParameters();
+                p.Add("@CustomerId", installment.Customer.Id);
+                p.Add("@Date", installment.Date);
+                p.Add("@NumberOfMonths", installment.NumberOfMonths);
+                p.Add("@PaymentsStartsDate", installment.PaymentsStartDate);
+                p.Add("@EMI", installment.EMI);
+                p.Add("@RateOfInterest", installment.RateOfInterest);
+                p.Add("@LoanAmount", installment.LoanAmount);
+                p.Add("@Deposit", installment.Deposit);
+                p.Add("@TotalInstallmentPrice", installment.TotaInstallmentPrice);
+                p.Add("@StoreId", installment.Store.Id);
+                p.Add("@StaffId", installment.Staff.Id);
+                p.Add("@Id", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
+                connection.Execute("dbo.spInstallment_Create", p, commandType: CommandType.StoredProcedure);
+                installment.Id = p.Get<int>("@Id");
+
+            }
+
+            return installment;
+        }
+
+        
              
 
     }

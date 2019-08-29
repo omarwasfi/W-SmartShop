@@ -740,11 +740,12 @@ namespace Library
 
         /// <summary>
         /// Resuce the quantity of stock in the database
+        /// If the quantity  = stock.quantity => remove the stock from the database
         /// </summary>
         /// <param name="stock"></param>
         /// <param name="quantity"> the number that u want to decreace </param>
         /// <param name="db"></param>
-        public  void ReduseStock(StockModel stock, int quantity)
+        public void ReduseStock(StockModel stock, int quantity)
         {
             Stock.ReduseStock(stock, quantity, db);
 
@@ -887,6 +888,52 @@ namespace Library
             return Installment.CalculateTheEMI_RateOfInterestByYear(loanAmount,rateOfInterest,numberOfMonths);
         }
 
+        /// <summary>
+        /// Create installment to the database
+        /// requires : CustomerModel,Date,NumberOfMonths,PaymentsStartDate,EMI,RateOfInterest,LoanAmount,Deposit,TotalInstallmentPrice,StoreModel,StaffModel
+        /// </summary>
+        /// <param name="installment"></param>
+        /// <param name="db"></param>
+        /// <returns></returns>
+        public InstallmentModel GetEmptyInstallmentFromTheDatabase(InstallmentModel installment)
+        {
+            return Installment.GetEmptyInstallmentFromTheDatabase(installment, db);
+        }
+
+
+        #endregion
+
+        #region InstallmentProduct
+
+        /// <summary>
+        /// Foreach InstallmentProduct in The Installment , save it in the database
+        /// </summary>
+        /// <param name="installment"></param>
+        /// <param name="db"></param>
+        public void SaveInstallmentProductToTheDatabase(InstallmentModel installment)
+        {
+
+            InstallmentProduct.SaveInstallmentProductToTheDatabase(installment, db);
+
+        }
+
+        #endregion
+
+        #region InstallmentDetails
+
+        /// <summary>
+        /// Get Installment
+        /// Create the InstallmentDetails:
+        ///     - initial the InstallmentDetail Lists countOf(numberOfMonths)
+        ///     - Fill the DueToPay each InstallmentDetail
+        ///     - Fill the PaymentDate to 1/1/1 date as they not payed
+        ///     - Save To the database
+        /// </summary>
+        public void CreateAndSaveInstallmentDetailsToTheDatabase(InstallmentModel installment)
+        {
+            InstallmentDetails.CreateAndSaveInstallmentDetailsToTheDatabase(installment, db);
+
+        }
 
         #endregion
 

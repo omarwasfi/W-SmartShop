@@ -225,20 +225,36 @@ namespace Library
 
         /// <summary>
         /// Resuce the quantity of stock in the database
+        /// If the quantity  = stock.quantity => remove the stock from the database
         /// </summary>
         /// <param name="stock"></param>
         /// <param name="quantity"> the number that u want to decreace </param>
         /// <param name="db"></param>
         public static void ReduseStock(StockModel stock , int quantity , string db)
         {
-            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnVal(db)))
+            if (stock.Quantity > quantity)
             {
-                var p = new DynamicParameters();
-                p.Add("@StockId", stock.Id);
-                p.Add("@Quantity", quantity);
-                connection.Execute("dbo.spStock_ReduseStock", p, commandType: CommandType.StoredProcedure);
+                using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnVal(db)))
+                {
+                    var p = new DynamicParameters();
+                    p.Add("@StockId", stock.Id);
+                    p.Add("@Quantity", quantity);
+                    connection.Execute("dbo.spStock_ReduseStock", p, commandType: CommandType.StoredProcedure);
 
+                }
             }
+            else
+            {
+                using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnVal(db)))
+                {
+                    var p = new DynamicParameters();
+                    p.Add("@Id", stock.Id);
+
+                    connection.Execute("dbo.spStock_Delete", p, commandType: CommandType.StoredProcedure);
+
+                }
+            }
+            
 
         }
 

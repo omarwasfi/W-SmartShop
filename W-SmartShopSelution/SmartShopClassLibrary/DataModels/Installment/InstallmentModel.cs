@@ -12,12 +12,20 @@ namespace Library
 
         public CustomerModel Customer { get; set; }
 
+        /// <summary>
+        /// The Date Of the Order
+        /// </summary>
         public DateTime Date { get; set; }
 
         /// <summary>
         /// The Number of monthes
         /// </summary>
         public int NumberOfMonths { get; set; }
+
+        /// <summary>
+        /// The date Of first poyment
+        /// </summary>
+        public DateTime PaymentsStartDate { get; set; }
 
         /// <summary>
         /// The amount of money customer pay each time
@@ -47,7 +55,10 @@ namespace Library
 
         public List<InstallmentProductModel> Products { get; set; }
 
-        public InstallmentDetailsModel InstallmentDetails { get; set; }
+        /// <summary>
+        /// List of installmentDetails
+        /// </summary>
+        public List<InstallmentDetailsModel> InstallmentDetails { get; set; }
 
        
     }
