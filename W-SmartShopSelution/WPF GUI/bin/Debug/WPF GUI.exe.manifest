@@ -102,14 +102,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="WPF GUI.exe" size="525224">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="WPF GUI.exe" size="531368">
       <assemblyIdentity name="WPF GUI" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>4LkY+jyKxUpd1ZD40AWXQJieLLoZTCV5AOe5BF3rrIQ=</dsig:DigestValue>
+        <dsig:DigestValue>1u+QxM6oMK6rsF1lM+wXuVt4H3HV2tHL05B0S4vhj4A=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

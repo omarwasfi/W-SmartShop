@@ -95,6 +95,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Installament\InstallmentCollectingUC\InstallmentCollectingUC.xaml.cs">
+      <DependentUpon>InstallmentCollectingUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Orders\Out\InstallmentOrderUC\InstallmentOrderUC.xaml.cs">
       <DependentUpon>InstallmentOrderUC.xaml</DependentUpon>
     </Compile>
@@ -152,6 +155,10 @@
     <Compile Include="Human\Supplier\SupplierLogUC\SupplierLogUC.xaml.cs">
       <DependentUpon>SupplierLogUC.xaml</DependentUpon>
     </Compile>
+    <Page Include="Installament\InstallmentCollectingUC\InstallmentCollectingUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Orders\Out\InstallmentOrderUC\InstallmentOrderUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -314,5 +321,6 @@
   <ItemGroup>
     <Resource Include="MainForm\Assets\AshesMenuLogo.jpg" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
