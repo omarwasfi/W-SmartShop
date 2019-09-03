@@ -29,6 +29,7 @@ namespace Library
                 p.Add("@StoreId", order.Store.Id);
                 p.Add("@StaffId", order.Staff.Id);
                 p.Add("@TotalPrice", order.TotalPrice);
+                p.Add("@Details", order.Details);
                 p.Add("@Id", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
                 connection.Execute("dbo.spOrders_CreateOrder", p, commandType: CommandType.StoredProcedure);
                 order.Id = p.Get<int>("@Id");
@@ -56,15 +57,18 @@ namespace Library
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnVal(db)))
             {                
                 orders = connection.Query<OrderModel>("dbo.spOrders_GetAll").ToList();
-                
+
 
                 // Is here couse store bugs skip it to the next foreach ->>> this is just to set the store model foreach order !!
-                List<StoreModel> stores = new List<StoreModel>();
+                /*
                 stores = connection.Query<StoreModel>("select * from Store").ToList();
                 foreach (StoreModel s in stores)
                 {
                     s.Name = connection.QuerySingle<string>("select Neme from Store where Id = " + s.Id + ";");
-                }
+                }*/
+
+                List<StoreModel> stores = new List<StoreModel>();
+                stores = GlobalConfig.Connection.GetAllStores();
 
                 foreach (OrderModel order in orders)
                 {
@@ -98,7 +102,7 @@ namespace Library
                     ss.Add("@StaffId", order.Staff.Id);
                     order.Staff.Person = connection.QuerySingle<PersonModel>("spStaff_GetPersonByStaffId", ss, commandType: CommandType.StoredProcedure);
                     order.Staff.Permission = connection.QuerySingle<PermissionModel>("spStaff_GetPermissionByStaffId", ss, commandType: CommandType.StoredProcedure);
-                   
+                    
 
 
                     order.Products = connection.Query<OrderProductModel>("dbo.spOrders_GetOrderProductsByOrderId", p, commandType: CommandType.StoredProcedure).ToList();
@@ -108,6 +112,7 @@ namespace Library
                         o.Add("@OrderProductId", orderProduct.Id);
                         orderProduct.Product = connection.QuerySingle<ProductModel>("spOrders_GetProdcutByOrderProductId", o, commandType: CommandType.StoredProcedure);
                         
+                        // TODO - Thist Products Don't have brand Or Category
 
 
                     }

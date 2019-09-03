@@ -28,12 +28,19 @@
         <DataGrid x:Name="StocksList_Inventory" IsReadOnly="True" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="523" Margin="10,72,0,0" VerticalAlignment="Top" Width="1323" Background="LightGray">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Product Name" Binding="{Binding Path=Product.Name}"/>
+                <DataGridTextColumn Header="Barcode" Binding="{Binding Path=Product.BarCode}"/>
                 <DataGridTextColumn Header="In Stock" Binding="{Binding Path=Quantity}"/>
+                <DataGridTextColumn Header="Category" Binding="{Binding Path=Product.Category.Name}"/>
+                <DataGridTextColumn Header="Brand" Binding="{Binding Path=Product.Brand.Name}"/>
                 <DataGridTextColumn Header="Serial Number" Binding="{Binding Path=Product.SerialNumber}"/>
+                <DataGridTextColumn Header="Serial Number2" Binding="{Binding Path=Product.SerialNumber2}"/>
                 <DataGridTextColumn Header="Sale Price" Binding="{Binding Path=Product.SalePrice}"/>
-
-
             </DataGrid.Columns>
+            <DataGrid.RowDetailsTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Path=Product.Details}" Margin="10" />
+                </DataTemplate>
+            </DataGrid.RowDetailsTemplate>
         </DataGrid>
 
         <Button Name="ModifySelectedButton_InventoryUC" Click="ModifySelectedButton_InventoryUC_Click" Margin="428,600,643,0" VerticalAlignment="Top" Height="70"  >

@@ -1,8 +1,6 @@
 ﻿
 To the product :	
-	- two types of products : 
-			1- product has 1 serial number , or a BarCode
-			2- Product has more than 1 serial number , but all has all BarCode
+	if the product exist , any of the prices changed Create a new barCode
 	
 
 add to the Order : total maksab

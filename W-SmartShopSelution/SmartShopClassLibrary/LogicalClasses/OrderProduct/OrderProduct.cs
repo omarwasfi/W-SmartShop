@@ -26,9 +26,11 @@ namespace Library
                     var o = new DynamicParameters();
                     o.Add("@OrderId", order.Id);
                     o.Add("@ProductId", orderProduct.Product.Id);
+                    o.Add("@Quantity", orderProduct.Quantity);
                     o.Add("@SalePrice", orderProduct.SalePrice);
                     o.Add("@Discount", orderProduct.Discount);
-                    o.Add("@Quantity", orderProduct.Quantity);
+                    o.Add("@Profit", orderProduct.Profit);
+                    
                     connection.Execute("dbo.spOrderProduct_Create", o, commandType: CommandType.StoredProcedure);
 
                 }

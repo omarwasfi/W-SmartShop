@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Library
 {
-     class OperationModel
+    public class OperationModel
     {
         public  int Id { get; set; }
 

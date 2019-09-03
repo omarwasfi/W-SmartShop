@@ -16,20 +16,44 @@ namespace Library
         /// </summary>
         public StockModel Stock { get; set; }
 
+        /// <summary>
+        /// The Product Model
+        /// </summary>
         public ProductModel Product { get; set; }
 
+        /// <summary>
+        /// The quantity that the customer will buy
+        /// </summary>
         public int Quantity { get; set; }
 
+        /// <summary>
+        /// The SalePrice
+        /// </summary>
         public decimal SalePrice { get; set; }
 
+        /// <summary>
+        /// The Discount 
+        /// </summary>
         public decimal Discount { get; set; }
 
+
+
+        /// <summary>
+        /// The salePrice - IncomePrice of the product
+        /// </summary>
+        public decimal Profit { get; set; }
+
+
+        // TODO - Remove It if we don't use !
+        /// <summary>
+        /// The total price after discount 
+        /// </summary>
         public decimal TotalProductPrice { get; set; }
 
         /// <summary>
         /// Get only : the total price of the order product
         /// </summary>
-        public decimal TotalPrice
+        public decimal GetTotalPrice
         {
             get
             {
@@ -39,6 +63,18 @@ namespace Library
                 total -= discount;
 
                 return total ;
+            }
+        }
+
+
+        /// <summary>
+        /// GetThe Profit (  salePrice - IncomePrice of the product )
+        /// </summary>
+        public decimal GetProfit
+        {
+            get
+            {
+                return SalePrice = Product.IncomePrice;
             }
         }
 

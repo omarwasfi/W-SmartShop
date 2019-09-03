@@ -11,3 +11,14 @@ After 2 test :
 - Fix The bug.  In SellUC : If user press add before confirm the quantity , saleprice or discount 
 
 After SpeedNet 1st Test : 
+
+ - Add BarCode , SerialNumber2 , Details to the product
+ - Add Profit in OrderProductModel
+ - Add Details in OrderModel
+ - Add Date to MoneyRecordModel
+ - Add GetTheProductByTheBarCode , FilterProductsByBarCode in the Product.cs
+
+ - Update the SaveOrderProductListToTheDatabase in the orderProduct.cs
+ - Update the GetEmptyOrderFromTheDatabase in the Order.cs
+ - Update All Fuctions in Product.cs
+ - 

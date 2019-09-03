@@ -18,14 +18,29 @@ namespace Library
         public int Id { get; set; }
 
         /// <summary>
-        /// Product Name ( Has to be Unique )
+        /// Product Name ( Not has to be Unique ) (200 char)
         /// </summary>
         public string Name { get; set; }
 
         /// <summary>
-        /// Product SerialNumber ( Has to be Unique )
+        /// Has To be unique , not null (200 char)
+        /// </summary>
+        public string BarCode { get; set; }
+
+        /// <summary>
+        /// Product SerialNumber ( not Has to be Unique ) Or Null (200 char)
         /// </summary>
         public string SerialNumber { get; set; }
+
+        /// <summary>
+        /// Product SerialNumber ( not Has to be Unique ) Or Null , can't be set if the first one is null (200 char)
+        /// </summary>
+        public string SerialNumber2 { get; set; }
+
+        /// <summary>
+        /// The Details of a product For any additional Info (500 Char)
+        /// </summary>
+        public string Details { get; set; }
 
         /// <summary>
         /// Current Sale Price of the product
@@ -37,6 +52,8 @@ namespace Library
         /// </summary>
         public decimal IncomePrice { get; set; }
 
+
+
         /// <summary>
         /// Category Model of this product
         /// </summary>
@@ -46,5 +63,17 @@ namespace Library
         /// brand model of this Product
         /// </summary>
         public BrandModel Brand { get; set; }
+
+
+        /// <summary>
+        /// Get fist three litter of category , brand , Name In a Uppercase
+        /// used When create a new barcode
+        /// </summary>
+        public string GetFirstThreeLitterBarCode { get {
+
+                string barCode = Category.Name.Substring(0,1) + Brand.Name.Substring(0,1) + Name.Substring(0,1);
+                barCode =  barCode.ToUpper();
+                return barCode;
+            } }
     }
 }

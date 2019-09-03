@@ -43,9 +43,47 @@ namespace Library
         public decimal TotalPrice { get; set; }
 
         /// <summary>
+        /// The details of the order Or any aditional information the user staff want to add
+        /// </summary>
+        public string Details { get; set; }
+
+        /// <summary>
         /// List of order product model describe 
         /// what products we have , the quantity , the price of each one , if there is a discount or not
         /// </summary>
         public List<OrderProductModel> Products { get; set; }
+
+
+        /// <summary>
+        /// Get the total Profit of this Order
+        /// </summary>
+        public decimal GetTotalProfit
+        {
+            get
+            {
+                decimal profit = new decimal();
+                foreach(OrderProductModel orderProduct in Products)
+                {
+                    profit += orderProduct.Profit;
+                }
+
+                return profit;
+            }
+        }
+
+        /// <summary>
+        /// Get the total Price that the customer payed
+        /// </summary>
+        public decimal GetTotalPrice {
+            get
+            {
+                decimal total = new decimal();
+                foreach(OrderProductModel orderProduct in Products)
+                {
+                    total += orderProduct.GetTotalPrice;
+                }
+                return total;
+            } }
+
     }
 }

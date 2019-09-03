@@ -131,7 +131,7 @@ namespace Library
 
 
         /// <summary>
-        /// Check if the product with this serial number exist
+        /// Check if the product with this serial number exist , in the  product's serialNumber , serialNumber2
         /// </summary>
         /// <param name="products"> List Of products </param>
         /// <param name="SerialNumber"> serial number </param>
@@ -142,7 +142,7 @@ namespace Library
 
             foreach(ProductModel p in products)
             {
-                if (p.SerialNumber == SerialNumber)
+                if (p.SerialNumber == SerialNumber || p.SerialNumber2 == SerialNumber)
                 {
                     product = p;
                     return product;
@@ -152,6 +152,45 @@ namespace Library
             return null;
         }
 
+        /// <summary>
+        /// Get product by barCode
+        /// if the barCode is not exist return Null
+        /// </summary>
+        /// <param name="products"></param>
+        /// <param name="barCode"></param>
+        /// <returns></returns>
+        public static ProductModel GetTheProductByTheBarCode(List<ProductModel> products , string barCode)
+        {
+            
+            foreach(ProductModel p in products)
+            {
+                if (p.BarCode == barCode)
+                {
+                    return p;
+                }
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// return list of filterd Products if the product BarCOde Contains String name
+        /// source of the search way: https://stackoverflow.com/a/3355561/6421951
+        /// </summary>
+        /// <param name="products"> list of Product model  </param>
+        /// <param name="BarCode"> BarCode that we search for </param>
+        /// <returns></returns>
+        public static List<ProductModel> FilterProductsByBarCode(List<ProductModel> products, string BarCode)
+        {
+            List<ProductModel> FProducts = new List<ProductModel>();
+            foreach (ProductModel product in products)
+            {
+                if (Regex.IsMatch(product.BarCode, Regex.Escape(BarCode), RegexOptions.IgnoreCase))
+                {
+                    FProducts.Add(product);
+                }
+            }
+            return FProducts;
+        }
 
         /// <summary>
         /// return list of filterd Products if the product name Contains String name
@@ -174,7 +213,7 @@ namespace Library
         }
 
         /// <summary>
-        ///  return list of filterd products if the product serial number  Contains SerialNumber
+        ///  return list of filterd products if the product serialnumber or serialNumber2  Contains SerialNumber
         ///  source of the search way: https://stackoverflow.com/a/3355561/6421951
         /// </summary>
         /// <param name="products"></param>
@@ -185,10 +224,10 @@ namespace Library
             List<ProductModel> FProducts = new List<ProductModel>();
             foreach (ProductModel product in products)
             {
-                if (product.SerialNumber != null)
+                if (product.SerialNumber != null || product.SerialNumber2 != null)
                 {
 
-                    if (Regex.IsMatch(product.SerialNumber, Regex.Escape(serialNumber), RegexOptions.IgnoreCase))
+                    if (Regex.IsMatch(product.SerialNumber, Regex.Escape(serialNumber), RegexOptions.IgnoreCase) || Regex.IsMatch(product.SerialNumber2, Regex.Escape(serialNumber), RegexOptions.IgnoreCase))
                     {
                         FProducts.Add(product);
                     }
@@ -210,7 +249,7 @@ namespace Library
         {
             foreach(ProductModel product in products)
             {
-                if (product.Name == name)
+                if (product.Name == name )
                 {
                     return false;
                 }
@@ -230,7 +269,33 @@ namespace Library
         {
             foreach (ProductModel product in products)
             {
-                if (product.SerialNumber == serialNumber)
+                if (product.SerialNumber == serialNumber || product.SerialNumber2 == serialNumber)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// Check if the product barCode is Unique In the list of products true if unique , flase if Exist
+        /// </summary>
+        /// <param name="BarCode"> The barcode that we need to check </param>
+        /// <returns> 
+        /// true if unique
+        /// flase if Exist
+        /// </returns>
+        public static bool CheckIfTheProductBarCodeUnique(List<ProductModel> products, string BarCode)
+        {
+            if(string.IsNullOrWhiteSpace(BarCode))
+            {
+                return false;
+
+            }
+
+            foreach (ProductModel product in products)
+            {
+                if (product.BarCode == BarCode)
                 {
                     return false;
                 }
@@ -253,14 +318,14 @@ namespace Library
             {
                 var p = new DynamicParameters();
                 p.Add("@ProductName" , newProduct.Name);
+                p.Add("@BarCode", newProduct.BarCode);
                 p.Add("@SerialNumber", newProduct.SerialNumber);
-                p.Add("@IncomePrice", newProduct.IncomePrice);
+                p.Add("@SerialNumber2", newProduct.SerialNumber2);
+                p.Add("@Details", newProduct.Details);
                 p.Add("@SalePrice", newProduct.SalePrice);
+                p.Add("@IncomePrice", newProduct.IncomePrice);
                 p.Add("@BrandId", newProduct.Brand.Id);
                 p.Add("@CategoryId", newProduct.Category.Id);
-
-
-
                 p.Add("@Id", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
                 connection.Execute("dbo.spProduct_Create", p, commandType: CommandType.StoredProcedure);
                 newProduct.Id = p.Get<int>("@Id");
@@ -280,9 +345,12 @@ namespace Library
                 var p = new DynamicParameters();
                 p.Add("@Id",updatedProduct.Id);
                 p.Add("@ProductName", updatedProduct.Name);
+                p.Add("@BarCode", updatedProduct.BarCode);
                 p.Add("@SerialNumber", updatedProduct.SerialNumber);
-                p.Add("@IncomePrice", updatedProduct.IncomePrice);
+                p.Add("@SerialNumber2", updatedProduct.SerialNumber2);
+                p.Add("@Details", updatedProduct.Details);
                 p.Add("@SalePrice", updatedProduct.SalePrice);
+                p.Add("@IncomePrice", updatedProduct.IncomePrice);
                 p.Add("@BrandId", updatedProduct.Brand.Id);
                 p.Add("@CategoryId", updatedProduct.Category.Id);
                 connection.Execute("dbo.spProduct_Update", p, commandType: CommandType.StoredProcedure);
@@ -323,6 +391,27 @@ namespace Library
 
         }
 
+        /// <summary>
+        /// Create a unique BarCode
+        /// </summary>
+        /// <param name="product"> the new product that we need to create the barCode to it </param>
+        /// <param name="products"> all the product in the database </param>
+        /// <returns></returns>
+       public static string CreateBarCode(ProductModel product , List<ProductModel> products)
+        {
+            string barCode = product.GetFirstThreeLitterBarCode;
+            int number = 1;
+            
+            while(CheckIfTheProductBarCodeUnique(products,barCode + number) == false)
+            {
+                number++;
+            }
+
+            return barCode + number;
+            
+        }
+
+        
 
     }
 }

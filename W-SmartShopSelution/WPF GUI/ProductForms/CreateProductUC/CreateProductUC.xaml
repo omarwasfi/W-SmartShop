@@ -20,8 +20,8 @@
         <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="12,56,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" Width="82" ><Run Text="Brand : "/></TextBlock>
         <ComboBox x:Name="BrandValue_CreateProductUC" HorizontalAlignment="Left" Margin="136,61,0,0" VerticalAlignment="Top" Width="207" />
 
-        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="10,99,0,0" ><Run Text="Product Name : "/></TextBlock>
-        <TextBox x:Name="ProductNameValue_CreateProductUC" HorizontalAlignment="Left" Height="33" Margin="195,99,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="335"/>
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="10,94,0,0" ><Run Text="Product Name : "/></TextBlock>
+        <TextBox x:Name="ProductNameValue_CreateProductUC" HorizontalAlignment="Left" Height="33" Margin="193,94,0,0"  VerticalAlignment="Top" Width="335" MaxLines="1" MaxLength="200"/>
 
         <Grid Margin="1070,626,10,10">
             <Button Name="CloseButton_CreateProdcutUC" Click="CloseButton_CreateProdcutUC_Click" Content="Close" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" Margin="166,0,0,0"/>
@@ -34,27 +34,57 @@
                 <TextBlock FontSize="19" Text="Create New Brand" Margin="50,10,10,10"/>
             </Grid>
         </Button>
-        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="10,175,0,0" ><Run Text="Sale price : "/></TextBlock>
-        <TextBox x:Name="SalePriceValue_CreateproductUC" HorizontalAlignment="Left" Height="24" Margin="193,184,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="78"/>
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="403,208,0,0" ><Run Text="Sale price : "/></TextBlock>
+        <TextBox x:Name="SalePriceValue_CreateproductUC" HorizontalAlignment="Left" Height="24" Margin="533,217,0,0"  VerticalAlignment="Top" Width="78" MaxLines="1" MaxLength="10"/>
 
-        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="12,204,0,0" ><Run Text="Income price : "/></TextBlock>
-        <TextBox x:Name="IncomeValue_CreateproductUC" HorizontalAlignment="Left" Height="24" Margin="195,213,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="78"/>
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="616,208,0,0" ><Run Text="Income price : "/></TextBlock>
+        <TextBox x:Name="IncomeValue_CreateproductUC" HorizontalAlignment="Left" Height="24" Margin="783,217,0,0"  VerticalAlignment="Top" Width="78" MaxLength="10" MaxLines="1"/>
 
-        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="10,137,0,0" ><Run Text="Serial Number : "/></TextBlock>
-        <TextBox x:Name="SerialNumberValue_CreateProductUC" HorizontalAlignment="Left" Height="33" Margin="195,137,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="335"/>
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="10,170,0,0" ><Run Text="Serial Number : "/></TextBlock>
+        <TextBox x:Name="SerialNumberValue_CreateProductUC" HorizontalAlignment="Left" Height="33" Margin="193,170,0,0"  VerticalAlignment="Top" Width="335" MaxLines="1" MaxLength="200"/>
 
-        <GroupBox Header="Stock Info" HorizontalAlignment="Left" Height="204" Margin="12,346,0,0" VerticalAlignment="Top" Width="555">
+        <GroupBox Visibility="Collapsed" Header="Stock Info" HorizontalAlignment="Left" Height="204" Margin="12,368,0,0" VerticalAlignment="Top" Width="555">
             <Grid>
                 <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="10,30,0,0" ><Run Text="Store Name : "/></TextBlock>
                 <ComboBox x:Name="StoreNameValue_CreateProductUC" HorizontalAlignment="Left" Margin="164,35,0,0" VerticalAlignment="Top" Width="207" />
 
                 <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="10,83,0,0" ><Run Text="Quantity In this store : "/></TextBlock>
                 <TextBox Name="QuantityInThisStoreValue_CreateProductUC" HorizontalAlignment="Left" Height="24" Margin="265,92,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="78"/>
-                
+
                 <Button x:Name="ConfirmStoreButton_CreateProductUC" Content="Confirm" Click="ConfirmStoreButton_CreateProductUC_Click"  HorizontalAlignment="Left"  VerticalAlignment="Top" Width="111" Margin="398,95,0,0"/>
 
             </Grid>
         </GroupBox>
+
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="537,170,0,0" ><Run Text="Serial Number 2 : "/></TextBlock>
+        <TextBox x:Name="SerialNumber2Value_CreateProductUC" HorizontalAlignment="Left" Height="33" Margin="739,170,0,0"  VerticalAlignment="Top" Width="335" MaxLength="200" MaxLines="1"/>
+
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="12,132,0,0" ><Run Text="Barcode : "/></TextBlock>
+        <TextBox x:Name="ProductBarCodeValue_CreateProductUC" HorizontalAlignment="Left" Height="33" Margin="193,132,0,0"  VerticalAlignment="Top" Width="335" MaxLines="1" MaxLength="200"/>
+
+        <Button x:Name="GenetateNewBarCodeButton_CreateProductUC" Click="GenetateNewBarCodeButton_CreateProductUC_Click" Content="Generate new Barcode"  Margin="537,132,611,0" VerticalAlignment="Top" Height="33"  >
+
+        </Button>
+
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="12,244,0,0" ><Run Text="Details : "/></TextBlock>
+        <TextBox x:Name="DetailsValue_CreateProductUC" HorizontalAlignment="Left" Height="33" Margin="111,244,0,0"  VerticalAlignment="Top" Width="963" MaxLines="1" MaxLength="500"/>
+
+        <GroupBox Visibility="Collapsed" Header="Print Barcode" HorizontalAlignment="Left" Height="204" Margin="735,368,0,0" VerticalAlignment="Top" Width="555">
+            <Grid>
+
+                <Button x:Name="PrintBarCodeButton_CreateProductUC" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray"   VerticalAlignment="Top"   Height="56" Margin="382,86,10,0"  >
+                    <materialDesign:PackIcon Kind="Printer" Width="50" Height="50"/>
+                </Button>
+
+                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="11,10,0,0" ><Run Text="Barcode : "/></TextBlock>
+                <TextBox x:Name="BarCodePrintValue_CreateProductUC" HorizontalAlignment="Left" Height="33" Margin="141,10,0,0"  VerticalAlignment="Top" Width="368" MaxLines="1" MaxLength="200"/>
+
+                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="11,57,0,0" ><Run Text="Quantity : "/></TextBlock>
+                <TextBox x:Name="BarCodeQuantityPrintValue_CreateProductUC" HorizontalAlignment="Left" Height="33" Margin="141,57,0,0"  VerticalAlignment="Top" Width="43" MaxLines="1" MaxLength="4"/>
+
+            </Grid>
+        </GroupBox>
+
 
     </Grid>
 </UserControl>

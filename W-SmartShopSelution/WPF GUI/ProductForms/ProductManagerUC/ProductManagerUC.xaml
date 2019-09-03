@@ -65,7 +65,9 @@
             <DataGrid x:Name="ProductsList_ProductManagerUC" IsReadOnly="True" AutoGenerateColumns="False" HorizontalAlignment="Right" Height="527" Margin="0,77,10,0" VerticalAlignment="Top" Width="1323" Background="LightGray">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Product Name" Binding="{Binding Name}"/>
+                    <DataGridTextColumn Header="Barcode" Binding="{Binding BarCode}"/>
                     <DataGridTextColumn Header="Serial Number" Binding="{Binding SerialNumber}"/>
+                    <DataGridTextColumn Header="Serial Number2" Binding="{Binding SerialNumber2}"/>
                     <DataGridTextColumn Header="Sale Price" Binding="{Binding SalePrice}"/>
                     <DataGridTextColumn Header="Income Price" Binding="{Binding IncomePrice}"/>
                     <DataGridTextColumn Header="Category" Binding="{Binding Category.Name}"/>
@@ -73,6 +75,11 @@
 
 
                 </DataGrid.Columns>
+                <DataGrid.RowDetailsTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Details}" Margin="10" />
+                    </DataTemplate>
+                </DataGrid.RowDetailsTemplate>
             </DataGrid>
 
 

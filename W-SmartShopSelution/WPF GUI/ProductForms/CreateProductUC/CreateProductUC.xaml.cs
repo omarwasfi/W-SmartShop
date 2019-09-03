@@ -73,9 +73,12 @@ namespace WPF_GUI.CreateProduct
             StoreNameValue_CreateProductUC.DisplayMemberPath = "Name";
 
             ProductNameValue_CreateProductUC.Text = "";
+            ProductBarCodeValue_CreateProductUC.Text = "";
             SerialNumberValue_CreateProductUC.Text = "";
+            SerialNumber2Value_CreateProductUC.Text = "";
             SalePriceValue_CreateproductUC.Text = "";
             IncomeValue_CreateproductUC.Text = "";
+            DetailsValue_CreateProductUC.Text = "";
 
         }
 
@@ -84,6 +87,7 @@ namespace WPF_GUI.CreateProduct
         /// </summary>
         private void UpdateCategoriesFromThePublicVariables()
         {
+            PublicVariables.Categories = GlobalConfig.Connection.GetCategories();
             Categories = PublicVariables.Categories;
 
         }
@@ -93,6 +97,7 @@ namespace WPF_GUI.CreateProduct
         /// </summary>
         private void UpdateBrandsFromThePublicVariables()
         {
+            PublicVariables.Brands = GlobalConfig.Connection.GetBrands();
             Brands = PublicVariables.Brands;
         }
 
@@ -102,7 +107,8 @@ namespace WPF_GUI.CreateProduct
         /// </summary>
         private void UpdateProductsFromTheDatabase()
         {
-            Products = GlobalConfig.Connection.GetProducts();
+            PublicVariables.Products = GlobalConfig.Connection.GetProducts();
+            Products = PublicVariables.Products;
         }
 
         /// <summary>
@@ -131,76 +137,89 @@ namespace WPF_GUI.CreateProduct
 
             if (ProductNameValue_CreateProductUC.Text.Length > 0)
             {
-                if (GlobalConfig.Connection.CheckIfTheProductNameUnique(PublicVariables.Products, ProductNameValue_CreateProductUC.Text))
+                /*if (GlobalConfig.Connection.CheckIfTheProductNameUnique(PublicVariables.Products, ProductNameValue_CreateProductUC.Text))
                 {
-                    if (GlobalConfig.Connection.CheckIfTheProductSerialNumberUnique(PublicVariables.Products, SerialNumberValue_CreateProductUC.Text))
+                    if (GlobalConfig.Connection.CheckIfTheProductSerialNumberUnique(PublicVariables.Products, SerialNumberValue_CreateProductUC.Text) || GlobalConfig.Connection.CheckIfTheProductSerialNumberUnique(PublicVariables.Products, SerialNumber2Value_CreateProductUC.Text))
                     {
-                        decimal salePrice = new decimal();
-                        decimal incomePrice = new decimal();
-                        if (decimal.TryParse(SalePriceValue_CreateproductUC.Text, out salePrice))
-                        {
-                            if (salePrice > 0)
-                            {
-                                if (decimal.TryParse(IncomeValue_CreateproductUC.Text, out incomePrice))
-                                {
-                                    if (incomePrice > 0)
-                                    { 
-                                        if (BrandValue_CreateProductUC.Text.Length < 1)
-                                        {
-                                            BrandValue_CreateProductUC.SelectedIndex = 0;
-                                           
-                                        }
-                                        if (CategoryValue_CreateProductUC.Text.Length < 1)
-                                        {
-                                            CategoryValue_CreateProductUC.SelectedIndex = 0;
-                                        }
-                                        
-                                    }
-                                    else
-                                    {
-                                        MessageBox.Show("Income Price Can't be Less than 0.0001");
-                                        confirm = false;
-                                    }
-                                }
-                                else
-                                {
-                                    MessageBox.Show("Enter the Income Price Again ,  make sure there is no Characters in it {just A number}");
-                                    IncomeValue_CreateproductUC.Text = "";
-                                    confirm = false;
-                                }
-                            }
-                            else
-                            {
-                                MessageBox.Show("Sale Price Can't be Less than 0.0001");
-                                confirm = false;
-                            }
-                        }
-                        else
-                        {
-                            MessageBox.Show("Enter the sale Price Again ,  make sure there is no Characters in it {just A number}");
-                            SalePriceValue_CreateproductUC.Text = "";
-
-                            confirm = false;
-                        }
+                        
                     }
                     else
                     {
-                        MessageBox.Show("This Serial number is used before");
-                        confirm = false;
+                        MessageBox.Show("This Serial number is used before ,  , it would be better if used a new serial number");
                     }
                 }
                 else
                 {
-                    MessageBox.Show("This Name is used before");
-                    confirm = false;
-                }
+                    MessageBox.Show("This Name is used before , it would be better if used a new name");
+                }*/
             }
             else
             {
                 MessageBox.Show("Enter the Product Name");
                 confirm = false;
             }
-         
+
+
+            decimal salePrice = new decimal();
+            decimal incomePrice = new decimal();
+            if (decimal.TryParse(SalePriceValue_CreateproductUC.Text, out salePrice))
+            {
+                if (salePrice > 0)
+                {
+                    if (decimal.TryParse(IncomeValue_CreateproductUC.Text, out incomePrice))
+                    {
+                        if (incomePrice > 0)
+                        {
+
+                            if (GlobalConfig.Connection.CheckIfTheProductBarCodeUnique(Products, ProductBarCodeValue_CreateProductUC.Text))
+                            {
+                                if (BrandValue_CreateProductUC.Text.Length < 1)
+                                {
+                                    BrandValue_CreateProductUC.SelectedIndex = 0;
+
+                                }
+                                if (CategoryValue_CreateProductUC.Text.Length < 1)
+                                {
+                                    CategoryValue_CreateProductUC.SelectedIndex = 0;
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("The Barcode Value is used before and it has to be unique , we will Generate the barcode Value for you.");
+                                GenerateBarCode();
+                                confirm = false;
+                            }
+
+
+
+                        }
+                        else
+                        {
+                            MessageBox.Show("Income Price Can't be Less than 0.0001");
+                            confirm = false;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Enter the Income Price Again ,  make sure there is no Characters in it {just A number}");
+                        IncomeValue_CreateproductUC.Text = "";
+                        confirm = false;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Sale Price Can't be Less than 0.0001");
+                    confirm = false;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Enter the sale Price Again ,  make sure there is no Characters in it {just A number}");
+                SalePriceValue_CreateproductUC.Text = "";
+
+                confirm = false;
+            }
+
 
             // Add the product to the database
             // add the stocks to the databbase 
@@ -209,9 +228,12 @@ namespace WPF_GUI.CreateProduct
             {
                 ProductModel product = new ProductModel();
                 product.Name = ProductNameValue_CreateProductUC.Text;
+                product.BarCode = ProductBarCodeValue_CreateProductUC.Text;
                 product.SerialNumber = SerialNumberValue_CreateProductUC.Text;
+                product.SerialNumber2 = SerialNumber2Value_CreateProductUC.Text;
                 product.IncomePrice = decimal.Parse(IncomeValue_CreateproductUC.Text);
                 product.SalePrice = decimal.Parse(SalePriceValue_CreateproductUC.Text);
+                product.Details = DetailsValue_CreateProductUC.Text;
                 product.Brand = (BrandModel)BrandValue_CreateProductUC.SelectedItem;
                 product.Category = (CategoryModel)CategoryValue_CreateProductUC.SelectedItem;
                 // save the product to the database
@@ -353,7 +375,44 @@ namespace WPF_GUI.CreateProduct
             var parent = this.Parent as Window;
             if (parent != null) { parent.DialogResult = true; parent.Close(); }
         }
+
+        private void GenetateNewBarCodeButton_CreateProductUC_Click(object sender, RoutedEventArgs e)
+        {
+            GenerateBarCode();
+        }
+
+        private void GenerateBarCode()
+        {
+            if (ProductNameValue_CreateProductUC.Text.Length > 0)
+            {
+                if (BrandValue_CreateProductUC.Text.Length < 1)
+                {
+                    BrandValue_CreateProductUC.SelectedIndex = 0;
+
+                }
+                if (CategoryValue_CreateProductUC.Text.Length < 1)
+                {
+                    CategoryValue_CreateProductUC.SelectedIndex = 0;
+                }
+
+                ProductModel product = new ProductModel();
+                product.Name = ProductNameValue_CreateProductUC.Text;
+                product.Category =(CategoryModel)CategoryValue_CreateProductUC.SelectedItem;
+                product.Brand = (BrandModel)BrandValue_CreateProductUC.SelectedItem;
+
+                ProductBarCodeValue_CreateProductUC.Text = GlobalConfig.Connection.CreateBarCode(product,Products);
+            }
+            else
+            {
+                MessageBox.Show("Choose Product Name first !!");
+            }
+
+
+            
+        }
+
         #endregion
+
 
     }
 }

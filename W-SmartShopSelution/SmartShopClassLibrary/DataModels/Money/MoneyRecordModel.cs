@@ -6,14 +6,15 @@ using System.Threading.Tasks;
 
 namespace Library
 {
-    public  class MoneyRecordModel
+    public class MoneyRecordModel
     {
         public int Id { get; set; }
 
         /// <summary>
         /// The OperationId
         /// </summary>
-        public int OperationId { get; set; }
+        public OperationModel Operation { get; set; }
+
 
         /// <summary>
         /// The type of Opertation (In , out)
@@ -27,5 +28,33 @@ namespace Library
         /// </summary>
         public decimal AmountOfMoney { get; set; }
 
+        /// <summary>
+        /// Check every thing in the operation and return the date of the order that not null
+        /// </summary>
+        public DateTime GetDate
+        {
+            get
+            {
+                if (Operation.Installment != null)
+                {
+                    return Operation.Installment.Date;
+                }
+                else if (Operation.IncomeOrder != null)
+                {
+                    return Operation.IncomeOrder.Date;
+                }
+                else if (Operation.Order != null)
+                {
+                    return Operation.Order.DateTimeOfTheOrder;
+                }
+                else
+                {
+                    return Operation.ShopBill.Date;
+                }
+                
+            }
+        }
+
     }
+
 }

@@ -6,9 +6,14 @@ using System.Threading.Tasks;
 
 namespace Library
 {
-     class ShopBillModel
+    public class ShopBillModel
     {
         public int Id { get; set; }
+
+        /// <summary>
+        /// The date-time of the Bill
+        /// </summary>
+        public DateTime Date { get; set; }
 
         /// <summary>
         /// The descreption of the bill

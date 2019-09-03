@@ -250,6 +250,56 @@ namespace Library
 
         }
 
+        /// <summary>
+        /// Get product by barCode
+        /// if the barCode is not exist return Null
+        /// </summary>
+        /// <param name="products"></param>
+        /// <param name="barCode"></param>
+        /// <returns></returns>
+        public ProductModel GetTheProductByTheBarCode(List<ProductModel> products, string barCode)
+        {
+
+            return Product.GetTheProductByTheBarCode(products, barCode);
+        }
+
+        /// <summary>
+        /// return list of filterd Products if the product BarCOde Contains String name
+        /// source of the search way: https://stackoverflow.com/a/3355561/6421951
+        /// </summary>
+        /// <param name="products"> list of Product model  </param>
+        /// <param name="BarCode"> BarCode that we search for </param>
+        /// <returns></returns>
+        public  List<ProductModel> FilterProductsByBarCode(List<ProductModel> products, string BarCode)
+        {
+            return Product.FilterProductsByBarCode(products, BarCode);
+        }
+
+        /// <summary>
+        /// Create a unique BarCode
+        /// </summary>
+        /// <param name="product"> the new product that we need to create the barCode to it </param>
+        /// <param name="products"> all the product in the database </param>
+        /// <returns></returns>
+        public string CreateBarCode(ProductModel product, List<ProductModel> products)
+        {
+            return Product.CreateBarCode(product, products);
+
+        }
+
+        /// <summary>
+        /// Check if the product barCode is Unique In the list of products
+        /// </summary>
+        /// <param name="BarCode"> The barcode that we need to check </param>
+        /// <returns> 
+        /// true if unique
+        /// flase if Exist
+        /// </returns>
+        public bool CheckIfTheProductBarCodeUnique(List<ProductModel> products, string BarCode)
+        {
+            return Product.CheckIfTheProductBarCodeUnique(products, BarCode);
+        }
+
         #endregion
 
         #region Order Product
