@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Library;
+using Stimulsoft.Report;
+using Stimulsoft.Report.Dictionary;
 using WPF_GUI.CreateProduct;
 using WPF_GUI.ModifyProduct;
 
@@ -29,6 +31,9 @@ namespace WPF_GUI.ProductManager
         #region Main Variables
 
         private List<ProductModel> Products { get; set; }
+
+        StiReport report = new StiReport();
+
 
         #endregion
 
@@ -59,6 +64,7 @@ namespace WPF_GUI.ProductManager
         /// /// </summary>
         private void SetInitialValues()
         {
+
 
             // set the ProductSearchType_InventoryUC values
             ProductSearchType_ProductManagerUC.ItemsSource = null;
@@ -216,8 +222,21 @@ namespace WPF_GUI.ProductManager
             SetInitialValues();
         }
 
+
         #endregion
 
-
+        /// <summary>
+        /// Set the veriables of the report
+        /// then show the report
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void PrintButton_ProductManagerUC_Click(object sender, RoutedEventArgs e)
+        {
+            report.Load(@"ProductsReport.mrt");
+            report.Compile();
+            report.Render();
+            report.Show();
+        }
     }
 }

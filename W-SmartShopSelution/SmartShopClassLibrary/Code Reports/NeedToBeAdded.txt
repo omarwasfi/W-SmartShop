@@ -1,16 +1,20 @@
 ﻿
 To the product :	
-	if the product exist , any of the prices changed Create a new barCode
+	In Add ProductUC: ask first if all  the products has the same serial Number *
+	
 	
 
-add to the Order : total maksab
+add to the Order : total maksab ***
 					
-The moeny system : 
-	- record all the money operations
-			-- know the operation type.
+The money system : 
+	- record all the money operations	*
+			-- know the operation type. *
 			-- 
 	- know how much money I have now
 	- 
+
+The staff: 
+	- add the salary for the staffs
 
 NZam el mortaga3at : 
 	- Get the order -- By a customer -> search to in his orders
@@ -31,5 +35,9 @@ Sell Reports :   (Select starting and ending date to analize)
 	- Best Selling product
 	- hights maksab product
 
+IncomeOrder:
+	- Add the dateOf the income Order Manuly
+	- Shippling expence remove
+	- 
 
  - The prints Print the orderId also !

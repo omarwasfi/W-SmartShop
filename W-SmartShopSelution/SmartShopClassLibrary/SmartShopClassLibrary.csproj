@@ -34,9 +34,19 @@
     <Reference Include="Dapper, Version=1.60.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Dapper.1.60.6\lib\net451\Dapper.dll</HintPath>
     </Reference>
+    <Reference Include="FluentValidation, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentValidation.8.4.0\lib\net45\FluentValidation.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Annotations, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ComponentModel.Annotations.4.4.1\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -55,6 +65,7 @@
     <Compile Include="DataModels\Humans\CustomerModel.cs" />
     <Compile Include="DataModels\Humans\PersonModel.cs" />
     <Compile Include="DataModels\Humans\StaffModel.cs" />
+    <Compile Include="DataModels\Humans\StaffSalaryModel.cs" />
     <Compile Include="DataModels\Humans\SupplierModel.cs" />
     <Compile Include="DataModels\IncomeOrder\IncomeOrderModel.cs" />
     <Compile Include="DataModels\IncomeOrder\IncomeOrderProductModel.cs" />
@@ -88,6 +99,9 @@
     <Compile Include="LogicalClasses\Supplier\Supplier.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PublicVariables.cs" />
+    <Compile Include="Validation\MoneyValidator.cs" />
+    <Compile Include="Validation\NumberValidation.cs" />
+    <Compile Include="Validation\ProductValidator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Code Reports\Bug Report.txt" />
@@ -103,6 +117,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Interfaces\PublicVariablesUpdate\" />
+    <Folder Include="LogicalClasses\StaffSalary\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

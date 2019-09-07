@@ -56,4 +56,8 @@ InstallmentDetails
 InstallmentProduct
 	Id Auto Increment starts From 600,000
 
+StaffSalary
+	Id Auto Increment starts From 700,000
+
+
 	

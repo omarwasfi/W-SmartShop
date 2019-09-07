@@ -70,6 +70,10 @@ namespace Library
         /// </summary>
         public string Country { get; set; }
 
-        
+        /// <summary>
+        /// Any details needs to be known about the Customer
+        /// </summary>
+        public string Details { get; set; }
+
     }
 }

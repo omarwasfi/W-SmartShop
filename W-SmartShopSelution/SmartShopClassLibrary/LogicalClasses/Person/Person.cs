@@ -84,6 +84,15 @@ namespace Library
                    p.Add("@Country", null);
 
                 }
+                if (!string.IsNullOrWhiteSpace(person.Details))
+                {
+                    p.Add("@Details", person.Details);
+                }
+                else
+                {
+                    p.Add("@Details", null);
+
+                }
                 p.Add("@Id", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
                 connection.Execute("dbo.spPerson_CreatePerson", p, commandType: CommandType.StoredProcedure);
                 person.Id = p.Get<int>("@Id");
@@ -226,6 +235,15 @@ namespace Library
                 else
                 {
                     p.Add("@Country", null);
+
+                }
+                if (!string.IsNullOrWhiteSpace(person.Details))
+                {
+                    p.Add("@Details", person.Details);
+                }
+                else
+                {
+                    p.Add("@Details", null);
 
                 }
                 connection.Execute("dbo.spPerson_Update", p, commandType: CommandType.StoredProcedure);

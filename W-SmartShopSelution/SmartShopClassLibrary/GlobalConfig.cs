@@ -13,6 +13,10 @@ namespace Library
     {
         public static DataAccess Connection { get; private set; }
 
+
+        public static NumberValidation NumberValidation { get; set; } = new NumberValidation();
+        public static ProductValidator ProductValidator { get; set; }
+
         public static void InitializeConnection()
         {
             DataAccess sql = new DataAccess();

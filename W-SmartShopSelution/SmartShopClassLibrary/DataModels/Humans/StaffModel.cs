@@ -44,6 +44,10 @@ namespace Library
         /// </summary>
         public PermissionModel Permission { get; set; }
 
+        /// <summary>
+        /// The Salary Of the staff Member
+        /// </summary>
+        public decimal Salary { get; set; }
 
         /// <summary>
         /// Get all stores names in one string subrate with space

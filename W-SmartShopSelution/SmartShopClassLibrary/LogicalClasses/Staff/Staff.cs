@@ -178,7 +178,7 @@ namespace Library
                 p.Add("@StaffUsername", staff.Username);
                 p.Add("@StaffPassword", staff.Password);
                 p.Add("@StaffPermissionId", staff.Permission.Id);
-
+                p.Add("@StaffSalary", staff.Salary);
                 connection.Execute("dbo.spStaff_Update", p, commandType: CommandType.StoredProcedure);
             }
         }
