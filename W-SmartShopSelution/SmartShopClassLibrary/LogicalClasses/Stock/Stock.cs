@@ -189,7 +189,30 @@ namespace Library
                 if (stock.Product.SerialNumber != null)
                 {
 
-                    if (Regex.IsMatch(stock.Product.SerialNumber, Regex.Escape(serialNumber), RegexOptions.IgnoreCase))
+                    if (Regex.IsMatch(stock.Product.SerialNumber, Regex.Escape(serialNumber), RegexOptions.IgnoreCase) || Regex.IsMatch(stock.Product.SerialNumber2, Regex.Escape(serialNumber), RegexOptions.IgnoreCase))
+                    {
+                        FStocks.Add(stock);
+                    }
+                }
+            }
+            return FStocks;
+        }
+
+        /// <summary>
+        /// Return list of filtered stocks if the product barcorde foreach one cotains barCode
+        /// </summary>
+        /// <param name="stocks"></param>
+        /// <param name="barCode"></param>
+        /// <returns></returns>
+        public static List<StockModel> FilterStocksByBarCode(List<StockModel> stocks, string barCode)
+        {
+            List<StockModel> FStocks = new List<StockModel>();
+            foreach (StockModel stock in stocks)
+            {
+                if (stock.Product.SerialNumber != null)
+                {
+
+                    if (Regex.IsMatch(stock.Product.BarCode, Regex.Escape(barCode), RegexOptions.IgnoreCase))
                     {
                         FStocks.Add(stock);
                     }

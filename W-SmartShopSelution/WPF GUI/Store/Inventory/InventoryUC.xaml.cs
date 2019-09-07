@@ -41,7 +41,7 @@ namespace WPF_GUI.Inventory
         private List<CategoryModel> Categories { get; set; }
         private List<BrandModel> Brands { get; set; }
 
-        private List<string> SearchTypes { get; set; } =new List<string>() {"Name","SerialNumber"};
+        private List<string> SearchTypes { get; set; } =new List<string>() {"Name","SerialNumber","Barcode"};
         #endregion
 
         #region Main Functions and Events
@@ -172,6 +172,13 @@ namespace WPF_GUI.Inventory
             else if(ProductSearchType_InventoryUC.Text == "Name")
             {
                 FStocks = GlobalConfig.Connection.FilterStocksByName(Stocks, ProductSearchValue_InventoryUC.Text);
+
+                StocksList_Inventory.ItemsSource = null;
+                StocksList_Inventory.ItemsSource = FStocks;
+            }
+            else if(ProductSearchType_InventoryUC.Text == "Barcode")
+            {
+                FStocks = GlobalConfig.Connection.FilterStocksByBarCode(Stocks, ProductSearchValue_InventoryUC.Text);
 
                 StocksList_Inventory.ItemsSource = null;
                 StocksList_Inventory.ItemsSource = FStocks;

@@ -25,3 +25,5 @@ After SpeedNet 1st Test :
 
  - Add the salary to the staffs 
  - Add the details to the PersonModel
+ - Finish Add new productUC WIth the new Featurs
+ - Add A new way for data validation with FluentValidation

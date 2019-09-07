@@ -44,7 +44,7 @@ namespace WPF_GUI.ProductManager
 
         private List<ProductModel> FProducts { get; set; } = new List<ProductModel>();
 
-        private List<string> SearchTypes { get; set; } = new List<string>() { "Name", "SerialNumber"};
+        private List<string> SearchTypes { get; set; } = new List<string>() { "Name", "SerialNumber" , "Barcode"};
         #endregion
 
         #region set the initianl values
@@ -165,6 +165,13 @@ namespace WPF_GUI.ProductManager
             else if (ProductSearchType_ProductManagerUC.Text == "Name")
             {
                 FProducts = GlobalConfig.Connection.FilterProductsByName(Products , ProductSearchValue_ProductManagerUC.Text);
+
+                ProductsList_ProductManagerUC.ItemsSource = null;
+                ProductsList_ProductManagerUC.ItemsSource = FProducts;
+            }
+            else if (ProductSearchType_ProductManagerUC.Text == "Barcode")
+            {
+                FProducts = GlobalConfig.Connection.FilterProductsByBarCode(Products, ProductSearchValue_ProductManagerUC.Text);
 
                 ProductsList_ProductManagerUC.ItemsSource = null;
                 ProductsList_ProductManagerUC.ItemsSource = FProducts;

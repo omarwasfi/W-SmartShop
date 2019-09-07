@@ -714,6 +714,7 @@ namespace Library
         }
 
 
+
         /// <summary>
         /// Get stocks in This store only From the database 
         /// </summary>
@@ -773,6 +774,16 @@ namespace Library
             return Stock.FilterStocksBySerialNumber(stocks,serialNumber);
         }
 
+        /// <summary>
+        /// Return list of filtered stocks if the product barcorde foreach one cotains barCode
+        /// </summary>
+        /// <param name="stocks"></param>
+        /// <param name="barCode"></param>
+        /// <returns></returns>
+        public List<StockModel> FilterStocksByBarCode(List<StockModel> stocks, string barCode)
+        {
+            return Stock.FilterStocksByBarCode(stocks, barCode);
+        }
 
         /// <summary>
         /// Get stock by serialNumber If exist
@@ -786,6 +797,7 @@ namespace Library
 
             return Stock.GetStockBySerialNumber(stocks, SerialNumber);
         }
+
 
 
         /// <summary>
