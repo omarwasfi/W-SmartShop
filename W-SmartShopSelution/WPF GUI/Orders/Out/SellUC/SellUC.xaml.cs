@@ -89,7 +89,7 @@ namespace WPF_GUI.Sell
         private List<string> CustomersFullNames { get; set; } = new List<string>();
         private List<string> CustomersPhoneNumbers { get; set; } = new List<string>();
         private List<string> CustomersNationalNumbers { get; set; } = new List<string>();
-
+        private List<string> AllProductsBarCode { get; set; } = new List<string>();
 
         private List<StockModel> FStocks { get; set; }
 
@@ -171,11 +171,28 @@ namespace WPF_GUI.Sell
 
             Update_CategoryValue_Sell();
             Update_BrandValue_Sell();
-            Update_ProductValue_Sell();
 
             // For CustomerNameValue_Sell
             Update_CustomerNamesVariablesAndEvents();
 
+            Update_StocksVariablesAndEvents();
+
+
+        }
+
+        /// <summary>
+        /// Fill the AllProductsBarCode list with all the barcodes, add the search, auto Complete events
+        /// </summary>
+        private void Update_StocksVariablesAndEvents()
+        {
+
+            Update_ProductValue_Sell();
+            
+            foreach(StockModel stock in Stocks)
+            {
+                AllProductsBarCode.Add(stock.Product.BarCode);
+            }
+            BarCodeValue_Sell.PreviewKeyDown += DelPressed_BarCodeValue_Sell;
 
 
         }
@@ -247,6 +264,67 @@ namespace WPF_GUI.Sell
         #endregion
 
         #region Product Groopbox events
+
+
+        /// <summary>
+        /// Events for BarcodeValue_Sell changes to auto complete
+        /// source : https://stackoverflow.com/questions/950770/autocomplete-textbox-in-wpf
+        /// </summary>
+        private bool InProg_BarCodeValue_Sell;
+        private void BarCodeValue_Sell_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var change = e.Changes.FirstOrDefault();
+            if (!InProg_BarCodeValue_Sell)
+            {
+                InProg_BarCodeValue_Sell = true;
+                var culture = new CultureInfo(CultureInfo.CurrentCulture.Name);
+                var source = ((TextBox)sender);
+                if (((change.AddedLength - change.RemovedLength) > 0 || source.Text.Length > 0) && !DelKeyPressed_BarCodeValue_Sell)
+                {
+                    if (AllProductsBarCode.Where(x => x.IndexOf(source.Text, StringComparison.CurrentCultureIgnoreCase) == 0).Count() > 0)
+                    {
+                        var _appendtxt = AllProductsBarCode.FirstOrDefault(ap => (culture.CompareInfo.IndexOf(ap, source.Text, CompareOptions.IgnoreCase) == 0));
+                        _appendtxt = _appendtxt.Remove(0, change.Offset + 1);
+                        source.Text += _appendtxt;
+                        source.SelectionStart = change.Offset + 1;
+                        source.SelectionLength = source.Text.Length;
+                    }
+                }
+                InProg_BarCodeValue_Sell = false;
+            }
+        }
+        private static bool DelKeyPressed_BarCodeValue_Sell;
+        internal static void DelPressed_BarCodeValue_Sell(object sender, KeyEventArgs e)
+        { if (e.Key == Key.Back) { DelKeyPressed_BarCodeValue_Sell = true; } else { DelKeyPressed_BarCodeValue_Sell = false; } }
+
+
+        /// <summary>
+        /// Trigers when enter key down while selecting PhoneNumberValue_Sell
+        /// Compares the current value of the PhoneNumberValue_Sell with customersPhones  list
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BarCodeValue_Sell_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+
+                foreach (StockModel stock in Stocks)
+                {
+                    
+                   if (stock.Product.BarCode.Equals(BarCodeValue_Sell.Text, StringComparison.OrdinalIgnoreCase))
+                   {
+                        
+                        ProductValue_Sell.SelectedItem = stock;
+                        break;
+
+                    }
+                    
+                    
+
+                }
+            }
+        }
 
         /// <summary>
         /// Private event called when CategoryValue_Sell combobox OR BrandValue_Sell combobox sellection  changed to filter the products combobox by selected category or brand
@@ -332,12 +410,20 @@ namespace WPF_GUI.Sell
         /// <param name="product"></param>
         private void UpdateProductInfo(StockModel product)
         {
+            InProg_BarCodeValue_Sell = true;
+
+            BarCodeValue_Sell.Text = product.Product.BarCode;
+
+
             SerialNumberValue_Sell.Text = product.Product.SerialNumber;
+            SerialNumber2Value_Sell.Text = product.Product.SerialNumber2;
 
             InStockValue_Sell.Text = product.Quantity.ToString();
 
             PriceValue_Sell.IsEnabled = true;
             PriceValue_Sell.Text = product.Product.SalePrice.ToString();
+
+            DetailsValue_Sell.Text = product.Product.Details;
 
             DiscountValue_Sell.IsEnabled = true;
             DiscountValue_Sell.Text = "0";
@@ -346,11 +432,15 @@ namespace WPF_GUI.Sell
             QuantityValue_Sell.Text = "1";
 
             TotalProductPriceValue_Sell.Text = product.Product.SalePrice.ToString();
+            
 
             CanFilterStocks = false;
             CategoryValue_Sell.SelectedIndex = Get_CategoryValue_Sell_Index(product.Product.Category);
             BrandValue_Sell.SelectedIndex = Get_BrandValue_Sell_Index(product.Product.Brand);
             CanFilterStocks = true;
+
+
+            InProg_BarCodeValue_Sell = false;
         }
 
         /// <summary>
@@ -359,9 +449,14 @@ namespace WPF_GUI.Sell
         /// </summary>
         private void ClearProductInfo()
         {
+            InProg_BarCodeValue_Sell = true;
 
+            BarCodeValue_Sell.Text = "";
 
             SerialNumberValue_Sell.Text = "";
+            SerialNumber2Value_Sell.Text = "";
+
+            DetailsValue_Sell.Text = "";
 
             InStockValue_Sell.Text = "";
 
@@ -375,7 +470,10 @@ namespace WPF_GUI.Sell
             QuantityValue_Sell.IsEnabled = false;
             QuantityValue_Sell.Text = "";
 
+
             TotalProductPriceValue_Sell.Text = "";
+
+            InProg_BarCodeValue_Sell = false;
         }
 
         
@@ -390,6 +488,27 @@ namespace WPF_GUI.Sell
             {
                 StockModel stock = GlobalConfig.Connection.GetStockBySerialNumber(Stocks, SerialNumberValue_Sell.Text);
                 if(stock == null)
+                {
+                    MessageBox.Show("This Serial Number Not Exist");
+                }
+                else
+                {
+                    ProductValue_Sell.SelectedItem = stock;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Enter key Pressed while selecting SerialNumber2Value_Sell
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SerialNumber2Value_Sell_EventHundler(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                StockModel stock = GlobalConfig.Connection.GetStockBySerialNumber(Stocks, SerialNumber2Value_Sell.Text);
+                if (stock == null)
                 {
                     MessageBox.Show("This Serial Number Not Exist");
                 }
@@ -679,6 +798,7 @@ namespace WPF_GUI.Sell
 
             StockModel stock = (StockModel)ProductValue_Sell.SelectedItem;
 
+
             if (ChooseStock_IsValid())
             {
                 OrderProductModel orderProduct = new OrderProductModel();
@@ -725,7 +845,20 @@ namespace WPF_GUI.Sell
                                 {
                                     if (quantity > 0 && quantity <= stock.Quantity)
                                     {
+
+
+                                        foreach (OrderProductModel order in Orders)
+                                        {
+                                            if (order.Product.Id == stock.Product.Id)
+                                            {
+                                                MessageBox.Show("This product is in the the list , please remove it and add again with the new info");
+                                                return false;
+                                            }
+                                        }
+
                                         return true;
+
+
                                     }
                                     else
                                     {
@@ -792,7 +925,7 @@ namespace WPF_GUI.Sell
             ChoosenProductList_Sell.ItemsSource = Orders;
 
             // Updates Total Price
-            UpdateTotalPrice();
+            UpdateTotalPriceAndTotalProfit();
         }
 
         /// <summary>
@@ -1046,14 +1179,18 @@ namespace WPF_GUI.Sell
         /// Updates Total Price called by UpadateChoosenProductList_Sell
         /// gets order list and calculate the total price
         /// </summary>
-        private void UpdateTotalPrice()
+        private void UpdateTotalPriceAndTotalProfit()
         {
             decimal TotalPrice = new decimal();
+            decimal TotalOrderProfit = new decimal();
             foreach (OrderProductModel orderProduct in Orders)
             {
                 TotalPrice += orderProduct.TotalProductPrice;
+                TotalOrderProfit += orderProduct.GetTotalProfit;
             }
             TotalPriceValue_Sell.Text = TotalPrice.ToString();
+            TotalOrderProfitValue_Sell.Text = TotalOrderProfit.ToString();
+            
 
         }
 
@@ -1086,6 +1223,7 @@ namespace WPF_GUI.Sell
                     Order.Customer = Customer;
                     Order.DateTimeOfTheOrder = DateTime.Now;
                     Order.TotalPrice = decimal.Parse(TotalPriceValue_Sell.Text);
+                    Order.Details = OrderDetailsValue_Sell.Text;
 
                     GlobalConfig.Connection.SaveOrderToDatabase(Order);
 
@@ -1179,6 +1317,27 @@ namespace WPF_GUI.Sell
         {
             ResetSellUC();
 
+        }
+
+        /// <summary>
+        /// Money validation for any text accepts money
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MoneyValidation(object sender, TextCompositionEventArgs e)
+        {
+            GlobalConfig.NumberValidation.MoneyValidationTextBox(sender, e);
+        }
+
+
+        /// <summary>
+        /// Money validation for any text accepts money
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void IntergerValidation(object sender, TextCompositionEventArgs e)
+        {
+            GlobalConfig.NumberValidation.IntegerValidationTextBox(sender, e);
         }
 
         #endregion

@@ -27,3 +27,7 @@ After SpeedNet 1st Test :
  - Add the details to the PersonModel
  - Finish Add new productUC WIth the new Featurs
  - Add A new way for data validation with FluentValidation
+
+ In SellUC:
+	- Search with auto compelete Barcode
+	- Fix Bug If user press add before conferm the quantity , saleprice or discount

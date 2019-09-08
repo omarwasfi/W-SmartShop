@@ -74,9 +74,19 @@ namespace Library
         {
             get
             {
-                return SalePrice = Product.IncomePrice;
+                return SalePrice - Product.IncomePrice;
             }
         }
+
+        /// <summary>
+        /// get the total profit , GetProfit * Quantity
+        /// </summary>
+        public decimal GetTotalProfit {
+            get
+            {
+                return GetProfit * Quantity;
+            }
+         }
 
     }
 }

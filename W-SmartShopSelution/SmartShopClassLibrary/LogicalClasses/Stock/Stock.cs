@@ -234,7 +234,7 @@ namespace Library
 
             foreach (StockModel s in stocks)
             {
-                if (s.Product.SerialNumber == SerialNumber)
+                if (s.Product.SerialNumber == SerialNumber || s.Product.SerialNumber2 == SerialNumber)
                 {
                     stock = s;
                     return stock;

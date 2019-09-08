@@ -133,7 +133,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>tkJMkpecU5R0hcECEaVDSztNa8Dneb255Su2vvFYaBE=</dsig:DigestValue>
+        <dsig:DigestValue>sLZmxzSSsvbVEIAqogKnVAw7943vbPdq89v28XWNjlQ=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -342,14 +342,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="WPF GUI.exe" size="12004776">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="WPF GUI.exe" size="12010408">
       <assemblyIdentity name="WPF GUI" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>F2oKcG2JfYWHXS2lDj4z1xgymeK81MMFht3R/pRoJSg=</dsig:DigestValue>
+        <dsig:DigestValue>ogV8bEpiXiF/i2n5q048oHXiMYl0HpfDkV/FDHwJHHo=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
