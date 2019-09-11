@@ -99,12 +99,6 @@
 
                 <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="0,76,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Details : "/></TextBlock>
                 <TextBox x:Name="DetailsValue_Sell" IsReadOnly="True" HorizontalAlignment="Left" Height="33" Margin="94,76,0,0" Text="" VerticalAlignment="Top" Width="746" MaxLength="500" MaxLines="1"  />
-
-                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="0,152,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Profit : "/></TextBlock>
-                <TextBox x:Name="ProfitValue_Sell"  IsReadOnly="True" HorizontalAlignment="Left" Height="23" Margin="79,162,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="66" RenderTransformOrigin="0.544,-0.652"/>
-
-                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="150,152,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Total Profit : "/></TextBlock>
-                <TextBox x:Name="TotalProfitValue_Sell"  IsReadOnly="True" HorizontalAlignment="Left" Height="23" Margin="288,162,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="66" RenderTransformOrigin="0.544,-0.652"/>
             </Grid>
 
         </GroupBox>

@@ -490,6 +490,44 @@ namespace Library
         }
 
 
+        /// <summary>
+        /// Filter orders by order id
+        /// </summary>
+        /// <param name="orders"></param>
+        /// <param name="orderId"></param>
+        /// <returns></returns>
+        public List<OrderModel> FilterOrdersByOrderId(List<OrderModel> orders, string orderId)
+        {
+            
+            return Order.FilterOrdersByOrderId(orders,orderId);
+
+        }
+
+
+        /// <summary>
+        /// Filter orders by Customer name
+        /// </summary>
+        /// <param name="orders"></param>
+        /// <param name="orderId"></param>
+        /// <returns></returns>
+        public List<OrderModel> FilterOrdersByCustomerName(List<OrderModel> orders, string customerName)
+        {
+            return Order.FilterOrdersByCustomerName(orders, customerName);
+
+        }
+
+        /// <summary>
+        /// Filter orders by Date
+        /// </summary>
+        /// <param name="orders"></param>
+        /// <param name="date"></param>
+        /// <returns></returns>
+        public List<OrderModel> FilterOrdersByDate(List<OrderModel> orders, DateTime date)
+        {
+            return Order.FilterOrdersByDate(orders,date);
+
+        }
+
         #endregion
 
         #region store

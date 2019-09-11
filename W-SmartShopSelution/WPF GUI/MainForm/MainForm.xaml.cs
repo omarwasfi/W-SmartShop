@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using WPF_GUI.CreateProduct;
 using WPF_GUI.Inventory;
+using WPF_GUI.Orders.Out.SellingOrdersManagerUC;
 using WPF_GUI.ProductManager;
 using WPF_GUI.Sell;
 using WPF_GUI.Staff.StaffsManagerUC;
@@ -67,6 +68,10 @@ namespace WPF_GUI
             if (staff.Permission.CanSellUC)
             {
                 SellViewItem.Visibility = Visibility.Visible;
+            }
+            if (staff.Permission.CanSellingOrdersManagerUC)
+            {
+                SellingOrdersManagerViewItem.Visibility = Visibility.Visible;
             }
             if (staff.Permission.CanInventoryUC)
             {
@@ -123,6 +128,14 @@ namespace WPF_GUI
             sellTab.Content = sellUc;
             MainTab.Items.Add(sellTab);
             
+        }
+
+        private void OrderManagerViewItem_Selected(object sender, RoutedEventArgs e)
+        {
+            SellingOrdersManagerUC sellOrdersManagerUc = new SellingOrdersManagerUC();
+            TabItem sellOrdersManagerTab = new TabItem { Header = "Selling Orders Manager Tab" };
+            sellOrdersManagerTab.Content = sellOrdersManagerUc;
+            MainTab.Items.Add(sellOrdersManagerTab);
         }
 
         private void InventoryViewItem_Selected(object sender, RoutedEventArgs e)
@@ -187,5 +200,6 @@ namespace WPF_GUI
 
         #endregion
 
+      
     }
 }

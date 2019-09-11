@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Stimulsoft.Dashboard.Drawing</name>
+    </assembly>
+    <members>
+        <member name="P:Stimulsoft.Dashboard.Drawing.Painters.PivotTable.StiPivotTableCell.IsColumn">
+            <summary>
+            Otherwise IS row
+            </summary>
+        </member>
+        <member name="P:Stimulsoft.Dashboard.Drawing.Painters.PivotTable.StiPivotTableCell.MinimalTextSize">
+            <summary>
+            Minimal text size
+            </summary>
+        </member>
+    </members>
+</doc>

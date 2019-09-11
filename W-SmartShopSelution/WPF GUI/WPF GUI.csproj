@@ -88,6 +88,10 @@
     <Reference Include="Stimulsoft.Controls.Win, Version=2019.3.1.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
       <HintPath>..\packages\Stimulsoft.Reports.Net.2019.3.1\lib\net45\Stimulsoft.Controls.Win.dll</HintPath>
     </Reference>
+    <Reference Include="Stimulsoft.Dashboard, Version=2019.3.1.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL" />
+    <Reference Include="Stimulsoft.Dashboard.Drawing.Wpf, Version=2019.3.1.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL" />
+    <Reference Include="Stimulsoft.Dashboard.Export, Version=2019.3.1.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL" />
+    <Reference Include="stimulsoft.dashboard.viewer.wpf, Version=2019.3.1.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL" />
     <Reference Include="Stimulsoft.Data, Version=2019.3.1.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
       <HintPath>..\packages\Stimulsoft.Reports.Engine.2019.3.1\lib\net45\Stimulsoft.Data.dll</HintPath>
     </Reference>
@@ -161,6 +165,12 @@
     <Compile Include="Orders\Out\InstallmentOrderUC\InstallmentOrderUC.xaml.cs">
       <DependentUpon>InstallmentOrderUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Orders\Out\OrderUC\OrderUC.xaml.cs">
+      <DependentUpon>OrderUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Orders\Out\SellingOrdersManagerUC\SellingOrdersManagerUC.xaml.cs">
+      <DependentUpon>SellingOrdersManagerUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Store\AddStockToStoreUC\AddStockToStoreUC.xaml.cs">
       <DependentUpon>AddStockToStoreUC.xaml</DependentUpon>
     </Compile>
@@ -220,6 +230,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Orders\Out\InstallmentOrderUC\InstallmentOrderUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Orders\Out\OrderUC\OrderUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Orders\Out\SellingOrdersManagerUC\SellingOrdersManagerUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -516,5 +534,6 @@
   <ItemGroup>
     <Resource Include="Localization\ar.xml" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

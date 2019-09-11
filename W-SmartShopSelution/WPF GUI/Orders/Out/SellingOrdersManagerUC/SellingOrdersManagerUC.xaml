@@ -1,0 +1,71 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WPF_GUI.Orders.Out.SellingOrdersManagerUC"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:wpfViewer="schemas-stimulsoft-com:wpf-viewer" xmlns:Wpf="clr-namespace:Stimulsoft.Dashboard.Viewer.Wpf;assembly=Stimulsoft.Dashboard.Viewer.Wpf" x:Class="WPF_GUI.Orders.Out.SellingOrdersManagerUC.SellingOrdersManagerUC"
+             mc:Ignorable="d" 
+             d:DesignHeight="680" d:DesignWidth="1343">
+    <Grid>
+        <Grid Name="UserGrid_SellingOrdersManagerUC" Visibility="Visible">
+            <DataGrid  x:Name="OrdersList_SellingOrdersManagerUC" Visibility="Visible" IsReadOnly="True" MouseDoubleClick="OrdersList_SellingOrdersManagerUC_MouseDoubleClick" AutoGenerateColumns="False" HorizontalAlignment="Right" Height="617" Margin="0,53,10,0" VerticalAlignment="Top" Width="1040" Background="LightGray">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Order" Binding="{Binding Id}"/>
+                    <DataGridTextColumn Header="Customer" Binding="{Binding Customer.Person.FullName}"/>
+                    <DataGridTextColumn Header="Time" Binding="{Binding DateTimeOfTheOrder }"/>
+                    <DataGridTextColumn Header="Store" Binding="{Binding Store.Name}"/>
+                    <DataGridTextColumn Header="Staff" Binding="{Binding Staff.Person.FullName}"/>
+                    <DataGridTextColumn Header="Total Price" Binding="{Binding TotalPrice}"/>
+                </DataGrid.Columns>
+                <DataGrid.RowDetailsTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Details}" Margin="10" />
+                    </DataTemplate>
+                </DataGrid.RowDetailsTemplate>
+            </DataGrid>
+
+            <Calendar x:Name="DateFilterValue_SellingOrdersManagerUC" SelectedDatesChanged="DateFilterValue_SellingOrdersManagerUC_SelectedDatesChanged" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="352"/>
+
+            <TextBox x:Name="OrderSearchValue_SellingOrdersManagerUC" Width="418" VerticalAlignment="Top" Text="Search... " TextWrapping="Wrap" Margin="451,20,0,0" Height="28" HorizontalAlignment="Left"/>
+            <ComboBox x:Name="OrderSearchType_SellingOrdersManagerUC" Width="120" VerticalAlignment="Top" Margin="874,15,0,0" Height="33" HorizontalAlignment="Left"/>
+            <Button x:Name="OrderSearchButton_SellingOrdersManagerUC" Click="OrderSearchButton_SellingOrdersManagerUC_Click" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FFA2A2A2" VerticalAlignment="Center"  Margin="999,10,246,632"  Height="38" >
+                <materialDesign:PackIcon Kind="Search" Width="25" Height="25" />
+            </Button>
+
+            <Grid Margin="1117,0,0,651">
+                <Button x:Name="CloseTabButton_SellingOrdersManagerUC" Visibility="Collapsed" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Red"   VerticalAlignment="Top"  Margin="3,0,170,0" Height="25"  >
+                    <materialDesign:PackIcon Kind="Delete" Width="20" Height="20"/>
+                </Button>
+
+                <Button x:Name="ReloadTabButton_SellingOrdersManagerUC" Click="ReloadTabButton_SellingOrdersManagerUC_Click" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray"   VerticalAlignment="Top"  Margin="171,0,0,0" Height="25"  >
+                    <materialDesign:PackIcon Kind="Reload" Width="20" Height="20"/>
+                </Button>
+
+                <Button x:Name="PrintButton_SellingOrdersManagerUC" Click="PrintButton_SellingOrdersManagerUC_Click" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray"   VerticalAlignment="Top"  Margin="115,0,55,0" Height="25"  >
+                    <materialDesign:PackIcon Kind="Printer" Width="20" Height="20"/>
+                </Button>
+
+                <Button x:Name="ConfitmButton_SellUC" Visibility="Collapsed" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Green"   VerticalAlignment="Top"  Margin="56,0,111,0" Height="25"  >
+                    <materialDesign:PackIcon Kind="Done" Width="20" Height="20"/>
+                </Button>
+
+            </Grid>
+
+        </Grid>
+
+
+
+
+        <Grid Name="PrintGrid_SellingOrdersManagerUC" Visibility="Collapsed" >
+            
+            <Button x:Name="BackToNormalGridButton_SellingOrdersManagerUC" Click="BackToNormalGridButton_SellingOrdersManagerUC_Click" Visibility="Visible" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Green"   VerticalAlignment="Top"  Margin="10,4,1277,0" Height="25"  >
+                <materialDesign:PackIcon Kind="ArrowLeft" Width="20" Height="20"/>
+            </Button>
+            
+            <wpfViewer:StiWpfViewerControl Name="OrdersPrint_SellingOrdersManagerUC" HorizontalAlignment="Left" Height="651" Margin="0,29,0,0" VerticalAlignment="Top" Width="1343"/>
+        </Grid>
+
+    </Grid>
+
+</UserControl>
