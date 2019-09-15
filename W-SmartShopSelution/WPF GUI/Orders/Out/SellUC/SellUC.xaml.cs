@@ -806,6 +806,7 @@ namespace WPF_GUI.Sell
                 orderProduct.Product = stock.Product;
                 orderProduct.SalePrice = decimal.Parse(PriceValue_Sell.Text);
                 orderProduct.Discount = decimal.Parse(DiscountValue_Sell.Text);
+                orderProduct.Profit = orderProduct.GetProfit;
                 orderProduct.Quantity = int.Parse(QuantityValue_Sell.Text);
                 orderProduct.TotalProductPrice = decimal.Parse(TotalProductPriceValue_Sell.Text);
                 Orders.Add(orderProduct);
@@ -1186,6 +1187,7 @@ namespace WPF_GUI.Sell
             foreach (OrderProductModel orderProduct in Orders)
             {
                 TotalPrice += orderProduct.TotalProductPrice;
+                
                 TotalOrderProfit += orderProduct.GetTotalProfit;
             }
             TotalPriceValue_Sell.Text = TotalPrice.ToString();
@@ -1234,7 +1236,8 @@ namespace WPF_GUI.Sell
                     }
 
                     PublicVariables.LoginStoreStocks = GlobalConfig.Connection.FilterStocksByStore(Store);
-                    
+
+                    SetInitialValues();
                     ResetSellUC();
                 }
 
@@ -1315,6 +1318,7 @@ namespace WPF_GUI.Sell
 
         private void ReloadTabButton_SellUC_Click(object sender, RoutedEventArgs e)
         {
+            SetInitialValues();
             ResetSellUC();
 
         }

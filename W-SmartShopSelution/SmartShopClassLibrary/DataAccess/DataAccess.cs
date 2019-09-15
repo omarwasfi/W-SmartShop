@@ -346,6 +346,16 @@ namespace Library
 
         }
 
+        /// <summary>
+        /// Delete OrderProduct from the database
+        /// </summary>
+        /// <param name="orderProduct"></param>
+        /// <param name="db"></param>
+        public void RemoveOrderProduct(OrderProductModel orderProduct)
+        {
+            OrderProduct.RemoveOrderProduct(orderProduct, db);
+        }
+
         #endregion
 
         #region Customer
@@ -527,6 +537,28 @@ namespace Library
             return Order.FilterOrdersByDate(orders,date);
 
         }
+
+        /// <summary>
+        /// update the order data , Total Price , details
+        /// </summary>
+        /// <param name="order"></param>
+        /// <param name="db"></param>
+        public OrderModel UpdateOrderData(OrderModel order)
+        {
+            return Order.UpdateOrderData(order, db);
+        }
+
+
+        /// <summary>
+        /// Delete Order from the database
+        /// </summary>
+        /// <param name="orderProduct"></param>
+        /// <param name="db"></param>
+        public void RemoveOrder(OrderModel order)
+        {
+            Order.RemoveOrder(order, db);
+        }
+
 
         #endregion
 

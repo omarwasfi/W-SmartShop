@@ -12,6 +12,9 @@ namespace Library
     /// </summary>
     public class OrderModel
     {
+
+      
+
         /// <summary>
         /// database Id
         /// </summary>
@@ -64,7 +67,7 @@ namespace Library
                 decimal profit = new decimal();
                 foreach(OrderProductModel orderProduct in Products)
                 {
-                    profit += orderProduct.Profit;
+                    profit += orderProduct.GetTotalProfit;
                 }
 
                 return profit;

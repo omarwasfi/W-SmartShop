@@ -99,5 +99,22 @@ namespace Library
             }
 
         }
+
+
+        /// <summary>
+        /// Delete OrderProduct from the database
+        /// </summary>
+        /// <param name="orderProduct"></param>
+        /// <param name="db"></param>
+        public static void RemoveOrderProduct(OrderProductModel orderProduct, string db)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnVal(db)))
+            {
+                var p = new DynamicParameters();
+                p.Add("@Id",orderProduct.Id);
+                connection.Execute("dbo.spOrderProduct_Delete", p, commandType: CommandType.StoredProcedure);
+
+            }
+        }
     }
 }

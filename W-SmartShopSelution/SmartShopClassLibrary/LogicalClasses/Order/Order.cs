@@ -215,5 +215,41 @@ namespace Library
 
         }
 
+        /// <summary>
+        /// update the order data , Total Price , details
+        /// </summary>
+        /// <param name="order"></param>
+        /// <param name="db"></param>
+        public static OrderModel UpdateOrderData(OrderModel order ,string db)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnVal(db)))
+            {
+
+                var p = new DynamicParameters();
+                p.Add("@Id", order.Id);
+                p.Add("@TotalPrice", order.TotalPrice);
+                p.Add("@Details", order.Details);
+                connection.Execute("dbo.spOrder_Update", p, commandType: CommandType.StoredProcedure);
+            }
+            return order;
+        }
+
+
+        /// <summary>
+        /// Delete Order from the database
+        /// </summary>
+        /// <param name="orderProduct"></param>
+        /// <param name="db"></param>
+        public static void RemoveOrder(OrderModel order, string db)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnVal(db)))
+            {
+                var p = new DynamicParameters();
+                p.Add("@Id",order.Id);
+                connection.Execute("dbo.spOrder_Delete", p, commandType: CommandType.StoredProcedure);
+
+            }
+        }
+
     }
 }

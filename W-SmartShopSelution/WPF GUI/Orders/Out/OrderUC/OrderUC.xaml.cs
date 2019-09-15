@@ -21,6 +21,27 @@ namespace WPF_GUI.Orders.Out.OrderUC
     /// </summary>
     public partial class OrderUC : UserControl
     {
+        #region Main variables
+
+        private OrderModel OrignalOrder { get; set; }
+        private OrderModel Order { get; set; } = new OrderModel();
+        private List<OrderProductModel> OrderProducts { get; set; } = new List<OrderProductModel>();
+
+        private List<StockModel> NewStocks { get; set; } = new List<StockModel>();
+
+        #endregion
+
+        #region Help Variables
+
+        private List<StockModel> Stocks { get; set; } = new List<StockModel>();
+        private List<OrderProductModel> RemovedOrderProducts { get; set; } = new List<OrderProductModel>();
+
+        #endregion
+
+
+        #region set the initianl values
+
+
         /// <summary>
         /// The details of the order and option to print or to edit the order
         /// </summary>
@@ -28,6 +49,194 @@ namespace WPF_GUI.Orders.Out.OrderUC
         public OrderUC(OrderModel order)
         {
             InitializeComponent();
+            OrignalOrder = order;
+            SetInitialValues();
         }
+
+        private void SetInitialValues()
+        {
+
+            Order = OrignalOrder;
+            OrderProducts = Order.Products;
+            // Set the GUI values
+            OrderIdValue_OrderUC.Text = Order.Id.ToString();
+            TotalPriceValue_OrderUC.Text = Order.TotalPrice.ToString();
+            TotalOrderProfitValue_OrderUC.Text = Order.GetTotalProfit.ToString();
+            TotalPriceAfterChangesValue_OrderUC.Text = Order.TotalPrice.ToString();
+            TotalOrderProfitValue_OrderUC.Text = Order.GetTotalProfit.ToString();
+            TotalOrderProfitAfterChangesValue_OrderUC.Text = Order.GetTotalProfit.ToString();
+            OrderDetailsValue_OrderUC.Text = Order.Details;
+            OrderDateValue_OrderUC.Text = Order.DateTimeOfTheOrder.ToString();
+            StaffNameValue_OrderUC.Text = Order.Staff.Person.FullName.ToString();
+            StoreNameValue_OrderUC.Text = Order.Store.Name.ToString();
+            CustomerNameValue_OrderUC.Text = Order.Customer.Person.FullName;
+            CustomerPhoneNumberValue_OrderUC.Text = Order.Customer.Person.PhoneNumber;
+            CustomerNationalNumberValue_OrderUC.Text = Order.Customer.Person.NationalNumber;
+            OrderProductList_OrderUC.ItemsSource = OrderProducts;
+
+            NewStocks = new List<StockModel>();
+            RemovedOrderProducts = new List<OrderProductModel>();
+
+            UpdateTheStocksFromThePublicVariables();
+        }
+
+        /// <summary>
+        /// Update and gets the stocks from the public variables
+        /// </summary>
+        private void UpdateTheStocksFromThePublicVariables()
+        {
+            PublicVariables.LoginStoreStocks = GlobalConfig.Connection.FilterStocksByStore(PublicVariables.Store);
+            Stocks = null;
+            Stocks = PublicVariables.LoginStoreStocks;
+        }
+
+
+        #endregion
+
+        #region Hole User Grid Events
+
+        private void RemoveSelectedProductButton_OrderUC_Click(object sender, RoutedEventArgs e)
+        {
+            
+            OrderProductModel selectedItem = (OrderProductModel)OrderProductList_OrderUC.SelectedItem;
+            if (selectedItem != null)
+            {
+                if(OrderProducts.Count > 1)
+                {
+                    RemovedOrderProducts.Add(selectedItem);
+                    OrderProducts.Remove(selectedItem);
+
+
+
+                    UpadatOrderProductsList_OrderUC();
+
+
+
+                }
+                else
+                {
+                    MessageBox.Show("The Order can't be empty , Delete the order instead");
+                }
+               
+                
+
+            }
+            else
+            {
+                MessageBox.Show("Select a product !");
+            }
+        }
+
+
+        /// <summary>
+        /// update the choosen product list with orders list
+        /// </summary>
+        private void UpadatOrderProductsList_OrderUC()
+        {
+            OrderProductList_OrderUC.ItemsSource = null;
+            OrderProductList_OrderUC.ItemsSource = OrderProducts;
+
+            // Updates Total Price
+            UpdateTotalPriceTotalProfitAndCustomerShouldReceive();
+       }
+
+        /// <summary>
+        /// Updates Total Price called by UpadatOrderProductsList_OrderUC
+        /// gets order list and calculate the total price
+        /// </summary>
+        private void UpdateTotalPriceTotalProfitAndCustomerShouldReceive()
+        {
+            decimal TotalPrice = new decimal();
+            decimal TotalOrderProfit = new decimal();
+            foreach (OrderProductModel orderProduct in OrderProducts)
+            {
+                TotalPrice += orderProduct.GetTotalPrice;
+
+                TotalOrderProfit += orderProduct.GetTotalProfit;
+            }
+            TotalPriceAfterChangesValue_OrderUC.Text = TotalPrice.ToString();
+            TotalOrderProfitAfterChangesValue_OrderUC.Text = TotalOrderProfit.ToString();
+
+            CustomerShouldReceiveValue_OrderUC.Text = (decimal.Parse(TotalPriceValue_OrderUC.Text) - TotalPrice).ToString();
+
+        }
+
+        private void ConfitmButton_OrderUC_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (OrderProductModel orderProduct in RemovedOrderProducts)
+            {
+                List<StockModel> stocks = GlobalConfig.Connection.GetStocksByProduct(Stocks, orderProduct.Product);
+                if (stocks.Count > 0)
+                {
+                    GlobalConfig.Connection.IncreaseStock(stocks[0], orderProduct.Quantity);
+                }
+                else
+                {
+                    StockModel stock = new StockModel();
+                    stock.Product = orderProduct.Product;
+                    stock.Quantity = orderProduct.Quantity;
+                    stock.Store = PublicVariables.Store;
+                    GlobalConfig.Connection.AddStockToTheDatabase(stock);
+                }
+
+                GlobalConfig.Connection.RemoveOrderProduct(orderProduct);
+            }
+
+            Order.Details = OrderDetailsValue_OrderUC.Text;
+            Order.TotalPrice = decimal.Parse(TotalPriceAfterChangesValue_OrderUC.Text);
+
+            GlobalConfig.Connection.UpdateOrderData(Order);
+
+
+            var parent = this.Parent as Window;
+            if (parent != null) { parent.DialogResult = true; parent.Close(); }
+        }
+
+
+
+        private void DeleteOrderButton_OrderUC_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show("this Order will be Deleted Complitly, the customer should get "+ Order.GetTotalPrice.ToString() +"  !", "Are you sure ?", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                foreach(OrderProductModel orderProduct in OrderProducts)
+                {
+                    RemovedOrderProducts.Add(orderProduct);
+                }
+
+
+                foreach (OrderProductModel orderProduct in RemovedOrderProducts)
+                {
+                    List<StockModel> stocks = GlobalConfig.Connection.GetStocksByProduct(Stocks, orderProduct.Product);
+                    if (stocks.Count > 0)
+                    {
+                        GlobalConfig.Connection.IncreaseStock(stocks[0], orderProduct.Quantity);
+                    }
+                    else
+                    {
+                        StockModel stock = new StockModel();
+                        stock.Product = orderProduct.Product;
+                        stock.Quantity = orderProduct.Quantity;
+                        stock.Store = PublicVariables.Store;
+                        GlobalConfig.Connection.AddStockToTheDatabase(stock);
+                    }
+
+                    GlobalConfig.Connection.RemoveOrderProduct(orderProduct);
+
+                }
+
+
+                GlobalConfig.Connection.RemoveOrder(Order);
+
+
+                var parent = this.Parent as Window;
+                if (parent != null) { parent.DialogResult = true; parent.Close(); }
+            }
+        }
+
+
+
+        #endregion
+
+
     }
 }
