@@ -8,6 +8,13 @@ namespace Library
 {
     public static class PublicVariables
     {
+
+        public static string OrganizationName { get; set; }
+
+        public static string OrganizationAddress { get; set; }
+
+        public static string OrganizationPhoneNumber { get; set; }
+
         /// <summary>
         /// The Current Staff member that use the program
         /// </summary>

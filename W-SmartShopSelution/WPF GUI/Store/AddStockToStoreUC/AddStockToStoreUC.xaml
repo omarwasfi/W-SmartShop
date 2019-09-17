@@ -5,7 +5,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WPF_GUI"
              mc:Ignorable="d" 
-                          xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+                          xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+                 xmlns:wpf="http://schemas.microsoft.com/netfx/2009/xaml/presentation"
+                  xmlns:wpf1="http://schemas.microsoft.com/netfx/2007/xaml/presentation" 
              d:DesignHeight="680" d:DesignWidth="1343">
     <Grid Margin="10">
 

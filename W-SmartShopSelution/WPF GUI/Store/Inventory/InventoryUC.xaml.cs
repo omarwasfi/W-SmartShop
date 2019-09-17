@@ -97,6 +97,8 @@ namespace WPF_GUI.Inventory
         /// </summary>
         private void UpdateStocksFromThePublicVaribles()
         {
+            PublicVariables.LoginStoreStocks = GlobalConfig.Connection.FilterStocksByStore(PublicVariables.Store);
+            Stocks = null;
             Stocks = PublicVariables.LoginStoreStocks;
         }
 

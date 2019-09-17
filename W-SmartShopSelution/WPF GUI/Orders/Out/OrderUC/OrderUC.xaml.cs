@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Library;
+using Stimulsoft.Report;
 
 namespace WPF_GUI.Orders.Out.OrderUC
 {
@@ -163,6 +164,16 @@ namespace WPF_GUI.Orders.Out.OrderUC
 
         private void ConfitmButton_OrderUC_Click(object sender, RoutedEventArgs e)
         {
+            SaveTheOrder();
+
+            
+        }
+
+        /// <summary>
+        ///  save to the database , Opens the printing tab
+        /// </summary>
+        private void SaveTheOrder()
+        {
             foreach (OrderProductModel orderProduct in RemovedOrderProducts)
             {
                 List<StockModel> stocks = GlobalConfig.Connection.GetStocksByProduct(Stocks, orderProduct.Product);
@@ -179,6 +190,8 @@ namespace WPF_GUI.Orders.Out.OrderUC
                     GlobalConfig.Connection.AddStockToTheDatabase(stock);
                 }
 
+                //Order.Products.Remove(orderProduct);
+
                 GlobalConfig.Connection.RemoveOrderProduct(orderProduct);
             }
 
@@ -187,11 +200,18 @@ namespace WPF_GUI.Orders.Out.OrderUC
 
             GlobalConfig.Connection.UpdateOrderData(Order);
 
+            if (MessageBox.Show("Do you want to print the order ?", "Printing...", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                PrintTheOrder();
 
-            var parent = this.Parent as Window;
-            if (parent != null) { parent.DialogResult = true; parent.Close(); }
+            }
+            else
+            {
+                var parent = this.Parent as Window;
+                if (parent != null) { parent.DialogResult = true; parent.Close(); }
+            }
+
         }
-
 
 
         private void DeleteOrderButton_OrderUC_Click(object sender, RoutedEventArgs e)
@@ -234,6 +254,62 @@ namespace WPF_GUI.Orders.Out.OrderUC
         }
 
 
+
+        private void PrintButton_OrderUC_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show("Do you want to save the order ?", "Are you sure ?", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                SaveTheOrder();
+
+            }
+        }
+
+        /// <summary>
+        /// Opens the printing tab and fill the prining info
+        /// </summary>
+        private void PrintTheOrder()
+        {
+            UserGrid_OrderUC.Visibility = Visibility.Collapsed;
+            PrintingGrid_OrderUC.Visibility = Visibility.Visible;
+
+
+            StiReport report = new StiReport();
+            // add the data to the datastore
+            report.Load(@"SellOrderReport.mrt");
+
+            report.Compile();
+
+            report["OrganizationName"] = PublicVariables.OrganizationName;
+            report["OrganizationAddress"] = PublicVariables.OrganizationAddress;
+            report["OrganizationPhoneNumber"] = PublicVariables.OrganizationPhoneNumber;
+
+            report["DateTime"] = Order.DateTimeOfTheOrder.ToShortTimeString();
+            report["StaffName"] = Order.Staff.Person.FullName;
+            report["StoreName"] = Order.Store.Name;
+            report["StorePhoneNumber"] = Order.Store.PhoneNumber;
+            report["StoreAddress"] = Order.Store.Address;
+            report["OrderId"] = Order.Id;
+
+
+
+            report["CustomerName"] = Order.Customer.Person.FullName;
+            report["CustomerPhoneNumber"] = Order.Customer.Person.PhoneNumber;
+            report["CustomerNationalNumber"] = Order.Customer.Person.NationalNumber;
+
+            report["OrderDetails"] = Order.Details;
+            report["TotalPrice"] = Order.TotalPrice.ToString();
+
+            report.Render();
+
+            SellOrderReportPrint_OrderUC.Report = report;
+        }
+
+        private void BackToNormalGridButton_OrderUC_Click(object sender, RoutedEventArgs e)
+        {
+            var parent = this.Parent as Window;
+            if (parent != null) { parent.DialogResult = true; parent.Close(); }
+
+        }
 
         #endregion
 

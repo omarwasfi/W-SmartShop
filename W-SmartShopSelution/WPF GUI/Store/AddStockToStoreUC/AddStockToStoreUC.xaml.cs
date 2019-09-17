@@ -103,39 +103,39 @@ namespace WPF_GUI
             ProductSearchType_AddStockToStoreUC.ItemsSource = null;
             ProductSearchType_AddStockToStoreUC.ItemsSource = SearchTypes;
 
-            
-                List<StoreModel> stores = new List<StoreModel>();
-                stores.Add(Store);
 
-                StoreValue_AddStockToStoreUC.ItemsSource = stores;
-                StoreValue_AddStockToStoreUC.DisplayMemberPath = "Name";
+            List<StoreModel> stores = new List<StoreModel>();
+            stores.Add(Store);
 
-                QuantityValue_AddStockToStoreUC.Text = "1";
+            StoreValue_AddStockToStoreUC.ItemsSource = stores;
+            StoreValue_AddStockToStoreUC.DisplayMemberPath = "Name";
 
-
-                UpdateProductsFromThePublicVaribles();
-
-                FProductsList_AddStockToStoreUC.ItemsSource = null;
-
-                UpdateStocksFromThePublicVaribles();
+            QuantityValue_AddStockToStoreUC.Text = "1";
 
 
-                UpdateCategoriesFromThePublicVaribles();
-                CategoryValue_AddStockToStoreUC.ItemsSource = null;
-                CategoryValue_AddStockToStoreUC.ItemsSource = Categories;
-                CategoryValue_AddStockToStoreUC.DisplayMemberPath = "Name";
+            UpdateProductsFromThePublicVaribles();
+
+            FProductsList_AddStockToStoreUC.ItemsSource = null;
+
+            UpdateStocksFromThePublicVaribles();
 
 
-                UpdateBrandsFromThePublicVaribles();
-                BrandValue_AddStockToStoreUC.ItemsSource = null;
-                BrandValue_AddStockToStoreUC.ItemsSource = Brands;
-                BrandValue_AddStockToStoreUC.DisplayMemberPath = "Name";
-
-                StoreValue_AddStockToStoreUC.SelectedValue = null;
-                StoreValue_AddStockToStoreUC.SelectedValue = Store;
+            UpdateCategoriesFromThePublicVaribles();
+            CategoryValue_AddStockToStoreUC.ItemsSource = null;
+            CategoryValue_AddStockToStoreUC.ItemsSource = Categories;
+            CategoryValue_AddStockToStoreUC.DisplayMemberPath = "Name";
 
 
-           
+            UpdateBrandsFromThePublicVaribles();
+            BrandValue_AddStockToStoreUC.ItemsSource = null;
+            BrandValue_AddStockToStoreUC.ItemsSource = Brands;
+            BrandValue_AddStockToStoreUC.DisplayMemberPath = "Name";
+
+            StoreValue_AddStockToStoreUC.SelectedValue = null;
+            StoreValue_AddStockToStoreUC.SelectedValue = Store;
+
+
+
 
 
 
@@ -148,7 +148,8 @@ namespace WPF_GUI
         /// </summary>
         private void UpdateStocksFromThePublicVaribles()
         {
-            Stocks = PublicVariables.Stocks;
+            PublicVariables.LoginStoreStocks = GlobalConfig.Connection.FilterStocksByStore(PublicVariables.Store);
+            Stocks = PublicVariables.LoginStoreStocks;
         }
 
         /// <summary>
@@ -158,7 +159,7 @@ namespace WPF_GUI
         private void UpdateCategoriesFromThePublicVaribles()
         {
             Categories = PublicVariables.Categories;
-            Categories.RemoveAt(0);
+            //Categories.RemoveAt(0);
         }
 
         /// <summary>
@@ -168,7 +169,7 @@ namespace WPF_GUI
         private void UpdateBrandsFromThePublicVaribles()
         {
             Brands = PublicVariables.Brands;
-            Brands.RemoveAt(0);
+           // Brands.RemoveAt(0);
         }
 
         /// <summary>
@@ -177,8 +178,10 @@ namespace WPF_GUI
         /// </summary>
         private void UpdateProductsFromThePublicVaribles()
         {
+            PublicVariables.Products = GlobalConfig.Connection.GetProducts();
+            Products = null;
             Products = PublicVariables.Products;
-            Products.RemoveAt(0);
+
         }
 
         /// <summary>

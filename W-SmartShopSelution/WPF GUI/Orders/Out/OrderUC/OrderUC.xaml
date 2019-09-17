@@ -4,7 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WPF_GUI.Orders.Out.OrderUC"
-             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="WPF_GUI.Orders.Out.OrderUC.OrderUC"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:wpfViewer="schemas-stimulsoft-com:wpf-viewer" x:Class="WPF_GUI.Orders.Out.OrderUC.OrderUC"
              mc:Ignorable="d" 
              d:DesignHeight="680" d:DesignWidth="1343">
     <Grid>
@@ -64,7 +65,7 @@
                     <materialDesign:PackIcon Kind="Reload" Width="20" Height="20"/>
                 </Button>
 
-                <Button x:Name="PrintButton_OrderUC" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray"   VerticalAlignment="Top"  Margin="115,0,55,0" Height="25"  >
+                <Button x:Name="PrintButton_OrderUC" Click="PrintButton_OrderUC_Click" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray"   VerticalAlignment="Top"  Margin="115,0,55,0" Height="25"  >
                     <materialDesign:PackIcon Kind="Printer" Width="20" Height="20"/>
                 </Button>
 
@@ -93,6 +94,13 @@
 
         </Grid>
 
+        <Grid Name="PrintingGrid_OrderUC" Visibility="Collapsed">
+            <Button x:Name="BackToNormalGridButton_OrderUC" Click="BackToNormalGridButton_OrderUC_Click" Visibility="Visible" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Green"   VerticalAlignment="Top"  Margin="10,4,1277,0" Height="25"  >
+                <materialDesign:PackIcon Kind="ArrowLeft" Width="20" Height="20"/>
+            </Button>
+
+            <wpfViewer:StiWpfViewerControl Name="SellOrderReportPrint_OrderUC" HorizontalAlignment="Left" Height="651" Margin="0,29,0,0" VerticalAlignment="Top" Width="1343"/>
+        </Grid>
 
     </Grid>
 </UserControl>

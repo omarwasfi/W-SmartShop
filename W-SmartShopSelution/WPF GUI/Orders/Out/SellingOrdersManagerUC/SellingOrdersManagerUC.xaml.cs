@@ -134,25 +134,54 @@ namespace WPF_GUI.Orders.Out.SellingOrdersManagerUC
         /// <param name="e"></param>
         private void PrintButton_SellingOrdersManagerUC_Click(object sender, RoutedEventArgs e)
         {
-            UserGrid_SellingOrdersManagerUC.Visibility = Visibility.Collapsed;
-            PrintGrid_SellingOrdersManagerUC.Visibility = Visibility.Visible;
 
-         
+            if((OrderModel)OrdersList_SellingOrdersManagerUC.SelectedItem != null)
+            {
+                OrderModel order = (OrderModel)OrdersList_SellingOrdersManagerUC.SelectedItem;
 
-            StiReport report = new StiReport();
+                UserGrid_SellingOrdersManagerUC.Visibility = Visibility.Collapsed;
+                PrintGrid_SellingOrdersManagerUC.Visibility = Visibility.Visible;
+
+                StiReport report = new StiReport();
+                // add the data to the datastore
+                report.Load(@"SellOrderReport.mrt");
+
+                report.Compile();
+
+                report["OrganizationName"] = PublicVariables.OrganizationName;
+                report["OrganizationAddress"] = PublicVariables.OrganizationAddress;
+                report["OrganizationPhoneNumber"] = PublicVariables.OrganizationPhoneNumber;
+
+                report["DateTime"] = order.DateTimeOfTheOrder.ToShortTimeString();
+                report["StaffName"] = order.Staff.Person.FullName;
+                report["StoreName"] = order.Store.Name;
+                report["StorePhoneNumber"] = order.Store.PhoneNumber;
+                report["StoreAddress"] = order.Store.Address;
+                report["OrderId"] = order.Id;
 
 
-            // add the data to the datastore
-            report.Load(@"SellingOrdersManagerReport.mrt");
-            report.Compile();
-            report["Id"] = 654;
-            report.Render();
 
+                report["CustomerName"] = order.Customer.Person.FullName;
+                report["CustomerPhoneNumber"] = order.Customer.Person.PhoneNumber;
+                report["CustomerNationalNumber"] = order.Customer.Person.NationalNumber;
 
+                report["OrderDetails"] = order.Details;
+                report["TotalPrice"] = order.TotalPrice.ToString();
 
-            OrdersPrint_SellingOrdersManagerUC.Report = report;
-            OrdersPrint_SellingOrdersManagerUC.Refresh();
+                report.Render();
 
+                OrdersPrint_SellingOrdersManagerUC.Report = report;
+               
+
+            }
+            else
+            {
+                MessageBox.Show("Select Order to print !");
+            }
+
+                
+
+           
         }
 
         /// <summary>
@@ -184,6 +213,8 @@ namespace WPF_GUI.Orders.Out.SellingOrdersManagerUC
         {
             PrintGrid_SellingOrdersManagerUC.Visibility = Visibility.Collapsed;
             UserGrid_SellingOrdersManagerUC.Visibility = Visibility.Visible;
+
+            SetInitialValues();
         }
 
         /// <summary>

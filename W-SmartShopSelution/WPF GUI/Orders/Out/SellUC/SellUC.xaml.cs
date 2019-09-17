@@ -1,4 +1,5 @@
 ﻿using Library;
+using Stimulsoft.Report;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -177,6 +178,8 @@ namespace WPF_GUI.Sell
 
             Update_StocksVariablesAndEvents();
 
+            UserGrid_SellUC.Visibility = Visibility.Visible;
+            PrintGrid_SellUC.Visibility = Visibility.Collapsed;
 
         }
 
@@ -1206,6 +1209,18 @@ namespace WPF_GUI.Sell
         /// <param name="e"></param>
         private void ConfirmButton_UC_Click(object sender, RoutedEventArgs e)
         {
+
+            SaveTheOrder();
+
+           
+
+        }
+
+        /// <summary>
+        /// Check if the order vaild , it it's -> save to the database , Opens the printing tab
+        /// </summary>
+        private void SaveTheOrder()
+        {
             if (Customer == null)
             {
                 MessageBox.Show("choose Customer first");
@@ -1230,23 +1245,25 @@ namespace WPF_GUI.Sell
                     GlobalConfig.Connection.SaveOrderToDatabase(Order);
 
 
-                    foreach(OrderProductModel orderProduct in Orders)
+                    foreach (OrderProductModel orderProduct in Orders)
                     {
                         GlobalConfig.Connection.ReduseStock(orderProduct.Stock, orderProduct.Quantity);
                     }
 
                     PublicVariables.LoginStoreStocks = GlobalConfig.Connection.FilterStocksByStore(Store);
 
-                    SetInitialValues();
-                    ResetSellUC();
+                    if (MessageBox.Show("Do you want to print the order ?", "Printing...", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                    {
+                        PrintTheOrder();
+
+                    }
                 }
 
-                
+
+
+
             }
-            
-
         }
-
 
 
         /// <summary>
@@ -1344,9 +1361,75 @@ namespace WPF_GUI.Sell
             GlobalConfig.NumberValidation.IntegerValidationTextBox(sender, e);
         }
 
+
+
+        private void PrintButton_SellUC_Click(object sender, RoutedEventArgs e)
+        {
+            if(MessageBox.Show("Do you want to save the order ?" , "Are you sure ?" , MessageBoxButton.YesNo,MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                SaveTheOrder();
+                
+            }
+
+            
+
+        }
+
+        /// <summary>
+        /// Opens the printing tab and fill the prining info
+        /// </summary>
+        private void PrintTheOrder()
+        {
+            UserGrid_SellUC.Visibility = Visibility.Collapsed;
+            PrintGrid_SellUC.Visibility = Visibility.Visible;
+
+
+            StiReport report = new StiReport();
+            // add the data to the datastore
+            report.Load(@"SellOrderReport.mrt");
+
+            report.Compile();
+
+            report["OrganizationName"] = PublicVariables.OrganizationName;
+            report["OrganizationAddress"] = PublicVariables.OrganizationAddress;
+            report["OrganizationPhoneNumber"] = PublicVariables.OrganizationPhoneNumber;
+
+            report["DateTime"] = Order.DateTimeOfTheOrder.ToShortTimeString();
+            report["StaffName"] = Order.Staff.Person.FullName;
+            report["StoreName"] = Order.Store.Name;
+            report["StorePhoneNumber"] = Order.Store.PhoneNumber;
+            report["StoreAddress"] = Order.Store.Address;
+            report["OrderId"] = Order.Id;
+
+
+
+            report["CustomerName"] = Order.Customer.Person.FullName;
+            report["CustomerPhoneNumber"] = Order.Customer.Person.PhoneNumber;
+            report["CustomerNationalNumber"] = Order.Customer.Person.NationalNumber;
+
+            report["OrderDetails"] = Order.Details;
+            report["TotalPrice"] = Order.TotalPrice.ToString();
+
+            report.Render();
+
+            SellOrderReportPrint_SellUC.Report = report;
+        }
+
+
         #endregion
 
+        #region Print Grid
 
+        private void BackToNormalGridButton_SellUC_Click(object sender, RoutedEventArgs e)
+        {
+            SetInitialValues();
+            ResetSellUC();
+        }
+
+
+        #endregion
+
+        
     }
 
 }
