@@ -356,6 +356,18 @@ namespace Library
             OrderProduct.RemoveOrderProduct(orderProduct, db);
         }
 
+
+        /// <summary>
+        /// Loop throw each OrderProduct in the order
+        /// save each one in the orderProdcut table with tha Id of the order
+        /// </summary>
+        /// <param name="order"> Order Model Has An Id From Order.GetEmptyOrder </param>
+        /// <param name="db"> Database Connection Name </param>
+        public void SaveOrderProductListToTheDatabase(OrderModel order)
+        {
+            OrderProduct.SaveOrderProductListToTheDatabase(order, db);
+        }
+
         #endregion
 
         #region Customer
@@ -466,9 +478,23 @@ namespace Library
         /// </summary>
         /// <param name="order">order model</param>
         /// <param name="db"></param>
-        public void SaveOrderToDatabase(OrderModel order)
+       /* public void SaveOrderToDatabase(OrderModel order)
         {
             OrderProduct.SaveOrderProductListToTheDatabase(Order.GetEmptyOrderFromTheDatabase(order, db), db);
+        }*/
+
+        /// <summary>
+        /// Gets Empty Order that have Id  , 
+        /// The order should Have The main info of thist variables:
+        /// CustomerId, DataTimeOfTheOrder, StoreId, StaffId,TotalPrice
+        /// </summary>
+        /// <param name="order">order model</param>
+        /// <param name="db"> Database Connection Name </param>
+        public OrderModel GetEmptyOrderFromTheDatabase(OrderModel order)
+        {
+            return Order.GetEmptyOrderFromTheDatabase(order, db);
+
+
         }
 
         /// <summary>
@@ -1069,5 +1095,34 @@ namespace Library
 
         #endregion
 
+
+        #region Operation
+
+        /// <summary>
+        /// Add Operation to tha database , set the amountOfMoney and any Propity 
+        /// </summary>
+        /// <param name="operation"></param>
+        /// <param name="db"></param>
+        /// <returns></returns>
+        public OperationModel AddOperationToDatabase(OperationModel operation)
+        {
+            return Operation.AddOperationToDatabase(operation, db);
+        }
+
+        #endregion
+
+        #region CashFlow
+
+        /// <summary>
+        /// Calculate all the money records And fint the ShopeeWallet
+        /// </summary>
+        /// <param name="operationModel"></param>
+        /// <returns></returns>
+        public decimal GetTheShopeeWallet(List<OperationModel> operationModel)
+        {
+            return CashFlow.GetTheShopeeWallet(operationModel);
+        }
+
+        #endregion
     }
 }

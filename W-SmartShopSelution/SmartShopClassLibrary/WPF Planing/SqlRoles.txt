@@ -59,5 +59,9 @@ InstallmentProduct
 StaffSalary
 	Id Auto Increment starts From 700,000
 
+Operation
+	Id Auto Increment starts From 800,000
+
+
 
 	

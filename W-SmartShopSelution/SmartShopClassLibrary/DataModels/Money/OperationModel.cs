@@ -18,5 +18,68 @@ namespace Library
 
         public  ShopBillModel ShopBill { get; set; }
 
+        public StaffSalaryModel StaffSalary { get; set; }
+
+        /// <summary>
+        /// The amount of money of the operation
+        /// </summary>
+        public decimal AmountOfMoney { get; set; }
+
+        /// <summary>
+        /// Set and return The OperationName {"Order","Installment","IncomeOrder","ShopBill",StaffSalary} , if all null return "Empty"
+        /// </summary>
+        public string GetOperationName
+        {
+            get
+            {
+
+                if (Installment != null)
+                {
+                    return "Installment";
+                }
+                else if (IncomeOrder != null)
+                {
+                    return "IncomeOrder";
+                }
+                else if (Order != null)
+                {
+                    return "Order";
+                }
+                else if (ShopBill != null)
+                {
+                    return "ShopBill";
+                }
+                else if (StaffSalary != null)
+                {
+                    return "StaffSalary";
+                }
+                else
+                {
+                    return "Empty";
+                }
+
+                
+
+            }
+        }
+
+        /// <summary>
+        /// The type of Opertation (In , out), if true => In -> money Payment , false => out -> money income
+        /// </summary>
+        public Boolean GetTheOperationType
+        {
+            get
+            {
+                if(GetOperationName == "Installment" || GetOperationName == "Order")
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+        }
+
     }
 }

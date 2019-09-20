@@ -15,19 +15,33 @@ namespace Library
         /// </summary>
         public OperationModel Operation { get; set; }
 
-
-        /// <summary>
-        /// The type of Opertation (In , out)
-        /// if true => In
-        /// false => out
-        /// </summary>
-        public Boolean OperationType { get; set; }
-
         /// <summary>
         /// The amount of money of the operation
         /// </summary>
         public decimal AmountOfMoney { get; set; }
 
+
+        /// <summary>
+        /// get The type of Opertation (In , out) From Operation.GetTheOperationType
+        /// if true => In -> money Payment , false => out -> money income
+        /// </summary>
+        public Boolean GetOperationType
+        {
+            get
+            {
+                return Operation.GetTheOperationType;
+            }
+
+        }
+
+        public string GetOperationName
+        {
+            get
+            {
+                return Operation.GetOperationName;
+            }
+        }
+      
         /// <summary>
         /// Check every thing in the operation and return the date of the order that not null
         /// </summary>

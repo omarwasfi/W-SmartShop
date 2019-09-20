@@ -1242,8 +1242,17 @@ namespace WPF_GUI.Sell
                     Order.TotalPrice = decimal.Parse(TotalPriceValue_Sell.Text);
                     Order.Details = OrderDetailsValue_Sell.Text;
 
-                    GlobalConfig.Connection.SaveOrderToDatabase(Order);
+                    Order = GlobalConfig.Connection.GetEmptyOrderFromTheDatabase(Order);
 
+                    GlobalConfig.Connection.SaveOrderProductListToTheDatabase(Order);
+
+                    OperationModel operation = new OperationModel
+                    {
+                        Order = Order,
+                        AmountOfMoney = Order.GetTotalPrice
+                    };
+                    
+                    GlobalConfig.Connection.AddOperationToDatabase(operation);
 
                     foreach (OrderProductModel orderProduct in Orders)
                     {
