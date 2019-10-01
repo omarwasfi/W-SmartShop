@@ -1166,6 +1166,7 @@ namespace WPF_GUI.Sell
             InProg_PhoneNumberValue_Sell = true;
             InProg_NationalNumberValue_Sell = true;
 
+
             CustomerNameValue_Sell.Text = "";
             PhoneNumberValue_Sell.Text = "";
             NationalNumberValue_Sell.Text = "";
@@ -1249,7 +1250,8 @@ namespace WPF_GUI.Sell
                     OperationModel operation = new OperationModel
                     {
                         Order = Order,
-                        AmountOfMoney = Order.GetTotalPrice
+                        AmountOfMoney = Order.GetTotalPrice,
+                        Date = DateTime.Now
                     };
                     
                     GlobalConfig.Connection.AddOperationToDatabase(operation);
@@ -1265,6 +1267,11 @@ namespace WPF_GUI.Sell
                     {
                         PrintTheOrder();
 
+                    }
+                    else
+                    {
+                        SetInitialValues();
+                        ResetSellUC();
                     }
                 }
 
@@ -1282,6 +1289,7 @@ namespace WPF_GUI.Sell
         private void ResetSellUC()
         {
             ClearCustomerInfo();
+            Customer = GlobalConfig.Connection.GetDefaultCustomer();
             Stocks = PublicVariables.LoginStoreStocks;
             CategoryValue_Sell.SelectedItem = null;
             BrandValue_Sell.SelectedItem = null;

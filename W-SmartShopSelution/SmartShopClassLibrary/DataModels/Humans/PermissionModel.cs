@@ -65,5 +65,11 @@ namespace Library
         /// </summary>
         public Boolean CanSellingOrdersManagerUC { get; set; }
 
+        // TODO - Add this option in the database
+        /// <summary>
+        /// Boolean value says if the user can open the CanInstallmentOrderUC
+        /// </summary>
+        public Boolean CanCashFlowUC { get; set; }
+
     }
 }

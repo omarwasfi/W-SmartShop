@@ -31,5 +31,48 @@ namespace Library
 
             return shopeeWallet;
         }
+
+        /// <summary>
+        /// Return the total of totalPrice of any Order in a operation
+        /// </summary>
+        /// <param name="operations"></param>
+        /// <returns></returns>
+        public static decimal TotalSellsIncome(List<OperationModel> operations)
+        {
+            decimal totalSells = new decimal();
+
+            foreach(OperationModel operation in operations)
+            {
+                if (operation.Order != null)
+                {
+                    totalSells += operation.Order.TotalPrice;
+                }
+                
+            }
+
+            return totalSells;
+        }
+
+
+        /// <summary>
+        /// Return the TotalProfit of any Order in a operation
+        /// </summary>
+        /// <param name="operations"></param>
+        /// <returns></returns>
+        public static decimal TotalSellsProfit(List<OperationModel> operations)
+        {
+            decimal totalProfit = new decimal();
+
+            foreach(OperationModel operation in operations)
+            {
+                if (operation.Order != null)
+                {
+                    totalProfit += operation.Order.GetTotalProfit;
+                }
+                    
+            }
+
+            return totalProfit;
+        }
     }
 }

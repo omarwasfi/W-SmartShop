@@ -132,6 +132,13 @@
                             </StackPanel>
                         </ListViewItem>
 
+                        <ListViewItem x:Name="CashUCViewItem" Visibility="Visible" Height="45" Padding="0" Selected="CashUCViewItem_Selected">
+                            <StackPanel Orientation="Horizontal" Margin="10 0">
+                                <materialDesign:PackIcon Kind="AttachMoney" Width="20" Height="20" Foreground="Gray" Margin="5" VerticalAlignment="Center"/>
+                                <TextBlock Text="cash Flow" Margin="10"/>
+                            </StackPanel>
+                        </ListViewItem>
+
 
                         <ListViewItem Name="InventoryViewItem" Visibility="Collapsed" Height="45" Padding="0" Selected="InventoryViewItem_Selected" >
                             <StackPanel Orientation="Horizontal" Margin="10 0">

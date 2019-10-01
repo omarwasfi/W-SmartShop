@@ -159,6 +159,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CashUC\CashUC.xaml.cs">
+      <DependentUpon>CashUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Installament\InstallmentCollectingUC\InstallmentCollectingUC.xaml.cs">
       <DependentUpon>InstallmentCollectingUC.xaml</DependentUpon>
     </Compile>
@@ -225,6 +228,10 @@
     <Compile Include="Human\Supplier\SupplierLogUC\SupplierLogUC.xaml.cs">
       <DependentUpon>SupplierLogUC.xaml</DependentUpon>
     </Compile>
+    <Page Include="CashUC\CashUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Installament\InstallmentCollectingUC\InstallmentCollectingUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -1099,6 +1099,16 @@ namespace Library
         #region Operation
 
         /// <summary>
+        /// Get all the operations from the database
+        /// - Set the Order of installment , incomeOrder , shopBill , staffSalary
+        /// </summary>
+        /// <returns></returns>
+        public List<OperationModel> GetOperations()
+        {
+            return Operation.GetOperations(db);
+        }
+
+        /// <summary>
         /// Add Operation to tha database , set the amountOfMoney and any Propity 
         /// </summary>
         /// <param name="operation"></param>
@@ -1107,6 +1117,18 @@ namespace Library
         public OperationModel AddOperationToDatabase(OperationModel operation)
         {
             return Operation.AddOperationToDatabase(operation, db);
+        }
+
+        /// <summary>
+        /// Filter the opration by StartDate and EndDate in the operation.Date exist add to the fOperation list
+        /// </summary>
+        /// <param name="operations"></param>
+        /// <param name="startDate"></param>
+        /// <param name="endDate"></param>
+        /// <returns></returns>
+        public List<OperationModel> FilterOperationsByDate(List<OperationModel> operations, DateTime startDate, DateTime endDate)
+        {
+            return Operation.FilterOperationsByDate(operations, startDate, endDate);
         }
 
         #endregion
@@ -1123,6 +1145,26 @@ namespace Library
             return CashFlow.GetTheShopeeWallet(operationModel);
         }
 
+        /// <summary>
+        /// Return the total of totalPrice of any Order in a operation
+        /// </summary>
+        /// <param name="operations"></param>
+        /// <returns></returns>
+        public decimal TotalSellsIncome(List<OperationModel> operations)
+        {
+           return CashFlow.TotalSellsIncome(operations);
+        }
+
+        /// <summary>
+        /// Return the TotalProfit of any Order in a operation
+        /// </summary>
+        /// <param name="operations"></param>
+        /// <returns></returns>
+        public decimal TotalSellsProfit(List<OperationModel> operations)
+        {
+            
+            return CashFlow.TotalSellsProfit(operations);
+        }
         #endregion
     }
 }

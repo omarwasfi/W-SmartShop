@@ -10,6 +10,7 @@ namespace Library
 {
     public static class Operation
     {
+        // TODO - Do the incomeOrder , installment..... in the addOperationToDatabase
         /// <summary>
         /// Add Operation to tha database , set the amountOfMoney and any Propity 
         /// </summary>
@@ -25,6 +26,7 @@ namespace Library
                     var p = new DynamicParameters();
                     p.Add("@AmountOfMoney", operation.AmountOfMoney);
                     p.Add("@Type", operation.GetTheOperationType);
+                    p.Add("@Date", operation.Date);
                     p.Add("@OrderId", operation.Order.Id);
                     p.Add("@InstallmentId", null);
                     p.Add("@IncomeOrderId", null);
@@ -93,6 +95,99 @@ namespace Library
             }
 
             return operation;
+        }
+
+        /// <summary>
+        /// Get all the operations from the database
+        /// - Set the Order of installment , incomeOrder , shopBill , staffSalary
+        /// </summary>
+        /// <returns></returns>
+        public static List<OperationModel> GetOperations(string db)
+        {
+            List<OperationModel> operations = new List<OperationModel>();
+
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnVal(db)))
+            {
+                operations = connection.Query<OperationModel>("dbo.spOperation_GetAll").ToList();
+
+                foreach (OperationModel operation in operations)
+                {
+                    var p = new DynamicParameters();
+                    p.Add("@OperationId", operation.Id);
+
+                    //TODO - Set the other Options (installment , incomeorder , ....) to the operation
+
+                    string orderId = connection.QuerySingle<string>("dbo.spOperation_GetOrderIdByOperationId", p, commandType: CommandType.StoredProcedure);
+
+                    /*string installmentId = connection.QuerySingle<string>("dbo.spOperation_GetInstallmentIdByOperationId", p, commandType: CommandType.StoredProcedure);
+                    string incomeOrderId = connection.QuerySingle<string>("dbo.spOperation_GetInstallmentIdByOperationId", p, commandType: CommandType.StoredProcedure);
+                    string shopBillId = connection.QuerySingle<string>("dbo.spOperation_GetInstallmentIdByOperationId", p, commandType: CommandType.StoredProcedure);
+                    string staffSalaryId = connection.QuerySingle<string>("dbo.spOperation_GetInstallmentIdByOperationId", p, commandType: CommandType.StoredProcedure);*/
+
+                    if (orderId != null)
+                    {
+                        foreach(OrderModel order in PublicVariables.Orders)
+                        {
+                            if (order.Id == int.Parse(orderId))
+                            {
+                                operation.Order = order;
+                                break;
+                            }
+                        }
+                    }
+                    /*else if (installmentId != null)
+                    {
+                        //TODO - Set the installment to the operation
+                    }
+                    else if (incomeOrderId != null)
+                    {
+                        //TODO - Set the incomeOrder to the operation
+                    }
+                    else if (shopBillId != null)
+                    {
+                        //TODO - Set the ShopBill to the operation
+                    }
+                    else if (staffSalaryId != null)
+                    {
+                        //TODO - Set the StaffSalary to the operation
+                    }*/
+           
+                }
+
+            }
+
+            return operations;
+        }
+
+
+        /// <summary>
+        /// Filter the opration by StartDate and EndDate in the operation.Date exist add to the fOperation list
+        /// </summary>
+        /// <param name="operations"></param>
+        /// <param name="startDate"></param>
+        /// <param name="endDate"></param>
+        /// <returns></returns>
+        public static List<OperationModel> FilterOperationsByDate(List<OperationModel> operations , DateTime startDate , DateTime endDate)
+        {
+            List<OperationModel> fOperations = new List<OperationModel>();
+
+            // Here to add the 24 hour
+            endDate = endDate.AddDays(1);
+
+            
+                foreach (OperationModel operation in operations)
+                {
+                    if (operation.Date <= endDate && operation.Date >= startDate)
+                    {
+                        fOperations.Add(operation);
+                    }
+                }
+            
+
+            
+
+
+            return fOperations;
         }
 
     }

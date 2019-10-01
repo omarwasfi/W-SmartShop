@@ -1,0 +1,1 @@
+﻿1- to Change the price of any product you have to create a new product with a new barcode

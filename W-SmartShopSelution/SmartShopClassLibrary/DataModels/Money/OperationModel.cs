@@ -21,6 +21,11 @@ namespace Library
         public StaffSalaryModel StaffSalary { get; set; }
 
         /// <summary>
+        /// The date of the operation Not the  {"Order","Installment","IncomeOrder","ShopBill",StaffSalary}
+        /// </summary>
+        public DateTime Date { get; set; }
+
+        /// <summary>
         /// The amount of money of the operation
         /// </summary>
         public decimal AmountOfMoney { get; set; }
@@ -80,6 +85,81 @@ namespace Library
                 }
             }
         }
+
+        /// <summary>
+        /// Get the id of any of {"Order","Installment","IncomeOrder","ShopBill",StaffSalary}
+        /// </summary>
+        public int GetTheId
+        { get
+            {
+                if (GetOperationName == "Installment")
+                {
+                    return Installment.Id;
+                }
+                else if (GetOperationName == "IncomeOrder")
+                {
+                    return IncomeOrder.Id;
+                }
+                else if (GetOperationName == "Order")
+                {
+                    return Order.Id;
+                }
+                else if (GetOperationName == "ShopBill")
+                {
+                    return ShopBill.Id;
+                }
+                else if(GetOperationName == "StaffSalary")
+                {
+                    return StaffSalary.Id;
+                }
+                else
+                {
+                    return 0;
+                }
+               
+            }
+        }
+
+
+        /// <summary>
+        /// return the Name of the operation to the user  {"Order","Installment","Income Order","Shop Bill",Staff Salary} , if all null return "Empty"
+        /// </summary>
+        public string GetTheOperationName
+        {
+            get
+            {
+
+                if (Installment != null)
+                {
+                    return "Installment";
+                }
+                else if (IncomeOrder != null)
+                {
+                    return "Income Order";
+                }
+                else if (Order != null)
+                {
+                    return "Order";
+                }
+                else if (ShopBill != null)
+                {
+                    return "Shop Bill";
+                }
+                else if (StaffSalary != null)
+                {
+                    return "Staff Salary";
+                }
+                else
+                {
+                    return "Empty";
+                }
+
+
+
+            }
+        }
+
+       
 
     }
 }

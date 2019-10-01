@@ -97,7 +97,10 @@ namespace WPF_GUI
             {
                 InstallmentOrderViewItem.Visibility = Visibility.Visible;
             }
-
+            if (staff.Permission.CanCashFlowUC)
+            {
+                CashUCViewItem.Visibility = Visibility.Visible;
+            }
         }
         
        /// <summary>
@@ -170,6 +173,14 @@ namespace WPF_GUI
             MainTab.Items.Add(staffsManagerTab);
         }
 
+        private void CashUCViewItem_Selected(object sender, RoutedEventArgs e)
+        {
+            CashUC cashUC = new CashUC();
+            TabItem cashTab = new TabItem { Header = "Cash Flow" };
+            cashTab.Content = cashUC;
+            MainTab.Items.Add(cashTab);
+        }
+
         private void IncomeOrderViewItem_Selected(object sender, RoutedEventArgs e)
         {
             IncomeOrderUC incomeOrderUC = new IncomeOrderUC();
@@ -198,8 +209,9 @@ namespace WPF_GUI
                 this.DragMove();
         }
 
+
         #endregion
 
-      
+       
     }
 }

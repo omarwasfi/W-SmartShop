@@ -95,5 +95,10 @@ namespace Library
         /// Set in the LoginUC
         /// </summary>
         public static List<SupplierModel> Suppliers { get; set; }
+
+        /// <summary>
+        /// All the operations in the database
+        /// </summary>
+        public static List<OperationModel> Operations { get; set; }
     }
 }
