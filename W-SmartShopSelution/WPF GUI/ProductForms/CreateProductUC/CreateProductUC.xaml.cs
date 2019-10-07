@@ -199,7 +199,8 @@ namespace WPF_GUI.CreateProduct
                     if (GlobalConfig.Connection.CheckIfTheProductBarCodeUnique(Products, ProductBarCodeValue_CreateProductUC.Text))
                     {
                         // Save the Product to the database
-                        GlobalConfig.Connection.AddProductToTheDatabase(product);
+                        product = GlobalConfig.Connection.AddProductToTheDatabase(product);
+                        PublicVariables.RecentlyAddProducts.Add(product);
                     }
                     else
                     {
@@ -208,6 +209,7 @@ namespace WPF_GUI.CreateProduct
                     }
 
                 }
+                SetInitialValues();
 
             }
             else
@@ -231,7 +233,8 @@ namespace WPF_GUI.CreateProduct
                         if (GlobalConfig.Connection.CheckIfTheProductBarCodeUnique(Products, product.BarCode))
                         {
                             // Save the Product to the database
-                            GlobalConfig.Connection.AddProductToTheDatabase(product);
+                            product = GlobalConfig.Connection.AddProductToTheDatabase(product);
+                            PublicVariables.RecentlyAddProducts.Add(product);
                         }
                         else
                         {

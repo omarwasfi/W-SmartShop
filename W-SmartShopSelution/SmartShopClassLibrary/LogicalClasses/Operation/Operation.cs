@@ -57,7 +57,12 @@ namespace Library
                     var p = new DynamicParameters();
                     p.Add("@AmountOfMoney", operation.AmountOfMoney);
                     p.Add("@Type", operation.GetTheOperationType);
+                    p.Add("@Date", operation.Date);
+                    p.Add("@OrderId", null);
+                    p.Add("@InstallmentId", null);
                     p.Add("@IncomeOrderId", operation.IncomeOrder.Id);
+                    p.Add("@ShopBillId", null);
+                    p.Add("@StaffSalaryId", null);
                     p.Add("@Id", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
                     connection.Execute("dbo.spOperation_Create", p, commandType: CommandType.StoredProcedure);
                     operation.Id = p.Get<int>("@Id");
@@ -118,9 +123,9 @@ namespace Library
                     //TODO - Set the other Options (installment , incomeorder , ....) to the operation
 
                     string orderId = connection.QuerySingle<string>("dbo.spOperation_GetOrderIdByOperationId", p, commandType: CommandType.StoredProcedure);
+                    string incomeOrderId = connection.QuerySingle<string>("dbo.spOperation_GetIncomeOrderIdByOperationId", p, commandType: CommandType.StoredProcedure);
 
                     /*string installmentId = connection.QuerySingle<string>("dbo.spOperation_GetInstallmentIdByOperationId", p, commandType: CommandType.StoredProcedure);
-                    string incomeOrderId = connection.QuerySingle<string>("dbo.spOperation_GetInstallmentIdByOperationId", p, commandType: CommandType.StoredProcedure);
                     string shopBillId = connection.QuerySingle<string>("dbo.spOperation_GetInstallmentIdByOperationId", p, commandType: CommandType.StoredProcedure);
                     string staffSalaryId = connection.QuerySingle<string>("dbo.spOperation_GetInstallmentIdByOperationId", p, commandType: CommandType.StoredProcedure);*/
 
@@ -135,14 +140,22 @@ namespace Library
                             }
                         }
                     }
+                    else if (incomeOrderId != null)
+                    {
+                        foreach(IncomeOrderModel incomeOrder in PublicVariables.IncomeOrders)
+                        {
+                            if(incomeOrder.Id == int.Parse(incomeOrderId))
+                            {
+                                operation.IncomeOrder = incomeOrder;
+                                break;
+                            }
+                        }
+                    }
                     /*else if (installmentId != null)
                     {
                         //TODO - Set the installment to the operation
                     }
-                    else if (incomeOrderId != null)
-                    {
-                        //TODO - Set the incomeOrder to the operation
-                    }
+                   
                     else if (shopBillId != null)
                     {
                         //TODO - Set the ShopBill to the operation
@@ -151,7 +164,7 @@ namespace Library
                     {
                         //TODO - Set the StaffSalary to the operation
                     }*/
-           
+
                 }
 
             }

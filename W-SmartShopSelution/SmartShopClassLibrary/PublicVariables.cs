@@ -100,5 +100,12 @@ namespace Library
         /// All the operations in the database
         /// </summary>
         public static List<OperationModel> Operations { get; set; }
+
+        /// <summary>
+        /// The last added products
+        /// - set in createProductUC
+        /// - used in incomeOrderUC
+        /// </summary>
+        public static List<ProductModel> RecentlyAddProducts { get; set; }
     }
 }

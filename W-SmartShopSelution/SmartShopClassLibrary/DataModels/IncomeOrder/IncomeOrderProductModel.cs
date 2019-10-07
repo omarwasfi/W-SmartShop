@@ -20,7 +20,7 @@ namespace Library
         /// <summary>
         /// Return the total price of this IncomeOrderProduct
         /// </summary>
-        public decimal TotalProductPrice { get { return Quantity * IncomePrice; }  }
+        public decimal GetTotalProductPrice { get { return Quantity * IncomePrice; }  }
 
     }
 }

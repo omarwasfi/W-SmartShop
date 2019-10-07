@@ -38,19 +38,21 @@ namespace Library
                 {
                     p.Add("@BillNumber", null);
                 }
-                p.Add("@ShippingExpenses", incomeOrder.ShippingExpenses);
-                if (!string.IsNullOrWhiteSpace(incomeOrder.ShippingExpenses.ToString()))
-                {
-                    p.Add("@ShippingExpenses", incomeOrder.ShippingExpenses);
-                }
-                else
-                {
-                    p.Add("@ShippingExpenses", null);
-                }
+               
                 p.Add("@TotalPrice", incomeOrder.TotalPrice);
                 p.Add("@Date", incomeOrder.Date);
                 p.Add("@StoreId", incomeOrder.Store.Id);
                 p.Add("@StaffId", incomeOrder.Staff.Id);
+
+                if (!string.IsNullOrWhiteSpace(incomeOrder.Details))
+                {
+                    p.Add("@Details", incomeOrder.Details);
+                }
+                else
+                {
+                    p.Add("@Details", null);
+                }
+
                 p.Add("@Id", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
                 connection.Execute("dbo.spIncomeOrder_CreateIncomeOrder", p, commandType: CommandType.StoredProcedure);
                 incomeOrder.Id = p.Get<int>("@Id");

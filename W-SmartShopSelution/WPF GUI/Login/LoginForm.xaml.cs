@@ -86,6 +86,7 @@ namespace WPF_GUI
                 PublicVariables.IncomeOrders = GlobalConfig.Connection.GetIncomeOrders();
                 PublicVariables.Operations = GlobalConfig.Connection.GetOperations();
 
+                PublicVariables.RecentlyAddProducts = new List<ProductModel>();
                
                 
             }

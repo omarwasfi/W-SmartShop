@@ -385,12 +385,15 @@ namespace WPF_GUI.Sell
                 i++;
             }
             return 0;
+
+
         }
 
         /// <summary>
         /// get the index of categry if it in the CategoryValue_Sell
         /// </summary>
-        /// <param name="category"></param>
+        /// <param name="category">
+        /// </param>
         /// <returns> index of this category </returns>
         private int Get_CategoryValue_Sell_Index(CategoryModel category)
         {

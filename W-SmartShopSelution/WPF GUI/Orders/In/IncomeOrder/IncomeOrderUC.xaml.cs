@@ -31,6 +31,8 @@ namespace WPF_GUI
     public partial class IncomeOrderUC : UserControl
     {
 
+        // TODO - Add the shipping expenses to the shop bills , I commented all the shopping expenses code 
+
         #region Main Variables
 
         /// <summary>
@@ -153,6 +155,19 @@ namespace WPF_GUI
             BrandValue_IncomeOrderUC.ItemsSource = null;
             BrandValue_IncomeOrderUC.ItemsSource = Brands;
             BrandValue_IncomeOrderUC.DisplayMemberPath = "Name";
+
+            RecentlyAddedGB_IncomeOrderUC.Visibility = Visibility.Collapsed;
+            ChooseSupplierGB_IncomeOrderUC.Visibility = Visibility.Visible;
+
+            if(PublicVariables.RecentlyAddProducts.Count > 0)
+            {
+                RecentlyAddedProductsList_IncomeOrderUC.ItemsSource = PublicVariables.RecentlyAddProducts;
+            }
+
+            DateValue_IncomeOrderUC.SelectedDate = DateTime.Now;
+
+            
+
         }
 
 
@@ -527,6 +542,19 @@ namespace WPF_GUI
 
         #endregion
 
+        #region RecentlyAdded Products GroupBox
+
+        private void RecentlyAddedProductsList_IncomeOrderUC_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            ProductModel product = (ProductModel)RecentlyAddedProductsList_IncomeOrderUC.SelectedItem;
+            if (product != null)
+            {
+               ProductValue_IncomeOrderUC.SelectedIndex = Get_ProductValue_IncomeOrderUC_Index(product);
+               UpdateProductInfo(product);
+            }
+        }
+
+        #endregion
 
         #region Choose Product GroupBox Events
 
@@ -584,11 +612,13 @@ namespace WPF_GUI
             CategoryValue_IncomeOrderUC.SelectedIndex = Get_CategoryValue_IncomeOrderUC_Index(Product.Category);
             BrandValue_IncomeOrderUC.SelectedIndex = Get_BrandValue_IncomeOrderUC_Index(Product.Brand);
             CanFilterProducts = true;
-                       
 
+            BarCodeValue_IncomeOrderUC.Text = product.BarCode;
             SerialNumberValue_IncomeOrderUC.Text = Product.SerialNumber;
+            SerialNumber2Value_IncomeOrderUC.Text = product.SerialNumber2;
             SalePriceValue_IncomeOrderUC.Text = Product.SalePrice.ToString();
             IncomeValue_IncomeOrderUC.Text = Product.IncomePrice.ToString();
+            ProductDetailsValue_IncomeOrderUC.Text = product.Details;
             QuantityValue_IncomeOrderUC.Text = "0";
             TotalProductPriceValue_IncomeOrderUC.Text = "0";
 
@@ -613,7 +643,9 @@ namespace WPF_GUI
         /// </summary>
         private void ClearProductInfo()
         {
+            BarCodeValue_IncomeOrderUC.Text = "";
             SerialNumberValue_IncomeOrderUC.Text = "";
+            SerialNumber2Value_IncomeOrderUC.Text = "";
             SalePriceValue_IncomeOrderUC.Text = "";
             IncomeValue_IncomeOrderUC.Text = "";
             QuantityValue_IncomeOrderUC.Text = "";
@@ -656,6 +688,25 @@ namespace WPF_GUI
             foreach (var s in lst)
             {
                 if (s.Id == category.Id)
+                    return i;
+
+                i++;
+            }
+            return 0;
+        }
+
+        /// <summary>
+        /// get the index of Product if it in the ProductValue_IncomeOrderUC
+        /// </summary>
+        /// <param name="category"></param>
+        /// <returns> index of this category </returns>
+        private int Get_ProductValue_IncomeOrderUC_Index(ProductModel product)
+        {
+            int i = 0;
+            var lst = ProductValue_IncomeOrderUC.Items.Cast<ProductModel>();
+            foreach (var s in lst)
+            {
+                if (s.Id == product.Id)
                     return i;
 
                 i++;
@@ -874,10 +925,11 @@ namespace WPF_GUI
 
             decimal totalPrice = new decimal();
             totalPrice = 0;
-            if(IncomeOrder.ShippingExpenses > 0)
+
+            /*if (IncomeOrder.ShippingExpenses > 0)
             {
                 totalPrice += IncomeOrder.ShippingExpenses;
-            }
+            }*/
             foreach(IncomeOrderProductModel incomeOrderProduct in IncomeOrderProducts)
             {
                 totalPrice += incomeOrderProduct.Product.IncomePrice * incomeOrderProduct.Quantity;
@@ -921,7 +973,7 @@ namespace WPF_GUI
                 {
                     if(shippingExpenses >= 0)
                     {
-                        IncomeOrder.ShippingExpenses = shippingExpenses;
+                        //IncomeOrder.ShippingExpenses = shippingExpenses;
                     }
                     else
                     {
@@ -989,13 +1041,29 @@ namespace WPF_GUI
             {
                 IncomeOrder.Products = IncomeOrderProducts;
                 IncomeOrder.Supplier = Supplier;
+                IncomeOrder.BillNumber = BillNumberValue_IncomeOrderUC.Text;
+
+                // Setting the dateTime
+                int hours = DateTime.Now.Hour;
+                int minutes = DateTime.Now.Minute;
+                int second = DateTime.Now.Second;
+
+                DateTime selectedDate = new DateTime();
+                selectedDate = (DateTime)DateValue_IncomeOrderUC.SelectedDate;
+
+                DateTime orderDateTime = new DateTime(selectedDate.Year, selectedDate.Month, selectedDate.Day, hours, minutes, second);
+
+                IncomeOrder.Date = orderDateTime;
+
                 IncomeOrder.Store = PublicVariables.Store;
                 IncomeOrder.Staff = PublicVariables.Staff;
                 IncomeOrder.TotalPrice = decimal.Parse(TotalPriceValue_IncomeOrderUC.Text);
-                IncomeOrder.Date = DateTime.Now;
+                IncomeOrder.Details = OrderDetailsValue_IncomeOrderUC.Text;
+              
+                
 
                 // Get empty IncomeOrder From the database
-                GlobalConfig.Connection.GetEmptyIncomeOrderFromTheDatabase(IncomeOrder);
+                IncomeOrder = GlobalConfig.Connection.GetEmptyIncomeOrderFromTheDatabase(IncomeOrder);
 
                 /*
                  * - loop throw each product - IncomeOrderProduct - 
@@ -1039,7 +1107,19 @@ namespace WPF_GUI
 
                 GlobalConfig.Connection.SaveIncomeOrderProductListToTheDatabase(IncomeOrder);
 
+                // Create Operation and save it to the database
+                OperationModel operation = new OperationModel();
+                operation.IncomeOrder = IncomeOrder;
+                operation.Date = IncomeOrder.Date;
+                operation.AmountOfMoney = IncomeOrder.TotalPrice;
+
+                GlobalConfig.Connection.AddOperationToDatabase(operation);
+
+
+
                 PublicVariables.LoginStoreStocks = GlobalConfig.Connection.FilterStocksByStore(PublicVariables.Store);
+
+                PublicVariables.Operations = GlobalConfig.Connection.GetOperations();
 
                 IncomeOrderProducts = new List<IncomeOrderProductModel>();
                 StocksList_IncomeOrderUC.ItemsSource = null;
@@ -1052,6 +1132,7 @@ namespace WPF_GUI
                 NationalNumberValue_IncomeOrderUC.Text = "";
                 CompanyNameValue_IncomeOrderUC.Text = "";
                 TotalPriceValue_IncomeOrderUC.Text = "";
+                OrderDetailsValue_IncomeOrderUC.Text = "";
 
                 SetInitialValues();
 
@@ -1075,7 +1156,7 @@ namespace WPF_GUI
                     {
                         if (shippingExpenses >= 0)
                         {
-                            IncomeOrder.ShippingExpenses = shippingExpenses;
+                            //IncomeOrder.ShippingExpenses = shippingExpenses;
                             SetTheTotalPriceValue();
                         }
                         else
@@ -1097,6 +1178,21 @@ namespace WPF_GUI
         {
             SetInitialValues();
         }
+
+        private void SupplierSwichGBButton_IncomeOrderUC_Click(object sender, RoutedEventArgs e)
+        {
+            RecentlyAddedGB_IncomeOrderUC.Visibility = Visibility.Collapsed;
+            ChooseSupplierGB_IncomeOrderUC.Visibility = Visibility.Visible;
+        }
+
+        private void RecentAddedProductsSwichGBButton_IncomeOrderUC_Click(object sender, RoutedEventArgs e)
+        {
+            RecentlyAddedGB_IncomeOrderUC.Visibility = Visibility.Visible;
+            ChooseSupplierGB_IncomeOrderUC.Visibility = Visibility.Collapsed;
+        }
+
+        
+
         #endregion
 
 
