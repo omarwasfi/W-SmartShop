@@ -67,7 +67,7 @@
             </Grid>
         </GroupBox>
 
-        <Grid Name="SameBarCodeGrid_CreateProductUC" Visibility="Collapsed" Margin="12,170,173,380">
+        <Grid Name="SameBarCodeGrid_CreateProductUC" Visibility="Visible" Margin="12,170,173,380">
             <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="392,77,0,0" ><Run Text="Sale price : "/></TextBlock>
             <TextBox x:Name="SalePriceValue_CreateproductUC"  PreviewTextInput="MoneyValidation" HorizontalAlignment="Left" Height="24" Margin="522,85,0,0"  VerticalAlignment="Top" Width="78" MaxLines="1" MaxLength="10"/>
 

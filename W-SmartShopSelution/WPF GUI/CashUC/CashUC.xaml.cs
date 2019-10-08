@@ -58,7 +58,7 @@ namespace WPF_GUI
         private void SetInitialValues()
         {
             
-
+            
 
             UpdateTheOperationsFromThePublicVariables();
 
@@ -85,10 +85,13 @@ namespace WPF_GUI
         }
 
         /// <summary>
-        /// Update and set the operations
+        /// Update and set the operations , Update all kind of orders
         /// </summary>
         private void UpdateTheOperationsFromThePublicVariables()
         {
+            PublicVariables.Orders = GlobalConfig.Connection.GetOrders();
+            PublicVariables.IncomeOrders = GlobalConfig.Connection.GetIncomeOrders();
+
             PublicVariables.Operations = GlobalConfig.Connection.GetOperations();
             Operations = null;
             Operations = PublicVariables.Operations;

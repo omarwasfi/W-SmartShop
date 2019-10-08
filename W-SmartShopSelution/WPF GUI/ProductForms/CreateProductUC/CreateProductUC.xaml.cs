@@ -173,7 +173,7 @@ namespace WPF_GUI.CreateProduct
                 product.SerialNumber2 = SerialNumber2Value_CreateProductUC.Text;
                 if (decimal.TryParse(IncomeValue_CreateproductUC.Text, out decimal incomeValue))
                 {
-                    product.IncomePrice = incomeValue;
+                    product.IncomePrice =  incomeValue;
                 }
                 if (decimal.TryParse(SalePriceValue_CreateproductUC.Text, out decimal saleValue))
                 {
@@ -233,6 +233,7 @@ namespace WPF_GUI.CreateProduct
                         if (GlobalConfig.Connection.CheckIfTheProductBarCodeUnique(Products, product.BarCode))
                         {
                             // Save the Product to the database
+                            
                             product = GlobalConfig.Connection.AddProductToTheDatabase(product);
                             PublicVariables.RecentlyAddProducts.Add(product);
                         }

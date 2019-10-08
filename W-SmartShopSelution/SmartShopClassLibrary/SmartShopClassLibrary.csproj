@@ -73,7 +73,6 @@
     <Compile Include="DataModels\Installment\InstallmentModel.cs" />
     <Compile Include="DataModels\Installment\InstallmentProductModel.cs" />
     <Compile Include="DataModels\Humans\PermissionModel.cs" />
-    <Compile Include="DataModels\Money\MoneyRecordModel.cs" />
     <Compile Include="DataModels\Money\OperationModel.cs" />
     <Compile Include="DataModels\ShopBill\ShopBillModel.cs" />
     <Compile Include="DataModels\StoreModel.cs" />
@@ -86,7 +85,6 @@
     <Compile Include="LogicalClasses\InstallmentDetails\InstallmentDetails.cs" />
     <Compile Include="LogicalClasses\InstallmentProduct\InstallmentProduct.cs" />
     <Compile Include="LogicalClasses\Installment\Installment.cs" />
-    <Compile Include="LogicalClasses\MoneyRecord\MoneyRecord.cs" />
     <Compile Include="LogicalClasses\Operation\Operation.cs" />
     <Compile Include="LogicalClasses\OrderProduct\OrderProduct.cs" />
     <Compile Include="LogicalClasses\Category\Category.cs" />
