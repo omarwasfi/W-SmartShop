@@ -31,7 +31,6 @@ namespace WPF_GUI
     public partial class IncomeOrderUC : UserControl
     {
 
-        // TODO - Add the shipping expenses to the shop bills , I commented all the shopping expenses code 
 
         #region Main Variables
 
@@ -67,7 +66,10 @@ namespace WPF_GUI
         /// </summary>
         private List<IncomeOrderProductModel> IncomeOrderProducts { get; set; } = new List<IncomeOrderProductModel>();
 
-      
+        /// <summary>
+        /// Created to save the shipping expenss if it's not 0
+        /// </summary>
+        ShopBillModel ShopBill { get; set; } = new ShopBillModel();
         
 
         #endregion
@@ -125,6 +127,7 @@ namespace WPF_GUI
 
         private void SetInitialValues()
         {
+
             UpdateTheProductsFromThePublicVariables();
             ProductValue_IncomeOrderUC.ItemsSource = null;
             ProductValue_IncomeOrderUC.ItemsSource = Products;
@@ -920,6 +923,9 @@ namespace WPF_GUI
 
         }
 
+        /// <summary>
+        /// Calculate the total Price without the shipping expenses
+        /// </summary>
         private void SetTheTotalPriceValue()
         {
 
@@ -973,7 +979,7 @@ namespace WPF_GUI
                 {
                     if(shippingExpenses >= 0)
                     {
-                        //IncomeOrder.ShippingExpenses = shippingExpenses;
+                        ShopBill.TotalMoney = shippingExpenses;
                     }
                     else
                     {
@@ -1108,12 +1114,31 @@ namespace WPF_GUI
                 GlobalConfig.Connection.SaveIncomeOrderProductListToTheDatabase(IncomeOrder);
 
                 // Create Operation and save it to the database
-                OperationModel operation = new OperationModel();
-                operation.IncomeOrder = IncomeOrder;
-                operation.Date = IncomeOrder.Date;
-                operation.AmountOfMoney = IncomeOrder.TotalPrice;
+                OperationModel incomeOrderoperation = new OperationModel();
+                incomeOrderoperation.IncomeOrder = IncomeOrder;
+                incomeOrderoperation.Date = IncomeOrder.Date;
+                incomeOrderoperation.AmountOfMoney = IncomeOrder.TotalPrice;
 
-                GlobalConfig.Connection.AddOperationToDatabase(operation);
+                GlobalConfig.Connection.AddOperationToDatabase(incomeOrderoperation);
+
+                if(ShopBill.TotalMoney > 0)
+                {
+                    ShopBill.Staff = PublicVariables.Staff;
+                    ShopBill.Store = PublicVariables.Store;
+                    ShopBill.Date = IncomeOrder.Date;
+                    ShopBill.Details = "Shopping expenses of the order number: " + IncomeOrder.Id + " .";
+
+                    ShopBill = GlobalConfig.Connection.AddShopBillToTheDatabase(ShopBill);
+
+                    OperationModel shopOrderOperation = new OperationModel();
+
+
+                    shopOrderOperation.ShopBill = ShopBill;
+                    shopOrderOperation.Date = IncomeOrder.Date;
+                    shopOrderOperation.AmountOfMoney = ShopBill.TotalMoney;
+                    GlobalConfig.Connection.AddOperationToDatabase(shopOrderOperation);
+
+                }
 
 
 
@@ -1128,6 +1153,7 @@ namespace WPF_GUI
                 ShippingExpensesValue_IncomeOrderUC.Text = "";
                 Supplier = new SupplierModel();
                 SupplierNameValue_IncomeOrderUC.Text = "";
+                ShopBill = new ShopBillModel();
                 PhoneNumberValue_IncomeOrderUC.Text = "";
                 NationalNumberValue_IncomeOrderUC.Text = "";
                 CompanyNameValue_IncomeOrderUC.Text = "";
@@ -1156,7 +1182,7 @@ namespace WPF_GUI
                     {
                         if (shippingExpenses >= 0)
                         {
-                            //IncomeOrder.ShippingExpenses = shippingExpenses;
+                            ShopBill.TotalMoney = shippingExpenses;
                             SetTheTotalPriceValue();
                         }
                         else
