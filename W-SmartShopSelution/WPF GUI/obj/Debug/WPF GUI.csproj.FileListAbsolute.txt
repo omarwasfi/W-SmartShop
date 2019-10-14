@@ -142,3 +142,7 @@ C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\bin\Debu
 C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\bin\Debug\Stimulsoft.Dashboard.Drawing.xml
 C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Debug\CashUC\CashUC.g.cs
 C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Debug\CashUC\CashUC.baml
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Debug\Orders\In\BillsManagerUC\BillsManagerUC.g.cs
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Debug\Orders\In\PayBillUC\PayBillUC.g.cs
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Debug\Orders\In\BillsManagerUC\BillsManagerUC.baml
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Debug\Orders\In\PayBillUC\PayBillUC.baml

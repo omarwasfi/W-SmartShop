@@ -75,7 +75,12 @@ namespace Library
                     var p = new DynamicParameters();
                     p.Add("@AmountOfMoney", operation.AmountOfMoney);
                     p.Add("@Type", operation.GetTheOperationType);
+                    p.Add("@Date", operation.Date);
+                    p.Add("@OrderId", null);
+                    p.Add("@InstallmentId", null);
+                    p.Add("@IncomeOrderId",null);
                     p.Add("@ShopBillId", operation.ShopBill.Id);
+                    p.Add("@StaffSalaryId", null);
                     p.Add("@Id", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
                     connection.Execute("dbo.spOperation_Create", p, commandType: CommandType.StoredProcedure);
                     operation.Id = p.Get<int>("@Id");
@@ -124,14 +129,14 @@ namespace Library
 
                     string orderId = connection.QuerySingle<string>("dbo.spOperation_GetOrderIdByOperationId", p, commandType: CommandType.StoredProcedure);
                     string incomeOrderId = connection.QuerySingle<string>("dbo.spOperation_GetIncomeOrderIdByOperationId", p, commandType: CommandType.StoredProcedure);
+                    string shopBillId = connection.QuerySingle<string>("dbo.spOperation_GetShopBillIdByOperationId", p, commandType: CommandType.StoredProcedure);
 
                     /*string installmentId = connection.QuerySingle<string>("dbo.spOperation_GetInstallmentIdByOperationId", p, commandType: CommandType.StoredProcedure);
-                    string shopBillId = connection.QuerySingle<string>("dbo.spOperation_GetInstallmentIdByOperationId", p, commandType: CommandType.StoredProcedure);
                     string staffSalaryId = connection.QuerySingle<string>("dbo.spOperation_GetInstallmentIdByOperationId", p, commandType: CommandType.StoredProcedure);*/
 
                     if (orderId != null)
                     {
-                        foreach(OrderModel order in PublicVariables.Orders)
+                        foreach (OrderModel order in PublicVariables.Orders)
                         {
                             if (order.Id == int.Parse(orderId))
                             {
@@ -142,30 +147,38 @@ namespace Library
                     }
                     else if (incomeOrderId != null)
                     {
-                        foreach(IncomeOrderModel incomeOrder in PublicVariables.IncomeOrders)
+                        foreach (IncomeOrderModel incomeOrder in PublicVariables.IncomeOrders)
                         {
-                            if(incomeOrder.Id == int.Parse(incomeOrderId))
+                            if (incomeOrder.Id == int.Parse(incomeOrderId))
                             {
                                 operation.IncomeOrder = incomeOrder;
                                 break;
                             }
                         }
                     }
-                    /*else if (installmentId != null)
-                    {
-                        //TODO - Set the installment to the operation
-                    }
-                   
                     else if (shopBillId != null)
                     {
-                        //TODO - Set the ShopBill to the operation
+                        foreach (ShopBillModel shopBill in PublicVariables.ShopBills)
+                        {
+                            if (shopBill.Id == int.Parse(shopBillId))
+                            {
+                                operation.ShopBill = shopBill;
+                                break;
+                            }
+                        }
                     }
-                    else if (staffSalaryId != null)
-                    {
-                        //TODO - Set the StaffSalary to the operation
-                    }*/
+                        /*else if (installmentId != null)
+                        {
+                            //TODO - Set the installment to the operation
+                        }
 
-                }
+
+                        else if (staffSalaryId != null)
+                        {
+                            //TODO - Set the StaffSalary to the operation
+                        }*/
+
+                 }
 
             }
 

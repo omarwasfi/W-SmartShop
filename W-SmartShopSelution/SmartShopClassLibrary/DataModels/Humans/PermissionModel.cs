@@ -71,5 +71,11 @@ namespace Library
         /// </summary>
         public Boolean CanCashFlowUC { get; set; }
 
+        // TODO - Add this option in the database
+        /// <summary>
+        /// Boolean value says if the user can open the CanBillManagerUC
+        /// </summary>
+        public Boolean CanBillManagerUC { get; set; }
+
     }
 }

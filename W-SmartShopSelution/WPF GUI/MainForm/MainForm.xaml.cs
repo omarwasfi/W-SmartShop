@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using WPF_GUI.CreateProduct;
 using WPF_GUI.Inventory;
+using WPF_GUI.Orders.In.BillsManagerUC;
 using WPF_GUI.Orders.Out.SellingOrdersManagerUC;
 using WPF_GUI.ProductManager;
 using WPF_GUI.Sell;
@@ -39,8 +40,6 @@ namespace WPF_GUI
 
         public MainForm()
         {
-            
-            
 
             InitializeComponent();
 
@@ -100,6 +99,10 @@ namespace WPF_GUI
             if (staff.Permission.CanCashFlowUC)
             {
                 CashUCViewItem.Visibility = Visibility.Visible;
+            }
+            if (staff.Permission.CanBillManagerUC)
+            {
+                BillsManagerViewItem.Visibility = Visibility.Visible;
             }
         }
         
@@ -197,7 +200,14 @@ namespace WPF_GUI
             MainTab.Items.Add(installmentOrderTab);
         }
 
-    
+        private void BillsManagerViewItem_Selected(object sender, RoutedEventArgs e)
+        {
+            BillsManagerUC billsManagerUC = new BillsManagerUC();
+            TabItem billsManagerTab = new TabItem { Header = "Bills" };
+            billsManagerTab.Content = billsManagerUC;
+            MainTab.Items.Add(billsManagerTab);
+        }
+
         /// <summary>
         /// To move the MainForm Around the screen
         /// </summary>
@@ -210,8 +220,10 @@ namespace WPF_GUI
         }
 
 
+
+
         #endregion
 
-       
+        
     }
 }

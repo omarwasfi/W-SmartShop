@@ -165,6 +165,12 @@
     <Compile Include="Installament\InstallmentCollectingUC\InstallmentCollectingUC.xaml.cs">
       <DependentUpon>InstallmentCollectingUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Orders\In\BillsManagerUC\BillsManagerUC.xaml.cs">
+      <DependentUpon>BillsManagerUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Orders\In\PayBillUC\PayBillUC.xaml.cs">
+      <DependentUpon>PayBillUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Orders\Out\InstallmentOrderUC\InstallmentOrderUC.xaml.cs">
       <DependentUpon>InstallmentOrderUC.xaml</DependentUpon>
     </Compile>
@@ -233,6 +239,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Installament\InstallmentCollectingUC\InstallmentCollectingUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Orders\In\BillsManagerUC\BillsManagerUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Orders\In\PayBillUC\PayBillUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

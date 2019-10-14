@@ -91,6 +91,7 @@ namespace WPF_GUI
         {
             PublicVariables.Orders = GlobalConfig.Connection.GetOrders();
             PublicVariables.IncomeOrders = GlobalConfig.Connection.GetIncomeOrders();
+            PublicVariables.ShopBills = GlobalConfig.Connection.GetShopBills();
 
             PublicVariables.Operations = GlobalConfig.Connection.GetOperations();
             Operations = null;
@@ -136,6 +137,11 @@ namespace WPF_GUI
         private void StartDateValue_CashUC_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
             LoadTheOperations();
+        }
+
+        private void ReloadTabButton_CashUC_Click(object sender, RoutedEventArgs e)
+        {
+            SetInitialValues();
         }
 
         #endregion

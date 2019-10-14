@@ -1166,5 +1166,33 @@ namespace Library
             return CashFlow.TotalSellsProfit(operations);
         }
         #endregion
+
+        #region ShopBill
+
+        /// <summary>
+        /// Add shopBill to the database
+        /// </summary>
+        /// <param name="shopBill"></param>
+        /// <param name="db"></param>
+        /// <returns></returns>
+        public ShopBillModel AddShopBillToTheDatabase(ShopBillModel shopBill)
+        {
+
+            return ShopBill.AddShopBillToTheDatabase(shopBill, db);
+        }
+
+        /// <summary>
+        /// Get all shopBills from the database
+        /// - set the storeModel
+        /// - set the staffModel
+        /// </summary>
+        /// <returns></returns>
+        public List<ShopBillModel> GetShopBills()
+        {
+            return ShopBill.GetShopBills(db);
+        }
+
+        #endregion
+
     }
 }

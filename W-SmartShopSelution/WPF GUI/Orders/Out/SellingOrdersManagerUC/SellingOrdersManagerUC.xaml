@@ -8,7 +8,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="680" d:DesignWidth="1343">
     <Grid>
-        <Grid Name="UserGrid_SellingOrdersManagerUC" Visibility="Collapsed">
+        <Grid Name="UserGrid_SellingOrdersManagerUC" Visibility="Visible">
             <DataGrid  x:Name="OrdersList_SellingOrdersManagerUC" Visibility="Visible" IsReadOnly="True" MouseDoubleClick="OrdersList_SellingOrdersManagerUC_MouseDoubleClick" AutoGenerateColumns="False" HorizontalAlignment="Right" Height="617" Margin="0,53,10,0" VerticalAlignment="Top" Width="1040" Background="LightGray">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Order" Binding="{Binding Id}"/>
@@ -69,7 +69,7 @@
 
 
 
-        <Grid Name="PrintGrid_SellingOrdersManagerUC" Visibility="Visible" >
+        <Grid Name="PrintGrid_SellingOrdersManagerUC" Visibility="Collapsed" >
             
             <Button x:Name="BackToNormalGridButton_SellingOrdersManagerUC" Click="BackToNormalGridButton_SellingOrdersManagerUC_Click" Visibility="Visible" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Green"   VerticalAlignment="Top"  Margin="10,4,1277,0" Height="25"  >
                 <materialDesign:PackIcon Kind="ArrowLeft" Width="20" Height="20"/>

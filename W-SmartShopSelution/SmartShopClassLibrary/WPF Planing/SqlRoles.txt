@@ -62,6 +62,8 @@ StaffSalary
 Operation
 	Id Auto Increment starts From 800,000
 
+ShopBill
+	Id Auto Increment starts From 900,000
 
 
 	

@@ -84,11 +84,13 @@ namespace WPF_GUI
                 PublicVariables.Orders = GlobalConfig.Connection.GetOrders();                
                 PublicVariables.Suppliers = GlobalConfig.Connection.GetSuppliers();
                 PublicVariables.IncomeOrders = GlobalConfig.Connection.GetIncomeOrders();
+                PublicVariables.ShopBills = GlobalConfig.Connection.GetShopBills();
                 PublicVariables.Operations = GlobalConfig.Connection.GetOperations();
 
                 PublicVariables.RecentlyAddProducts = new List<ProductModel>();
-               
-                
+                    
+
+
             }
         }
 

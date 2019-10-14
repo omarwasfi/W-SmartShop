@@ -107,5 +107,10 @@ namespace Library
         /// - used in incomeOrderUC
         /// </summary>
         public static List<ProductModel> RecentlyAddProducts { get; set; }
+
+        /// <summary>
+        /// All shopBills
+        /// </summary>
+        public static List<ShopBillModel> ShopBills { get; set; }
     }
 }

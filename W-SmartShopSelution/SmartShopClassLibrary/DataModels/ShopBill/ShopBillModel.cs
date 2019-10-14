@@ -11,6 +11,16 @@ namespace Library
         public int Id { get; set; }
 
         /// <summary>
+        /// The store Payed this bill
+        /// </summary>
+        public StoreModel Store { get; set; }
+
+        /// <summary>
+        /// The staff member
+        /// </summary>
+        public StaffModel Staff { get; set; }
+
+        /// <summary>
         /// The date-time of the Bill
         /// </summary>
         public DateTime Date { get; set; }

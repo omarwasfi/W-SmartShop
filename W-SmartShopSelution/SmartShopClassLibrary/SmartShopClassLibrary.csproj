@@ -93,6 +93,7 @@
     <Compile Include="LogicalClasses\Order\Order.cs" />
     <Compile Include="LogicalClasses\Person\Person.cs" />
     <Compile Include="LogicalClasses\Product\Product.cs" />
+    <Compile Include="LogicalClasses\ShopBill\ShopBill.cs" />
     <Compile Include="LogicalClasses\Staff\Staff.cs" />
     <Compile Include="LogicalClasses\Stock\Stock.cs" />
     <Compile Include="LogicalClasses\StoreStaff\StoreStaff.cs" />

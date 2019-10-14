@@ -57,7 +57,7 @@
                 <materialDesign:PackIcon Kind="Close" Width="20" Height="20"/>
             </Button>
 
-            <Button x:Name="ReloadTabButton_CashUC"  Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray"   VerticalAlignment="Top"  Margin="171,0,0,0" Height="25"  >
+            <Button x:Name="ReloadTabButton_CashUC" Click="ReloadTabButton_CashUC_Click" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray"   VerticalAlignment="Top"  Margin="171,0,0,0" Height="25"  >
                 <materialDesign:PackIcon Kind="Reload" Width="20" Height="20"/>
             </Button>
 
