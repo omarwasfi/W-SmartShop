@@ -1192,6 +1192,18 @@ namespace Library
             return ShopBill.GetShopBills(db);
         }
 
+        /// <summary>
+        /// Get all the shopBill Happend on the given date -day-
+        /// </summary>
+        /// <param name="shopBills"></param>
+        /// <param name="date"></param>
+        /// <returns></returns>
+        public  List<ShopBillModel> FilterShopBillsByDate(List<ShopBillModel> shopBills, DateTime date)
+        {
+            return ShopBill.FilterShopBillsByDate(shopBills, date);
+        }
+
+
         #endregion
 
     }

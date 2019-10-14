@@ -14,8 +14,10 @@
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Bill" Binding="{Binding Id}"/>
                     <DataGridTextColumn Header="Store" Binding="{Binding Store.Name}"/>
-                    <DataGridTextColumn Header="Staff" Binding="{Binding Staff.Name }"/>
+                    <DataGridTextColumn Header="Staff" Binding="{Binding Staff.Person.FullName }"/>
                     <DataGridTextColumn Header="Total Price" Binding="{Binding TotalMoney}"/>
+                    <DataGridTextColumn Header="Date" Binding="{Binding Date}"/>
+
                 </DataGrid.Columns>
                 <DataGrid.RowDetailsTemplate>
                     <DataTemplate>
@@ -38,7 +40,7 @@
                     <materialDesign:PackIcon Kind="Delete" Width="20" Height="20"/>
                 </Button>
 
-                <Button x:Name="ReloadTabButton_BillsManagerUC"  Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray"   VerticalAlignment="Top"  Margin="171,0,0,0" Height="25"  >
+                <Button x:Name="ReloadTabButton_BillsManagerUC" Click="ReloadTabButton_BillsManagerUC_Click" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray"   VerticalAlignment="Top"  Margin="171,0,0,0" Height="25"  >
                     <materialDesign:PackIcon Kind="Reload" Width="20" Height="20"/>
                 </Button>
 

@@ -31,12 +31,39 @@ namespace WPF_GUI.Orders.In.BillsManagerUC
 
         #endregion
 
+        #region set the initianl values
+
+
         public BillsManagerUC()
         {
             InitializeComponent();
+            SetInitialValues();
+
+        }
+
+        public void SetInitialValues()
+        {
+            UpdateTheShopBillsFromThePublicVariables();
+
+            BillsList_BillsManagerUC.ItemsSource = null;
+            BillsList_BillsManagerUC.ItemsSource = ShopBills;
         }
 
 
+        /// <summary>
+        /// Update And get the shopBills From the publicVariables
+        /// </summary>
+        private void UpdateTheShopBillsFromThePublicVariables()
+        {
+            PublicVariables.ShopBills = GlobalConfig.Connection.GetShopBills();
+            ShopBills = null;
+            ShopBills = PublicVariables.ShopBills;
+        }
+
+
+        #endregion
+
+        #region Hole form events , functions
 
         /// <summary>
         /// NotDone
@@ -54,7 +81,17 @@ namespace WPF_GUI.Orders.In.BillsManagerUC
                 ResizeMode = ResizeMode.NoResize
             };
             window.ShowDialog();
-            
+            SetInitialValues();
+
         }
+
+        private void ReloadTabButton_BillsManagerUC_Click(object sender, RoutedEventArgs e)
+        {
+            SetInitialValues();
+        }
+
+        #endregion
+
+
     }
 }

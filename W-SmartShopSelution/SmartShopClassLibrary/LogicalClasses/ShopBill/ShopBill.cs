@@ -75,5 +75,25 @@ namespace Library
             return shopBills;
         }
 
+        /// <summary>
+        /// Get all the shopBill Happend on the given date -day-
+        /// </summary>
+        /// <param name="shopBills"></param>
+        /// <param name="date"></param>
+        /// <returns></returns>
+        public static List<ShopBillModel> FilterShopBillsByDate(List<ShopBillModel> shopBills , DateTime date)
+        {
+            List<ShopBillModel> fShopBills = new List<ShopBillModel>();
+            foreach(ShopBillModel shopBill in shopBills)
+            {
+                if(shopBill.Date.Year == date.Year && shopBill.Date.Month == date.Month && shopBill.Date.Day == date.Day)
+                {
+                    fShopBills.Add(shopBill);
+                }
+            }
+            return fShopBills;
+        }
+
+
     }
 }

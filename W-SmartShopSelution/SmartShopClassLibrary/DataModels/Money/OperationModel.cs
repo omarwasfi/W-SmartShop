@@ -159,7 +159,46 @@ namespace Library
             }
         }
 
-       
+
+
+        /// <summary>
+        /// return the Name of the staff how did this operation to the user  {"Order","Installment","Income Order","Shop Bill",Staff Salary} , if all null return "Empty"
+        /// </summary>
+        public string GetTheStaffName
+        {
+            get
+            {
+
+                if (Installment != null)
+                {
+                    return Installment.Staff.Person.FullName;
+                }
+                else if (IncomeOrder != null)
+                {
+                    return IncomeOrder.Staff.Person.FullName;
+                }
+                else if (Order != null)
+                {
+                    return Order.Staff.Person.FullName;
+                }
+                else if (ShopBill != null)
+                {
+                    return ShopBill.Staff.Person.FullName;
+                }
+                else if (StaffSalary != null)
+                {
+                    return StaffSalary.Staff.Person.FullName;
+                }
+                else
+                {
+                    return "Empty";
+                }
+
+
+
+            }
+        }
+
 
     }
 }
