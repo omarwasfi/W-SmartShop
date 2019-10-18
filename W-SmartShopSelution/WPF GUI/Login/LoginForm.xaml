@@ -62,7 +62,7 @@
             
             <TextBlock Text="Ashes Stodio" Foreground="White" HorizontalAlignment="Center" FontSize="40" FontFamily="Champagne &amp; Limousines" FontWeight="Bold"/>
             <TextBlock Text="Presents" Foreground="White" HorizontalAlignment="Center" FontSize="40" FontFamily="Champagne &amp; Limousines" FontWeight="Bold"/>
-            <TextBlock Text="The smart shop program for Speed Net" Foreground="White" HorizontalAlignment="Center" Width="280" FontSize="24" FontFamily="Champagne &amp; Limousines" TextWrapping="Wrap" TextAlignment="Center" Margin="0,50,0,0"/>
+            <TextBlock Text="The smart shop program for - ... -" Foreground="White" HorizontalAlignment="Center" Width="280" FontSize="24" FontFamily="Champagne &amp; Limousines" TextWrapping="Wrap" TextAlignment="Center" Margin="0,50,0,0"/>
             <TextBlock Text="Developed by," Foreground="White" FontSize="18" FontFamily="Champagne &amp; Limousines" TextWrapping="Wrap" TextAlignment="Right" Margin="10"/>
             <TextBlock Text="Omar Wasfi" Foreground="White" FontSize="18" FontFamily="Champagne &amp; Limousines" TextWrapping="Wrap" TextAlignment="Right" Margin="10"/>
 

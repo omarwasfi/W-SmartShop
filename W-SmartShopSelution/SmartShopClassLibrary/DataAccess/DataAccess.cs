@@ -9,6 +9,7 @@ using Library;
 
 namespace Library
 {
+
     public class DataAccess
     {
         /// <summary>
@@ -1095,7 +1096,6 @@ namespace Library
 
         #endregion
 
-
         #region Operation
 
         /// <summary>
@@ -1129,6 +1129,41 @@ namespace Library
         public List<OperationModel> FilterOperationsByDate(List<OperationModel> operations, DateTime startDate, DateTime endDate)
         {
             return Operation.FilterOperationsByDate(operations, startDate, endDate);
+        }
+
+        /// <summary>
+        /// Update the operation AmountOfMoney
+        /// </summary>
+        /// <param name="operation"></param>
+        /// <param name="db"></param>
+        /// <returns></returns>
+        public OperationModel UpdateOperationData(OperationModel operation)
+        {
+            return Operation.UpdateOperationData(operation, db);
+        }
+
+        /// <summary>
+        /// Get the operation that contain the order
+        /// </summary>
+        /// <param name="order"></param>
+        /// <param name="operations"></param>
+        /// <returns></returns>
+        public OperationModel GetOperationByOrder(OrderModel order, List<OperationModel> operations)
+        {
+
+            return Operation.GetOperationByOrder(order, operations);
+
+        }
+
+
+        /// <summary>
+        /// Delete operation from the database totaly
+        /// </summary>
+        /// <param name="operation"></param>
+        /// <param name="db"></param>
+        public void RemoveOperation(OperationModel operation)
+        {
+            Operation.RemoveOperation(operation,db);
         }
 
         #endregion

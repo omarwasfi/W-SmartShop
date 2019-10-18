@@ -653,7 +653,7 @@ namespace WPF_GUI
             IncomeValue_IncomeOrderUC.Text = "";
             QuantityValue_IncomeOrderUC.Text = "";
             TotalProductPriceValue_IncomeOrderUC.Text = "";
-
+            ProductDetailsValue_IncomeOrderUC.Text = "";
          
            InStockValue_IncomeOrderUC.Text = "";
             
@@ -1010,7 +1010,7 @@ namespace WPF_GUI
                 MessageBox.Show("You should add at least 1 product to make this order");
                 return false;
             }
-            if (Supplier != null)
+            if (string.IsNullOrWhiteSpace( SupplierNameValue_IncomeOrderUC.Text )== false && Supplier.Id != 0)
             {
 
             }
@@ -1153,12 +1153,13 @@ namespace WPF_GUI
                 ShippingExpensesValue_IncomeOrderUC.Text = "";
                 Supplier = new SupplierModel();
                 SupplierNameValue_IncomeOrderUC.Text = "";
-                ShopBill = new ShopBillModel();
                 PhoneNumberValue_IncomeOrderUC.Text = "";
                 NationalNumberValue_IncomeOrderUC.Text = "";
                 CompanyNameValue_IncomeOrderUC.Text = "";
                 TotalPriceValue_IncomeOrderUC.Text = "";
                 OrderDetailsValue_IncomeOrderUC.Text = "";
+                
+                ShopBill = new ShopBillModel();
 
                 SetInitialValues();
 
@@ -1217,7 +1218,25 @@ namespace WPF_GUI
             ChooseSupplierGB_IncomeOrderUC.Visibility = Visibility.Collapsed;
         }
 
-        
+        /// <summary>
+        /// Money validation for any text accepts money
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MoneyValidation(object sender, TextCompositionEventArgs e)
+        {
+            GlobalConfig.NumberValidation.MoneyValidationTextBox(sender, e);
+        }
+
+        /// <summary>
+        /// Number Validation for the TextBox
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void NumberValidation(object sender, TextCompositionEventArgs e)
+        {
+            GlobalConfig.NumberValidation.IntegerValidationTextBox(sender, e);
+        }
 
         #endregion
 

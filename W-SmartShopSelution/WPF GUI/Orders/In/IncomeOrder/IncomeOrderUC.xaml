@@ -33,7 +33,7 @@
                 <ComboBox x:Name="CategoryValue_IncomeOrderUC" SelectionChanged="FilterProductsByCategoryAndBrand" HorizontalAlignment="Left" Margin="124,5,0,0" VerticalAlignment="Top" Width="83" />
 
                 <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="0,38,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Barcode : "/></TextBlock>
-                <TextBox x:Name="BarCodeValue_IncomeOrderUC"  HorizontalAlignment="Left" Height="33" Margin="111,38,0,0" Text="" VerticalAlignment="Top" Width="107" MaxLines="1" MaxLength="200"  />
+                <TextBox x:Name="BarCodeValue_IncomeOrderUC" IsReadOnly="True" HorizontalAlignment="Left" Height="33" Margin="111,38,0,0" Text="" VerticalAlignment="Top" Width="107" MaxLines="1" MaxLength="200"  />
 
                 <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="539,38,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Serial Number2 : "/></TextBlock>
                 <TextBox x:Name="SerialNumber2Value_IncomeOrderUC" HorizontalAlignment="Left" Height="33" Margin="729,38,0,0" Text="" VerticalAlignment="Top" Width="119"  MaxLength="200" MaxLines="1" />
@@ -53,9 +53,9 @@
 
 
                 <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="13,161,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Quantity : "/></TextBlock>
-                <TextBox x:Name="QuantityValue_IncomeOrderUC" KeyDown="QuantityValue_IncomeOrderUC_KeyDown"  HorizontalAlignment="Left" Height="23" Margin="137,171,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="58" RenderTransformOrigin="0.544,-0.652"  />
+                <TextBox x:Name="QuantityValue_IncomeOrderUC" KeyDown="QuantityValue_IncomeOrderUC_KeyDown" PreviewTextInput="NumberValidation"  HorizontalAlignment="Left" Height="23" Margin="137,171,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="58" RenderTransformOrigin="0.544,-0.652"  />
 
-                <TextBox x:Name="SalePriceValue_IncomeOrderUC" KeyDown="SalePriceValue_IncomeOrderUC_KeyDown" HorizontalAlignment="Left" Height="24" Margin="299,123,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="58" RenderTransformOrigin="0.544,-0.652"  />
+                <TextBox x:Name="SalePriceValue_IncomeOrderUC" KeyDown="SalePriceValue_IncomeOrderUC_KeyDown" PreviewTextInput="MoneyValidation" HorizontalAlignment="Left" Height="24" Margin="299,123,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="58" RenderTransformOrigin="0.544,-0.652"  />
                 <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="170,114,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Sale Price : "/></TextBlock>
 
                 <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="362,114,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Income Price :"/></TextBlock>
@@ -109,7 +109,7 @@
                 <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}" />
                 <DataGridTextColumn Header="Income Price" Binding="{Binding IncomePrice}"/>
                 <DataGridTextColumn Header="Sale Price" Binding="{Binding Product.SalePrice}"/>
-                <DataGridTextColumn Header="Total Price" Binding="{Binding TotalProductPrice }"/>
+                <DataGridTextColumn Header="Total Price" Binding="{Binding GetTotalProductPrice }"/>
             </DataGrid.Columns>
         </DataGrid>
         <Button x:Name="RemoveSelectedStockButton_IncomeOrderUC" Click="RemoveSelectedStockButton_IncomeOrderUC_Click" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Red"  Margin="0,620,1068,0" VerticalAlignment="Top" Height="60"  >
@@ -127,7 +127,7 @@
         <TextBox x:Name="BillNumberValue_IncomeOrderUC"  HorizontalAlignment="Left" Margin="1028,310,0,0" VerticalAlignment="Top" Width="205" />
 
         <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="880,332,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" Width="225" Text="Shipping expenses : " />
-        <TextBox x:Name="ShippingExpensesValue_IncomeOrderUC" KeyDown="ShippingExpensesValue_IncomeOrderUC_KeyDown"  HorizontalAlignment="Left" Margin="1105,340,0,0" VerticalAlignment="Top" Width="71" />
+        <TextBox x:Name="ShippingExpensesValue_IncomeOrderUC" KeyDown="ShippingExpensesValue_IncomeOrderUC_KeyDown" PreviewTextInput="MoneyValidation"  HorizontalAlignment="Left" Margin="1105,340,0,0" VerticalAlignment="Top" Width="71" />
 
         <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="1106,637,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Total Price : "/></TextBlock>
         <TextBox x:Name="TotalPriceValue_IncomeOrderUC" IsReadOnly="True" HorizontalAlignment="Left" Height="23" Margin="1238,647,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="78" RenderTransformOrigin="0.544,-0.652"/>

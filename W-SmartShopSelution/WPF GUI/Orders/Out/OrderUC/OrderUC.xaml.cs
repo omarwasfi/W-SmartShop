@@ -79,6 +79,7 @@ namespace WPF_GUI.Orders.Out.OrderUC
             RemovedOrderProducts = new List<OrderProductModel>();
 
             UpdateTheStocksFromThePublicVariables();
+            UpdateTheOperationsFromThePublicVariables();
         }
 
         /// <summary>
@@ -89,6 +90,14 @@ namespace WPF_GUI.Orders.Out.OrderUC
             PublicVariables.LoginStoreStocks = GlobalConfig.Connection.FilterStocksByStore(PublicVariables.Store);
             Stocks = null;
             Stocks = PublicVariables.LoginStoreStocks;
+        }
+
+        /// <summary>
+        /// Update and gets the operation from the public variables
+        /// </summary>
+        private void UpdateTheOperationsFromThePublicVariables()
+        {
+            PublicVariables.Operations = GlobalConfig.Connection.GetOperations();
         }
 
 
@@ -200,6 +209,14 @@ namespace WPF_GUI.Orders.Out.OrderUC
 
             GlobalConfig.Connection.UpdateOrderData(Order);
 
+            // Updating the operation data
+            OperationModel operation = new OperationModel();
+            operation = GlobalConfig.Connection.GetOperationByOrder(Order, PublicVariables.Operations);
+            operation.AmountOfMoney = Order.TotalPrice;
+            GlobalConfig.Connection.UpdateOperationData(operation);
+            
+
+
             if (MessageBox.Show("Do you want to print the order ?", "Printing...", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
                 PrintTheOrder();
@@ -244,6 +261,13 @@ namespace WPF_GUI.Orders.Out.OrderUC
 
                 }
 
+
+
+
+                OperationModel operation = new OperationModel();
+                operation = GlobalConfig.Connection.GetOperationByOrder(Order, PublicVariables.Operations);
+                
+                GlobalConfig.Connection.RemoveOperation(operation);
 
                 GlobalConfig.Connection.RemoveOrder(Order);
 

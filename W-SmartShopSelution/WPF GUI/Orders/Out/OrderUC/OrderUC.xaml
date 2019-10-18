@@ -19,7 +19,7 @@
                     <DataGridTextColumn Header="Discount" Binding="{Binding Discount}"/>
                     <DataGridTextColumn Header="Profit" Binding="{Binding GetProfit}"/>
                     <DataGridTextColumn Header="Total Profit" Binding="{Binding GetTotalProfit}"/>
-                    <DataGridTextColumn Header="Total Price" Binding="{Binding TotalProductPrice}"/>
+                    <DataGridTextColumn Header="Total Price" Binding="{Binding GetTotalPrice}"/>
                 </DataGrid.Columns>
             </DataGrid>
 

@@ -216,5 +216,64 @@ namespace Library
             return fOperations;
         }
 
+        /// <summary>
+        /// Get the operation that contain the order
+        /// </summary>
+        /// <param name="order"></param>
+        /// <param name="operations"></param>
+        /// <returns></returns>
+        public static OperationModel GetOperationByOrder(OrderModel order , List<OperationModel> operations)
+        {
+
+            foreach(OperationModel operation in operations)
+            {
+                if(operation.GetOperationName == "Order")
+                {
+                    if (operation.Order.Id == order.Id)
+                    {
+                        return operation;
+                    }
+                }
+               
+            }
+            return null;
+
+        }
+
+        /// <summary>
+        /// Update the operation AmountOfMoney
+        /// </summary>
+        /// <param name="operation"></param>
+        /// <param name="db"></param>
+        /// <returns></returns>
+        public static OperationModel UpdateOperationData(OperationModel operation,string db)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnVal(db)))
+            {
+                var p = new DynamicParameters();
+                p.Add("@Id", operation.Id);
+                p.Add("@AmountOfMoney", operation.AmountOfMoney);
+                connection.Execute("dbo.spOperation_Update", p, commandType: CommandType.StoredProcedure);
+            }
+
+            return operation;
+        }
+
+        /// <summary>
+        /// Delete operation from the database totaly
+        /// </summary>
+        /// <param name="operation"></param>
+        /// <param name="db"></param>
+        public static void RemoveOperation(OperationModel  operation, string db)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnVal(db)))
+            {
+                var p = new DynamicParameters();
+                p.Add("@Id", operation.Id);
+                connection.Execute("dbo.spOperation_Delete", p, commandType: CommandType.StoredProcedure);
+
+            }
+        }
+
     }
 }
