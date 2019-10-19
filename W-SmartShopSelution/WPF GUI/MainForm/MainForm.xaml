@@ -147,7 +147,7 @@
                             </StackPanel>
                         </ListViewItem>
 
-                        <ListViewItem Name="GlobalInventoryViewItem" Visibility="Visible" Height="45" Padding="0" Selected="GlobalInventoryViewItem_Selected" >
+                        <ListViewItem Name="GlobalInventoryViewItem" Visibility="Collapsed" Height="45" Padding="0" Selected="GlobalInventoryViewItem_Selected" >
                             <StackPanel Orientation="Horizontal" Margin="10 0">
                                 <materialDesign:PackIcon Kind="Globe" Width="20" Height="20" Foreground="Gray" Margin="5" VerticalAlignment="Center"/>
                                 <TextBlock Text="Global Inventory" Margin="10"/>
@@ -182,7 +182,7 @@
                             </StackPanel>
                         </ListViewItem>
 
-                        <ListViewItem Name="InstallmentOrderViewItem" Visibility="Visible" Height="45" Padding="0" Selected="InstallmentOrderViewItem_Selected" >
+                        <ListViewItem Name="InstallmentOrderViewItem" Visibility="Collapsed" Height="45" Padding="0" Selected="InstallmentOrderViewItem_Selected" >
                             <StackPanel Orientation="Horizontal" Margin="10 0">
                                 <materialDesign:PackIcon Kind="Money" Width="20" Height="20" Foreground="Gray" Margin="5" VerticalAlignment="Center"/>
                                 <TextBlock Text="Installment" Margin="10"/>

@@ -1,2 +1,0 @@
-C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\Library\obj\Debug\Library.csprojAssemblyReference.cache
-C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\Library\obj\Debug\Library.csproj.CoreCompileInputs.cache
