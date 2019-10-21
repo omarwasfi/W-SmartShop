@@ -181,6 +181,8 @@ namespace WPF_GUI.Sell
             UserGrid_SellUC.Visibility = Visibility.Visible;
             PrintGrid_SellUC.Visibility = Visibility.Collapsed;
 
+            CashRadioButton.IsChecked = true;
+
         }
 
         /// <summary>
@@ -1199,10 +1201,101 @@ namespace WPF_GUI.Sell
             }
             TotalPriceValue_Sell.Text = TotalPrice.ToString();
             TotalOrderProfitValue_Sell.Text = TotalOrderProfit.ToString();
-            
+
+            UpdateCustomerPayement();
 
         }
 
+        /// <summary>
+        /// Check if the customer will pay later of will pay Cash , if cash set payNow  CustomerWillPayNowValue = TotalPriceValue_Sell
+        /// if not set CustomerWillPayLaterValue_Sell = TotalPriceValue_Sell
+        /// </summary>
+        private void UpdateCustomerPayement()
+        {
+            if(CashRadioButton.IsChecked == true)
+            {
+                CustomerWillPayNowValue_Sell.Text = TotalPriceValue_Sell.Text;
+                CustomerWillPayLaterValue_Sell.Text = "";
+            }
+            else
+            {
+
+                CustomerWillPayNowValue_Sell.Text = "";
+                CustomerWillPayLaterValue_Sell.Text = TotalPriceValue_Sell.Text;
+            }
+        }
+
+        /// <summary>
+        /// Check if the entered value more the the total price value or not
+        /// if it's less or equals -> Calculate the PayLater Value
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CustomerWillPayNowValue_Sell_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                if(CustomerWillPayNowValue_Sell.Text.Length > 0)
+                {
+                    if (decimal.Parse(CustomerWillPayNowValue_Sell.Text) <= decimal.Parse(TotalPriceValue_Sell.Text))
+                    {
+                        CustomerWillPayLaterValue_Sell.Text = (decimal.Parse(TotalPriceValue_Sell.Text) - decimal.Parse(CustomerWillPayNowValue_Sell.Text)).ToString();
+                    }
+                    else
+                    {
+                        MessageBox.Show("This Price is more than the Total Price !!!");
+                        CustomerWillPayNowValue_Sell.Text = TotalPriceValue_Sell.Text;
+                        CustomerWillPayLaterValue_Sell.Text = "";
+                    }
+                }
+                else
+                {
+                    CustomerWillPayLaterValue_Sell.Text = TotalPriceValue_Sell.Text;
+                }
+
+            }
+        }
+
+        /// <summary>
+        /// Check if the entered value more the the total price value or not
+        /// if it's less or equals -> Calculate the PayNow Value
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CustomerWillPayLaterValue_Sell_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                if(CustomerWillPayLaterValue_Sell.Text.Length > 0)
+                {
+                    if (decimal.Parse(CustomerWillPayLaterValue_Sell.Text) <= decimal.Parse(TotalPriceValue_Sell.Text))
+                    {
+                        CustomerWillPayNowValue_Sell.Text = (decimal.Parse(TotalPriceValue_Sell.Text) - decimal.Parse(CustomerWillPayLaterValue_Sell.Text)).ToString();
+                    }
+                    else
+                    {
+                        MessageBox.Show("This Price is more than the Total Price !!!");
+                        CustomerWillPayLaterValue_Sell.Text = TotalPriceValue_Sell.Text;
+                        CustomerWillPayNowValue_Sell.Text = "";
+                    }
+                }
+                else
+                {
+                    CustomerWillPayNowValue_Sell.Text = TotalPriceValue_Sell.Text;
+
+                }
+
+            }
+        }
+
+        private void CashRadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            UpdateCustomerPayement();
+        }
+        private void SuspendPayementButton_Checked(object sender, RoutedEventArgs e)
+        {
+            UpdateCustomerPayement();
+        }
 
         /// <summary>
         /// Make sure that customer and ordercount is not null
@@ -1222,21 +1315,15 @@ namespace WPF_GUI.Sell
 
         /// <summary>
         /// Check if the order vaild , it it's -> save to the database , Opens the printing tab
+        /// if customerWillPayNowValue == 0 we will not create operation 
+        /// else Create operation with the amount of money the customer will pay
         /// </summary>
         private void SaveTheOrder()
         {
-            if (Customer == null)
-            {
-                MessageBox.Show("choose Customer first");
 
-            }
-            else
-            {
-                if (Orders.Count < 1)
-                {
-                    MessageBox.Show("Add Products to the order");
-                }
-                else
+            
+
+                if (Valid())
                 {
                     Order.Staff = Staff;
                     Order.Store = Store;
@@ -1244,20 +1331,26 @@ namespace WPF_GUI.Sell
                     Order.Customer = Customer;
                     Order.DateTimeOfTheOrder = DateTime.Now;
                     Order.TotalPrice = decimal.Parse(TotalPriceValue_Sell.Text);
+
+                    decimal payed = new decimal();
+                    if (decimal.TryParse(CustomerWillPayNowValue_Sell.Text, out payed))
+                    {
+                        Order.Paid = payed;
+                    }
+                    else
+                    {
+                        Order.Paid = 0;
+                    }
+
+                    Order.LastPaymentDate = DateTime.Now;
                     Order.Details = OrderDetailsValue_Sell.Text;
+
+                    //Saving the Order
 
                     Order = GlobalConfig.Connection.GetEmptyOrderFromTheDatabase(Order);
 
                     GlobalConfig.Connection.SaveOrderProductListToTheDatabase(Order);
 
-                    OperationModel operation = new OperationModel
-                    {
-                        Order = Order,
-                        AmountOfMoney = Order.GetTotalPrice,
-                        Date = DateTime.Now
-                    };
-                    
-                    GlobalConfig.Connection.AddOperationToDatabase(operation);
 
                     foreach (OrderProductModel orderProduct in Orders)
                     {
@@ -1265,6 +1358,27 @@ namespace WPF_GUI.Sell
                     }
 
                     PublicVariables.LoginStoreStocks = GlobalConfig.Connection.FilterStocksByStore(Store);
+
+                    // Saveing the operations
+
+                    if (Order.Paid == 0)
+                    {
+
+                    }
+                    else
+                    {
+                        OperationModel operation = new OperationModel
+                        {
+                            Order = Order,
+                            AmountOfMoney = Order.Paid,
+                            Date = DateTime.Now
+                        };
+                        GlobalConfig.Connection.AddOperationToDatabase(operation);
+                    }
+
+
+
+
 
                     if (MessageBox.Show("Do you want to print the order ?", "Printing...", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                     {
@@ -1277,11 +1391,58 @@ namespace WPF_GUI.Sell
                         ResetSellUC();
                     }
                 }
+               
 
 
 
 
+            
+        }
+
+        /// <summary>
+        /// Check if the form vaild or not
+        /// </summary>
+        /// <returns></returns>
+        private bool Valid()
+        {
+            if (Customer == null)
+            {
+                MessageBox.Show("choose Customer first");
+                return false;
             }
+            else
+            {
+                if (Orders.Count < 1)
+                {
+                    MessageBox.Show("Add Products to the order");
+                    return false;
+                }
+                else
+                {
+
+                    if(CustomerWillPayLaterValue_Sell.Text.Length > 0 && decimal.Parse(CustomerWillPayLaterValue_Sell.Text) > decimal.Parse(TotalPriceValue_Sell.Text))
+                    {
+                        MessageBox.Show("Customer will pay later value is wrong Enter it Again !!");
+                        return false;
+
+                    }
+                    else
+                    {
+                    }
+
+                    if (CustomerWillPayNowValue_Sell.Text.Length > 0 && decimal.Parse(CustomerWillPayNowValue_Sell.Text) > decimal.Parse(TotalPriceValue_Sell.Text))
+                    {
+                        MessageBox.Show("Customer will pay now value is wrong Enter it Again !!");
+                        return false;
+                    }
+                    else
+                    {
+
+                    }
+                }
+            }
+
+            return true;
         }
 
 
@@ -1299,7 +1460,10 @@ namespace WPF_GUI.Sell
             Orders = new List<OrderProductModel>();
             ChoosenProductList_Sell.ItemsSource = null;
             TotalPriceValue_Sell.Text = "";
-
+            TotalOrderProfitValue_Sell.Text = "";
+            CustomerWillPayLaterValue_Sell.Text = "";
+            CustomerWillPayNowValue_Sell.Text = "";
+            OrderDetailsValue_Sell.Text = "";
             PublicVariables.Orders = GlobalConfig.Connection.GetOrders();
         }
 
@@ -1447,9 +1611,13 @@ namespace WPF_GUI.Sell
         }
 
 
+
+
+
+
         #endregion
 
-        
+       
     }
 
 }

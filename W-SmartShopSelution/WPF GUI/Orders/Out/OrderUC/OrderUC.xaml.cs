@@ -63,6 +63,8 @@ namespace WPF_GUI.Orders.Out.OrderUC
             OrderIdValue_OrderUC.Text = Order.Id.ToString();
             TotalPriceValue_OrderUC.Text = Order.TotalPrice.ToString();
             TotalOrderProfitValue_OrderUC.Text = Order.GetTotalProfit.ToString();
+            CustomerPaidValue_OrderUC.Text = Order.Paid.ToString();
+            LastPaymentDateValue_OrderUC.Text = Order.LastPaymentDate.ToString();
             TotalPriceAfterChangesValue_OrderUC.Text = Order.TotalPrice.ToString();
             TotalOrderProfitValue_OrderUC.Text = Order.GetTotalProfit.ToString();
             TotalOrderProfitAfterChangesValue_OrderUC.Text = Order.GetTotalProfit.ToString();
@@ -80,6 +82,8 @@ namespace WPF_GUI.Orders.Out.OrderUC
 
             UpdateTheStocksFromThePublicVariables();
             UpdateTheOperationsFromThePublicVariables();
+
+            UpdateTotalPriceTotalProfitAndCustomerShouldReceive();
         }
 
         /// <summary>
@@ -167,9 +171,85 @@ namespace WPF_GUI.Orders.Out.OrderUC
             TotalPriceAfterChangesValue_OrderUC.Text = TotalPrice.ToString();
             TotalOrderProfitAfterChangesValue_OrderUC.Text = TotalOrderProfit.ToString();
 
-            CustomerShouldReceiveValue_OrderUC.Text = (decimal.Parse(TotalPriceValue_OrderUC.Text) - TotalPrice).ToString();
+            decimal customerShouldReceive = new decimal();
+            customerShouldReceive = OrignalOrder.Paid - TotalPrice;
+            if(customerShouldReceive < 0)
+            {
+                CustomerShouldPayValue_OrderUC.Text =( TotalPrice - OrignalOrder.Paid).ToString();
+                CustomerWillPayNowValue_OrderUC.Text = CustomerShouldPayValue_OrderUC.Text;
+                CustomerWillPayLaterValue_OrderUC.Text = "";
+
+            }
+            else
+            {
+                CustomerShouldReceiveValue_OrderUC.Text = customerShouldReceive.ToString();
+                CustomerShouldPayValue_OrderUC.Text = "";
+                CustomerWillPayNowValue_OrderUC.Text ="";
+                CustomerWillPayLaterValue_OrderUC.Text = "";
+
+
+            }
+
 
         }
+
+
+        private void CustomerWillPayNowValue_OrderUC_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                if (CustomerWillPayNowValue_OrderUC.Text.Length > 0)
+                {
+                    if (decimal.Parse(CustomerWillPayNowValue_OrderUC.Text) <= decimal.Parse(CustomerShouldPayValue_OrderUC.Text))
+                    {
+                        CustomerWillPayLaterValue_OrderUC.Text = (decimal.Parse(CustomerShouldPayValue_OrderUC.Text) - decimal.Parse(CustomerWillPayNowValue_OrderUC.Text)).ToString();
+                    }
+                    else
+                    {
+                        MessageBox.Show("This Price is more than the Total Price !!!");
+                        CustomerWillPayNowValue_OrderUC.Text = CustomerShouldPayValue_OrderUC.Text;
+                        CustomerWillPayLaterValue_OrderUC.Text = "";
+                    }
+                }
+                else
+                {
+                    CustomerWillPayLaterValue_OrderUC.Text = CustomerShouldPayValue_OrderUC.Text;
+
+                }
+
+
+            }
+        }
+
+        private void CustomerWillPayLaterValue_OrderUC_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                if (CustomerWillPayLaterValue_OrderUC.Text.Length > 0)
+                {
+                    if (decimal.Parse(CustomerWillPayLaterValue_OrderUC.Text) <= decimal.Parse(CustomerShouldPayValue_OrderUC.Text))
+                    {
+                        CustomerWillPayNowValue_OrderUC.Text = (decimal.Parse(CustomerShouldPayValue_OrderUC.Text) - decimal.Parse(CustomerWillPayLaterValue_OrderUC.Text)).ToString();
+                    }
+                    else
+                    {
+                        MessageBox.Show("This Price is more than the Total Price !!!");
+                        CustomerWillPayLaterValue_OrderUC.Text = CustomerShouldPayValue_OrderUC.Text;
+                        CustomerWillPayNowValue_OrderUC.Text = "";
+                    }
+                }
+                else
+                {
+                    CustomerWillPayNowValue_OrderUC.Text = CustomerShouldPayValue_OrderUC.Text;
+
+                }
+
+
+
+            }
+        }
+
+
 
         private void ConfitmButton_OrderUC_Click(object sender, RoutedEventArgs e)
         {
@@ -183,57 +263,159 @@ namespace WPF_GUI.Orders.Out.OrderUC
         /// </summary>
         private void SaveTheOrder()
         {
-            foreach (OrderProductModel orderProduct in RemovedOrderProducts)
+            if (Valid())
             {
-                List<StockModel> stocks = GlobalConfig.Connection.GetStocksByProduct(Stocks, orderProduct.Product);
-                if (stocks.Count > 0)
+                foreach (OrderProductModel orderProduct in RemovedOrderProducts)
                 {
-                    GlobalConfig.Connection.IncreaseStock(stocks[0], orderProduct.Quantity);
+                    List<StockModel> stocks = GlobalConfig.Connection.GetStocksByProduct(Stocks, orderProduct.Product);
+                    if (stocks.Count > 0)
+                    {
+                        GlobalConfig.Connection.IncreaseStock(stocks[0], orderProduct.Quantity);
+                    }
+                    else
+                    {
+                        StockModel stock = new StockModel();
+                        stock.Product = orderProduct.Product;
+                        stock.Quantity = orderProduct.Quantity;
+                        stock.Store = PublicVariables.Store;
+                        GlobalConfig.Connection.AddStockToTheDatabase(stock);
+                    }
+
+                    //Order.Products.Remove(orderProduct);
+
+                    GlobalConfig.Connection.RemoveOrderProduct(orderProduct);
+                }
+
+                Order.Details = OrderDetailsValue_OrderUC.Text;
+                Order.TotalPrice = decimal.Parse(TotalPriceAfterChangesValue_OrderUC.Text);
+
+
+
+              
+
+
+                // Updating the operation data
+                // if the customer will not recive any money
+                //  - check if the paid amount now is more than 0
+                //      -- if it is create a new operation with the money that the customer paid now
+                // if the customer will recive any money
+                // - get all the operations
+                // - start decreace from each operation and delete any one 0
+
+                if (CustomerShouldReceiveValue_OrderUC.Text.Length > 0)
+                {
+                    List<OperationModel> operations = new List<OperationModel>();
+                    operations = GlobalConfig.Connection.GetOperationsByOrder(Order, PublicVariables.Operations);
+                    
+                    decimal totalReceived = new decimal();
+                    totalReceived = decimal.Parse(CustomerShouldReceiveValue_OrderUC.Text);
+
+                    foreach(OperationModel operation in operations)
+                    {
+                        while(totalReceived > 0)
+                        {
+                            if (operation.AmountOfMoney < totalReceived)
+                            {
+                                totalReceived -= operation.AmountOfMoney;
+                                // Delete the operation from the database
+                                GlobalConfig.Connection.RemoveOperation(operation);
+                            }
+                            else if (operation.AmountOfMoney == totalReceived)
+                            {
+                                totalReceived = 0;
+                                // Delete the operation
+                                GlobalConfig.Connection.RemoveOperation(operation);
+                            }
+                            else
+                            {
+                                totalReceived = 0;
+                                operation.AmountOfMoney -= totalReceived;
+                                // Update the operation
+                                GlobalConfig.Connection.UpdateOperationData(operation);
+                            }
+                        }
+                    }
+
+
                 }
                 else
                 {
-                    StockModel stock = new StockModel();
-                    stock.Product = orderProduct.Product;
-                    stock.Quantity = orderProduct.Quantity;
-                    stock.Store = PublicVariables.Store;
-                    GlobalConfig.Connection.AddStockToTheDatabase(stock);
+                    if (CustomerWillPayNowValue_OrderUC.Text.Length > 0 && decimal.Parse(CustomerWillPayNowValue_OrderUC.Text) > 0)
+                    {
+                        OperationModel operation = new OperationModel();
+                        operation.Order = Order;
+                        operation.AmountOfMoney = decimal.Parse(CustomerWillPayNowValue_OrderUC.Text);
+                        operation.Date = DateTime.Now;
+                        GlobalConfig.Connection.AddOperationToDatabase(operation);
+
+                    }
                 }
 
-                //Order.Products.Remove(orderProduct);
+                List<OperationModel> updatedOperations = new List<OperationModel>();
+                updatedOperations = GlobalConfig.Connection.GetOperationsByOrder(Order, PublicVariables.Operations);
+                decimal totalPaid = new decimal();
+                foreach (OperationModel operationModel in updatedOperations)
+                {
+                    totalPaid += operationModel.AmountOfMoney;
+                }
 
-                GlobalConfig.Connection.RemoveOrderProduct(orderProduct);
+                Order.Paid = totalPaid;
+                Order.LastPaymentDate = DateTime.Now;
+
+                Order = GlobalConfig.Connection.UpdateOrderData(Order);
+
+
+
+                if (MessageBox.Show("Do you want to print the order ?", "Printing...", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                {
+                    PrintTheOrder();
+
+                }
+                else
+                {
+                    var parent = this.Parent as Window;
+                    if (parent != null) { parent.DialogResult = true; parent.Close(); }
+                }
             }
 
-            Order.Details = OrderDetailsValue_OrderUC.Text;
-            Order.TotalPrice = decimal.Parse(TotalPriceAfterChangesValue_OrderUC.Text);
+           
 
-            GlobalConfig.Connection.UpdateOrderData(Order);
+        }
 
-            // Updating the operation data
-            OperationModel operation = new OperationModel();
-            operation = GlobalConfig.Connection.GetOperationByOrder(Order, PublicVariables.Operations);
-            operation.AmountOfMoney = Order.TotalPrice;
-            GlobalConfig.Connection.UpdateOperationData(operation);
-            
+        /// <summary>
+        /// Check if the form vaild or not
+        /// </summary>
+        /// <returns></returns>
+        private bool Valid()
+        {
 
 
-            if (MessageBox.Show("Do you want to print the order ?", "Printing...", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            if (CustomerWillPayLaterValue_OrderUC.Text.Length > 0 && decimal.Parse(CustomerWillPayLaterValue_OrderUC.Text) > decimal.Parse(CustomerShouldPayValue_OrderUC.Text))
             {
-                PrintTheOrder();
+                MessageBox.Show("Customer will pay later value is wrong Enter it Again !!");
+                return false;
 
             }
             else
             {
-                var parent = this.Parent as Window;
-                if (parent != null) { parent.DialogResult = true; parent.Close(); }
             }
 
-        }
+            if (CustomerWillPayNowValue_OrderUC.Text.Length > 0 && decimal.Parse(CustomerWillPayNowValue_OrderUC.Text) > decimal.Parse(CustomerShouldPayValue_OrderUC.Text))
+            {
+                MessageBox.Show("Customer will pay now value is wrong Enter it Again !!");
+                return false;
+            }
+            else
+            {
+
+            }
+            return true;
+          }
 
 
-        private void DeleteOrderButton_OrderUC_Click(object sender, RoutedEventArgs e)
+            private void DeleteOrderButton_OrderUC_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageBox.Show("this Order will be Deleted Complitly, the customer should get "+ Order.GetTotalPrice.ToString() +"  !", "Are you sure ?", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            if (MessageBox.Show("this Order will be Deleted Complitly, the customer should get "+ Order.Paid.ToString() +"  !", "Are you sure ?", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
                 foreach(OrderProductModel orderProduct in OrderProducts)
                 {
@@ -264,10 +446,13 @@ namespace WPF_GUI.Orders.Out.OrderUC
 
 
 
-                OperationModel operation = new OperationModel();
-                operation = GlobalConfig.Connection.GetOperationByOrder(Order, PublicVariables.Operations);
-                
-                GlobalConfig.Connection.RemoveOperation(operation);
+                List<OperationModel> operations = new List<OperationModel>();
+                operations = GlobalConfig.Connection.GetOperationsByOrder(Order, PublicVariables.Operations);
+
+                foreach(OperationModel operation in operations)
+                {
+                    GlobalConfig.Connection.RemoveOperation(operation);
+                }
 
                 GlobalConfig.Connection.RemoveOrder(Order);
 
@@ -277,6 +462,15 @@ namespace WPF_GUI.Orders.Out.OrderUC
             }
         }
 
+        /// <summary>
+        /// Money validation for any text accepts money
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MoneyValidation(object sender, TextCompositionEventArgs e)
+        {
+            GlobalConfig.NumberValidation.MoneyValidationTextBox(sender, e);
+        }
 
 
         private void PrintButton_OrderUC_Click(object sender, RoutedEventArgs e)
@@ -335,8 +529,9 @@ namespace WPF_GUI.Orders.Out.OrderUC
 
         }
 
+
         #endregion
 
-
+       
     }
 }

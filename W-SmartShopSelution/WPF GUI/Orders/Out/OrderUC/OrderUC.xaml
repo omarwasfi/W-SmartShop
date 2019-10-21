@@ -10,7 +10,7 @@
              d:DesignHeight="680" d:DesignWidth="1343">
     <Grid>
         <Grid Name="UserGrid_OrderUC" Visibility="Visible">
-            <DataGrid x:Name="OrderProductList_OrderUC" IsReadOnly="True" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="321" Margin="10,289,0,0" VerticalAlignment="Top" Width="1323" Background="LightGray">
+            <DataGrid x:Name="OrderProductList_OrderUC" IsReadOnly="True" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="252" Margin="10,289,0,0" VerticalAlignment="Top" Width="1323" Background="LightGray">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Product Name" Binding="{Binding Product.Name}" />
                     <DataGridTextColumn Header="Barcode" Binding="{Binding Product.BarCode}" />
@@ -50,7 +50,7 @@
             <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="10,238,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Details : "/></TextBlock>
             <TextBox x:Name="OrderDetailsValue_OrderUC"  HorizontalAlignment="Left" Height="32" Margin="109,238,0,0" Text="" VerticalAlignment="Top" Width="764" MaxLength="500" MaxLines="1"  />
 
-            <Button x:Name="RemoveSelectedProductButton_OrderUC" Click="RemoveSelectedProductButton_OrderUC_Click" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Red"  Margin="10,615,1078,0" VerticalAlignment="Top" Height="60"  >
+            <Button x:Name="RemoveSelectedProductButton_OrderUC" Click="RemoveSelectedProductButton_OrderUC_Click" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Red"  Margin="0,541,1088,0" VerticalAlignment="Top" Height="60"  >
                 <Grid Width="229">
                     <materialDesign:PackIcon Kind="RemoveCircle" Width="50" Height="46" Grid.RowSpan="2"/>
                     <TextBlock FontSize="20" Text="Remove Selected" Margin="50,5,10,10" Grid.Row="1"/>
@@ -80,17 +80,32 @@
             <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="412,162,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Total Profit after changes : "/></TextBlock>
             <TextBox x:Name="TotalOrderProfitAfterChangesValue_OrderUC"  IsReadOnly="True" HorizontalAlignment="Left" Height="24" Margin="710,166,0,0" Text="" VerticalAlignment="Top" Width="66" RenderTransformOrigin="0.544,-0.652" MaxLines="1"/>
 
-            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="412,200,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Customer should receive : "/></TextBlock>
-            <TextBox x:Name="CustomerShouldReceiveValue_OrderUC" IsReadOnly="True" HorizontalAlignment="Left" Height="22" Margin="704,211,0,0" Text="" VerticalAlignment="Top" Width="78" RenderTransformOrigin="0.544,-0.652" MaxLines="1"/>
+            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="930,618,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Customer should receive : "/></TextBlock>
+            <TextBox x:Name="CustomerShouldReceiveValue_OrderUC" IsReadOnly="True" HorizontalAlignment="Left" Height="22" Margin="1226,630,0,0" Text="" VerticalAlignment="Top" Width="78" RenderTransformOrigin="0.544,-0.652" MaxLines="1"/>
 
             <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="412,10,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Staff member : "/></TextBlock>
             <TextBox x:Name="StaffNameValue_OrderUC" IsReadOnly="True" HorizontalAlignment="Left" Height="33" Margin="585,10,0,0" Text="" VerticalAlignment="Top" Width="141" MaxLength="500" MaxLines="1"  />
 
             <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="10,48,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Date : "/></TextBlock>
             <TextBox x:Name="OrderDateValue_OrderUC" IsReadOnly="True" HorizontalAlignment="Left" Height="33" Margin="86,48,0,0" Text="" VerticalAlignment="Top" Width="141" MaxLength="500" MaxLines="1"  />
-            
+
             <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="412,48,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Store : "/></TextBlock>
             <TextBox x:Name="StoreNameValue_OrderUC" IsReadOnly="True" HorizontalAlignment="Left" Height="33" Margin="585,48,0,0" Text="" VerticalAlignment="Top" Width="141" MaxLength="500" MaxLines="1"  />
+
+            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="329,568,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Customer Paid : "/></TextBlock>
+            <TextBox x:Name="CustomerPaidValue_OrderUC" IsReadOnly="True" HorizontalAlignment="Left" Height="22" Margin="513,579,0,0" Text="" VerticalAlignment="Top" Width="78" RenderTransformOrigin="0.544,-0.652" MaxLines="1"/>
+
+            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="600,568,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Last Payment at : "/></TextBlock>
+            <TextBox x:Name="LastPaymentDateValue_OrderUC" IsReadOnly="True" HorizontalAlignment="Left" Height="22" Margin="798,579,0,0" Text="" VerticalAlignment="Top" Width="127" RenderTransformOrigin="0.544,-0.652" MaxLines="1"/>
+
+            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="114,619,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Customer should pay now : "/></TextBlock>
+            <TextBox x:Name="CustomerWillPayNowValue_OrderUC" KeyDown="CustomerWillPayNowValue_OrderUC_KeyDown" PreviewTextInput="MoneyValidation" HorizontalAlignment="Left" Height="22" Margin="426,630,0,0" Text="" VerticalAlignment="Top" Width="78" RenderTransformOrigin="0.544,-0.652" MaxLines="1"/>
+
+            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="527,618,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Customer should pay later : "/></TextBlock>
+            <TextBox x:Name="CustomerWillPayLaterValue_OrderUC" KeyDown="CustomerWillPayLaterValue_OrderUC_KeyDown" PreviewTextInput="MoneyValidation" HorizontalAlignment="Left" Height="22" Margin="839,629,0,0" Text="" VerticalAlignment="Top" Width="78" RenderTransformOrigin="0.544,-0.652" MaxLines="1"/>
+
+            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="930,567,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Customer should Pay : "/></TextBlock>
+            <TextBox x:Name="CustomerShouldPayValue_OrderUC" IsReadOnly="True" HorizontalAlignment="Left" Height="22" Margin="1226,579,0,0" Text="" VerticalAlignment="Top" Width="78" RenderTransformOrigin="0.544,-0.652" MaxLines="1"/>
 
         </Grid>
 

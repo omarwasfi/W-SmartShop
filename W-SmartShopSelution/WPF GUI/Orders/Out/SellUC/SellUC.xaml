@@ -41,7 +41,7 @@
 
             <!--<Rectangle RadiusY="8" RadiusX="8" Fill="White"/>-->
 
-            <DataGrid x:Name="ChoosenProductList_Sell" IsReadOnly="True" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="277" Margin="10,333,0,0" VerticalAlignment="Top" Width="1323" Background="LightGray">
+            <DataGrid x:Name="ChoosenProductList_Sell" IsReadOnly="True" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="277" Margin="10,286,0,0" VerticalAlignment="Top" Width="1323" Background="LightGray">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Product Name" Binding="{Binding Path=Product.Name}" />
                     <DataGridTextColumn Header="Barcode" Binding="{Binding Path=Product.BarCode}" />
@@ -54,10 +54,10 @@
                 </DataGrid.Columns>
             </DataGrid>
 
-            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="1117,624,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Total Price : "/></TextBlock>
-            <TextBox x:Name="TotalPriceValue_Sell" IsReadOnly="True" HorizontalAlignment="Left" Height="22" Margin="1249,634,0,0" Text="" VerticalAlignment="Top" Width="78" RenderTransformOrigin="0.544,-0.652" MaxLines="1"/>
+            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="468,579,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Total Price : "/></TextBlock>
+            <TextBox x:Name="TotalPriceValue_Sell" IsReadOnly="True" HorizontalAlignment="Left" Height="22" Margin="606,590,0,0" Text="" VerticalAlignment="Top" Width="78" RenderTransformOrigin="0.544,-0.652" MaxLines="1"/>
 
-            <Button x:Name="RemoveSelectedProductButton_Sell" Click="RemoveSelectedProductButton_Sell_Click" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Red"  Margin="10,610,1078,0" VerticalAlignment="Top" Height="60"  >
+            <Button x:Name="RemoveSelectedProductButton_Sell" Click="RemoveSelectedProductButton_Sell_Click" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Red"  Margin="0,563,1088,0" VerticalAlignment="Top" Height="60"  >
                 <Grid Width="229">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="5*"/>
@@ -68,8 +68,8 @@
                 </Grid>
             </Button>
 
-            <GroupBox Header="Choose Product" HorizontalAlignment="Left" Height="299" Margin="10,29,0,0" VerticalAlignment="Top" Width="863">
-                <Grid Width="863" Height="253" VerticalAlignment="Top" Margin="0,0,0,-6" >
+            <GroupBox Header="Choose Product" HorizontalAlignment="Left" Height="252" Margin="10,29,0,0" VerticalAlignment="Top" Width="863">
+                <Grid Width="863" Height="207" VerticalAlignment="Top" Margin="0,0,0,-7" >
                     <!-- Category comoBox & category textblock -->
                     <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Category : "/></TextBlock>
                     <ComboBox x:Name="CategoryValue_Sell" HorizontalAlignment="Left" Margin="116,5,0,0" VerticalAlignment="Top" Width="100" IsTextSearchEnabled="True" TextSearch.TextPath="Name" SelectionChanged="FilterProductsByCategoryAndBrand"/>
@@ -98,13 +98,13 @@
                     <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="319,114,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Discount :"/></TextBlock>
                     <TextBox x:Name="DiscountValue_Sell"  KeyDown="DiscountValue_Sell_KeyDown" PreviewTextInput="MoneyValidation" HorizontalAlignment="Left" Height="24" Margin="428,123,0,0" Text="" VerticalAlignment="Top" Width="53" RenderTransformOrigin="0.544,-0.652" IsEnabled="False" MaxLines="1" MaxLength="10" />
 
-                    <Button x:Name="AddProductButton_Sell" Click="AddProductButton_Sell_Click" Content="ADD" HorizontalAlignment="Left" Margin="624,173,0,0" VerticalAlignment="Top" Width="155" Height="70" FontSize="36" FontWeight="Bold"/>
-                    <Button x:Name="ClearProductButton_Sell" Click="ClearProductButton_Sell_Click" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Red"   VerticalAlignment="Top" Height="52" Margin="779,191,10,0"  >
+                    <Button x:Name="AddProductButton_Sell" Click="AddProductButton_Sell_Click" Content="ADD" HorizontalAlignment="Left" Margin="624,152,0,0" VerticalAlignment="Top" Width="155" Height="50" FontSize="35" FontWeight="Bold"/>
+                    <Button x:Name="ClearProductButton_Sell" Click="ClearProductButton_Sell_Click" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Red"   VerticalAlignment="Top" Height="52" Margin="779,150,10,0"  >
                         <materialDesign:PackIcon Kind="Clear" Width="50" Height="46"/>
                     </Button>
 
-                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="419,204,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Total Price : "/></TextBlock>
-                    <TextBox x:Name="TotalProductPriceValue_Sell"  IsReadOnly="True" HorizontalAlignment="Left" Height="23" Margin="551,214,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="66" RenderTransformOrigin="0.544,-0.652"/>
+                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="418,168,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Total Price : "/></TextBlock>
+                    <TextBox x:Name="TotalProductPriceValue_Sell"  IsReadOnly="True" HorizontalAlignment="Left" Height="23" Margin="550,178,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="66" RenderTransformOrigin="0.544,-0.652"/>
 
                     <TextBox x:Name="InStockValue_Sell" IsReadOnly="True" HorizontalAlignment="Left" Height="24" Margin="116,123,0,0" Text="" VerticalAlignment="Top" Width="58" RenderTransformOrigin="0.544,-0.652" IsEnabled="True" MaxLines="1" />
                     <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="0,114,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="In Stock : "/></TextBlock>
@@ -114,9 +114,9 @@
                 </Grid>
 
             </GroupBox>
-            <GroupBox Header="Customer" HorizontalAlignment="Left" Height="299" Margin="878,29,0,0" VerticalAlignment="Top" Width="455">
+            <GroupBox Header="Customer" HorizontalAlignment="Left" Height="252" Margin="878,29,0,0" VerticalAlignment="Top" Width="455">
                 <Grid>
-                    <Button x:Name="NewCustomerButton_Sell" Click="NewCustomerButton_Sell_Click" Content="New Customer" HorizontalAlignment="Left" Margin="284,197,0,0" VerticalAlignment="Top" Width="143" Height="40" FontSize="15" FontWeight="Bold"/>
+                    <Button x:Name="NewCustomerButton_Sell" Click="NewCustomerButton_Sell_Click" Content="New Customer" HorizontalAlignment="Left" Margin="210,133,0,0" VerticalAlignment="Top" Width="143" Height="40" FontSize="15" FontWeight="Bold"/>
                     <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="10,10,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" Width="133" Text="Full Name : " />
                     <TextBox x:Name="CustomerNameValue_Sell" TextChanged="CustomerNameValue_Sell_TextChanged" KeyDown="CustomerNameValue_Sell_KeyDown" HorizontalAlignment="Left" Margin="224,18,0,0" VerticalAlignment="Top" Width="203" MaxLines="1" MaxLength="100" />
                     <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="10,48,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" Width="193" Text="Phone Number : " />
@@ -124,22 +124,32 @@
                     <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="10,86,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" Width="209" Text="National Number : " />
                     <TextBox x:Name="NationalNumberValue_Sell" KeyDown="NationalNumberValue_Sell_KeyDown" TextChanged="NationalNumberValue_Sell_TextChanged" HorizontalAlignment="Left" Margin="224,94,0,0" VerticalAlignment="Top" Width="203" MaxLength="200" MaxLines="1" />
 
-                    <Button x:Name="SelectedCustomerLogButton_Sell" Click="SelectedCustomerLogButton_Sell_Click" Content="Selected Customer log" HorizontalAlignment="Left" Margin="10,152,0,0" VerticalAlignment="Top" Width="193" Height="40" FontSize="15" FontWeight="Bold"/>
-                    <Button x:Name="ClearCustomerButton_Sell" Click="ClearCustomerButton_Sell_Click" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Red"   VerticalAlignment="Top" Height="50" Margin="353,142,10,0"  >
+                    <Button x:Name="SelectedCustomerLogButton_Sell" Click="SelectedCustomerLogButton_Sell_Click" Content="Selected Customer log" HorizontalAlignment="Left" Margin="10,133,0,0" VerticalAlignment="Top" Width="193" Height="40" FontSize="15" FontWeight="Bold"/>
+                    <Button x:Name="ClearCustomerButton_Sell" Click="ClearCustomerButton_Sell_Click" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Red"   VerticalAlignment="Top" Height="49" Margin="353,124,10,0"  >
                         <materialDesign:PackIcon Kind="Clear" Width="50" Height="46"/>
                     </Button>
 
                 </Grid>
             </GroupBox>
 
-            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="270,624,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Details : "/></TextBlock>
-            <TextBox x:Name="OrderDetailsValue_Sell" HorizontalAlignment="Left" Height="32" Margin="364,625,0,0" Text="" VerticalAlignment="Top" Width="534" MaxLength="500" MaxLines="1"  />
+            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="10,637,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Details : "/></TextBlock>
+            <TextBox x:Name="OrderDetailsValue_Sell" HorizontalAlignment="Left" Height="32" Margin="109,638,0,0" Text="" VerticalAlignment="Top" Width="575" MaxLength="500" MaxLines="1"  />
 
-            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="903,624,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Total Profit : "/></TextBlock>
-            <TextBox x:Name="TotalOrderProfitValue_Sell"  IsReadOnly="True" HorizontalAlignment="Left" Height="24" Margin="1046,633,0,0" Text="" VerticalAlignment="Top" Width="66" RenderTransformOrigin="0.544,-0.652" MaxLines="1"/>
+            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="254,579,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Total Profit : "/></TextBlock>
+            <TextBox x:Name="TotalOrderProfitValue_Sell"  IsReadOnly="True" HorizontalAlignment="Left" Height="24" Margin="398,588,0,0" Text="" VerticalAlignment="Top" Width="66" RenderTransformOrigin="0.544,-0.652" MaxLines="1"/>
+
+
+            <RadioButton Name="CashRadioButton" Checked="CashRadioButton_Checked" Visibility="Visible" Content="Cash" HorizontalAlignment="Left" Margin="795,568,0,0" VerticalAlignment="Top"/>
+            <RadioButton Name="SuspendPayementButton" Checked="SuspendPayementButton_Checked" Visibility="Visible" Content="Suspend payment for later" HorizontalAlignment="Left" Margin="897,568,0,0" VerticalAlignment="Top"/>
+
+            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="795,596,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Customer will pay now : "/></TextBlock>
+            <TextBox x:Name="CustomerWillPayNowValue_Sell" KeyDown="CustomerWillPayNowValue_Sell_KeyDown" PreviewTextInput="MoneyValidation" HorizontalAlignment="Left" Height="22" Margin="1077,607,0,0" Text="" VerticalAlignment="Top" Width="78" RenderTransformOrigin="0.544,-0.652" MaxLines="1"/>
+            
+            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="795,637,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Customer will pay Later : "/></TextBlock>
+            <TextBox x:Name="CustomerWillPayLaterValue_Sell" KeyDown="CustomerWillPayLaterValue_Sell_KeyDown" PreviewTextInput="MoneyValidation"  HorizontalAlignment="Left" Height="22" Margin="1077,648,0,0" Text="" VerticalAlignment="Top" Width="78" RenderTransformOrigin="0.544,-0.652" MaxLines="1"/>
 
         </Grid>
-        
-        
+
+
     </Grid>
 </UserControl>

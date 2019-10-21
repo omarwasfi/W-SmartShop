@@ -30,6 +30,18 @@ namespace Library
                 p.Add("@StoreId", order.Store.Id);
                 p.Add("@StaffId", order.Staff.Id);
                 p.Add("@TotalPrice", order.TotalPrice);
+                p.Add("@Paid", order.Paid);
+                if (order.LastPaymentDate != null)
+                {
+                    p.Add("@LastPaymentDate", order.LastPaymentDate);
+
+
+                }
+                else
+                {
+                    p.Add("@LastPaymentDate", null);
+
+                }
                 p.Add("@Details", order.Details);
                 p.Add("@Id", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
                 connection.Execute("dbo.spOrders_CreateOrder", p, commandType: CommandType.StoredProcedure);
@@ -228,6 +240,18 @@ namespace Library
                 var p = new DynamicParameters();
                 p.Add("@Id", order.Id);
                 p.Add("@TotalPrice", order.TotalPrice);
+                p.Add("@Paid", order.Paid);
+                if (order.LastPaymentDate != null)
+                {
+                    p.Add("@LastPaymentDate", order.LastPaymentDate);
+
+
+                }
+                else
+                {
+                    p.Add("@LastPaymentDate", null);
+
+                }
                 p.Add("@Details", order.Details);
                 connection.Execute("dbo.spOrder_Update", p, commandType: CommandType.StoredProcedure);
             }

@@ -217,26 +217,26 @@ namespace Library
         }
 
         /// <summary>
-        /// Get the operation that contain the order
+        /// Get all the operations that contain the order
         /// </summary>
         /// <param name="order"></param>
         /// <param name="operations"></param>
         /// <returns></returns>
-        public static OperationModel GetOperationByOrder(OrderModel order , List<OperationModel> operations)
+        public static List<OperationModel> GetOperationsByOrder(OrderModel order , List<OperationModel> operations)
         {
-
+            List<OperationModel> fOperations = new List<OperationModel>();
             foreach(OperationModel operation in operations)
             {
                 if(operation.GetOperationName == "Order")
                 {
                     if (operation.Order.Id == order.Id)
                     {
-                        return operation;
+                       fOperations.Add(operation);
                     }
                 }
                
             }
-            return null;
+            return fOperations;
 
         }
 

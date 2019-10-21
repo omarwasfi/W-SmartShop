@@ -46,6 +46,16 @@ namespace Library
         public decimal TotalPrice { get; set; }
 
         /// <summary>
+        /// Total Payed money from the Order
+        /// </summary>
+        public decimal Paid { get; set; }
+
+        /// <summary>
+        /// The time of the last payment
+        /// </summary>
+        public DateTime LastPaymentDate { get; set; }
+
+        /// <summary>
         /// The details of the order Or any aditional information the user staff want to add
         /// </summary>
         public string Details { get; set; }
@@ -75,7 +85,7 @@ namespace Library
         }
 
         /// <summary>
-        /// Get the total Price that the customer payed
+        /// Calculate the total Price from each OrderProduct
         /// </summary>
         public decimal GetTotalPrice {
             get

@@ -1143,15 +1143,15 @@ namespace Library
         }
 
         /// <summary>
-        /// Get the operation that contain the order
+        /// Get all the operations that contain the order
         /// </summary>
         /// <param name="order"></param>
         /// <param name="operations"></param>
         /// <returns></returns>
-        public OperationModel GetOperationByOrder(OrderModel order, List<OperationModel> operations)
+        public List<OperationModel> GetOperationsByOrder(OrderModel order, List<OperationModel> operations)
         {
 
-            return Operation.GetOperationByOrder(order, operations);
+            return Operation.GetOperationsByOrder(order, operations);
 
         }
 
