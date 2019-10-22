@@ -144,7 +144,7 @@ namespace WPF_GUI.Orders.Out.SellingOrdersManagerUC
 
                 StiReport report = new StiReport();
                 // add the data to the datastore
-                report.Load(@"SellOrderReport.mrt");
+                report.Load(@"SellOrderReportARforEMG.mrt");
 
                 report.Compile();
 
@@ -164,6 +164,8 @@ namespace WPF_GUI.Orders.Out.SellingOrdersManagerUC
                 report["CustomerName"] = order.Customer.Person.FullName;
                 report["CustomerPhoneNumber"] = order.Customer.Person.PhoneNumber;
                 report["CustomerNationalNumber"] = order.Customer.Person.NationalNumber;
+                report["CustomerAddress"] = order.Customer.Person.Address;
+
 
                 report["OrderDetails"] = order.Details;
                 report["TotalPrice"] = order.TotalPrice.ToString();

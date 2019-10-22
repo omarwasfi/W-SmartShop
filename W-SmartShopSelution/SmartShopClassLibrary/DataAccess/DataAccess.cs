@@ -629,9 +629,9 @@ namespace Library
                     return store;
                 }
             }
-            if (storeName_Enum == StoreName.Ma3adiStore)
+            if (storeName_Enum == StoreName.EMG)
             {
-                StoreModel store = new StoreModel { Name = "Ma3adiStore" };
+                StoreModel store = new StoreModel { Name = "EMG" };
                 if (Store.IsThisStoreExist(store, stores))
                 {
                     return store;

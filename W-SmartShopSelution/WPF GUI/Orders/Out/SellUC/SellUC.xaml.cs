@@ -1570,7 +1570,7 @@ namespace WPF_GUI.Sell
 
             StiReport report = new StiReport();
             // add the data to the datastore
-            report.Load(@"SellOrderReport.mrt");
+            report.Load(@"SellOrderReportARforEMG.mrt");
 
             report.Compile();
 
@@ -1590,6 +1590,8 @@ namespace WPF_GUI.Sell
             report["CustomerName"] = Order.Customer.Person.FullName;
             report["CustomerPhoneNumber"] = Order.Customer.Person.PhoneNumber;
             report["CustomerNationalNumber"] = Order.Customer.Person.NationalNumber;
+            report["CustomerAddress"] = Order.Customer.Person.Address;
+
 
             report["OrderDetails"] = Order.Details;
             report["TotalPrice"] = Order.TotalPrice.ToString();

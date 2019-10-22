@@ -16,6 +16,6 @@ namespace Library
     {
         FayedStore,
         CairoStore,
-        Ma3adiStore
+        EMG
     }
 }

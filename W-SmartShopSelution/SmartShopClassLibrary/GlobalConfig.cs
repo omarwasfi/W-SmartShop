@@ -52,7 +52,7 @@ namespace Library
         public static StoreModel GetTheStoreFromTheDatabase()
         {
             
-            return Connection.CheckByEnumIsThisStoreExist(StoreName.Ma3adiStore);
+            return Connection.CheckByEnumIsThisStoreExist(StoreName.EMG);
                     
             
 
