@@ -310,9 +310,23 @@ namespace WPF_GUI.Orders.Out.OrderUC
                     decimal totalReceived = new decimal();
                     totalReceived = decimal.Parse(CustomerShouldReceiveValue_OrderUC.Text);
 
-                    foreach(OperationModel operation in operations)
+                    /*PublicVariables.Operations = GlobalConfig.Connection.GetOperations();
+
+                    List<OperationModel> uOperations = new List<OperationModel>();
+                    uOperations = GlobalConfig.Connection.GetOperationsByOrder(Order, PublicVariables.Operations);
+
+                    decimal tPaid = new decimal();
+                    foreach (OperationModel operationModel in uOperations)
                     {
-                        while(totalReceived > 0)
+                        tPaid += operationModel.AmountOfMoney;
+                        
+                    }
+                    */
+                    
+
+                    foreach (OperationModel operation in operations)
+                    {
+                        if(totalReceived > 0)
                         {
                             if (operation.AmountOfMoney < totalReceived)
                             {
@@ -325,13 +339,15 @@ namespace WPF_GUI.Orders.Out.OrderUC
                                 totalReceived = 0;
                                 // Delete the operation
                                 GlobalConfig.Connection.RemoveOperation(operation);
+
                             }
                             else
                             {
-                                totalReceived = 0;
                                 operation.AmountOfMoney -= totalReceived;
+                                totalReceived = 0;
                                 // Update the operation
                                 GlobalConfig.Connection.UpdateOperationData(operation);
+
                             }
                         }
                     }
@@ -351,34 +367,36 @@ namespace WPF_GUI.Orders.Out.OrderUC
                     }
                 }
 
-                List<OperationModel> updatedOperations = new List<OperationModel>();
-                updatedOperations = GlobalConfig.Connection.GetOperationsByOrder(Order, PublicVariables.Operations);
-                decimal totalPaid = new decimal();
-                foreach (OperationModel operationModel in updatedOperations)
-                {
-                    totalPaid += operationModel.AmountOfMoney;
-                }
-
-                Order.Paid = totalPaid;
-                Order.LastPaymentDate = DateTime.Now;
-
-                Order = GlobalConfig.Connection.UpdateOrderData(Order);
-
-
-
-                if (MessageBox.Show("Do you want to print the order ?", "Printing...", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
-                {
-                    PrintTheOrder();
-
-                }
-                else
-                {
-                    var parent = this.Parent as Window;
-                    if (parent != null) { parent.DialogResult = true; parent.Close(); }
-                }
+                
             }
 
-           
+            PublicVariables.Operations = GlobalConfig.Connection.GetOperations();
+
+            List<OperationModel> updatedOperations = new List<OperationModel>();
+            updatedOperations = GlobalConfig.Connection.GetOperationsByOrder(Order, PublicVariables.Operations);
+            decimal totalPaid = new decimal();
+            foreach (OperationModel operationModel in updatedOperations)
+            {
+                totalPaid += operationModel.AmountOfMoney;
+                Order.LastPaymentDate = operationModel.Date;
+            }
+
+            Order.Paid = totalPaid;
+
+            Order = GlobalConfig.Connection.UpdateOrderData(Order);
+
+
+
+            if (MessageBox.Show("Do you want to print the order ?", "Printing...", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                PrintTheOrder();
+
+            }
+            else
+            {
+                var parent = this.Parent as Window;
+                if (parent != null) { parent.DialogResult = true; parent.Close(); }
+            }
 
         }
 
