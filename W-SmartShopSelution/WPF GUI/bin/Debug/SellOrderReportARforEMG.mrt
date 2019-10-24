@@ -5,7 +5,7 @@
     <Databases isList="true" count="1">
       <MS_x0020_SQL Ref="2" type="Stimulsoft.Report.Dictionary.StiSqlDatabase" isKey="true">
         <Alias>MS SQL</Alias>
-        <ConnectionStringEncrypted>4xrNCchQwplpFdG9egThXtVw0e9FTEKZ4XehxPHQ4CPGeNHrzkqTXX9cJczrTGJG3ni1CEhKQ01wbSWA/xx3L+x62cvdaXp583s=</ConnectionStringEncrypted>
+        <ConnectionStringEncrypted>1ED7SMVKSwVyTOj8/XDgP9EUwShFZNKZYU3ofOnY4V7VOpXJVlmRWW1chMziBChr5Dq1qMZbu83ibIBsY0yuM9Vw0SvFa8Pp/Vvt6U494V7RNvkJTkzK+elc9dxndCEf41bPj08Wo91qR1l4</ConnectionStringEncrypted>
         <Name>MS SQL</Name>
       </MS_x0020_SQL>
     </Databases>
@@ -663,10 +663,10 @@ WHERE OrderProduct.OrderId = '{OrderId}'</SqlCommand>
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>10/22/2019 8:02:16 PM</ReportChanged>
+  <ReportChanged>10/24/2019 4:12:18 PM</ReportChanged>
   <ReportCreated>9/16/2019 6:37:47 AM</ReportCreated>
-  <ReportFile>C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\Orders\Out\SellUC\SellOrderReportARforEMG.mrt</ReportFile>
-  <ReportGuid>67c85bd985ab48f88d5c413219bc0bf6</ReportGuid>
+  <ReportFile>C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\bin\Debug\SellOrderReportARforEMG.mrt</ReportFile>
+  <ReportGuid>865525aa4e314b94b0615cbe1b6da5ce</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Inches</ReportUnit>
   <ReportVersion>2019.3.1.0</ReportVersion>

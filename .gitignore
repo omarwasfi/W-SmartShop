@@ -11,3 +11,8 @@ W-SmartShopSelution/.vs/W-SmartShopSelution/v16/.suo
 W-SmartShopSelution/.vs/W-SmartShopSelution/v16/.suo
 W-SmartShopSelution/.vs/W-SmartShopSelution/v16/.suo
 W-SmartShopSelution/.vs/W-SmartShopSelution/v16/.suo
+W-SmartShopSelution/WPF GUI/bin
+W-SmartShopSelution/SmartShopClassLibrary/bin
+W-SmartShopSelution/SmartShopClassLibrary/bin/Debug
+*.dll
+

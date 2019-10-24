@@ -14,8 +14,6 @@ namespace Library
     /// </summary>
     public enum StoreName
     {
-        FayedStore,
-        CairoStore,
-        EMG
+      EMG
     }
 }

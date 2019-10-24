@@ -183,7 +183,7 @@ namespace WPF_GUI
             PublicVariables.Products = GlobalConfig.Connection.GetProducts();
             Products = null;
             Products = PublicVariables.Products;
-            Products.RemoveAt(0);
+            //Products.RemoveAt(0);
 
         }
 

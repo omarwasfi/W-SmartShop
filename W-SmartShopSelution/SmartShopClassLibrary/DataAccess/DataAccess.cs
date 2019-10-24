@@ -613,22 +613,6 @@ namespace Library
         public StoreModel CheckByEnumIsThisStoreExist(StoreName storeName_Enum )
         {
             List<StoreModel> stores = GetAllStores();
-            if(storeName_Enum == StoreName.CairoStore)
-            {
-                StoreModel store = new StoreModel { Name = "CairoStore" };
-                if(Store.IsThisStoreExist(store, stores))
-                {
-                    return store;
-                }
-            }
-            if(storeName_Enum == StoreName.FayedStore)
-            {
-                StoreModel store = new StoreModel { Name = "FayedStore" };
-                if (Store.IsThisStoreExist(store, stores))
-                {
-                    return store;
-                }
-            }
             if (storeName_Enum == StoreName.EMG)
             {
                 StoreModel store = new StoreModel { Name = "EMG" };

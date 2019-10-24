@@ -56,11 +56,11 @@
         <Button x:Name="ResetButton_ModifyStaffUC" Click="ResetButton_ModifyStaffUC_Click"  Content="Reset" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" Margin="1128,618,0,0"/>
         <Button x:Name="ConfirmButton_ModifyStaffUC" Click="ConfirmButton_ModifyStaffUC_Click" Content="Confirm" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="103" Margin="1020,618,0,0"/>
         
-        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="510,47,0,0" ><Run Text="Stores : "/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Visibility="Collapsed" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="510,47,0,0" ><Run Text="Stores : "/></TextBlock>
 
-        <CheckBox x:Name="FayedStoreCheckBox_ModifyStaffUC" Content="Fayed Store" HorizontalAlignment="Left" Margin="606,99,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="CairoStoreCheckBox_ModifyStaffUC" Content="Cairo Store" HorizontalAlignment="Left" Margin="606,137,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="Ma3adiStoreCheckBox_ModifyStaffUC" Content="Ma3adi Store" HorizontalAlignment="Left" Margin="795,99,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="FayedStoreCheckBox_ModifyStaffUC" Visibility="Collapsed" Content="Fayed Store" HorizontalAlignment="Left" Margin="606,99,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="CairoStoreCheckBox_ModifyStaffUC" Visibility="Collapsed" Content="Cairo Store" HorizontalAlignment="Left" Margin="606,137,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="Ma3adiStoreCheckBox_ModifyStaffUC" Visibility="Collapsed" Content="Ma3adi Store" HorizontalAlignment="Left" Margin="795,99,0,0" VerticalAlignment="Top"/>
 
         <RadioButton Name="ManagerRadioButton_ModifyStaffUC" Checked="PermissionTypeRadioButton_ModifyStaffUC_Checked" Content="Manager" HorizontalAlignment="Left" Margin="212,200,0,0" VerticalAlignment="Top"/>
         <RadioButton Name="SellOnlyRadioButton_ModifyStaffUC" Checked="PermissionTypeRadioButton_ModifyStaffUC_Checked" Content="Selling Only" HorizontalAlignment="Left" Margin="395,200,0,0" VerticalAlignment="Top"/>

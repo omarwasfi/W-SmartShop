@@ -2,8 +2,10 @@ C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\SmartShopClassLi
 C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\SmartShopClassLibrary\bin\Release\SmartShopClassLibrary.pdb
 C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\SmartShopClassLibrary\bin\Release\Dapper.dll
 C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\SmartShopClassLibrary\bin\Release\Dapper.xml
-C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\SmartShopClassLibrary\obj\Release\SmartShopClassLibrary.csproj.CoreCompileInputs.cache
 C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\SmartShopClassLibrary\obj\Release\SmartShopClassLibrary.csproj.CopyComplete
 C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\SmartShopClassLibrary\obj\Release\SmartShopClassLibrary.dll
 C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\SmartShopClassLibrary\obj\Release\SmartShopClassLibrary.pdb
 C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\SmartShopClassLibrary\obj\Release\SmartShopClassLibrary.csprojAssemblyReference.cache
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\SmartShopClassLibrary\bin\Release\FluentValidation.dll
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\SmartShopClassLibrary\bin\Release\System.ComponentModel.Annotations.dll
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\SmartShopClassLibrary\bin\Release\FluentValidation.xml

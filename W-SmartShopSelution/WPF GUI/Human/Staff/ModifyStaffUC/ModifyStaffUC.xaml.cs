@@ -344,6 +344,8 @@ namespace WPF_GUI.Staff.ModifyStaffUC
 
                 GlobalConfig.Connection.UpdateStaffData(Staff);
 
+
+                /*
                 // ma3adi store
                 if(Ma3adiStoreCheckBox_ModifyStaffUC.IsChecked == true && Staff.AllStores.Contains("Ma3adiStore"))
                 {
@@ -381,6 +383,7 @@ namespace WPF_GUI.Staff.ModifyStaffUC
                     GlobalConfig.Connection.RemoveStoreStaffToTheDatabase(cStore, Staff);
                 }
 
+                
                 // Fayed store
                 if (FayedStoreCheckBox_ModifyStaffUC.IsChecked == true && Staff.AllStores.Contains("Ma3adiStore"))
                 {
@@ -453,7 +456,7 @@ namespace WPF_GUI.Staff.ModifyStaffUC
                     GlobalConfig.Connection.RemoveStoreStaffToTheDatabase(cStore, Staff);
                 }
 
-
+                */
 
                 if (Staff.Id == PublicVariables.Staff.Id)
                 {

@@ -5,7 +5,7 @@
     <Databases isList="true" count="1">
       <MS_x0020_SQL Ref="2" type="Stimulsoft.Report.Dictionary.StiSqlDatabase" isKey="true">
         <Alias>MS SQL</Alias>
-        <ConnectionStringEncrypted>4xrNCchQwplpFdG9egThXtVw0e9FTEKZ4XehxPHQ4CPGeNHrzkqTXX9cJczrTGJG3ni1CEhKQ01wbSWA/xx3L+x62cvdaXp583s=</ConnectionStringEncrypted>
+        <ConnectionStringEncrypted>1ED7SMVKSwVyTOj8/XDgP9EUwShFZNKZYU3ofOnY4V7VOpXJVlmRWW1chMziBChr5Dq1qMZbu83ibIBsY0yuM9Vw0SvFa8Pp/Vvt6U494V7RNvkJTkzK+elc9dxndCEf41bPj08Wo91qR1l4</ConnectionStringEncrypted>
         <Name>MS SQL</Name>
       </MS_x0020_SQL>
     </Databases>
@@ -403,10 +403,9 @@
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>9/3/2019 5:49:36 PM</ReportChanged>
+  <ReportChanged>10/24/2019 4:18:25 PM</ReportChanged>
   <ReportCreated>9/3/2019 2:44:07 PM</ReportCreated>
-  <ReportFile>C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\ProductForms\ProductManagerUC\ProductsReport.mrt</ReportFile>
-  <ReportGuid>c439f2596bd04cfc9c147baff573c443</ReportGuid>
+  <ReportGuid>a8c0d1901e2d41b7b107ae91f97925cf</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Inches</ReportUnit>
   <ReportVersion>2019.3.1.0</ReportVersion>
