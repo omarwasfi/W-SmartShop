@@ -74,7 +74,11 @@ namespace WPF_GUI
             StartDateValue_CashUC.SelectedDate = new DateTime(2019, 9, 1);
 
             ShopeeWalletNowValue_CashUC.Text = GlobalConfig.Connection.GetTheShopeeWallet(Operations).ToString();
+            TotalSellsValue_CashUC.Text = GlobalConfig.Connection.TotalSellsIncome(Operations).ToString();
             TotalSellsProfitValue_CashUC.Text = GlobalConfig.Connection.TotalSellsProfit(Operations).ToString();
+
+            TotalIncomeOrdersValue_CashUC.Text = GlobalConfig.Connection.TotalIncomeOrderPrice(Operations).ToString();
+            TotalShopBillsValue_CashUC.Text = GlobalConfig.Connection.TotalShopBillsPrice(Operations).ToString();
             DateOfShopeeWalletValue_CashUC.Text = DateTime.Now.ToShortDateString();
             ShopeeWalletAtDateValue_CashUC.Text = GlobalConfig.Connection.GetTheShopeeWallet(GlobalConfig.Connection.FilterOperationsByDate(Operations, new DateTime(2010, 1, 1), DateTime.Now)).ToString();
 
@@ -121,6 +125,8 @@ namespace WPF_GUI
 
                 TotalSellsValue_CashUC.Text = GlobalConfig.Connection.TotalSellsIncome(FOperations).ToString();
                 TotalSellsProfitValue_CashUC.Text = GlobalConfig.Connection.TotalSellsProfit(FOperations).ToString();
+                TotalIncomeOrdersValue_CashUC.Text = GlobalConfig.Connection.TotalIncomeOrderPrice(FOperations).ToString();
+                TotalShopBillsValue_CashUC.Text = GlobalConfig.Connection.TotalShopBillsPrice(FOperations).ToString();
                 DateOfShopeeWalletValue_CashUC.Text = endDate.ToShortDateString();
                 ShopeeWalletAtDateValue_CashUC.Text = GlobalConfig.Connection.GetTheShopeeWallet(GlobalConfig.Connection.FilterOperationsByDate(Operations, new DateTime(2010, 1, 1),endDate)).ToString();
 

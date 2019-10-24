@@ -8,6 +8,7 @@ namespace Library
 {
     public static class CashFlow
     {
+
         /// <summary>
         /// Calculate all the money records And fint the ShopeeWallet
         /// </summary>
@@ -31,6 +32,8 @@ namespace Library
 
             return shopeeWallet;
         }
+
+        #region Orders
 
         /// <summary>
         /// Return the total of totalPrice of any Order in a operation
@@ -74,5 +77,64 @@ namespace Library
 
             return totalProfit;
         }
+
+
+        #endregion
+
+        #region IncomeOrder
+
+
+        /// <summary>
+        /// Return the total of totalPrice of any IncomeOrder in a operation
+        /// </summary>
+        /// <param name="operations"></param>
+        /// <returns></returns>
+        public static decimal TotalIncomeOrderPrice(List<OperationModel> operations)
+        {
+            decimal totalIncomeOrders = new decimal();
+
+            foreach (OperationModel operation in operations)
+            {
+                if (operation.IncomeOrder != null)
+                {
+                    totalIncomeOrders += operation.IncomeOrder.TotalPrice;
+                }
+
+            }
+
+            return totalIncomeOrders;
+        }
+
+
+        #endregion
+
+
+        #region ShopBills
+
+
+        /// <summary>
+        /// Return the total of the totalPrice of any ShopBills in a operation
+        /// </summary>
+        /// <param name="operations"></param>
+        /// <returns></returns>
+        public static decimal TotalShopBillsPrice(List<OperationModel> operations)
+        {
+            decimal totalShopBills = new decimal();
+
+            foreach (OperationModel operation in operations)
+            {
+                if (operation.ShopBill != null)
+                {
+                    totalShopBills += operation.ShopBill.TotalMoney;
+                }
+
+            }
+
+            return totalShopBills;
+        }
+
+
+        #endregion
+
     }
 }

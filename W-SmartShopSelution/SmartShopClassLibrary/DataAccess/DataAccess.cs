@@ -1200,6 +1200,29 @@ namespace Library
             
             return CashFlow.TotalSellsProfit(operations);
         }
+
+
+        /// <summary>
+        /// Return the total of totalPrice of any IncomeOrder in a operation
+        /// </summary>
+        /// <param name="operations"></param>
+        /// <returns></returns>
+        public decimal TotalIncomeOrderPrice(List<OperationModel> operations)
+        {
+            return CashFlow.TotalIncomeOrderPrice(operations);
+        }
+
+        /// <summary>
+        /// Return the total of the totalPrice of any ShopBills in a operation
+        /// </summary>
+        /// <param name="operations"></param>
+        /// <returns></returns>
+        public  decimal TotalShopBillsPrice(List<OperationModel> operations)
+        {
+            return CashFlow.TotalShopBillsPrice(operations);
+        }
+
+
         #endregion
 
         #region ShopBill
