@@ -28,6 +28,7 @@
         <DataGrid x:Name="StocksList_Inventory" IsReadOnly="True" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="523" Margin="10,72,0,0" VerticalAlignment="Top" Width="1323" Background="LightGray">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Product Name" Binding="{Binding Path=Product.Name}"/>
+                <DataGridTextColumn Header="Size" Binding="{Binding Path=Product.Size}"/>
                 <DataGridTextColumn Header="Barcode" Binding="{Binding Path=Product.BarCode}"/>
                 <DataGridTextColumn Header="In Stock" Binding="{Binding Path=Quantity}"/>
                 <DataGridTextColumn Header="Category" Binding="{Binding Path=Product.Category.Name}"/>

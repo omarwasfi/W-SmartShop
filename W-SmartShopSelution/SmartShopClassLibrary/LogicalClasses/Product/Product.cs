@@ -321,6 +321,7 @@ namespace Library
                 p.Add("@BarCode", newProduct.BarCode);
                 p.Add("@SerialNumber", newProduct.SerialNumber);
                 p.Add("@SerialNumber2", newProduct.SerialNumber2);
+                p.Add("@Size",newProduct.Size);
                 p.Add("@Details", newProduct.Details);
                 p.Add("@SalePrice", newProduct.SalePrice);
                 p.Add("@IncomePrice", newProduct.IncomePrice);
@@ -348,6 +349,7 @@ namespace Library
                 p.Add("@BarCode", updatedProduct.BarCode);
                 p.Add("@SerialNumber", updatedProduct.SerialNumber);
                 p.Add("@SerialNumber2", updatedProduct.SerialNumber2);
+                p.Add("@Size", updatedProduct.Size);
                 p.Add("@Details", updatedProduct.Details);
                 p.Add("@SalePrice", updatedProduct.SalePrice);
                 p.Add("@IncomePrice", updatedProduct.IncomePrice);

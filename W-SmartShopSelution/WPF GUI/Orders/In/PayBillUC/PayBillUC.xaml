@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:WPF_GUI.Orders.In.PayBillUC"
              mc:Ignorable="d" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             d:DesignHeight="680" d:DesignWidth="1343">
+             d:DesignHeight="200" d:DesignWidth="1343">
     <Grid>
         <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="10,135,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Details : "/></TextBlock>
         <TextBox x:Name="BillDetailsValue_PayBillUC" HorizontalAlignment="Left" Height="32" Margin="147,136,0,0" Text="" VerticalAlignment="Top" Width="1169" MaxLength="500" MaxLines="1"  />
@@ -16,7 +16,7 @@
         
         <DatePicker x:Name="DateValue_PayBillUC" HorizontalAlignment="Left" Margin="147,67,0,0" VerticalAlignment="Top" Width="129" SelectedDateFormat="Short"/>
         <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="10,59,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Date : "/></TextBlock>
-        <Grid Margin="1117,0,0,651">
+        <Grid Margin="1107,10,10,162">
             <Button x:Name="CloseButton_PayBillUC" Visibility="Collapsed" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Red"   VerticalAlignment="Top"  Margin="3,0,170,0" Height="25"  >
                 <materialDesign:PackIcon Kind="Close" Width="20" Height="20"/>
             </Button>

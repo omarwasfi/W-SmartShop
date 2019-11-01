@@ -95,5 +95,46 @@ namespace Library
         }
 
 
+        /// <summary>
+        /// Add shopBill to the database
+        /// </summary>
+        /// <param name="shopBill"></param>
+        /// <param name="db"></param>
+        /// <returns></returns>
+        public static ShopBillModel UpdateShopBillData(ShopBillModel shopBill, string db)
+        {
+
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnVal(db)))
+            {
+                var p = new DynamicParameters();
+                p.Add("@Id", shopBill.Id);
+                p.Add("@Date", shopBill.Date);
+                p.Add("@Details", shopBill.Details);
+                p.Add("@TotalMoney", shopBill.TotalMoney);
+                connection.Execute("dbo.spShopBill_Update", p, commandType: CommandType.StoredProcedure);
+
+            }
+
+            return shopBill;
+        }
+
+
+        /// <summary>
+        /// Delete ShopBill from the database
+        /// </summary>
+        /// <param name="orderProduct"></param>
+        /// <param name="db"></param>
+        public static void RemoveShopBill(ShopBillModel shopBill, string db)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnVal(db)))
+            {
+                var p = new DynamicParameters();
+                p.Add("@Id", shopBill.Id);
+                connection.Execute("dbo.spShopBill_Delete", p, commandType: CommandType.StoredProcedure);
+
+            }
+        }
+
+
     }
 }

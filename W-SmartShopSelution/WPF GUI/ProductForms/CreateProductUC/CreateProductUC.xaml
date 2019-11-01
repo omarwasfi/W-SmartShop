@@ -49,7 +49,11 @@
         </GroupBox>
 
         <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="12,132,0,0" Width="87" ><Run Text="Details : "/></TextBlock>
-        <TextBox x:Name="DetailsValue_CreateProductUC" HorizontalAlignment="Left" Height="32" Margin="104,132,0,0"  VerticalAlignment="Top" Width="895" MaxLines="1" MaxLength="500"/>
+        <TextBox x:Name="DetailsValue_CreateProductUC" HorizontalAlignment="Left" Height="32" Margin="104,132,0,0"  VerticalAlignment="Top" Width="750" MaxLines="1" MaxLength="500"/>
+
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="859,131,0,0" RenderTransformOrigin="-0.048,0.481" FontSize="25" ><Run Text="Size : "/></TextBlock>
+        <TextBox x:Name="SizeValue_CreateProductUC" HorizontalAlignment="Left" Height="32" Margin="927,132,0,0" Text="" VerticalAlignment="Top" Width="76" MaxLines="1" MaxLength="200"   />
+
 
         <GroupBox Visibility="Collapsed" Header="Print Barcode" HorizontalAlignment="Left" Height="204" Margin="735,368,0,0" VerticalAlignment="Top" Width="555">
             <Grid>
@@ -103,7 +107,7 @@
                     <DataGridTextColumn Header="Sale Price" Binding="{Binding SalePrice}"/>
                     <DataGridTextColumn Header="Income Price" Binding="{Binding IncomePrice}"/>
                 </DataGrid.Columns>
-                
+
 
             </DataGrid>
 
@@ -120,7 +124,7 @@
             <TextBox x:Name="SameSerialNumber2Value_CreateproductUC" KeyDown="SameSerialNumber2Value_CreateproductUC_KeyDown" IsEnabled="False" HorizontalAlignment="Left" Height="24" Margin="1113,19,0,0"  VerticalAlignment="Top" Width="169" MaxLines="1" MaxLength="200" RenderTransformOrigin="0.62,0.806"/>
 
         </Grid>
-
+      
 
 
 

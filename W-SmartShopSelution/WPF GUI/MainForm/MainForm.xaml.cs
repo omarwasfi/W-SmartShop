@@ -16,6 +16,7 @@ using WPF_GUI.CreateProduct;
 using WPF_GUI.Inventory;
 using WPF_GUI.Orders.In.BillsManagerUC;
 using WPF_GUI.Orders.Out.SellingOrdersManagerUC;
+using WPF_GUI.PriceListUC;
 using WPF_GUI.ProductManager;
 using WPF_GUI.Sell;
 using WPF_GUI.Staff.StaffsManagerUC;
@@ -103,6 +104,10 @@ namespace WPF_GUI
             if (staff.Permission.CanBillManagerUC)
             {
                 BillsManagerViewItem.Visibility = Visibility.Visible;
+            }
+            if (staff.Permission.CanPriceListUC)
+            {
+                PriceListViewItem.Visibility = Visibility.Visible;
             }
         }
         
@@ -208,6 +213,14 @@ namespace WPF_GUI
             MainTab.Items.Add(billsManagerTab);
         }
 
+        private void PriceListViewItem_Selected(object sender, RoutedEventArgs e)
+        {
+            PriceListUC.PriceListUC priceListUC = new PriceListUC.PriceListUC();
+            TabItem priceListTab = new TabItem { Header = "Price List" };
+            priceListTab.Content = priceListUC;
+            MainTab.Items.Add(priceListTab);
+        }
+
         /// <summary>
         /// To move the MainForm Around the screen
         /// </summary>
@@ -222,8 +235,9 @@ namespace WPF_GUI
 
 
 
+
         #endregion
 
-        
+      
     }
 }

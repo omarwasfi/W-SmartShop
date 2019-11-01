@@ -10,7 +10,7 @@
     <Grid>
 
         <Grid Name="UserGrid_BillsManagerUC" Visibility="Visible">
-            <DataGrid  x:Name="BillsList_BillsManagerUC" Visibility="Visible" IsReadOnly="True"  AutoGenerateColumns="False" HorizontalAlignment="Right" Height="617" Margin="0,53,10,0" VerticalAlignment="Top" Width="1040" Background="LightGray">
+            <DataGrid  x:Name="BillsList_BillsManagerUC" MouseDoubleClick="BillsList_BillsManagerUC_MouseDoubleClick"  Visibility="Visible" IsReadOnly="True"  AutoGenerateColumns="False" HorizontalAlignment="Right" Height="617" Margin="0,53,10,0" VerticalAlignment="Top" Width="1040" Background="LightGray">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Bill" Binding="{Binding Id}"/>
                     <DataGridTextColumn Header="Store" Binding="{Binding Store.Name}"/>
@@ -27,7 +27,7 @@
                 </DataGrid.RowDetailsTemplate>
             </DataGrid>
 
-            <Calendar x:Name="DateFilterValue_BillsManagerUC"  HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="352"/>
+            <Calendar x:Name="DateFilterValue_BillsManagerUC" SelectedDatesChanged="DateFilterValue_BillsManagerUC_SelectedDatesChanged" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="352"/>
 
             <TextBox x:Name="BillsSearchValue_BillsManagerUC" Width="418" VerticalAlignment="Top" Text="Search... " TextWrapping="Wrap" Margin="451,20,0,0" Height="28" HorizontalAlignment="Left"/>
             <ComboBox x:Name="BillsSearchType_BillsManagerUC" Width="120" VerticalAlignment="Top" Margin="874,15,0,0" Height="33" HorizontalAlignment="Left"/>

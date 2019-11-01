@@ -169,6 +169,9 @@
     <Compile Include="Orders\In\BillsManagerUC\BillsManagerUC.xaml.cs">
       <DependentUpon>BillsManagerUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Orders\In\ModifyBill\ModifyBillUC.xaml.cs">
+      <DependentUpon>ModifyBillUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Orders\In\PayBillUC\PayBillUC.xaml.cs">
       <DependentUpon>PayBillUC.xaml</DependentUpon>
     </Compile>
@@ -180,6 +183,9 @@
     </Compile>
     <Compile Include="Orders\Out\SellingOrdersManagerUC\SellingOrdersManagerUC.xaml.cs">
       <DependentUpon>SellingOrdersManagerUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PriceListUC\PriceListUC.xaml.cs">
+      <DependentUpon>PriceListUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="Store\AddStockToStoreUC\AddStockToStoreUC.xaml.cs">
       <DependentUpon>AddStockToStoreUC.xaml</DependentUpon>
@@ -247,6 +253,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Orders\In\ModifyBill\ModifyBillUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Orders\In\PayBillUC\PayBillUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -260,6 +270,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Orders\Out\SellingOrdersManagerUC\SellingOrdersManagerUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PriceListUC\PriceListUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

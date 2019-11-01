@@ -91,6 +91,7 @@ namespace WPF_GUI.CreateProduct
             ProductBarCodeValue_CreateProductUC.Text = "";
             SerialNumberValue_CreateProductUC.Text = "";
             SerialNumber2Value_CreateProductUC.Text = "";
+            SizeValue_CreateProductUC.Text = "";
             SalePriceValue_CreateproductUC.Text = "";
             IncomeValue_CreateproductUC.Text = "";
             DetailsValue_CreateProductUC.Text = "";
@@ -171,6 +172,7 @@ namespace WPF_GUI.CreateProduct
                 product.BarCode = ProductBarCodeValue_CreateProductUC.Text;
                 product.SerialNumber = SerialNumberValue_CreateProductUC.Text;
                 product.SerialNumber2 = SerialNumber2Value_CreateProductUC.Text;
+                product.Size = SizeValue_CreateProductUC.Text;
                 if (decimal.TryParse(IncomeValue_CreateproductUC.Text, out decimal incomeValue))
                 {
                     product.IncomePrice =  incomeValue;
@@ -642,6 +644,7 @@ namespace WPF_GUI.CreateProduct
                                 product.BarCode = GlobalConfig.Connection.CreateBarCode(product, products);
                                 product.SerialNumber = "";
                                 product.SerialNumber2 = "";
+                                product.Size = SizeValue_CreateProductUC.Text;
                                 products.Add(product);
                                 NewProducts.Add(product);
 

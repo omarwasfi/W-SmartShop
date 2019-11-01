@@ -1,0 +1,366 @@
+﻿Adding the Size to product Tabel : 
+
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.Product
+	DROP CONSTRAINT FK_Product_Category
+GO
+ALTER TABLE dbo.Category SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+select Has_Perms_By_Name(N'dbo.Category', 'Object', 'ALTER') as ALT_Per, Has_Perms_By_Name(N'dbo.Category', 'Object', 'VIEW DEFINITION') as View_def_Per, Has_Perms_By_Name(N'dbo.Category', 'Object', 'CONTROL') as Contr_Per BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.Product
+	DROP CONSTRAINT FK_Product_Brand
+GO
+ALTER TABLE dbo.Brand SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+select Has_Perms_By_Name(N'dbo.Brand', 'Object', 'ALTER') as ALT_Per, Has_Perms_By_Name(N'dbo.Brand', 'Object', 'VIEW DEFINITION') as View_def_Per, Has_Perms_By_Name(N'dbo.Brand', 'Object', 'CONTROL') as Contr_Per BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.Product
+	DROP CONSTRAINT DF_Product_CategoryId
+GO
+ALTER TABLE dbo.Product
+	DROP CONSTRAINT DF_Product_BrandId
+GO
+CREATE TABLE dbo.Tmp_Product
+	(
+	Id int NOT NULL IDENTITY (100000, 1),
+	Name nvarchar(200) NOT NULL,
+	BarCode nvarchar(200) NOT NULL,
+	SerialNumber nvarchar(200) NULL,
+	SerialNumber2 nvarchar(200) NULL,
+	Size nvarchar(200) NULL,
+	Details nvarchar(500) NULL,
+	CategoryId int NOT NULL,
+	BrandId int NOT NULL,
+	SalePrice money NOT NULL,
+	IncomePrice money NOT NULL
+	)  ON [PRIMARY]
+GO
+ALTER TABLE dbo.Tmp_Product SET (LOCK_ESCALATION = TABLE)
+GO
+ALTER TABLE dbo.Tmp_Product ADD CONSTRAINT
+	DF_Product_CategoryId DEFAULT ((11000)) FOR CategoryId
+GO
+ALTER TABLE dbo.Tmp_Product ADD CONSTRAINT
+	DF_Product_BrandId DEFAULT ((10000)) FOR BrandId
+GO
+SET IDENTITY_INSERT dbo.Tmp_Product ON
+GO
+IF EXISTS(SELECT * FROM dbo.Product)
+	 EXEC('INSERT INTO dbo.Tmp_Product (Id, Name, BarCode, SerialNumber, SerialNumber2, Details, CategoryId, BrandId, SalePrice, IncomePrice)
+		SELECT Id, Name, BarCode, SerialNumber, SerialNumber2, Details, CategoryId, BrandId, SalePrice, IncomePrice FROM dbo.Product WITH (HOLDLOCK TABLOCKX)')
+GO
+SET IDENTITY_INSERT dbo.Tmp_Product OFF
+GO
+ALTER TABLE dbo.Stock
+	DROP CONSTRAINT FK_Stock_Product
+GO
+ALTER TABLE dbo.IncomeOrderProduct
+	DROP CONSTRAINT FK_IncomeOrderProduct_Product
+GO
+ALTER TABLE dbo.OrderProduct
+	DROP CONSTRAINT FK_OrderProduct_Product
+GO
+DROP TABLE dbo.Product
+GO
+EXECUTE sp_rename N'dbo.Tmp_Product', N'Product', 'OBJECT' 
+GO
+ALTER TABLE dbo.Product ADD CONSTRAINT
+	PK_Products PRIMARY KEY CLUSTERED 
+	(
+	Id
+	) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+
+GO
+ALTER TABLE dbo.Product ADD CONSTRAINT
+	FK_Product_Brand FOREIGN KEY
+	(
+	BrandId
+	) REFERENCES dbo.Brand
+	(
+	Id
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.Product ADD CONSTRAINT
+	FK_Product_Category FOREIGN KEY
+	(
+	CategoryId
+	) REFERENCES dbo.Category
+	(
+	Id
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+COMMIT
+select Has_Perms_By_Name(N'dbo.Product', 'Object', 'ALTER') as ALT_Per, Has_Perms_By_Name(N'dbo.Product', 'Object', 'VIEW DEFINITION') as View_def_Per, Has_Perms_By_Name(N'dbo.Product', 'Object', 'CONTROL') as Contr_Per BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.OrderProduct ADD CONSTRAINT
+	FK_OrderProduct_Product FOREIGN KEY
+	(
+	ProductId
+	) REFERENCES dbo.Product
+	(
+	Id
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.OrderProduct SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+select Has_Perms_By_Name(N'dbo.OrderProduct', 'Object', 'ALTER') as ALT_Per, Has_Perms_By_Name(N'dbo.OrderProduct', 'Object', 'VIEW DEFINITION') as View_def_Per, Has_Perms_By_Name(N'dbo.OrderProduct', 'Object', 'CONTROL') as Contr_Per BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.IncomeOrderProduct ADD CONSTRAINT
+	FK_IncomeOrderProduct_Product FOREIGN KEY
+	(
+	ProductId
+	) REFERENCES dbo.Product
+	(
+	Id
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.IncomeOrderProduct SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+select Has_Perms_By_Name(N'dbo.IncomeOrderProduct', 'Object', 'ALTER') as ALT_Per, Has_Perms_By_Name(N'dbo.IncomeOrderProduct', 'Object', 'VIEW DEFINITION') as View_def_Per, Has_Perms_By_Name(N'dbo.IncomeOrderProduct', 'Object', 'CONTROL') as Contr_Per BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.Stock ADD CONSTRAINT
+	FK_Stock_Product FOREIGN KEY
+	(
+	ProductId
+	) REFERENCES dbo.Product
+	(
+	Id
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.Stock SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+select Has_Perms_By_Name(N'dbo.Stock', 'Object', 'ALTER') as ALT_Per, Has_Perms_By_Name(N'dbo.Stock', 'Object', 'VIEW DEFINITION') as View_def_Per, Has_Perms_By_Name(N'dbo.Stock', 'Object', 'CONTROL') as Contr_Per 
+
+----------------------------------------------------------------------------------------------------------------------------
+
+Modify spProduct_GetAll
+
+USE [SmartShopDatabase]
+GO
+/****** Object:  StoredProcedure [dbo].[spProduct_GetAll]    Script Date: 10/30/2019 4:15:14 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+ALTER PROCEDURE [dbo].[spProduct_GetAll]
+
+AS
+BEGIN
+
+	SET NOCOUNT ON;
+	
+	SELECT Id,Name,BarCode,SerialNumber,SerialNumber2,Size,Details,SalePrice,IncomePrice
+	FROM Product
+END
+
+
+----------------------------------------------------------------------------------------------------------------------------
+
+modify spProduct_Create
+
+USE [SmartShopDatabase]
+GO
+/****** Object:  StoredProcedure [dbo].[spProduct_Create]    Script Date: 10/30/2019 5:22:31 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+ALTER PROCEDURE [dbo].[spProduct_Create]
+	
+	@ProductName nvarchar(200),
+	@BarCode nvarchar(200),
+	@SerialNumber nvarchar(200),
+	@SerialNumber2 nvarchar(200),
+	@Size nvarchar(200),
+	@Details nvarchar(500),
+	@SalePrice money,
+	@IncomePrice money,
+	@BrandId int,
+	@CategoryId int,
+
+	@Id int = 0 out 
+AS
+BEGIN
+
+	SET NOCOUNT ON;
+
+	INSERT INTO Product(Name,BarCode,SerialNumber,SerialNumber2,Size,Details,SalePrice,IncomePrice,BrandId,CategoryId)
+	VALUES (@ProductName,@BarCode,@SerialNumber,@SerialNumber2,@Size,@Details,@SalePrice,@IncomePrice,@BrandId,@CategoryId);
+
+	SELECT @Id = SCOPE_IDENTITY();
+END
+----------------------------------------------------------------------------------------------------------------------------
+
+modify spProduct_Update
+
+USE [SmartShopDatabase]
+GO
+/****** Object:  StoredProcedure [dbo].[spProduct_Update]    Script Date: 10/30/2019 5:27:07 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+ALTER PROCEDURE [dbo].[spProduct_Update]
+	@Id int,
+	@ProductName nvarchar(200),
+	@BarCode nvarchar(200),
+	@SerialNumber nvarchar(200),
+	@SerialNumber2 nvarchar(200),
+	@Size nvarchar(200),
+	@Details nvarchar(500),
+	@SalePrice money,
+	@IncomePrice money,
+	@BrandId int,
+	@CategoryId int
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+	UPDATE Product
+	SET Name = @ProductName ,
+		BarCode = @BarCode,
+		SerialNumber = @SerialNumber,
+		SerialNumber2 = @SerialNumber2,
+		Size = @Size,
+		Details = @Details,
+		SalePrice = @SalePrice,
+		IncomePrice = @IncomePrice,
+		BrandId = @BrandId,
+		CategoryId = @CategoryId
+	WHERE Product.Id = @Id;
+
+END
+
+
+----------------------------------------------------------------------------------------------------------------------------
+
+modify spOrders_GetProdcutByOrderProductId
+
+USE [SmartShopDatabase]
+GO
+/****** Object:  StoredProcedure [dbo].[spOrders_GetProdcutByOrderProductId]    Script Date: 10/30/2019 5:53:26 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+ALTER PROCEDURE [dbo].[spOrders_GetProdcutByOrderProductId]
+	
+	@OrderProductId int
+
+AS
+BEGIN
+	
+	
+	
+	SET NOCOUNT ON;
+
+	SELECT Product.Id,Name,BarCode,SerialNumber,SerialNumber2,Size,Details,Product.SalePrice,IncomePrice
+	FROM Product
+	INNER JOIN OrderProduct
+	ON  OrderProduct.ProductId = Product.Id
+	where OrderProduct.Id = @OrderProductId ;
+
+END
+
+
+----------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+Add spShopBill_Update
+
+
+CREATE PROCEDURE spShopBill_Update
+
+	@Id int,
+	@Date datetime,
+	@Details nvarchar(500),
+	@TotalMoney money
+
+AS
+BEGIN
+
+
+
+	SET NOCOUNT ON;
+
+	UPDATE ShopBill
+	SET Date = @Date,
+		Details = @Details,
+		TotalMoney = @TotalMoney
+	WHERE ShopBill.Id = @Id;
+
+END
+GO
+
+
+
+----------------------------------------------------------------------------------------------------------------------------
+
+Add spShopBill_Update
+
+
+CREATE PROCEDURE spShopBill_Delete
+	@Id int
+AS
+BEGIN
+
+
+	SET NOCOUNT ON;
+
+	DELETE FROM ShopBill
+	WHERE ShopBill.Id = @Id;
+
+END
+GO
+
+----------------------------------------------------------------------------------------------------------------------------
+
+Add spShopBill_Delete
+
+CREATE PROCEDURE spShopBill_Delete
+	@Id int
+AS
+BEGIN
+
+
+	SET NOCOUNT ON;
+
+	DELETE FROM ShopBill
+	WHERE ShopBill.Id = @Id;
+
+END
+GO

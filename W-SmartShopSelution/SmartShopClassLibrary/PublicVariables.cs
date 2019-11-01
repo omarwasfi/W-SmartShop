@@ -59,7 +59,7 @@ namespace Library
         public static  List<ProductModel> Products { get; set; }
 
         /// <summary>
-        /// All Stocks
+        /// All Stocks For all stores
         /// set when modifyProductUC fired
         ///  - Set in the LoginUC
         /// </summary>

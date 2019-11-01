@@ -27,6 +27,7 @@ namespace Library
         /// </summary>
         public string BarCode { get; set; }
 
+
         /// <summary>
         /// Product SerialNumber ( not Has to be Unique ) Or Null (200 char)
         /// </summary>
@@ -36,6 +37,11 @@ namespace Library
         /// Product SerialNumber ( not Has to be Unique ) Or Null , can't be set if the first one is null (200 char)
         /// </summary>
         public string SerialNumber2 { get; set; }
+
+        /// <summary>
+        /// The size of the product if it exist ( not Has to be Unique ) Or Null , can't be set if the first one is null (200 char)
+        /// </summary>
+        public string Size { get; set; }
 
         /// <summary>
         /// The Details of a product For any additional Info (500 Char)

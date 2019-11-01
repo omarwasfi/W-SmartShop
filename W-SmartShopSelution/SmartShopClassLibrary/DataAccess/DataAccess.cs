@@ -1139,6 +1139,17 @@ namespace Library
 
         }
 
+        /// <summary>
+        /// Get all the operations that contain the ShopBill
+        /// </summary>
+        /// <param name="order"></param>
+        /// <param name="operations"></param>
+        /// <returns></returns>
+        public OperationModel GetOperationByShopBill(ShopBillModel shopBill, List<OperationModel> operations)
+        {
+            return Operation.GetOperationByShopBill(shopBill, operations);
+
+        }
 
         /// <summary>
         /// Delete operation from the database totaly
@@ -1243,6 +1254,30 @@ namespace Library
         public  List<ShopBillModel> FilterShopBillsByDate(List<ShopBillModel> shopBills, DateTime date)
         {
             return ShopBill.FilterShopBillsByDate(shopBills, date);
+        }
+
+
+        /// <summary>
+        /// Add shopBill to the database
+        /// </summary>
+        /// <param name="shopBill"></param>
+        /// <param name="db"></param>
+        /// <returns></returns>
+        public ShopBillModel UpdateShopBillData(ShopBillModel shopBill)
+        {
+
+            return ShopBill.UpdateShopBillData(shopBill, db);
+        }
+
+
+        /// <summary>
+        /// Delete ShopBill from the database
+        /// </summary>
+        /// <param name="orderProduct"></param>
+        /// <param name="db"></param>
+        public  void RemoveShopBill(ShopBillModel shopBill)
+        {
+            ShopBill.RemoveShopBill(shopBill,db);
         }
 
 

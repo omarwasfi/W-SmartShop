@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WPF_GUI.Orders.In.ModifyBill;
 using Library;
 
 namespace WPF_GUI.Orders.In.BillsManagerUC
@@ -28,6 +29,15 @@ namespace WPF_GUI.Orders.In.BillsManagerUC
         /// All the orders in the database
         /// </summary>
         private List<ShopBillModel> ShopBills = new List<ShopBillModel>();
+
+        #endregion
+
+        #region Help Variables
+
+        /// <summary>
+        /// The filtered shopBills
+        /// </summary>
+        private List<ShopBillModel> FShopBills { get; set; } = new List<ShopBillModel>();
 
         #endregion
 
@@ -65,6 +75,9 @@ namespace WPF_GUI.Orders.In.BillsManagerUC
 
         #region Hole form events , functions
 
+
+
+
         /// <summary>
         /// NotDone
         /// </summary>
@@ -88,6 +101,36 @@ namespace WPF_GUI.Orders.In.BillsManagerUC
         private void ReloadTabButton_BillsManagerUC_Click(object sender, RoutedEventArgs e)
         {
             SetInitialValues();
+        }
+
+
+        private void BillsList_BillsManagerUC_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (BillsList_BillsManagerUC.SelectedItem != null)
+            {
+                ShopBillModel shopBill = (ShopBillModel)BillsList_BillsManagerUC.SelectedItem;
+                ModifyBillUC modifyBill = new ModifyBillUC(shopBill);
+
+                Window window = new Window
+                {
+                    Title = "Bill",
+                    Content = modifyBill,
+                    SizeToContent = SizeToContent.WidthAndHeight,
+                    ResizeMode = ResizeMode.NoResize
+                };
+                window.ShowDialog();
+                SetInitialValues();
+            }
+        }
+
+
+        private void DateFilterValue_BillsManagerUC_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
+        {
+            FShopBills = new List<ShopBillModel>();
+            FShopBills =  GlobalConfig.Connection.FilterShopBillsByDate(ShopBills, (DateTime)DateFilterValue_BillsManagerUC.SelectedDate);
+
+            BillsList_BillsManagerUC.ItemsSource = null;
+            BillsList_BillsManagerUC.ItemsSource = FShopBills;
         }
 
         #endregion

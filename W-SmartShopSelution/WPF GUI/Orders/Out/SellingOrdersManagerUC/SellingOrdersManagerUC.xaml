@@ -24,6 +24,7 @@
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Product Name" Binding="{Binding Product.Name}" />
                                 <DataGridTextColumn Header="Barcode" Binding="{Binding Product.BarCode}" />
+                                <DataGridTextColumn Header="Size" Binding="{Binding Product.Size}" />
                                 <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}" />
                                 <DataGridTextColumn Header="Price" Binding="{Binding SalePrice}"/>
                                 <DataGridTextColumn Header="Discount" Binding="{Binding Discount}"/>

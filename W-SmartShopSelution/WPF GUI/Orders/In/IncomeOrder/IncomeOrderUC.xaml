@@ -39,7 +39,11 @@
                 <TextBox x:Name="SerialNumber2Value_IncomeOrderUC" HorizontalAlignment="Left" Height="33" Margin="729,38,0,0" Text="" VerticalAlignment="Top" Width="119"  MaxLength="200" MaxLines="1" />
 
                 <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="0,76,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Details : "/></TextBlock>
-                <TextBox x:Name="ProductDetailsValue_IncomeOrderUC" IsReadOnly="True" HorizontalAlignment="Left" Height="33" Margin="94,76,0,0" Text="" VerticalAlignment="Top" Width="746" MaxLength="500" MaxLines="1"  />
+                <TextBox x:Name="ProductDetailsValue_IncomeOrderUC" IsReadOnly="True" HorizontalAlignment="Left" Height="33" Margin="94,76,0,0" Text="" VerticalAlignment="Top" Width="605" MaxLength="500" MaxLines="1"  />
+
+                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="704,76,0,0" RenderTransformOrigin="-0.048,0.481" FontSize="25" ><Run Text="Size : "/></TextBlock>
+                <TextBox x:Name="SizeValue_IncomeOrderUC" HorizontalAlignment="Left" Height="32" Margin="772,77,0,0" Text="" VerticalAlignment="Top" Width="76" MaxLines="1" MaxLength="200"  />
+
 
                 <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="212,0,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" Width="82" ><Run Text="Brand : "/></TextBlock>
                 <ComboBox x:Name="BrandValue_IncomeOrderUC" SelectionChanged="FilterProductsByCategoryAndBrand" HorizontalAlignment="Left" Margin="299,5,0,0" VerticalAlignment="Top" Width="100" />
@@ -106,6 +110,7 @@
         <DataGrid x:Name="StocksList_IncomeOrderUC" IsReadOnly="True" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="240" Margin="10,380,0,0" VerticalAlignment="Top" Width="1323" Background="LightGray">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Product Name" Binding="{Binding Product.Name }" />
+                <DataGridTextColumn Header="Size" Binding="{Binding Product.Size}" />
                 <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}" />
                 <DataGridTextColumn Header="Income Price" Binding="{Binding IncomePrice}"/>
                 <DataGridTextColumn Header="Sale Price" Binding="{Binding Product.SalePrice}"/>

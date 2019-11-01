@@ -426,6 +426,8 @@ namespace WPF_GUI.Sell
             SerialNumberValue_Sell.Text = product.Product.SerialNumber;
             SerialNumber2Value_Sell.Text = product.Product.SerialNumber2;
 
+            SizeValue_Sell.Text = product.Product.Size;
+
             InStockValue_Sell.Text = product.Quantity.ToString();
 
             PriceValue_Sell.IsEnabled = true;
@@ -463,6 +465,8 @@ namespace WPF_GUI.Sell
 
             SerialNumberValue_Sell.Text = "";
             SerialNumber2Value_Sell.Text = "";
+
+            SizeValue_Sell.Text = "";
 
             DetailsValue_Sell.Text = "";
 

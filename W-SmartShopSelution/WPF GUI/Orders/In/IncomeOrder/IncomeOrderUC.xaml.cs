@@ -619,6 +619,7 @@ namespace WPF_GUI
             BarCodeValue_IncomeOrderUC.Text = product.BarCode;
             SerialNumberValue_IncomeOrderUC.Text = Product.SerialNumber;
             SerialNumber2Value_IncomeOrderUC.Text = product.SerialNumber2;
+            SizeValue_IncomeOrderUC.Text = product.Size;
             SalePriceValue_IncomeOrderUC.Text = Product.SalePrice.ToString();
             IncomeValue_IncomeOrderUC.Text = Product.IncomePrice.ToString();
             ProductDetailsValue_IncomeOrderUC.Text = product.Details;
@@ -649,6 +650,7 @@ namespace WPF_GUI
             BarCodeValue_IncomeOrderUC.Text = "";
             SerialNumberValue_IncomeOrderUC.Text = "";
             SerialNumber2Value_IncomeOrderUC.Text = "";
+            SizeValue_IncomeOrderUC.Text = "";
             SalePriceValue_IncomeOrderUC.Text = "";
             IncomeValue_IncomeOrderUC.Text = "";
             QuantityValue_IncomeOrderUC.Text = "";

@@ -241,6 +241,30 @@ namespace Library
         }
 
         /// <summary>
+        /// Get the opration that contain the ShopBill
+        /// </summary>
+        /// <param name="order"></param>
+        /// <param name="operations"></param>
+        /// <returns></returns>
+        public static OperationModel GetOperationByShopBill(ShopBillModel shopBill, List<OperationModel> operations)
+        {
+            OperationModel fOperation = new OperationModel();
+            foreach (OperationModel operation in operations)
+            {
+                if (operation.GetOperationName == "ShopBill")
+                {
+                    if (operation.ShopBill.Id == shopBill.Id)
+                    {
+                        fOperation = operation;
+                    }
+                }
+
+            }
+            return fOperation;
+
+        }
+
+        /// <summary>
         /// Update the operation AmountOfMoney
         /// </summary>
         /// <param name="operation"></param>

@@ -45,6 +45,7 @@
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Product Name" Binding="{Binding Path=Product.Name}" />
                     <DataGridTextColumn Header="Barcode" Binding="{Binding Path=Product.BarCode}" />
+                    <DataGridTextColumn Header="Size" Binding="{Binding Path=Product.Size}" />
                     <DataGridTextColumn Header="Quantity" Binding="{Binding Path=Quantity}" />
                     <DataGridTextColumn Header="Price" Binding="{Binding Path=SalePrice}"/>
                     <DataGridTextColumn Header="Discount" Binding="{Binding Path=Discount}"/>
@@ -110,7 +111,10 @@
                     <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="0,114,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="In Stock : "/></TextBlock>
 
                     <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="0,76,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Details : "/></TextBlock>
-                    <TextBox x:Name="DetailsValue_Sell" IsReadOnly="True" HorizontalAlignment="Left" Height="33" Margin="94,76,0,0" Text="" VerticalAlignment="Top" Width="746" MaxLength="500" MaxLines="1"  />
+                    <TextBox x:Name="DetailsValue_Sell" IsReadOnly="True" HorizontalAlignment="Left" Height="33" Margin="94,76,0,0" Text="" VerticalAlignment="Top" Width="597" MaxLength="500" MaxLines="1"  />
+
+                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="696,76,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Size : "/></TextBlock>
+                    <TextBox x:Name="SizeValue_Sell" HorizontalAlignment="Left" Height="33" Margin="764,76,0,0" Text="" VerticalAlignment="Top" Width="76" MaxLines="1" MaxLength="200" IsReadOnly="True"  />
                 </Grid>
 
             </GroupBox>
@@ -144,7 +148,7 @@
 
             <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="795,596,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Customer will pay now : "/></TextBlock>
             <TextBox x:Name="CustomerWillPayNowValue_Sell" KeyDown="CustomerWillPayNowValue_Sell_KeyDown" PreviewTextInput="MoneyValidation" HorizontalAlignment="Left" Height="22" Margin="1077,607,0,0" Text="" VerticalAlignment="Top" Width="78" RenderTransformOrigin="0.544,-0.652" MaxLines="1"/>
-            
+
             <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="795,637,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Customer will pay Later : "/></TextBlock>
             <TextBox x:Name="CustomerWillPayLaterValue_Sell" KeyDown="CustomerWillPayLaterValue_Sell_KeyDown" PreviewTextInput="MoneyValidation"  HorizontalAlignment="Left" Height="22" Margin="1077,648,0,0" Text="" VerticalAlignment="Top" Width="78" RenderTransformOrigin="0.544,-0.652" MaxLines="1"/>
 

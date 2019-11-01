@@ -167,7 +167,14 @@
                                 <TextBlock Text="Bills Manager" Margin="10"/>
                             </StackPanel>
                         </ListViewItem>
-                        
+
+                        <ListViewItem Name="PriceListViewItem" Visibility="Visible" Height="45" Padding="0" Selected="PriceListViewItem_Selected" >
+                            <StackPanel Orientation="Horizontal" Margin="10 0">
+                                <materialDesign:PackIcon Kind="Printer" Width="20" Height="20" Foreground="Gray" Margin="5" VerticalAlignment="Center"/>
+                                <TextBlock Text="Print Price List" Margin="10"/>
+                            </StackPanel>
+                        </ListViewItem>
+
                         <ListViewItem Name="ProductsManagerViewItem" Visibility="Collapsed" Height="45" Padding="0" Selected="ProductsViewItem_Selected" >
                             <StackPanel Orientation="Horizontal" Margin="10 0">
                                 <materialDesign:PackIcon Kind="Package" Width="20" Height="20" Foreground="Gray" Margin="5" VerticalAlignment="Center"/>
