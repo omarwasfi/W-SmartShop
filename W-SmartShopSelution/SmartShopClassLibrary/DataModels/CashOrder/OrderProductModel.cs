@@ -81,12 +81,15 @@ namespace Library
         /// <summary>
         /// get the total profit , GetProfit * Quantity
         /// </summary>
-        public decimal GetTotalProfit {
+        public decimal GetTotalProfit
+        {
             get
             {
                 return GetProfit * Quantity;
             }
-         }
+        }
+
+       
 
     }
 }

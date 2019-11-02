@@ -98,5 +98,13 @@ namespace Library
                 return total;
             } }
 
+        public int GetTheNumberOfOrderProducts
+        {
+            get
+            {
+                return Products.Count;
+            }
+        }
+
     }
 }

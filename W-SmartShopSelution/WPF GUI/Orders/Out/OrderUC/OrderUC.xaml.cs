@@ -536,6 +536,8 @@ namespace WPF_GUI.Orders.Out.OrderUC
 
             report["OrderDetails"] = Order.Details;
             report["TotalPrice"] = Order.TotalPrice.ToString();
+            report["TotalOrderProduct"] = Order.GetTheNumberOfOrderProducts.ToString();
+
 
             report.Render();
 
