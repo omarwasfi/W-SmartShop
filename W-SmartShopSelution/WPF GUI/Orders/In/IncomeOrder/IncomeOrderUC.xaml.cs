@@ -773,6 +773,8 @@ namespace WPF_GUI
         {
             if (Product != null)
             {
+              
+
                 decimal salePrice = new decimal();
                 if(decimal.TryParse(SalePriceValue_IncomeOrderUC.Text,out salePrice))
                 {
@@ -789,6 +791,16 @@ namespace WPF_GUI
                                 {
                                     if (quantity > 0)
                                     {
+                                        foreach (IncomeOrderProductModel incomeOrderProductModel in IncomeOrderProducts)
+                                        {
+                                            if (Product.Id == incomeOrderProductModel.Product.Id)
+                                            {
+                                                MessageBox.Show("This product is in the list ! Remove it and add Again If you want change it's details");
+                                                return false;
+                                            }
+
+                                        }
+
                                         return true;
                                     }
                                     else
@@ -881,9 +893,11 @@ namespace WPF_GUI
         {
             if (ChooseProduct_IsValid())
             {
+                 
+
                 Product.IncomePrice = decimal.Parse(IncomeValue_IncomeOrderUC.Text);
                 Product.SalePrice = decimal.Parse(SalePriceValue_IncomeOrderUC.Text);
-                
+
                 IncomeOrderProductModel incomeOrderProduct = new IncomeOrderProductModel();
                 incomeOrderProduct.Product = Product;
                 incomeOrderProduct.IncomePrice = Product.IncomePrice;

@@ -121,8 +121,13 @@ namespace WPF_GUI
         /// </summary>
         private void GetStore()
         {
+            /*
+             Wasfi Lab 6E9FEBFAA624579FBFF
+             ALI 6EBFEBF76E9173AFBFF
+             gohary lab 6C4FEBF86BD55BAFBFF
+             */
 
-            if(getUniqueID("C") == "6C4FEBF86BD55BAFBFF")
+            if (getUniqueID("C") == "6E9FEBFAA624579FBFF")
             {
                 Store = GlobalConfig.GetTheStoreFromTheDatabase();
                 if (Store.Id == -1)

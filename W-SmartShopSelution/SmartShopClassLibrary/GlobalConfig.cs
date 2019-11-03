@@ -32,13 +32,13 @@ namespace Library
         {
            
 
-            //return ConfigurationManager.ConnectionStrings[name].ConnectionString;
+            return ConfigurationManager.ConnectionStrings[name].ConnectionString;
 
             //string path = Path.GetFullPath(Environment.CurrentDirectory);
-            string databaseName = "SmartShopDatabase.mdf";
+            //string databaseName = "SmartShopDatabase.mdf";
 
             //return @" data source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + path + @"\" + databaseName + ";Integrated Security=True";
-            return @" data source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\SSData"+@"\" + databaseName + ";Integrated Security=True";
+            //return @" data source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\SSData"+@"\" + databaseName + ";Integrated Security=True";
 
 
         }
