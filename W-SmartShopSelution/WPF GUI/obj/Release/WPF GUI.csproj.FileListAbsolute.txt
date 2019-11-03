@@ -145,3 +145,7 @@ C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Rele
 C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Release\Orders\In\PayBillUC\PayBillUC.baml
 C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Release\Orders\Out\OrderUC\OrderUC.baml
 C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Release\Orders\Out\SellingOrdersManagerUC\SellingOrdersManagerUC.baml
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Release\Orders\In\ModifyBill\ModifyBillUC.g.cs
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Release\PriceListUC\PriceListUC.g.cs
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Release\Orders\In\ModifyBill\ModifyBillUC.baml
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Release\PriceListUC\PriceListUC.baml

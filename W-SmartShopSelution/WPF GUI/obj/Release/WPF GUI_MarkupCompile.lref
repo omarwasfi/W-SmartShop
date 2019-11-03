@@ -3,10 +3,12 @@ FC:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\App.xam
 FC:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\CashUC\CashUC.xaml;;
 FC:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\Installament\InstallmentCollectingUC\InstallmentCollectingUC.xaml;;
 FC:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\Orders\In\BillsManagerUC\BillsManagerUC.xaml;;
+FC:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\Orders\In\ModifyBill\ModifyBillUC.xaml;;
 FC:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\Orders\In\PayBillUC\PayBillUC.xaml;;
 FC:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\Orders\Out\InstallmentOrderUC\InstallmentOrderUC.xaml;;
 FC:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\Orders\Out\OrderUC\OrderUC.xaml;;
 FC:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\Orders\Out\SellingOrdersManagerUC\SellingOrdersManagerUC.xaml;;
+FC:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\PriceListUC\PriceListUC.xaml;;
 FC:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\Store\AddStockToStoreUC\AddStockToStoreUC.xaml;;
 FC:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\Human\Supplier\CreateSupplierUC\CreateSupplierUC.xaml;;
 FC:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\Human\Customer\CustomerLogUC\CustomerLogUC.xaml;;
