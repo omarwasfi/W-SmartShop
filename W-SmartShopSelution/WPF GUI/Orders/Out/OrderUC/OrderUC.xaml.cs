@@ -535,8 +535,19 @@ namespace WPF_GUI.Orders.Out.OrderUC
 
 
             report["OrderDetails"] = Order.Details;
-            report["TotalPrice"] = Order.TotalPrice.ToString();
+            report["TotalPrice"] = Order.TotalPrice.ToString("G29");
             report["TotalOrderProduct"] = Order.GetTheNumberOfOrderProducts.ToString();
+
+
+            string printLast = "";
+            if (Order.Paid < Order.TotalPrice)
+            {
+                printLast += "Payment due within 30 days from date of invoice\n";
+            }
+
+            printLast += "Thank you for your business!";
+            report["PrintLast"] = printLast;
+
 
 
             report.Render();

@@ -147,7 +147,6 @@ namespace WPF_GUI.Orders.Out.SellingOrdersManagerUC
                 report.Load(@"SellOrderReportARforEMG.mrt");
 
                 report.Compile();
-
                 report["OrganizationName"] = PublicVariables.OrganizationName;
                 report["OrganizationAddress"] = PublicVariables.OrganizationAddress;
                 report["OrganizationPhoneNumber"] = PublicVariables.OrganizationPhoneNumber;
@@ -168,8 +167,19 @@ namespace WPF_GUI.Orders.Out.SellingOrdersManagerUC
 
 
                 report["OrderDetails"] = order.Details;
-                report["TotalPrice"] = order.TotalPrice.ToString();
+                report["TotalPrice"] = order.TotalPrice.ToString("G29");
                 report["TotalOrderProduct"] = order.GetTheNumberOfOrderProducts.ToString();
+
+
+                string printLast = "";
+                if (order.Paid < order.TotalPrice)
+                {
+                    printLast += "Payment due within 30 days from date of invoice\n";
+                }
+
+                printLast += "Thank you for your business!";
+                report["PrintLast"] = printLast;
+
 
 
                 report.Render();
