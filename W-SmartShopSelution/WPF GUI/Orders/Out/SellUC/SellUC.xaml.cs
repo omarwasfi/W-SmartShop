@@ -181,7 +181,7 @@ namespace WPF_GUI.Sell
             UserGrid_SellUC.Visibility = Visibility.Visible;
             PrintGrid_SellUC.Visibility = Visibility.Collapsed;
 
-            CashRadioButton.IsChecked = true;
+            SuspendPayementButton.IsChecked = true;
 
         }
 
@@ -1598,8 +1598,18 @@ namespace WPF_GUI.Sell
 
 
             report["OrderDetails"] = Order.Details;
-            report["TotalPrice"] = Order.TotalPrice.ToString();
+            report["TotalPrice"] = Order.TotalPrice.ToString("G29");
             report["TotalOrderProduct"] = Order.GetTheNumberOfOrderProducts.ToString();
+
+
+            string printLast = "";
+            if(Order.Paid < Order.TotalPrice)
+            {
+                printLast += "Payment due within 30 days from date of invoice\n";
+            }
+
+            printLast += "Thank you for your business!";
+            report["PrintLast"] = printLast;
 
 
             report.Render();
