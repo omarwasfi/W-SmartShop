@@ -820,7 +820,7 @@ namespace WPF_GUI.Sell
                 orderProduct.Discount = decimal.Parse(DiscountValue_Sell.Text);
                 orderProduct.Profit = orderProduct.GetProfit;
                 orderProduct.Quantity = int.Parse(QuantityValue_Sell.Text);
-                orderProduct.TotalProductPrice = decimal.Parse(TotalProductPriceValue_Sell.Text);
+                orderProduct.TotalProductPrice = orderProduct.GetTotalPrice;
                 Orders.Add(orderProduct);
                 // Update Choosen product list datagrid
                 UpadateChoosenProductList_Sell();
