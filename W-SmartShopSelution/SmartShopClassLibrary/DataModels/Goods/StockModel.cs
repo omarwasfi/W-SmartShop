@@ -28,6 +28,26 @@ namespace Library
         public StoreModel Store { get; set; }
 
         /// <summary>
+        /// The real Incomeprice set in IncomeOrderUC
+        /// </summary>
+        public decimal IncomePrice { get; set; }
+
+        /// <summary>
+        /// The salePrice Set in the IncomeOrderUC
+        /// </summary>
+        public decimal SalePrice { get; set; }
+
+        /// <summary>
+        /// The date of the stock creation
+        /// </summary>
+        public DateTime Date { get; set; }
+
+        /// <summary>
+        /// The time of the expiration in days
+        /// </summary>
+        public int ExpirationPeriod { get; set; }
+
+        /// <summary>
         /// The Current Quantity of this product in the store
         /// </summary>
         public int Quantity { get; set; }

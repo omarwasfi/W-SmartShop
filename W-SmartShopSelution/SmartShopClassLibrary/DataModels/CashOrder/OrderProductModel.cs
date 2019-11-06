@@ -11,6 +11,7 @@ namespace Library
     {
         public int Id { get; set; }
 
+        // TODO - Remove this probity "Are u kidding me !!"
         /// <summary>
         /// used Just to hold the stock during the selling operation
         /// </summary>
@@ -36,7 +37,7 @@ namespace Library
         /// </summary>
         public decimal Discount { get; set; }
 
-
+        
 
         /// <summary>
         /// The salePrice - IncomePrice of the product

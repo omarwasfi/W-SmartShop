@@ -36,42 +36,86 @@ namespace Library
         /// </summary>
         private const int DefaultPerson = 1000000;
 
-        #region Categoty Functions
-
+        
+        #region GetTheData and set the public variables
 
         /// <summary>
-        /// Get All categories from the databse
+        /// Set all the public variables from the database
         /// </summary>
-        /// <returns></returns>
-        public List<CategoryModel> GetCategories()
+        public void SetThePublicVariables()
         {
-            List<CategoryModel> categories = Category.GetCategories(db);
-            return categories ;
+            // 1- Set the Permissions
+            PublicVariables.Permissions = null;
+            PublicVariables.Permissions = GetAllPermissionsFromTheDatabase();
+
+            // 2- Set the Person models
+            PublicVariables.People = null;
+            PublicVariables.People = GetPeopleFromTheDatabase();
+
+            // 3- set the store models
+            PublicVariables.Stores = null;
+            PublicVariables.Stores = GetStoresFromTheDatabase();
+
+            // 4- Set the staff models
+            PublicVariables.Staffs = null;
+            PublicVariables.Staffs = GetStaffsFromTheDatabase(PublicVariables.People,PublicVariables.Stores,PublicVariables.Permissions);
+
         }
 
         /// <summary>
-        /// Get list of categories , if the category name in the database return false
+        /// Gets all the Permissions From the database
         /// </summary>
-        /// <param name="categories"> list of category model </param>
-        /// <param name="newName"> the new name of the category to check  </param>
         /// <returns></returns>
-        public  bool CheckIfTheCategoryNameUnique(List<CategoryModel> categories, string newName)
+        private List<PermissionModel> GetAllPermissionsFromTheDatabase()
         {
-            return Category.CheckIfTheCategoryNameUnique(categories, newName);
+            return Permission_Access.GetAllPermissionsFromTheDatabase(db);
         }
 
         /// <summary>
-        /// Add the category to the database , return the category with the new Id
+        /// Get people from the database
         /// </summary>
-        /// <param name="newCategory"></param>
-        /// <param name="db"></param>
         /// <returns></returns>
-        public  CategoryModel AddCategoryToTheDatabase(CategoryModel newCategory)
+        private List<PersonModel> GetPeopleFromTheDatabase()
         {
-            return Category.AddCategoryToTheDatabase(newCategory, db);
+            return Person_Access.GetAllPeople(db);
+        }
+
+        /// <summary>
+        /// Get all stores From the database
+        /// </summary>
+        /// <returns></returns>
+        private List<StoreModel> GetStoresFromTheDatabase()
+        {
+            return Store_Access.GetAllStores(db);
+        }
+
+        /// <summary>
+        /// Gets all staff table from the database
+        /// - set the person model for each staff
+        /// - set the list of stores that he work in
+        /// - set the permission model 
+        /// </summary>
+        /// <param name="people"> All the people in the database </param>
+        /// <param name="stores"> all the stores</param>
+        /// <param name="permissions"> all the permissions </param>
+        /// <returns></returns>
+        private List<StaffModel> GetStaffsFromTheDatabase(List<PersonModel> people , List<StoreModel> stores , List<PermissionModel> permissions)
+        {
+            List<StaffModel> staffs = new List<StaffModel>();
+
+            staffs = StaffAccess.GetStaffsFromTheDabase(db);
+
+            staffs =  StaffAccess.SetThePersonModelForEachStaffFromTheDatabase(staffs, people, db);
+
+            staffs = StaffAccess.SetTheStorsForEachStaffFromTheDatabase(staffs, stores, db);
+
+            staffs = StaffAccess.SetThePermissonModelForEachStaffFromTheDatabase(staffs, permissions, db);
+
+            return staffs;
         }
 
         #endregion
+
 
         #region Brand Functions
 
@@ -82,9 +126,21 @@ namespace Library
         /// <returns></returns>
         public List<BrandModel> GetBrands()
         {
-            List<BrandModel> brands = Brand.GetBrands(db);
+            List<BrandModel> brands = Brand_Access.GetBrands(db);
             return brands;
         }
+
+        /// <summary>
+        /// Save new brand to the database , return the new brand with new Id
+        /// </summary>
+        /// <param name="newBrand"> the new brand model </param>
+        /// <param name="db"></param>
+        /// <returns></returns>
+        public BrandModel AddBrandToTheDatabase(BrandModel newBrand)
+        {
+            return Brand_Access.AddBrandToTheDatabase(newBrand, db);
+        }
+
 
         /// <summary>
         /// Get list of brands , if the brand name in the database return false
@@ -98,18 +154,156 @@ namespace Library
             return Brand.CheckIfTheBrandNameUnique(brands, newName);
         }
 
+
+        #endregion
+
+        #region Categoty Functions
+
+
         /// <summary>
-        /// Save new brand to the database , return the new brand with new Id
+        /// Get All categories from the databse
         /// </summary>
-        /// <param name="newBrand"> the new brand model </param>
+        /// <returns></returns>
+        public List<CategoryModel> GetCategories()
+        {
+            List<CategoryModel> categories = Category_Access.GetCategories(db);
+            return categories;
+        }
+
+        /// <summary>
+        /// Add the category to the database , return the category with the new Id
+        /// </summary>
+        /// <param name="newCategory"></param>
         /// <param name="db"></param>
         /// <returns></returns>
-        public BrandModel AddBrandToTheDatabase(BrandModel newBrand)
+        public CategoryModel AddCategoryToTheDatabase(CategoryModel newCategory)
         {
-            return Brand.AddBrandToTheDatabase(newBrand, db);
+            return Category_Access.AddCategoryToTheDatabase(newCategory, db);
+        }
+
+
+        /// <summary>
+        /// Get list of categories , if the category name in the database return false
+        /// </summary>
+        /// <param name="categories"> list of category model </param>
+        /// <param name="newName"> the new name of the category to check  </param>
+        /// <returns></returns>
+        public bool CheckIfTheCategoryNameUnique(List<CategoryModel> categories, string newName)
+        {
+            return Category.CheckIfTheCategoryNameUnique(categories, newName);
+        }
+
+       
+        #endregion
+
+        #region Customer
+
+        /// <summary>
+        /// Get all customers and set the person model for each one
+        /// </summary>
+        /// <param name="db"></param>
+        /// <returns></returns>
+        public  List<CustomerModel> GetCustomers()
+        {
+            return Customer_Access.GetCustomers(db);
+        }
+
+        /// <summary>
+        /// Get the default Customer 
+        /// </summary>
+        /// <param name=""></param>
+        /// <returns></returns>
+        public  CustomerModel GetDefaultCustomer( )
+        {
+            return Customer.GetDefaultCustomer();
+        }
+
+       
+
+        /// <summary>
+        /// Create Customer in the database and no return value Use CreateCustomer To get the new customerModel
+        /// </summary>
+        public void CreateCustomer_NoReturn(CustomerModel customer)
+        {
+            Customer_Access.CreateCustomer_NoReturn(customer, db);
+        }
+
+        /// <summary>
+        /// Create customer in the database and get the customer model back with the new customerId
+        /// - Check if this person in the database or not By Comparing the NationalNumber to all people in the database
+        /// - if he in the database The return customer with id of -1
+        /// - If Not :
+        /// - Create person and get the person model 
+        /// - Create customer and set the person model for this customer
+        /// </summary>
+        /// <returns></returns>
+        public CustomerModel CreateCustomer(CustomerModel customer)
+        {
+            if (Person.IsThisPersonInTheDataBase(customer.Person, Person_Access.GetAllPeople(db)) == true)
+            {
+                customer.Id = -1;
+                return customer;
+            }
+            else
+            {
+                PersonModel personModel = Person_Access.CreatePerson(customer.Person, db); ;
+                customer.Person = new PersonModel();
+                customer.Person = personModel;
+                return Customer_Access.CreateCustomer(customer, db);
+            }
+
         }
 
         #endregion
+
+
+        #region Income Order
+
+        /// <summary>
+        /// get all the The incomeOrders from the database
+        /// - set the supplier
+        ///     - set the personModel To the Supplier
+        /// - set the store
+        /// - set the staff
+        ///     - set the personModel for the staff
+        /// - set the list of products - incomeOrderProducts - 
+        ///     - set the product foreach incomeOrderProduct
+        /// </summary>
+        /// <returns></returns>
+        public List<IncomeOrderModel> GetIncomeOrders()
+        {
+            return IncomeOrder_Access.GetIncomeOrders(db);
+        }
+
+
+        /// <summary>
+        /// Get incomeOrder with a new Id
+        /// The IncomeOrder should Have The main info of thist variables:
+        /// SupplierId , DataTimeOfTheOrder, StoreId, StaffId,TotalPrice
+        /// </summary>
+        /// <param name="incomeOrder"></param>
+        /// <param name="db"></param>
+        /// <returns></returns>
+        public IncomeOrderModel GetEmptyIncomeOrderFromTheDatabase(IncomeOrderModel incomeOrder)
+        {
+            return IncomeOrder_Access.GetEmptyIncomeOrderFromTheDatabase(incomeOrder, db);
+        }
+
+        /// <summary>
+        /// If the bill number used before return false
+        /// In not return true
+        /// </summary>
+        /// <param name="incomeOrders"> list of IncomeOrderModels </param>
+        /// <param name="billNumber"> the bill number to check </param>
+        /// <returns></returns>
+        public bool IsBillNumberUnique(List<IncomeOrderModel> incomeOrders, string billNumber)
+        {
+            return IncomeOrder.IsBillNumberUnique(incomeOrders , billNumber);
+        }
+
+      
+        #endregion
+
 
         #region Product Functions
 
@@ -371,63 +565,7 @@ namespace Library
 
         #endregion
 
-        #region Customer
-
-        /// <summary>
-        /// Get all customers and set the person model for each one
-        /// </summary>
-        /// <param name="db"></param>
-        /// <returns></returns>
-        public  List<CustomerModel> GetCustomers()
-        {
-            return Customer.GetCustomers(db);
-        }
-
-        /// <summary>
-        /// Get the default Customer 
-        /// </summary>
-        /// <param name=""></param>
-        /// <returns></returns>
-        public  CustomerModel GetDefaultCustomer( )
-        {
-            return Customer.GetDefaultCustomer();
-        }
-
-        /// <summary>
-        /// Create customer in the database and get the customer model back with the new customerId
-        /// - Check if this person in the database or not By Comparing the NationalNumber to all people in the database
-        /// - if he in the database The return customer with id of -1
-        /// - If Not :
-        /// - Create person and get the person model 
-        /// - Create customer and set the person model for this customer
-        /// </summary>
-        /// <returns></returns>
-        public CustomerModel CreateCustomer(CustomerModel customer)
-        {
-            if( Person.IsThisPersonInTheDataBase(customer.Person, Person.GetAllPeople(db)) == true)
-            {
-                customer.Id = -1;
-                return customer;
-            }
-            else
-            {
-                PersonModel personModel = Person.CreatePerson(customer.Person, db); ;
-                customer.Person = new PersonModel();
-                customer.Person = personModel;
-                return Customer.CreateCustomer(customer, db);
-            }
-           
-        }
-
-        /// <summary>
-        /// Create Customer in the database and no return value Use CreateCustomer To get the new customerModel
-        /// </summary>
-        public void CreateCustomer_NoReturn(CustomerModel customer)
-        {
-            Customer.CreateCustomer_NoReturn(customer, db);
-        }
-
-        #endregion
+        
 
         #region Person
 
@@ -441,7 +579,7 @@ namespace Library
         public  bool CheckIfTheNationalNumberUnique(string nationalNumber)
         {
 
-            return Person.CheckIfTheNationalNumberUnique(Person.GetAllPeople(db), nationalNumber);
+            return Person.CheckIfTheNationalNumberUnique(Person_Access.GetAllPeople(db), nationalNumber);
 
         }
 
@@ -452,7 +590,7 @@ namespace Library
         /// <param name="db"></param>
         public void UpdatePersonData(PersonModel person)
         {
-            Person.UpdatePersonData(person, db);
+            Person_Access.UpdatePersonData(person, db);
         }
 
         /// <summary>
@@ -463,7 +601,7 @@ namespace Library
         public PersonModel CreatePerson(PersonModel person)
         {
 
-            return Person.CreatePerson(person, db); ;
+            return Person_Access.CreatePerson(person, db); ;
         }
 
 
@@ -599,7 +737,7 @@ namespace Library
         /// <returns></returns>
         public List<StoreModel> GetAllStores()
         {
-            return Store.GetAllStores(db);
+            return Store_Access.GetAllStores(db);
         }
 
         /// <summary>
@@ -639,7 +777,7 @@ namespace Library
         /// <returns></returns>
         public List<StaffModel> GetStaffs()
         {
-           return Staff.GetStaffs(db);
+           return StaffAccess.GetStaffs(db);
         }
 
         /// <summary>
@@ -932,49 +1070,7 @@ namespace Library
         }
         #endregion
 
-        #region Income Order
-
-        /// <summary>
-        /// get all the The incomeOrders from the database
-        /// - set the supplier
-        ///     - set the personModel To the Supplier
-        /// - set the store
-        /// - set the staff
-        ///     - set the personModel for the staff
-        /// - set the list of products - incomeOrderProducts - 
-        ///     - set the product foreach incomeOrderProduct
-        /// </summary>
-        /// <returns></returns>
-        public List<IncomeOrderModel> GetIncomeOrders()
-        {
-            return IncomeOrder.GetIncomeOrders(db);
-        }
-
-        /// <summary>
-        /// If the bill number used before return false
-        /// In not return true
-        /// </summary>
-        /// <param name="incomeOrders"> list of IncomeOrderModels </param>
-        /// <param name="billNumber"> the bill number to check </param>
-        /// <returns></returns>
-        public bool IsBillNumberUnique(List<IncomeOrderModel> incomeOrders, string billNumber)
-        {
-            return IncomeOrder.IsBillNumberUnique(incomeOrders , billNumber);
-        }
-
-        /// <summary>
-        /// Get incomeOrder with a new Id
-        /// The IncomeOrder should Have The main info of thist variables:
-        /// SupplierId , DataTimeOfTheOrder, StoreId, StaffId,TotalPrice
-        /// </summary>
-        /// <param name="incomeOrder"></param>
-        /// <param name="db"></param>
-        /// <returns></returns>
-        public IncomeOrderModel GetEmptyIncomeOrderFromTheDatabase(IncomeOrderModel incomeOrder)
-        {
-            return IncomeOrder.GetEmptyIncomeOrderFromTheDatabase(incomeOrder, db);
-        }
-        #endregion
+        
 
         #region IncomeOrderProduct
 

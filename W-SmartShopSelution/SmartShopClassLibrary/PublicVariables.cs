@@ -1,19 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Library
 {
     public static class PublicVariables
     {
-
         public static string OrganizationName { get; set; }
 
         public static string OrganizationAddress { get; set; }
 
         public static string OrganizationPhoneNumber { get; set; }
+
+        /// <summary>
+        /// All the permissions in the database
+        /// </summary>
+        public static List<PermissionModel> Permissions { get; set; }
+
+        /// <summary>
+        /// all The people in the datbase (List of person models)
+        /// </summary>
+        public static List<PersonModel> People { get; set; }
+
+        /// <summary>
+        /// All Stores in the database
+        /// </summary>
+        public static List<StoreModel> Stores { get; set; }
+
+        /// <summary>
+        /// All the operations in the database
+        /// </summary>
+        public static List<OperationModel> Operations { get; set; }
 
         /// <summary>
         /// The Current Staff member that use the program
@@ -53,10 +68,10 @@ namespace Library
         /// <summary>
         /// All Products list
         /// - Set after create new product
-        /// - set when opening produts manager 
+        /// - set when opening produts manager
         /// - Set in the LoginUC
         /// </summary>
-        public static  List<ProductModel> Products { get; set; }
+        public static List<ProductModel> Products { get; set; }
 
         /// <summary>
         /// All Stocks For all stores
@@ -71,12 +86,7 @@ namespace Library
         /// </summary>
         public static List<StaffModel> Staffs { get; set; }
 
-        /// <summary>
-        /// All Stores 
-        /// - set when StaffManagerUC Fires
-        /// - Set In the loginU
-        /// </summary>
-        public static List<StoreModel> Stores { get; set; }
+     
 
         /// <summary>
         /// All Store Orders
@@ -95,11 +105,6 @@ namespace Library
         /// Set in the LoginUC
         /// </summary>
         public static List<SupplierModel> Suppliers { get; set; }
-
-        /// <summary>
-        /// All the operations in the database
-        /// </summary>
-        public static List<OperationModel> Operations { get; set; }
 
         /// <summary>
         /// The last added products

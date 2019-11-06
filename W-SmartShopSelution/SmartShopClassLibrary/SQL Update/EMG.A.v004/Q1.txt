@@ -1,0 +1,503 @@
+﻿adding saleprice , incomePrice and date to Stock table
+
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.Stock
+	DROP CONSTRAINT FK_Stock_Product
+GO
+ALTER TABLE dbo.Product SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+select Has_Perms_By_Name(N'dbo.Product', 'Object', 'ALTER') as ALT_Per, Has_Perms_By_Name(N'dbo.Product', 'Object', 'VIEW DEFINITION') as View_def_Per, Has_Perms_By_Name(N'dbo.Product', 'Object', 'CONTROL') as Contr_Per BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.Stock
+	DROP CONSTRAINT FK_Stock_Store
+GO
+ALTER TABLE dbo.Store SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+select Has_Perms_By_Name(N'dbo.Store', 'Object', 'ALTER') as ALT_Per, Has_Perms_By_Name(N'dbo.Store', 'Object', 'VIEW DEFINITION') as View_def_Per, Has_Perms_By_Name(N'dbo.Store', 'Object', 'CONTROL') as Contr_Per BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.Stock
+	DROP CONSTRAINT DF_Stock_Quantity
+GO
+CREATE TABLE dbo.Tmp_Stock
+	(
+	Id int NOT NULL IDENTITY (12000, 1),
+	StoreId int NOT NULL,
+	ProductId int NOT NULL,
+	IncomePrice money NULL,
+	SalePrice money NULL,
+	Date datetime NULL,
+	Quantity int NOT NULL
+	)  ON [PRIMARY]
+GO
+ALTER TABLE dbo.Tmp_Stock SET (LOCK_ESCALATION = TABLE)
+GO
+ALTER TABLE dbo.Tmp_Stock ADD CONSTRAINT
+	DF_Stock_Quantity DEFAULT ((0)) FOR Quantity
+GO
+SET IDENTITY_INSERT dbo.Tmp_Stock ON
+GO
+IF EXISTS(SELECT * FROM dbo.Stock)
+	 EXEC('INSERT INTO dbo.Tmp_Stock (Id, StoreId, ProductId, Quantity)
+		SELECT Id, StoreId, ProductId, Quantity FROM dbo.Stock WITH (HOLDLOCK TABLOCKX)')
+GO
+SET IDENTITY_INSERT dbo.Tmp_Stock OFF
+GO
+DROP TABLE dbo.Stock
+GO
+EXECUTE sp_rename N'dbo.Tmp_Stock', N'Stock', 'OBJECT' 
+GO
+ALTER TABLE dbo.Stock ADD CONSTRAINT
+	PK_Stock PRIMARY KEY CLUSTERED 
+	(
+	Id
+	) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+
+GO
+ALTER TABLE dbo.Stock ADD CONSTRAINT
+	FK_Stock_Store FOREIGN KEY
+	(
+	StoreId
+	) REFERENCES dbo.Store
+	(
+	Id
+	) ON UPDATE  CASCADE 
+	 ON DELETE  CASCADE 
+	
+GO
+ALTER TABLE dbo.Stock ADD CONSTRAINT
+	FK_Stock_Product FOREIGN KEY
+	(
+	ProductId
+	) REFERENCES dbo.Product
+	(
+	Id
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+COMMIT
+select Has_Perms_By_Name(N'dbo.Stock', 'Object', 'ALTER') as ALT_Per, Has_Perms_By_Name(N'dbo.Stock', 'Object', 'VIEW DEFINITION') as View_def_Per, Has_Perms_By_Name(N'dbo.Stock', 'Object', 'CONTROL') as Contr_Per 
+
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+adding the ExpirationPeriod to the product table
+
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.Product
+	DROP CONSTRAINT FK_Product_Category
+GO
+ALTER TABLE dbo.Category SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+select Has_Perms_By_Name(N'dbo.Category', 'Object', 'ALTER') as ALT_Per, Has_Perms_By_Name(N'dbo.Category', 'Object', 'VIEW DEFINITION') as View_def_Per, Has_Perms_By_Name(N'dbo.Category', 'Object', 'CONTROL') as Contr_Per BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.Product
+	DROP CONSTRAINT FK_Product_Brand
+GO
+ALTER TABLE dbo.Brand SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+select Has_Perms_By_Name(N'dbo.Brand', 'Object', 'ALTER') as ALT_Per, Has_Perms_By_Name(N'dbo.Brand', 'Object', 'VIEW DEFINITION') as View_def_Per, Has_Perms_By_Name(N'dbo.Brand', 'Object', 'CONTROL') as Contr_Per BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.Product
+	DROP CONSTRAINT DF_Product_CategoryId
+GO
+ALTER TABLE dbo.Product
+	DROP CONSTRAINT DF_Product_BrandId
+GO
+CREATE TABLE dbo.Tmp_Product
+	(
+	Id int NOT NULL IDENTITY (100000, 1),
+	Name nvarchar(200) NOT NULL,
+	Size nvarchar(200) NULL,
+	BarCode nvarchar(200) NOT NULL,
+	SerialNumber nvarchar(200) NULL,
+	SerialNumber2 nvarchar(200) NULL,
+	Details nvarchar(500) NULL,
+	CategoryId int NOT NULL,
+	BrandId int NOT NULL,
+	SalePrice money NOT NULL,
+	IncomePrice money NOT NULL,
+	ExpirationPeriod int NULL
+	)  ON [PRIMARY]
+GO
+ALTER TABLE dbo.Tmp_Product SET (LOCK_ESCALATION = TABLE)
+GO
+ALTER TABLE dbo.Tmp_Product ADD CONSTRAINT
+	DF_Product_CategoryId DEFAULT ((11000)) FOR CategoryId
+GO
+ALTER TABLE dbo.Tmp_Product ADD CONSTRAINT
+	DF_Product_BrandId DEFAULT ((10000)) FOR BrandId
+GO
+SET IDENTITY_INSERT dbo.Tmp_Product ON
+GO
+IF EXISTS(SELECT * FROM dbo.Product)
+	 EXEC('INSERT INTO dbo.Tmp_Product (Id, Name, Size, BarCode, SerialNumber, SerialNumber2, Details, CategoryId, BrandId, SalePrice, IncomePrice)
+		SELECT Id, Name, Size, BarCode, SerialNumber, SerialNumber2, Details, CategoryId, BrandId, SalePrice, IncomePrice FROM dbo.Product WITH (HOLDLOCK TABLOCKX)')
+GO
+SET IDENTITY_INSERT dbo.Tmp_Product OFF
+GO
+ALTER TABLE dbo.OrderProduct
+	DROP CONSTRAINT FK_OrderProduct_Product
+GO
+ALTER TABLE dbo.IncomeOrderProduct
+	DROP CONSTRAINT FK_IncomeOrderProduct_Product
+GO
+ALTER TABLE dbo.Stock
+	DROP CONSTRAINT FK_Stock_Product
+GO
+DROP TABLE dbo.Product
+GO
+EXECUTE sp_rename N'dbo.Tmp_Product', N'Product', 'OBJECT' 
+GO
+ALTER TABLE dbo.Product ADD CONSTRAINT
+	PK_Products PRIMARY KEY CLUSTERED 
+	(
+	Id
+	) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+
+GO
+ALTER TABLE dbo.Product ADD CONSTRAINT
+	FK_Product_Brand FOREIGN KEY
+	(
+	BrandId
+	) REFERENCES dbo.Brand
+	(
+	Id
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.Product ADD CONSTRAINT
+	FK_Product_Category FOREIGN KEY
+	(
+	CategoryId
+	) REFERENCES dbo.Category
+	(
+	Id
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+COMMIT
+select Has_Perms_By_Name(N'dbo.Product', 'Object', 'ALTER') as ALT_Per, Has_Perms_By_Name(N'dbo.Product', 'Object', 'VIEW DEFINITION') as View_def_Per, Has_Perms_By_Name(N'dbo.Product', 'Object', 'CONTROL') as Contr_Per BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.Stock ADD CONSTRAINT
+	FK_Stock_Product FOREIGN KEY
+	(
+	ProductId
+	) REFERENCES dbo.Product
+	(
+	Id
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.Stock SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+select Has_Perms_By_Name(N'dbo.Stock', 'Object', 'ALTER') as ALT_Per, Has_Perms_By_Name(N'dbo.Stock', 'Object', 'VIEW DEFINITION') as View_def_Per, Has_Perms_By_Name(N'dbo.Stock', 'Object', 'CONTROL') as Contr_Per BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.IncomeOrderProduct ADD CONSTRAINT
+	FK_IncomeOrderProduct_Product FOREIGN KEY
+	(
+	ProductId
+	) REFERENCES dbo.Product
+	(
+	Id
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.IncomeOrderProduct SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+addint ExpirationPeriod to stock table
+
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.Stock
+	DROP CONSTRAINT FK_Stock_Product
+GO
+ALTER TABLE dbo.Product SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+select Has_Perms_By_Name(N'dbo.Product', 'Object', 'ALTER') as ALT_Per, Has_Perms_By_Name(N'dbo.Product', 'Object', 'VIEW DEFINITION') as View_def_Per, Has_Perms_By_Name(N'dbo.Product', 'Object', 'CONTROL') as Contr_Per BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.Stock
+	DROP CONSTRAINT FK_Stock_Store
+GO
+ALTER TABLE dbo.Store SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+select Has_Perms_By_Name(N'dbo.Store', 'Object', 'ALTER') as ALT_Per, Has_Perms_By_Name(N'dbo.Store', 'Object', 'VIEW DEFINITION') as View_def_Per, Has_Perms_By_Name(N'dbo.Store', 'Object', 'CONTROL') as Contr_Per BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.Stock
+	DROP CONSTRAINT DF_Stock_Quantity
+GO
+CREATE TABLE dbo.Tmp_Stock
+	(
+	Id int NOT NULL IDENTITY (12000, 1),
+	StoreId int NOT NULL,
+	ProductId int NOT NULL,
+	IncomePrice money NULL,
+	SalePrice money NULL,
+	Date datetime NULL,
+	ExpirationPeriod int NULL,
+	Quantity int NOT NULL
+	)  ON [PRIMARY]
+GO
+ALTER TABLE dbo.Tmp_Stock SET (LOCK_ESCALATION = TABLE)
+GO
+ALTER TABLE dbo.Tmp_Stock ADD CONSTRAINT
+	DF_Stock_Quantity DEFAULT ((0)) FOR Quantity
+GO
+SET IDENTITY_INSERT dbo.Tmp_Stock ON
+GO
+IF EXISTS(SELECT * FROM dbo.Stock)
+	 EXEC('INSERT INTO dbo.Tmp_Stock (Id, StoreId, ProductId, IncomePrice, SalePrice, Date, Quantity)
+		SELECT Id, StoreId, ProductId, IncomePrice, SalePrice, Date, Quantity FROM dbo.Stock WITH (HOLDLOCK TABLOCKX)')
+GO
+SET IDENTITY_INSERT dbo.Tmp_Stock OFF
+GO
+DROP TABLE dbo.Stock
+GO
+EXECUTE sp_rename N'dbo.Tmp_Stock', N'Stock', 'OBJECT' 
+GO
+ALTER TABLE dbo.Stock ADD CONSTRAINT
+	PK_Stock PRIMARY KEY CLUSTERED 
+	(
+	Id
+	) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+
+GO
+ALTER TABLE dbo.Stock ADD CONSTRAINT
+	FK_Stock_Store FOREIGN KEY
+	(
+	StoreId
+	) REFERENCES dbo.Store
+	(
+	Id
+	) ON UPDATE  CASCADE 
+	 ON DELETE  CASCADE 
+	
+GO
+ALTER TABLE dbo.Stock ADD CONSTRAINT
+	FK_Stock_Product FOREIGN KEY
+	(
+	ProductId
+	) REFERENCES dbo.Product
+	(
+	Id
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+COMMIT
+select Has_Perms_By_Name(N'dbo.Stock', 'Object', 'ALTER') as ALT_Per, Has_Perms_By_Name(N'dbo.Stock', 'Object', 'VIEW DEFINITION') as View_def_Per, Has_Perms_By_Name(N'dbo.Stock', 'Object', 'CONTROL') as Contr_Per 
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------
+Edit the permissions
+
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.Permission
+	DROP CONSTRAINT DF_Permissions_CanSellUC
+GO
+ALTER TABLE dbo.Permission
+	DROP CONSTRAINT DF_Permissions_CanInventoryUC
+GO
+ALTER TABLE dbo.Permission
+	DROP CONSTRAINT DF_Permissions_CanProductManager
+GO
+ALTER TABLE dbo.Permission
+	DROP CONSTRAINT DF_Permission_CanStaffsManagerUC
+GO
+CREATE TABLE dbo.Tmp_Permission
+	(
+	Id int NOT NULL IDENTITY (300000, 1),
+	CanSellUC bit NOT NULL,
+	CanSellingOrdersManagerUC bit NULL,
+	CanInventoryUC bit NOT NULL,
+	CanGlobalInventoryUC bit NULL,
+	CanProductManagerUC bit NOT NULL,
+	CanStaffsManagerUC bit NOT NULL,
+	CanIncomeOrderUC bit NULL,
+	CanIncomeOrderManagerUC bit NULL,
+	CanInstallmentOrderUC bit NULL,
+	CanCashFlowUC bit NULL,
+	CanBillManagerUC bit NULL,
+	CanPriceListUC bit NULL
+	)  ON [PRIMARY]
+GO
+ALTER TABLE dbo.Tmp_Permission SET (LOCK_ESCALATION = TABLE)
+GO
+ALTER TABLE dbo.Tmp_Permission ADD CONSTRAINT
+	DF_Permissions_CanSellUC DEFAULT ((0)) FOR CanSellUC
+GO
+ALTER TABLE dbo.Tmp_Permission ADD CONSTRAINT
+	DF_Permissions_CanInventoryUC DEFAULT ((0)) FOR CanInventoryUC
+GO
+ALTER TABLE dbo.Tmp_Permission ADD CONSTRAINT
+	DF_Permissions_CanProductManager DEFAULT ((0)) FOR CanProductManagerUC
+GO
+ALTER TABLE dbo.Tmp_Permission ADD CONSTRAINT
+	DF_Permission_CanStaffsManagerUC DEFAULT ((0)) FOR CanStaffsManagerUC
+GO
+SET IDENTITY_INSERT dbo.Tmp_Permission ON
+GO
+IF EXISTS(SELECT * FROM dbo.Permission)
+	 EXEC('INSERT INTO dbo.Tmp_Permission (Id, CanSellUC, CanInventoryUC, CanProductManagerUC, CanStaffsManagerUC)
+		SELECT Id, CanSellUC, CanInventoryUC, CanProductManagerUC, CanStaffsManagerUC FROM dbo.Permission WITH (HOLDLOCK TABLOCKX)')
+GO
+SET IDENTITY_INSERT dbo.Tmp_Permission OFF
+GO
+DROP TABLE dbo.Permission
+GO
+EXECUTE sp_rename N'dbo.Tmp_Permission', N'Permission', 'OBJECT' 
+GO
+ALTER TABLE dbo.Permission ADD CONSTRAINT
+	PK_Permissions PRIMARY KEY CLUSTERED 
+	(
+	Id
+	) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+
+GO
+COMMIT
+select Has_Perms_By_Name(N'dbo.Permission', 'Object', 'ALTER') as ALT_Per, Has_Perms_By_Name(N'dbo.Permission', 'Object', 'VIEW DEFINITION') as View_def_Per, Has_Perms_By_Name(N'dbo.Permission', 'Object', 'CONTROL') as Contr_Per 
+
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+spPermission_GetAll
+
+
+-- ================================================
+-- Template generated from Template Explorer using:
+-- Create Procedure (New Menu).SQL
+--
+-- Use the Specify Values for Template Parameters 
+-- command (Ctrl-Shift-M) to fill in the parameter 
+-- values below.
+--
+-- This block of comments will not be included in
+-- the definition of the procedure.
+-- ================================================
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE spPermission_GetAll
+
+
+AS
+BEGIN
+
+	SET NOCOUNT ON;
+
+	SELECT * FROM Permission;
+	
+END
+GO
+
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+CREATE PROCEDURE spStaff_GetPersonIdByStaffId 
+	
+	@StaffId int
+
+AS
+BEGIN
+	
+
+	SET NOCOUNT ON;
+
+	SELECT Staff.PersonId
+	FROM Staff 
+	WHERE Staff.Id = @StaffId;
+	
+
+END
+GO
+
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+CREATE PROCEDURE spStaff_GetPermissionIdByStaffId 
+	@StaffId int
+AS
+BEGIN
+
+
+
+	SET NOCOUNT ON;
+
+	SELECT Staff.PermissionId
+	FROM Staff
+	WHERE Staff.Id = @StaffId;
+
+END
+GO
+
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+

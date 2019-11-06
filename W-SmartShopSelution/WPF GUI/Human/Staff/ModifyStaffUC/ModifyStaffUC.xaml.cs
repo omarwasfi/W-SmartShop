@@ -107,7 +107,7 @@ namespace WPF_GUI.Staff.ModifyStaffUC
             UsernameValue_ModifyStaffUC.Text = Staff.Username;
             PasswordValue_ModifyStaffUC.Text = Staff.Password;
 
-            if (Staff.Permission.Name == "Manager")
+           /* if (Staff.Permission.Name == "Manager")
             {
                 ManagerRadioButton_ModifyStaffUC.IsChecked = true;
             }
@@ -123,7 +123,7 @@ namespace WPF_GUI.Staff.ModifyStaffUC
             {
                 SellInventoryProdcutManagerRadioButton_ModifyStaffUC.IsChecked = true;
             }
-          
+          */
             foreach(StoreModel store in Staff.Stores)
             {
                 if(store.Id == 501)

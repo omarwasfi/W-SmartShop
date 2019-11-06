@@ -126,6 +126,7 @@ namespace WPF_GUI.Sell
             PublicVariables.Categories = GlobalConfig.Connection.GetCategories();
             Categories = null;
             Categories = PublicVariables.Categories;
+            
         }
 
         /// <summary>

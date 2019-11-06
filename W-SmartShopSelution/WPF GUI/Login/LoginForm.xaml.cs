@@ -144,7 +144,7 @@ namespace WPF_GUI
                     PublicVariables.OrganizationAddress = "Egypt,Ismailia";
                     PublicVariables.OrganizationPhoneNumber = "01555707375";
 
-                    PublicVariables.Store = Store;
+                /*    PublicVariables.Store = Store;
                     PublicVariables.Stores = GlobalConfig.Connection.GetAllStores();
                     PublicVariables.LoginStoreStocks = GlobalConfig.Connection.FilterStocksByStore(Store);
                     PublicVariables.Products = GlobalConfig.Connection.GetProducts();
@@ -158,9 +158,9 @@ namespace WPF_GUI
                     PublicVariables.ShopBills = GlobalConfig.Connection.GetShopBills();
                     PublicVariables.Operations = GlobalConfig.Connection.GetOperations();
 
-                    PublicVariables.RecentlyAddProducts = new List<ProductModel>();
+                    PublicVariables.RecentlyAddProducts = new List<ProductModel>();*/
 
-
+                    GlobalConfig.Connection.SetThePublicVariables();
 
                 }
             }
@@ -178,6 +178,40 @@ namespace WPF_GUI
         #endregion
 
         #region UserLogin
+
+        private void UsernameValue_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                if (VerifyTheIncomeUser())
+                {
+
+                    OpenMainForm();
+
+                }
+                else
+                {
+                    MessageBox.Show("Username Or Password is wrong");
+                }
+            }
+        }
+
+        private void PasswordValue_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                if (VerifyTheIncomeUser())
+                {
+
+                    OpenMainForm();
+
+                }
+                else
+                {
+                    MessageBox.Show("Username Or Password is wrong");
+                }
+            }
+        }
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
@@ -238,6 +272,9 @@ namespace WPF_GUI
         {
             System.Windows.Application.Current.Shutdown();
         }
+
         #endregion
+
+      
     }
 }

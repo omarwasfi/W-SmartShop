@@ -29,11 +29,11 @@
             <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070"><Run Text="Ashes Stadio."/></TextBlock>
             <StackPanel Margin="0,15" Orientation="Horizontal">
                 <materialDesign:PackIcon Kind="Account" VerticalAlignment="Center" Foreground="#707070"/>
-                <TextBox x:Name="UsernameValue" materialDesign:HintAssist.Hint="Username" Width="250" Margin="5"/>
+                <TextBox x:Name="UsernameValue" materialDesign:HintAssist.Hint="Username" Width="250" Margin="5" KeyDown="UsernameValue_KeyDown"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <materialDesign:PackIcon Kind="Key" VerticalAlignment="Center" Foreground="#707070"/>
-                <PasswordBox x:Name="PasswordValue" materialDesign:HintAssist.Hint="Password" Width="250" Margin="5"/>
+                <PasswordBox x:Name="PasswordValue" materialDesign:HintAssist.Hint="Password" Width="250" Margin="5" KeyDown="PasswordValue_KeyDown"/>
             </StackPanel>
             <!--
             <Grid>

@@ -58,7 +58,10 @@ namespace Library
         /// </summary>
         public decimal IncomePrice { get; set; }
 
-
+        /// <summary>
+        /// The time of the expiration in days
+        /// </summary>
+        public int ExpirationPeriod { get; set; }
 
         /// <summary>
         /// Category Model of this product
