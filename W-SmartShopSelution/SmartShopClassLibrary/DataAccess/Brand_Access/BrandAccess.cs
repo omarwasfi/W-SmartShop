@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Library
 {
    
-    public static class Brand_Access
+    public static class BrandAccess
     {
 
         /// <summary>

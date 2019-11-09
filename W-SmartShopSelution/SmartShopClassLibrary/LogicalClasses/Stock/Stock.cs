@@ -11,55 +11,7 @@ namespace Library
 {
     public static class Stock
     {
-        /// <summary>
-        /// get all stockes from the database 
-        /// - set the product for each store
-        /// - set the store for each sotre
-        /// </summary>
-        /// <param name="db"></param>
-        /// <param name="allProducts"> get the product list from the database </param>
-        /// <param name="allStores"> get the stores list from the database </param>
-        /// <returns></returns>
-        public static List<StockModel> GetStocks(string db, List<ProductModel> allProducts, List<StoreModel> allStores)
-        {
-            List<StockModel> stocks = new List<StockModel>();
-
-            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnVal(db)))
-            {
-                stocks = connection.Query<StockModel>("dbo.spStock_GetAll").ToList();
-                // set the product and the store foreach stock
-                foreach (StockModel stock in stocks)
-                {
-                    // set the product id 
-                    var p = new DynamicParameters();
-                    p.Add("@StockId", stock.Id);
-                    stock.Product = connection.QuerySingle<ProductModel>("spStock_GetProductIdByStockId", p, commandType: CommandType.StoredProcedure);
-                    // set the product from the product list
-                    foreach (ProductModel product in allProducts)
-                    {
-                        if (product.Id == stock.Product.Id)
-                        {
-                            stock.Product = product;
-                            break;
-                        }
-                    }
-
-                    stock.Store = connection.QuerySingle<StoreModel>("spStock_GetStoreIdByStockId", p, commandType: CommandType.StoredProcedure);
-
-                    // set the store from the store list
-                    foreach (StoreModel store in allStores)
-                    {
-                        if (store.Id == stock.Store.Id)
-                        {
-                            stock.Store = store;
-                            break;
-                        }
-                    }
-
-                }
-            }
-            return stocks;
-        }
+        
 
         /// <summary>
         /// Filter all stock list by store

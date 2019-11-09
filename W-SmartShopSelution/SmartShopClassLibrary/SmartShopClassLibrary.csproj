@@ -62,15 +62,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataAccess\Brand_Access\Brand_Access.cs" />
-    <Compile Include="DataAccess\Category_Access\Category_Access.cs" />
-    <Compile Include="DataAccess\Customer_Access\Customer_Access.cs" />
+    <Compile Include="DataAccess\Brand_Access\BrandAccess.cs" />
+    <Compile Include="DataAccess\Category_Access\CategoryAccess.cs" />
+    <Compile Include="DataAccess\Customer_Access\CustomerAccess.cs" />
     <Compile Include="DataAccess\DataAccess.cs" />
     <Compile Include="DataAccess\IncomeOrder_Access\IncomeOrder_Access.cs" />
     <Compile Include="DataAccess\Permission_Access\Permission_Access.cs" />
     <Compile Include="DataAccess\Person_Access\Person_Access.cs" />
+    <Compile Include="DataAccess\Product_Access\ProductAccess.cs" />
     <Compile Include="DataAccess\Staff_Access\StaffAccess.cs" />
+    <Compile Include="DataAccess\Stock_Access\StockAccess.cs" />
     <Compile Include="DataAccess\Store_Access\Store_Access.cs" />
+    <Compile Include="DataAccess\Supplier_Access\SupplierAccess.cs" />
     <Compile Include="DataModels\CashOrder\OrderModel.cs" />
     <Compile Include="DataModels\CashOrder\OrderProductModel.cs" />
     <Compile Include="DataModels\Goods\BrandModel.cs" />
@@ -143,12 +146,9 @@
     <Folder Include="DataAccess\Operation_Access\" />
     <Folder Include="DataAccess\OrderProduct_Access\" />
     <Folder Include="DataAccess\Order_Access\" />
-    <Folder Include="DataAccess\Product_Access\" />
     <Folder Include="DataAccess\ShopBill_Access\" />
     <Folder Include="DataAccess\StaffSalary_Access\" />
-    <Folder Include="DataAccess\Stock_Access\" />
     <Folder Include="DataAccess\StoreStaff_Access\" />
-    <Folder Include="DataAccess\Supplier_Access\" />
     <Folder Include="LogicalClasses\StaffSalary\" />
   </ItemGroup>
   <ItemGroup>

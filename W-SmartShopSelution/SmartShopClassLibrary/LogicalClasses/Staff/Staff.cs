@@ -103,25 +103,7 @@ namespace Library
             return true;
         }
 
-        /// <summary>
-        /// Update staff member data From username , password and permissionId
-        /// </summary>
-        /// <param name="staff"></param>
-        /// <param name="db"></param>
-        public static void UpdateStaffData(StaffModel staff , string db)
-        {
-            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnVal(db)))
-            {
-                var p = new DynamicParameters();
-                p.Add("@StaffId", staff.Id);
-                p.Add("@StaffUsername", staff.Username);
-                p.Add("@StaffPassword", staff.Password);
-                p.Add("@StaffPermissionId", staff.Permission.Id);
-                p.Add("@StaffSalary", staff.Salary);
-                connection.Execute("dbo.spStaff_Update", p, commandType: CommandType.StoredProcedure);
-            }
-        }
-
+        
 
 
     }

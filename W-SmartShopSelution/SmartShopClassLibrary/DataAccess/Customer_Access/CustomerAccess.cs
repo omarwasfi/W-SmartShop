@@ -8,10 +8,59 @@ using System.Threading.Tasks;
 
 namespace Library
 {
-    public static class Customer_Access
+    public static class CustomerAccess
     {
         /// <summary>
-        /// Get all customers and set the person model for each one
+        /// Get all Customers From the database - Without setting the person model -
+        /// </summary>
+        /// <returns></returns>
+        public static List<CustomerModel> GetCustomersFromTheDatabae(string db)
+        {
+            List<CustomerModel> customers = new List<CustomerModel>();
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnVal(db)))
+            {
+                customers = connection.Query<CustomerModel>("dbo.spCustomer_GetAll").ToList();
+            }
+
+            foreach(CustomerModel customer in customers)
+            {
+                customer.Person = new PersonModel();
+            }
+            return customers;
+        }
+
+        /// <summary>
+        /// Sets The Person Model for each customer in the list
+        ///   -Open the connection
+        ///   -set the id of the person foreach customer
+        ///   -Close the connection
+        ///   -match the IDs to the publicVariables.People AND set the person model for each CustomerModel
+        /// <param name="customers"></param>
+        /// <param name="people"></param>
+        /// <param name="db"></param>
+        /// <returns></returns>
+        public static List<CustomerModel> SetThePersonModelForEachCustomerFromTheDatabase(List<CustomerModel>customers,List<PersonModel>people , string db)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnVal(db)))
+            {
+                foreach (CustomerModel customer in customers)
+                {
+                    var p = new DynamicParameters();
+                    p.Add("@CustomerId", customer.Id);
+                    customer.Person.Id = connection.QuerySingle<int>("spCustomer_GetPersonIdByCustomerId", p, commandType: CommandType.StoredProcedure);
+                }
+            }
+
+            foreach(CustomerModel customerModel in customers)
+            {
+                customerModel.Person = people.Find(x => x.Id == customerModel.Person.Id);
+            }
+
+            return customers;
+        }
+
+        /// <summary>
+        /// -OLD- Get all customers and set the person model for each one
         /// </summary>
         /// <param name="db"></param>
         /// <returns></returns>

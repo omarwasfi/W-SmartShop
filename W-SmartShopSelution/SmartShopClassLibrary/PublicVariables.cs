@@ -25,6 +25,45 @@ namespace Library
         /// </summary>
         public static List<StoreModel> Stores { get; set; }
 
+
+        /// <summary>
+        /// All Staffs of all stors
+        /// </summary>
+        public static List<StaffModel> Staffs { get; set; }
+
+
+        /// <summary>
+        /// All Customer in the database
+        /// </summary>
+        public static List<CustomerModel> Customers { get; set; }
+
+
+        /// <summary>
+        /// All The Suppliers
+        /// </summary>
+        public static List<SupplierModel> Suppliers { get; set; }
+
+        /// <summary>
+        /// All the categories in the database
+        /// </summary>
+        public static List<CategoryModel> Categories { get; set; }
+
+        /// <summary>
+        /// All the brands in the database
+        /// </summary>
+        public static List<BrandModel> Brands { get; set; }
+
+        /// <summary>
+        /// All Products list
+        /// </summary>
+        public static List<ProductModel> Products { get; set; }
+
+        /// <summary>
+        /// All Stocks For all stores
+        /// </summary>
+        public static List<StockModel> Stocks { get; set; }
+
+
         /// <summary>
         /// All the operations in the database
         /// </summary>
@@ -47,44 +86,11 @@ namespace Library
         /// </summary>
         public static List<StockModel> LoginStoreStocks { get; set; }
 
-        /// <summary>
-        /// All the categories in the database
-        /// set first when the program opens
-        /// </summary>
-        public static List<CategoryModel> Categories { get; set; }
+      
 
-        /// <summary>
-        /// All the brands in the database
-        /// set first when the program opens
-        /// </summary>
-        public static List<BrandModel> Brands { get; set; }
 
-        /// <summary>
-        /// All Customer in the database
-        /// set first when the program opens
-        /// </summary>
-        public static List<CustomerModel> Customers { get; set; }
+      
 
-        /// <summary>
-        /// All Products list
-        /// - Set after create new product
-        /// - set when opening produts manager
-        /// - Set in the LoginUC
-        /// </summary>
-        public static List<ProductModel> Products { get; set; }
-
-        /// <summary>
-        /// All Stocks For all stores
-        /// set when modifyProductUC fired
-        ///  - Set in the LoginUC
-        /// </summary>
-        public static List<StockModel> Stocks { get; set; }
-
-        /// <summary>
-        /// All Staffs of all stors
-        /// set when staffs manager UC fires
-        /// </summary>
-        public static List<StaffModel> Staffs { get; set; }
 
      
 
@@ -99,12 +105,6 @@ namespace Library
         /// - Set in the loginUC
         /// </summary>
         public static List<IncomeOrderModel> IncomeOrders { get; set; }
-
-        /// <summary>
-        /// All The Suppliers
-        /// Set in the LoginUC
-        /// </summary>
-        public static List<SupplierModel> Suppliers { get; set; }
 
         /// <summary>
         /// The last added products

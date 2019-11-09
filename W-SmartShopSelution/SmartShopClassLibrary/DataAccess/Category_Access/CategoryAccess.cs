@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Library
 {
-    public static class Category_Access
+    public static class CategoryAccess
     {
 
         /// <summary>

@@ -22,6 +22,13 @@ namespace Library
         /// </summary>
         public string Name { get; set; }
 
+
+        /// <summary>
+        /// The size of the product if it exist ( not Has to be Unique ) Or Null , can't be set if the first one is null (200 char)
+        /// </summary>
+        public string Size { get; set; }
+
+
         /// <summary>
         /// Has To be unique , not null (200 char)
         /// </summary>
@@ -38,10 +45,7 @@ namespace Library
         /// </summary>
         public string SerialNumber2 { get; set; }
 
-        /// <summary>
-        /// The size of the product if it exist ( not Has to be Unique ) Or Null , can't be set if the first one is null (200 char)
-        /// </summary>
-        public string Size { get; set; }
+
 
         /// <summary>
         /// The Details of a product For any additional Info (500 Char)
@@ -62,6 +66,11 @@ namespace Library
         /// The time of the expiration in days
         /// </summary>
         public int ExpirationPeriod { get; set; }
+
+        /// <summary>
+        /// The quantity that the user need a notification to increase the number of this product in the stock
+        /// </summary>
+        public int AlarmQuantity { get; set; }
 
         /// <summary>
         /// Category Model of this product

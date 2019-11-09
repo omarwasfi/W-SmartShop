@@ -12,30 +12,7 @@ namespace Library
 {
     public static class Product
     {
-        /// <summary>
-        /// Get the products from the database 
-        /// set the category and brand for each productModel
-        /// </summary>
-        /// <param name="db"> Database connection Name </param>
-        /// <returns></returns>
-        public static List<ProductModel> GetProducts(string db)
-        {
-            List<ProductModel> products;
-            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnVal(db)))
-            {
-                products = connection.Query<ProductModel>("dbo.spProduct_GetAll").ToList();
-                foreach(ProductModel product in products)
-                {
-                    var p = new DynamicParameters();
-                    p.Add("@ProductId", product.Id);
-                    product.Category = connection.QuerySingle<CategoryModel>("spProduct_GetCategoryByProductId", p, commandType: CommandType.StoredProcedure);
-                    product.Brand = connection.QuerySingle<BrandModel>("spProduct_GetBrandByProductId", p, commandType: CommandType.StoredProcedure);
-
-                }
-            }
-            return products;
-        }
-
+       
         /// <summary>
         /// Filter List of products by category
         /// </summary>
@@ -304,61 +281,7 @@ namespace Library
         }
 
 
-        /// <summary>
-        /// Insert product to the database that Has all the information,
-        /// return product model with the new Id
-        /// </summary>
-        /// <param name="newProduct"></param>
-        /// <param name="db"></param>
-        /// <returns></returns>
-        public static ProductModel AddProductToTheDatabase(ProductModel newProduct , string db)
-        {
-            
-            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnVal(db)))
-            {
-                var p = new DynamicParameters();
-                p.Add("@ProductName" , newProduct.Name);
-                p.Add("@BarCode", newProduct.BarCode);
-                p.Add("@SerialNumber", newProduct.SerialNumber);
-                p.Add("@SerialNumber2", newProduct.SerialNumber2);
-                p.Add("@Size",newProduct.Size);
-                p.Add("@Details", newProduct.Details);
-                p.Add("@SalePrice", newProduct.SalePrice);
-                p.Add("@IncomePrice", newProduct.IncomePrice);
-                p.Add("@BrandId", newProduct.Brand.Id);
-                p.Add("@CategoryId", newProduct.Category.Id);
-                p.Add("@Id", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
-                connection.Execute("dbo.spProduct_Create", p, commandType: CommandType.StoredProcedure);
-                newProduct.Id = p.Get<int>("@Id");
-            }
-            return newProduct;
-        }
-
-        /// <summary>
-        /// Update the   ProductName ,SerialNumber ,IncomePrice,SalePrice ,BrandId ,CategoryId Values with the database
-        /// </summary>
-        /// <param name="updatedProduct"></param>
-        /// <param name="db"></param>
-        public static void UpdateProdcutData(ProductModel updatedProduct , string db)
-        {
-            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnVal(db)))
-            {
-                var p = new DynamicParameters();
-                p.Add("@Id",updatedProduct.Id);
-                p.Add("@ProductName", updatedProduct.Name);
-                p.Add("@BarCode", updatedProduct.BarCode);
-                p.Add("@SerialNumber", updatedProduct.SerialNumber);
-                p.Add("@SerialNumber2", updatedProduct.SerialNumber2);
-                p.Add("@Size", updatedProduct.Size);
-                p.Add("@Details", updatedProduct.Details);
-                p.Add("@SalePrice", updatedProduct.SalePrice);
-                p.Add("@IncomePrice", updatedProduct.IncomePrice);
-                p.Add("@BrandId", updatedProduct.Brand.Id);
-                p.Add("@CategoryId", updatedProduct.Category.Id);
-                connection.Execute("dbo.spProduct_Update", p, commandType: CommandType.StoredProcedure);
-                
-            }
-        }
+     
 
 
         /// <summary>

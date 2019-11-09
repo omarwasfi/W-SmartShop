@@ -18,14 +18,14 @@ namespace Library
         public int Id { get; set; }
 
         /// <summary>
-        /// The product 
-        /// </summary>
-        public ProductModel Product { get; set; }
-
-        /// <summary>
         /// The Store model
         /// </summary>
         public StoreModel Store { get; set; }
+
+        /// <summary>
+        /// The product 
+        /// </summary>
+        public ProductModel Product { get; set; }
 
         /// <summary>
         /// The real Incomeprice set in IncomeOrderUC
@@ -48,8 +48,22 @@ namespace Library
         public int ExpirationPeriod { get; set; }
 
         /// <summary>
+        /// if it's disabled the user will not get notification about the ExpirationPeriod
+        /// </summary>
+        public Boolean ExpirationAlarmEnabled { get; set; }
+        /// <summary>
         /// The Current Quantity of this product in the store
         /// </summary>
         public int Quantity { get; set; }
+
+        /// <summary>
+        /// The quantity that the user need to be notified at To get more stocks
+        /// </summary>
+        public int AlarmQuantity { get; set; }
+
+        /// <summary>
+        /// if it's disabled the user will not get notification about the AlarmQuantity
+        /// </summary>
+        public Boolean QuantityAlarmEnabled { get; set; }
     }
 }

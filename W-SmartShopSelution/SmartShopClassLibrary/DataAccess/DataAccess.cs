@@ -60,6 +60,29 @@ namespace Library
             PublicVariables.Staffs = null;
             PublicVariables.Staffs = GetStaffsFromTheDatabase(PublicVariables.People,PublicVariables.Stores,PublicVariables.Permissions);
 
+            // 5- Set the Customer models
+            PublicVariables.Customers = null;
+            PublicVariables.Customers = GetCustomersFromTheDatabase(PublicVariables.People);
+
+            // 6- Set The Supplier Models
+            PublicVariables.Suppliers = null;
+            PublicVariables.Suppliers = GetSuppliersFromTheDatabase(PublicVariables.People);
+
+            // 7- Set the categories
+            PublicVariables.Categories = null;
+            PublicVariables.Categories = GetCategoriesFromTheDatabase();
+
+            // 8- Set the Brands
+            PublicVariables.Brands = null;
+            PublicVariables.Brands = GetBrandsFromTheDatabase();
+
+            // 9- Set the Products
+            PublicVariables.Products = null;
+            PublicVariables.Products = GetProductsFromTheDatabase(PublicVariables.Categories,PublicVariables.Brands);
+
+            //10- Set the stocks
+            PublicVariables.Stocks = null;
+            PublicVariables.Stocks = GetStocksFromTheDatabase(PublicVariables.Stores, PublicVariables.Products);
         }
 
         /// <summary>
@@ -114,6 +137,86 @@ namespace Library
             return staffs;
         }
 
+        /// <summary>
+        /// Get all Customers from the database
+        /// - set the person model foreach one of them
+        /// </summary>
+        /// <param name="people"></param>
+        /// <returns></returns>
+        private List<CustomerModel> GetCustomersFromTheDatabase(List<PersonModel> people)
+        {
+            List<CustomerModel> customers = new List<CustomerModel>();
+
+            customers = CustomerAccess.GetCustomersFromTheDatabae(db);
+            customers = CustomerAccess.SetThePersonModelForEachCustomerFromTheDatabase(customers, people, db);
+
+            return customers;
+        }
+
+        /// <summary>
+        /// Get all the suppliers from the database
+        /// - set the person model foreach one of them
+        /// </summary>
+        /// <param name="people"></param>
+        /// <returns></returns>
+        private List<SupplierModel> GetSuppliersFromTheDatabase(List<PersonModel> people)
+        {
+            List<SupplierModel> suppliers = new List<SupplierModel>();
+            suppliers = SupplierAccess.GetSuppliersFromTheDatabase(db);
+            suppliers = SupplierAccess.SetThePersonModelForEachSupplierFromTheDatabase(suppliers, people, db);
+            return suppliers;
+        }
+
+        /// <summary>
+        /// Get all the categories from the database
+        /// </summary>
+        /// <returns></returns>
+        private List<CategoryModel> GetCategoriesFromTheDatabase()
+        {
+            return CategoryAccess.GetCategories(db);
+        }
+
+        /// <summary>
+        /// Get all Brands From the database
+        /// </summary>
+        /// <returns></returns>
+        private List<BrandModel> GetBrandsFromTheDatabase()
+        {
+            return BrandAccess.GetBrands(db);
+        }
+
+        /// <summary>
+        /// Get all the products 
+        /// - set the categoryModel foreach one
+        /// - set the brandModel foreach one
+        /// </summary>
+        /// <param name="categories"></param>
+        /// <param name="brands"></param>
+        /// <returns></returns>
+        private List<ProductModel> GetProductsFromTheDatabase(List<CategoryModel>categories,List<BrandModel>brands)
+        {
+            List<ProductModel> products = new List<ProductModel>();
+            products = ProductAccess.GetProductsFromTheDabase(db);
+            products = ProductAccess.SetTheCategoryModelForEachProductFromTheDatabase(products, categories,db);
+            products = ProductAccess.SetTheBrandModelForEachProductFromTheDatabase(products, brands, db);
+            return products;
+        }
+
+        /// <summary>
+        /// Get all stocks from the database 
+        /// - set the storemodel and the product model foreach stock
+        /// </summary>
+        /// <param name="stores"></param>
+        /// <param name="products"></param>
+        /// <returns></returns>
+        private List<StockModel> GetStocksFromTheDatabase(List<StoreModel>stores,List<ProductModel>products)
+        {
+            List<StockModel> stocks = new List<StockModel>();
+            stocks = StockAccess.GetAllStocksFromTheDatabase(db);
+            stocks = StockAccess.SetTheProductForEachStockFromTheDatabase(stocks, products, db);
+            stocks = StockAccess.SetTheStoreForEachStockFromTheDatabase(stocks, stores, db);
+            return stocks;
+        }
         #endregion
 
 
@@ -126,7 +229,7 @@ namespace Library
         /// <returns></returns>
         public List<BrandModel> GetBrands()
         {
-            List<BrandModel> brands = Brand_Access.GetBrands(db);
+            List<BrandModel> brands = BrandAccess.GetBrands(db);
             return brands;
         }
 
@@ -138,7 +241,7 @@ namespace Library
         /// <returns></returns>
         public BrandModel AddBrandToTheDatabase(BrandModel newBrand)
         {
-            return Brand_Access.AddBrandToTheDatabase(newBrand, db);
+            return BrandAccess.AddBrandToTheDatabase(newBrand, db);
         }
 
 
@@ -166,7 +269,7 @@ namespace Library
         /// <returns></returns>
         public List<CategoryModel> GetCategories()
         {
-            List<CategoryModel> categories = Category_Access.GetCategories(db);
+            List<CategoryModel> categories = CategoryAccess.GetCategories(db);
             return categories;
         }
 
@@ -178,7 +281,7 @@ namespace Library
         /// <returns></returns>
         public CategoryModel AddCategoryToTheDatabase(CategoryModel newCategory)
         {
-            return Category_Access.AddCategoryToTheDatabase(newCategory, db);
+            return CategoryAccess.AddCategoryToTheDatabase(newCategory, db);
         }
 
 
@@ -205,7 +308,7 @@ namespace Library
         /// <returns></returns>
         public  List<CustomerModel> GetCustomers()
         {
-            return Customer_Access.GetCustomers(db);
+            return CustomerAccess.GetCustomers(db);
         }
 
         /// <summary>
@@ -225,7 +328,7 @@ namespace Library
         /// </summary>
         public void CreateCustomer_NoReturn(CustomerModel customer)
         {
-            Customer_Access.CreateCustomer_NoReturn(customer, db);
+            CustomerAccess.CreateCustomer_NoReturn(customer, db);
         }
 
         /// <summary>
@@ -249,7 +352,7 @@ namespace Library
                 PersonModel personModel = Person_Access.CreatePerson(customer.Person, db); ;
                 customer.Person = new PersonModel();
                 customer.Person = personModel;
-                return Customer_Access.CreateCustomer(customer, db);
+                return CustomerAccess.CreateCustomer(customer, db);
             }
 
         }
@@ -313,7 +416,7 @@ namespace Library
         /// <returns></returns>
         public List<ProductModel> GetProducts()
         {
-            List<ProductModel> products = Product.GetProducts(db);
+            List<ProductModel> products = ProductAccess.GetProducts(db);
             return products;
         }
 
@@ -420,7 +523,7 @@ namespace Library
         public ProductModel AddProductToTheDatabase(ProductModel newProduct)
         {
 
-            return Product.AddProductToTheDatabase(newProduct, db);
+            return ProductAccess.AddProductToTheDatabase(newProduct, db);
         }
 
 
@@ -431,7 +534,7 @@ namespace Library
         /// <param name="db"></param>
         public void UpdateProdcutData(ProductModel updatedProduct)
         {
-            Product.UpdateProdcutData(updatedProduct, db);
+            ProductAccess.UpdateProdcutData(updatedProduct, db);
         }
 
         /// <summary>
@@ -875,7 +978,7 @@ namespace Library
         /// <param name="db"></param>
         public  void UpdateStaffData(StaffModel staff)
         {
-            Staff.UpdateStaffData(staff, db);
+            StaffAccess.UpdateStaffData(staff, db);
         }
 
         #endregion
@@ -928,7 +1031,7 @@ namespace Library
         /// <returns></returns>
         public List<StockModel> GetStocks()
         {
-            List<StockModel> stocks = Stock.GetStocks(db,GetProducts(),GetAllStores());
+            List<StockModel> stocks = StockAccess.GetStocks(db,GetProducts(),GetAllStores());
             return stocks;
         }
 
@@ -1097,7 +1200,7 @@ namespace Library
         public List<SupplierModel> GetSuppliers()
         {
 
-            return Supplier.GetSuppliers(db);
+            return SupplierAccess.GetSuppliers(db);
             
         }
 
@@ -1108,7 +1211,7 @@ namespace Library
         /// <param name="db"></param>
         public void CreateSupplier(SupplierModel supplier)
         {
-            Supplier.CreateSupplier(supplier, db);
+            SupplierAccess.CreateSupplier(supplier, db);
         }
 
         #endregion
