@@ -199,82 +199,6 @@ namespace Library
 
 
         /// <summary>
-        /// Resuce the quantity of stock in the database
-        /// If the quantity  = stock.quantity => remove the stock from the database
-        /// </summary>
-        /// <param name="stock"></param>
-        /// <param name="quantity"> the number that u want to decreace </param>
-        /// <param name="db"></param>
-        public static void ReduseStock(StockModel stock , int quantity , string db)
-        {
-            if (stock.Quantity > quantity)
-            {
-                using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnVal(db)))
-                {
-                    var p = new DynamicParameters();
-                    p.Add("@StockId", stock.Id);
-                    p.Add("@Quantity", quantity);
-                    connection.Execute("dbo.spStock_ReduseStock", p, commandType: CommandType.StoredProcedure);
-
-                }
-            }
-            else
-            {
-                using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnVal(db)))
-                {
-                    var p = new DynamicParameters();
-                    p.Add("@Id", stock.Id);
-
-                    connection.Execute("dbo.spStock_Delete", p, commandType: CommandType.StoredProcedure);
-
-                }
-            }
-            
-
-        }
-
-        /// <summary>
-        /// Increace the quantity of stock in the database
-        /// </summary>
-        /// <param name="stock"></param>
-        /// <param name="quantity"> the number that u want to increase </param>
-        /// <param name="db"></param>
-        public static void IncreaseStock(StockModel stock , int quantity , string db)
-        {
-            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnVal(db)))
-            {
-                var p = new DynamicParameters();
-                p.Add("@StockId", stock.Id);
-                p.Add("@Quantity", quantity);
-                connection.Execute("dbo.spStock_IncreaseStock", p, commandType: CommandType.StoredProcedure);
-            }
-
-        }
-
-        /// <summary>
-        /// Insert new stock to the stock table in the database
-        /// return stock with the new id
-        /// </summary>
-        /// <param name="NewStock">stock has product , quantity and store</param>
-        /// <returns></returns>
-        public static StockModel AddStockToTheDatabase(StockModel NewStock, string db)
-        {
-            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnVal(db)))
-            {
-                var p = new DynamicParameters();
-                p.Add("@StoreId", NewStock.Store.Id);
-                p.Add("@ProductId", NewStock.Product.Id);
-                p.Add("@Quantity", NewStock.Quantity);
-
-
-                p.Add("@Id", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
-                connection.Execute("dbo.spStock_Create", p, commandType: CommandType.StoredProcedure);
-                NewStock.Id = p.Get<int>("@Id");
-            }
-            return NewStock;
-        }
-
-        /// <summary>
         /// Return the prodcut's stocks
         /// </summary>
         /// <param name="stocks"> list of stock </param>
@@ -296,40 +220,6 @@ namespace Library
         }
         
 
-        /// <summary>
-        /// Update the stock quantity If the stock exist
-        /// </summary>
-        /// <param name="updatedStock"></param>
-        /// <param name="db"></param>
-        public static void UpdateStockData(StockModel updatedStock , string db)
-        {
-            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnVal(db)))
-            {
-                var p = new DynamicParameters();
-                p.Add("@Id", updatedStock.Id);
-                p.Add("Quantity", updatedStock.Quantity);
-
-                connection.Execute("dbo.spStock_Update", p, commandType: CommandType.StoredProcedure);
-
-            }
-        }
-
-        /// <summary>
-        /// Remove stock from the database
-        /// </summary>
-        /// <param name="stock"></param>
-        /// <param name="db"></param>
-        public static void RemoveStockFromTheDatabase(StockModel stock , string db)
-        {
-            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnVal(db)))
-            {
-                var p = new DynamicParameters();
-                p.Add("@Id", stock.Id);
-
-                connection.Execute("dbo.spStock_Delete", p, commandType: CommandType.StoredProcedure);
-
-            }
-        }
 
 
     }

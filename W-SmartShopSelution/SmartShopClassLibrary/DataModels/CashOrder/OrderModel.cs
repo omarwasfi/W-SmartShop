@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Library
 {
@@ -12,9 +9,6 @@ namespace Library
     /// </summary>
     public class OrderModel
     {
-
-      
-
         /// <summary>
         /// database Id
         /// </summary>
@@ -41,11 +35,6 @@ namespace Library
         public StaffModel Staff { get; set; }
 
         /// <summary>
-        /// Total Price of this order
-        /// </summary>
-        public decimal TotalPrice { get; set; }
-
-        /// <summary>
         /// Total Payed money from the Order
         /// </summary>
         public decimal Paid { get; set; }
@@ -61,11 +50,10 @@ namespace Library
         public string Details { get; set; }
 
         /// <summary>
-        /// List of order product model describe 
+        /// List of order product model describe
         /// what products we have , the quantity , the price of each one , if there is a discount or not
         /// </summary>
-        public List<OrderProductModel> Products { get; set; }
-
+        public List<OrderProductModel> OrderProducts { get; set; }
 
         /// <summary>
         /// Get the total Profit of this Order
@@ -75,7 +63,7 @@ namespace Library
             get
             {
                 decimal profit = new decimal();
-                foreach(OrderProductModel orderProduct in Products)
+                foreach (OrderProductModel orderProduct in OrderProducts)
                 {
                     profit += orderProduct.GetTotalProfit;
                 }
@@ -87,24 +75,25 @@ namespace Library
         /// <summary>
         /// Calculate the total Price from each OrderProduct
         /// </summary>
-        public decimal GetTotalPrice {
+        public decimal GetTotalPrice
+        {
             get
             {
                 decimal total = new decimal();
-                foreach(OrderProductModel orderProduct in Products)
+                foreach (OrderProductModel orderProduct in OrderProducts)
                 {
                     total += orderProduct.GetTotalPrice;
                 }
                 return total;
-            } }
+            }
+        }
 
         public int GetTheNumberOfOrderProducts
         {
             get
             {
-                return Products.Count;
+                return OrderProducts.Count;
             }
         }
-
     }
 }

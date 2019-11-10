@@ -954,7 +954,7 @@ namespace WPF_GUI
             }*/
             foreach(IncomeOrderProductModel incomeOrderProduct in IncomeOrderProducts)
             {
-                totalPrice += incomeOrderProduct.Product.IncomePrice * incomeOrderProduct.Quantity;
+                totalPrice += incomeOrderProduct.Product.IncomePrice * (decimal)incomeOrderProduct.Quantity;
             }
             TotalPriceValue_IncomeOrderUC.Text = totalPrice.ToString();
 

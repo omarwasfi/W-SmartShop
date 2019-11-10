@@ -54,7 +54,7 @@ namespace Library
         /// <summary>
         /// The Current Quantity of this product in the store
         /// </summary>
-        public int Quantity { get; set; }
+        public float Quantity { get; set; }
 
         /// <summary>
         /// The quantity that the user need to be notified at To get more stocks
