@@ -12,16 +12,29 @@ namespace Library
     {
 
         /// <summary>
-        /// Get the profit of single of this OrderProduct 
+        /// Loop throw each OrderProduct in the order
+        /// save each one in the orderProdcut table with tha Id of the order
         /// </summary>
-        /// <param name="stock">The stock</param>
-        /// <param name="salePrice"> The sale price that the customer will pay for a single</param>
-        /// <returns></returns>
-        public static decimal GetProfit(StockModel stock , decimal salePrice)
+        /// <param name="order"> Order Model Has An Id From Order.GetEmptyOrder </param>
+        /// <param name="db"> Database Connection Name </param>
+        public static void SaveOrderProductListToTheDatabase(OrderModel order, string db)
         {
-            decimal profit = new decimal();
-            profit = salePrice - stock.IncomePrice;
-            return profit;
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnVal(db)))
+            {
+                foreach (OrderProductModel orderProduct in order.Products)
+                {
+                    var o = new DynamicParameters();
+                    o.Add("@OrderId", order.Id);
+                    o.Add("@ProductId", orderProduct.Product.Id);
+                    o.Add("@Quantity", orderProduct.Quantity);
+                    o.Add("@SalePrice", orderProduct.SalePrice);
+                    o.Add("@Discount", orderProduct.Discount);
+                    o.Add("@Profit", orderProduct.Profit);
+                    
+                    connection.Execute("dbo.spOrderProduct_Create", o, commandType: CommandType.StoredProcedure);
+
+                }
+            }
         }
 
         /// <summary>
@@ -31,13 +44,13 @@ namespace Library
         /// <param name="price"> Product Price </param>
         /// <param name="quantity"> Quantity </param>
         /// <returns></returns>
-        public static decimal GetTotalPriceValue(decimal price, float quantity)
+        public static decimal GetTotalPriceValue(decimal price, int quantity)
         {
-            return price * (decimal)quantity;
+            return price * quantity;
         }
 
         /// <summary>
-        /// -OLD- Get product model and discount 
+        /// Get product model and discount 
         /// to calculate the price If discount > sale price it will return -1
         /// // Price = OldPrice - Discount (Trigger When Discount change)
         /// </summary>
@@ -88,5 +101,20 @@ namespace Library
         }
 
 
+        /// <summary>
+        /// Delete OrderProduct from the database
+        /// </summary>
+        /// <param name="orderProduct"></param>
+        /// <param name="db"></param>
+        public static void RemoveOrderProduct(OrderProductModel orderProduct, string db)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnVal(db)))
+            {
+                var p = new DynamicParameters();
+                p.Add("@Id",orderProduct.Id);
+                connection.Execute("dbo.spOrderProduct_Delete", p, commandType: CommandType.StoredProcedure);
+
+            }
+        }
     }
 }

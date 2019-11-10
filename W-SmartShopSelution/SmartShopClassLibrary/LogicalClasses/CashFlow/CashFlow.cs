@@ -48,7 +48,7 @@ namespace Library
             {
                 if (operation.Order != null)
                 {
-                    totalSells += operation.Order.GetTotalPrice;
+                    totalSells += operation.Order.TotalPrice;
                 }
                 
             }

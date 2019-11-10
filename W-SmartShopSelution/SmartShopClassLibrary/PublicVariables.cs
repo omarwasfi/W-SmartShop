@@ -25,15 +25,18 @@ namespace Library
         /// </summary>
         public static List<StoreModel> Stores { get; set; }
 
+
         /// <summary>
         /// All Staffs of all stors
         /// </summary>
         public static List<StaffModel> Staffs { get; set; }
 
+
         /// <summary>
         /// All Customer in the database
         /// </summary>
         public static List<CustomerModel> Customers { get; set; }
+
 
         /// <summary>
         /// All The Suppliers
@@ -60,21 +63,6 @@ namespace Library
         /// </summary>
         public static List<StockModel> Stocks { get; set; }
 
-        /// <summary>
-        /// All the orderProducts in the database
-        /// </summary>
-        public static List<OrderProductModel> OrderProducts { get; set; }
-
-        /// <summary>
-        /// All the IncomeOrderProducts in the database
-        /// </summary>
-        public static List<IncomeOrderProductModel> IncomeOrderProducts { get; set; }
-
-        /// <summary>
-        /// All Orders
-        /// </summary>
-        public static List<OrderModel> Orders { get; set; }
-
 
         /// <summary>
         /// All the operations in the database
@@ -98,8 +86,22 @@ namespace Library
         /// </summary>
         public static List<StockModel> LoginStoreStocks { get; set; }
 
+      
+
+
+      
+
+
+     
+
         /// <summary>
-        /// All the IncomeOrders 
+        /// All Store Orders
+        /// - Set In the loginUC
+        /// </summary>
+        public static List<OrderModel> Orders { get; set; }
+
+        /// <summary>
+        /// All the IncomeOrders
         /// - Set in the loginUC
         /// </summary>
         public static List<IncomeOrderModel> IncomeOrders { get; set; }

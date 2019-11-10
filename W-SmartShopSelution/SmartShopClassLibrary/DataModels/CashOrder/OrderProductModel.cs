@@ -13,7 +13,7 @@ namespace Library
 
         // TODO - Remove this probity "Are u kidding me !!"
         /// <summary>
-        /// -OLD- used Just to hold the stock during the selling operation
+        /// used Just to hold the stock during the selling operation
         /// </summary>
         public StockModel Stock { get; set; }
 
@@ -25,10 +25,10 @@ namespace Library
         /// <summary>
         /// The quantity that the customer will buy
         /// </summary>
-        public float Quantity { get; set; }
+        public int Quantity { get; set; }
 
         /// <summary>
-        /// The SalePrice Of single
+        /// The SalePrice
         /// </summary>
         public decimal SalePrice { get; set; }
 
@@ -40,12 +40,16 @@ namespace Library
         
 
         /// <summary>
-        /// The Profit of single  salePrice - IncomePrice of the Stock
+        /// The salePrice - IncomePrice of the product
         /// </summary>
         public decimal Profit { get; set; }
 
 
-
+        // TODO - Remove It if we don't use !
+        /// <summary>
+        /// The total price after discount 
+        /// </summary>
+        public decimal TotalProductPrice { get; set; }
 
         /// <summary>
         /// Get only : the total price of the order product
@@ -54,12 +58,24 @@ namespace Library
         {
             get
             {
-                decimal total = (decimal)Quantity * SalePrice;
-                decimal discount = (decimal)Quantity * Discount;
+                decimal total = Quantity * SalePrice;
+                decimal discount = Quantity * Discount;
 
                 total -= discount;
 
                 return total ;
+            }
+        }
+
+
+        /// <summary>
+        /// GetThe Profit (  salePrice - IncomePrice of the product )
+        /// </summary>
+        public decimal GetProfit
+        {
+            get
+            {
+                return SalePrice - Product.IncomePrice;
             }
         }
 
@@ -70,29 +86,11 @@ namespace Library
         {
             get
             {
-                return Profit * (decimal)Quantity;
+                return GetProfit * Quantity;
             }
         }
 
-
-         // TODO - Remove It if we don't use !
-        /// <summary>
-        /// -OLD- The total price after discount 
-        /// </summary>
-        public decimal TotalProductPrice { get; set; }
-
-        /// <summary>
-        /// -OLD- GetThe Profit (  salePrice - IncomePrice of the product )
-        /// </summary>
-        public decimal GetProfit
-        {
-            get
-            {
-                return SalePrice - Product.IncomePrice;
-            }
-        }
-
-
+       
 
     }
 }

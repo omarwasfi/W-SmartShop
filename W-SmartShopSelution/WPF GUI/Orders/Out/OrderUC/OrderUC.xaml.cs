@@ -58,14 +58,14 @@ namespace WPF_GUI.Orders.Out.OrderUC
         {
 
             Order = OrignalOrder;
-            OrderProducts = Order.OrderProducts;
+            OrderProducts = Order.Products;
             // Set the GUI values
             OrderIdValue_OrderUC.Text = Order.Id.ToString();
-            TotalPriceValue_OrderUC.Text = Order.GetTotalPrice.ToString();
+            TotalPriceValue_OrderUC.Text = Order.TotalPrice.ToString();
             TotalOrderProfitValue_OrderUC.Text = Order.GetTotalProfit.ToString();
             CustomerPaidValue_OrderUC.Text = Order.Paid.ToString();
             LastPaymentDateValue_OrderUC.Text = Order.LastPaymentDate.ToString();
-            TotalPriceAfterChangesValue_OrderUC.Text = Order.GetTotalPrice.ToString();
+            TotalPriceAfterChangesValue_OrderUC.Text = Order.TotalPrice.ToString();
             TotalOrderProfitValue_OrderUC.Text = Order.GetTotalProfit.ToString();
             TotalOrderProfitAfterChangesValue_OrderUC.Text = Order.GetTotalProfit.ToString();
             OrderDetailsValue_OrderUC.Text = Order.Details;
@@ -287,7 +287,7 @@ namespace WPF_GUI.Orders.Out.OrderUC
                 }
 
                 Order.Details = OrderDetailsValue_OrderUC.Text;
-               // Order.TotalPrice = decimal.Parse(TotalPriceAfterChangesValue_OrderUC.Text);
+                Order.TotalPrice = decimal.Parse(TotalPriceAfterChangesValue_OrderUC.Text);
 
 
 
@@ -535,12 +535,12 @@ namespace WPF_GUI.Orders.Out.OrderUC
 
 
             report["OrderDetails"] = Order.Details;
-            report["TotalPrice"] = Order.GetTotalPrice.ToString("G29");
+            report["TotalPrice"] = Order.TotalPrice.ToString("G29");
             report["TotalOrderProduct"] = Order.GetTheNumberOfOrderProducts.ToString();
 
 
             string printLast = "";
-            if (Order.Paid < Order.GetTotalPrice)
+            if (Order.Paid < Order.TotalPrice)
             {
                 printLast += "Payment due within 30 days from date of invoice\n";
             }

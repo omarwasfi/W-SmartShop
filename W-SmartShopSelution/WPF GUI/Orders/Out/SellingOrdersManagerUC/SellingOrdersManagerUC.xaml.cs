@@ -167,12 +167,12 @@ namespace WPF_GUI.Orders.Out.SellingOrdersManagerUC
 
 
                 report["OrderDetails"] = order.Details;
-                report["TotalPrice"] = order.GetTotalPrice.ToString("G29");
+                report["TotalPrice"] = order.TotalPrice.ToString("G29");
                 report["TotalOrderProduct"] = order.GetTheNumberOfOrderProducts.ToString();
 
 
                 string printLast = "";
-                if (order.Paid < order.GetTotalPrice)
+                if (order.Paid < order.TotalPrice)
                 {
                     printLast += "Payment due within 30 days from date of invoice\n";
                 }

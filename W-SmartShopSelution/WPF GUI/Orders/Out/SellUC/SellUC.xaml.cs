@@ -1332,10 +1332,10 @@ namespace WPF_GUI.Sell
                 {
                     Order.Staff = Staff;
                     Order.Store = Store;
-                    Order.OrderProducts = Orders;
+                    Order.Products = Orders;
                     Order.Customer = Customer;
                     Order.DateTimeOfTheOrder = DateTime.Now;
-                    //Order.GetTotalPrice = decimal.Parse(TotalPriceValue_Sell.Text);
+                    Order.TotalPrice = decimal.Parse(TotalPriceValue_Sell.Text);
 
                     decimal payed = new decimal();
                     if (decimal.TryParse(CustomerWillPayNowValue_Sell.Text, out payed))
@@ -1599,12 +1599,12 @@ namespace WPF_GUI.Sell
 
 
             report["OrderDetails"] = Order.Details;
-            report["TotalPrice"] = Order.GetTotalPrice.ToString("G29");
+            report["TotalPrice"] = Order.TotalPrice.ToString("G29");
             report["TotalOrderProduct"] = Order.GetTheNumberOfOrderProducts.ToString();
 
 
             string printLast = "";
-            if(Order.Paid < Order.GetTotalPrice)
+            if(Order.Paid < Order.TotalPrice)
             {
                 printLast += "Payment due within 30 days from date of invoice\n";
             }

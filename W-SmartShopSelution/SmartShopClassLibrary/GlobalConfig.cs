@@ -16,7 +16,6 @@ namespace Library
 
         public static NumberValidation NumberValidation { get; set; } = new NumberValidation();
         public static ProductValidator ProductValidator { get; set; }
-        public static OrderProductValidator OrderProductValidator { get; set; }
 
         public static void InitializeConnection()
         {

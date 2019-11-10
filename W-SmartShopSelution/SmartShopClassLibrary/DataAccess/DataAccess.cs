@@ -80,22 +80,9 @@ namespace Library
             PublicVariables.Products = null;
             PublicVariables.Products = GetProductsFromTheDatabase(PublicVariables.Categories,PublicVariables.Brands);
 
-            // 10- Set the stocks
+            //10- Set the stocks
             PublicVariables.Stocks = null;
             PublicVariables.Stocks = GetStocksFromTheDatabase(PublicVariables.Stores, PublicVariables.Products);
-
-            // 11-Set the orderProducts
-            PublicVariables.OrderProducts = null;
-            PublicVariables.OrderProducts = GetOrderProductsFromTheDatabase(PublicVariables.Products);
-
-            // 12- Set the IncomeOrderProduct
-            PublicVariables.IncomeOrderProducts = null;
-            PublicVariables.IncomeOrderProducts = GetIncomeOrderProductsFromTheDatabase(PublicVariables.Products);
-
-            // 13- Set the Orders
-            PublicVariables.Orders = null;
-            PublicVariables.Orders = GetOrdersFromTheDatabase(PublicVariables.Customers, PublicVariables.Stores, PublicVariables.Staffs, PublicVariables.OrderProducts);
-
         }
 
         /// <summary>
@@ -230,57 +217,6 @@ namespace Library
             stocks = StockAccess.SetTheStoreForEachStockFromTheDatabase(stocks, stores, db);
             return stocks;
         }
-
-        /// <summary>
-        /// Get all OrderProducts from the database
-        /// - set the productModel Foreach one of them
-        /// </summary>
-        /// <param name="products"></param>
-        /// <returns></returns>
-        private List<OrderProductModel> GetOrderProductsFromTheDatabase(List<ProductModel>products)
-        {
-            List<OrderProductModel> orderProductModels = new List<OrderProductModel>();
-            orderProductModels = OrderProductAccess.GetOrderProductsFromTheDatabase(db);
-            orderProductModels = OrderProductAccess.SetTheProductModelForEachOrderProductFromTheDatabase(orderProductModels, products, db);
-            return orderProductModels;
-        }
-
-        /// <summary>
-        /// Get all IncomeOrderProducts From the database
-        /// - set the ProductModel foreach one of them
-        /// </summary>
-        /// <param name="products"></param>
-        /// <returns></returns>
-        private List<IncomeOrderProductModel> GetIncomeOrderProductsFromTheDatabase(List<ProductModel>products)
-        {
-            List<IncomeOrderProductModel> incomeOrderProducts = new List<IncomeOrderProductModel>();
-            incomeOrderProducts = IncomeOrderProductAccess.GetIncomeOrderProductsFromTheDatabase(db);
-            incomeOrderProducts = IncomeOrderProductAccess.SetTheProductModelForEachIncomeProductFromTheDatabase(incomeOrderProducts, products, db);
-            return incomeOrderProducts;
-        }
-
-        /// <summary>
-        /// Get all orders from the database
-        /// - set the customer Model
-        /// - set the store model
-        /// - set the list of orderProductModels
-        /// </summary>
-        /// <param name="customers"></param>
-        /// <param name="stores"></param>
-        /// <param name="staffs"></param>
-        /// <param name="orderProducts"></param>
-        /// <returns></returns>
-        private List<OrderModel>GetOrdersFromTheDatabase(List<CustomerModel>customers,List<StoreModel>stores,List<StaffModel>staffs, List<OrderProductModel> orderProducts)
-        {
-            List<OrderModel> orders = new List<OrderModel>();
-            orders = OrderAccess.GetOrdersFromTheDatabase(db);
-            orders = OrderAccess.SetTheCustomerForEachOrderFromTheDatabase(orders, customers, db);
-            orders = OrderAccess.SetTheStoreForEachOrderFromTheDatabase(orders, stores, db);
-            orders = OrderAccess.SetTheStaffForEachOrderFromTheDatabase(orders, staffs, db);
-            orders = OrderAccess.SetTheOrderProductsForEachOrderFromTheDatabase(orders, orderProducts, db);
-            return orders;
-        }
-
         #endregion
 
 
@@ -715,7 +651,7 @@ namespace Library
         /// <param name="db"></param>
         public void RemoveOrderProduct(OrderProductModel orderProduct)
         {
-            OrderProductAccess.RemoveOrderProduct(orderProduct, db);
+            OrderProduct.RemoveOrderProduct(orderProduct, db);
         }
 
 
@@ -727,7 +663,7 @@ namespace Library
         /// <param name="db"> Database Connection Name </param>
         public void SaveOrderProductListToTheDatabase(OrderModel order)
         {
-            OrderProductAccess.SaveOrderProductListToTheDatabase(order, db);
+            OrderProduct.SaveOrderProductListToTheDatabase(order, db);
         }
 
         #endregion
@@ -798,7 +734,7 @@ namespace Library
         /// <param name="db"> Database Connection Name </param>
         public OrderModel GetEmptyOrderFromTheDatabase(OrderModel order)
         {
-            return OrderAccess.GetEmptyOrderFromTheDatabase(order, db);
+            return Order.GetEmptyOrderFromTheDatabase(order, db);
 
 
         }
@@ -815,7 +751,7 @@ namespace Library
         /// <returns></returns>
         public  List<OrderModel> GetOrders()
         {
-            return OrderAccess.GetOrders(db);
+            return Order.GetOrders(db);
                  
         }
 
@@ -877,7 +813,7 @@ namespace Library
         /// <param name="db"></param>
         public OrderModel UpdateOrderData(OrderModel order)
         {
-            return OrderAccess.UpdateOrderData(order, db);
+            return Order.UpdateOrderData(order, db);
         }
 
 
@@ -888,7 +824,7 @@ namespace Library
         /// <param name="db"></param>
         public void RemoveOrder(OrderModel order)
         {
-            OrderAccess.RemoveOrder(order, db);
+            Order.RemoveOrder(order, db);
         }
 
 
@@ -1193,9 +1129,9 @@ namespace Library
         /// <param name="stock"></param>
         /// <param name="quantity"> the number that u want to decreace </param>
         /// <param name="db"></param>
-        public void ReduseStock(StockModel stock, float quantity)
+        public void ReduseStock(StockModel stock, int quantity)
         {
-            StockAccess.ReduseStock(stock, quantity, db);
+            Stock.ReduseStock(stock, quantity, db);
 
         }
 
@@ -1205,9 +1141,9 @@ namespace Library
         /// <param name="stock"></param>
         /// <param name="quantity"> the number that u want to increase </param>
         /// <param name="db"></param>
-        public void IncreaseStock(StockModel stock, float quantity)
+        public void IncreaseStock(StockModel stock, int quantity)
         {
-            StockAccess.IncreaseStock(stock, quantity, db);
+            Stock.IncreaseStock(stock, quantity, db);
         }
 
         /// <summary>
@@ -1218,7 +1154,7 @@ namespace Library
         /// <returns></returns>
         public  StockModel AddStockToTheDatabase(StockModel NewStock)
         {
-            return StockAccess.AddStockToTheDatabase(NewStock, db);
+            return Stock.AddStockToTheDatabase(NewStock, db);
         }
 
         /// <summary>
@@ -1228,12 +1164,12 @@ namespace Library
         /// <param name="db"></param>
         public void UpdateStockData(StockModel updatedStock)
         {
-            StockAccess.UpdateStockData(updatedStock,db);
+            Stock.UpdateStockData(updatedStock,db);
         }
 
         public void RemoveStockFromTheDatabase(StockModel stock)
         {
-            StockAccess.RemoveStockFromTheDatabase(stock, db);
+            Stock.RemoveStockFromTheDatabase(stock, db);
         }
         #endregion
 
@@ -1249,7 +1185,7 @@ namespace Library
         /// <param name="db"> Database Connection Name </param>
         public void SaveIncomeOrderProductListToTheDatabase(IncomeOrderModel incomeOrder)
         {
-            IncomeOrderProductAccess.SaveIncomeOrderProductListToTheDatabase(incomeOrder, db);
+            IncomeOrderProduct.SaveIncomeOrderProductListToTheDatabase(incomeOrder, db);
         }
 
         #endregion

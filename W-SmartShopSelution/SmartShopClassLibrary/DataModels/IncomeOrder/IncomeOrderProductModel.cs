@@ -15,12 +15,12 @@ namespace Library
 
         public decimal IncomePrice { get; set; }
 
-        public float Quantity { get; set; }
+        public int Quantity { get; set; }
 
         /// <summary>
         /// Return the total price of this IncomeOrderProduct
         /// </summary>
-        public decimal GetTotalProductPrice { get { return (decimal)Quantity * IncomePrice; }  }
+        public decimal GetTotalProductPrice { get { return Quantity * IncomePrice; }  }
 
     }
 }
