@@ -66,7 +66,10 @@
     <Compile Include="DataAccess\Category_Access\CategoryAccess.cs" />
     <Compile Include="DataAccess\Customer_Access\CustomerAccess.cs" />
     <Compile Include="DataAccess\DataAccess.cs" />
+    <Compile Include="DataAccess\IncomeOrderProduct_Access\IncomeOrderProductAccess.cs" />
     <Compile Include="DataAccess\IncomeOrder_Access\IncomeOrder_Access.cs" />
+    <Compile Include="DataAccess\OrderProduct_Access\OrderProductAccess.cs" />
+    <Compile Include="DataAccess\Order_Access\OrderAccess.cs" />
     <Compile Include="DataAccess\Permission_Access\Permission_Access.cs" />
     <Compile Include="DataAccess\Person_Access\Person_Access.cs" />
     <Compile Include="DataAccess\Product_Access\ProductAccess.cs" />
@@ -119,9 +122,10 @@
     <Compile Include="LogicalClasses\Supplier\Supplier.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PublicVariables.cs" />
-    <Compile Include="Validation\MoneyValidator.cs" />
-    <Compile Include="Validation\NumberValidation.cs" />
-    <Compile Include="Validation\ProductValidator.cs" />
+    <Compile Include="Validation\Forced\MoneyValidator.cs" />
+    <Compile Include="Validation\Forced\NumberValidation.cs" />
+    <Compile Include="Validation\Operations\OrderProductValidator.cs" />
+    <Compile Include="Validation\Operations\ProductValidator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Code Reports\Bug Report.txt" />
@@ -139,17 +143,16 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="DataAccess\IncomeOrderProduct_Access\" />
     <Folder Include="DataAccess\InstallmentDetails_Access\" />
     <Folder Include="DataAccess\InstallmentProduct_Access\" />
     <Folder Include="DataAccess\Installment_Access\" />
     <Folder Include="DataAccess\Operation_Access\" />
-    <Folder Include="DataAccess\OrderProduct_Access\" />
-    <Folder Include="DataAccess\Order_Access\" />
     <Folder Include="DataAccess\ShopBill_Access\" />
     <Folder Include="DataAccess\StaffSalary_Access\" />
     <Folder Include="DataAccess\StoreStaff_Access\" />
     <Folder Include="LogicalClasses\StaffSalary\" />
+    <Folder Include="Validation\Goods\" />
+    <Folder Include="Validation\Human\" />
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.VersionCheckAnalyzer.2.9.7\analyzers\dotnet\cs\Microsoft.CodeAnalysis.VersionCheckAnalyzer.resources.dll" />

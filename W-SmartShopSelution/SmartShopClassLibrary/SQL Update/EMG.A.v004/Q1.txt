@@ -747,24 +747,523 @@ END
 
 -------------------------------------------------------------------------------------------------------------------------------------
 
+Make the OrderProduct Quantity Float
+
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.OrderProduct
+	DROP CONSTRAINT FK_OrderProduct_Product
+GO
+ALTER TABLE dbo.Product SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+select Has_Perms_By_Name(N'dbo.Product', 'Object', 'ALTER') as ALT_Per, Has_Perms_By_Name(N'dbo.Product', 'Object', 'VIEW DEFINITION') as View_def_Per, Has_Perms_By_Name(N'dbo.Product', 'Object', 'CONTROL') as Contr_Per BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.OrderProduct
+	DROP CONSTRAINT FK_OrderProduct_Order
+GO
+ALTER TABLE dbo.Orders SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+select Has_Perms_By_Name(N'dbo.Orders', 'Object', 'ALTER') as ALT_Per, Has_Perms_By_Name(N'dbo.Orders', 'Object', 'VIEW DEFINITION') as View_def_Per, Has_Perms_By_Name(N'dbo.Orders', 'Object', 'CONTROL') as Contr_Per BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.OrderProduct
+	DROP CONSTRAINT DF_OrderProduct_OrderId
+GO
+ALTER TABLE dbo.OrderProduct
+	DROP CONSTRAINT DF_OrderProduct_ProductId
+GO
+CREATE TABLE dbo.Tmp_OrderProduct
+	(
+	Id int NOT NULL IDENTITY (50000, 1),
+	OrderId int NOT NULL,
+	ProductId int NOT NULL,
+	Quantity float(53) NOT NULL,
+	SalePrice money NOT NULL,
+	Discount money NOT NULL,
+	Profit money NOT NULL
+	)  ON [PRIMARY]
+GO
+ALTER TABLE dbo.Tmp_OrderProduct SET (LOCK_ESCALATION = TABLE)
+GO
+ALTER TABLE dbo.Tmp_OrderProduct ADD CONSTRAINT
+	DF_OrderProduct_OrderId DEFAULT ((200000)) FOR OrderId
+GO
+ALTER TABLE dbo.Tmp_OrderProduct ADD CONSTRAINT
+	DF_OrderProduct_ProductId DEFAULT ((100000)) FOR ProductId
+GO
+SET IDENTITY_INSERT dbo.Tmp_OrderProduct ON
+GO
+IF EXISTS(SELECT * FROM dbo.OrderProduct)
+	 EXEC('INSERT INTO dbo.Tmp_OrderProduct (Id, OrderId, ProductId, Quantity, SalePrice, Discount, Profit)
+		SELECT Id, OrderId, ProductId, CONVERT(float(53), Quantity), SalePrice, Discount, Profit FROM dbo.OrderProduct WITH (HOLDLOCK TABLOCKX)')
+GO
+SET IDENTITY_INSERT dbo.Tmp_OrderProduct OFF
+GO
+DROP TABLE dbo.OrderProduct
+GO
+EXECUTE sp_rename N'dbo.Tmp_OrderProduct', N'OrderProduct', 'OBJECT' 
+GO
+ALTER TABLE dbo.OrderProduct ADD CONSTRAINT
+	PK_OrderItems PRIMARY KEY CLUSTERED 
+	(
+	Id
+	) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+
+GO
+ALTER TABLE dbo.OrderProduct ADD CONSTRAINT
+	FK_OrderProduct_Order FOREIGN KEY
+	(
+	OrderId
+	) REFERENCES dbo.Orders
+	(
+	Id
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.OrderProduct ADD CONSTRAINT
+	FK_OrderProduct_Product FOREIGN KEY
+	(
+	ProductId
+	) REFERENCES dbo.Product
+	(
+	Id
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+COMMIT
+select Has_Perms_By_Name(N'dbo.OrderProduct', 'Object', 'ALTER') as ALT_Per, Has_Perms_By_Name(N'dbo.OrderProduct', 'Object', 'VIEW DEFINITION') as View_def_Per, Has_Perms_By_Name(N'dbo.OrderProduct', 'Object', 'CONTROL') as Contr_Per 
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+
+CREATE PROCEDURE spOrderProduct_GetAll
+
+
+AS
+BEGIN
+
+	SET NOCOUNT ON;
+
+	SELECT Quantity,SalePrice,Discount,Profit
+	FROM OrderProduct
+
+END
+GO
+
+
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+the stock quantity is float
+
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.Stock
+	DROP CONSTRAINT FK_Stock_Product
+GO
+ALTER TABLE dbo.Product SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+select Has_Perms_By_Name(N'dbo.Product', 'Object', 'ALTER') as ALT_Per, Has_Perms_By_Name(N'dbo.Product', 'Object', 'VIEW DEFINITION') as View_def_Per, Has_Perms_By_Name(N'dbo.Product', 'Object', 'CONTROL') as Contr_Per BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.Stock
+	DROP CONSTRAINT FK_Stock_Store
+GO
+ALTER TABLE dbo.Store SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+select Has_Perms_By_Name(N'dbo.Store', 'Object', 'ALTER') as ALT_Per, Has_Perms_By_Name(N'dbo.Store', 'Object', 'VIEW DEFINITION') as View_def_Per, Has_Perms_By_Name(N'dbo.Store', 'Object', 'CONTROL') as Contr_Per BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.Stock
+	DROP CONSTRAINT DF_Stock_Quantity
+GO
+CREATE TABLE dbo.Tmp_Stock
+	(
+	Id int NOT NULL IDENTITY (12000, 1),
+	StoreId int NOT NULL,
+	ProductId int NOT NULL,
+	IncomePrice money NULL,
+	SalePrice money NULL,
+	Date datetime NULL,
+	ExpirationPeriod int NULL,
+	ExpirationAlarmEnabled bit NULL,
+	Quantity float(53) NOT NULL,
+	AlarmQuantity int NULL,
+	QuantityAlarmEnabled bit NULL
+	)  ON [PRIMARY]
+GO
+ALTER TABLE dbo.Tmp_Stock SET (LOCK_ESCALATION = TABLE)
+GO
+ALTER TABLE dbo.Tmp_Stock ADD CONSTRAINT
+	DF_Stock_Quantity DEFAULT ((0)) FOR Quantity
+GO
+SET IDENTITY_INSERT dbo.Tmp_Stock ON
+GO
+IF EXISTS(SELECT * FROM dbo.Stock)
+	 EXEC('INSERT INTO dbo.Tmp_Stock (Id, StoreId, ProductId, IncomePrice, SalePrice, Date, ExpirationPeriod, ExpirationAlarmEnabled, Quantity, AlarmQuantity, QuantityAlarmEnabled)
+		SELECT Id, StoreId, ProductId, IncomePrice, SalePrice, Date, ExpirationPeriod, ExpirationAlarmEnabled, CONVERT(float(53), Quantity), AlarmQuantity, QuantityAlarmEnabled FROM dbo.Stock WITH (HOLDLOCK TABLOCKX)')
+GO
+SET IDENTITY_INSERT dbo.Tmp_Stock OFF
+GO
+DROP TABLE dbo.Stock
+GO
+EXECUTE sp_rename N'dbo.Tmp_Stock', N'Stock', 'OBJECT' 
+GO
+ALTER TABLE dbo.Stock ADD CONSTRAINT
+	PK_Stock PRIMARY KEY CLUSTERED 
+	(
+	Id
+	) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+
+GO
+ALTER TABLE dbo.Stock ADD CONSTRAINT
+	FK_Stock_Store FOREIGN KEY
+	(
+	StoreId
+	) REFERENCES dbo.Store
+	(
+	Id
+	) ON UPDATE  CASCADE 
+	 ON DELETE  CASCADE 
+	
+GO
+ALTER TABLE dbo.Stock ADD CONSTRAINT
+	FK_Stock_Product FOREIGN KEY
+	(
+	ProductId
+	) REFERENCES dbo.Product
+	(
+	Id
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+COMMIT
+select Has_Perms_By_Name(N'dbo.Stock', 'Object', 'ALTER') as ALT_Per, Has_Perms_By_Name(N'dbo.Stock', 'Object', 'VIEW DEFINITION') as View_def_Per, Has_Perms_By_Name(N'dbo.Stock', 'Object', 'CONTROL') as Contr_Per 
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+
+CREATE PROCEDURE spOrderProduct_GetProdcutIdByOrderProductId 
+	
+	@OrderProductId int
+AS
+BEGIN
+
+
+	SET NOCOUNT ON;
+
+	SELECT ProductId
+	FROM OrderProduct
+	WHERE Id = @OrderProductId;
+
+END
+GO
+
 
 
 -------------------------------------------------------------------------------------------------------------------------------------
 
 
+ALTER PROCEDURE [dbo].[spOrderProduct_GetAll]
+
+
+AS
+BEGIN
+
+	SET NOCOUNT ON;
+
+	SELECT Id,Quantity,SalePrice,Discount,Profit
+	FROM OrderProduct
+
+END
 
 
 -------------------------------------------------------------------------------------------------------------------------------------
 
+convert Quantity in the IncomeOrderProduct to float
 
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.IncomeOrderProduct
+	DROP CONSTRAINT FK_IncomeOrderProduct_Product
+GO
+ALTER TABLE dbo.Product SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+select Has_Perms_By_Name(N'dbo.Product', 'Object', 'ALTER') as ALT_Per, Has_Perms_By_Name(N'dbo.Product', 'Object', 'VIEW DEFINITION') as View_def_Per, Has_Perms_By_Name(N'dbo.Product', 'Object', 'CONTROL') as Contr_Per BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.IncomeOrderProduct
+	DROP CONSTRAINT FK_IncomeOrderProduct_IncomeOrder
+GO
+ALTER TABLE dbo.IncomeOrder SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+select Has_Perms_By_Name(N'dbo.IncomeOrder', 'Object', 'ALTER') as ALT_Per, Has_Perms_By_Name(N'dbo.IncomeOrder', 'Object', 'VIEW DEFINITION') as View_def_Per, Has_Perms_By_Name(N'dbo.IncomeOrder', 'Object', 'CONTROL') as Contr_Per BEGIN TRANSACTION
+GO
+CREATE TABLE dbo.Tmp_IncomeOrderProduct
+	(
+	Id int NOT NULL IDENTITY (70000, 1),
+	IncomeOrderId int NOT NULL,
+	ProductId int NOT NULL,
+	IncomePrice money NOT NULL,
+	Quantity float(53) NOT NULL
+	)  ON [PRIMARY]
+GO
+ALTER TABLE dbo.Tmp_IncomeOrderProduct SET (LOCK_ESCALATION = TABLE)
+GO
+SET IDENTITY_INSERT dbo.Tmp_IncomeOrderProduct ON
+GO
+IF EXISTS(SELECT * FROM dbo.IncomeOrderProduct)
+	 EXEC('INSERT INTO dbo.Tmp_IncomeOrderProduct (Id, IncomeOrderId, ProductId, IncomePrice, Quantity)
+		SELECT Id, IncomeOrderId, ProductId, IncomePrice, CONVERT(float(53), Quantity) FROM dbo.IncomeOrderProduct WITH (HOLDLOCK TABLOCKX)')
+GO
+SET IDENTITY_INSERT dbo.Tmp_IncomeOrderProduct OFF
+GO
+DROP TABLE dbo.IncomeOrderProduct
+GO
+EXECUTE sp_rename N'dbo.Tmp_IncomeOrderProduct', N'IncomeOrderProduct', 'OBJECT' 
+GO
+ALTER TABLE dbo.IncomeOrderProduct ADD CONSTRAINT
+	PK_IncomeOrderProduct PRIMARY KEY CLUSTERED 
+	(
+	Id
+	) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+
+GO
+ALTER TABLE dbo.IncomeOrderProduct ADD CONSTRAINT
+	FK_IncomeOrderProduct_IncomeOrder FOREIGN KEY
+	(
+	IncomeOrderId
+	) REFERENCES dbo.IncomeOrder
+	(
+	Id
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.IncomeOrderProduct ADD CONSTRAINT
+	FK_IncomeOrderProduct_Product FOREIGN KEY
+	(
+	ProductId
+	) REFERENCES dbo.Product
+	(
+	Id
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+COMMIT
+select Has_Perms_By_Name(N'dbo.IncomeOrderProduct', 'Object', 'ALTER') as ALT_Per, Has_Perms_By_Name(N'dbo.IncomeOrderProduct', 'Object', 'VIEW DEFINITION') as View_def_Per, Has_Perms_By_Name(N'dbo.IncomeOrderProduct', 'Object', 'CONTROL') as Contr_Per 
 
 -------------------------------------------------------------------------------------------------------------------------------------
 
 
+CREATE PROCEDURE spIncomeOrderProduct_GetProductIdByIncomeOrderProductId
+
+	@IncomeOrderProductId int
+
+AS
+BEGIN
+
+
+	SET NOCOUNT ON;
+
+	SELECT ProductId
+	FROM IncomeOrderProduct
+	WHERE Id = @IncomeOrderProductId;
+
+END
+GO
 
 
 -------------------------------------------------------------------------------------------------------------------------------------
 
+CREATE PROCEDURE spIncomeOrderProduct_GetAll
 
+AS
+BEGIN
+
+
+	SET NOCOUNT ON;
+
+	SELECT Id , IncomePrice , Quantity
+	FROM IncomeOrderProduct;
+
+END
+GO
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+remove the TotalPrice from Orders table
+
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.Orders
+	DROP COLUMN TotalPrice
+GO
+ALTER TABLE dbo.Orders SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+select Has_Perms_By_Name(N'dbo.Orders', 'Object', 'ALTER') as ALT_Per, Has_Perms_By_Name(N'dbo.Orders', 'Object', 'VIEW DEFINITION') as View_def_Per, Has_Perms_By_Name(N'dbo.Orders', 'Object', 'CONTROL') as Contr_Per 
+-------------------------------------------------------------------------------------------------------------------------------------
+
+
+ALTER PROCEDURE [dbo].[spOrders_GetAll]
+
+	
+	
+AS
+BEGIN
+
+	SET NOCOUNT ON;
+	
+	SELECT Id,DateTimeOfTheOrder,Paid,LastPaymentDate,Details
+	FROM Orders;
+
+END
+
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+CREATE PROCEDURE spOrders_GetCustomerIdByOrderId
+	 @OrderId int
+AS
+BEGIN
+	
+
+
+	SET NOCOUNT ON;
+
+	SELECT CustomerId
+	FROM Orders
+	WHERE Id = @OrderId;
+    
+END
+GO
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+USE [SmartShopDatabase]
+GO
+/****** Object:  StoredProcedure [dbo].[spOrders_GetStoreIdByOrderId]    Script Date: 11/10/2019 4:36:43 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+ALTER PROCEDURE [dbo].[spOrders_GetStoreIdByOrderId]
+	@OrderId int
+AS
+BEGIN
+
+	
+
+	SET NOCOUNT ON;
+
+	/*
+	SELECT Store.Id
+	FROM Store
+	INNER JOIN Orders
+	ON Orders.StoreId = Store.Id
+	WHERE Orders.Id = @OrderId;
+	*/
+
+
+	SELECT StoreId
+	FROM Orders
+	WHERE Orders.Id = @OrderId;
+    
+END
+
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+CREATE PROCEDURE spOrders_GetStaffIdByOrderId
+	@OrderId int
+AS
+BEGIN
+
+	SET NOCOUNT ON;
+
+	SELECT StaffId
+	FROM Orders
+	WHERE  Id =  @OrderId;
+
+END
+GO
+
+
+-------------------------------------------------------------------------------------------------------------------------------------
+CREATE PROCEDURE spOrders_GetOrderProductIdByOrderId
+	@OrderId int
+AS
+BEGIN
+	
+
+
+	SET NOCOUNT ON;
+
+	SELECT Id
+	FROM OrderProduct
+	WHERE OrderId = @OrderId ;
+
+END
+GO
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------------------------------------------------
 
 -------------------------------------------------------------------------------------------------------------------------------------
