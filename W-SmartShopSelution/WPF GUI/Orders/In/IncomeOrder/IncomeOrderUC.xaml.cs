@@ -1061,7 +1061,7 @@ namespace WPF_GUI
         {
             if (HoleForm_IsValid())
             {
-                IncomeOrder.Products = IncomeOrderProducts;
+                IncomeOrder.IncomeOrderProducts = IncomeOrderProducts;
                 IncomeOrder.Supplier = Supplier;
                 IncomeOrder.BillNumber = BillNumberValue_IncomeOrderUC.Text;
 
@@ -1092,7 +1092,7 @@ namespace WPF_GUI
                  *  -- if the product not in the stock of the logedin shop  -> Create new stock with the new quantity
                  *  -- if the product in the stock of the logedin shop -> increase the quantity in the stock
                  */
-                foreach (IncomeOrderProductModel incomeOrderProduct in IncomeOrder.Products)
+                foreach (IncomeOrderProductModel incomeOrderProduct in IncomeOrder.IncomeOrderProducts)
                 {
 
                     List<StockModel> productStock = new List<StockModel>();

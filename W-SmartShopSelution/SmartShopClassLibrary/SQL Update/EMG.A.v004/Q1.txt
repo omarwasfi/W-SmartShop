@@ -1253,6 +1253,935 @@ END
 GO
 
 -------------------------------------------------------------------------------------------------------------------------------------
+adding the owner table
+
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+GO
+CREATE TABLE dbo.Owner
+	(
+	Id int NOT NULL IDENTITY (1100, 1),
+	PersonId int NOT NULL
+	)  ON [PRIMARY]
+GO
+ALTER TABLE dbo.Owner ADD CONSTRAINT
+	PK_Owner PRIMARY KEY CLUSTERED 
+	(
+	Id
+	) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+
+GO
+ALTER TABLE dbo.Owner SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+select Has_Perms_By_Name(N'dbo.Owner', 'Object', 'ALTER') as ALT_Per, Has_Perms_By_Name(N'dbo.Owner', 'Object', 'VIEW DEFINITION') as View_def_Per, Has_Perms_By_Name(N'dbo.Owner', 'Object', 'CONTROL') as Contr_Per 
+
+
+-------------------------------------------------------------------------------------------------------------------------------------
+adjust the Owner Table
+
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.Person SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+select Has_Perms_By_Name(N'dbo.Person', 'Object', 'ALTER') as ALT_Per, Has_Perms_By_Name(N'dbo.Person', 'Object', 'VIEW DEFINITION') as View_def_Per, Has_Perms_By_Name(N'dbo.Person', 'Object', 'CONTROL') as Contr_Per BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.Owner ADD CONSTRAINT
+	FK_Owner_Person FOREIGN KEY
+	(
+	PersonId
+	) REFERENCES dbo.Person
+	(
+	Id
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.Owner SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+select Has_Perms_By_Name(N'dbo.Owner', 'Object', 'ALTER') as ALT_Per, Has_Perms_By_Name(N'dbo.Owner', 'Object', 'VIEW DEFINITION') as View_def_Per, Has_Perms_By_Name(N'dbo.Owner', 'Object', 'CONTROL') as Contr_Per 
+
+
+-------------------------------------------------------------------------------------------------------------------------------------
+Create the investment table
+
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+GO
+CREATE TABLE dbo.Investment
+	(
+	Id int NOT NULL,
+	OwnerId int NOT NULL,
+	Date datetime NOT NULL,
+	TotalMoney money NOT NULL
+	)  ON [PRIMARY]
+GO
+ALTER TABLE dbo.Investment ADD CONSTRAINT
+	PK_Investment PRIMARY KEY CLUSTERED 
+	(
+	Id
+	) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+
+GO
+ALTER TABLE dbo.Investment SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+select Has_Perms_By_Name(N'dbo.Investment', 'Object', 'ALTER') as ALT_Per, Has_Perms_By_Name(N'dbo.Investment', 'Object', 'VIEW DEFINITION') as View_def_Per, Has_Perms_By_Name(N'dbo.Investment', 'Object', 'CONTROL') as Contr_Per 
+
+-------------------------------------------------------------------------------------------------------------------------------------
+adjust the investment table
+
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.Owner SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+select Has_Perms_By_Name(N'dbo.Owner', 'Object', 'ALTER') as ALT_Per, Has_Perms_By_Name(N'dbo.Owner', 'Object', 'VIEW DEFINITION') as View_def_Per, Has_Perms_By_Name(N'dbo.Owner', 'Object', 'CONTROL') as Contr_Per BEGIN TRANSACTION
+GO
+CREATE TABLE dbo.Tmp_Investment
+	(
+	Id int NOT NULL IDENTITY (1200, 1),
+	OwnerId int NOT NULL,
+	Date datetime NOT NULL,
+	TotalMoney money NOT NULL
+	)  ON [PRIMARY]
+GO
+ALTER TABLE dbo.Tmp_Investment SET (LOCK_ESCALATION = TABLE)
+GO
+SET IDENTITY_INSERT dbo.Tmp_Investment ON
+GO
+IF EXISTS(SELECT * FROM dbo.Investment)
+	 EXEC('INSERT INTO dbo.Tmp_Investment (Id, OwnerId, Date, TotalMoney)
+		SELECT Id, OwnerId, Date, TotalMoney FROM dbo.Investment WITH (HOLDLOCK TABLOCKX)')
+GO
+SET IDENTITY_INSERT dbo.Tmp_Investment OFF
+GO
+DROP TABLE dbo.Investment
+GO
+EXECUTE sp_rename N'dbo.Tmp_Investment', N'Investment', 'OBJECT' 
+GO
+ALTER TABLE dbo.Investment ADD CONSTRAINT
+	PK_Investment PRIMARY KEY CLUSTERED 
+	(
+	Id
+	) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+
+GO
+ALTER TABLE dbo.Investment ADD CONSTRAINT
+	FK_Investment_Owner FOREIGN KEY
+	(
+	OwnerId
+	) REFERENCES dbo.Owner
+	(
+	Id
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+COMMIT
+select Has_Perms_By_Name(N'dbo.Investment', 'Object', 'ALTER') as ALT_Per, Has_Perms_By_Name(N'dbo.Investment', 'Object', 'VIEW DEFINITION') as View_def_Per, Has_Perms_By_Name(N'dbo.Investment', 'Object', 'CONTROL') as Contr_Per 
+-------------------------------------------------------------------------------------------------------------------------------------
+
+create the revenue table
+
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+GO
+CREATE TABLE dbo.Revenue
+	(
+	Id int NOT NULL IDENTITY (1300, 1),
+	OwnerId int NOT NULL,
+	Date datetime NOT NULL,
+	TotalMoney money NOT NULL
+	)  ON [PRIMARY]
+GO
+ALTER TABLE dbo.Revenue ADD CONSTRAINT
+	PK_Revenue PRIMARY KEY CLUSTERED 
+	(
+	Id
+	) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+
+GO
+ALTER TABLE dbo.Revenue SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+select Has_Perms_By_Name(N'dbo.Revenue', 'Object', 'ALTER') as ALT_Per, Has_Perms_By_Name(N'dbo.Revenue', 'Object', 'VIEW DEFINITION') as View_def_Per, Has_Perms_By_Name(N'dbo.Revenue', 'Object', 'CONTROL') as Contr_Per 
+
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+adjust the revenue table
+
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.Owner SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+select Has_Perms_By_Name(N'dbo.Owner', 'Object', 'ALTER') as ALT_Per, Has_Perms_By_Name(N'dbo.Owner', 'Object', 'VIEW DEFINITION') as View_def_Per, Has_Perms_By_Name(N'dbo.Owner', 'Object', 'CONTROL') as Contr_Per BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.Revenue ADD CONSTRAINT
+	FK_Revenue_Owner FOREIGN KEY
+	(
+	OwnerId
+	) REFERENCES dbo.Owner
+	(
+	Id
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.Revenue SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+select Has_Perms_By_Name(N'dbo.Revenue', 'Object', 'ALTER') as ALT_Per, Has_Perms_By_Name(N'dbo.Revenue', 'Object', 'VIEW DEFINITION') as View_def_Per, Has_Perms_By_Name(N'dbo.Revenue', 'Object', 'CONTROL') as Contr_Per 
+
+-------------------------------------------------------------------------------------------------------------------------------------
+Delet the Operation table
+
+USE [SmartShopDatabase]
+GO
+/****** Object:  Table [dbo].[Operation]    Script Date: 11/12/2019 5:22:12 PM ******/
+DROP TABLE [dbo].[Operation]
+GO
+
+
+
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+add the storeId and the StaffId to the revenue tabel
+
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.Store SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+select Has_Perms_By_Name(N'dbo.Store', 'Object', 'ALTER') as ALT_Per, Has_Perms_By_Name(N'dbo.Store', 'Object', 'VIEW DEFINITION') as View_def_Per, Has_Perms_By_Name(N'dbo.Store', 'Object', 'CONTROL') as Contr_Per BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.Staff SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+select Has_Perms_By_Name(N'dbo.Staff', 'Object', 'ALTER') as ALT_Per, Has_Perms_By_Name(N'dbo.Staff', 'Object', 'VIEW DEFINITION') as View_def_Per, Has_Perms_By_Name(N'dbo.Staff', 'Object', 'CONTROL') as Contr_Per BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.Revenue
+	DROP CONSTRAINT FK_Revenue_Owner
+GO
+ALTER TABLE dbo.Owner SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+select Has_Perms_By_Name(N'dbo.Owner', 'Object', 'ALTER') as ALT_Per, Has_Perms_By_Name(N'dbo.Owner', 'Object', 'VIEW DEFINITION') as View_def_Per, Has_Perms_By_Name(N'dbo.Owner', 'Object', 'CONTROL') as Contr_Per BEGIN TRANSACTION
+GO
+CREATE TABLE dbo.Tmp_Revenue
+	(
+	Id int NOT NULL IDENTITY (1300, 1),
+	OwnerId int NOT NULL,
+	Date datetime NOT NULL,
+	TotalMoney money NOT NULL,
+	StaffId int NOT NULL,
+	StoreId int NOT NULL
+	)  ON [PRIMARY]
+GO
+ALTER TABLE dbo.Tmp_Revenue SET (LOCK_ESCALATION = TABLE)
+GO
+SET IDENTITY_INSERT dbo.Tmp_Revenue ON
+GO
+IF EXISTS(SELECT * FROM dbo.Revenue)
+	 EXEC('INSERT INTO dbo.Tmp_Revenue (Id, OwnerId, Date, TotalMoney)
+		SELECT Id, OwnerId, Date, TotalMoney FROM dbo.Revenue WITH (HOLDLOCK TABLOCKX)')
+GO
+SET IDENTITY_INSERT dbo.Tmp_Revenue OFF
+GO
+DROP TABLE dbo.Revenue
+GO
+EXECUTE sp_rename N'dbo.Tmp_Revenue', N'Revenue', 'OBJECT' 
+GO
+ALTER TABLE dbo.Revenue ADD CONSTRAINT
+	PK_Revenue PRIMARY KEY CLUSTERED 
+	(
+	Id
+	) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+
+GO
+ALTER TABLE dbo.Revenue ADD CONSTRAINT
+	FK_Revenue_Owner FOREIGN KEY
+	(
+	OwnerId
+	) REFERENCES dbo.Owner
+	(
+	Id
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.Revenue ADD CONSTRAINT
+	FK_Revenue_Staff FOREIGN KEY
+	(
+	StaffId
+	) REFERENCES dbo.Staff
+	(
+	Id
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.Revenue ADD CONSTRAINT
+	FK_Revenue_Store FOREIGN KEY
+	(
+	StoreId
+	) REFERENCES dbo.Store
+	(
+	Id
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+COMMIT
+select Has_Perms_By_Name(N'dbo.Revenue', 'Object', 'ALTER') as ALT_Per, Has_Perms_By_Name(N'dbo.Revenue', 'Object', 'VIEW DEFINITION') as View_def_Per, Has_Perms_By_Name(N'dbo.Revenue', 'Object', 'CONTROL') as Contr_Per 
+
+-------------------------------------------------------------------------------------------------------------------------------------
+add the storeId and the staffId to the investment tabel 
+
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.Investment
+	DROP CONSTRAINT FK_Investment_Owner
+GO
+ALTER TABLE dbo.Owner SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+select Has_Perms_By_Name(N'dbo.Owner', 'Object', 'ALTER') as ALT_Per, Has_Perms_By_Name(N'dbo.Owner', 'Object', 'VIEW DEFINITION') as View_def_Per, Has_Perms_By_Name(N'dbo.Owner', 'Object', 'CONTROL') as Contr_Per BEGIN TRANSACTION
+GO
+CREATE TABLE dbo.Tmp_Investment
+	(
+	Id int NOT NULL IDENTITY (1200, 1),
+	OwnerId int NOT NULL,
+	Date datetime NOT NULL,
+	TotalMoney money NOT NULL,
+	StoreId int NOT NULL,
+	StaffId int NOT NULL
+	)  ON [PRIMARY]
+GO
+ALTER TABLE dbo.Tmp_Investment SET (LOCK_ESCALATION = TABLE)
+GO
+SET IDENTITY_INSERT dbo.Tmp_Investment ON
+GO
+IF EXISTS(SELECT * FROM dbo.Investment)
+	 EXEC('INSERT INTO dbo.Tmp_Investment (Id, OwnerId, Date, TotalMoney)
+		SELECT Id, OwnerId, Date, TotalMoney FROM dbo.Investment WITH (HOLDLOCK TABLOCKX)')
+GO
+SET IDENTITY_INSERT dbo.Tmp_Investment OFF
+GO
+DROP TABLE dbo.Investment
+GO
+EXECUTE sp_rename N'dbo.Tmp_Investment', N'Investment', 'OBJECT' 
+GO
+ALTER TABLE dbo.Investment ADD CONSTRAINT
+	PK_Investment PRIMARY KEY CLUSTERED 
+	(
+	Id
+	) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+
+GO
+ALTER TABLE dbo.Investment ADD CONSTRAINT
+	FK_Investment_Owner FOREIGN KEY
+	(
+	OwnerId
+	) REFERENCES dbo.Owner
+	(
+	Id
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+COMMIT
+select Has_Perms_By_Name(N'dbo.Investment', 'Object', 'ALTER') as ALT_Per, Has_Perms_By_Name(N'dbo.Investment', 'Object', 'VIEW DEFINITION') as View_def_Per, Has_Perms_By_Name(N'dbo.Investment', 'Object', 'CONTROL') as Contr_Per 
+
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+modify the incestment table
+
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.Store SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+select Has_Perms_By_Name(N'dbo.Store', 'Object', 'ALTER') as ALT_Per, Has_Perms_By_Name(N'dbo.Store', 'Object', 'VIEW DEFINITION') as View_def_Per, Has_Perms_By_Name(N'dbo.Store', 'Object', 'CONTROL') as Contr_Per BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.Staff SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+select Has_Perms_By_Name(N'dbo.Staff', 'Object', 'ALTER') as ALT_Per, Has_Perms_By_Name(N'dbo.Staff', 'Object', 'VIEW DEFINITION') as View_def_Per, Has_Perms_By_Name(N'dbo.Staff', 'Object', 'CONTROL') as Contr_Per BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.Investment ADD CONSTRAINT
+	FK_Investment_Staff FOREIGN KEY
+	(
+	StaffId
+	) REFERENCES dbo.Staff
+	(
+	Id
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.Investment ADD CONSTRAINT
+	FK_Investment_Store FOREIGN KEY
+	(
+	StoreId
+	) REFERENCES dbo.Store
+	(
+	Id
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.Investment SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+select Has_Perms_By_Name(N'dbo.Investment', 'Object', 'ALTER') as ALT_Per, Has_Perms_By_Name(N'dbo.Investment', 'Object', 'VIEW DEFINITION') as View_def_Per, Has_Perms_By_Name(N'dbo.Investment', 'Object', 'CONTROL') as Contr_Per 
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+modify the StaffSalary Tabel 
+
+
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.Store SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+select Has_Perms_By_Name(N'dbo.Store', 'Object', 'ALTER') as ALT_Per, Has_Perms_By_Name(N'dbo.Store', 'Object', 'VIEW DEFINITION') as View_def_Per, Has_Perms_By_Name(N'dbo.Store', 'Object', 'CONTROL') as Contr_Per BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.Staff SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+select Has_Perms_By_Name(N'dbo.Staff', 'Object', 'ALTER') as ALT_Per, Has_Perms_By_Name(N'dbo.Staff', 'Object', 'VIEW DEFINITION') as View_def_Per, Has_Perms_By_Name(N'dbo.Staff', 'Object', 'CONTROL') as Contr_Per BEGIN TRANSACTION
+GO
+CREATE TABLE dbo.Tmp_StaffSalary
+	(
+	Id int NOT NULL IDENTITY (700000, 1),
+	StaffId int NOT NULL,
+	StoreId int NOT NULL,
+	Date datetime NOT NULL,
+	Salary money NOT NULL,
+	ToStaffId int NOT NULL
+	)  ON [PRIMARY]
+GO
+ALTER TABLE dbo.Tmp_StaffSalary SET (LOCK_ESCALATION = TABLE)
+GO
+SET IDENTITY_INSERT dbo.Tmp_StaffSalary ON
+GO
+IF EXISTS(SELECT * FROM dbo.StaffSalary)
+	 EXEC('INSERT INTO dbo.Tmp_StaffSalary (Id, StaffId, Date, Salary)
+		SELECT Id, StaffId, Date, Salary FROM dbo.StaffSalary WITH (HOLDLOCK TABLOCKX)')
+GO
+SET IDENTITY_INSERT dbo.Tmp_StaffSalary OFF
+GO
+DROP TABLE dbo.StaffSalary
+GO
+EXECUTE sp_rename N'dbo.Tmp_StaffSalary', N'StaffSalary', 'OBJECT' 
+GO
+ALTER TABLE dbo.StaffSalary ADD CONSTRAINT
+	PK_StaffSalary PRIMARY KEY CLUSTERED 
+	(
+	Id
+	) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+
+GO
+ALTER TABLE dbo.StaffSalary ADD CONSTRAINT
+	FK_StaffSalary_Staff FOREIGN KEY
+	(
+	StaffId
+	) REFERENCES dbo.Staff
+	(
+	Id
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.StaffSalary ADD CONSTRAINT
+	FK_StaffSalary_Staff1 FOREIGN KEY
+	(
+	ToStaffId
+	) REFERENCES dbo.Staff
+	(
+	Id
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.StaffSalary ADD CONSTRAINT
+	FK_StaffSalary_Store FOREIGN KEY
+	(
+	StoreId
+	) REFERENCES dbo.Store
+	(
+	Id
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+COMMIT
+select Has_Perms_By_Name(N'dbo.StaffSalary', 'Object', 'ALTER') as ALT_Per, Has_Perms_By_Name(N'dbo.StaffSalary', 'Object', 'VIEW DEFINITION') as View_def_Per, Has_Perms_By_Name(N'dbo.StaffSalary', 'Object', 'CONTROL') as Contr_Per 
+
+-------------------------------------------------------------------------------------------------------------------------------------
+Create the transform Tabel
+
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+GO
+CREATE TABLE dbo.Transform
+	(
+	Id int NOT NULL IDENTITY (1400, 1),
+	StaffId int NOT NULL,
+	StoreId int NOT NULL,
+	Date datetime NOT NULL,
+	TotalMoney money NOT NULL,
+	ToStoreId int NOT NULL
+	)  ON [PRIMARY]
+GO
+ALTER TABLE dbo.Transform ADD CONSTRAINT
+	PK_Transform PRIMARY KEY CLUSTERED 
+	(
+	Id
+	) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+
+GO
+ALTER TABLE dbo.Transform SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+select Has_Perms_By_Name(N'dbo.Transform', 'Object', 'ALTER') as ALT_Per, Has_Perms_By_Name(N'dbo.Transform', 'Object', 'VIEW DEFINITION') as View_def_Per, Has_Perms_By_Name(N'dbo.Transform', 'Object', 'CONTROL') as Contr_Per 
+
+
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+Modify the Transform Tabel
+
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.Store SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+select Has_Perms_By_Name(N'dbo.Store', 'Object', 'ALTER') as ALT_Per, Has_Perms_By_Name(N'dbo.Store', 'Object', 'VIEW DEFINITION') as View_def_Per, Has_Perms_By_Name(N'dbo.Store', 'Object', 'CONTROL') as Contr_Per BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.Staff SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+select Has_Perms_By_Name(N'dbo.Staff', 'Object', 'ALTER') as ALT_Per, Has_Perms_By_Name(N'dbo.Staff', 'Object', 'VIEW DEFINITION') as View_def_Per, Has_Perms_By_Name(N'dbo.Staff', 'Object', 'CONTROL') as Contr_Per BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.Transform ADD CONSTRAINT
+	FK_Transform_Staff FOREIGN KEY
+	(
+	StaffId
+	) REFERENCES dbo.Staff
+	(
+	Id
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.Transform ADD CONSTRAINT
+	FK_Transform_Store FOREIGN KEY
+	(
+	StoreId
+	) REFERENCES dbo.Store
+	(
+	Id
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.Transform ADD CONSTRAINT
+	FK_Transform_Store1 FOREIGN KEY
+	(
+	StoreId
+	) REFERENCES dbo.Store
+	(
+	Id
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.Transform SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+select Has_Perms_By_Name(N'dbo.Transform', 'Object', 'ALTER') as ALT_Per, Has_Perms_By_Name(N'dbo.Transform', 'Object', 'VIEW DEFINITION') as View_def_Per, Has_Perms_By_Name(N'dbo.Transform', 'Object', 'CONTROL') as Contr_Per 
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+Create DeTransform Tabel
+
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+GO
+CREATE TABLE dbo.DeTransform
+	(
+	Id int NOT NULL IDENTITY (1500, 1),
+	StoreId int NOT NULL,
+	StaffId int NOT NULL,
+	Date datetime NOT NULL,
+	TotalMoney money NOT NULL,
+	FromStoreId int NOT NULL
+	)  ON [PRIMARY]
+GO
+ALTER TABLE dbo.DeTransform ADD CONSTRAINT
+	PK_DeTransform PRIMARY KEY CLUSTERED 
+	(
+	Id
+	) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+
+GO
+ALTER TABLE dbo.DeTransform SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+select Has_Perms_By_Name(N'dbo.DeTransform', 'Object', 'ALTER') as ALT_Per, Has_Perms_By_Name(N'dbo.DeTransform', 'Object', 'VIEW DEFINITION') as View_def_Per, Has_Perms_By_Name(N'dbo.DeTransform', 'Object', 'CONTROL') as Contr_Per 
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+modify the DeTransform tabel
+
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.Staff SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+select Has_Perms_By_Name(N'dbo.Staff', 'Object', 'ALTER') as ALT_Per, Has_Perms_By_Name(N'dbo.Staff', 'Object', 'VIEW DEFINITION') as View_def_Per, Has_Perms_By_Name(N'dbo.Staff', 'Object', 'CONTROL') as Contr_Per BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.Store SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+select Has_Perms_By_Name(N'dbo.Store', 'Object', 'ALTER') as ALT_Per, Has_Perms_By_Name(N'dbo.Store', 'Object', 'VIEW DEFINITION') as View_def_Per, Has_Perms_By_Name(N'dbo.Store', 'Object', 'CONTROL') as Contr_Per BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.DeTransform ADD CONSTRAINT
+	FK_DeTransform_Store FOREIGN KEY
+	(
+	StoreId
+	) REFERENCES dbo.Store
+	(
+	Id
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.DeTransform ADD CONSTRAINT
+	FK_DeTransform_Staff FOREIGN KEY
+	(
+	StaffId
+	) REFERENCES dbo.Staff
+	(
+	Id
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.DeTransform ADD CONSTRAINT
+	FK_DeTransform_Store1 FOREIGN KEY
+	(
+	FromStoreId
+	) REFERENCES dbo.Store
+	(
+	Id
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.DeTransform SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+select Has_Perms_By_Name(N'dbo.DeTransform', 'Object', 'ALTER') as ALT_Per, Has_Perms_By_Name(N'dbo.DeTransform', 'Object', 'VIEW DEFINITION') as View_def_Per, Has_Perms_By_Name(N'dbo.DeTransform', 'Object', 'CONTROL') as Contr_Per 
+
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+Adding the OrderPayment Tabel
+
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+GO
+CREATE TABLE dbo.OrderPayment
+	(
+	Id int NOT NULL,
+	OrderId int NOT NULL,
+	Paid money NOT NULL,
+	Date datetime NOT NULL
+	)  ON [PRIMARY]
+GO
+ALTER TABLE dbo.OrderPayment SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+select Has_Perms_By_Name(N'dbo.OrderPayment', 'Object', 'ALTER') as ALT_Per, Has_Perms_By_Name(N'dbo.OrderPayment', 'Object', 'VIEW DEFINITION') as View_def_Per, Has_Perms_By_Name(N'dbo.OrderPayment', 'Object', 'CONTROL') as Contr_Per 
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+modify the OrderPayment Tabel
+
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.Orders SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+select Has_Perms_By_Name(N'dbo.Orders', 'Object', 'ALTER') as ALT_Per, Has_Perms_By_Name(N'dbo.Orders', 'Object', 'VIEW DEFINITION') as View_def_Per, Has_Perms_By_Name(N'dbo.Orders', 'Object', 'CONTROL') as Contr_Per BEGIN TRANSACTION
+GO
+CREATE TABLE dbo.Tmp_OrderPayment
+	(
+	Id int NOT NULL IDENTITY (1600, 1),
+	OrderId int NOT NULL,
+	Paid money NOT NULL,
+	Date datetime NOT NULL
+	)  ON [PRIMARY]
+GO
+ALTER TABLE dbo.Tmp_OrderPayment SET (LOCK_ESCALATION = TABLE)
+GO
+SET IDENTITY_INSERT dbo.Tmp_OrderPayment ON
+GO
+IF EXISTS(SELECT * FROM dbo.OrderPayment)
+	 EXEC('INSERT INTO dbo.Tmp_OrderPayment (Id, OrderId, Paid, Date)
+		SELECT Id, OrderId, Paid, Date FROM dbo.OrderPayment WITH (HOLDLOCK TABLOCKX)')
+GO
+SET IDENTITY_INSERT dbo.Tmp_OrderPayment OFF
+GO
+DROP TABLE dbo.OrderPayment
+GO
+EXECUTE sp_rename N'dbo.Tmp_OrderPayment', N'OrderPayment', 'OBJECT' 
+GO
+ALTER TABLE dbo.OrderPayment ADD CONSTRAINT
+	PK_OrderPayment PRIMARY KEY CLUSTERED 
+	(
+	Id
+	) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+
+GO
+ALTER TABLE dbo.OrderPayment ADD CONSTRAINT
+	FK_OrderPayment_Orders FOREIGN KEY
+	(
+	OrderId
+	) REFERENCES dbo.Orders
+	(
+	Id
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+COMMIT
+select Has_Perms_By_Name(N'dbo.OrderPayment', 'Object', 'ALTER') as ALT_Per, Has_Perms_By_Name(N'dbo.OrderPayment', 'Object', 'VIEW DEFINITION') as View_def_Per, Has_Perms_By_Name(N'dbo.OrderPayment', 'Object', 'CONTROL') as Contr_Per 
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+Create IncomeOrderPayment Tabel
+
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+GO
+CREATE TABLE dbo.IncomeOrderPayment
+	(
+	Id int NOT NULL IDENTITY (1700, 1),
+	IncomeOrderId int NOT NULL,
+	Paid money NOT NULL,
+	Date datetime NOT NULL
+	)  ON [PRIMARY]
+GO
+ALTER TABLE dbo.IncomeOrderPayment ADD CONSTRAINT
+	PK_IncomeOrderPayment PRIMARY KEY CLUSTERED 
+	(
+	Id
+	) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+
+GO
+ALTER TABLE dbo.IncomeOrderPayment SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+select Has_Perms_By_Name(N'dbo.IncomeOrderPayment', 'Object', 'ALTER') as ALT_Per, Has_Perms_By_Name(N'dbo.IncomeOrderPayment', 'Object', 'VIEW DEFINITION') as View_def_Per, Has_Perms_By_Name(N'dbo.IncomeOrderPayment', 'Object', 'CONTROL') as Contr_Per 
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+modify IncomeOrderPayment Tabel
+
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.IncomeOrder SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+select Has_Perms_By_Name(N'dbo.IncomeOrder', 'Object', 'ALTER') as ALT_Per, Has_Perms_By_Name(N'dbo.IncomeOrder', 'Object', 'VIEW DEFINITION') as View_def_Per, Has_Perms_By_Name(N'dbo.IncomeOrder', 'Object', 'CONTROL') as Contr_Per BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.IncomeOrderPayment ADD CONSTRAINT
+	FK_IncomeOrderPayment_IncomeOrder FOREIGN KEY
+	(
+	IncomeOrderId
+	) REFERENCES dbo.IncomeOrder
+	(
+	Id
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.IncomeOrderPayment SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+select Has_Perms_By_Name(N'dbo.IncomeOrderPayment', 'Object', 'ALTER') as ALT_Per, Has_Perms_By_Name(N'dbo.IncomeOrderPayment', 'Object', 'VIEW DEFINITION') as View_def_Per, Has_Perms_By_Name(N'dbo.IncomeOrderPayment', 'Object', 'CONTROL') as Contr_Per 
+
+
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+
 
 -------------------------------------------------------------------------------------------------------------------------------------
 
@@ -1263,7 +2192,14 @@ GO
 -------------------------------------------------------------------------------------------------------------------------------------
 
 -------------------------------------------------------------------------------------------------------------------------------------
-
+-------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------------------------------------------------------
 
 -------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+

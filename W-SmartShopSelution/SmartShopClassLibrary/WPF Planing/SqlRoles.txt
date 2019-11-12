@@ -65,5 +65,25 @@ Operation
 ShopBill
 	Id Auto Increment starts From 900,000
 
+Owner
+	Id Auto Increment starts From 1,100
+
+Investment
+	Id Auto Increment starts From 1,200
+
+Revenue
+	Id auto increament starts From 1,300
+
+Transform
+	Id Autio increament starts From 1,400
+
+DeTransform
+	Id Autio increament starts From 1,500
+
+OrderPayment
+	Id Auto increament starts From 1,600
+
+IncomeOrderPayment
+	Id Auto increament starts From 1,700
 
 	

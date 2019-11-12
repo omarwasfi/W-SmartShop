@@ -92,6 +92,8 @@ namespace Library
             PublicVariables.IncomeOrderProducts = null;
             PublicVariables.IncomeOrderProducts = GetIncomeOrderProductsFromTheDatabase(PublicVariables.Products);
 
+
+
             // 13- Set the Orders
             PublicVariables.Orders = null;
             PublicVariables.Orders = GetOrdersFromTheDatabase(PublicVariables.Customers, PublicVariables.Stores, PublicVariables.Staffs, PublicVariables.OrderProducts);
@@ -280,6 +282,13 @@ namespace Library
             orders = OrderAccess.SetTheOrderProductsForEachOrderFromTheDatabase(orders, orderProducts, db);
             return orders;
         }
+        
+        private List<IncomeOrderModel> GetIncomerOrdersFromTheDatabase(List<SupplierModel>suppliers,List<StoreModel>stores,List<StaffModel>staffs,List<IncomeOrderProductModel>incomeOrderProducts)
+        {
+            List<IncomeOrderModel> incomeOrders = new List<IncomeOrderModel>();
+
+            return incomeOrders;
+        }
 
         #endregion
 
@@ -439,7 +448,7 @@ namespace Library
         /// <returns></returns>
         public List<IncomeOrderModel> GetIncomeOrders()
         {
-            return IncomeOrder_Access.GetIncomeOrders(db);
+            return IncomeOrderAccess.GetIncomeOrders(db);
         }
 
 
@@ -453,7 +462,7 @@ namespace Library
         /// <returns></returns>
         public IncomeOrderModel GetEmptyIncomeOrderFromTheDatabase(IncomeOrderModel incomeOrder)
         {
-            return IncomeOrder_Access.GetEmptyIncomeOrderFromTheDatabase(incomeOrder, db);
+            return IncomeOrderAccess.GetEmptyIncomeOrderFromTheDatabase(incomeOrder, db);
         }
 
         /// <summary>

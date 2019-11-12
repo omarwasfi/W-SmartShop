@@ -62,41 +62,49 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataAccess\Brand_Access\BrandAccess.cs" />
-    <Compile Include="DataAccess\Category_Access\CategoryAccess.cs" />
-    <Compile Include="DataAccess\Customer_Access\CustomerAccess.cs" />
+    <Compile Include="DataAccess\Products_Access\BrandAccess.cs" />
+    <Compile Include="DataAccess\Products_Access\CategoryAccess.cs" />
+    <Compile Include="DataAccess\Human_Access\CustomerAccess.cs" />
     <Compile Include="DataAccess\DataAccess.cs" />
-    <Compile Include="DataAccess\IncomeOrderProduct_Access\IncomeOrderProductAccess.cs" />
-    <Compile Include="DataAccess\IncomeOrder_Access\IncomeOrder_Access.cs" />
-    <Compile Include="DataAccess\OrderProduct_Access\OrderProductAccess.cs" />
-    <Compile Include="DataAccess\Order_Access\OrderAccess.cs" />
-    <Compile Include="DataAccess\Permission_Access\Permission_Access.cs" />
-    <Compile Include="DataAccess\Person_Access\Person_Access.cs" />
-    <Compile Include="DataAccess\Product_Access\ProductAccess.cs" />
-    <Compile Include="DataAccess\Staff_Access\StaffAccess.cs" />
-    <Compile Include="DataAccess\Stock_Access\StockAccess.cs" />
+    <Compile Include="DataAccess\Orders_Access\IncomeOrder_Access\IncomeOrderProductAccess.cs" />
+    <Compile Include="DataAccess\Orders_Access\IncomeOrder_Access\IncomeOrderAccess.cs" />
+    <Compile Include="DataAccess\Orders_Access\Order_Access\OrderProductAccess.cs" />
+    <Compile Include="DataAccess\Orders_Access\Order_Access\OrderAccess.cs" />
+    <Compile Include="DataAccess\Human_Access\Permission_Access.cs" />
+    <Compile Include="DataAccess\Human_Access\Person_Access.cs" />
+    <Compile Include="DataAccess\Products_Access\ProductAccess.cs" />
+    <Compile Include="DataAccess\Human_Access\StaffAccess.cs" />
+    <Compile Include="DataAccess\Store_Access\StockAccess.cs" />
     <Compile Include="DataAccess\Store_Access\Store_Access.cs" />
-    <Compile Include="DataAccess\Supplier_Access\SupplierAccess.cs" />
-    <Compile Include="DataModels\CashOrder\OrderModel.cs" />
-    <Compile Include="DataModels\CashOrder\OrderProductModel.cs" />
-    <Compile Include="DataModels\Goods\BrandModel.cs" />
-    <Compile Include="DataModels\Goods\CategoryModel.cs" />
-    <Compile Include="DataModels\Goods\ProductModel.cs" />
-    <Compile Include="DataModels\Goods\StockModel.cs" />
-    <Compile Include="DataModels\Humans\CustomerModel.cs" />
-    <Compile Include="DataModels\Humans\PersonModel.cs" />
-    <Compile Include="DataModels\Humans\StaffModel.cs" />
-    <Compile Include="DataModels\Humans\StaffSalaryModel.cs" />
-    <Compile Include="DataModels\Humans\SupplierModel.cs" />
-    <Compile Include="DataModels\IncomeOrder\IncomeOrderModel.cs" />
-    <Compile Include="DataModels\IncomeOrder\IncomeOrderProductModel.cs" />
-    <Compile Include="DataModels\Installment\InstallmentDetailsModel.cs" />
-    <Compile Include="DataModels\Installment\InstallmentModel.cs" />
-    <Compile Include="DataModels\Installment\InstallmentProductModel.cs" />
-    <Compile Include="DataModels\Humans\PermissionModel.cs" />
-    <Compile Include="DataModels\Money\OperationModel.cs" />
-    <Compile Include="DataModels\ShopBill\ShopBillModel.cs" />
-    <Compile Include="DataModels\StoreModel.cs" />
+    <Compile Include="DataAccess\Human_Access\SupplierAccess.cs" />
+    <Compile Include="DataModels\HumanDataModels\OwnerModel.cs" />
+    <Compile Include="DataModels\OrdersDataModels\IncomeOrderDataModels\IncomeOrderPaymentModel.cs" />
+    <Compile Include="DataModels\OrdersDataModels\TransformationDataModels\DeTransformModel.cs" />
+    <Compile Include="DataModels\OrdersDataModels\OrderDataModels\OrderModel.cs" />
+    <Compile Include="DataModels\OrdersDataModels\OrderDataModels\OrderPaymentModel.cs" />
+    <Compile Include="DataModels\OrdersDataModels\OrderDataModels\OrderProductModel.cs" />
+    <Compile Include="DataModels\OrdersDataModels\OwnerDataModels\InvestmentDataModel.cs" />
+    <Compile Include="DataModels\OrdersDataModels\OwnerDataModels\RevenueDataModel.cs" />
+    <Compile Include="DataModels\OrdersDataModels\TransformationDataModels\TransformModel.cs" />
+    <Compile Include="DataModels\OrganizationDataModels-NotDatabaseRelated\OrganizationModel.cs" />
+    <Compile Include="DataModels\StoreDataModels\ProductDataModels\BrandModel.cs" />
+    <Compile Include="DataModels\StoreDataModels\ProductDataModels\CategoryModel.cs" />
+    <Compile Include="DataModels\StoreDataModels\ProductDataModels\ProductModel.cs" />
+    <Compile Include="DataModels\StoreDataModels\StockModel.cs" />
+    <Compile Include="DataModels\HumanDataModels\CustomerModel.cs" />
+    <Compile Include="DataModels\HumanDataModels\PersonModel.cs" />
+    <Compile Include="DataModels\HumanDataModels\StaffModel.cs" />
+    <Compile Include="DataModels\OrdersDataModels\StaffSalaryDataModels\StaffSalaryModel.cs" />
+    <Compile Include="DataModels\HumanDataModels\SupplierModel.cs" />
+    <Compile Include="DataModels\OrdersDataModels\IncomeOrderDataModels\IncomeOrderModel.cs" />
+    <Compile Include="DataModels\OrdersDataModels\IncomeOrderDataModels\IncomeOrderProductModel.cs" />
+    <Compile Include="DataModels\InstallmentDataModels\InstallmentDetailsModel.cs" />
+    <Compile Include="DataModels\InstallmentDataModels\InstallmentModel.cs" />
+    <Compile Include="DataModels\InstallmentDataModels\InstallmentProductModel.cs" />
+    <Compile Include="DataModels\HumanDataModels\PermissionModel.cs" />
+    <Compile Include="DataModels\OperationModels\OperationModel.cs" />
+    <Compile Include="DataModels\OrdersDataModels\ShopBillDataModels\ShopBillModel.cs" />
+    <Compile Include="DataModels\StoreDataModels\StoreModel.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="GlobalConfig.cs" />
     <Compile Include="Interfaces\WPFInterfaces\ICustomerRequester.cs" />
@@ -124,8 +132,8 @@
     <Compile Include="PublicVariables.cs" />
     <Compile Include="Validation\Forced\MoneyValidator.cs" />
     <Compile Include="Validation\Forced\NumberValidation.cs" />
-    <Compile Include="Validation\Operations\OrderProductValidator.cs" />
-    <Compile Include="Validation\Operations\ProductValidator.cs" />
+    <Compile Include="Validation\OrdersValidations\OrderValidations\OrderProductValidator.cs" />
+    <Compile Include="Validation\StoreValidations\ProductValidations\ProductValidator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Code Reports\Bug Report.txt" />
@@ -143,16 +151,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="DataAccess\InstallmentDetails_Access\" />
-    <Folder Include="DataAccess\InstallmentProduct_Access\" />
-    <Folder Include="DataAccess\Installment_Access\" />
-    <Folder Include="DataAccess\Operation_Access\" />
-    <Folder Include="DataAccess\ShopBill_Access\" />
-    <Folder Include="DataAccess\StaffSalary_Access\" />
-    <Folder Include="DataAccess\StoreStaff_Access\" />
     <Folder Include="LogicalClasses\StaffSalary\" />
-    <Folder Include="Validation\Goods\" />
-    <Folder Include="Validation\Human\" />
+    <Folder Include="Validation\HumanValidations\" />
+    <Folder Include="Validation\OrdersValidations\IncomeOrderValidations\" />
+    <Folder Include="Validation\OrdersValidations\ShopBillValidations\" />
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.VersionCheckAnalyzer.2.9.7\analyzers\dotnet\cs\Microsoft.CodeAnalysis.VersionCheckAnalyzer.resources.dll" />
