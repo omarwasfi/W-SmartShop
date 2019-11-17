@@ -63,8 +63,8 @@ namespace WPF_GUI.Orders.Out.OrderUC
             OrderIdValue_OrderUC.Text = Order.Id.ToString();
             TotalPriceValue_OrderUC.Text = Order.GetTotalPrice.ToString();
             TotalOrderProfitValue_OrderUC.Text = Order.GetTotalProfit.ToString();
-            CustomerPaidValue_OrderUC.Text = Order.Paid.ToString();
-            LastPaymentDateValue_OrderUC.Text = Order.LastPaymentDate.ToString();
+            //CustomerPaidValue_OrderUC.Text = Order.Paid.ToString();
+            //LastPaymentDateValue_OrderUC.Text = Order.LastPaymentDate.ToString();
             TotalPriceAfterChangesValue_OrderUC.Text = Order.GetTotalPrice.ToString();
             TotalOrderProfitValue_OrderUC.Text = Order.GetTotalProfit.ToString();
             TotalOrderProfitAfterChangesValue_OrderUC.Text = Order.GetTotalProfit.ToString();
@@ -172,10 +172,10 @@ namespace WPF_GUI.Orders.Out.OrderUC
             TotalOrderProfitAfterChangesValue_OrderUC.Text = TotalOrderProfit.ToString();
 
             decimal customerShouldReceive = new decimal();
-            customerShouldReceive = OrignalOrder.Paid - TotalPrice;
+            //customerShouldReceive = OrignalOrder.Paid - TotalPrice;
             if(customerShouldReceive < 0)
             {
-                CustomerShouldPayValue_OrderUC.Text =( TotalPrice - OrignalOrder.Paid).ToString();
+                //CustomerShouldPayValue_OrderUC.Text =( TotalPrice - OrignalOrder.Paid).ToString();
                 CustomerWillPayNowValue_OrderUC.Text = CustomerShouldPayValue_OrderUC.Text;
                 CustomerWillPayLaterValue_OrderUC.Text = "";
 
@@ -378,10 +378,10 @@ namespace WPF_GUI.Orders.Out.OrderUC
             foreach (OperationModel operationModel in updatedOperations)
             {
                 totalPaid += operationModel.AmountOfMoney;
-                Order.LastPaymentDate = operationModel.Date;
+               // Order.LastPaymentDate = operationModel.Date;
             }
 
-            Order.Paid = totalPaid;
+            //Order.Paid = totalPaid;
 
             Order = GlobalConfig.Connection.UpdateOrderData(Order);
 
@@ -433,7 +433,7 @@ namespace WPF_GUI.Orders.Out.OrderUC
 
             private void DeleteOrderButton_OrderUC_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageBox.Show("this Order will be Deleted Complitly, the customer should get "+ Order.Paid.ToString() +"  !", "Are you sure ?", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            if (MessageBox.Show("this Order will be Deleted Complitly, the customer should get "+ /*Order.Paid.ToString() */ ""+"  !", "Are you sure ?", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
                 foreach(OrderProductModel orderProduct in OrderProducts)
                 {
@@ -540,10 +540,10 @@ namespace WPF_GUI.Orders.Out.OrderUC
 
 
             string printLast = "";
-            if (Order.Paid < Order.GetTotalPrice)
+            /*if (Order.Paid < Order.GetTotalPrice)
             {
                 printLast += "Payment due within 30 days from date of invoice\n";
-            }
+            }*/
 
             printLast += "Thank you for your business!";
             report["PrintLast"] = printLast;

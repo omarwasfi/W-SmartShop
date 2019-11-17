@@ -32,7 +32,31 @@ namespace Library
         /// </summary>
         public List<DeTransformModel> GetDeTransforms { get;}
 
-        
+        /// <summary>
+        /// -Need Update- All orders done by this store
+        /// </summary>
+        public List<OrderModel> GetAllOrder { get; }
+
+        /// <summary>
+        /// -Need Update- All IncomeOrders Done by this store
+        /// </summary>
+        public List<IncomeOrderModel> GetIncomeOrder { get; }
+
+        /// <summary>
+        /// -Need Update- all the shopBills by this store
+        /// </summary>
+        public List<ShopBillModel> GetShopBills { get;}
+
+        /// <summary>
+        /// -need update- all The StaffSalaries by this store
+        /// </summary>
+        public List<StaffSalaryModel> GetStaffSalaries { get; }
+
+        /// <summary>
+        /// -Need Update- Get the total money exist in the store Now
+        /// </summary>
+        public decimal GetShopeeWallet { get;}
+
         #endregion
     }
 }

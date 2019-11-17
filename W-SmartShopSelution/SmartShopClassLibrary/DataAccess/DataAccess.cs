@@ -63,40 +63,74 @@ namespace Library
             // 5- Set the Customer models
             PublicVariables.Customers = null;
             PublicVariables.Customers = GetCustomersFromTheDatabase(PublicVariables.People);
-
+      
             // 6- Set The Supplier Models
             PublicVariables.Suppliers = null;
             PublicVariables.Suppliers = GetSuppliersFromTheDatabase(PublicVariables.People);
 
-            // 7- Set the categories
-            PublicVariables.Categories = null;
-            PublicVariables.Categories = GetCategoriesFromTheDatabase();
 
-            // 8- Set the Brands
+            // 7- Set the Revenue
+            PublicVariables.Revenues = null;
+            PublicVariables.Revenues = GetRevenuesFromThaDatbase(PublicVariables.Staffs, PublicVariables.Stores);
+
+            // 8- Set the Investment
+            PublicVariables.Investments = null;
+            PublicVariables.Investments = GetInvestmentsFromTheDatabase(PublicVariables.Staffs, PublicVariables.Stores);
+
+            // 9- Set the Owner Models
+            PublicVariables.Owners = null;
+            PublicVariables.Owners = GetOwnersFromTheDatabase(PublicVariables.People,PublicVariables.Investments,PublicVariables.Revenues);
+
+            // 10- Set the Transform
+            PublicVariables.Transforms = null;
+            PublicVariables.Transforms = GetTransformsFromTheDatabase(PublicVariables.Staffs, PublicVariables.Stores);
+
+            // 11- set the DeTransform
+            PublicVariables.DeTransforms = null;
+            PublicVariables.DeTransforms = GetDeTransformsFromTheDatabase(PublicVariables.Staffs, PublicVariables.Stores);
+
+            // 12- Set the StaffSalary
+            PublicVariables.StaffSalaries = null;
+            PublicVariables.StaffSalaries = GetStaffSalariesFromTheDatabase(PublicVariables.Stores, PublicVariables.Staffs);
+
+            // 13- Set the Brands
             PublicVariables.Brands = null;
             PublicVariables.Brands = GetBrandsFromTheDatabase();
 
-            // 9- Set the Products
+            // 14- Set the categories
+            PublicVariables.Categories = null;
+            PublicVariables.Categories = GetCategoriesFromTheDatabase();
+
+
+            // 15- Set the Products
             PublicVariables.Products = null;
             PublicVariables.Products = GetProductsFromTheDatabase(PublicVariables.Categories,PublicVariables.Brands);
 
-            // 10- Set the stocks
+            // 16- Set the stocks
             PublicVariables.Stocks = null;
             PublicVariables.Stocks = GetStocksFromTheDatabase(PublicVariables.Stores, PublicVariables.Products);
 
-            // 11-Set the orderProducts
+            // 17-Set the orderProducts
             PublicVariables.OrderProducts = null;
             PublicVariables.OrderProducts = GetOrderProductsFromTheDatabase(PublicVariables.Products);
 
-            // 12- Set the IncomeOrderProduct
+            // 18- Set the IncomeOrderProduct
             PublicVariables.IncomeOrderProducts = null;
             PublicVariables.IncomeOrderProducts = GetIncomeOrderProductsFromTheDatabase(PublicVariables.Products);
 
+            //19- Set the OrderPayment Models
 
+            // 20- Set the IncomeOrderPayment Models
 
-            // 13- Set the Orders
+            
+
+            // 21- Set the Orders
             PublicVariables.Orders = null;
             PublicVariables.Orders = GetOrdersFromTheDatabase(PublicVariables.Customers, PublicVariables.Stores, PublicVariables.Staffs, PublicVariables.OrderProducts);
+
+            // 22- set the IncomeOrder Models
+
+            // 23- set the ShopBills
 
         }
 
@@ -180,6 +214,109 @@ namespace Library
             suppliers = SupplierAccess.GetSuppliersFromTheDatabase(db);
             suppliers = SupplierAccess.SetThePersonModelForEachSupplierFromTheDatabase(suppliers, people, db);
             return suppliers;
+        }
+
+        /// <summary>
+        /// Get all revenues from the Database Set the staffModels and the storeModel Foreach one
+        /// </summary>
+        /// <param name="staffs"></param>
+        /// <param name="stores"></param>
+        /// <returns></returns>
+        private List<RevenueModel> GetRevenuesFromThaDatbase(List<StaffModel> staffs , List<StoreModel> stores)
+        {
+            List<RevenueModel> revenues = new List<RevenueModel>();
+            revenues = RevenueAccess.GetRevenuesFromTheDatabae(db);
+            revenues = RevenueAccess.SetTheStaffModelForEachRevenueFromTheDatabase(revenues, staffs, db);
+            revenues = RevenueAccess.SetTheStoreModelForEachRevenueFromTheDatabase(revenues, stores, db);
+
+            return revenues;
+        }
+        
+        /// <summary>
+        /// Get all investments from the Database Set the staffModels and the storeModel Foreach one
+        /// </summary>
+        /// <param name="staffs"></param>
+        /// <param name="stores"></param>
+        /// <returns></returns>
+        private List<InvestmentModel> GetInvestmentsFromTheDatabase(List<StaffModel>staffs , List<StoreModel> stores)
+        {
+            List<InvestmentModel> investments = new List<InvestmentModel>();
+            investments = InvestmentAccess.GetInvestmentsFromTheDatabae(db);
+            investments = InvestmentAccess.SetTheStaffModelForEachInvestmentFromTheDatabase(investments, staffs, db);
+            investments = InvestmentAccess.SetTheStoreModelForEachInvestmentFromTheDatabase(investments, stores, db);
+
+            return investments;
+        }
+
+        /// <summary>
+        /// Get owners from the database
+        /// - set the personModel ForEach owner
+        /// - set the investments ForEach owner
+        /// - set the revenues ForEach owner
+        /// </summary>
+        /// <param name="people"></param>
+        /// <param name="investments"></param>
+        /// <param name="revenues"></param>
+        /// <returns></returns>
+        private List<OwnerModel> GetOwnersFromTheDatabase(List<PersonModel> people, List<InvestmentModel> investments, List<RevenueModel> revenues)
+        {
+            List<OwnerModel> owners = new List<OwnerModel>();
+            owners = OwnerAccess.GetOwnersFromTheDatabae(db);
+            owners = OwnerAccess.SetThePersonModelForEachOwnerFromTheDatabase(owners, people, db);
+            owners = OwnerAccess.SetTheInvestmentsForEachOwnerFromTheDatabase(owners, investments, db);
+            owners = OwnerAccess.SetTheRevenuesForEachOwnerFromTheDatabase(owners, revenues, db);
+            return owners;
+        }
+
+        /// <summary>
+        /// Get transforms From the database
+        /// - Set the staffModel, storeModel , ToStoreModel
+        /// </summary>
+        /// <param name="staffs"></param>
+        /// <param name="stores"></param>
+        /// <returns></returns>
+        private List<TransformModel> GetTransformsFromTheDatabase(List<StaffModel> staffs, List<StoreModel> stores)
+        {
+            List<TransformModel> transforms = new List<TransformModel>();
+            transforms = TransformAccess.GetTrasformsFromTheDatabase(db);
+            transforms = TransformAccess.SetTheStaffForEachTransformFromTheDatabase(transforms, staffs, db);
+            transforms = TransformAccess.SetTheStoreForEachTransformFromTheDatabase(transforms, stores, db);
+            transforms = TransformAccess.SetTheToStoreForEachTransformFromTheDatabase(transforms, stores, db);
+            return transforms;
+        }
+
+        /// <summary>
+        /// Get DeTransforms From the database 
+        /// - Set the StoreModel , StaffModel , FromStoreModel
+        /// </summary>
+        /// <param name="staffs"></param>
+        /// <param name="stores"></param>
+        /// <returns></returns>
+        private List<DeTransformModel> GetDeTransformsFromTheDatabase(List<StaffModel> staffs, List<StoreModel> stores)
+        {
+            List<DeTransformModel> deTransforms = new List<DeTransformModel>();
+            deTransforms = DeTransformAccess.GetDeTrasformsFromTheDatabase(db);
+            deTransforms = DeTransformAccess.SetTheStoreForEachDeTransformFromTheDatabase(deTransforms, stores, db);
+            deTransforms = DeTransformAccess.SetTheStaffForEachDeTransformFromTheDatabase(deTransforms, staffs, db);
+            deTransforms = DeTransformAccess.SetTheFromStoreForEachDeTransformFromTheDatabase(deTransforms, stores, db);
+            return deTransforms;
+        }
+
+        /// <summary>
+        /// Get all staffSalaries from the database -
+        /// set the storeModel , staffModel , ToStaffModel
+        /// </summary>
+        /// <param name="stores"></param>
+        /// <param name="staffs"></param>
+        /// <returns></returns>
+        private List<StaffSalaryModel> GetStaffSalariesFromTheDatabase(List<StoreModel> stores, List<StaffModel> staffs)
+        {
+            List<StaffSalaryModel> staffSalaries = new List<StaffSalaryModel>();
+            staffSalaries = StaffSalaryAccess.GetStaffSalariesFromTheDatabase(db);
+            staffSalaries = StaffSalaryAccess.SetTheStaffForEachStaffSalaryFromTheDatabase(staffSalaries, staffs, db);
+            staffSalaries = StaffSalaryAccess.SetTheStoreForEachStaffSalaryFromTheDatabase(staffSalaries, stores, db);
+            staffSalaries = StaffSalaryAccess.SetTheToStaffForEachStaffSalaryFromTheDatabase(staffSalaries, staffs, db);
+            return staffSalaries;
         }
 
         /// <summary>

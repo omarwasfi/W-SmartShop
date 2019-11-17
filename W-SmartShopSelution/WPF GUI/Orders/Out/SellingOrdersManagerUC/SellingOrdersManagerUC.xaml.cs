@@ -172,10 +172,10 @@ namespace WPF_GUI.Orders.Out.SellingOrdersManagerUC
 
 
                 string printLast = "";
-                if (order.Paid < order.GetTotalPrice)
+                /*if (order.Paid < order.GetTotalPrice)
                 {
                     printLast += "Payment due within 30 days from date of invoice\n";
-                }
+                }*/
 
                 printLast += "Thank you for your business!";
                 report["PrintLast"] = printLast;

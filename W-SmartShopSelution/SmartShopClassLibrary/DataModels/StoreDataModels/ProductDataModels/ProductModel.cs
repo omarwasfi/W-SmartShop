@@ -22,6 +22,10 @@ namespace Library
         /// </summary>
         public string Name { get; set; }
 
+        /// <summary>
+        /// The quantity type
+        /// </summary>
+        public string QuantityType { get; set; }
 
         /// <summary>
         /// The size of the product if it exist ( not Has to be Unique ) Or Null , can't be set if the first one is null (200 char)

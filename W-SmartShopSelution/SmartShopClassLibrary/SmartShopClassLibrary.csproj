@@ -62,6 +62,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataAccess\Human_Access\OwnerAccess.cs" />
+    <Compile Include="DataAccess\Orders_Access\OwnerInvests_Access\InvestmentAccess.cs" />
+    <Compile Include="DataAccess\Orders_Access\OwnerInvests_Access\RevenueAccess.cs" />
+    <Compile Include="DataAccess\Orders_Access\Owners_Access\DeTransformAccess.cs" />
+    <Compile Include="DataAccess\Orders_Access\Owners_Access\TransformAccess.cs" />
+    <Compile Include="DataAccess\Orders_Access\StaffSalary_Access\StaffSalaryAccess.cs" />
     <Compile Include="DataAccess\Products_Access\BrandAccess.cs" />
     <Compile Include="DataAccess\Products_Access\CategoryAccess.cs" />
     <Compile Include="DataAccess\Human_Access\CustomerAccess.cs" />
@@ -83,8 +89,8 @@
     <Compile Include="DataModels\OrdersDataModels\OrderDataModels\OrderModel.cs" />
     <Compile Include="DataModels\OrdersDataModels\OrderDataModels\OrderPaymentModel.cs" />
     <Compile Include="DataModels\OrdersDataModels\OrderDataModels\OrderProductModel.cs" />
-    <Compile Include="DataModels\OrdersDataModels\OwnerDataModels\InvestmentDataModel.cs" />
-    <Compile Include="DataModels\OrdersDataModels\OwnerDataModels\RevenueDataModel.cs" />
+    <Compile Include="DataModels\OrdersDataModels\OwnerDataModels\InvestmentModel.cs" />
+    <Compile Include="DataModels\OrdersDataModels\OwnerDataModels\RevenueModel.cs" />
     <Compile Include="DataModels\OrdersDataModels\TransformationDataModels\TransformModel.cs" />
     <Compile Include="DataModels\OrganizationDataModels-NotDatabaseRelated\OrganizationModel.cs" />
     <Compile Include="DataModels\StoreDataModels\ProductDataModels\BrandModel.cs" />

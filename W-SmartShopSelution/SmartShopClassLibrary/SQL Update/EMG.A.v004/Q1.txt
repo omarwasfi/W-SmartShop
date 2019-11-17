@@ -2181,22 +2181,672 @@ select Has_Perms_By_Name(N'dbo.IncomeOrderPayment', 'Object', 'ALTER') as ALT_Pe
 
 -------------------------------------------------------------------------------------------------------------------------------------
 
+Edit Product tabel
+
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.Product
+	DROP CONSTRAINT FK_Product_Category
+GO
+ALTER TABLE dbo.Category SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+select Has_Perms_By_Name(N'dbo.Category', 'Object', 'ALTER') as ALT_Per, Has_Perms_By_Name(N'dbo.Category', 'Object', 'VIEW DEFINITION') as View_def_Per, Has_Perms_By_Name(N'dbo.Category', 'Object', 'CONTROL') as Contr_Per BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.Product
+	DROP CONSTRAINT FK_Product_Brand
+GO
+ALTER TABLE dbo.Brand SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+select Has_Perms_By_Name(N'dbo.Brand', 'Object', 'ALTER') as ALT_Per, Has_Perms_By_Name(N'dbo.Brand', 'Object', 'VIEW DEFINITION') as View_def_Per, Has_Perms_By_Name(N'dbo.Brand', 'Object', 'CONTROL') as Contr_Per BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.Product
+	DROP CONSTRAINT DF_Product_CategoryId
+GO
+ALTER TABLE dbo.Product
+	DROP CONSTRAINT DF_Product_BrandId
+GO
+CREATE TABLE dbo.Tmp_Product
+	(
+	Id int NOT NULL IDENTITY (100000, 1),
+	Name nvarchar(200) NOT NULL,
+	QuantityType nvarchar(200) NULL,
+	Size nvarchar(200) NULL,
+	BarCode nvarchar(200) NOT NULL,
+	SerialNumber nvarchar(200) NULL,
+	SerialNumber2 nvarchar(200) NULL,
+	Details nvarchar(500) NULL,
+	CategoryId int NOT NULL,
+	BrandId int NOT NULL,
+	SalePrice money NOT NULL,
+	IncomePrice money NOT NULL,
+	ExpirationPeriod int NULL,
+	AlarmQuantity int NULL
+	)  ON [PRIMARY]
+GO
+ALTER TABLE dbo.Tmp_Product SET (LOCK_ESCALATION = TABLE)
+GO
+ALTER TABLE dbo.Tmp_Product ADD CONSTRAINT
+	DF_Product_CategoryId DEFAULT ((11000)) FOR CategoryId
+GO
+ALTER TABLE dbo.Tmp_Product ADD CONSTRAINT
+	DF_Product_BrandId DEFAULT ((10000)) FOR BrandId
+GO
+SET IDENTITY_INSERT dbo.Tmp_Product ON
+GO
+IF EXISTS(SELECT * FROM dbo.Product)
+	 EXEC('INSERT INTO dbo.Tmp_Product (Id, Name, Size, BarCode, SerialNumber, SerialNumber2, Details, CategoryId, BrandId, SalePrice, IncomePrice, ExpirationPeriod, AlarmQuantity)
+		SELECT Id, Name, Size, BarCode, SerialNumber, SerialNumber2, Details, CategoryId, BrandId, SalePrice, IncomePrice, ExpirationPeriod, AlarmQuantity FROM dbo.Product WITH (HOLDLOCK TABLOCKX)')
+GO
+SET IDENTITY_INSERT dbo.Tmp_Product OFF
+GO
+ALTER TABLE dbo.OrderProduct
+	DROP CONSTRAINT FK_OrderProduct_Product
+GO
+ALTER TABLE dbo.Stock
+	DROP CONSTRAINT FK_Stock_Product
+GO
+ALTER TABLE dbo.IncomeOrderProduct
+	DROP CONSTRAINT FK_IncomeOrderProduct_Product
+GO
+DROP TABLE dbo.Product
+GO
+EXECUTE sp_rename N'dbo.Tmp_Product', N'Product', 'OBJECT' 
+GO
+ALTER TABLE dbo.Product ADD CONSTRAINT
+	PK_Products PRIMARY KEY CLUSTERED 
+	(
+	Id
+	) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+
+GO
+ALTER TABLE dbo.Product ADD CONSTRAINT
+	FK_Product_Brand FOREIGN KEY
+	(
+	BrandId
+	) REFERENCES dbo.Brand
+	(
+	Id
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.Product ADD CONSTRAINT
+	FK_Product_Category FOREIGN KEY
+	(
+	CategoryId
+	) REFERENCES dbo.Category
+	(
+	Id
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+COMMIT
+select Has_Perms_By_Name(N'dbo.Product', 'Object', 'ALTER') as ALT_Per, Has_Perms_By_Name(N'dbo.Product', 'Object', 'VIEW DEFINITION') as View_def_Per, Has_Perms_By_Name(N'dbo.Product', 'Object', 'CONTROL') as Contr_Per BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.IncomeOrderProduct ADD CONSTRAINT
+	FK_IncomeOrderProduct_Product FOREIGN KEY
+	(
+	ProductId
+	) REFERENCES dbo.Product
+	(
+	Id
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.IncomeOrderProduct SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+select Has_Perms_By_Name(N'dbo.IncomeOrderProduct', 'Object', 'ALTER') as ALT_Per, Has_Perms_By_Name(N'dbo.IncomeOrderProduct', 'Object', 'VIEW DEFINITION') as View_def_Per, Has_Perms_By_Name(N'dbo.IncomeOrderProduct', 'Object', 'CONTROL') as Contr_Per BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.Stock ADD CONSTRAINT
+	FK_Stock_Product FOREIGN KEY
+	(
+	ProductId
+	) REFERENCES dbo.Product
+	(
+	Id
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.Stock SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+select Has_Perms_By_Name(N'dbo.Stock', 'Object', 'ALTER') as ALT_Per, Has_Perms_By_Name(N'dbo.Stock', 'Object', 'VIEW DEFINITION') as View_def_Per, Has_Perms_By_Name(N'dbo.Stock', 'Object', 'CONTROL') as Contr_Per BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.OrderProduct ADD CONSTRAINT
+	FK_OrderProduct_Product FOREIGN KEY
+	(
+	ProductId
+	) REFERENCES dbo.Product
+	(
+	Id
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.OrderProduct SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+select Has_Perms_By_Name(N'dbo.OrderProduct', 'Object', 'ALTER') as ALT_Per, Has_Perms_By_Name(N'dbo.OrderProduct', 'Object', 'VIEW DEFINITION') as View_def_Per, Has_Perms_By_Name(N'dbo.OrderProduct', 'Object', 'CONTROL') as Contr_Per 
 
 
 -------------------------------------------------------------------------------------------------------------------------------------
 
+USE [SmartShopDatabase]
+GO
+/****** Object:  StoredProcedure [dbo].[spProduct_GetAll]    Script Date: 11/13/2019 2:35:19 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+ALTER PROCEDURE [dbo].[spProduct_GetAll]
+
+AS
+BEGIN
+
+	SET NOCOUNT ON;
+	
+	SELECT Id,Name,QuantityType,Size,BarCode,SerialNumber,SerialNumber2,Details,SalePrice,IncomePrice,ExpirationPeriod,AlarmQuantity
+	FROM Product;
+END
+
+
+
 -------------------------------------------------------------------------------------------------------------------------------------
+
+CREATE PROCEDURE spRevenue_GetAll
+
+
+
+AS
+BEGIN
+
+
+
+	SET NOCOUNT ON;
+
+	SELECT Id , Date , TotalMoney
+	FROM Revenue;
+
+
+END
+GO
+
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+
+CREATE PROCEDURE spRevenue_GetStaffIdByRevenueId 
+	@RevenueId int
+AS
+BEGIN
+
+
+	SET NOCOUNT ON;
+
+	SELECT StaffId
+	FROM Revenue
+	WHERE Id = @RevenueId;
+
+END
+GO
+
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+
+CREATE PROCEDURE spRevenue_GetStoreIdByRevenueId
+	
+	@RevenueId int
+
+AS
+BEGIN
+
+
+
+	SET NOCOUNT ON;
+
+	SELECT StoreId
+	FROM Revenue
+	WHERE Id = @RevenueId;
+
+END
+GO
+
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+CREATE PROCEDURE spInvestments_GetAll
+	
+
+
+AS
+BEGIN
+	
+
+	SET NOCOUNT ON;
+
+	SELECT Id , Date , TotalMoney
+	FROM Investment;
+    
+END
+GO
+
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+
+CREATE PROCEDURE spInvestment_GetStaffIdByInvestmentId
+	
+	@InvestmentId int
+
+AS
+BEGIN
+	
+
+	SET NOCOUNT ON;
+
+	SELECT StaffId
+	FROM Investment
+	WHERE  Id = @InvestmentId ;
+
+    
+END
+GO
+
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+USE [SmartShopDatabase]
+GO
+/****** Object:  StoredProcedure [dbo].[spInvestment_GetStoreIdByInvestmentId]    Script Date: 11/16/2019 10:09:49 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+ALTER PROCEDURE [dbo].[spInvestment_GetStoreIdByInvestmentId]
+	
+	@InvestmentId int
+
+AS
+BEGIN
+	
+	SET NOCOUNT ON;
+
+	SELECT StoreId
+	FROM Investment
+	WHERE Id = @InvestmentId ; 
+
+
+END
+
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+
+CREATE PROCEDURE spOwner_GetAll
+	
+
+
+AS
+BEGIN
+	
+
+	SET NOCOUNT ON;
+
+	SELECT Id
+	FROM Owner;
+    
+END
+GO
+
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+CREATE PROCEDURE spOwner_GetPersonIdByOwnerId 
+
+	@OwnerId int
+
+AS
+BEGIN
+
+
+	SET NOCOUNT ON;
+
+	SELECT PersonId
+	FROM Owner
+	WHERE Id = @OwnerId ;
+
+END
+GO
+
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+CREATE PROCEDURE spOwner_GetInstallmentIdByOwnerId
+	@OwnerId int
+AS
+BEGIN
+
+	SET NOCOUNT ON;
+
+    SELECT Id
+	FROM Investment
+	WHERE  Investment.OwnerId = @OwnerId ; 
+END
+GO
+
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+CREATE PROCEDURE spOwner_GetRevenueIdByOwner
+	
+	@OwnerId int
+
+AS
+BEGIN
+
+
+	SET NOCOUNT ON;
+
+   SELECT Id
+   FROM Revenue
+   WHERE Revenue.OwnerId = @OwnerId;
+
+END
+GO
+
+
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+CREATE PROCEDURE spDeTransform_GetAll
+	
+
+
+AS
+BEGIN
+
+
+	SET NOCOUNT ON;
+
+	SELECT Id,Date,TotalMoney
+	FROM DeTransform;
+
+END
+GO
+
+-------------------------------------------------------------------------------------------------------------------------------------
+ALTER PROCEDURE [dbo].[spDeTransform_GetStaffIdByDeTransformId]
+	
+	@DeTransformId int
+
+AS
+BEGIN
+
+
+	SET NOCOUNT ON;
+
+	SELECT StaffId
+	FROM DeTransform
+	WHERE Id = @DeTransformId;
+
+END
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+CREATE PROCEDURE spDeTransform_GetStoreIdByDeTransformId
+	
+	@DeTransformId int
+
+AS
+BEGIN
+	
+
+
+	SET NOCOUNT ON;
+
+	SELECT StoreId
+	FROM DeTransform
+	WHERE Id = @DeTransformId;
+
+END
+GO
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+CREATE PROCEDURE spDeTransform_GetFromStoreIdByDeTransformId 
+	
+	@DeTransformId int
+AS
+BEGIN
+
+
+	SET NOCOUNT ON;
+
+	SELECT FromStoreId
+	FROM DeTransform
+	WHERE Id = @DeTransformId;
+
+END
+GO
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+CREATE PROCEDURE spTransform_GetAll
+	
+
+AS
+BEGIN
+	
+	SET NOCOUNT ON;
+
+	SELECT Id ,Date,TotalMoney
+	FROM Transform
+
+END
+GO
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+CREATE PROCEDURE spTransform_GetStaffIdByTransformId
+	
+	@TransformId int
+
+AS
+BEGIN
+	
+
+
+	SET NOCOUNT ON;
+
+	SELECT StaffId
+	FROM Transform
+	WHERE Id = @TransformId;
+
+END
+GO
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+
+CREATE PROCEDURE spTransform_GetStoreIdByTransformId
+	@TransformId int
+AS
+BEGIN
+	
+	SET NOCOUNT ON;
+
+	SELECT StoreId
+	FROM Transform
+	WHERE Id = @TransformId ; 
+
+END
+GO
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+
+CREATE PROCEDURE spTransform_GetToStoreIdByTransformId
+	
+
+	@TransformId int
+AS
+BEGIN
+	
+
+	SET NOCOUNT ON;
+
+	SELECT ToStoreId
+	FROM Transform
+	WHERE Id = @TransformId  ; 
+    
+END
+GO
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+
+CREATE PROCEDURE spStaffSalary_GetAll
+	
+AS
+BEGIN
+	
+	SET NOCOUNT ON;
+
+	SELECT Id,Date,Salary
+	FROM StaffSalary;
+  
+END
+GO
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+CREATE PROCEDURE spStaffSalary_GetStoreIdByStaffSalaryId
+	
+	@StaffSalaryId int
+
+AS
+BEGIN
+	
+
+
+	SET NOCOUNT ON;
+
+	SELECT StoreId
+	FROM StaffSalary
+	WHERE  Id = @StaffSalaryId;
+
+END
+GO
+
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+
+CREATE PROCEDURE spStaffSalary_GetStaffIdByStaffSalaryId 
+	
+	@StaffSalaryId int
+
+
+AS
+BEGIN
+	
+
+	SET NOCOUNT ON;
+
+	SELECT StaffId
+	FROM StaffSalary
+	WHERE Id = @StaffSalaryId; 
+
+END
+GO
+
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+
+CREATE PROCEDURE spStaffSalary_GetToStaffIdByStaffSalaryId
+
+
+	@StaffSalaryId int
+
+
+AS
+BEGIN
+	
+
+	SET NOCOUNT ON;
+
+	SELECT StaffId
+	FROM StaffSalary
+	WHERE Id = @StaffSalaryId; 
+
+END
+GO
+
+-------------------------------------------------------------------------------------------------------------------------------------
+USE [SmartShopDatabase]
+GO
+/****** Object:  StoredProcedure [dbo].[spStaffSalary_GetToStaffIdByStaffSalaryId]    Script Date: 11/17/2019 1:02:42 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+ALTER PROCEDURE [dbo].[spStaffSalary_GetToStaffIdByStaffSalaryId]
+
+
+	@StaffSalaryId int
+
+
+AS
+BEGIN
+	
+
+	SET NOCOUNT ON;
+
+	SELECT ToStaffId
+	FROM StaffSalary
+	WHERE Id = @StaffSalaryId; 
+
+END
 
 -------------------------------------------------------------------------------------------------------------------------------------
 
 -------------------------------------------------------------------------------------------------------------------------------------
 
 -------------------------------------------------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------------------------------------------------------
 
--------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
 
 
 

@@ -57,7 +57,7 @@ namespace Library
                     p.Add("@BillNumber", null);
                 }
 
-                p.Add("@TotalPrice", incomeOrder.TotalPrice);
+                p.Add("@TotalPrice", incomeOrder.GetTotalPrice);
                 p.Add("@Date", incomeOrder.Date);
                 p.Add("@StoreId", incomeOrder.Store.Id);
                 p.Add("@StaffId", incomeOrder.Staff.Id);

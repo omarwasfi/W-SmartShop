@@ -1,0 +1,16 @@
+
+CREATE PROCEDURE spOwner_GetAll
+	
+
+
+AS
+BEGIN
+	
+
+	SET NOCOUNT ON;
+
+	SELECT Id
+	FROM Owner;
+    
+END
+GO

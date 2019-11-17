@@ -41,6 +41,36 @@ namespace Library
         public static List<SupplierModel> Suppliers { get; set; }
 
         /// <summary>
+        /// All the Revenues
+        /// </summary>
+        public static List<RevenueModel> Revenues { get; set; }
+
+        /// <summary>
+        /// All The Investments
+        /// </summary>
+        public static List<InvestmentModel>Investments { get; set;}
+
+        /// <summary>
+        /// All Owners
+        /// </summary>
+        public static List<OwnerModel> Owners { get; set; }
+
+        /// <summary>
+        /// All The Transforms
+        /// </summary>
+        public static List<TransformModel> Transforms { get; set; }
+
+        /// <summary>
+        /// All DeTransforms
+        /// </summary>
+        public static List<DeTransformModel> DeTransforms { get; set; }
+
+        /// <summary>
+        /// All staffSalaries
+        /// </summary>
+        public static List<StaffSalaryModel> StaffSalaries { get; set; }
+
+        /// <summary>
         /// All the categories in the database
         /// </summary>
         public static List<CategoryModel> Categories { get; set; }

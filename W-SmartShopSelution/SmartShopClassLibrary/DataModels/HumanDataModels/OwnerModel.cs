@@ -21,11 +21,11 @@ namespace Library
         /// <summary>
         /// All The investments that the Owner Made (the money that he invested in the project)
         /// </summary>
-        public List<InvestmentDataModel> Investments { get; set; }
+        public List<InvestmentModel> Investments { get; set; }
 
         /// <summary>
         /// All The revenues that the owner made(the money that he took from the project)
         /// </summary>
-        public List<RevenueDataModel> Revenues { get; set; }
+        public List<RevenueModel> Revenues { get; set; }
     }
 }

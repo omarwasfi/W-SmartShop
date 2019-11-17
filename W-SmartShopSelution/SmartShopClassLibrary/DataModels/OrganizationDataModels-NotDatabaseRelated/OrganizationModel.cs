@@ -18,6 +18,8 @@ namespace Library
         /// </summary>
         public List<OwnerModel> Owners { get; set; }
 
+
+
         /// <summary>
         /// Return The calculation of over all capital
         /// </summary>

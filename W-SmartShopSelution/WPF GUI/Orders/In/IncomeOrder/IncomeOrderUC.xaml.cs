@@ -1079,7 +1079,7 @@ namespace WPF_GUI
 
                 IncomeOrder.Store = PublicVariables.Store;
                 IncomeOrder.Staff = PublicVariables.Staff;
-                IncomeOrder.TotalPrice = decimal.Parse(TotalPriceValue_IncomeOrderUC.Text);
+                //IncomeOrder.GetTotalPrice = decimal.Parse(TotalPriceValue_IncomeOrderUC.Text);
                 IncomeOrder.Details = OrderDetailsValue_IncomeOrderUC.Text;
               
                 
@@ -1133,7 +1133,7 @@ namespace WPF_GUI
                 OperationModel incomeOrderoperation = new OperationModel();
                 incomeOrderoperation.IncomeOrder = IncomeOrder;
                 incomeOrderoperation.Date = IncomeOrder.Date;
-                incomeOrderoperation.AmountOfMoney = IncomeOrder.TotalPrice;
+                incomeOrderoperation.AmountOfMoney = IncomeOrder.GetTotalPrice;
 
                 GlobalConfig.Connection.AddOperationToDatabase(incomeOrderoperation);
 

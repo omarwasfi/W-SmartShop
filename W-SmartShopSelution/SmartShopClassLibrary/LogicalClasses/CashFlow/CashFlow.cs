@@ -97,7 +97,7 @@ namespace Library
             {
                 if (operation.IncomeOrder != null)
                 {
-                    totalIncomeOrders += operation.IncomeOrder.TotalPrice;
+                    totalIncomeOrders += operation.IncomeOrder.GetTotalPrice;
                 }
 
             }

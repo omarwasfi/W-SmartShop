@@ -1340,14 +1340,14 @@ namespace WPF_GUI.Sell
                     decimal payed = new decimal();
                     if (decimal.TryParse(CustomerWillPayNowValue_Sell.Text, out payed))
                     {
-                        Order.Paid = payed;
+                       // Order.Paid = payed;
                     }
                     else
                     {
-                        Order.Paid = 0;
+                       // Order.Paid = 0;
                     }
 
-                    Order.LastPaymentDate = DateTime.Now;
+                    //Order.LastPaymentDate = DateTime.Now;
                     Order.Details = OrderDetailsValue_Sell.Text;
 
                     //Saving the Order
@@ -1366,7 +1366,7 @@ namespace WPF_GUI.Sell
 
                     // Saveing the operations
 
-                    if (Order.Paid == 0)
+                    /*if (Order.Paid == 0)
                     {
 
                     }
@@ -1380,7 +1380,7 @@ namespace WPF_GUI.Sell
                         };
                         GlobalConfig.Connection.AddOperationToDatabase(operation);
                     }
-
+                    */
 
 
 
@@ -1604,11 +1604,11 @@ namespace WPF_GUI.Sell
 
 
             string printLast = "";
-            if(Order.Paid < Order.GetTotalPrice)
+            /*if(Order.Paid < Order.GetTotalPrice)
             {
                 printLast += "Payment due within 30 days from date of invoice\n";
             }
-
+            */
             printLast += "Thank you for your business!";
             report["PrintLast"] = printLast;
 
