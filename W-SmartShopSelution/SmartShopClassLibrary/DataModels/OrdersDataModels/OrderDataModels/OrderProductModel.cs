@@ -11,12 +11,7 @@ namespace Library
     {
         public int Id { get; set; }
 
-        // TODO - Remove this probity "Are u kidding me !!"
-        /// <summary>
-        /// -OLD- used Just to hold the stock during the selling operation
-        /// </summary>
-        public StockModel Stock { get; set; }
-
+        
         /// <summary>
         /// The Product Model
         /// </summary>
@@ -75,11 +70,6 @@ namespace Library
         }
 
 
-         // TODO - Remove It if we don't use !
-        /// <summary>
-        /// -OLD- The total price after discount 
-        /// </summary>
-        public decimal TotalProductPrice { get; set; }
 
         /// <summary>
         /// -OLD- GetThe Profit (  salePrice - IncomePrice of the product )

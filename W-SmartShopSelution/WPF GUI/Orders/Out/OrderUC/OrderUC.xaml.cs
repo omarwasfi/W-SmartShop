@@ -515,9 +515,9 @@ namespace WPF_GUI.Orders.Out.OrderUC
 
             report.Compile();
 
-            report["OrganizationName"] = PublicVariables.OrganizationName;
-            report["OrganizationAddress"] = PublicVariables.OrganizationAddress;
-            report["OrganizationPhoneNumber"] = PublicVariables.OrganizationPhoneNumber;
+            report["OrganizationName"] = PublicVariables.Organization.Name;
+            report["OrganizationAddress"] = PublicVariables.Organization.Address;
+            report["OrganizationPhoneNumber"] = PublicVariables.Organization.PhoneNumber;
 
             report["DateTime"] = Order.DateTimeOfTheOrder.ToShortTimeString();
             report["StaffName"] = Order.Staff.Person.FullName;

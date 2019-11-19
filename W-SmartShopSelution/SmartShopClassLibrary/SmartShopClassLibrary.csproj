@@ -63,10 +63,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataAccess\Human_Access\OwnerAccess.cs" />
+    <Compile Include="DataAccess\Orders_Access\IncomeOrder_Access\IncomeOrderPaymentAccess.cs" />
+    <Compile Include="DataAccess\Orders_Access\Order_Access\OrderPaymentAccess.cs" />
     <Compile Include="DataAccess\Orders_Access\OwnerInvests_Access\InvestmentAccess.cs" />
     <Compile Include="DataAccess\Orders_Access\OwnerInvests_Access\RevenueAccess.cs" />
     <Compile Include="DataAccess\Orders_Access\Owners_Access\DeTransformAccess.cs" />
     <Compile Include="DataAccess\Orders_Access\Owners_Access\TransformAccess.cs" />
+    <Compile Include="DataAccess\Orders_Access\ShopBill_Access\ShopBillAccess.cs" />
     <Compile Include="DataAccess\Orders_Access\StaffSalary_Access\StaffSalaryAccess.cs" />
     <Compile Include="DataAccess\Products_Access\BrandAccess.cs" />
     <Compile Include="DataAccess\Products_Access\CategoryAccess.cs" />

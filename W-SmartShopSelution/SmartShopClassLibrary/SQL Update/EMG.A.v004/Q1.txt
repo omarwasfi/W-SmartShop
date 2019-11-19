@@ -2830,16 +2830,516 @@ END
 
 -------------------------------------------------------------------------------------------------------------------------------------
 
+CREATE PROCEDURE spOrderPayment_GetAll 
+	
+
+AS
+BEGIN
+	
+
+	SET NOCOUNT ON;
+	
+	SELECT Id,Paid,Date
+	FROM OrderPayment;
+
+END
+GO
+
 -------------------------------------------------------------------------------------------------------------------------------------
+
+CREATE PROCEDURE spOrder_GetOrderPaymentIdByOrderId
+	@OrderId int
+AS
+BEGIN
+	
+	SET NOCOUNT ON;
+
+	SELECT Id
+	FROM OrderPayment
+	WHERE OrderId = @OrderId;
+  
+END
+GO
+
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+Remove Paid , lastPayment date From Orders
+
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.Orders
+	DROP COLUMN Paid, LastPaymentDate
+GO
+ALTER TABLE dbo.Orders SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+select Has_Perms_By_Name(N'dbo.Orders', 'Object', 'ALTER') as ALT_Per, Has_Perms_By_Name(N'dbo.Orders', 'Object', 'VIEW DEFINITION') as View_def_Per, Has_Perms_By_Name(N'dbo.Orders', 'Object', 'CONTROL') as Contr_Per 
+
+
+-------------------------------------------------------------------------------------------------------------------------------------
+USE [SmartShopDatabase]
+GO
+/****** Object:  StoredProcedure [dbo].[spOrders_GetAll]    Script Date: 11/17/2019 6:13:45 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+ALTER PROCEDURE [dbo].[spOrders_GetAll]
+
+	
+	
+AS
+BEGIN
+
+	SET NOCOUNT ON;
+	
+	SELECT Id,DateTimeOfTheOrder,Details
+	FROM Orders;
+
+END
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+Add StaffId and StoreId To OrderPayment Table
+
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.Store SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+select Has_Perms_By_Name(N'dbo.Store', 'Object', 'ALTER') as ALT_Per, Has_Perms_By_Name(N'dbo.Store', 'Object', 'VIEW DEFINITION') as View_def_Per, Has_Perms_By_Name(N'dbo.Store', 'Object', 'CONTROL') as Contr_Per BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.Staff SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+select Has_Perms_By_Name(N'dbo.Staff', 'Object', 'ALTER') as ALT_Per, Has_Perms_By_Name(N'dbo.Staff', 'Object', 'VIEW DEFINITION') as View_def_Per, Has_Perms_By_Name(N'dbo.Staff', 'Object', 'CONTROL') as Contr_Per BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.OrderPayment
+	DROP CONSTRAINT FK_OrderPayment_Orders
+GO
+ALTER TABLE dbo.Orders SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+select Has_Perms_By_Name(N'dbo.Orders', 'Object', 'ALTER') as ALT_Per, Has_Perms_By_Name(N'dbo.Orders', 'Object', 'VIEW DEFINITION') as View_def_Per, Has_Perms_By_Name(N'dbo.Orders', 'Object', 'CONTROL') as Contr_Per BEGIN TRANSACTION
+GO
+CREATE TABLE dbo.Tmp_OrderPayment
+	(
+	Id int NOT NULL IDENTITY (1600, 1),
+	OrderId int NOT NULL,
+	StaffId int NOT NULL,
+	StoreId int NOT NULL,
+	Paid money NOT NULL,
+	Date datetime NOT NULL
+	)  ON [PRIMARY]
+GO
+ALTER TABLE dbo.Tmp_OrderPayment SET (LOCK_ESCALATION = TABLE)
+GO
+SET IDENTITY_INSERT dbo.Tmp_OrderPayment ON
+GO
+IF EXISTS(SELECT * FROM dbo.OrderPayment)
+	 EXEC('INSERT INTO dbo.Tmp_OrderPayment (Id, OrderId, Paid, Date)
+		SELECT Id, OrderId, Paid, Date FROM dbo.OrderPayment WITH (HOLDLOCK TABLOCKX)')
+GO
+SET IDENTITY_INSERT dbo.Tmp_OrderPayment OFF
+GO
+DROP TABLE dbo.OrderPayment
+GO
+EXECUTE sp_rename N'dbo.Tmp_OrderPayment', N'OrderPayment', 'OBJECT' 
+GO
+ALTER TABLE dbo.OrderPayment ADD CONSTRAINT
+	PK_OrderPayment PRIMARY KEY CLUSTERED 
+	(
+	Id
+	) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+
+GO
+ALTER TABLE dbo.OrderPayment ADD CONSTRAINT
+	FK_OrderPayment_Orders FOREIGN KEY
+	(
+	OrderId
+	) REFERENCES dbo.Orders
+	(
+	Id
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.OrderPayment ADD CONSTRAINT
+	FK_OrderPayment_Staff FOREIGN KEY
+	(
+	StaffId
+	) REFERENCES dbo.Staff
+	(
+	Id
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.OrderPayment ADD CONSTRAINT
+	FK_OrderPayment_Store FOREIGN KEY
+	(
+	StoreId
+	) REFERENCES dbo.Store
+	(
+	Id
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+COMMIT
+select Has_Perms_By_Name(N'dbo.OrderPayment', 'Object', 'ALTER') as ALT_Per, Has_Perms_By_Name(N'dbo.OrderPayment', 'Object', 'VIEW DEFINITION') as View_def_Per, Has_Perms_By_Name(N'dbo.OrderPayment', 'Object', 'CONTROL') as Contr_Per 
+
+-------------------------------------------------------------------------------------------------------------------------------------
+CREATE PROCEDURE spOrderPayment_GetStaffIdByOrderPaymentId
+	
+	@OrderPaymentId int
+
+AS
+BEGIN
+	
+
+	SET NOCOUNT ON;
+
+	SELECT StaffId
+	FROM OrderPayment
+	WHERE Id = @OrderPaymentId ;
+
+END
+GO
+
+-------------------------------------------------------------------------------------------------------------------------------------
+CREATE PROCEDURE spOrderPayment_GetStoreIdByOrderPaymentId
+	@OrderPaymentId int
+AS
+BEGIN
+	
+
+	SET NOCOUNT ON;
+
+	SELECT StoreId
+	FROM OrderPayment
+	WHERE Id = @OrderPaymentId;
+    
+END
+GO
+
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+Add the StaffId and StoreId to the IncomeOrderPayment table
+
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.IncomeOrderPayment
+	DROP CONSTRAINT FK_IncomeOrderPayment_IncomeOrder
+GO
+ALTER TABLE dbo.IncomeOrder SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+select Has_Perms_By_Name(N'dbo.IncomeOrder', 'Object', 'ALTER') as ALT_Per, Has_Perms_By_Name(N'dbo.IncomeOrder', 'Object', 'VIEW DEFINITION') as View_def_Per, Has_Perms_By_Name(N'dbo.IncomeOrder', 'Object', 'CONTROL') as Contr_Per BEGIN TRANSACTION
+GO
+CREATE TABLE dbo.Tmp_IncomeOrderPayment
+	(
+	Id int NOT NULL IDENTITY (1700, 1),
+	IncomeOrderId int NOT NULL,
+	StaffId int NOT NULL,
+	StoreId int NOT NULL,
+	Paid money NOT NULL,
+	Date datetime NOT NULL
+	)  ON [PRIMARY]
+GO
+ALTER TABLE dbo.Tmp_IncomeOrderPayment SET (LOCK_ESCALATION = TABLE)
+GO
+SET IDENTITY_INSERT dbo.Tmp_IncomeOrderPayment ON
+GO
+IF EXISTS(SELECT * FROM dbo.IncomeOrderPayment)
+	 EXEC('INSERT INTO dbo.Tmp_IncomeOrderPayment (Id, IncomeOrderId, Paid, Date)
+		SELECT Id, IncomeOrderId, Paid, Date FROM dbo.IncomeOrderPayment WITH (HOLDLOCK TABLOCKX)')
+GO
+SET IDENTITY_INSERT dbo.Tmp_IncomeOrderPayment OFF
+GO
+DROP TABLE dbo.IncomeOrderPayment
+GO
+EXECUTE sp_rename N'dbo.Tmp_IncomeOrderPayment', N'IncomeOrderPayment', 'OBJECT' 
+GO
+ALTER TABLE dbo.IncomeOrderPayment ADD CONSTRAINT
+	PK_IncomeOrderPayment PRIMARY KEY CLUSTERED 
+	(
+	Id
+	) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+
+GO
+ALTER TABLE dbo.IncomeOrderPayment ADD CONSTRAINT
+	FK_IncomeOrderPayment_IncomeOrder FOREIGN KEY
+	(
+	IncomeOrderId
+	) REFERENCES dbo.IncomeOrder
+	(
+	Id
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+COMMIT
+select Has_Perms_By_Name(N'dbo.IncomeOrderPayment', 'Object', 'ALTER') as ALT_Per, Has_Perms_By_Name(N'dbo.IncomeOrderPayment', 'Object', 'VIEW DEFINITION') as View_def_Per, Has_Perms_By_Name(N'dbo.IncomeOrderPayment', 'Object', 'CONTROL') as Contr_Per 
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+CREATE PROCEDURE spIncomeOrderPayment_GetAll
+
+AS
+BEGIN
+
+	SET NOCOUNT ON;
+
+    SELECT Id,Date,Paid
+	FROM IncomeOrderPayment
+END
+GO
+-------------------------------------------------------------------------------------------------------------------------------------
+
+CREATE PROCEDURE spIncomeOrderPayment_GetStaffIdByIncomeOrderPayment
+	@IncomeOrderPaymentId int
+AS
+BEGIN
+	
+	SET NOCOUNT ON;
+
+	SELECT StaffId
+	FROM IncomeOrderPayment
+	WHERE  Id = @IncomeOrderPaymentId ;
+
+END
+GO
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+CREATE PROCEDURE spIncomeOrderPayment_GetStoreIdByIncomeOrderPaymentId
+	@IncomeOrderPayment int
+AS
+BEGIN
+
+	SET NOCOUNT ON;
+
+	SELECT StoreId
+	FROM IncomeOrderPayment
+	WHERE Id = @IncomeOrderPayment;
+
+END
+GO
+
+-------------------------------------------------------------------------------------------------------------------------------------
+USE [SmartShopDatabase]
+GO
+/****** Object:  StoredProcedure [dbo].[spIncomeOrder_GetAll]    Script Date: 11/18/2019 11:45:29 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+ALTER PROCEDURE [dbo].[spIncomeOrder_GetAll]
+	
+
+AS
+BEGIN
+	
+
+
+	SET NOCOUNT ON;
+
+	SELECT Id,BillNumber,Date,Details
+	FROM IncomeOrder;
+    
+END
+
+-------------------------------------------------------------------------------------------------------------------------------------
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.IncomeOrder
+	DROP COLUMN TotalPrice
+GO
+ALTER TABLE dbo.IncomeOrder SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+select Has_Perms_By_Name(N'dbo.IncomeOrder', 'Object', 'ALTER') as ALT_Per, Has_Perms_By_Name(N'dbo.IncomeOrder', 'Object', 'VIEW DEFINITION') as View_def_Per, Has_Perms_By_Name(N'dbo.IncomeOrder', 'Object', 'CONTROL') as Contr_Per 
+-------------------------------------------------------------------------------------------------------------------------------------
+
+CREATE PROCEDURE spIncomeOrder_GetSupplierIdByIncomeOrderId 
+	
+	@IncomeOrderId int
+
+AS
+BEGIN
+	
+
+	SET NOCOUNT ON;
+
+	SELECT SupplierId
+	FROM IncomeOrder
+	WHERE Id = @IncomeOrderId;
+
+END
+GO
+
+-------------------------------------------------------------------------------------------------------------------------------------
+USE [SmartShopDatabase]
+GO
+/****** Object:  StoredProcedure [dbo].[spIncomeOrder_GetStoreIdByIncomeOrderId]    Script Date: 11/18/2019 12:24:39 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+ALTER PROCEDURE [dbo].[spIncomeOrder_GetStoreIdByIncomeOrderId]
+	
+	@IncomeOrderId int
+
+AS
+BEGIN
+	
+	SET NOCOUNT ON;
+
+	SELECT StoreId
+	FROM IncomeOrder
+	WHERE Id = @IncomeOrderId;
+
+
+END
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+CREATE PROCEDURE spIncomeOrder_GetStaffIdByIncomeOrderId
+	@IncomeOrderId int
+AS
+BEGIN
+
+
+	SET NOCOUNT ON;
+
+	SELECT StaffId
+	FROM IncomeOrder
+	WHERE Id = @IncomeOrderId;
+    
+END
+GO
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+CREATE PROCEDURE spIncomeOrder_GetIncomeOrderPaymentIdByIncomeOrderId
+	
+	@IncomeOrderId int
+
+AS
+BEGIN
+
+
+	SET NOCOUNT ON;
+
+   SELECT Id
+   FROM IncomeOrderPayment
+   WHERE IncomeOrderId = @IncomeOrderId;
+END
+GO
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+CREATE PROCEDURE spIncomeOrder_GetIncomeOrderProductIdByIncomeOrderId 
+	
+	@IncomeOrderId int
+
+AS
+BEGIN
+	
+	SET NOCOUNT ON;
+
+	SELECT Id
+	FROM IncomeOrderProduct
+	WHERE IncomeOrderId = @IncomeOrderId;
+
+END
+GO
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+CREATE PROCEDURE spShopBill_GetStoreIdByShopBillId
+	@ShopBillId int
+AS
+BEGIN
+
+	SET NOCOUNT ON;
+
+	SELECT StoreId
+	FROM ShopBill
+	WHERE Id = @ShopBillId; 
+END
+GO
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+CREATE PROCEDURE spShopBill_GetStaffIdByShopBillId
+	@ShopBillId int
+	
+AS
+BEGIN
+
+	SET NOCOUNT ON;
+
+	SELECT StaffId
+	FROM ShopBill
+	WHERE Id = @ShopBillId;
+END
+GO
+
 
 -------------------------------------------------------------------------------------------------------------------------------------
 
 -------------------------------------------------------------------------------------------------------------------------------------
+
 -------------------------------------------------------------------------------------------------------------------------------------
--------------------------------------------------------------------------------------------------------------------------------------
--------------------------------------------------------------------------------------------------------------------------------------
--------------------------------------------------------------------------------------------------------------------------------------
--------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
 
 
 

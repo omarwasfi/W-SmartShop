@@ -15,6 +15,15 @@ namespace Library
         public int Id { get; set; }
 
         /// <summary>
+        /// The Staff who did this Payment (The LogedIn Staff member)
+        /// </summary>
+        public StaffModel Staff { get; set; }
+
+        /// <summary>
+        /// The Store who recived the money (The LoggedIn Store)
+        /// </summary>
+        public StoreModel Store { get; set; }
+        /// <summary>
         /// Paid in this Payment
         /// </summary>
         public decimal Paid { get; set; }

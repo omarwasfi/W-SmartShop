@@ -67,7 +67,7 @@ namespace Library
         public decimal IncomePrice { get; set; }
 
         /// <summary>
-        /// The time of the expiration in days
+        /// The time of the expiration in hours
         /// </summary>
         public int ExpirationPeriod { get; set; }
 

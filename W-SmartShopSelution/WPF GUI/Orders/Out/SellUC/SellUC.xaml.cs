@@ -815,13 +815,13 @@ namespace WPF_GUI.Sell
             if (ChooseStock_IsValid())
             {
                 OrderProductModel orderProduct = new OrderProductModel();
-                orderProduct.Stock = stock;
+                //orderProduct.Stock = stock;
                 orderProduct.Product = stock.Product;
                 orderProduct.SalePrice = decimal.Parse(PriceValue_Sell.Text);
                 orderProduct.Discount = decimal.Parse(DiscountValue_Sell.Text);
                 orderProduct.Profit = orderProduct.GetProfit;
                 orderProduct.Quantity = int.Parse(QuantityValue_Sell.Text);
-                orderProduct.TotalProductPrice = orderProduct.GetTotalPrice;
+                //orderProduct.TotalProductPrice = orderProduct.GetTotalPrice;
                 Orders.Add(orderProduct);
                 // Update Choosen product list datagrid
                 UpadateChoosenProductList_Sell();
@@ -1200,7 +1200,7 @@ namespace WPF_GUI.Sell
             decimal TotalOrderProfit = new decimal();
             foreach (OrderProductModel orderProduct in Orders)
             {
-                TotalPrice += orderProduct.TotalProductPrice;
+                //TotalPrice += orderProduct.TotalProductPrice;
                 
                 TotalOrderProfit += orderProduct.GetTotalProfit;
             }
@@ -1359,7 +1359,7 @@ namespace WPF_GUI.Sell
 
                     foreach (OrderProductModel orderProduct in Orders)
                     {
-                        GlobalConfig.Connection.ReduseStock(orderProduct.Stock, orderProduct.Quantity);
+                        //GlobalConfig.Connection.ReduseStock(orderProduct.Stock, orderProduct.Quantity);
                     }
 
                     PublicVariables.LoginStoreStocks = GlobalConfig.Connection.FilterStocksByStore(Store);
@@ -1579,9 +1579,9 @@ namespace WPF_GUI.Sell
 
             report.Compile();
 
-            report["OrganizationName"] = PublicVariables.OrganizationName;
-            report["OrganizationAddress"] = PublicVariables.OrganizationAddress;
-            report["OrganizationPhoneNumber"] = PublicVariables.OrganizationPhoneNumber;
+            report["OrganizationName"] = PublicVariables.Organization.Name;
+            report["OrganizationAddress"] = PublicVariables.Organization.Address;
+            report["OrganizationPhoneNumber"] = PublicVariables.Organization.PhoneNumber;
 
             report["DateTime"] = Order.DateTimeOfTheOrder.ToShortTimeString();
             report["StaffName"] = Order.Staff.Person.FullName;

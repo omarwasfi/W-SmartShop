@@ -22,10 +22,6 @@ namespace Library
         /// </summary>
         public string Name { get; set; }
 
-        /// <summary>
-        /// List of the products of this brand
-        /// </summary>
-        public List<ProductModel> Products { get; set; }
 
     }
 }

@@ -1,0 +1,88 @@
+﻿using Dapper;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Library
+{
+    public static class IncomeOrderPaymentAccess
+    {
+        /// <summary>
+        /// Get IncomeOrderPayments From the database
+        /// - without setting StaffModel , StoreModel
+        /// </summary>
+        /// <param name="db"></param>
+        /// <returns></returns>
+        public static List<IncomeOrderPaymentModel>GetIncomeOrderPaymentsFromTheDatabase(string db)
+        {
+            List<IncomeOrderPaymentModel> incomeOrderPayments = new List<IncomeOrderPaymentModel>();
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnVal(db)))
+            {
+                incomeOrderPayments = connection.Query<IncomeOrderPaymentModel>("dbo.spIncomeOrderPayment_GetAll").ToList();
+            }
+            foreach(IncomeOrderPaymentModel incomeOrderPayment in incomeOrderPayments)
+            {
+                incomeOrderPayment.Staff = new StaffModel();
+                incomeOrderPayment.Store = new StoreModel();
+            }
+            return incomeOrderPayments;
+        }
+
+        /// <summary>
+        /// Match the staffs With the IncomeOrderPayments from the database
+        /// </summary>
+        /// <param name="incomeOrderPayments"></param>
+        /// <param name="staffs"></param>
+        /// <param name="db"></param>
+        /// <returns></returns>
+        public static List<IncomeOrderPaymentModel> SetStaffForEachIncomeOrderPaymentFromTheDatabase(List<IncomeOrderPaymentModel>incomeOrderPayments,List<StaffModel>staffs,string db)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnVal(db)))
+            {
+                foreach(IncomeOrderPaymentModel incomeOrderPayment in incomeOrderPayments)
+                {
+                    var p = new DynamicParameters();
+                    p.Add("@IncomeOrderPaymentId", incomeOrderPayment.Id);
+                    incomeOrderPayment.Staff.Id = connection.QuerySingle<int>("spIncomeOrderPayment_GetStaffIdByIncomeOrderPayment", p, commandType: CommandType.StoredProcedure);
+                }
+            }
+            foreach (IncomeOrderPaymentModel incomeOrderPaymentModel in incomeOrderPayments)
+            {
+
+                incomeOrderPaymentModel.Staff = staffs.Find(x => x.Id == incomeOrderPaymentModel.Staff.Id);
+            }
+            return incomeOrderPayments;
+        }
+
+        /// <summary>
+        /// Match the stores With the IncomeOrderPayments from the database
+        /// </summary>
+        /// <param name="incomeOrderPayments"></param>
+        /// <param name="stores"></param>
+        /// <param name="db"></param>
+        /// <returns></returns>
+        public static List<IncomeOrderPaymentModel>SetStoreForEachIncomeOrderPaymentFromTheDatabase(List<IncomeOrderPaymentModel>incomeOrderPayments,List<StoreModel>stores,string db)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnVal(db)))
+            {
+                foreach (IncomeOrderPaymentModel incomeOrderPayment in incomeOrderPayments)
+                {
+                    var p = new DynamicParameters();
+                    p.Add("@IncomeOrderPaymentId", incomeOrderPayment.Id);
+                    incomeOrderPayment.Store.Id = connection.QuerySingle<int>("spIncomeOrderPayment_GetStoreIdByIncomeOrderPaymentId", p, commandType: CommandType.StoredProcedure);
+                }
+            }
+            foreach (IncomeOrderPaymentModel incomeOrderPaymentModel in incomeOrderPayments)
+            {
+
+                incomeOrderPaymentModel.Store = stores.Find(x => x.Id == incomeOrderPaymentModel.Staff.Id);
+            }
+            return incomeOrderPayments;
+        }
+        
+        
+    }
+}

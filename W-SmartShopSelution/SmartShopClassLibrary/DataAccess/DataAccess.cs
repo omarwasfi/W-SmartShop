@@ -119,19 +119,33 @@ namespace Library
             PublicVariables.IncomeOrderProducts = GetIncomeOrderProductsFromTheDatabase(PublicVariables.Products);
 
             //19- Set the OrderPayment Models
+            PublicVariables.OrderPayments = null;
+            PublicVariables.OrderPayments = GetOrderPaymentsFromTheDatabase(PublicVariables.Staffs,PublicVariables.Stores);
 
             // 20- Set the IncomeOrderPayment Models
-
-            
+            PublicVariables.IncomeOrderPayments = null;
+            PublicVariables.IncomeOrderPayments = GetIncomeOrderPaymentsFromTheDatabase(PublicVariables.Staffs, PublicVariables.Stores);
 
             // 21- Set the Orders
             PublicVariables.Orders = null;
-            PublicVariables.Orders = GetOrdersFromTheDatabase(PublicVariables.Customers, PublicVariables.Stores, PublicVariables.Staffs, PublicVariables.OrderProducts);
+            PublicVariables.Orders = GetOrdersFromTheDatabase(PublicVariables.Customers, PublicVariables.Stores, PublicVariables.Staffs, PublicVariables.OrderProducts,PublicVariables.OrderPayments);
 
             // 22- set the IncomeOrder Models
+            PublicVariables.IncomeOrders = null;
+            PublicVariables.IncomeOrders = GetIncomeOrdersFromTheDatabase(PublicVariables.Suppliers, PublicVariables.Stores, PublicVariables.Staffs, PublicVariables.IncomeOrderPayments, PublicVariables.IncomeOrderProducts);
 
             // 23- set the ShopBills
+            PublicVariables.ShopBills = null;
+            PublicVariables.ShopBills = GetShopBillsFromTheDatabase(PublicVariables.Stores, PublicVariables.Staffs);
 
+            // 24- Set the Organization
+            PublicVariables.Organization = null;
+            PublicVariables.Organization = new OrganizationModel
+            {
+                Name = "",
+                Address = "Egypt,Ismailia",
+                PhoneNumber = "01555707375"
+            };
         }
 
         /// <summary>
@@ -399,17 +413,45 @@ namespace Library
         }
 
         /// <summary>
+        /// Get all OrderPayments From the database
+        /// -Set the StaffModel , StoreModel
+        /// </summary>
+        /// <returns></returns>
+        private List<OrderPaymentModel> GetOrderPaymentsFromTheDatabase(List<StaffModel>staffs,List<StoreModel>stores)
+        {
+            List<OrderPaymentModel> orderPayments = new List<OrderPaymentModel>();
+            orderPayments = OrderPaymentAccess.GetOrderPaymentsFromTheDatabase(db);
+            orderPayments = OrderPaymentAccess.SetStaffForEachOrderPaymentFromTheDatabase(orderPayments, staffs, db);
+            orderPayments = OrderPaymentAccess.SetStoreForEachOrderPaymentFromTheDatabase(orderPayments, stores, db);
+            return orderPayments;
+        }
+
+        /// <summary>
+        /// Get all IncomeOrderPayment From the database
+        /// - Set the staffModel , storeModel forEach IncomeOrderPayment
+        /// </summary>
+        /// <returns></returns>
+        private List<IncomeOrderPaymentModel> GetIncomeOrderPaymentsFromTheDatabase(List<StaffModel>staffs,List<StoreModel>stores)
+        {
+            List<IncomeOrderPaymentModel> incomeOrderPayments = new List<IncomeOrderPaymentModel>();
+            incomeOrderPayments = IncomeOrderPaymentAccess.GetIncomeOrderPaymentsFromTheDatabase(db);
+            incomeOrderPayments = IncomeOrderPaymentAccess.SetStaffForEachIncomeOrderPaymentFromTheDatabase(incomeOrderPayments, staffs, db);
+            incomeOrderPayments = IncomeOrderPaymentAccess.SetStoreForEachIncomeOrderPaymentFromTheDatabase(incomeOrderPayments, stores, db);
+            return incomeOrderPayments;
+        }
+
+        /// <summary>
         /// Get all orders from the database
         /// - set the customer Model
         /// - set the store model
         /// - set the list of orderProductModels
         /// </summary>
-        /// <param name="customers"></param>
-        /// <param name="stores"></param>
-        /// <param name="staffs"></param>
-        /// <param name="orderProducts"></param>
+        /// <param name="customers">All The Customers</param>
+        /// <param name="stores"> All The Stores </param>
+        /// <param name="staffs"> All The staffs </param>
+        /// <param name="orderProducts"> All the orderProducts </param>
         /// <returns></returns>
-        private List<OrderModel>GetOrdersFromTheDatabase(List<CustomerModel>customers,List<StoreModel>stores,List<StaffModel>staffs, List<OrderProductModel> orderProducts)
+        private List<OrderModel>GetOrdersFromTheDatabase(List<CustomerModel>customers,List<StoreModel>stores,List<StaffModel>staffs, List<OrderProductModel> orderProducts,List<OrderPaymentModel>orderPayments)
         {
             List<OrderModel> orders = new List<OrderModel>();
             orders = OrderAccess.GetOrdersFromTheDatabase(db);
@@ -417,14 +459,46 @@ namespace Library
             orders = OrderAccess.SetTheStoreForEachOrderFromTheDatabase(orders, stores, db);
             orders = OrderAccess.SetTheStaffForEachOrderFromTheDatabase(orders, staffs, db);
             orders = OrderAccess.SetTheOrderProductsForEachOrderFromTheDatabase(orders, orderProducts, db);
+            orders = OrderAccess.SetTheOrderPaymentsForEachOrderFromTheDatabase(orders, orderPayments, db);
             return orders;
         }
         
-        private List<IncomeOrderModel> GetIncomerOrdersFromTheDatabase(List<SupplierModel>suppliers,List<StoreModel>stores,List<StaffModel>staffs,List<IncomeOrderProductModel>incomeOrderProducts)
+        /// <summary>
+        /// Get all IncomeOrders From the data base
+        /// - set the supplier , store , staff , IncomeOrderPayments , IncomeOrderProducts
+        /// </summary>
+        /// <param name="suppliers"></param>
+        /// <param name="stores"></param>
+        /// <param name="staffs"></param>
+        /// <param name="incomeOrderPayments"></param>
+        /// <param name="incomeOrderProducts"></param>
+        /// <returns></returns>
+        private List<IncomeOrderModel> GetIncomeOrdersFromTheDatabase(List<SupplierModel>suppliers,List<StoreModel>stores,List<StaffModel>staffs,List<IncomeOrderPaymentModel>incomeOrderPayments,List<IncomeOrderProductModel>incomeOrderProducts)
         {
             List<IncomeOrderModel> incomeOrders = new List<IncomeOrderModel>();
-
+            incomeOrders = IncomeOrderAccess.GetIncomeOrdersFromTheDatabase(db);
+            incomeOrders = IncomeOrderAccess.SetTheSupplierForEachIncomeOrderFromTheDatabase(incomeOrders, suppliers, db);
+            incomeOrders = IncomeOrderAccess.SetTheStoreForEachIncomeOrderFromTheDatabase(incomeOrders, stores, db);
+            incomeOrders = IncomeOrderAccess.SetTheStaffForEachIncomeOrderFromTheDatabase(incomeOrders, staffs, db);
+            incomeOrders = IncomeOrderAccess.SetTheIncomeOrderPaymentsForEachIncomeOrderFromTheDatabase(incomeOrders, incomeOrderPayments, db);
+            incomeOrders = IncomeOrderAccess.SetTheIncomeOrderProductsForEachIncomeOrderFromTheDatabase(incomeOrders, incomeOrderProducts, db);
             return incomeOrders;
+        }
+
+        /// <summary>
+        /// Get all shopBills From the database
+        /// - Set the store , staff
+        /// </summary>
+        /// <param name="stores"></param>
+        /// <param name="staffs"></param>
+        /// <returns></returns>
+        private List<ShopBillModel> GetShopBillsFromTheDatabase(List<StoreModel> stores, List<StaffModel> staffs)
+        {
+            List<ShopBillModel> shopBills = new List<ShopBillModel>();
+            shopBills = ShopBillAccess.GetShopBillsFromTheDatabase(db);
+            shopBills = ShopBillAccess.SetTheStaffForEachShopBillFromTheDatabase(shopBills, staffs, db);
+            shopBills = ShopBillAccess.SetTheStoreForEachShopBillFromTheDatabase(shopBills, stores, db);
+            return shopBills;
         }
 
         #endregion
@@ -1640,7 +1714,7 @@ namespace Library
         public ShopBillModel AddShopBillToTheDatabase(ShopBillModel shopBill)
         {
 
-            return ShopBill.AddShopBillToTheDatabase(shopBill, db);
+            return ShopBillAccess.AddShopBillToTheDatabase(shopBill, db);
         }
 
         /// <summary>
@@ -1651,7 +1725,7 @@ namespace Library
         /// <returns></returns>
         public List<ShopBillModel> GetShopBills()
         {
-            return ShopBill.GetShopBills(db);
+            return ShopBillAccess.GetShopBills(db);
         }
 
         /// <summary>
@@ -1662,7 +1736,7 @@ namespace Library
         /// <returns></returns>
         public  List<ShopBillModel> FilterShopBillsByDate(List<ShopBillModel> shopBills, DateTime date)
         {
-            return ShopBill.FilterShopBillsByDate(shopBills, date);
+            return ShopBillAccess.FilterShopBillsByDate(shopBills, date);
         }
 
 
@@ -1675,7 +1749,7 @@ namespace Library
         public ShopBillModel UpdateShopBillData(ShopBillModel shopBill)
         {
 
-            return ShopBill.UpdateShopBillData(shopBill, db);
+            return ShopBillAccess.UpdateShopBillData(shopBill, db);
         }
 
 
@@ -1686,7 +1760,7 @@ namespace Library
         /// <param name="db"></param>
         public  void RemoveShopBill(ShopBillModel shopBill)
         {
-            ShopBill.RemoveShopBill(shopBill,db);
+            ShopBillAccess.RemoveShopBill(shopBill,db);
         }
 
 

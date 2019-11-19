@@ -14,6 +14,16 @@ namespace Library
         public int Id { get; set; }
 
         /// <summary>
+        /// The StaffModel Who did this IncomeOrderPayment (The LoggedIn Staff)
+        /// </summary>
+        public StaffModel Staff { get; set; }
+
+        /// <summary>
+        /// The StoreModel where  this IncomeOrderPayment happend (the loggedIn store)
+        /// </summary>
+        public StoreModel Store { get; set; }
+
+        /// <summary>
         /// The Total Money paid at this payment
         /// </summary>
         public decimal Paid { get; set; }

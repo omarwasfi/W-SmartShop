@@ -20,7 +20,7 @@ namespace Library
             List<IncomeOrderModel> incomeOrders = new List<IncomeOrderModel>();
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnVal(db)))
             {
-                incomeOrders = connection.Query<IncomeOrderModel>("dbo.").ToList();
+                incomeOrders = connection.Query<IncomeOrderModel>("dbo.spIncomeOrder_GetAll").ToList();
 
             }
             foreach(IncomeOrderModel incomeOrder in incomeOrders)
@@ -29,6 +29,182 @@ namespace Library
                 incomeOrder.Store = new StoreModel();
                 incomeOrder.Staff = new StaffModel();
                 incomeOrder.IncomeOrderProducts = new List<IncomeOrderProductModel>();
+                incomeOrder.IncomeOrderPayments = new List<IncomeOrderPaymentModel>();
+            }
+
+            return incomeOrders;
+        }
+
+        /// <summary>
+        /// Match the suppliers with Each IncomeOrder From the database
+        /// </summary>
+        /// <param name="incomeOrders"></param>
+        /// <param name="suppliers"></param>
+        /// <param name="db"></param>
+        /// <returns></returns>
+        public static List<IncomeOrderModel>SetTheSupplierForEachIncomeOrderFromTheDatabase(List<IncomeOrderModel>incomeOrders,List<SupplierModel>suppliers,string db)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnVal(db)))
+            {
+                foreach(IncomeOrderModel incomeOrder in incomeOrders)
+                {
+                    var p = new DynamicParameters();
+                    p.Add("@IncomeOrderId", incomeOrder.Id);
+
+                    incomeOrder.Supplier.Id = connection.QuerySingle<int>("spIncomeOrder_GetSupplierIdByIncomeOrderId", p, commandType: CommandType.StoredProcedure);
+                }
+            }
+
+            foreach(IncomeOrderModel incomeOrderModel in incomeOrders)
+            {
+                incomeOrderModel.Supplier = suppliers.Find(x => x.Id == incomeOrderModel.Supplier.Id);
+            }
+
+            return incomeOrders;
+        }
+
+
+        /// <summary>
+        /// Match the Stores with each IncomeOrder From the database
+        /// </summary>
+        /// <param name="incomeOrders"></param>
+        /// <param name="stores"></param>
+        /// <param name="db"></param>
+        /// <returns></returns>
+        public static List<IncomeOrderModel> SetTheStoreForEachIncomeOrderFromTheDatabase(List<IncomeOrderModel> incomeOrders, List<StoreModel>stores, string db)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnVal(db)))
+            {
+                foreach (IncomeOrderModel incomeOrder in incomeOrders)
+                {
+                    var p = new DynamicParameters();
+                    p.Add("@IncomeOrderId", incomeOrder.Id);
+
+                    incomeOrder.Store.Id = connection.QuerySingle<int>("spIncomeOrder_GetStoreIdByIncomeOrderId", p, commandType: CommandType.StoredProcedure);
+                }
+            }
+
+            foreach (IncomeOrderModel incomeOrderModel in incomeOrders)
+            {
+                incomeOrderModel.Store = stores.Find(x => x.Id == incomeOrderModel.Store.Id);
+            }
+
+            return incomeOrders;
+        }
+
+        /// <summary>
+        /// Match the Staffs with Each IncomeOrder From the database
+        /// </summary>
+        /// <param name="incomeOrders"></param>
+        /// <param name="staffs"></param>
+        /// <param name="db"></param>
+        /// <returns></returns>
+        public static List<IncomeOrderModel> SetTheStaffForEachIncomeOrderFromTheDatabase(List<IncomeOrderModel> incomeOrders, List<StaffModel> staffs, string db)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnVal(db)))
+            {
+                foreach (IncomeOrderModel incomeOrder in incomeOrders)
+                {
+                    var p = new DynamicParameters();
+                    p.Add("@IncomeOrderId", incomeOrder.Id);
+
+                    incomeOrder.Staff.Id = connection.QuerySingle<int>("spIncomeOrder_GetStaffIdByIncomeOrderId", p, commandType: CommandType.StoredProcedure);
+                }
+            }
+
+            foreach (IncomeOrderModel incomeOrderModel in incomeOrders)
+            {
+                incomeOrderModel.Staff = staffs.Find(x => x.Id == incomeOrderModel.Staff.Id);
+            }
+
+            return incomeOrders;
+        }
+
+        /// <summary>
+        /// Match the incomeOrderPayments with Each IncomeOrder From the database
+        /// </summary>
+        /// <param name="incomeOrders"></param>
+        /// <param name="incomeOrderPayments"></param>
+        /// <param name="db"></param>
+        /// <returns></returns>
+        public static List<IncomeOrderModel> SetTheIncomeOrderPaymentsForEachIncomeOrderFromTheDatabase(List<IncomeOrderModel> incomeOrders, List<IncomeOrderPaymentModel> incomeOrderPayments, string db)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnVal(db)))
+            {
+                foreach (IncomeOrderModel incomeOrder in incomeOrders)
+                {
+                    List<int> incomeOrderPaymentIds = new List<int>();
+                    var p = new DynamicParameters();
+                    p.Add("@IncomeOrderId", incomeOrder.Id);
+
+                    incomeOrderPaymentIds = connection.Query<int>("dbo.spIncomeOrder_GetIncomeOrderPaymentIdByIncomeOrderId", p, commandType: CommandType.StoredProcedure).ToList();
+
+                    foreach (int id in incomeOrderPaymentIds)
+                    {
+                        incomeOrder.IncomeOrderPayments.Add(new IncomeOrderPaymentModel { Id = id });
+                    }
+                }
+            }
+
+            foreach (IncomeOrderModel incomeOrderModel in incomeOrders)
+            {
+                List<int> incomeOrderPaymentIds = new List<int>();
+                foreach(IncomeOrderPaymentModel incomeOrderPayment in incomeOrderModel.IncomeOrderPayments)
+                {
+                    incomeOrderPaymentIds.Add(incomeOrderModel.Id);
+                }
+
+                incomeOrderModel.IncomeOrderPayments = new List<IncomeOrderPaymentModel>();
+
+                foreach(int id in incomeOrderPaymentIds)
+                {
+                    incomeOrderModel.IncomeOrderPayments.Add(incomeOrderPayments.Find(x => x.Id == id));
+                }
+            }
+
+            return incomeOrders;
+        }
+
+        /// <summary>
+        /// Match the incomeOrderProducts with Each IncomeOrder From the database
+        /// </summary>
+        /// <param name="incomeOrders"></param>
+        /// <param name="incomeOrderProducts"></param>
+        /// <param name="db"></param>
+        /// <returns></returns>
+        public static List<IncomeOrderModel> SetTheIncomeOrderProductsForEachIncomeOrderFromTheDatabase(List<IncomeOrderModel> incomeOrders, List<IncomeOrderProductModel> incomeOrderProducts, string db)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnVal(db)))
+            {
+                foreach (IncomeOrderModel incomeOrder in incomeOrders)
+                {
+                    List<int> incomeOrderProductIds = new List<int>();
+                    var p = new DynamicParameters();
+                    p.Add("@IncomeOrderId", incomeOrder.Id);
+
+                    incomeOrderProductIds = connection.Query<int>("dbo.spIncomeOrder_GetIncomeOrderProductIdByIncomeOrderId", p, commandType: CommandType.StoredProcedure).ToList();
+
+                    foreach (int id in incomeOrderProductIds)
+                    {
+                        incomeOrder.IncomeOrderProducts.Add(new IncomeOrderProductModel { Id = id });
+                    }
+                }
+            }
+
+            foreach (IncomeOrderModel incomeOrderModel in incomeOrders)
+            {
+                List<int> incomeOrderProductIds = new List<int>();
+                foreach (IncomeOrderProductModel incomeOrderProduct in incomeOrderModel.IncomeOrderProducts)
+                {
+                    incomeOrderProductIds.Add(incomeOrderProduct.Id);
+                }
+
+                incomeOrderModel.IncomeOrderProducts = new List<IncomeOrderProductModel>();
+
+                foreach (int id in incomeOrderProductIds)
+                {
+                    incomeOrderModel.IncomeOrderProducts.Add(incomeOrderProducts.Find(x => x.Id == id));
+                }
             }
 
             return incomeOrders;

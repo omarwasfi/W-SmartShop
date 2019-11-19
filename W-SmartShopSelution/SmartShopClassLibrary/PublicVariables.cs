@@ -4,11 +4,7 @@ namespace Library
 {
     public static class PublicVariables
     {
-        public static string OrganizationName { get; set; }
 
-        public static string OrganizationAddress { get; set; }
-
-        public static string OrganizationPhoneNumber { get; set; }
 
         /// <summary>
         /// All the permissions in the database
@@ -101,10 +97,34 @@ namespace Library
         public static List<IncomeOrderProductModel> IncomeOrderProducts { get; set; }
 
         /// <summary>
+        /// All OrderPayments
+        /// </summary>
+        public static List<OrderPaymentModel> OrderPayments { get; set; }
+
+        /// <summary>
+        /// All IncomeOrderPayments
+        /// </summary>
+        public static List<IncomeOrderPaymentModel> IncomeOrderPayments { get; set; }
+
+        /// <summary>
         /// All Orders
         /// </summary>
         public static List<OrderModel> Orders { get; set; }
 
+        /// <summary>
+        /// All the IncomeOrders 
+        /// </summary>
+        public static List<IncomeOrderModel> IncomeOrders { get; set; }
+
+        /// <summary>
+        /// All shopBills
+        /// </summary>
+        public static List<ShopBillModel> ShopBills { get; set; }
+
+        /// <summary>
+        /// The Organization Model
+        /// </summary>
+        public static OrganizationModel Organization { get; set; }
 
         /// <summary>
         /// All the operations in the database
@@ -128,11 +148,7 @@ namespace Library
         /// </summary>
         public static List<StockModel> LoginStoreStocks { get; set; }
 
-        /// <summary>
-        /// All the IncomeOrders 
-        /// - Set in the loginUC
-        /// </summary>
-        public static List<IncomeOrderModel> IncomeOrders { get; set; }
+
 
         /// <summary>
         /// The last added products
@@ -141,9 +157,5 @@ namespace Library
         /// </summary>
         public static List<ProductModel> RecentlyAddProducts { get; set; }
 
-        /// <summary>
-        /// All shopBills
-        /// </summary>
-        public static List<ShopBillModel> ShopBills { get; set; }
     }
 }

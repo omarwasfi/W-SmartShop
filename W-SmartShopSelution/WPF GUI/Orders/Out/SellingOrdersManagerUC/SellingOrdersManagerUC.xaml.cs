@@ -147,9 +147,9 @@ namespace WPF_GUI.Orders.Out.SellingOrdersManagerUC
                 report.Load(@"SellOrderReportARforEMG.mrt");
 
                 report.Compile();
-                report["OrganizationName"] = PublicVariables.OrganizationName;
-                report["OrganizationAddress"] = PublicVariables.OrganizationAddress;
-                report["OrganizationPhoneNumber"] = PublicVariables.OrganizationPhoneNumber;
+                report["OrganizationName"] = PublicVariables.Organization.Name;
+                report["OrganizationAddress"] = PublicVariables.Organization.Address;
+                report["OrganizationPhoneNumber"] = PublicVariables.Organization.PhoneNumber;
 
                 report["DateTime"] = order.DateTimeOfTheOrder.ToShortTimeString();
                 report["StaffName"] = order.Staff.Person.FullName;

@@ -26,6 +26,7 @@ namespace Library
                 order.Store = new StoreModel();
                 order.Staff = new StaffModel();
                 order.OrderProducts = new List<OrderProductModel>();
+                order.OrderPayments = new List<OrderPaymentModel>();
             }
 
             return orders;
@@ -166,6 +167,51 @@ namespace Library
             return orders;
         }
 
+        /// <summary>
+        /// Match the OrderPayments With Each Order From the database
+        /// </summary>
+        /// <param name="orders"></param>
+        /// <param name="orderPayments"></param>
+        /// <param name="db"></param>
+        /// <returns></returns>
+        public static List<OrderModel>SetTheOrderPaymentsForEachOrderFromTheDatabase(List<OrderModel>orders,List<OrderPaymentModel>orderPayments,string db)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnVal(db)))
+            {
+                foreach(OrderModel order in orders)
+                {
+                    List<int> OrderPaymentIds = new List<int>();
+
+                    var p = new DynamicParameters();
+                    p.Add("@OrderId", order.Id);
+                    OrderPaymentIds = connection.Query<int>("dbo.spOrder_GetOrderPaymentIdByOrderId", p, commandType: CommandType.StoredProcedure).ToList();
+
+                    foreach(int id in OrderPaymentIds)
+                    {
+                        order.OrderPayments.Add(new OrderPaymentModel { Id = id });
+                    }
+                }
+            }
+
+            foreach (OrderModel orderModel in orders)
+            {
+                List<int> OrderPaymentIds = new List<int>();
+                foreach (OrderPaymentModel orderPayment in orderModel.OrderPayments)
+                {
+                    OrderPaymentIds.Add(orderPayment.Id);
+                }
+
+                orderModel.OrderPayments = new List<OrderPaymentModel>();
+
+                foreach (int id in OrderPaymentIds)
+                {
+                    orderModel.OrderPayments.Add(orderPayments.Find(x => x.Id == id));
+                }
+
+            }
+
+            return orders;
+        }
 
         /// <summary>
         /// Delete Order from the database
