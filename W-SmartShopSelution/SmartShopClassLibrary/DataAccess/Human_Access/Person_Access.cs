@@ -8,14 +8,31 @@ using System.Threading.Tasks;
 
 namespace Library
 {
-    public static class Person_Access
+    public static class PersonAccess
     {
+
+        /// <summary>
+        /// Get all people from the database
+        /// </summary>
+        /// <returns> list of person model </returns>
+        public static List<PersonModel> GetPeopleFromTheDatabase(string db)
+        {
+            List<PersonModel> people = new List<PersonModel>();
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnVal(db)))
+            {
+                people = connection.Query<PersonModel>("spPerson_GetAll").ToList();
+            }
+
+            return people;
+        }
+
+
         /// <summary>
         /// Get person model 
         /// Add to the person table in the database 
         /// Get the Id of this Person
         /// </summary>
-        public static PersonModel CreatePerson(PersonModel person, string db)
+        public static PersonModel AddPersonToTheDatabase(PersonModel person, string db)
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnVal(db)))
             {
@@ -48,6 +65,40 @@ namespace Library
                     p.Add("@NationalNumber", null);
 
                 }
+
+                p.Add("@BirthDate",person.BirthDate);
+
+                if (!string.IsNullOrWhiteSpace(person.JopTitle))
+                {
+                    p.Add("@JopTitle", person.JopTitle);
+                }
+                else
+                {
+                    p.Add("@JopTitle", null);
+                }
+
+                if (!string.IsNullOrWhiteSpace(person.JopAddress))
+                {
+                    p.Add("@JopAddress", person.JopAddress);
+                }
+                else
+                {
+                    p.Add("@JopAddress", null);
+                }
+
+                p.Add("@GradutionDate", person.GraduationDate);
+
+
+                if (!string.IsNullOrWhiteSpace(person.Qualification))
+                {
+                    p.Add("@Qualification", person.Qualification);
+                }
+                else
+                {
+                    p.Add("@Qualification", null);
+                }
+
+
                 if (!string.IsNullOrWhiteSpace(person.Email))
                 {
                     p.Add("@Email", person.Email);
@@ -101,20 +152,6 @@ namespace Library
         }
 
 
-        /// <summary>
-        /// Get all people from the database
-        /// </summary>
-        /// <returns> list of person model </returns>
-        public static List<PersonModel> GetAllPeople(string db)
-        {
-            List<PersonModel> people = new List<PersonModel>();
-            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnVal(db)))
-            {
-                people = connection.Query<PersonModel>("spPerson_GetAll").ToList();
-            }
-
-            return people;
-        }
 
 
 

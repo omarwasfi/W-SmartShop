@@ -1,0 +1,1234 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<StiSerializer version="1.02" type="Net" application="StiReport">
+  <Dictionary Ref="1" type="Dictionary" isKey="true">
+    <BusinessObjects isList="true" count="0" />
+    <Databases isList="true" count="1">
+      <MS_x0020_SQL Ref="2" type="Stimulsoft.Report.Dictionary.StiSqlDatabase" isKey="true">
+        <Alias>MS SQL</Alias>
+        <ConnectionStringEncrypted>1ED7SMVKSwVyTOj8/XDgP9EUwShFZNKZYU3ofOnY4V7VOpXJVlmRWW1chMziBChr5Dq1qMZbu83ibIBsY0yuM9Vw0SvFa8Pp/Vvt6U494V7RNvkJTkzK+elc9dxndCEf41bPj08Wo91qR1l4</ConnectionStringEncrypted>
+        <Name>MS SQL</Name>
+      </MS_x0020_SQL>
+    </Databases>
+    <DataSources isList="true" count="1">
+      <OrderReport Ref="3" type="Stimulsoft.Report.Dictionary.StiSqlSource" isKey="true">
+        <Alias>OrderReport</Alias>
+        <Columns isList="true" count="12">
+          <value>Row_x0023_,System.Int64</value>
+          <value>Quantity,System.Int32</value>
+          <value>SalePrice,System.Double</value>
+          <value>Discount,System.Double</value>
+          <value>Profit,System.Decimal</value>
+          <value>Name,System.String</value>
+          <value>BarCode,System.String</value>
+          <value>SerialNumber,System.String</value>
+          <value>SerialNumber2,System.String</value>
+          <value>Size,System.String</value>
+          <value>Details,System.String</value>
+          <value>TotalPrice,TotalPrice,System.Double,OrderReport.SalePrice_x0020__x002A__x0020_OrderReport.Quantity</value>
+        </Columns>
+        <CommandTimeout>30</CommandTimeout>
+        <Dictionary isRef="1" />
+        <Key>dfe6f8d485794c45a15800d5371c4a56</Key>
+        <Name>OrderReport</Name>
+        <NameInSource>MS SQL</NameInSource>
+        <Parameters isList="true" count="1">
+          <value>OrderId,OrderId,8,0</value>
+        </Parameters>
+        <SqlCommand>SELECT ROW_NUMBER() OVER(ORDER BY name ASC) AS Row#, 
+		OrderProduct.Quantity, 
+		cast(OrderProduct.SalePrice as float)  SalePrice, 
+		cast(OrderProduct.Discount as float)  Discount,
+  		OrderProduct.Profit, Product.Name, Product.BarCode, Product.SerialNumber,
+ 		Product.SerialNumber2,Product.Size, 
+		Orders.Details
+FROM OrderProduct INNER JOIN
+  Product ON Product.Id = OrderProduct.ProductId INNER JOIN
+  Orders ON Orders.Id = OrderProduct.OrderId
+WHERE OrderProduct.OrderId = '{OrderId}'</SqlCommand>
+      </OrderReport>
+    </DataSources>
+    <Relations isList="true" count="0" />
+    <Report isRef="0" />
+    <Resources isList="true" count="0" />
+    <Variables isList="true" count="17">
+      <value>,CustomerName,CustomerName,,System.String,Customer_x0020_Name,False,False,False,False</value>
+      <value>,OrganizationName,OrganizationName,,System.String,Organization_x0020_Name,False,False,False,False</value>
+      <value>,OrderId,OrderId,The_x0020_Id_x0020_of_x0020_the_x0020_order,System.Int32,_x0032_07104,False,False,False,False</value>
+      <value>,OrganizationAddress,OrganizationAddress,,System.String,,False,False,False,False</value>
+      <value>,DateTime,DateTime,,System.String,,False,False,False,False</value>
+      <value>,OrganizationPhoneNumber,OrganizationPhoneNumber,,System.String,,False,False,False,False</value>
+      <value>,CustomerPhoneNumber,CustomerPhoneNumber,,System.String,,False,False,False,False</value>
+      <value>,CustomerNationalNumber,CustomerNationalNumber,,System.String,,False,False,False,False</value>
+      <value>,StoreName,StoreName,,System.String,,False,False,False,False</value>
+      <value>,StorePhoneNumber,StorePhoneNumber,,System.String,,False,False,False,False</value>
+      <value>,StaffName,StaffName,,System.String,,False,False,False,False</value>
+      <value>,StoreAddress,StoreAddress,,System.String,,False,False,False,False</value>
+      <value>,TotalPrice,TotalPrice,,System.String,,False,False,False,False</value>
+      <value>,OrderDetails,OrderDetails,,System.String,,False,False,False,False</value>
+      <value>,CustomerAddress,CustomerAddress,,System.String,,False,False,False,False</value>
+      <value>,TotalOrderProduct,TotalOrderProduct,,System.String,,False,False,False,False</value>
+      <value>,PrintLast,PrintLast,,System.String,Payment_x0020_due_x0020_within_x0020_30_x0020_days_x0020_from_x0020_date_x0020_of_x0020_invoice_x000D__x000A_Thank_x0020_you_x0020_for_x0020_your_x0020_business_x0021_,False,False,False,False</value>
+    </Variables>
+  </Dictionary>
+  <EngineVersion>EngineV2</EngineVersion>
+  <GlobalizationStrings isList="true" count="0" />
+  <Key>da64494c86394f108343d71cf74584a0</Key>
+  <MetaTags isList="true" count="0" />
+  <Pages isList="true" count="1">
+    <Page1 Ref="4" type="Page" isKey="true">
+      <Border>None;Black;2;Solid;False;4;Gainsboro</Border>
+      <Brush>Transparent</Brush>
+      <Components isList="true" count="5">
+        <PageHeaderBand1 Ref="5" type="PageHeaderBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,0.2,7.49,2.3</ClientRectangle>
+          <Components isList="true" count="10">
+            <BarCode1 Ref="6" type="Stimulsoft.Report.BarCodes.StiBarCode" isKey="true">
+              <BackColor>Transparent</BackColor>
+              <BarCodeType Ref="7" type="Stimulsoft.Report.BarCodes.StiInterleaved2of5BarCodeType" isKey="true" />
+              <ClientRectangle>6.4,0.5,1.3,1</ClientRectangle>
+              <Code>{OrderId}</Code>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8,Bold,Pixel</Font>
+              <ForeColor>Black</ForeColor>
+              <Guid>6167e83b21bb4763a51e495c9aacf4aa</Guid>
+              <Name>BarCode1</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+            </BarCode1>
+            <Text19 Ref="8" type="Text" isKey="true">
+              <Border>None;[155:155:155];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>6.2,0,1.29,0.5</ClientRectangle>
+              <ComponentPlacement>ph.PageHeaderBand1</ComponentPlacement>
+              <ComponentStyle>Black Title</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Editable>True</Editable>
+              <Font>Microsoft Sans Serif,18,Bold,Point,False,204</Font>
+              <Guid>404179625f4d4e7a9f4e9cf910481065</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text19</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>فاتوره شراء</Text>
+              <TextBrush>[43:43:43]</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text19>
+            <Text1 Ref="9" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,0,4.7,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Bernard MT Condensed,36</Font>
+              <Guid>b459e32c278143eba174330802c1df19</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text1</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>{OrganizationName}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </Text1>
+            <Text2 Ref="10" type="Text" isKey="true">
+              <Border>None;White;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>0,0.6,2.9,0.2</ClientRectangle>
+              <ComponentPlacement>ph.PageHeaderBand1</ComponentPlacement>
+              <ComponentStyle>Black Company Info</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Font>Microsoft Sans Serif,9.75,Regular,Point,False,204</Font>
+              <Guid>f143435ecd184d1f8a80b0c041c9234e</Guid>
+              <Margins>3,0,0,0</Margins>
+              <Name>Text2</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>{OrganizationAddress}</Text>
+              <TextBrush>[43:43:43]</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text2>
+            <Text12 Ref="11" type="Text" isKey="true">
+              <Border>None;White;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>0,0.8,2.9,0.2</ClientRectangle>
+              <ComponentPlacement>ph.PageHeaderBand1</ComponentPlacement>
+              <ComponentStyle>Black Company Info</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Font>Microsoft Sans Serif,9.75,Regular,Point,False,204</Font>
+              <Guid>3ed3168cc73144f6aa25e890edc4f8cf</Guid>
+              <Margins>3,0,0,0</Margins>
+              <Name>Text12</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>{OrganizationPhoneNumber}</Text>
+              <TextBrush>[43:43:43]</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text12>
+            <Text7 Ref="12" type="Text" isKey="true">
+              <Border>None;White;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>5.8,1.2,1.7,0.2</ClientRectangle>
+              <ComponentPlacement>ph.PageHeaderBand1</ComponentPlacement>
+              <ComponentStyle>Black Company Info</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Font>Microsoft Sans Serif,9.75,Regular,Point,False,204</Font>
+              <Guid>11a0532892444dd394166c84776ba174</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text7</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>{DateTime}</Text>
+              <TextBrush>[43:43:43]</TextBrush>
+              <TextFormat Ref="13" type="DateFormat" isKey="true">
+                <StringFormat>G</StringFormat>
+              </TextFormat>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text7>
+            <Text8 Ref="14" type="Text" isKey="true">
+              <Border>None;[155:155:155];1;Solid;False;4;Black;True</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>6.9,1.5,0.6,0.2</ClientRectangle>
+              <ComponentPlacement>ph.PageHeaderBand1</ComponentPlacement>
+              <ComponentStyle>Black Contact Name</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Font>Microsoft Sans Serif,9.75,Bold,Point,False,0</Font>
+              <Guid>9c982bb54f3c4c0f964135a0ba7544b8</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text8</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>: الاسم</Text>
+              <TextBrush>[43:43:43]</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text8>
+            <Text15 Ref="15" type="Text" isKey="true">
+              <Border>None;White;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>2.9,1.5,4,0.2</ClientRectangle>
+              <ComponentPlacement>ph.PageHeaderBand1</ComponentPlacement>
+              <ComponentStyle>Black Company Info</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Font>Microsoft Sans Serif,9.75,Regular,Point,False,204</Font>
+              <Guid>c8d6b2f869fb4c3db2c03b7d12d63e54</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text15</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>{CustomerName}</Text>
+              <TextBrush>[43:43:43]</TextBrush>
+              <TextFormat Ref="16" type="DateFormat" isKey="true" />
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text15>
+            <Text16 Ref="17" type="Text" isKey="true">
+              <Border>None;[155:155:155];1;Solid;False;4;Black;True</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>6.9,1.7,0.6,0.2</ClientRectangle>
+              <ComponentPlacement>ph.PageHeaderBand1</ComponentPlacement>
+              <ComponentStyle>Black Contact Name</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Font>Microsoft Sans Serif,9.75,Bold,Point,False,0</Font>
+              <Guid>baf50cb7f2ce43b29479f92cb060c24c</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text16</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>: العنوان</Text>
+              <TextBrush>[43:43:43]</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text16>
+            <Text17 Ref="18" type="Text" isKey="true">
+              <Border>None;White;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,1.7,6.9,0.2</ClientRectangle>
+              <ComponentPlacement>ph.PageHeaderBand1</ComponentPlacement>
+              <ComponentStyle>Black Company Info</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Font>Microsoft Sans Serif,9.75,Regular,Point,False,204</Font>
+              <Guid>bdcf5cd5141f423bbe4d062517ce92db</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text17</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>{CustomerAddress}</Text>
+              <TextBrush>[43:43:43]</TextBrush>
+              <TextFormat Ref="19" type="DateFormat" isKey="true" />
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text17>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Guid>f65ea7140f2f4dea9e211cee608651de</Guid>
+          <Name>PageHeaderBand1</Name>
+          <Page isRef="4" />
+          <Parent isRef="4" />
+        </PageHeaderBand1>
+        <PageFooterBand1 Ref="20" type="PageFooterBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,10.21,7.49,0.7</ClientRectangle>
+          <Components isList="true" count="1">
+            <Text9 Ref="21" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,-0.01,7.5,0.7</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Courier New,18,Bold</Font>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text9</Name>
+              <Page isRef="4" />
+              <Parent isRef="20" />
+              <Text>{PrintLast}</Text>
+              <TextBrush>Black</TextBrush>
+            </Text9>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Guid>bf81a0f4cdc34514a59003e4cfd5bc73</Guid>
+          <Name>PageFooterBand1</Name>
+          <Page isRef="4" />
+          <Parent isRef="4" />
+        </PageFooterBand1>
+        <HeaderOrderReport Ref="22" type="HeaderBand" isKey="true">
+          <Border>Bottom;[192:80:70];3;Solid;False;4;Black;True</Border>
+          <Brush>White</Brush>
+          <ClientRectangle>0,2.9,7.49,0.3</ClientRectangle>
+          <Components isList="true" count="7">
+            <HeaderOrderReport_Row_ Ref="23" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,0,0.3,0.3</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>HeaderOrderReport_Row_</Name>
+              <Page isRef="4" />
+              <Parent isRef="22" />
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderOrderReport_Row_>
+            <HeaderOrderReport_Quantity Ref="24" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>6.1,0,0.5,0.3</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>HeaderOrderReport_Quantity</Name>
+              <Page isRef="4" />
+              <Parent isRef="22" />
+              <Text>الكميه</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderOrderReport_Quantity>
+            <HeaderOrderReport_SalePrice Ref="25" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>4.6,0,0.8,0.3</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>HeaderOrderReport_SalePrice</Name>
+              <Page isRef="4" />
+              <Parent isRef="22" />
+              <Text>السعر</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderOrderReport_SalePrice>
+            <HeaderOrderReport_Discount Ref="26" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>5.4,0,0.7,0.3</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>HeaderOrderReport_Discount</Name>
+              <Page isRef="4" />
+              <Parent isRef="22" />
+              <Text>خصم</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderOrderReport_Discount>
+            <HeaderOrderReport_Name Ref="27" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0.3,0,3.8,0.3</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>HeaderOrderReport_Name</Name>
+              <Page isRef="4" />
+              <Parent isRef="22" />
+              <Text>اسم الصنف</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderOrderReport_Name>
+            <HeaderOrderReport_Size Ref="28" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>4,0,0.6,0.3</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>HeaderOrderReport_Size</Name>
+              <Page isRef="4" />
+              <Parent isRef="22" />
+              <Text>المقاس</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderOrderReport_Size>
+            <Text6 Ref="29" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>6.6,0,0.9,0.3</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <Guid>891e8e070ed8449084f13b4084cc047d</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text6</Name>
+              <Page isRef="4" />
+              <Parent isRef="22" />
+              <Text>اجمالي</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text6>
+          </Components>
+          <ComponentStyle>Evening_Header1</ComponentStyle>
+          <Conditions isList="true" count="0" />
+          <Name>HeaderOrderReport</Name>
+          <Page isRef="4" />
+          <Parent isRef="4" />
+        </HeaderOrderReport>
+        <DataOrderReport Ref="30" type="DataBand" isKey="true">
+          <Border>Bottom;Gainsboro;1;Solid;False;4;Gainsboro</Border>
+          <Brush>Transparent</Brush>
+          <BusinessObjectGuid isNull="true" />
+          <ClientRectangle>0,3.6,7.49,0.3</ClientRectangle>
+          <Components isList="true" count="7">
+            <DataOrderReport_Row_ Ref="31" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>0,0,0.3,0.3</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataOrderReport_Row_</Name>
+              <Page isRef="4" />
+              <Parent isRef="30" />
+              <Text>{OrderReport.Row_}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </DataOrderReport_Row_>
+            <DataOrderReport_Name Ref="32" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>0.3,0,3.8,0.3</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataOrderReport_Name</Name>
+              <Page isRef="4" />
+              <Parent isRef="30" />
+              <Text>{OrderReport.Name}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </DataOrderReport_Name>
+            <DataOrderReport_Size Ref="33" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>4,0,0.6,0.3</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataOrderReport_Size</Name>
+              <Page isRef="4" />
+              <Parent isRef="30" />
+              <Text>{OrderReport.Size}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </DataOrderReport_Size>
+            <DataOrderReport_SalePrice Ref="34" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>4.6,0,0.8,0.3</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataOrderReport_SalePrice</Name>
+              <Page isRef="4" />
+              <Parent isRef="30" />
+              <Text>{OrderReport.SalePrice}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </DataOrderReport_SalePrice>
+            <DataOrderReport_Discount Ref="35" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>5.4,0,0.7,0.3</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataOrderReport_Discount</Name>
+              <Page isRef="4" />
+              <Parent isRef="30" />
+              <Text>{OrderReport.Discount}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </DataOrderReport_Discount>
+            <DataOrderReport_Quantity Ref="36" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>6.1,0,0.5,0.3</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataOrderReport_Quantity</Name>
+              <Page isRef="4" />
+              <Parent isRef="30" />
+              <Text>{OrderReport.Quantity}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </DataOrderReport_Quantity>
+            <DataOrderReport_TotalPrice Ref="37" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>6.6,0,0.9,0.3</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataOrderReport_TotalPrice</Name>
+              <Page isRef="4" />
+              <Parent isRef="30" />
+              <Text>{OrderReport.TotalPrice}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </DataOrderReport_TotalPrice>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <DataSourceName>OrderReport</DataSourceName>
+          <Filters isList="true" count="0" />
+          <Name>DataOrderReport</Name>
+          <Page isRef="4" />
+          <Parent isRef="4" />
+          <Sort isList="true" count="0" />
+        </DataOrderReport>
+        <FooterOrderReport Ref="38" type="FooterBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,4.3,7.49,0.3</ClientRectangle>
+          <Components isList="true" count="15">
+            <FooterOrderReport_Row_ Ref="39" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,0,0.7,0.3</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>FooterOrderReport_Row_</Name>
+              <Page isRef="4" />
+              <Parent isRef="38" />
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </FooterOrderReport_Row_>
+            <FooterOrderReport_Quantity Ref="40" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0.7,0,0.7,0.3</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>FooterOrderReport_Quantity</Name>
+              <Page isRef="4" />
+              <Parent isRef="38" />
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </FooterOrderReport_Quantity>
+            <FooterOrderReport_SalePrice Ref="41" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>1.4,0,0.7,0.3</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>FooterOrderReport_SalePrice</Name>
+              <Page isRef="4" />
+              <Parent isRef="38" />
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </FooterOrderReport_SalePrice>
+            <FooterOrderReport_Discount Ref="42" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>2.1,0,0.7,0.3</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>FooterOrderReport_Discount</Name>
+              <Page isRef="4" />
+              <Parent isRef="38" />
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </FooterOrderReport_Discount>
+            <FooterOrderReport_Profit Ref="43" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>2.8,0,0.7,0.3</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>FooterOrderReport_Profit</Name>
+              <Page isRef="4" />
+              <Parent isRef="38" />
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </FooterOrderReport_Profit>
+            <FooterOrderReport_Name Ref="44" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>3.5,0,0.7,0.3</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>FooterOrderReport_Name</Name>
+              <Page isRef="4" />
+              <Parent isRef="38" />
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </FooterOrderReport_Name>
+            <FooterOrderReport_BarCode Ref="45" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>4.2,0,0.7,0.3</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>FooterOrderReport_BarCode</Name>
+              <Page isRef="4" />
+              <Parent isRef="38" />
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </FooterOrderReport_BarCode>
+            <FooterOrderReport_SerialNumber Ref="46" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>4.9,0,0.7,0.3</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>FooterOrderReport_SerialNumber</Name>
+              <Page isRef="4" />
+              <Parent isRef="38" />
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </FooterOrderReport_SerialNumber>
+            <FooterOrderReport_SerialNumber2 Ref="47" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>5.6,0,0.7,0.3</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>FooterOrderReport_SerialNumber2</Name>
+              <Page isRef="4" />
+              <Parent isRef="38" />
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </FooterOrderReport_SerialNumber2>
+            <FooterOrderReport_Size Ref="48" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>6.3,0,0.7,0.3</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>FooterOrderReport_Size</Name>
+              <Page isRef="4" />
+              <Parent isRef="38" />
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </FooterOrderReport_Size>
+            <FooterOrderReport_Details Ref="49" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>7,0,0.5,0.3</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>FooterOrderReport_Details</Name>
+              <Page isRef="4" />
+              <Parent isRef="38" />
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </FooterOrderReport_Details>
+            <Text3 Ref="50" type="Text" isKey="true">
+              <Border>None;[155:155:155];1;Solid;False;4;Black;True</Border>
+              <Brush>Silver</Brush>
+              <ClientRectangle>6.6,0,0.9,0.3</ClientRectangle>
+              <ComponentPlacement>f.FooterBand1</ComponentPlacement>
+              <ComponentStyle>Black Total</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Editable>True</Editable>
+              <Font>Microsoft Sans Serif,12,Bold,Point,False,204</Font>
+              <Guid>da745b17b2fd4200a4a77279cc5dcd23</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>5,0,0,0</Margins>
+              <Name>Text3</Name>
+              <Page isRef="4" />
+              <Parent isRef="38" />
+              <Text>اجمالي</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text3>
+            <Text21 Ref="51" type="Text" isKey="true">
+              <Border>None;[155:155:155];1;Solid;False;4;Black;True</Border>
+              <Brush>Silver</Brush>
+              <ClientRectangle>5.5,0,1.1,0.3</ClientRectangle>
+              <ComponentPlacement>f.FooterBand1</ComponentPlacement>
+              <ComponentStyle>Black Total</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Font>Microsoft Sans Serif,12,Bold,Point,False,204</Font>
+              <Guid>59a8c56ed3eb4b36871fbf6ea927c776</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,5,0,0</Margins>
+              <Name>Text21</Name>
+              <Page isRef="4" />
+              <Parent isRef="38" />
+              <Tag>TOTAL</Tag>
+              <Text>{TotalPrice}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text21>
+            <Text5 Ref="52" type="Text" isKey="true">
+              <Border>None;[155:155:155];1;Solid;False;4;Black;True</Border>
+              <Brush>Silver</Brush>
+              <ClientRectangle>4.5,0,1,0.3</ClientRectangle>
+              <ComponentPlacement>f.FooterBand1</ComponentPlacement>
+              <ComponentStyle>Black Total</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Editable>True</Editable>
+              <Font>Microsoft Sans Serif,12,Bold,Point,False,204</Font>
+              <Guid>0a88a11477f7472693ceab802fd03777</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>5,0,0,0</Margins>
+              <Name>Text5</Name>
+              <Page isRef="4" />
+              <Parent isRef="38" />
+              <Text>عدد الاصناف</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text5>
+            <Text4 Ref="53" type="Text" isKey="true">
+              <Border>None;[155:155:155];1;Solid;False;4;Black;True</Border>
+              <Brush>Silver</Brush>
+              <ClientRectangle>3.6,0,0.9,0.3</ClientRectangle>
+              <ComponentPlacement>f.FooterBand1</ComponentPlacement>
+              <ComponentStyle>Black Total</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Font>Microsoft Sans Serif,12,Bold,Point,False,204</Font>
+              <Guid>a3cb82c0fac948fd935ed8f41b459c4b</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,5,0,0</Margins>
+              <Name>Text4</Name>
+              <Page isRef="4" />
+              <Parent isRef="38" />
+              <Tag>TOTAL</Tag>
+              <Text>{TotalOrderProduct}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text4>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Name>FooterOrderReport</Name>
+          <Page isRef="4" />
+          <Parent isRef="4" />
+        </FooterOrderReport>
+      </Components>
+      <Conditions isList="true" count="0" />
+      <Guid>a9ff25d5a6b34abca6fe198cfbabc6e8</Guid>
+      <Margins>0.39,0.39,0.39,0.39</Margins>
+      <Name>Page1</Name>
+      <PageHeight>11.69</PageHeight>
+      <PageWidth>8.27</PageWidth>
+      <PaperSize>A4</PaperSize>
+      <Report isRef="0" />
+    </Page1>
+  </Pages>
+  <ReferencedAssemblies isList="true" count="8">
+    <value>System.Dll</value>
+    <value>System.Drawing.Dll</value>
+    <value>System.Windows.Forms.Dll</value>
+    <value>System.Data.Dll</value>
+    <value>System.Xml.Dll</value>
+    <value>Stimulsoft.Controls.Dll</value>
+    <value>Stimulsoft.Base.Dll</value>
+    <value>Stimulsoft.Report.Dll</value>
+  </ReferencedAssemblies>
+  <ReportAlias>Report</ReportAlias>
+  <ReportChanged>11/3/2019 6:23:59 PM</ReportChanged>
+  <ReportCreated>9/16/2019 6:37:47 AM</ReportCreated>
+  <ReportFile>C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\Orders\Out\SellUC\SellOrderReportARforEMG.mrt</ReportFile>
+  <ReportGuid>efcd05b6775b44218c552d6bf8aaf6bf</ReportGuid>
+  <ReportName>Report</ReportName>
+  <ReportUnit>Inches</ReportUnit>
+  <ReportVersion>2019.3.1.0</ReportVersion>
+  <Script>using System;
+using System.Drawing;
+using System.Windows.Forms;
+using System.Data;
+using Stimulsoft.Controls;
+using Stimulsoft.Base.Drawing;
+using Stimulsoft.Report;
+using Stimulsoft.Report.Dialogs;
+using Stimulsoft.Report.Components;
+
+namespace Reports
+{
+    public class Report : Stimulsoft.Report.StiReport
+    {
+        public Report()        {
+            this.InitializeComponent();
+        }
+
+        #region StiReport Designer generated code - do not modify
+		#endregion StiReport Designer generated code - do not modify
+    }
+}
+</Script>
+  <ScriptLanguage>CSharp</ScriptLanguage>
+  <Styles isList="true" count="24">
+    <Dark_x0020_Azure_Report_Title1 Ref="54" type="Stimulsoft.Report.StiStyle" isKey="true">
+      <Border>None;[0:0:0];1;Solid;False;4;Black</Border>
+      <Brush>Transparent</Brush>
+      <CollectionName>Dark Azure</CollectionName>
+      <Conditions isList="true" count="1">
+        <Item50 Ref="55" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
+          <ComponentType>Text, Primitive, Image</ComponentType>
+          <Placement>ReportTitle</Placement>
+          <Type>ComponentType, Placement, PlacementNestedLevel</Type>
+        </Item50>
+      </Conditions>
+      <Font>Arial,14,Bold</Font>
+      <Name>Dark Azure_Report_Title1</Name>
+      <NegativeTextBrush>Red</NegativeTextBrush>
+      <TextBrush>Black</TextBrush>
+    </Dark_x0020_Azure_Report_Title1>
+    <Dark_x0020_Azure_Report_Title2 Ref="56" type="Stimulsoft.Report.StiStyle" isKey="true">
+      <Border>None;[0:0:0];1;Solid;False;4;Black</Border>
+      <Brush>Transparent</Brush>
+      <CollectionName>Dark Azure</CollectionName>
+      <Conditions isList="true" count="1">
+        <Item52 Ref="57" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
+          <ComponentType>Text, Primitive, Image</ComponentType>
+          <OperationPlacementNestedLevel>GreaterThanOrEqualTo</OperationPlacementNestedLevel>
+          <Placement>ReportTitle</Placement>
+          <PlacementNestedLevel>2</PlacementNestedLevel>
+          <Type>ComponentType, Placement, PlacementNestedLevel</Type>
+        </Item52>
+      </Conditions>
+      <Font>Arial,10,Bold</Font>
+      <Name>Dark Azure_Report_Title2</Name>
+      <NegativeTextBrush>Red</NegativeTextBrush>
+      <TextBrush>Black</TextBrush>
+    </Dark_x0020_Azure_Report_Title2>
+    <Dark_x0020_Azure_Report_Summary Ref="58" type="Stimulsoft.Report.StiStyle" isKey="true">
+      <Border>None;[0:0:0];1;Solid;False;4;Black</Border>
+      <Brush>Transparent</Brush>
+      <CollectionName>Dark Azure</CollectionName>
+      <Conditions isList="true" count="1">
+        <Item54 Ref="59" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
+          <ComponentType>Text, Primitive, Image</ComponentType>
+          <Placement>ReportSummary</Placement>
+          <Type>ComponentType, Placement</Type>
+        </Item54>
+      </Conditions>
+      <Font>Arial,10,Bold</Font>
+      <Name>Dark Azure_Report_Summary</Name>
+      <NegativeTextBrush>Red</NegativeTextBrush>
+      <TextBrush>Black</TextBrush>
+    </Dark_x0020_Azure_Report_Summary>
+    <Dark_x0020_Azure_Page_Header Ref="60" type="Stimulsoft.Report.StiStyle" isKey="true">
+      <Border>None;[0:0:0];1;Solid;False;4;Black</Border>
+      <Brush>Transparent</Brush>
+      <CollectionName>Dark Azure</CollectionName>
+      <Conditions isList="true" count="1">
+        <Item56 Ref="61" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
+          <ComponentType>Text, Primitive, Image</ComponentType>
+          <Placement>PageHeader</Placement>
+          <Type>ComponentType, Placement</Type>
+        </Item56>
+      </Conditions>
+      <Font>Arial,10</Font>
+      <Name>Dark Azure_Page_Header</Name>
+      <NegativeTextBrush>Red</NegativeTextBrush>
+      <TextBrush>Black</TextBrush>
+    </Dark_x0020_Azure_Page_Header>
+    <Dark_x0020_Azure_Page_Footer Ref="62" type="Stimulsoft.Report.StiStyle" isKey="true">
+      <Border>None;[0:0:0];1;Solid;False;4;Black</Border>
+      <Brush>Transparent</Brush>
+      <CollectionName>Dark Azure</CollectionName>
+      <Conditions isList="true" count="1">
+        <Item58 Ref="63" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
+          <ComponentType>Text, Primitive, Image</ComponentType>
+          <Placement>PageFooter</Placement>
+          <Type>ComponentType, Placement</Type>
+        </Item58>
+      </Conditions>
+      <Font>Arial,10</Font>
+      <Name>Dark Azure_Page_Footer</Name>
+      <NegativeTextBrush>Red</NegativeTextBrush>
+      <TextBrush>Black</TextBrush>
+    </Dark_x0020_Azure_Page_Footer>
+    <Dark_x0020_Azure_Group_Header1 Ref="64" type="Stimulsoft.Report.StiStyle" isKey="true">
+      <Border>None;[0:0:0];1;Solid;False;4;Black</Border>
+      <Brush>Transparent</Brush>
+      <CollectionName>Dark Azure</CollectionName>
+      <Conditions isList="true" count="1">
+        <Item60 Ref="65" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
+          <ComponentType>Text, Primitive, Image</ComponentType>
+          <OperationPlacementNestedLevel>GreaterThanOrEqualTo</OperationPlacementNestedLevel>
+          <Placement>GroupHeader</Placement>
+          <Type>ComponentType, Placement, PlacementNestedLevel</Type>
+        </Item60>
+      </Conditions>
+      <Font>Arial,13,Bold</Font>
+      <Name>Dark Azure_Group_Header1</Name>
+      <NegativeTextBrush>Red</NegativeTextBrush>
+      <TextBrush>Black</TextBrush>
+    </Dark_x0020_Azure_Group_Header1>
+    <Dark_x0020_Azure_Group_Footer1 Ref="66" type="Stimulsoft.Report.StiStyle" isKey="true">
+      <Border>None;[0:0:0];1;Solid;False;4;Black</Border>
+      <Brush>Transparent</Brush>
+      <CollectionName>Dark Azure</CollectionName>
+      <Conditions isList="true" count="1">
+        <Item62 Ref="67" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
+          <ComponentType>Text, Primitive, Image</ComponentType>
+          <Placement>GroupFooter</Placement>
+          <Type>ComponentType, Placement, PlacementNestedLevel</Type>
+        </Item62>
+      </Conditions>
+      <Font>Arial,9.75,Bold,Point,False,204</Font>
+      <Name>Dark Azure_Group_Footer1</Name>
+      <NegativeTextBrush>Red</NegativeTextBrush>
+      <TextBrush>Black</TextBrush>
+    </Dark_x0020_Azure_Group_Footer1>
+    <Dark_x0020_Azure_Header1 Ref="68" type="Stimulsoft.Report.StiStyle" isKey="true">
+      <Border>None;[0:0:0];1;Solid;False;4;Black;True</Border>
+      <Brush>[0:0:0]</Brush>
+      <CollectionName>Dark Azure</CollectionName>
+      <Conditions isList="true" count="1">
+        <Item64 Ref="69" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
+          <ComponentType>Text, Primitive, Image</ComponentType>
+          <OperationPlacementNestedLevel>GreaterThanOrEqualTo</OperationPlacementNestedLevel>
+          <Placement>Header</Placement>
+          <Type>ComponentType, Placement, PlacementNestedLevel</Type>
+        </Item64>
+      </Conditions>
+      <Font>Arial,8,Bold</Font>
+      <Name>Dark Azure_Header1</Name>
+      <NegativeTextBrush>Red</NegativeTextBrush>
+      <TextBrush>White</TextBrush>
+    </Dark_x0020_Azure_Header1>
+    <Dark_x0020_Azure_Data1 Ref="70" type="Stimulsoft.Report.StiStyle" isKey="true">
+      <Border>None;[0:0:0];1;Solid;False;4;Black</Border>
+      <Brush>Transparent</Brush>
+      <CollectionName>Dark Azure</CollectionName>
+      <Conditions isList="true" count="1">
+        <Item66 Ref="71" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
+          <ComponentType>Text, Primitive, Image, CheckBox</ComponentType>
+          <OperationPlacementNestedLevel>GreaterThanOrEqualTo</OperationPlacementNestedLevel>
+          <Placement>Data</Placement>
+          <Type>ComponentType, Placement, PlacementNestedLevel</Type>
+        </Item66>
+      </Conditions>
+      <Font>Arial,8</Font>
+      <Name>Dark Azure_Data1</Name>
+      <NegativeTextBrush>Red</NegativeTextBrush>
+      <TextBrush>White</TextBrush>
+    </Dark_x0020_Azure_Data1>
+    <Dark_x0020_Azure_Data1_Odd_x0020_Style Ref="72" type="Stimulsoft.Report.StiStyle" isKey="true">
+      <Border>None;[0:0:0];1;Solid;False;4;Black</Border>
+      <Brush>[54:95:145]</Brush>
+      <CollectionName>Dark Azure</CollectionName>
+      <Conditions isList="true" count="1">
+        <Item68 Ref="73" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
+          <OperationPlacementNestedLevel>GreaterThanOrEqualTo</OperationPlacementNestedLevel>
+          <Placement>DataOddStyle</Placement>
+          <Type>Placement, PlacementNestedLevel</Type>
+        </Item68>
+      </Conditions>
+      <Font>Arial,8</Font>
+      <Name>Dark Azure_Data1_Odd Style</Name>
+      <NegativeTextBrush>Red</NegativeTextBrush>
+      <TextBrush>White</TextBrush>
+    </Dark_x0020_Azure_Data1_Odd_x0020_Style>
+    <Dark_x0020_Azure_Data1_Even_x0020_Style Ref="74" type="Stimulsoft.Report.StiStyle" isKey="true">
+      <Border>None;[0:0:0];1;Solid;False;4;Black</Border>
+      <Brush>[79:129:187]</Brush>
+      <CollectionName>Dark Azure</CollectionName>
+      <Conditions isList="true" count="1">
+        <Item70 Ref="75" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
+          <OperationPlacementNestedLevel>GreaterThanOrEqualTo</OperationPlacementNestedLevel>
+          <Placement>DataEvenStyle</Placement>
+          <Type>Placement, PlacementNestedLevel</Type>
+        </Item70>
+      </Conditions>
+      <Font>Arial,8</Font>
+      <Name>Dark Azure_Data1_Even Style</Name>
+      <NegativeTextBrush>Red</NegativeTextBrush>
+      <TextBrush>White</TextBrush>
+    </Dark_x0020_Azure_Data1_Even_x0020_Style>
+    <Dark_x0020_Azure_Footer1 Ref="76" type="Stimulsoft.Report.StiStyle" isKey="true">
+      <Border>None;[0:0:0];1;Solid;False;4;Black</Border>
+      <Brush>[36:63:96]</Brush>
+      <CollectionName>Dark Azure</CollectionName>
+      <Conditions isList="true" count="1">
+        <Item72 Ref="77" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
+          <ComponentType>Text, Primitive, Image</ComponentType>
+          <Placement>Footer</Placement>
+          <Type>ComponentType, Placement, PlacementNestedLevel</Type>
+        </Item72>
+      </Conditions>
+      <Font>Arial,8</Font>
+      <Name>Dark Azure_Footer1</Name>
+      <NegativeTextBrush>Red</NegativeTextBrush>
+      <TextBrush>White</TextBrush>
+    </Dark_x0020_Azure_Footer1>
+    <Evening_Report_Title1 Ref="78" type="Stimulsoft.Report.StiStyle" isKey="true">
+      <Border>None;[0:0:0];1;Solid;False;4;Black</Border>
+      <Brush>Transparent</Brush>
+      <CollectionName>Evening</CollectionName>
+      <Conditions isList="true" count="1">
+        <Item74 Ref="79" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
+          <ComponentType>Text, Primitive, Image</ComponentType>
+          <Placement>ReportTitle</Placement>
+          <Type>ComponentType, Placement, PlacementNestedLevel</Type>
+        </Item74>
+      </Conditions>
+      <Font>Arial,14,Bold</Font>
+      <Name>Evening_Report_Title1</Name>
+      <NegativeTextBrush>Red</NegativeTextBrush>
+      <TextBrush>Black</TextBrush>
+    </Evening_Report_Title1>
+    <Evening_Report_Title2 Ref="80" type="Stimulsoft.Report.StiStyle" isKey="true">
+      <Border>None;[0:0:0];1;Solid;False;4;Black</Border>
+      <Brush>Transparent</Brush>
+      <CollectionName>Evening</CollectionName>
+      <Conditions isList="true" count="1">
+        <Item76 Ref="81" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
+          <ComponentType>Text, Primitive, Image</ComponentType>
+          <OperationPlacementNestedLevel>GreaterThanOrEqualTo</OperationPlacementNestedLevel>
+          <Placement>ReportTitle</Placement>
+          <PlacementNestedLevel>2</PlacementNestedLevel>
+          <Type>ComponentType, Placement, PlacementNestedLevel</Type>
+        </Item76>
+      </Conditions>
+      <Font>Arial,10,Bold</Font>
+      <Name>Evening_Report_Title2</Name>
+      <NegativeTextBrush>Red</NegativeTextBrush>
+      <TextBrush>Black</TextBrush>
+    </Evening_Report_Title2>
+    <Evening_Report_Summary Ref="82" type="Stimulsoft.Report.StiStyle" isKey="true">
+      <Border>None;[0:0:0];1;Solid;False;4;Black</Border>
+      <Brush>Transparent</Brush>
+      <CollectionName>Evening</CollectionName>
+      <Conditions isList="true" count="1">
+        <Item78 Ref="83" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
+          <ComponentType>Text, Primitive, Image</ComponentType>
+          <Placement>ReportSummary</Placement>
+          <Type>ComponentType, Placement</Type>
+        </Item78>
+      </Conditions>
+      <Font>Arial,10,Bold</Font>
+      <Name>Evening_Report_Summary</Name>
+      <NegativeTextBrush>Red</NegativeTextBrush>
+      <TextBrush>Black</TextBrush>
+    </Evening_Report_Summary>
+    <Evening_Page_Header Ref="84" type="Stimulsoft.Report.StiStyle" isKey="true">
+      <Border>None;[0:0:0];1;Solid;False;4;Black</Border>
+      <Brush>Transparent</Brush>
+      <CollectionName>Evening</CollectionName>
+      <Conditions isList="true" count="1">
+        <Item80 Ref="85" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
+          <ComponentType>Text, Primitive, Image</ComponentType>
+          <Placement>PageHeader</Placement>
+          <Type>ComponentType, Placement</Type>
+        </Item80>
+      </Conditions>
+      <Font>Arial,10</Font>
+      <Name>Evening_Page_Header</Name>
+      <NegativeTextBrush>Red</NegativeTextBrush>
+      <TextBrush>Black</TextBrush>
+    </Evening_Page_Header>
+    <Evening_Page_Footer Ref="86" type="Stimulsoft.Report.StiStyle" isKey="true">
+      <Border>None;[0:0:0];1;Solid;False;4;Black</Border>
+      <Brush>Transparent</Brush>
+      <CollectionName>Evening</CollectionName>
+      <Conditions isList="true" count="1">
+        <Item82 Ref="87" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
+          <ComponentType>Text, Primitive, Image</ComponentType>
+          <Placement>PageFooter</Placement>
+          <Type>ComponentType, Placement</Type>
+        </Item82>
+      </Conditions>
+      <Font>Arial,10</Font>
+      <Name>Evening_Page_Footer</Name>
+      <NegativeTextBrush>Red</NegativeTextBrush>
+      <TextBrush>Black</TextBrush>
+    </Evening_Page_Footer>
+    <Evening_Group_Header1 Ref="88" type="Stimulsoft.Report.StiStyle" isKey="true">
+      <Border>None;[0:0:0];1;Solid;False;4;Black</Border>
+      <Brush>Transparent</Brush>
+      <CollectionName>Evening</CollectionName>
+      <Conditions isList="true" count="1">
+        <Item84 Ref="89" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
+          <ComponentType>Text, Primitive, Image</ComponentType>
+          <OperationPlacementNestedLevel>GreaterThanOrEqualTo</OperationPlacementNestedLevel>
+          <Placement>GroupHeader</Placement>
+          <Type>ComponentType, Placement, PlacementNestedLevel</Type>
+        </Item84>
+      </Conditions>
+      <Font>Arial,13,Bold</Font>
+      <Name>Evening_Group_Header1</Name>
+      <NegativeTextBrush>Red</NegativeTextBrush>
+      <TextBrush>Black</TextBrush>
+    </Evening_Group_Header1>
+    <Evening_Group_Footer1 Ref="90" type="Stimulsoft.Report.StiStyle" isKey="true">
+      <Border>None;[0:0:0];1;Solid;False;4;Black</Border>
+      <Brush>Transparent</Brush>
+      <CollectionName>Evening</CollectionName>
+      <Conditions isList="true" count="1">
+        <Item86 Ref="91" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
+          <ComponentType>Text, Primitive, Image</ComponentType>
+          <Placement>GroupFooter</Placement>
+          <Type>ComponentType, Placement, PlacementNestedLevel</Type>
+        </Item86>
+      </Conditions>
+      <Font>Arial,9.75,Bold,Point,False,204</Font>
+      <Name>Evening_Group_Footer1</Name>
+      <NegativeTextBrush>Red</NegativeTextBrush>
+      <TextBrush>Black</TextBrush>
+    </Evening_Group_Footer1>
+    <Evening_Header1 Ref="92" type="Stimulsoft.Report.StiStyle" isKey="true">
+      <Border>Bottom;[192:80:70];3;Solid;False;4;Black;True</Border>
+      <Brush>White</Brush>
+      <CollectionName>Evening</CollectionName>
+      <Conditions isList="true" count="1">
+        <Item88 Ref="93" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
+          <ComponentType>Text, Primitive, Image</ComponentType>
+          <OperationPlacementNestedLevel>GreaterThanOrEqualTo</OperationPlacementNestedLevel>
+          <Placement>Header</Placement>
+          <Type>ComponentType, Placement, PlacementNestedLevel</Type>
+        </Item88>
+      </Conditions>
+      <Font>Arial,8,Bold</Font>
+      <Name>Evening_Header1</Name>
+      <NegativeTextBrush>Red</NegativeTextBrush>
+      <TextBrush>Black</TextBrush>
+    </Evening_Header1>
+    <Evening_Data1 Ref="94" type="Stimulsoft.Report.StiStyle" isKey="true">
+      <Border>All;White;1;Solid;False;4;Black</Border>
+      <Brush>Transparent</Brush>
+      <CollectionName>Evening</CollectionName>
+      <Conditions isList="true" count="1">
+        <Item90 Ref="95" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
+          <ComponentType>Text, Primitive, Image, CheckBox</ComponentType>
+          <OperationPlacementNestedLevel>GreaterThanOrEqualTo</OperationPlacementNestedLevel>
+          <Placement>Data</Placement>
+          <Type>ComponentType, Placement, PlacementNestedLevel</Type>
+        </Item90>
+      </Conditions>
+      <Font>Arial,8</Font>
+      <Name>Evening_Data1</Name>
+      <NegativeTextBrush>Red</NegativeTextBrush>
+      <TextBrush>[0:0:0]</TextBrush>
+    </Evening_Data1>
+    <Evening_Data1_Odd_x0020_Style Ref="96" type="Stimulsoft.Report.StiStyle" isKey="true">
+      <Border>None;[0:0:0];1;Solid;False;4;Black</Border>
+      <Brush>[128:128:128]</Brush>
+      <CollectionName>Evening</CollectionName>
+      <Conditions isList="true" count="1">
+        <Item92 Ref="97" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
+          <OperationPlacementNestedLevel>GreaterThanOrEqualTo</OperationPlacementNestedLevel>
+          <Placement>DataOddStyle</Placement>
+          <Type>Placement, PlacementNestedLevel</Type>
+        </Item92>
+      </Conditions>
+      <Font>Arial,8</Font>
+      <Name>Evening_Data1_Odd Style</Name>
+      <NegativeTextBrush>Red</NegativeTextBrush>
+      <TextBrush>[0:0:0]</TextBrush>
+    </Evening_Data1_Odd_x0020_Style>
+    <Evening_Data1_Even_x0020_Style Ref="98" type="Stimulsoft.Report.StiStyle" isKey="true">
+      <Border>None;[0:0:0];1;Solid;False;4;Black</Border>
+      <Brush>[230:230:230]</Brush>
+      <CollectionName>Evening</CollectionName>
+      <Conditions isList="true" count="1">
+        <Item94 Ref="99" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
+          <OperationPlacementNestedLevel>GreaterThanOrEqualTo</OperationPlacementNestedLevel>
+          <Placement>DataEvenStyle</Placement>
+          <Type>Placement, PlacementNestedLevel</Type>
+        </Item94>
+      </Conditions>
+      <Font>Arial,8</Font>
+      <Name>Evening_Data1_Even Style</Name>
+      <NegativeTextBrush>Red</NegativeTextBrush>
+      <TextBrush>[0:0:0]</TextBrush>
+    </Evening_Data1_Even_x0020_Style>
+    <Evening_Footer1 Ref="100" type="Stimulsoft.Report.StiStyle" isKey="true">
+      <Border>None;[0:0:0];1;Solid;False;4;Black</Border>
+      <Brush>[10:10:10]</Brush>
+      <CollectionName>Evening</CollectionName>
+      <Conditions isList="true" count="1">
+        <Item96 Ref="101" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
+          <ComponentType>Text, Primitive, Image</ComponentType>
+          <Placement>Footer</Placement>
+          <Type>ComponentType, Placement, PlacementNestedLevel</Type>
+        </Item96>
+      </Conditions>
+      <Font>Arial,8</Font>
+      <Name>Evening_Footer1</Name>
+      <NegativeTextBrush>Red</NegativeTextBrush>
+      <TextBrush>White</TextBrush>
+    </Evening_Footer1>
+  </Styles>
+</StiSerializer>

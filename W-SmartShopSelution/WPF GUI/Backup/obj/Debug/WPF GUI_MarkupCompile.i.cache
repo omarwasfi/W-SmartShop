@@ -1,0 +1,20 @@
+﻿WPF GUI
+
+
+winexe
+C#
+.cs
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Debug\
+WPF_GUI
+none
+false
+DEBUG;TRACE
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\App.xaml
+29132960698
+
+34-1204513871
+123-269387983
+CashUC\CashUC.xaml;Installament\InstallmentCollectingUC\InstallmentCollectingUC.xaml;Orders\In\BillsManagerUC\BillsManagerUC.xaml;Orders\In\ModifyBill\ModifyBillUC.xaml;Orders\In\PayBillUC\PayBillUC.xaml;Orders\Out\InstallmentOrderUC\InstallmentOrderUC.xaml;Orders\Out\OrderUC\OrderUC.xaml;Orders\Out\SellingOrdersManagerUC\SellingOrdersManagerUC.xaml;PriceListUC\PriceListUC.xaml;Store\AddStockToStoreUC\AddStockToStoreUC.xaml;Human\Supplier\CreateSupplierUC\CreateSupplierUC.xaml;Human\Customer\CustomerLogUC\CustomerLogUC.xaml;Store\GlobalInventoryUC\GlobalInventoryUC.xaml;Orders\In\IncomeOrder\IncomeOrderUC.xaml;Store\Inventory\InventoryUC.xaml;Human\ModifyPersonUC\ModifyPersonUC.xaml;Store\ModifyStockUC\ModifyStockUC.xaml;ProductForms\CreateBrandUC\CreateBrandUC.xaml;ProductForms\CreateCategory\CreateCategoryUC.xaml;Human\Customer\CreateCutomerUC\CreateCustomerUC.xaml;ProductForms\CreateProductUC\CreateProductUC.xaml;Login\LoginForm.xaml;MainForm\MainForm.xaml;ProductForms\ModifyProductUC\ModifyProductUC.xaml;ProductForms\ProductManagerUC\ProductManagerUC.xaml;Orders\Out\SellUC\SellUC.xaml;Human\Staff\ModifyStaffUC\ModifyStaffUC.xaml;Human\Staff\StaffsManagerUC\StaffsManagerUC.xaml;Human\Supplier\SupplierLogUC\SupplierLogUC.xaml;
+
+True
+

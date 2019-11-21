@@ -141,6 +141,7 @@
     <Compile Include="PublicVariables.cs" />
     <Compile Include="Validation\Forced\MoneyValidator.cs" />
     <Compile Include="Validation\Forced\NumberValidation.cs" />
+    <Compile Include="Validation\HumanValidations\PersonValidator.cs" />
     <Compile Include="Validation\OrdersValidations\OrderValidations\OrderProductValidator.cs" />
     <Compile Include="Validation\StoreValidations\ProductValidations\ProductValidator.cs" />
   </ItemGroup>
@@ -161,7 +162,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="LogicalClasses\StaffSalary\" />
-    <Folder Include="Validation\HumanValidations\" />
     <Folder Include="Validation\OrdersValidations\IncomeOrderValidations\" />
     <Folder Include="Validation\OrdersValidations\ShopBillValidations\" />
   </ItemGroup>

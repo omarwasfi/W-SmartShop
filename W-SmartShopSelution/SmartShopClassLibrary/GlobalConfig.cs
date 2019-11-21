@@ -16,6 +16,7 @@ namespace Library
 
         public static NumberValidation NumberValidation { get; set; } = new NumberValidation();
         public static ProductValidator ProductValidator { get; set; }
+        public static PersonValidator PersonValidator { get; set; }
         public static OrderProductValidator OrderProductValidator { get; set; }
 
         public static void InitializeConnection()
@@ -50,10 +51,10 @@ namespace Library
         /// if not return storemodel with Id = -1
         /// </summary>
         /// <returns> store model </returns>
-        public static StoreModel GetTheStoreFromTheDatabase()
+        public static StoreModel GetTheStoreFromTheDatabase(List<StoreModel>stores)
         {
             
-            return Connection.CheckByEnumIsThisStoreExist(StoreName.EMG);
+            return Connection.CheckByEnumIsThisStoreExist(StoreName.EMG,stores);
                     
             
 

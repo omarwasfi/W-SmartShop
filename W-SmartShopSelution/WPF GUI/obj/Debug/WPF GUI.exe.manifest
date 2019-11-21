@@ -78,14 +78,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="FluentValidation.dll" size="323584">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="FluentValidation.dll" size="337920">
       <assemblyIdentity name="FluentValidation" version="8.0.0.0" publicKeyToken="7DE548DA2FBAE0F0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>7psktiGjM9baHGa3uBzV31XU19IakWfC+vl44tmUPPQ=</dsig:DigestValue>
+        <dsig:DigestValue>G5PSFAwRxC5NG+QXHzPRqzvtMAPXe4+k//n3ob5ccu8=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -126,14 +126,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SmartShopClassLibrary.dll" size="144896">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SmartShopClassLibrary.dll" size="150016">
       <assemblyIdentity name="SmartShopClassLibrary" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>avlOLsWDM+CYx5jXGqx6IroNPpPTHw46eQnpGICSZSA=</dsig:DigestValue>
+        <dsig:DigestValue>m4pco02UoxbLGHYiN0xtPlGVEWYKjQPd3YyOtyBIyr4=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -390,6 +390,918 @@
     </dependentAssembly>
   </dependency>
   <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Syncfusion.Calculate.Base.dll" size="471040">
+      <assemblyIdentity name="Syncfusion.Calculate.Base" version="17.3460.0.14" publicKeyToken="3D67ED1F87D44C89" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>QxD685jjPg/AKeRREVr+IviuAcxySv/6GUByQJd4cwM=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Syncfusion.Chart.Wpf.dll" size="2275328">
+      <assemblyIdentity name="Syncfusion.Chart.Wpf" version="17.3460.0.14" publicKeyToken="3D67ED1F87D44C89" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>iYmYHQjmzK46v8VuulxNevnQO+WAXo29vZng2JjlJ9Q=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Syncfusion.Compression.Base.dll" size="81920">
+      <assemblyIdentity name="Syncfusion.Compression.Base" version="17.3460.0.14" publicKeyToken="3D67ED1F87D44C89" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>7yb5G1eA4LQ6xmlHy4t0YIP6a8KQinadQJI+OxmxfF0=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Syncfusion.Data.WPF.dll" size="281600">
+      <assemblyIdentity name="Syncfusion.Data.WPF" version="17.3460.0.14" publicKeyToken="3D67ED1F87D44C89" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>CbULu81Cj89lm36MJDYxqOFsg3m9YaR5s1qCm9u65+A=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Syncfusion.Diagram.Wpf.dll" size="1103360">
+      <assemblyIdentity name="Syncfusion.Diagram.Wpf" version="17.3460.0.14" publicKeyToken="3D67ED1F87D44C89" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>Z8xIeuJMtjA+GfntnvL4/CVZChEK0Z+uBNl0/0kOwk4=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Syncfusion.DocIO.Base.dll" size="5275648">
+      <assemblyIdentity name="Syncfusion.DocIO.Base" version="17.3460.0.14" publicKeyToken="3D67ED1F87D44C89" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>rVTmp9l+pGvPCev5lt4dRGsPKHdvvSrwuasF73AofxU=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Syncfusion.DocIO.Wpf.dll" size="16384">
+      <assemblyIdentity name="Syncfusion.DocIO.Wpf" version="17.3460.0.14" publicKeyToken="3D67ED1F87D44C89" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>EmI/ZJxg7AEni2lo+zC5ZgT5HTqzfGLIaaTBue3VYKY=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Syncfusion.Edit.Wpf.dll" size="870912">
+      <assemblyIdentity name="Syncfusion.Edit.Wpf" version="17.3460.0.14" publicKeyToken="3D67ED1F87D44C89" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>G5jrch2pEWAywCAcoKMByP9sYSP84u4T0fY10zP5lDw=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Syncfusion.Gantt.Wpf.dll" size="482816">
+      <assemblyIdentity name="Syncfusion.Gantt.Wpf" version="17.3460.0.14" publicKeyToken="3D67ED1F87D44C89" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>7hbOW9JIbu8mUYvPECXP+p+yFOdvP0SGv70jzzpIdIk=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Syncfusion.Gauge.Wpf.dll" size="516608">
+      <assemblyIdentity name="Syncfusion.Gauge.WPF" version="17.3460.0.14" publicKeyToken="3D67ED1F87D44C89" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>aWfpbWbfsITMPLAf3F93tMryr1C4ZBe79Z1be99t9vs=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Syncfusion.Grid.Wpf.dll" size="3787776">
+      <assemblyIdentity name="Syncfusion.Grid.Wpf" version="17.3460.0.14" publicKeyToken="3D67ED1F87D44C89" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>I5ShmHwlQVEzMHwAqtnnogjXIEj+Uj6sOpZCFs+HpJQ=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Syncfusion.GridCommon.Wpf.dll" size="455168">
+      <assemblyIdentity name="Syncfusion.GridCommon.Wpf" version="17.3460.0.14" publicKeyToken="3D67ED1F87D44C89" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>AOS+t4b7qQF41u7eqsYCA/R1igGQMQmGJWx3cJEUQJA=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Syncfusion.Linq.Base.dll" size="282112">
+      <assemblyIdentity name="Syncfusion.Linq.Base" version="17.3460.0.14" publicKeyToken="3D67ED1F87D44C89" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>VDE4lxtU7xWwRp81s1j1mEeRj05o2/OUz1RBhD9U6CQ=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Syncfusion.OfficeChart.Base.dll" size="2845184">
+      <assemblyIdentity name="Syncfusion.OfficeChart.Base" version="17.3460.0.14" publicKeyToken="3D67ED1F87D44C89" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>EZngDRh6ID6dezMKouSUyKdiMVSkiJk4vWhEz6VI2sk=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Syncfusion.Olap.Base.dll" size="668672">
+      <assemblyIdentity name="Syncfusion.Olap.Base" version="17.3460.0.14" publicKeyToken="3D67ED1F87D44C89" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>K1/9fcwFoy8TGvQ0ONd1afQvqepDJjy6mkcpWIKNJ5Q=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Syncfusion.OlapChart.Wpf.dll" size="311808">
+      <assemblyIdentity name="Syncfusion.OlapChart.WPF" version="17.3460.0.14" publicKeyToken="3D67ED1F87D44C89" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>RnXCma/SN/P2wNzdAyb5k+l9UpJaxBwI7wXbBEwKhj4=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Syncfusion.OlapChartConverter.Wpf.dll" size="11264">
+      <assemblyIdentity name="Syncfusion.OlapChartConverter.WPF" version="17.3460.0.14" publicKeyToken="3D67ED1F87D44C89" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>1X/GCDGBxJ0T9oU1hYfEWULU4JnwfCXFBeEwfJ7RUHA=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Syncfusion.OlapClient.Wpf.dll" size="872448">
+      <assemblyIdentity name="Syncfusion.OlapClient.WPF" version="17.3460.0.14" publicKeyToken="3D67ED1F87D44C89" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>8gOigwIi2/OrgD3mpne9NYLozFuWX6UUErjIh6O91qE=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Syncfusion.OlapGauge.Wpf.dll" size="217600">
+      <assemblyIdentity name="Syncfusion.OlapGauge.WPF" version="17.3460.0.14" publicKeyToken="3D67ED1F87D44C89" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>Y054T5NzNbK4iTkB9p5/3MmWdS5gfZTfIfPO7PpGVPo=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Syncfusion.OlapGrid.Wpf.dll" size="367616">
+      <assemblyIdentity name="Syncfusion.OlapGrid.WPF" version="17.3460.0.14" publicKeyToken="3D67ED1F87D44C89" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>3q3FqetGr5sgaJdPODcfJ2jINRHGXcXk5UiRpjy2Rbc=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Syncfusion.OlapGridCommon.Wpf.dll" size="12288">
+      <assemblyIdentity name="Syncfusion.OlapGridCommon.WPF" version="17.3460.0.14" publicKeyToken="3D67ED1F87D44C89" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>Rg3/aJjuqXUbdEOHHSX4XomRN6YDgCbhCJYSxDpxIVM=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Syncfusion.OlapGridConverter.Wpf.dll" size="45056">
+      <assemblyIdentity name="Syncfusion.OlapGridConverter.WPF" version="17.3460.0.14" publicKeyToken="3D67ED1F87D44C89" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>cQMHliPDmLoAkPu6wz46QLBZrQdaAhj2sNYrlf1lWY8=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Syncfusion.OlapShared.Wpf.dll" size="145920">
+      <assemblyIdentity name="Syncfusion.OlapShared.WPF" version="17.3460.0.14" publicKeyToken="3D67ED1F87D44C89" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>fnP3EEVkAK833JcpxE4caW62QAYHp7Aur8tnzvYG49M=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Syncfusion.OlapTools.Wpf.dll" size="357888">
+      <assemblyIdentity name="Syncfusion.OlapTools.WPF" version="17.3460.0.14" publicKeyToken="3D67ED1F87D44C89" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>4Y5vD5gpVmfGGFbgKDa42g6tQpr32n5/6uleWlRYof4=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Syncfusion.Pdf.Base.dll" size="6515712">
+      <assemblyIdentity name="Syncfusion.Pdf.Base" version="17.3460.0.14" publicKeyToken="3D67ED1F87D44C89" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>HkBPoJkyi45yzGKckhbHUga+1cX7shEgK5Sp3dsIkQI=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Syncfusion.PdfViewer.Wpf.dll" size="20278784">
+      <assemblyIdentity name="Syncfusion.PdfViewer.WPF" version="17.3460.0.14" publicKeyToken="3D67ED1F87D44C89" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>FHpqM4cYHiMz6jui3SkteXNDrl+Pk2AwdBAmmSx71zA=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Syncfusion.PivotAnalysis.Base.dll" size="310272">
+      <assemblyIdentity name="Syncfusion.PivotAnalysis.Base" version="17.3460.0.14" publicKeyToken="3D67ED1F87D44C89" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>hMrsaR2WcpLe/Ur5veSU/CWfzG17jVPV7Wxa9UkQ9z8=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Syncfusion.PivotAnalysis.Wpf.dll" size="1398784">
+      <assemblyIdentity name="Syncfusion.PivotAnalysis.Wpf" version="17.3460.0.14" publicKeyToken="3D67ED1F87D44C89" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>R1BSl0NY+i7W8ZfNJHmYkaAYo036ibbtkPAk7XLj9yE=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Syncfusion.PivotGridConverter.Wpf.dll" size="89088">
+      <assemblyIdentity name="Syncfusion.PivotGridConverter.Wpf" version="17.3460.0.14" publicKeyToken="3D67ED1F87D44C89" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>Eshi/hXXWP0dtwb8/XB+kckRgfdrtcrYx5L8a17BBks=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Syncfusion.Presentation.Base.dll" size="2329088">
+      <assemblyIdentity name="Syncfusion.Presentation.Base" version="17.3460.0.14" publicKeyToken="3D67ED1F87D44C89" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>FD6RCw1MFrZi6rA02fxE1s7oYDuLzgCSv6VFmRvLoRk=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Syncfusion.ProjIO.Base.dll" size="196608">
+      <assemblyIdentity name="Syncfusion.ProjIO.Base" version="17.3460.0.14" publicKeyToken="3D67ED1F87D44C89" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>/LhWdamBALIc0MmC/j+/GHMwY/vM40VK+zgLvohj/D4=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Syncfusion.PropertyGrid.Wpf.dll" size="583680">
+      <assemblyIdentity name="Syncfusion.PropertyGrid.Wpf" version="17.3460.0.14" publicKeyToken="3D67ED1F87D44C89" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>iIFZelh5sqtOBxD6gI11LfHvMubuCnjPn+VTtevvP98=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Syncfusion.ReportControls.WPF.dll" size="2943488">
+      <assemblyIdentity name="Syncfusion.ReportControls.Wpf" version="17.3460.0.14" publicKeyToken="3D67ED1F87D44C89" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>Psz2SXEsQEjQBMGp2ZVptZ9Xk6Gi8V/8EqjQ+5obTzs=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Syncfusion.ReportDesigner.WPF.dll" size="5093376">
+      <assemblyIdentity name="Syncfusion.ReportDesigner.WPF" version="17.3460.0.14" publicKeyToken="3D67ED1F87D44C89" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>V5R5HkfCWwD6m2Z4ID+Vm6+Co91uVt+QTYsRhBHUpZ4=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Syncfusion.ReportViewer.WPF.dll" size="653824">
+      <assemblyIdentity name="Syncfusion.ReportViewer.Wpf" version="17.3460.0.14" publicKeyToken="3D67ED1F87D44C89" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>XniH+/+DnJpEleg9yjZWgAt3FQJmhqr9mop/SsiFtvo=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Syncfusion.ReportWriter.Base.dll" size="316928">
+      <assemblyIdentity name="Syncfusion.ReportWriter.Base" version="17.3460.0.14" publicKeyToken="3D67ED1F87D44C89" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>Jbgoh/NtS/0E62y1Tv9imO95oB8hAKl8vU6ddLQsAJM=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Syncfusion.RichTextBoxAdv.WPF.dll" size="717824">
+      <assemblyIdentity name="Syncfusion.RichTextBoxAdv.WPF" version="17.3460.0.14" publicKeyToken="3D67ED1F87D44C89" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>xv1wP2PBwbF7aOK1Sl1PbpvpF+nidRaR+jzuep6poII=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Syncfusion.Schedule.Wpf.dll" size="1814528">
+      <assemblyIdentity name="Syncfusion.Schedule.Wpf" version="17.3460.0.14" publicKeyToken="3D67ED1F87D44C89" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>LGuVzlSM7EK/Zgn49QSCVEnQBFMrsxm/8ulwAaTYVe4=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Syncfusion.SfAccordion.WPF.dll" size="77312">
+      <assemblyIdentity name="Syncfusion.SfAccordion.WPF" version="17.3460.0.14" publicKeyToken="3D67ED1F87D44C89" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>XyKmzTnPdl7aziD/TObl6Urcj66AM/eAWLv49yKxIGI=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Syncfusion.SfBarcode.Wpf.dll" size="185344">
+      <assemblyIdentity name="Syncfusion.SfBarcode.WPF" version="17.3460.0.14" publicKeyToken="3D67ED1F87D44C89" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>73l06yBELOEOBC1e6KpMqKLxMAkebmVqbRjJ6wB3PNU=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Syncfusion.SfBulletGraph.WPF.dll" size="63488">
+      <assemblyIdentity name="Syncfusion.SfBulletGraph.WPF" version="17.3460.0.14" publicKeyToken="3D67ED1F87D44C89" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>ufIf1xFleGKu+t5QdmBTwefDTrlazH1jOPELPkmEoew=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Syncfusion.SfBusyIndicator.WPF.dll" size="106496">
+      <assemblyIdentity name="Syncfusion.SfBusyIndicator.WPF" version="17.3460.0.14" publicKeyToken="3D67ED1F87D44C89" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>DS4xDqlIZgapgeBO/9JtIj3H2qG+qXmVjyDUfGYrm7o=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Syncfusion.SfCellGrid.WPF.dll" size="927744">
+      <assemblyIdentity name="Syncfusion.SfCellGrid.WPF" version="17.3460.0.14" publicKeyToken="3D67ED1F87D44C89" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>doXIaa+eD3LiCapfKCrj6Ye30mGApNO6fD6qc1krFfo=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Syncfusion.SfChart.Wpf.dll" size="2039296">
+      <assemblyIdentity name="Syncfusion.SfChart.WPF" version="17.3460.0.14" publicKeyToken="3D67ED1F87D44C89" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>FnXv5QTnLyWROihSd8JtE5OrhhIYCd7OyrU8qYmwgSg=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Syncfusion.SfChromelessWindow.WPF.dll" size="18944">
+      <assemblyIdentity name="Syncfusion.SfChromelessWindow.Wpf" version="17.3460.0.14" publicKeyToken="3D67ED1F87D44C89" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>MaFWdizoc8ZsRQsY7QurwKUalVBhXXn8HK8+8HuS778=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Syncfusion.SfColorPalette.WPF.dll" size="79360">
+      <assemblyIdentity name="Syncfusion.SfColorPalette.Wpf" version="17.3460.0.14" publicKeyToken="3D67ED1F87D44C89" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>I7P+d40MJGN0sC6eLpqhAyjmr0uYa1qTZZM6KjbzZyo=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Syncfusion.SfDiagram.WPF.dll" size="3456512">
+      <assemblyIdentity name="Syncfusion.SfDiagram.WPF" version="17.3460.0.14" publicKeyToken="3D67ED1F87D44C89" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>Qij3mCnfpPFNf19kVHGnO4U1abiGGbNADZHldgJLQH4=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Syncfusion.SfGauge.WPF.dll" size="344064">
+      <assemblyIdentity name="Syncfusion.SfGauge.WPF" version="17.3460.0.14" publicKeyToken="3D67ED1F87D44C89" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>UB1XWEW2REODhOI1gtl+imBrlNl7XTAwcWnSf/mbuKs=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Syncfusion.SfGrid.WPF.dll" size="2462720">
+      <assemblyIdentity name="Syncfusion.SfGrid.WPF" version="17.3460.0.14" publicKeyToken="3D67ED1F87D44C89" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>IkDdLR/whhOFF/lZPQ4OhAjxl+eXIk+4jzJqxv3ys+U=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Syncfusion.SfGridCommon.WPF.dll" size="158720">
+      <assemblyIdentity name="Syncfusion.SfGridCommon.WPF" version="17.3460.0.14" publicKeyToken="3D67ED1F87D44C89" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>HBssiFyuKapRNrljqs7J+xNpRAoh3WxSNRZImQX9PBc=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Syncfusion.SfHeatMap.WPF.dll" size="58368">
+      <assemblyIdentity name="Syncfusion.SfHeatMap.Wpf" version="17.3460.0.14" publicKeyToken="3D67ED1F87D44C89" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>kMIubUOXd2oUNtaGeJs7ac8zONeIGZBH5XDZI9vuL+M=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Syncfusion.SfHubTile.WPF.dll" size="45568">
+      <assemblyIdentity name="Syncfusion.SfHubTile.Wpf" version="17.3460.0.14" publicKeyToken="3D67ED1F87D44C89" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>wqPXNDupaEdxfe25VvoeSo7ifImmfiXk9y6NBSGSjNQ=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Syncfusion.SfInput.WPF.dll" size="428544">
+      <assemblyIdentity name="Syncfusion.SfInput.Wpf" version="17.3460.0.14" publicKeyToken="3D67ED1F87D44C89" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>Kb43wTy7CZr2GF3sDuM3IRfb4+XJWpSxSKqU6g9QEO0=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Syncfusion.SfKanban.Wpf.dll" size="141312">
+      <assemblyIdentity name="Syncfusion.SfKanban.WPF" version="17.3460.0.14" publicKeyToken="3D67ED1F87D44C89" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>q82Ji29o1s2D99cv1PzL6GE88ktAQLEu11PwrBV/QVM=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Syncfusion.SfMaps.WPF.dll" size="279552">
+      <assemblyIdentity name="Syncfusion.SfMaps.WPF" version="17.3460.0.14" publicKeyToken="3D67ED1F87D44C89" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>7893eBsgPaQ1X8HtyecQiaXsvCBU2VvrsxhIzLSkrOk=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Syncfusion.SfNavigationDrawer.WPF.dll" size="86016">
+      <assemblyIdentity name="Syncfusion.SfNavigationDrawer.WPF" version="17.3460.0.14" publicKeyToken="3D67ED1F87D44C89" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>3S/Nz8+HJUP5Jh04abcefeG2DM+mMyVcS4EwBHCPPuQ=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Syncfusion.SfProgressBar.Wpf.dll" size="49152">
+      <assemblyIdentity name="Syncfusion.SfProgressBar.WPF" version="17.3460.0.14" publicKeyToken="3D67ED1F87D44C89" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>nEVJ2jeixF94UvZW+nmz/vyCSYfOOCcxNKCGAC9N5yU=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Syncfusion.SfRadialMenu.WPF.dll" size="145408">
+      <assemblyIdentity name="Syncfusion.SfRadialMenu.Wpf" version="17.3460.0.14" publicKeyToken="3D67ED1F87D44C89" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>RPu2mmMqmhik0jZd6sk9EYLdZr8rNMo54xrL4It13Eo=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Syncfusion.SfRichTextBoxAdv.WPF.dll" size="2317824">
+      <assemblyIdentity name="Syncfusion.SfRichTextBoxAdv.WPF" version="17.3460.0.14" publicKeyToken="3D67ED1F87D44C89" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>xHcdN9EDXeYeIUXgZllr0lxCU61ogid+d4Ui5VnXpE4=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Syncfusion.SfRichTextRibbon.WPF.dll" size="907264">
+      <assemblyIdentity name="Syncfusion.SfRichTextRibbon.WPF" version="17.3460.0.14" publicKeyToken="3D67ED1F87D44C89" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>BvROA1POu/iJHEQtR8U7QHeErLsLTHZf3Qdt5RkImNA=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Syncfusion.SfSchedule.WPF.dll" size="1005056">
+      <assemblyIdentity name="Syncfusion.SfSchedule.WPF" version="17.3460.0.14" publicKeyToken="3D67ED1F87D44C89" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>qnERAAepKbPedooHNmrqmxR6cQzmW2nZaT2DpTu472U=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Syncfusion.SfShared.WPF.dll" size="227840">
+      <assemblyIdentity name="Syncfusion.SfShared.Wpf" version="17.3460.0.14" publicKeyToken="3D67ED1F87D44C89" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>Yd2vWfhsS484PSUUQmP6VYBMdecXzsEjqRTJlLno5z0=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Syncfusion.SfSkinManager.Wpf.dll" size="39424">
+      <assemblyIdentity name="Syncfusion.SfSkinManager.WPF" version="17.3460.0.14" publicKeyToken="3D67ED1F87D44C89" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>gcBrHOnHdPxKn6bU4GwaMWW0INlLpbic/FmarCX5VGk=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Syncfusion.SfSmithChart.Wpf.dll" size="148992">
+      <assemblyIdentity name="Syncfusion.SfSmithChart.WPF" version="17.3460.0.14" publicKeyToken="3D67ED1F87D44C89" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>lC9X1FvSCMalaz7xlwTwooGL8vse0P4AerbiwL+gWac=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Syncfusion.SfSpellChecker.WPF.dll" size="1684480">
+      <assemblyIdentity name="Syncfusion.SfSpellChecker.WPF" version="17.3460.0.14" publicKeyToken="3D67ED1F87D44C89" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>Q/iPWCAz4B6FNuimDpUg1QUyU7XKcsPWaP00y7Uze5k=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Syncfusion.SfSpreadsheet.WPF.dll" size="2931712">
+      <assemblyIdentity name="Syncfusion.SfSpreadsheet.WPF" version="17.3460.0.14" publicKeyToken="3D67ED1F87D44C89" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>RM3xxzmq0h/Y9UbVFBbxBld/YQIsDc467/r4Tplswas=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Syncfusion.SfTreeMap.WPF.dll" size="140800">
+      <assemblyIdentity name="Syncfusion.SfTreeMap.WPF" version="17.3460.0.14" publicKeyToken="3D67ED1F87D44C89" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>d4UnZYWGjT4KzwErYtNZwUTLdo+goxmaMoURYZcZcYw=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Syncfusion.SfTreeNavigator.WPF.dll" size="43008">
+      <assemblyIdentity name="Syncfusion.SfTreeNavigator.WPF" version="17.3460.0.14" publicKeyToken="3D67ED1F87D44C89" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>42CM2AawvTPO4F6TZnwl9WlIRm8wqQbl5X/m1ApaS+E=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Syncfusion.Shared.Base.dll" size="4861952">
+      <assemblyIdentity name="Syncfusion.Shared.Base" version="17.3460.0.14" publicKeyToken="3D67ED1F87D44C89" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>41fJk20n7N9tVJ+FTvq6S+XadT/lE7Ml3xX6YLEBwGE=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Syncfusion.Shared.MVVM.WPF.dll" size="132096">
+      <assemblyIdentity name="Syncfusion.Shared.MVVM.WPF" version="17.3460.0.14" publicKeyToken="3D67ED1F87D44C89" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>5tqxVz/Y4yQmyPkuhDGABeFK12mOsbbcHkDXg2Wcs5E=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Syncfusion.Shared.Wpf.dll" size="13067264">
+      <assemblyIdentity name="Syncfusion.Shared.Wpf" version="17.3460.0.14" publicKeyToken="3D67ED1F87D44C89" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>KfSQXNpgNnuXdMP/X5MnUe51n7QomrTDQpJCtIJt/Ig=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Syncfusion.SpellChecker.Base.dll" size="23552">
+      <assemblyIdentity name="Syncfusion.SpellChecker.Base" version="17.3460.0.14" publicKeyToken="3D67ED1F87D44C89" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>unNm1MtSrKK99Z5mjtPekOmtPjKJymMkC3VBQDX+djk=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Syncfusion.Themes.Metro.Wpf.dll" size="3490304">
+      <assemblyIdentity name="Syncfusion.Themes.Metro.WPF" version="17.3460.0.14" publicKeyToken="3D67ED1F87D44C89" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>x2Rc77waHVMZwLKjWrviOBZS+fmY3i81LX6/9JUuPzQ=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Syncfusion.Tools.Wpf.dll" size="18096640">
+      <assemblyIdentity name="Syncfusion.Tools.Wpf" version="17.3460.0.14" publicKeyToken="3D67ED1F87D44C89" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>jRYD5pfLQQLrqKaAKFgKD+d+xYAnIz4KAKuw4rJwNm4=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Syncfusion.XlsIO.Base.dll" size="5586944">
+      <assemblyIdentity name="Syncfusion.XlsIO.Base" version="17.3460.0.14" publicKeyToken="3D67ED1F87D44C89" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>v803f/8nl5jZIKbTKb9x2a5BnqYowAhqEMbDuVeZPQU=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Syncfusion.XlsIO.Wpf.dll" size="16384">
+      <assemblyIdentity name="Syncfusion.XlsIO.Wpf" version="17.3460.0.14" publicKeyToken="3D67ED1F87D44C89" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>Vyp3fv/6S812iuhjijAplSCq5F0qTs7YPta7rqXfMNA=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
     <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="System.ComponentModel.Annotations.dll" size="41712">
       <assemblyIdentity name="System.ComponentModel.Annotations" version="4.2.0.0" publicKeyToken="B03F5F7F11D50A3A" language="neutral" processorArchitecture="msil" />
       <hash>
@@ -402,14 +1314,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="WPF GUI.exe" size="12096936">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="WPF GUI.exe" size="12125096">
       <assemblyIdentity name="WPF GUI" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>9XMglKbEk4s1EcMoKP0CEvEBc/4D2Sl9K2dlnBIxKCo=</dsig:DigestValue>
+        <dsig:DigestValue>EWTOevcMNupLL8al3zbX0s8KmD/PxhOdi9RPPNMkHLw=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

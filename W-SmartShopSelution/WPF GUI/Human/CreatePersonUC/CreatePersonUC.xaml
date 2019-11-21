@@ -1,0 +1,75 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:WPF_GUI"
+             xmlns:syncfusion="http://schemas.syncfusion.com/wpf" xmlns:wpfControls="schemas-stimulsoft-com:wpf-controls" x:Class="WPF_GUI.CreatePersonUC"
+             mc:Ignorable="d" 
+             d:DesignHeight="650" d:DesignWidth="1343" Background="White">
+
+    <Grid>
+
+        <Grid Margin="1107,10,10,612">
+            <Button x:Name="CloseButton" Visibility="Collapsed" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Red"   VerticalAlignment="Top"  Margin="3,0,170,0" Height="25"  >
+                <materialDesign:PackIcon Kind="Close" Width="20" Height="20"/>
+            </Button>
+
+            <Button x:Name="RefreshButton" Click="RefreshButton_Click"  Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray"   VerticalAlignment="Top"  Margin="171,0,0,0" Height="25"  >
+                <materialDesign:PackIcon Kind="Reload" Width="20" Height="20"/>
+            </Button>
+
+            <Button x:Name="PrintButton" Visibility="Collapsed" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray"   VerticalAlignment="Top"  Margin="115,0,55,0" Height="25"  >
+                <materialDesign:PackIcon Kind="Printer" Width="20" Height="20"/>
+            </Button>
+
+            <Button x:Name="ConfirmButton" Click="ConfirmButton_Click" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Green"   VerticalAlignment="Top"  Margin="107,0,60,0" Height="25"  >
+                <materialDesign:PackIcon Kind="Done" Width="20" Height="20"/>
+            </Button>
+
+        </Grid>
+        <TextBlock  HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="12,18,0,0" Width="192" Height="30" ><Run Text="First Name : "/></TextBlock>
+        <TextBox x:Name="FirstNameValue" MaxLength="50" MaxLines="1" HorizontalAlignment="Left" Margin="303,23,0,0" VerticalAlignment="Top" Width="368" />
+
+
+        <TextBlock  HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="12,53,0,0" Width="192" Height="30" ><Run Text="Last Name : "/></TextBlock>
+        <TextBox x:Name="LastNameValue" MaxLength="50" MaxLines="1" HorizontalAlignment="Left" Margin="303,58,0,0" VerticalAlignment="Top" Width="368" />
+
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="12,88,0,0" Width="286" Height="30" ><Run Text="Phone Number/Numbers: "/></TextBlock>
+        <TextBox x:Name="PhoneNumberValue" MaxLength="200" MaxLines="1" HorizontalAlignment="Left" Margin="303,93,0,0" VerticalAlignment="Top" Width="368" />
+
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="12,123,0,0" Width="210" Height="30" ><Run Text="National Number : "/></TextBlock>
+        <TextBox x:Name="NationalNumberValue" MaxLength="200" MaxLines="1" HorizontalAlignment="Left" Margin="303,128,0,0" VerticalAlignment="Top" Width="368" />
+
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="12,332,0,0" Width="210" Height="30" ><Run Text="Email : "/></TextBlock>
+        <TextBox x:Name="EmailValue" MaxLength="200" MaxLines="1" HorizontalAlignment="Left" Margin="303,337,0,0" VerticalAlignment="Top" Width="368" />
+
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="12,367,0,0" Width="210" Height="30" ><Run Text="Address : "/></TextBlock>
+        <TextBox x:Name="AddressValue" MaxLength="200" MaxLines="1" HorizontalAlignment="Left" Margin="303,372,0,0" VerticalAlignment="Top" Width="368" />
+
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="10,402,0,0" Width="210" Height="30" ><Run Text="City : "/></TextBlock>
+        <TextBox x:Name="CityValue"  MaxLength="100" MaxLines="1" HorizontalAlignment="Left" Margin="303,407,0,0" VerticalAlignment="Top" Width="114" />
+
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="10,437,0,0" Width="210" Height="30" ><Run Text="Country : "/></TextBlock>
+        <TextBox x:Name="CountryValue"  MaxLength="100" MaxLines="1" HorizontalAlignment="Left" Margin="303,442.04,0,0" VerticalAlignment="Top" Width="114" />
+
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="12,158,0,0" Width="210" Height="30" ><Run Text="Date Of Birth : "/></TextBlock>
+        <DatePicker x:Name="BirthDateValue" HorizontalAlignment="Left" Margin="303,163,0,0" VerticalAlignment="Top" Width="141"/>
+
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="12,193,0,0" Width="210" Height="30" ><Run Text="Jop Title : "/></TextBlock>
+        <TextBox x:Name="JopTitleValue"  MaxLength="200" MaxLines="1" HorizontalAlignment="Left" Margin="303,193,0,0" VerticalAlignment="Top" Width="368" />
+
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="10,228,0,0" Width="210" Height="30" ><Run Text="Jop Address : "/></TextBlock>
+        <TextBox x:Name="JopAddressValue"  MaxLength="200" MaxLines="1" HorizontalAlignment="Left" Margin="303,233.04,0,0" VerticalAlignment="Top" Width="368" />
+
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="10,263,0,0" Width="223" Height="30" ><Run Text="Date Of Gradution : "/></TextBlock>
+        <DatePicker x:Name="GraduationDateValue" HorizontalAlignment="Left" Margin="303,268,0,0" VerticalAlignment="Top" Width="141"/>
+
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="10,298,0,0" Width="210" Height="30" ><Run Text="Qualification : "/></TextBlock>
+        <TextBox x:Name="QualificationValue"  MaxLength="200" MaxLines="1" HorizontalAlignment="Left" Margin="303,303.04,0,0" VerticalAlignment="Top" Width="368" />
+
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="10,472,0,0" Width="210" Height="30" ><Run Text="Details : "/></TextBlock>
+        <TextBox x:Name="DetailsValue"  MaxLength="500" MaxLines="1" HorizontalAlignment="Left" Margin="303,477.04,0,0" VerticalAlignment="Top" Width="586" />
+    </Grid>
+</UserControl>

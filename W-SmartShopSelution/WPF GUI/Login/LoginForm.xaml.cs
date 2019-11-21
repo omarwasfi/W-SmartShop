@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.Management; //Need to manually add to the References
 using Library;
 using System.IO;
+using System.Collections.ObjectModel;
 
 namespace WPF_GUI
 {
@@ -46,7 +47,7 @@ namespace WPF_GUI
             
             InitializeComponent();
             GlobalConfig.InitializeConnection();
-            
+            GlobalConfig.Connection.SetThePublicVariables();
             GetStore();
         }
 
@@ -115,9 +116,6 @@ namespace WPF_GUI
 
         /// <summary>
         /// Get the Store if the store is not in the database the program will close after message box 
-        /// Set the LoginStoreStocks in the public variables class
-        /// set the Categories in the public variables class
-        /// set the brands in the public variables class
         /// </summary>
         private void GetStore()
         {
@@ -129,7 +127,7 @@ namespace WPF_GUI
 
             if (getUniqueID("C") == "6E9FEBFAA624579FBFF")
             {
-                Store = GlobalConfig.GetTheStoreFromTheDatabase();
+                Store = GlobalConfig.GetTheStoreFromTheDatabase(PublicVariables.Stores);
                 if (Store.Id == -1)
                 {
                     MessageBox.Show("Program Need Lisence To work");
@@ -140,27 +138,7 @@ namespace WPF_GUI
                     // Stimulsoft Report licence
                     Stimulsoft.Base.StiLicense.Key = "6vJhGtLLLz2GNviWmUTrhSqnOItdDwjBylQzQcAOiHl2AD0gPVknKsaW0un+3PuM6TTcPMUAWEURKXNso0e5OFPaZYasFtsxNoDemsFOXbvf7SIcnyAkFX/4u37NTfx7g+0IqLXw6QIPolr1PvCSZz8Z5wjBNakeCVozGGOiuCOQDy60XNqfbgrOjxgQ5y/u54K4g7R/xuWmpdx5OMAbUbcy3WbhPCbJJYTI5Hg8C/gsbHSnC2EeOCuyA9ImrNyjsUHkLEh9y4WoRw7lRIc1x+dli8jSJxt9C+NYVUIqK7MEeCmmVyFEGN8mNnqZp4vTe98kxAr4dWSmhcQahHGuFBhKQLlVOdlJ/OT+WPX1zS2UmnkTrxun+FWpCC5bLDlwhlslxtyaN9pV3sRLO6KXM88ZkefRrH21DdR+4j79HA7VLTAsebI79t9nMgmXJ5hB1JKcJMUAgWpxT7C7JUGcWCPIG10NuCd9XQ7H4ykQ4Ve6J2LuNo9SbvP6jPwdfQJB6fJBnKg4mtNuLMlQ4pnXDc+wJmqgw25NfHpFmrZYACZOtLEJoPtMWxxwDzZEYYfT";
 
-                    /*PublicVariables.OrganizationName = "";
-                    PublicVariables.OrganizationAddress = "Egypt,Ismailia";
-                    PublicVariables.OrganizationPhoneNumber = "01555707375";
-
-                    PublicVariables.Store = Store;
-                    PublicVariables.Stores = GlobalConfig.Connection.GetAllStores();
-                    PublicVariables.LoginStoreStocks = GlobalConfig.Connection.FilterStocksByStore(Store);
-                    PublicVariables.Products = GlobalConfig.Connection.GetProducts();
-                    PublicVariables.Stocks = GlobalConfig.Connection.GetStocks();
-                    PublicVariables.Categories = GlobalConfig.Connection.GetCategories();
-                    PublicVariables.Brands = GlobalConfig.Connection.GetBrands();
-                    PublicVariables.Customers = GlobalConfig.Connection.GetCustomers();
-                    PublicVariables.Orders = GlobalConfig.Connection.GetOrders();
-                    PublicVariables.Suppliers = GlobalConfig.Connection.GetSuppliers();
-                    PublicVariables.IncomeOrders = GlobalConfig.Connection.GetIncomeOrders();
-                    PublicVariables.ShopBills = GlobalConfig.Connection.GetShopBills();
-                    PublicVariables.Operations = GlobalConfig.Connection.GetOperations();
-
-                    PublicVariables.RecentlyAddProducts = new List<ProductModel>();*/
-
-                    GlobalConfig.Connection.SetThePublicVariables();
+                    
 
                 }
             }
@@ -238,7 +216,7 @@ namespace WPF_GUI
         private bool VerifyTheIncomeUser()
         {
             StaffModel staff = new StaffModel { Username = UsernameValue.Text, Password = PasswordValue.Password };
-            StaffModel outStaff = GlobalConfig.Connection.CheckIfStaffValid(staff,Store);
+            StaffModel outStaff = GlobalConfig.Connection.CheckIfStaffValid(staff,PublicVariables.Staffs,Store);
             if(outStaff.Id == -1)
             {
                 return false;

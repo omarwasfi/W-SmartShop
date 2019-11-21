@@ -254,6 +254,17 @@ namespace WPF_GUI
 
         }
 
+        private void PeopleViewItem_Selected(object sender, RoutedEventArgs e)
+        {
+            CloseMenu_BeginStoryboard.Storyboard.Begin();
+
+
+            PeopleUC peopleUC = new PeopleUC();
+            TabItem peopleTab = new TabItem { Header = "People" };
+            peopleTab.Content = peopleUC;
+            MainTab.Items.Add(peopleTab);
+        }
+
         private void PriceListViewItem_Selected(object sender, RoutedEventArgs e)
         {
             CloseMenu_BeginStoryboard.Storyboard.Begin();
@@ -282,8 +293,9 @@ namespace WPF_GUI
 
 
 
+
         #endregion
 
-      
+       
     }
 }

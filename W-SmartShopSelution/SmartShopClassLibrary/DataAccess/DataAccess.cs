@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Dapper;
 using Library;
 
+
 namespace Library
 {
 
@@ -51,6 +52,7 @@ namespace Library
             // 2- Set the Person models
             PublicVariables.People = null;
             PublicVariables.People = GetPeopleFromTheDatabase();
+           
 
             // 3- set the store models
             PublicVariables.Stores = null;
@@ -163,7 +165,7 @@ namespace Library
         /// <returns></returns>
         private List<PersonModel> GetPeopleFromTheDatabase()
         {
-            return Person_Access.GetAllPeople(db);
+            return PersonAccess.GetPeopleFromTheDatabase(db);
         }
 
         /// <summary>
@@ -626,17 +628,17 @@ namespace Library
         /// <returns></returns>
         public CustomerModel CreateCustomer(CustomerModel customer)
         {
-            if (Person.IsThisPersonInTheDataBase(customer.Person, Person_Access.GetAllPeople(db)) == true)
+            if (Person.IsThisPersonInTheDataBase(customer.Person, PersonAccess.GetPeopleFromTheDatabase(db)) == true)
             {
                 customer.Id = -1;
                 return customer;
             }
             else
             {
-                PersonModel personModel = Person_Access.CreatePerson(customer.Person, db); ;
+                PersonModel personModel = PersonAccess.AddPersonToTheDatabase(customer.Person, db); ;
                 customer.Person = new PersonModel();
                 customer.Person = personModel;
-                return CustomerAccess.CreateCustomer(customer, db);
+                return CustomerAccess.AddCustomerToTheDatabase(customer, db);
             }
 
         }
@@ -957,6 +959,24 @@ namespace Library
         #region Person
 
         /// <summary>
+        /// Get Person model after adding to the database
+        /// - Add this person to the customers
+        /// - Add to the publicVariables.person , publicVariables.Customer
+        /// </summary>
+        /// <param name="person"></param>
+        /// <returns></returns>
+        public PersonModel AddPersonToTheDatabase(PersonModel person)
+        {
+            person = PersonAccess.AddPersonToTheDatabase(person, db);
+            PublicVariables.People.Add(person);
+            CustomerModel customer = new CustomerModel();
+            customer.Person = person;
+            customer = CustomerAccess.AddCustomerToTheDatabase(customer, db);
+            PublicVariables.Customers.Add(customer);
+            return person;
+        }
+
+        /// <summary>
         /// Check if the national number used before If It is return false
         /// If it is unique return true
         /// </summary>
@@ -966,7 +986,7 @@ namespace Library
         public  bool CheckIfTheNationalNumberUnique(string nationalNumber)
         {
 
-            return Person.CheckIfTheNationalNumberUnique(Person_Access.GetAllPeople(db), nationalNumber);
+            return Person.CheckIfTheNationalNumberUnique(PersonAccess.GetPeopleFromTheDatabase(db), nationalNumber);
 
         }
 
@@ -977,7 +997,7 @@ namespace Library
         /// <param name="db"></param>
         public void UpdatePersonData(PersonModel person)
         {
-            Person_Access.UpdatePersonData(person, db);
+            PersonAccess.UpdatePersonData(person, db);
         }
 
         /// <summary>
@@ -988,7 +1008,7 @@ namespace Library
         public PersonModel CreatePerson(PersonModel person)
         {
 
-            return Person_Access.CreatePerson(person, db); ;
+            return PersonAccess.AddPersonToTheDatabase(person, db); ;
         }
 
 
@@ -1133,11 +1153,10 @@ namespace Library
         /// check if is exist in the database
         /// </summary>
         /// <param name="store"></param>
-        /// <param name="stores"></param>
+        /// <param name="stores">All the stores</param>
         /// <returns></returns>
-        public StoreModel CheckByEnumIsThisStoreExist(StoreName storeName_Enum )
+        public StoreModel CheckByEnumIsThisStoreExist(StoreName storeName_Enum , List<StoreModel>stores )
         {
-            List<StoreModel> stores = GetAllStores();
             if (storeName_Enum == StoreName.EMG)
             {
                 StoreModel store = new StoreModel { Name = "EMG" };
@@ -1175,10 +1194,10 @@ namespace Library
         /// </summary>
         /// <param name="staff"></param>
         /// <param name="store"></param>
+        /// <param name="staffs">All staffs</param>
         /// <returns></returns>
-        public StaffModel CheckIfStaffValid(StaffModel staff , StoreModel store)
+        public StaffModel CheckIfStaffValid(StaffModel staff,List<StaffModel>staffs , StoreModel store)
         {
-            List<StaffModel> staffs = GetStaffs();
             foreach(StaffModel s in staffs)
             {
                 if(s.Username == staff.Username)

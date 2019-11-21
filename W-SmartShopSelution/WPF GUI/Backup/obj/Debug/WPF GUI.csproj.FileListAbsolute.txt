@@ -1,0 +1,152 @@
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\bin\Debug\WPF GUI.exe.config
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\bin\Debug\WPF GUI.exe
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\bin\Debug\WPF GUI.pdb
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\bin\Debug\MaterialDesignColors.dll
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\bin\Debug\MaterialDesignThemes.Wpf.dll
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\bin\Debug\MaterialDesignThemes.Wpf.pdb
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\bin\Debug\MaterialDesignThemes.Wpf.xml
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Debug\WPF GUI.csprojAssemblyReference.cache
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Debug\App.g.cs
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Debug\WPF GUI_MarkupCompile.cache
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Debug\WPF GUI_MarkupCompile.lref
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Debug\WPF GUI.g.resources
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Debug\WPF_GUI.Properties.Resources.resources
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Debug\WPF GUI.csproj.GenerateResource.cache
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Debug\WPF GUI.csproj.CopyComplete
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Debug\WPF GUI.exe
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Debug\WPF GUI.pdb
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Debug\Login\LoginForm.g.cs
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Debug\App.baml
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Debug\Login\LoginForm.baml
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Debug\MainForm\MainForm.g.cs
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Debug\MainForm\MainForm.baml
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\bin\Debug\Dragablz.dll
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\bin\Debug\Dragablz.pdb
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\bin\Debug\Dragablz.xml
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\bin\Debug\SmartShopClassLibrary.dll
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\bin\Debug\Dapper.dll
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\bin\Debug\SmartShopClassLibrary.pdb
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\bin\Debug\Dapper.xml
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\bin\Debug\WPFTextBoxAutoComplete.dll
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\bin\Debug\WPFTextBoxAutoComplete.pdb
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Debug\ProductForms\CreateBrandUC\CreateBrandUC.g.cs
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Debug\ProductForms\CreateCategory\CreateCategoryUC.g.cs
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Debug\ProductForms\CreateProductUC\CreateProductUC.g.cs
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Debug\ProductForms\ModifyProductUC\ModifyProductUC.g.cs
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Debug\ProductForms\ProductManagerUC\ProductManagerUC.g.cs
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Debug\ProductForms\CreateBrandUC\CreateBrandUC.baml
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Debug\ProductForms\CreateCategory\CreateCategoryUC.baml
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Debug\ProductForms\CreateProductUC\CreateProductUC.baml
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Debug\ProductForms\ModifyProductUC\ModifyProductUC.baml
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Debug\ProductForms\ProductManagerUC\ProductManagerUC.baml
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\bin\Debug\WPF GUI.exe.manifest
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\bin\Debug\WPF GUI.application
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Debug\WPF GUI.exe.manifest
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Debug\WPF GUI.application
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Debug\Store\AddStockToStoreUC\AddStockToStoreUC.g.cs
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Debug\Human\Supplier\CreateSupplierUC\CreateSupplierUC.g.cs
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Debug\Human\Customer\CustomerLogUC\CustomerLogUC.g.cs
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Debug\Store\GlobalInventoryUC\GlobalInventoryUC.g.cs
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Debug\Orders\In\IncomeOrder\IncomeOrderUC.g.cs
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Debug\Store\Inventory\InventoryUC.g.cs
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Debug\Human\ModifyPersonUC\ModifyPersonUC.g.cs
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Debug\Store\ModifyStockUC\ModifyStockUC.g.cs
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Debug\Human\Customer\CreateCutomerUC\CreateCustomerUC.g.cs
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Debug\Orders\Out\SellUC\SellUC.g.cs
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Debug\Human\Staff\ModifyStaffUC\ModifyStaffUC.g.cs
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Debug\Human\Staff\StaffsManagerUC\StaffsManagerUC.g.cs
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Debug\Store\AddStockToStoreUC\AddStockToStoreUC.baml
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Debug\Human\Supplier\CreateSupplierUC\CreateSupplierUC.baml
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Debug\Human\Customer\CustomerLogUC\CustomerLogUC.baml
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Debug\Store\GlobalInventoryUC\GlobalInventoryUC.baml
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Debug\Orders\In\IncomeOrder\IncomeOrderUC.baml
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Debug\Store\Inventory\InventoryUC.baml
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Debug\Human\ModifyPersonUC\ModifyPersonUC.baml
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Debug\Store\ModifyStockUC\ModifyStockUC.baml
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Debug\Human\Customer\CreateCutomerUC\CreateCustomerUC.baml
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Debug\Orders\Out\SellUC\SellUC.baml
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Debug\Human\Staff\ModifyStaffUC\ModifyStaffUC.baml
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Debug\Human\Staff\StaffsManagerUC\StaffsManagerUC.baml
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Debug\Human\Supplier\SupplierLogUC\SupplierLogUC.g.cs
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Debug\Human\Supplier\SupplierLogUC\SupplierLogUC.baml
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Debug\Orders\Out\InstallmentOrderUC\InstallmentOrderUC.g.cs
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Debug\Orders\Out\InstallmentOrderUC\InstallmentOrderUC.baml
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Debug\Installament\InstallmentCollectingUC\InstallmentCollectingUC.g.cs
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Debug\Installament\InstallmentCollectingUC\InstallmentCollectingUC.baml
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\bin\Debug\LibExcel.dll
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\bin\Debug\Stimulsoft.Base.dll
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\bin\Debug\Stimulsoft.Controls.dll
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\bin\Debug\Stimulsoft.Controls.Win.dll
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\bin\Debug\Stimulsoft.Data.dll
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\bin\Debug\Stimulsoft.Database.dll
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\bin\Debug\Stimulsoft.Design.dll
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\bin\Debug\Stimulsoft.Editor.dll
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\bin\Debug\Stimulsoft.Map.dll
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\bin\Debug\Stimulsoft.Report.Check.dll
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\bin\Debug\Stimulsoft.Report.Design.dll
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\bin\Debug\Stimulsoft.Report.dll
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\bin\Debug\Stimulsoft.Report.Helper.dll
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\bin\Debug\Stimulsoft.Report.Web.dll
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\bin\Debug\Stimulsoft.Report.Win.dll
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\bin\Debug\Svg.dll
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\bin\Debug\ADODB.dll
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\bin\Debug\Stimulsoft.Controls.pdb
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\bin\Debug\Stimulsoft.Controls.xml
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\bin\Debug\Stimulsoft.Controls.Win.pdb
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\bin\Debug\Stimulsoft.Controls.Win.xml
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\bin\Debug\Stimulsoft.Data.pdb
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\bin\Debug\Stimulsoft.Data.xml
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\bin\Debug\Stimulsoft.Database.pdb
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\bin\Debug\Stimulsoft.Database.xml
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\bin\Debug\Stimulsoft.Design.pdb
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\bin\Debug\Stimulsoft.Design.xml
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\bin\Debug\Stimulsoft.Editor.pdb
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\bin\Debug\Stimulsoft.Editor.xml
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\bin\Debug\Stimulsoft.Map.pdb
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\bin\Debug\Stimulsoft.Map.xml
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\bin\Debug\Stimulsoft.Report.Check.pdb
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\bin\Debug\Stimulsoft.Report.Check.xml
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\bin\Debug\Stimulsoft.Report.Design.pdb
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\bin\Debug\Stimulsoft.Report.Design.xml
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\bin\Debug\Stimulsoft.Report.Helper.pdb
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\bin\Debug\Stimulsoft.Report.Helper.xml
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\bin\Debug\Stimulsoft.Report.Web.pdb
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\bin\Debug\Stimulsoft.Report.Web.xml
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\bin\Debug\Stimulsoft.Report.Win.pdb
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\bin\Debug\Stimulsoft.Report.Win.xml
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\bin\Debug\stimulsoft.report.wpf.dll
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\bin\Debug\stimulsoft.report.wpf.pdb
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\bin\Debug\stimulsoft.report.wpf.xml
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\bin\Debug\FluentValidation.dll
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\bin\Debug\System.ComponentModel.Annotations.dll
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\bin\Debug\FluentValidation.xml
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Debug\Orders\Out\OrderUC\OrderUC.g.cs
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Debug\Orders\Out\SellingOrdersManagerUC\SellingOrdersManagerUC.g.cs
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Debug\Orders\Out\OrderUC\OrderUC.baml
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Debug\Orders\Out\SellingOrdersManagerUC\SellingOrdersManagerUC.baml
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\bin\Debug\Stimulsoft.Dashboard.dll
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\bin\Debug\Stimulsoft.Dashboard.Drawing.Wpf.dll
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\bin\Debug\Stimulsoft.Dashboard.Export.dll
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\bin\Debug\stimulsoft.dashboard.viewer.wpf.dll
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\bin\Debug\Stimulsoft.Dashboard.Drawing.dll
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\bin\Debug\Stimulsoft.Dashboard.pdb
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\bin\Debug\Stimulsoft.Dashboard.xml
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\bin\Debug\Stimulsoft.Dashboard.Drawing.Wpf.pdb
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\bin\Debug\Stimulsoft.Dashboard.Drawing.Wpf.xml
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\bin\Debug\Stimulsoft.Dashboard.Export.pdb
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\bin\Debug\Stimulsoft.Dashboard.Export.xml
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\bin\Debug\stimulsoft.dashboard.viewer.wpf.pdb
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\bin\Debug\stimulsoft.dashboard.viewer.wpf.xml
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\bin\Debug\Stimulsoft.Dashboard.Drawing.pdb
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\bin\Debug\Stimulsoft.Dashboard.Drawing.xml
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Debug\CashUC\CashUC.g.cs
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Debug\CashUC\CashUC.baml
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Debug\Orders\In\BillsManagerUC\BillsManagerUC.g.cs
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Debug\Orders\In\PayBillUC\PayBillUC.g.cs
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Debug\Orders\In\BillsManagerUC\BillsManagerUC.baml
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Debug\Orders\In\PayBillUC\PayBillUC.baml
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Debug\PriceListUC\PriceListUC.g.cs
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Debug\PriceListUC\PriceListUC.baml
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Debug\Orders\In\ModifyBill\ModifyBillUC.g.cs
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Debug\Orders\In\ModifyBill\ModifyBillUC.baml
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\bin\Debug\MaterialDesignColors.pdb
