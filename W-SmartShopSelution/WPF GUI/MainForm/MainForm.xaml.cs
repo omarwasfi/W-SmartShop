@@ -218,6 +218,15 @@ namespace WPF_GUI
 
         }
 
+        private void ManagerViewItem_Selected(object sender, RoutedEventArgs e)
+        {
+            CloseMenu_BeginStoryboard.Storyboard.Begin();
+            CashUC cashUC = new CashUC();
+            TabItem cashTab = new TabItem { Header = "Cash Flow" };
+            cashTab.Content = cashUC;
+            MainTab.Items.Add(cashTab);
+        }
+
         private void IncomeOrderViewItem_Selected(object sender, RoutedEventArgs e)
         {
             CloseMenu_BeginStoryboard.Storyboard.Begin();
@@ -294,8 +303,9 @@ namespace WPF_GUI
 
 
 
+
         #endregion
 
-       
+        
     }
 }

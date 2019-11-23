@@ -78,7 +78,7 @@ namespace WPF_GUI.Orders.In.ModifyBill
             PublicVariables.IncomeOrders = GlobalConfig.Connection.GetIncomeOrders();
             PublicVariables.ShopBills = GlobalConfig.Connection.GetShopBills();
 
-            PublicVariables.Operations = GlobalConfig.Connection.GetOperations();
+           // PublicVariables.Operations = GlobalConfig.Connection.GetOperations();
             Operations = null;
             Operations = PublicVariables.Operations;
         }
@@ -148,7 +148,7 @@ namespace WPF_GUI.Orders.In.ModifyBill
 
 
                 OperationModel operation = new OperationModel();
-                operation = GlobalConfig.Connection.GetOperationByShopBill(ShopBill, Operations);
+               /* operation = GlobalConfig.Connection.GetOperationByShopBill(ShopBill, Operations);
 
                 //operation.Date = shopBillDateTime;
                 operation.AmountOfMoney = ShopBill.TotalMoney;
@@ -158,7 +158,7 @@ namespace WPF_GUI.Orders.In.ModifyBill
 
                 // Modify the operations changes to the database
                 GlobalConfig.Connection.UpdateOperationData(operation);
-
+                */
 
                 var parent = this.Parent as Window;
                 if (parent != null) { parent.DialogResult = true; parent.Close(); }
@@ -171,7 +171,7 @@ namespace WPF_GUI.Orders.In.ModifyBill
             if (MessageBox.Show("This bill will be deleted completly", "Are you sure ?", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
 
-                GlobalConfig.Connection.RemoveOperation(GlobalConfig.Connection.GetOperationByShopBill(ShopBill, Operations));
+               // GlobalConfig.Connection.RemoveOperation(GlobalConfig.Connection.GetOperationByShopBill(ShopBill, Operations));
                 GlobalConfig.Connection.RemoveShopBill(ShopBill);
 
 

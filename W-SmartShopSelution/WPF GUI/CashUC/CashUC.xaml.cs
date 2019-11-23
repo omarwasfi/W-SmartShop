@@ -63,7 +63,7 @@ namespace WPF_GUI
             UpdateTheOperationsFromThePublicVariables();
 
             OperationsList_CashUC.ItemsSource = Operations;
-            TotalSellsValue_CashUC.Text = GlobalConfig.Connection.TotalSellsIncome(Operations).ToString();
+            //TotalSellsValue_CashUC.Text = GlobalConfig.Connection.TotalSellsIncome(Operations).ToString();
 
             EndDateValue_CashUC.DisplayDateEnd = DateTime.Now;
             EndDateValue_CashUC.DisplayDateStart = new DateTime(2010,1,1);
@@ -73,7 +73,7 @@ namespace WPF_GUI
             StartDateValue_CashUC.DisplayDateStart = new DateTime(2010,1,1);
             StartDateValue_CashUC.SelectedDate = new DateTime(2019, 9, 1);
 
-            ShopeeWalletNowValue_CashUC.Text = GlobalConfig.Connection.GetTheShopeeWallet(Operations).ToString();
+           /* ShopeeWalletNowValue_CashUC.Text = GlobalConfig.Connection.GetTheShopeeWallet(Operations).ToString();
             TotalSellsValue_CashUC.Text = GlobalConfig.Connection.TotalSellsIncome(Operations).ToString();
             TotalSellsProfitValue_CashUC.Text = GlobalConfig.Connection.TotalSellsProfit(Operations).ToString();
 
@@ -81,7 +81,7 @@ namespace WPF_GUI
             TotalShopBillsValue_CashUC.Text = GlobalConfig.Connection.TotalShopBillsPrice(Operations).ToString();
             DateOfShopeeWalletValue_CashUC.Text = DateTime.Now.ToShortDateString();
             ShopeeWalletAtDateValue_CashUC.Text = GlobalConfig.Connection.GetTheShopeeWallet(GlobalConfig.Connection.FilterOperationsByDate(Operations, new DateTime(2010, 1, 1), DateTime.Now)).ToString();
-
+            */
 
             CanLoadTheOperation = false;
             LoadTheOperations();
@@ -97,7 +97,7 @@ namespace WPF_GUI
             PublicVariables.IncomeOrders = GlobalConfig.Connection.GetIncomeOrders();
             PublicVariables.ShopBills = GlobalConfig.Connection.GetShopBills();
 
-            PublicVariables.Operations = GlobalConfig.Connection.GetOperations();
+          //  PublicVariables.Operations = GlobalConfig.Connection.GetOperations();
             Operations = null;
             Operations = PublicVariables.Operations;
         }
@@ -119,7 +119,7 @@ namespace WPF_GUI
                 DateTime endDate = (DateTime)EndDateValue_CashUC.SelectedDate;
 
 
-                FOperations = GlobalConfig.Connection.FilterOperationsByDate(Operations, startDate, endDate);
+             /*   FOperations = GlobalConfig.Connection.FilterOperationsByDate(Operations, startDate, endDate);
                 OperationsList_CashUC.ItemsSource = null;
                 OperationsList_CashUC.ItemsSource = FOperations;
 
@@ -129,7 +129,7 @@ namespace WPF_GUI
                 TotalShopBillsValue_CashUC.Text = GlobalConfig.Connection.TotalShopBillsPrice(FOperations).ToString();
                 DateOfShopeeWalletValue_CashUC.Text = endDate.ToShortDateString();
                 ShopeeWalletAtDateValue_CashUC.Text = GlobalConfig.Connection.GetTheShopeeWallet(GlobalConfig.Connection.FilterOperationsByDate(Operations, new DateTime(2010, 1, 1),endDate)).ToString();
-
+                */
             }
 
         }

@@ -139,6 +139,12 @@
                             </StackPanel>
                         </ListViewItem>
 
+                        <ListViewItem x:Name="ManagerViewItem" Selected="ManagerViewItem_Selected" Visibility="Visible" Height="45" Padding="0" >
+                            <StackPanel Orientation="Horizontal" Margin="10 0">
+                                <materialDesign:PackIcon Kind="ChartBar" Width="20" Height="20" Foreground="Gray" Margin="5" VerticalAlignment="Center"/>
+                                <TextBlock Text="Manager" Margin="10"/>
+                            </StackPanel>
+                        </ListViewItem>
 
                         <ListViewItem Name="InventoryViewItem" Visibility="Collapsed" Height="45" Padding="0" Selected="InventoryViewItem_Selected" >
                             <StackPanel Orientation="Horizontal" Margin="10 0">

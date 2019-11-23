@@ -12,10 +12,33 @@ namespace Library
     public static class Order
     {
 
-        
+        /// <summary>
+        /// Calculate all Payments to get the total paid
+        /// </summary>
+        /// <param name="order"></param>
+        /// <returns></returns>
+        public static decimal GetTotalPaid(OrderModel order)
+        {
+            decimal paid = new decimal();
+            foreach(OrderPaymentModel orderPayment in order.OrderPayments)
+            {
+                paid += orderPayment.Paid;
+            }
+            return paid;
+        }
 
+        /// <summary>
+        /// Calculate the rest of the money not Paid
+        /// </summary>
+        /// <param name="order"></param>
+        /// <returns></returns>
+        public static decimal GetTotalNotPaid(OrderModel order)
+        {
+            decimal notPaid = new decimal();
+            notPaid = order.GetTotalPrice - order.GetTotalPaid;
+            return notPaid;
+        }
 
-       
         /// <summary>
         /// Filter list of orders by Customer
         /// </summary>

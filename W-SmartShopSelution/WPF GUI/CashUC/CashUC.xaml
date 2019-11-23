@@ -15,33 +15,26 @@
         <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="286,10,0,0" ><Run Text="To : "/></TextBlock>
         <DatePicker Name="EndDateValue_CashUC" SelectedDateChanged="EndDateValue_CashUC_SelectedDateChanged" HorizontalAlignment="Left" Margin="335,18,0,0" VerticalAlignment="Top" Width="109"/>
 
-        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="602,99,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Total sells : "/></TextBlock>
-        <TextBox x:Name="TotalSellsValue_CashUC"  IsReadOnly="True" HorizontalAlignment="Left" Height="24" Margin="732,108,0,0" Text="" VerticalAlignment="Top" Width="93" RenderTransformOrigin="0.544,-0.652" MaxLines="1"/>
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="597,88,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Total sells : "/></TextBlock>
+        <TextBox x:Name="TotalSellsValue_CashUC"  IsReadOnly="True" HorizontalAlignment="Left" Height="24" Margin="732,94,0,0" Text="" VerticalAlignment="Top" Width="93" RenderTransformOrigin="0.544,-0.652" MaxLines="1"/>
 
-        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="830,101,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Total sells Profit : "/></TextBlock>
-        <TextBox x:Name="TotalSellsProfitValue_CashUC"  IsReadOnly="True" HorizontalAlignment="Left" Height="24" Margin="1026,110,0,0" Text="" VerticalAlignment="Top" Width="94" RenderTransformOrigin="0.544,-0.652" MaxLines="1"/>
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="830,88,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Total sells Profit : "/></TextBlock>
+        <TextBox x:Name="TotalSellsProfitValue_CashUC"  IsReadOnly="True" HorizontalAlignment="Left" Height="24" Margin="1026,96,0,0" Text="" VerticalAlignment="Top" Width="94" RenderTransformOrigin="0.544,-0.652" MaxLines="1"/>
 
-        <TextBlock HorizontalAlignment="Left" Visibility="Collapsed" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="602,134,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Total Installment : "/></TextBlock>
-        <TextBox x:Name="TotalInstallmentValue_CashUC" Visibility="Collapsed"  IsReadOnly="True" HorizontalAlignment="Left" Height="24" Margin="802,143,0,0" Text="" VerticalAlignment="Top" Width="66" RenderTransformOrigin="0.544,-0.652" MaxLines="1"/>
 
-        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="608,279,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Total shop bills : "/></TextBlock>
-        <TextBox x:Name="TotalShopBillsValue_CashUC"  IsReadOnly="True" HorizontalAlignment="Left" Height="24" Margin="856,288,0,0" Text="" VerticalAlignment="Top" Width="84" RenderTransformOrigin="0.544,-0.652" MaxLines="1"/>
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="602,164,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Total shop bills : "/></TextBlock>
+        <TextBox x:Name="TotalShopBillsValue_CashUC"  IsReadOnly="True" HorizontalAlignment="Left" Height="24" Margin="849,173,0,0" Text="" VerticalAlignment="Top" Width="84" RenderTransformOrigin="0.544,-0.652" MaxLines="1"/>
 
-        <TextBlock HorizontalAlignment="Left" Visibility="Collapsed" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="614,255,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Salary : "/></TextBlock>
-        <TextBox x:Name="TotalSalaryValue_CashUC" Visibility="Collapsed"  IsReadOnly="True" HorizontalAlignment="Left" Height="24" Margin="802,264,0,0" Text="" VerticalAlignment="Top" Width="66" RenderTransformOrigin="0.544,-0.652" MaxLines="1"/>
+        <TextBlock HorizontalAlignment="Left" Visibility="Visible" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="602,193,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Salary : "/></TextBlock>
+        <TextBox x:Name="TotalSalaryValue_CashUC" Visibility="Visible"  IsReadOnly="True" HorizontalAlignment="Left" Height="24" Margin="849,202,0,0" Text="" VerticalAlignment="Top" Width="84" RenderTransformOrigin="0.544,-0.652" MaxLines="1"/>
 
-        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="608,235,0,0" RenderTransformOrigin="0.442,1.056" FontSize="25" ><Run Text="Total Income Orders : "/></TextBlock>
-        <TextBox x:Name="TotalIncomeOrdersValue_CashUC"  IsReadOnly="True" HorizontalAlignment="Left" Height="24" Margin="856,244,0,0" Text="" VerticalAlignment="Top" Width="84" RenderTransformOrigin="0.544,-0.652" MaxLines="1"/>
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="602,126,0,0" RenderTransformOrigin="0.442,1.056" FontSize="25" ><Run Text="Total Income Orders : "/></TextBlock>
+        <TextBox x:Name="TotalIncomeOrdersValue_CashUC"  IsReadOnly="True" HorizontalAlignment="Left" Height="24" Margin="849,135,0,0" Text="" VerticalAlignment="Top" Width="84" RenderTransformOrigin="0.544,-0.652" MaxLines="1"/>
 
-        <TextBlock HorizontalAlignment="Left" Visibility="Collapsed" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="873,134,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Total Installment Profit: "/></TextBlock>
-        <TextBox x:Name="TotalInstallmentProfitValue_CashUC" Visibility="Collapsed"  IsReadOnly="True" HorizontalAlignment="Left" Height="24" Margin="1138,143,0,0" Text="" VerticalAlignment="Top" Width="66" RenderTransformOrigin="0.544,-0.652" MaxLines="1"/>
 
-        <TextBlock HorizontalAlignment="Left" Visibility="Collapsed" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="1120,279,0,0" RenderTransformOrigin="0.442,1.056" FontSize="25" Text="Total Profit" />
-        <TextBox x:Name="TotalProfitValue_CashUC" Visibility="Collapsed" IsReadOnly="True" HorizontalAlignment="Left" Height="24" Margin="1244,288,0,0" Text="" VerticalAlignment="Top" Width="66" RenderTransformOrigin="0.544,-0.652" MaxLines="1"/>
-
-        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="614,336,0,0" RenderTransformOrigin="0.442,1.056" FontSize="25" Text="Shopee Wallet at " />
-        <TextBox x:Name="ShopeeWalletAtDateValue_CashUC"  IsReadOnly="True" HorizontalAlignment="Left" Height="24" Margin="940,345,0,0" Text="" VerticalAlignment="Top" Width="104" RenderTransformOrigin="0.544,-0.652" MaxLines="1"/>
-        <TextBlock Name="DateOfShopeeWalletValue_CashUC" HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="807,336,0,0" RenderTransformOrigin="0.442,1.056" FontSize="25" Text="21-9-2018" />
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="603,231,0,0" RenderTransformOrigin="0.442,1.056" FontSize="25" Text="Shopee Wallet at " />
+        <TextBox x:Name="ShopeeWalletAtDateValue_CashUC"  IsReadOnly="True" HorizontalAlignment="Left" Height="24" Margin="929,240,0,0" Text="" VerticalAlignment="Top" Width="104" RenderTransformOrigin="0.544,-0.652" MaxLines="1"/>
+        <TextBlock Name="DateOfShopeeWalletValue_CashUC" HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="796,231,0,0" RenderTransformOrigin="0.442,1.056" FontSize="25" Text="21-9-2018" />
 
         <DataGrid x:Name="OperationsList_CashUC" IsReadOnly="True" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="622" Margin="10,48,0,0" VerticalAlignment="Top" Width="587" Background="LightGray">
             <DataGrid.Columns>

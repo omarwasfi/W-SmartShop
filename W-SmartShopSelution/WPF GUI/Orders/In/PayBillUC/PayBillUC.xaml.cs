@@ -119,12 +119,12 @@ namespace WPF_GUI.Orders.In.PayBillUC
                 ShopBill = GlobalConfig.Connection.AddShopBillToTheDatabase(ShopBill);
 
                 OperationModel operation = new OperationModel();
-                operation.Date = ShopBill.Date;
+              /*  operation.Date = ShopBill.Date;
                 operation.AmountOfMoney = ShopBill.TotalMoney;
                 operation.ShopBill = ShopBill;
 
                 GlobalConfig.Connection.AddOperationToDatabase(operation);
-
+                */
                 SetInitialValues();
             }
 

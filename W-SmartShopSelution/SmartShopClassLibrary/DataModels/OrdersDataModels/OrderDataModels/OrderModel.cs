@@ -50,7 +50,27 @@ namespace Library
         /// </summary>
         public List<OrderProductModel> OrderProducts { get; set; }
 
+        /// <summary>
+        /// Get all the total paid money
+        /// </summary>
+        public decimal GetTotalPaid
+        {
+            get
+            {
+                return Order.GetTotalPaid(this);
+            }
+        }
 
+        /// <summary>
+        /// Get the rest of the money that not paid 
+        /// </summary>
+        public decimal GetTotalNotPaid 
+        {
+            get
+            {
+                return Order.GetTotalNotPaid(this);
+            }
+        }
 
         /// <summary>
         /// Get the total Profit of this Order

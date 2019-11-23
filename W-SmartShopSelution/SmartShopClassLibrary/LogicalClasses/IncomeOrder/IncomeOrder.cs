@@ -17,7 +17,32 @@ namespace Library
     {
 
       
-       
+        /// <summary>
+        /// Calculate the Total Paid Value if this IncomeOrder
+        /// </summary>
+        /// <param name="incomeOrder"></param>
+        /// <returns></returns>
+       public static decimal GetTotalPaid(IncomeOrderModel incomeOrder)
+        {
+            decimal paid = new decimal();
+
+            foreach(IncomeOrderPaymentModel incomeOrderPayment in incomeOrder.IncomeOrderPayments)
+            {
+                paid += incomeOrderPayment.Paid;
+            }
+
+            return paid;
+        }
+
+        /// <summary>
+        /// Calculate the to total not paid price that the supplier of the IncomeORder should take
+        /// </summary>
+        /// <param name="incomeOrder"></param>
+        /// <returns></returns>
+        public static decimal GetTotalNotPaid(IncomeOrderModel incomeOrder)
+        {
+            return incomeOrder.GetTotalPrice - incomeOrder.GetTotalPaid;
+        }
 
         /// <summary>
         /// If the bill number used before return false

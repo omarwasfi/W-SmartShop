@@ -6,109 +6,155 @@ using System.Threading.Tasks;
 
 namespace Library
 {
+    /// <summary>
+    /// Any money Record (Transform , DeTransform , OrderPayment , IncomeOrderPayment , ShopBill , StaffSalary)
+    /// </summary>
     public class OperationModel
     {
-        public  int Id { get; set; }
 
-        public  OrderModel Order { get; set; }
+        public TransformModel Transform { get; set; }
 
-        public  InstallmentModel Installment { get; set; }
+        public DeTransformModel DeTransform { get; set; }
 
-        public  IncomeOrderModel IncomeOrder { get; set; }
+        public OrderPaymentModel OrderPayment { get; set; }
+
+        public IncomeOrderPaymentModel IncomeOrderPayment { get; set; }
 
         public  ShopBillModel ShopBill { get; set; }
 
         public StaffSalaryModel StaffSalary { get; set; }
 
         /// <summary>
-        /// The date of the operation Not the  {"Order","Installment","IncomeOrder","ShopBill",StaffSalary}
+        /// Retun the operation Type Enum {"DeTransform","Transform","OrderPayment","IncomeOrderPayment","ShopBill",StaffSalary"}
         /// </summary>
-        public DateTime Date { get; set; }
-
-        /// <summary>
-        /// The amount of money of the operation
-        /// </summary>
-        public decimal AmountOfMoney { get; set; }
-
-        /// <summary>
-        /// Set and return The OperationName {"Order","Installment","IncomeOrder","ShopBill",StaffSalary} , if all null return "Empty"
-        /// </summary>
-        public string GetOperationName
+        public OperationType Type
         {
             get
             {
-
-                if (Installment != null)
+                if (DeTransform != null)
                 {
-                    return "Installment";
+                    return OperationType.DeTransform;
                 }
-                else if (IncomeOrder != null)
+                else if (Transform != null)
                 {
-                    return "IncomeOrder";
+                    return OperationType.Transform;
                 }
-                else if (Order != null)
+                else if (OrderPayment != null)
                 {
-                    return "Order";
+                    return OperationType.OrderPayment;
+                }
+                else if (IncomeOrderPayment != null)
+                {
+                    return OperationType.IncomeOrderPayment;
                 }
                 else if (ShopBill != null)
                 {
-                    return "ShopBill";
+                    return OperationType.ShopBill;
                 }
-                else if (StaffSalary != null)
+                else 
                 {
-                    return "StaffSalary";
+                    return OperationType.StaffSalary;
                 }
-                else
-                {
-                    return "Empty";
-                }
-
-                
-
             }
         }
 
         /// <summary>
-        /// The type of Opertation (In , out), if true => In -> money Payment , false => out -> money income
+        /// The date of the {"DeTransform","Transform","OrderPayment","IncomeOrderPayment","ShopBill",StaffSalary}
         /// </summary>
-        public Boolean GetTheOperationType
+        public DateTime GetDate 
+        { 
+            get 
+            {
+                if(Type == OperationType.DeTransform)
+                {
+                    return DeTransform.Date;
+                }
+                else if (Type == OperationType.Transform)
+                {
+                    return Transform.Date;
+                }
+                else if (Type == OperationType.OrderPayment)
+                {
+                    return OrderPayment.Date;
+                }
+                else if (Type == OperationType.IncomeOrderPayment)
+                {
+                    return IncomeOrderPayment.Date;
+                }
+               else if (Type == OperationType.ShopBill)
+                {
+                    return ShopBill.Date;
+                }
+                else
+                {
+                    return StaffSalary.Date;
+                }
+
+            } 
+        }
+
+        /// <summary>
+        /// Get the store affected by this Operation
+        /// </summary>
+        public StoreModel GetTheAffactedStore 
         {
             get
             {
-                if(GetOperationName == "Installment" || GetOperationName == "Order")
+                if (Type == OperationType.DeTransform)
                 {
-                    return false;
+                    return DeTransform.FromStore;
+                }
+                else if (Type == OperationType.Transform)
+                {
+                    return Transform.ToStore;
+                }
+                else if (Type == OperationType.OrderPayment)
+                {
+                    return OrderPayment.GetOrder.Store;
+                }
+                else if (Type == OperationType.IncomeOrderPayment)
+                {
+                    return IncomeOrderPayment.GetIncomeOrder.Store;
+                }
+                else if (Type == OperationType.ShopBill)
+                {
+                    return ShopBill.Store;
                 }
                 else
                 {
-                    return true;
+                    return StaffSalary.Store;
                 }
             }
         }
 
         /// <summary>
-        /// Get the id of any of {"Order","Installment","IncomeOrder","ShopBill",StaffSalary}
+        /// Get the id of any of {"DeTransform","Transform","OrderPayment","IncomeOrderPayment","ShopBill",StaffSalary}
         /// </summary>
         public int GetTheId
-        { get
+        { 
+            get
             {
-                if (GetOperationName == "Installment")
+                if (Type == OperationType.DeTransform)
                 {
-                    return Installment.Id;
+                    return DeTransform.Id;
                 }
-                else if (GetOperationName == "IncomeOrder")
+                else if (Type == OperationType.Transform)
                 {
-                    return IncomeOrder.Id;
+                    return Transform.Id;
                 }
-                else if (GetOperationName == "Order")
+                else if (Type == OperationType.OrderPayment)
                 {
-                    return Order.Id;
+                    return OrderPayment.Id;
                 }
-                else if (GetOperationName == "ShopBill")
+                else if (Type == OperationType.IncomeOrderPayment)
+                {
+                    return IncomeOrderPayment.Id;
+                }
+                else if (Type == OperationType.ShopBill)
                 {
                     return ShopBill.Id;
                 }
-                else if(GetOperationName == "StaffSalary")
+                else if(Type == OperationType.StaffSalary)
                 {
                     return StaffSalary.Id;
                 }
@@ -122,82 +168,86 @@ namespace Library
 
 
         /// <summary>
-        /// return the Name of the operation to the user  {"Order","Installment","Income Order","Shop Bill",Staff Salary} , if all null return "Empty"
+        /// return the Name of the operation to the user {"DeTransform","Transform","OrderPayment","IncomeOrderPayment","ShopBill",StaffSalary} , if all null return "Empty"
         /// </summary>
         public string GetTheOperationName
         {
             get
             {
 
-                if (Installment != null)
+                if (Type == OperationType.DeTransform)
                 {
-                    return "Installment";
+                    return "Detransform";
                 }
-                else if (IncomeOrder != null)
+                else if (Type == OperationType.Transform)
                 {
-                    return "Income Order";
+                    return "Transform";
                 }
-                else if (Order != null)
+                else if (Type == OperationType.OrderPayment)
                 {
-                    return "Order";
+                    return "Order Payment";
                 }
-                else if (ShopBill != null)
+                else if (Type == OperationType.IncomeOrderPayment)
                 {
-                    return "Shop Bill";
+                    return "Income Order Payment";
                 }
-                else if (StaffSalary != null)
+                else if (Type == OperationType.ShopBill)
+                {
+                    return "Shop bill";
+                }
+                else if (Type == OperationType.StaffSalary)
                 {
                     return "Staff Salary";
                 }
                 else
                 {
-                    return "Empty";
+                    return "";
                 }
+
 
 
 
             }
         }
 
-
-
         /// <summary>
-        /// return the Name of the staff how did this operation to the user  {"Order","Installment","Income Order","Shop Bill",Staff Salary} , if all null return "Empty"
+        /// Get the Actual Value of the money {Store.ShopeeWallet increased the value in positive , Store.ShopeeWallet Decreased The Value in negtive}
         /// </summary>
-        public string GetTheStaffName
+        public decimal GetTheValueOfTheMoney 
         {
             get
             {
-
-                if (Installment != null)
+                if (Type == OperationType.DeTransform)
                 {
-                    return Installment.Staff.Person.FullName;
+                    return DeTransform.TotalMoney * -1;
                 }
-                else if (IncomeOrder != null)
+                else if (Type == OperationType.Transform)
                 {
-                    return IncomeOrder.Staff.Person.FullName;
+                    return Transform.TotalMoney;
                 }
-                else if (Order != null)
+                else if (Type == OperationType.OrderPayment)
                 {
-                    return Order.Staff.Person.FullName;
+                    return OrderPayment.Paid;
                 }
-                else if (ShopBill != null)
+                else if (Type == OperationType.IncomeOrderPayment)
                 {
-                    return ShopBill.Staff.Person.FullName;
+                    return IncomeOrderPayment.Paid * -1;
                 }
-                else if (StaffSalary != null)
+                else if (Type == OperationType.ShopBill)
                 {
-                    return StaffSalary.Staff.Person.FullName;
+                    return ShopBill.TotalMoney * -1;
+                }
+                else if (Type == OperationType.StaffSalary)
+                {
+                    return StaffSalary.Salary * -1 ;
                 }
                 else
                 {
-                    return "Empty";
+                    return 0;
                 }
-
-
-
             }
         }
+
 
 
     }

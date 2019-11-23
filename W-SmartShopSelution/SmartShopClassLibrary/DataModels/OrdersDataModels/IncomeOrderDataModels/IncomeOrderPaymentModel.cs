@@ -32,5 +32,16 @@ namespace Library
         /// The datatime of the payment
         /// </summary>
         public DateTime Date { get; set; }
+
+        /// <summary>
+        /// Get the IncomeOrder Of this Payment
+        /// </summary>
+        public IncomeOrderModel GetIncomeOrder
+        {
+            get 
+            {
+                return IncomeOrderPayment.GetTheIncomeOrder(this);
+            }
+        }
     }
 }

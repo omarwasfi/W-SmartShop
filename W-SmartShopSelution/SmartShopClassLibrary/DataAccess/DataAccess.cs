@@ -140,13 +140,19 @@ namespace Library
             PublicVariables.ShopBills = null;
             PublicVariables.ShopBills = GetShopBillsFromTheDatabase(PublicVariables.Stores, PublicVariables.Staffs);
 
+            // 24- Set the Operations
+            PublicVariables.Operations = null;
+            PublicVariables.Operations = CreateTheOperations(PublicVariables.Transforms, PublicVariables.DeTransforms, PublicVariables.OrderPayments, PublicVariables.IncomeOrderPayments, PublicVariables.ShopBills, PublicVariables.StaffSalaries);
+
             // 24- Set the Organization
             PublicVariables.Organization = null;
             PublicVariables.Organization = new OrganizationModel
             {
                 Name = "",
                 Address = "Egypt,Ismailia",
-                PhoneNumber = "01555707375"
+                PhoneNumber = "01555707375",
+                Investments = PublicVariables.Investments,
+                Revenues = PublicVariables.Revenues
             };
         }
 
@@ -502,6 +508,12 @@ namespace Library
             shopBills = ShopBillAccess.SetTheStoreForEachShopBillFromTheDatabase(shopBills, stores, db);
             return shopBills;
         }
+
+        private List<OperationModel> CreateTheOperations(List<TransformModel>transforms,List<DeTransformModel>deTransforms,List<OrderPaymentModel>orderPayments,List<IncomeOrderPaymentModel> incomeOrderPayments, List<ShopBillModel> shopBills,List<StaffSalaryModel>staffSalaries)
+        {
+            return OperationAccess.CreateTheOperations(transforms, deTransforms, orderPayments, incomeOrderPayments, shopBills, staffSalaries);
+        }
+
 
         #endregion
 
@@ -1584,131 +1596,13 @@ namespace Library
 
         #region Operation
 
-        /// <summary>
-        /// Get all the operations from the database
-        /// - Set the Order of installment , incomeOrder , shopBill , staffSalary
-        /// </summary>
-        /// <returns></returns>
-        public List<OperationModel> GetOperations()
-        {
-            return Operation.GetOperations(db);
-        }
-
-        /// <summary>
-        /// Add Operation to tha database , set the amountOfMoney and any Propity 
-        /// </summary>
-        /// <param name="operation"></param>
-        /// <param name="db"></param>
-        /// <returns></returns>
-        public OperationModel AddOperationToDatabase(OperationModel operation)
-        {
-            return Operation.AddOperationToDatabase(operation, db);
-        }
-
-        /// <summary>
-        /// Filter the opration by StartDate and EndDate in the operation.Date exist add to the fOperation list
-        /// </summary>
-        /// <param name="operations"></param>
-        /// <param name="startDate"></param>
-        /// <param name="endDate"></param>
-        /// <returns></returns>
-        public List<OperationModel> FilterOperationsByDate(List<OperationModel> operations, DateTime startDate, DateTime endDate)
-        {
-            return Operation.FilterOperationsByDate(operations, startDate, endDate);
-        }
-
-        /// <summary>
-        /// Update the operation AmountOfMoney
-        /// </summary>
-        /// <param name="operation"></param>
-        /// <param name="db"></param>
-        /// <returns></returns>
-        public OperationModel UpdateOperationData(OperationModel operation)
-        {
-            return Operation.UpdateOperationData(operation, db);
-        }
-
-        /// <summary>
-        /// Get all the operations that contain the order
-        /// </summary>
-        /// <param name="order"></param>
-        /// <param name="operations"></param>
-        /// <returns></returns>
-        public List<OperationModel> GetOperationsByOrder(OrderModel order, List<OperationModel> operations)
-        {
-
-            return Operation.GetOperationsByOrder(order, operations);
-
-        }
-
-        /// <summary>
-        /// Get all the operations that contain the ShopBill
-        /// </summary>
-        /// <param name="order"></param>
-        /// <param name="operations"></param>
-        /// <returns></returns>
-        public OperationModel GetOperationByShopBill(ShopBillModel shopBill, List<OperationModel> operations)
-        {
-            return Operation.GetOperationByShopBill(shopBill, operations);
-
-        }
-
-        /// <summary>
-        /// Delete operation from the database totaly
-        /// </summary>
-        /// <param name="operation"></param>
-        /// <param name="db"></param>
-        public void RemoveOperation(OperationModel operation)
-        {
-            Operation.RemoveOperation(operation,db);
-        }
+      
 
         #endregion
 
         #region CashFlow
 
-        /// <summary>
-        /// Calculate all the money records And fint the ShopeeWallet
-        /// </summary>
-        /// <param name="operationModel"></param>
-        /// <returns></returns>
-        public decimal GetTheShopeeWallet(List<OperationModel> operationModel)
-        {
-            return CashFlow.GetTheShopeeWallet(operationModel);
-        }
-
-        /// <summary>
-        /// Return the total of totalPrice of any Order in a operation
-        /// </summary>
-        /// <param name="operations"></param>
-        /// <returns></returns>
-        public decimal TotalSellsIncome(List<OperationModel> operations)
-        {
-           return CashFlow.TotalSellsIncome(operations);
-        }
-
-        /// <summary>
-        /// Return the TotalProfit of any Order in a operation
-        /// </summary>
-        /// <param name="operations"></param>
-        /// <returns></returns>
-        public decimal TotalSellsProfit(List<OperationModel> operations)
-        {
-            
-            return CashFlow.TotalSellsProfit(operations);
-        }
-
-
-        /// <summary>
-        /// Return the total of totalPrice of any IncomeOrder in a operation
-        /// </summary>
-        /// <param name="operations"></param>
-        /// <returns></returns>
-        public decimal TotalIncomeOrderPrice(List<OperationModel> operations)
-        {
-            return CashFlow.TotalIncomeOrderPrice(operations);
-        }
-
+        
         /// <summary>
         /// Return the total of the totalPrice of any ShopBills in a operation
         /// </summary>

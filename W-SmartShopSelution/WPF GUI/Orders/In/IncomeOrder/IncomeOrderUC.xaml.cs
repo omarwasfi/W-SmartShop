@@ -1131,11 +1131,11 @@ namespace WPF_GUI
 
                 // Create Operation and save it to the database
                 OperationModel incomeOrderoperation = new OperationModel();
-                incomeOrderoperation.IncomeOrder = IncomeOrder;
+               /* incomeOrderoperation.IncomeOrder = IncomeOrder;
                 incomeOrderoperation.Date = IncomeOrder.Date;
                 incomeOrderoperation.AmountOfMoney = IncomeOrder.GetTotalPrice;
-
-                GlobalConfig.Connection.AddOperationToDatabase(incomeOrderoperation);
+                
+                GlobalConfig.Connection.AddOperationToDatabase(incomeOrderoperation);*/
 
                 if(ShopBill.TotalMoney > 0)
                 {
@@ -1150,9 +1150,9 @@ namespace WPF_GUI
 
 
                     shopOrderOperation.ShopBill = ShopBill;
-                    shopOrderOperation.Date = IncomeOrder.Date;
+                  /*  shopOrderOperation.Date = IncomeOrder.Date;
                     shopOrderOperation.AmountOfMoney = ShopBill.TotalMoney;
-                    GlobalConfig.Connection.AddOperationToDatabase(shopOrderOperation);
+                    GlobalConfig.Connection.AddOperationToDatabase(shopOrderOperation);*/
 
                 }
 
@@ -1160,7 +1160,7 @@ namespace WPF_GUI
 
                 PublicVariables.LoginStoreStocks = GlobalConfig.Connection.FilterStocksByStore(PublicVariables.Store);
 
-                PublicVariables.Operations = GlobalConfig.Connection.GetOperations();
+                //PublicVariables.Operations = GlobalConfig.Connection.GetOperations();
 
                 IncomeOrderProducts = new List<IncomeOrderProductModel>();
                 StocksList_IncomeOrderUC.ItemsSource = null;

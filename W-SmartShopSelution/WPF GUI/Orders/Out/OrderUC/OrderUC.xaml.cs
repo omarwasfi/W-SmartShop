@@ -101,7 +101,7 @@ namespace WPF_GUI.Orders.Out.OrderUC
         /// </summary>
         private void UpdateTheOperationsFromThePublicVariables()
         {
-            PublicVariables.Operations = GlobalConfig.Connection.GetOperations();
+           // PublicVariables.Operations = GlobalConfig.Connection.GetOperations();
         }
 
 
@@ -305,7 +305,7 @@ namespace WPF_GUI.Orders.Out.OrderUC
                 if (CustomerShouldReceiveValue_OrderUC.Text.Length > 0)
                 {
                     List<OperationModel> operations = new List<OperationModel>();
-                    operations = GlobalConfig.Connection.GetOperationsByOrder(Order, PublicVariables.Operations);
+                   // operations = GlobalConfig.Connection.GetOperationsByOrder(Order, PublicVariables.Operations);
                     
                     decimal totalReceived = new decimal();
                     totalReceived = decimal.Parse(CustomerShouldReceiveValue_OrderUC.Text);
@@ -328,7 +328,7 @@ namespace WPF_GUI.Orders.Out.OrderUC
                     {
                         if(totalReceived > 0)
                         {
-                            if (operation.AmountOfMoney < totalReceived)
+                          /*  if (operation.AmountOfMoney < totalReceived)
                             {
                                 totalReceived -= operation.AmountOfMoney;
                                 // Delete the operation from the database
@@ -348,7 +348,7 @@ namespace WPF_GUI.Orders.Out.OrderUC
                                 // Update the operation
                                 GlobalConfig.Connection.UpdateOperationData(operation);
 
-                            }
+                            }*/
                         }
                     }
 
@@ -358,11 +358,11 @@ namespace WPF_GUI.Orders.Out.OrderUC
                 {
                     if (CustomerWillPayNowValue_OrderUC.Text.Length > 0 && decimal.Parse(CustomerWillPayNowValue_OrderUC.Text) > 0)
                     {
-                        OperationModel operation = new OperationModel();
+                        /*OperationModel operation = new OperationModel();
                         operation.Order = Order;
                         operation.AmountOfMoney = decimal.Parse(CustomerWillPayNowValue_OrderUC.Text);
                         operation.Date = DateTime.Now;
-                        GlobalConfig.Connection.AddOperationToDatabase(operation);
+                        GlobalConfig.Connection.AddOperationToDatabase(operation);*/
 
                     }
                 }
@@ -370,16 +370,16 @@ namespace WPF_GUI.Orders.Out.OrderUC
                 
             }
 
-            PublicVariables.Operations = GlobalConfig.Connection.GetOperations();
+           // PublicVariables.Operations = GlobalConfig.Connection.GetOperations();
 
-            List<OperationModel> updatedOperations = new List<OperationModel>();
+           /* List<OperationModel> updatedOperations = new List<OperationModel>();
             updatedOperations = GlobalConfig.Connection.GetOperationsByOrder(Order, PublicVariables.Operations);
             decimal totalPaid = new decimal();
             foreach (OperationModel operationModel in updatedOperations)
             {
                 totalPaid += operationModel.AmountOfMoney;
                // Order.LastPaymentDate = operationModel.Date;
-            }
+            }*/
 
             //Order.Paid = totalPaid;
 
@@ -465,13 +465,13 @@ namespace WPF_GUI.Orders.Out.OrderUC
 
 
                 List<OperationModel> operations = new List<OperationModel>();
-                operations = GlobalConfig.Connection.GetOperationsByOrder(Order, PublicVariables.Operations);
+               /* operations = GlobalConfig.Connection.GetOperationsByOrder(Order, PublicVariables.Operations);
 
                 foreach(OperationModel operation in operations)
                 {
                     GlobalConfig.Connection.RemoveOperation(operation);
                 }
-
+                */
                 GlobalConfig.Connection.RemoveOrder(Order);
 
 

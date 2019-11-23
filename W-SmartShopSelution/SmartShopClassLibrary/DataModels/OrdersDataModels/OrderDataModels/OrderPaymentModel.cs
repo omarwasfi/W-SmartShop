@@ -32,5 +32,20 @@ namespace Library
         /// The datetime of the Payment 
         /// </summary>
         public DateTime Date { get; set; }
+
+        #region Not Database Related
+
+        /// <summary>
+        /// Get the Order Of this Payment
+        /// </summary>
+        public OrderModel GetOrder 
+        {
+            get 
+            {
+               return OrderPayment.GetTheOrder(this);
+            }
+        }
+
+        #endregion
     }
 }

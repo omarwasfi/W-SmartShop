@@ -16,4 +16,15 @@ namespace Library
     {
       EMG
     }
+
+    public enum OperationType
+    {
+        Transform,
+        DeTransform,
+        OrderPayment,
+        IncomeOrderPayment,
+        ShopBill,
+        StaffSalary
+        
+    }
 }

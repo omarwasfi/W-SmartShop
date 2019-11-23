@@ -40,7 +40,7 @@ namespace Library
 
 
         /// <summary>
-        /// Get the total price payed to the supplier
+        /// Get the total Price that should be paid to the supplier
         /// </summary>
         public decimal GetTotalPrice
         {
@@ -53,6 +53,29 @@ namespace Library
                 }
 
                 return totalPrice;
+            }
+        }
+
+        /// <summary>
+        /// Get total PaidValue of this incomeOrder
+        /// </summary>
+        public decimal GetTotalPaid
+        {
+            get
+            {
+                return IncomeOrder.GetTotalPaid(this);
+            }
+        }
+
+        /// <summary>
+        /// Get total not Paid Value of this incomeOrder
+        /// </summary>
+        public decimal GetTotalNotPaid
+        {
+            get
+            {
+                return IncomeOrder.GetTotalNotPaid(this);
+
             }
         }
     }

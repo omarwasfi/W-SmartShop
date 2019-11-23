@@ -151,7 +151,7 @@ namespace Library
                 List<int> incomeOrderPaymentIds = new List<int>();
                 foreach(IncomeOrderPaymentModel incomeOrderPayment in incomeOrderModel.IncomeOrderPayments)
                 {
-                    incomeOrderPaymentIds.Add(incomeOrderModel.Id);
+                    incomeOrderPaymentIds.Add(incomeOrderPayment.Id);
                 }
 
                 incomeOrderModel.IncomeOrderPayments = new List<IncomeOrderPaymentModel>();
