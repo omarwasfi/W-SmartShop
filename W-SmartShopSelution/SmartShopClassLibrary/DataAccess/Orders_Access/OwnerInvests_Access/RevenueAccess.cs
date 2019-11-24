@@ -11,6 +11,32 @@ namespace Library
     public static class RevenueAccess
     {
         /// <summary>
+        /// Add the investment to the database. 
+        ///  Add the investment to the publicVariables.Investments.
+        ///  Add the investment to the owner.Investments
+        /// </summary>
+        /// <param name="revenue"></param>
+        /// <param name="owner"></param>
+        /// <param name="db"></param>
+        /// <returns></returns>
+        public static RevenueModel AddReveueToTheDatabase(RevenueModel revenue, OwnerModel owner,string db)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnVal(db)))
+            {
+                var p = new DynamicParameters();
+                p.Add("@OwnerId", owner.Id);
+                p.Add("@Date", revenue.Date);
+                p.Add("@TotalMoney", revenue.TotalMoney);
+                p.Add("@StoreId", revenue.Store.Id);
+                p.Add("@StaffId", revenue.Staff.Id);
+                p.Add("@Id", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
+                connection.Execute("dbo.spRevenue_Create", p, commandType: CommandType.StoredProcedure);
+                revenue.Id = p.Get<int>("@Id");
+            }
+            return revenue;
+        }
+
+        /// <summary>
         /// Get all revenues from the database without the staffModel , storeModel
         /// </summary>
         /// <param name="db"></param>

@@ -23,24 +23,38 @@
                 <materialDesign:PackIcon Kind="Printer" Width="20" Height="20"/>
             </Button>
 
-            <Button x:Name="ConfirmButton" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Green"   VerticalAlignment="Top"  Margin="112,0,55,0" Height="25"  >
+            <Button x:Name="ConfirmButton" Click="ConfirmButton_Click" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Green"   VerticalAlignment="Top"  Margin="112,0,55,0" Height="25"  >
                 <materialDesign:PackIcon Kind="Done" Width="20" Height="20"/>
             </Button>
 
         </Grid>
-        <syncfusion:CurrencyTextBox  IsReadOnly="True" Value="0" CurrencyNegativePattern="8"  CurrencyPositivePattern="3"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="155"  Margin="723,137,0,0" Height="27" Background="White" FontSize="18" SelectionBrush="#FF009688" RenderTransformOrigin="0.68,0.352">
+        <syncfusion:CurrencyTextBox x:Name="RevenueValue" Value="0" CurrencyNegativePattern="8"  CurrencyPositivePattern="3"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="155"  Margin="819,113,0,0" Height="27" Background="White" FontSize="18" SelectionBrush="#FF009688" RenderTransformOrigin="0.68,0.352">
             <syncfusion:CurrencyTextBox.NumberFormat>
                 <Globalization:NumberFormatInfo CurrencyGroupSeparator=" " CurrencyDecimalDigits="2" CurrencyDecimalSeparator="." CurrencySymbol="L.E"/>
             </syncfusion:CurrencyTextBox.NumberFormat>
         </syncfusion:CurrencyTextBox>
-        <syncfusion:SfDataGrid x:Name="OwnerList" AllowResizingColumns="True" ColumnSizer="Star" AllowDraggingColumns="True" Margin="10,10,964,10" AllowFiltering="True" ShowGroupDropArea="True" AutoGenerateColumns="False" Background="#FFD8D8D8">
+
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="480,107,0,0" Text="Selected Owner Will Revenue :" />
+        <syncfusion:SfDataGrid x:Name="OwnerList" AllowResizingColumns="True" ColumnSizer="Star" AllowDraggingColumns="True" Margin="10,10,868,10" AllowFiltering="True" ShowGroupDropArea="True" AutoGenerateColumns="False" Background="#FFD8D8D8">
             <syncfusion:SfDataGrid.Columns>
                 <syncfusion:GridTextColumn HeaderText="Name" MappingName="Person.FullName" />
                 <syncfusion:GridTextColumn HeaderText="Phone Number" MappingName="Person.PhoneNumber" />
                 <syncfusion:GridTextColumn HeaderText="National Number" MappingName="Person.NationalNumber" />
             </syncfusion:SfDataGrid.Columns>
+            <syncfusion:SfDataGrid.DetailsViewDefinition>
+                <!--  FirstLevelNestedGrid1 is created here  -->
+                <syncfusion:GridViewDefinition RelationalColumn="Revenues">
+                    <syncfusion:GridViewDefinition.DataGrid>
+                        <syncfusion:SfDataGrid x:Name="OwnersRevenueList" AllowFiltering="True" AutoGenerateColumns="False">
+                            <syncfusion:SfDataGrid.Columns>
+                                <syncfusion:GridTextColumn HeaderText="Revenue Date" MappingName="Date" />
+                                <syncfusion:GridTextColumn HeaderText="Amount of money" MappingName="TotalMoney" />
+                            </syncfusion:SfDataGrid.Columns>
+                        </syncfusion:SfDataGrid>
+                    </syncfusion:GridViewDefinition.DataGrid>
+                </syncfusion:GridViewDefinition>
+            </syncfusion:SfDataGrid.DetailsViewDefinition>
         </syncfusion:SfDataGrid>
-        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="384,131,0,0" Text="Selected Owner Will Revenue :" />
 
     </Grid>
 </UserControl>

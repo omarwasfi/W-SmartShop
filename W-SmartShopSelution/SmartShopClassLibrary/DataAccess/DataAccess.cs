@@ -683,6 +683,22 @@ namespace Library
         #endregion
 
         #region Revenue Functions
+        /// <summary>
+        /// Add the revenue to the databse
+        /// add the revenue to the publicVariables.Revenue
+        /// add the revenue to the Owner.Revenues
+        /// </summary>
+        /// <param name="revenue"></param>
+        /// <param name="owner"></param>
+        /// <returns></returns>
+        public RevenueModel AddRevenueToTheDatabase(RevenueModel revenue,OwnerModel owner)
+        {
+            revenue = RevenueAccess.AddReveueToTheDatabase(revenue, owner, db);
+            PublicVariables.Revenues.Add(revenue);
+            owner.Revenues.Add(revenue);
+            return revenue;
+        }
+
         #endregion
 
         #region Income Order
