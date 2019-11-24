@@ -28,11 +28,11 @@ namespace Library
             }
             foreach (StoreModel store in organization.GetStores)
             {
-                freeMoney += store.GetTransformsValue;
+                freeMoney -= store.GetTransformsValue;
             }
             foreach (StoreModel store in organization.GetStores)
             {
-                freeMoney -= store.GetDeTransformsValue;
+                freeMoney += store.GetDeTransformsValue;
             }
             return freeMoney;
         }
@@ -91,7 +91,7 @@ namespace Library
         {
             decimal capital = new decimal();
 
-            capital = organization.GetFreeMoney + organization.GetStockValue + organization.GetStockValue + organization.GetShopeeWalletValue - organization.GetLoans + organization.GetNotPaidOrdersValue;
+            capital = organization.GetFreeMoney  + organization.GetStockValue + organization.GetShopeeWalletValue - organization.GetLoans + organization.GetNotPaidOrdersValue;
 
             return capital;
         }

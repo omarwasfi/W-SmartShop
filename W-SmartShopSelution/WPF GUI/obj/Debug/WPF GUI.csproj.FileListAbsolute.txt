@@ -307,3 +307,11 @@ C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Debu
 C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Debug\Manager\ManagerUC.g.cs
 C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Debug\Manager\ManagerUC.baml
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Debug\Manager\InvestUC.g.cs
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Debug\Manager\DeTransformUC.g.cs
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Debug\Manager\RevenueUC.g.cs
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Debug\Manager\TransformUC.g.cs
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Debug\Manager\InvestUC.baml
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Debug\Manager\DeTransformUC.baml
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Debug\Manager\RevenueUC.baml
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Debug\Manager\TransformUC.baml

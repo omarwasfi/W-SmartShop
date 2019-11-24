@@ -32,5 +32,16 @@ namespace Library
         /// The Total Money that the owner take
         /// </summary>
         public decimal TotalMoney { get; set; }
+
+        /// <summary>
+        /// Get The Owner who got the Revenue
+        /// </summary>
+        public OwnerModel GetOwner 
+        {
+            get
+            {
+                return Revenue.GetTheOwner(this);
+            }
+        }
     }
 }

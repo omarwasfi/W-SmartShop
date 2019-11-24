@@ -12,6 +12,31 @@ namespace Library
     {
 
         /// <summary>
+        /// Add the investment to the database 
+        /// </summary>
+        /// <param name="investment">The new investment model</param>
+        /// <param name="owner">The Owner who Invested the money</param>
+        /// <param name="db"></param>
+        /// <returns>The New investment with the new Id</returns>
+        public static InvestmentModel AddInvestmentToTheDatabase(InvestmentModel investment, OwnerModel owner, string db)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnVal(db)))
+            {
+                var p = new DynamicParameters();
+                p.Add("@OwnerId", owner.Id);
+                p.Add("@Date", investment.Date);
+                p.Add("@TotalMoney", investment.TotalMoney);
+                p.Add("@StoreId", investment.Store.Id);
+                p.Add("@StaffId", investment.Staff.Id);
+                p.Add("@Id", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
+                connection.Execute("dbo.spInvestment_Create", p, commandType: CommandType.StoredProcedure);
+                investment.Id = p.Get<int>("@Id");
+            }
+
+            return investment;
+        }
+
+        /// <summary>
         /// Get all investments from the database without the StaffModel and the storeModel
         /// </summary>
         /// <param name="db"></param>

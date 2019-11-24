@@ -33,7 +33,18 @@ namespace Library
         /// </summary>
         public decimal TotalMoney { get; set; }
 
-        
+        /// <summary>
+        /// Get the owner who Invest the money
+        /// </summary>
+        public OwnerModel GetOwner
+        {
+            get
+            {
+                return Investment.GetTheOwner(this);
+            }
+        }
+
+
 
     }
 }

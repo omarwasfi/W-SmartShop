@@ -3,10 +3,113 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:WPF_GUI"
+             xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
+             xmlns:numberformat="clr-namespace:System.Globalization;assembly=mscorlib"
              mc:Ignorable="d" 
              d:DesignHeight="680" d:DesignWidth="1343">
-    <Grid>
+    <Grid Background="White">
+        <Grid Name="UserGrid" Visibility="Visible">
             
+            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="10,10,0,0" ><Run Text="Capital : "/></TextBlock>
+            <syncfusion:CurrencyTextBox Name="CapitalValue"  IsReadOnly="True" CurrencyNegativePattern="8"  CurrencyPositivePattern="3"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="155" Value="1234567" Margin="105,17,0,0" Height="27" Background="White" FontSize="18" SelectionBrush="#FF009688">
+                <syncfusion:CurrencyTextBox.NumberFormat>
+                    <numberformat:NumberFormatInfo CurrencyGroupSeparator=" " CurrencyDecimalDigits="2" CurrencyDecimalSeparator="." CurrencySymbol="L.E"/>
+                </syncfusion:CurrencyTextBox.NumberFormat>
+            </syncfusion:CurrencyTextBox>
+
+            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="10,70,0,0" ><Run Text="Stock Value : "/></TextBlock>
+            <syncfusion:CurrencyTextBox x:Name="StockValue"  IsReadOnly="True" CurrencyNegativePattern="8"  CurrencyPositivePattern="3"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="155" Value="1234567" Margin="155,77,0,0" Height="27" Background="White" FontSize="18" SelectionBrush="#FF009688">
+                <syncfusion:CurrencyTextBox.NumberFormat>
+                    <numberformat:NumberFormatInfo CurrencyGroupSeparator=" " CurrencyDecimalDigits="2" CurrencyDecimalSeparator="." CurrencySymbol="L.E"/>
+                </syncfusion:CurrencyTextBox.NumberFormat>
+            </syncfusion:CurrencyTextBox>
+
+            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="320,70,0,0" Text="Shoppe Wallet  : " />
+            <syncfusion:CurrencyTextBox x:Name="ShopeeWalletValue"  IsReadOnly="True" CurrencyNegativePattern="8"  CurrencyPositivePattern="3"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="155" Value="1234567" Margin="506,77,0,0" Height="27" Background="White" FontSize="18" SelectionBrush="#FF009688">
+                <syncfusion:CurrencyTextBox.NumberFormat>
+                    <numberformat:NumberFormatInfo CurrencyGroupSeparator=" " CurrencyDecimalDigits="2" CurrencyDecimalSeparator="." CurrencySymbol="L.E"/>
+                </syncfusion:CurrencyTextBox.NumberFormat>
+            </syncfusion:CurrencyTextBox>
+            
+            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="671,70,0,0" Text="Not Paid Orders : " />
+            <syncfusion:CurrencyTextBox x:Name="NotPaidOrderValue" IsReadOnly="True" CurrencyNegativePattern="8"  CurrencyPositivePattern="3"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="155" Value="1234567" Margin="867,76,0,0" Height="27" Background="White" FontSize="18" SelectionBrush="#FF009688">
+                <syncfusion:CurrencyTextBox.NumberFormat>
+                    <numberformat:NumberFormatInfo CurrencyGroupSeparator=" " CurrencyDecimalDigits="2" CurrencyDecimalSeparator="." CurrencySymbol="L.E"/>
+                </syncfusion:CurrencyTextBox.NumberFormat>
+            </syncfusion:CurrencyTextBox>
+            
+            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="1032,70,0,0" Text="Loans : " />
+            <syncfusion:CurrencyTextBox x:Name="LoansValue" IsReadOnly="True" CurrencyNegativePattern="8"  CurrencyPositivePattern="3"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="155" Value="1234567" Margin="1115,77,0,0" Height="27" Background="White" FontSize="18" SelectionBrush="#FF009688">
+                <syncfusion:CurrencyTextBox.NumberFormat>
+                    <numberformat:NumberFormatInfo CurrencyGroupSeparator=" " CurrencyDecimalDigits="2" CurrencyDecimalSeparator="." CurrencySymbol="L.E"/>
+                </syncfusion:CurrencyTextBox.NumberFormat>
+            </syncfusion:CurrencyTextBox>
+            
+            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="8,129,0,0" Text="Free Money :" />
+            <syncfusion:CurrencyTextBox x:Name="FreeMoneyValue" IsReadOnly="True" CurrencyNegativePattern="8"  CurrencyPositivePattern="3"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="155" Value="1234567" Margin="155,136,0,0" Height="27" Background="White" FontSize="18" SelectionBrush="#FF009688" RenderTransformOrigin="0.68,0.352">
+                <syncfusion:CurrencyTextBox.NumberFormat>
+                    <numberformat:NumberFormatInfo CurrencyGroupSeparator=" " CurrencyDecimalDigits="2" CurrencyDecimalSeparator="." CurrencySymbol="L.E"/>
+                </syncfusion:CurrencyTextBox.NumberFormat>
+            </syncfusion:CurrencyTextBox>
+
+            <Button x:Name="InvestButton" Click="InvestButton_Click" Content="Invest" HorizontalAlignment="Left" Margin="320,129,0,0" VerticalAlignment="Top" Width="94" Height="34" FontSize="20" />
+            <Button x:Name="RevenueButton" Click="RevenueButton_Click" Content="Revenue" HorizontalAlignment="Left" Margin="419,129,0,0" VerticalAlignment="Top" Width="114" Height="34" FontSize="20" />
+
+            <Border BorderBrush="#FF009688" BorderThickness="1" HorizontalAlignment="Left" Height="136" Margin="10,201,0,0" VerticalAlignment="Top" Width="651"/>
+            <TextBlock x:Name="StoreNameValue" HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="207,219,0,0" Text="Store Name" />
+            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="21,251,0,0" Text="Shoppe Wallet  : " />
+            <syncfusion:CurrencyTextBox x:Name="StoreShopeeWalletValue" IsReadOnly="True" CurrencyNegativePattern="8"  CurrencyPositivePattern="3"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="155" Value="1234567" Margin="207,258,0,0" Height="27" Background="White" FontSize="18" SelectionBrush="#FF009688">
+                <syncfusion:CurrencyTextBox.NumberFormat>
+                    <numberformat:NumberFormatInfo CurrencyGroupSeparator=" " CurrencyDecimalDigits="2" CurrencyDecimalSeparator="." CurrencySymbol="L.E"/>
+                </syncfusion:CurrencyTextBox.NumberFormat>
+            </syncfusion:CurrencyTextBox>
+
+            <Grid Margin="1117,0,0,652">
+                <Button x:Name="CloseButton" Visibility="Collapsed" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Red"   VerticalAlignment="Top"  Margin="3,0,170,0" Height="25"  >
+                    <materialDesign:PackIcon Kind="Close" Width="20" Height="20"/>
+                </Button>
+
+                <Button x:Name="RefreshButton"   Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray"   VerticalAlignment="Top"  Margin="171,0,0,0" Height="25"  >
+                    <materialDesign:PackIcon Kind="Reload" Width="20" Height="20"/>
+                </Button>
+
+                <Button x:Name="PrintButton" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray"   VerticalAlignment="Top"  Margin="115,0,55,0" Height="25"  >
+                    <materialDesign:PackIcon Kind="Printer" Width="20" Height="20"/>
+                </Button>
+
+                <Button x:Name="ConfirmButton" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Green"   VerticalAlignment="Top"  Margin="56,0,111,0" Height="25"  >
+                    <materialDesign:PackIcon Kind="Done" Width="20" Height="20"/>
+                </Button>
+
+            </Grid>
+            
+            <Button x:Name="TransformButton" Click="TransformButton_Click" Content="Transform" HorizontalAlignment="Left" Margin="367,251,0,0" VerticalAlignment="Top" Width="126" Height="33" FontSize="20" />
+            <Button x:Name="DeTransformButton" Click="DeTransformButton_Click" Content="Detransform" HorizontalAlignment="Left" Margin="498,251,0,0" VerticalAlignment="Top" Width="151" Height="33" FontSize="20" />
+
+        </Grid>
+        <Grid Name="InvestGrid" Visibility="Collapsed">
+            <Button x:Name="BackToUserGridButton_FromInvestGrid" Click="BackToUserGridButton_FromInvestGrid_Click" Visibility="Visible" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Green"   VerticalAlignment="Top"  Margin="0,0,1291,0" Height="30"  >
+                <materialDesign:PackIcon Kind="ArrowLeft" Width="20" Height="20"/>
+            </Button>
+            <local:InvestUC HorizontalAlignment="Left" Margin="0,30,0,0" VerticalAlignment="Top"/>
+        </Grid>
+        <Grid Name="RevenueGrid" Visibility="Collapsed">
+            <Button x:Name="BackToUserGridButton_FromRevenueGrid" Click="BackToUserGridButton_FromRevenueGrid_Click"  Visibility="Visible" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Green"   VerticalAlignment="Top"  Margin="0,0,1291,0" Height="30"  >
+                <materialDesign:PackIcon Kind="ArrowLeft" Width="20" Height="20"/>
+            </Button>
+            <local:RevenueUC HorizontalAlignment="Left" Height="650" Margin="0,30,0,0" VerticalAlignment="Top" Width="1343"/>
+        </Grid>
+        <Grid Name="TransformGrid" Visibility="Collapsed">
+            <Button x:Name="BackToUserGridButton_FromTransformGrid" Click="BackToUserGridButton_FromTransformGrid_Click"  Visibility="Visible" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Green"   VerticalAlignment="Top"  Margin="0,0,1291,0" Height="30"  >
+                <materialDesign:PackIcon Kind="ArrowLeft" Width="20" Height="20"/>
+            </Button>
+        </Grid>
+        <Grid Name="DeTransformGrid" Visibility="Collapsed">
+            <Button x:Name="BackToUserGridButton_FromDeTransformGrid" Click="BackToUserGridButton_FromDeTransformGrid_Click"  Visibility="Visible" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Green"   VerticalAlignment="Top"  Margin="0,0,1291,0" Height="30"  >
+                <materialDesign:PackIcon Kind="ArrowLeft" Width="20" Height="20"/>
+            </Button>
+        </Grid>
     </Grid>
 </UserControl>

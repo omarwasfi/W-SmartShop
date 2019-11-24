@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Library;
 
 namespace WPF_GUI
 {
@@ -20,9 +21,85 @@ namespace WPF_GUI
     /// </summary>
     public partial class ManagerUC : UserControl
     {
+        #region Main Variables
+        #endregion
+
+        #region Set InitalValues
+
         public ManagerUC()
         {
             InitializeComponent();
+            SetInitialValues();
         }
+
+        private void SetInitialValues()
+        {
+            CapitalValue.Value = PublicVariables.Organization.GetCapital;
+            StockValue.Value = PublicVariables.Organization.GetStockValue;
+            ShopeeWalletValue.Value = PublicVariables.Organization.GetShopeeWalletValue;
+            NotPaidOrderValue.Value = PublicVariables.Organization.GetNotPaidOrdersValue;
+            LoansValue.Value = PublicVariables.Organization.GetLoans;
+            FreeMoneyValue.Value = PublicVariables.Organization.GetFreeMoney;
+            StoreNameValue.Text = PublicVariables.Store.Name;
+            StoreShopeeWalletValue.Value = PublicVariables.Store.GetShopeeWallet;
+        }
+
+        #endregion
+
+        #region Grid Events
+        private void InvestButton_Click(object sender, RoutedEventArgs e)
+        {
+            UserGrid.Visibility = Visibility.Collapsed;
+            InvestGrid.Visibility = Visibility.Visible;
+        }
+
+        private void BackToUserGridButton_FromInvestGrid_Click(object sender, RoutedEventArgs e)
+        {
+            UserGrid.Visibility = Visibility.Visible;
+            InvestGrid.Visibility = Visibility.Collapsed;
+            SetInitialValues();
+        }
+
+        private void RevenueButton_Click(object sender, RoutedEventArgs e)
+        {
+            UserGrid.Visibility = Visibility.Collapsed;
+            RevenueGrid.Visibility = Visibility.Visible;
+        }
+
+        private void BackToUserGridButton_FromRevenueGrid_Click(object sender, RoutedEventArgs e)
+        {
+            UserGrid.Visibility = Visibility.Visible;
+            RevenueGrid.Visibility = Visibility.Collapsed;
+            SetInitialValues();
+        }
+        private void TransformButton_Click(object sender, RoutedEventArgs e)
+        {
+            UserGrid.Visibility = Visibility.Collapsed;
+            TransformGrid.Visibility = Visibility.Visible;
+        }
+        private void BackToUserGridButton_FromTransformGrid_Click(object sender, RoutedEventArgs e)
+        {
+            UserGrid.Visibility = Visibility.Visible;
+            TransformGrid.Visibility = Visibility.Collapsed;
+            SetInitialValues();
+        }
+
+        private void DeTransformButton_Click(object sender, RoutedEventArgs e)
+        {
+            UserGrid.Visibility = Visibility.Collapsed;
+            DeTransformGrid.Visibility = Visibility.Visible;
+        }
+
+        private void BackToUserGridButton_FromDeTransformGrid_Click(object sender, RoutedEventArgs e)
+        {
+            UserGrid.Visibility = Visibility.Visible;
+            DeTransformGrid.Visibility = Visibility.Collapsed;
+            SetInitialValues();
+        }
+
+
+        #endregion
+
+
     }
 }

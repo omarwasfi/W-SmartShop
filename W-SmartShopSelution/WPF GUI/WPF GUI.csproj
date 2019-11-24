@@ -466,6 +466,12 @@
     <Compile Include="CashUC\CashUC.xaml.cs">
       <DependentUpon>CashUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Manager\InvestUC.xaml.cs">
+      <DependentUpon>InvestUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Manager\DeTransformUC.xaml.cs">
+      <DependentUpon>DeTransformUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Human\CreatePersonUC\CreatePersonUC.xaml.cs">
       <DependentUpon>CreatePersonUC.xaml</DependentUpon>
     </Compile>
@@ -498,6 +504,9 @@
     </Compile>
     <Compile Include="PriceListUC\PriceListUC.xaml.cs">
       <DependentUpon>PriceListUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Manager\RevenueUC.xaml.cs">
+      <DependentUpon>RevenueUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="Store\AddStockToStoreUC\AddStockToStoreUC.xaml.cs">
       <DependentUpon>AddStockToStoreUC.xaml</DependentUpon>
@@ -553,7 +562,18 @@
     <Compile Include="Human\Supplier\SupplierLogUC\SupplierLogUC.xaml.cs">
       <DependentUpon>SupplierLogUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Manager\TransformUC.xaml.cs">
+      <DependentUpon>TransformUC.xaml</DependentUpon>
+    </Compile>
     <Page Include="CashUC\CashUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Manager\InvestUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Manager\DeTransformUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -598,6 +618,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PriceListUC\PriceListUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Manager\RevenueUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -686,6 +710,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Human\Supplier\SupplierLogUC\SupplierLogUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Manager\TransformUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

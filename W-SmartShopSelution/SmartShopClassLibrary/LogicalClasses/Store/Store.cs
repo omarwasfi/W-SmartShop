@@ -19,22 +19,16 @@ namespace Library
         /// <param name="store"></param>
         /// <param name="stores"></param>
         /// <returns></returns>
-        public static bool IsThisStoreExist(StoreModel store , List<StoreModel> stores)
+        public static StoreModel IsThisStoreExist(StoreModel store , List<StoreModel> stores)
         {
             foreach(StoreModel s in stores)
             {
-                if(store.Name
-                    == s.Name)
+                if(store.Name == s.Name)
                 {
-                    store.Id = s.Id;
-                    store.PhoneNumber = s.PhoneNumber;
-                    store.Address = s.Address;
-                    store.City = s.City;
-                    store.Country = s.Country;
-                    return true;
+                    return s;
                 }
             }
-            return false;
+            return new StoreModel { Id = -1 };
         }
 
         /// <summary>

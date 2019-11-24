@@ -139,7 +139,7 @@ namespace Library
             // 23- set the ShopBills
             PublicVariables.ShopBills = null;
             PublicVariables.ShopBills = GetShopBillsFromTheDatabase(PublicVariables.Stores, PublicVariables.Staffs);
-
+            
             // 24- Set the Operations
             PublicVariables.Operations = null;
             PublicVariables.Operations = CreateTheOperations(PublicVariables.Transforms, PublicVariables.DeTransforms, PublicVariables.OrderPayments, PublicVariables.IncomeOrderPayments, PublicVariables.ShopBills, PublicVariables.StaffSalaries);
@@ -518,6 +518,7 @@ namespace Library
         #endregion
 
 
+
         #region Brand Functions
 
 
@@ -657,6 +658,32 @@ namespace Library
 
         #endregion
 
+        #region Investment Functions
+
+        /// <summary>
+        /// Add the investment to the database. 
+        ///  Add the investment to the publicVariables.Investments.
+        ///  Add the investment to the owner.Investments
+        /// </summary>
+        /// <param name="investment">The new investment model</param>
+        /// <param name="owner">The Owner who Invested the money</param>
+        /// <returns></returns>
+        public InvestmentModel AddInvestmentToTheDatabase(InvestmentModel investment,OwnerModel owner)
+        {
+            // Add the investment to the database
+            investment =  InvestmentAccess.AddInvestmentToTheDatabase(investment, owner, db);
+            // Add the investment to the publicVariables.Investments
+            PublicVariables.Investments.Add(investment);
+            // add the investment to the owner.Investments
+            owner.Investments.Add(investment);
+
+            return investment;
+        }
+
+        #endregion
+
+        #region Revenue Functions
+        #endregion
 
         #region Income Order
 
@@ -1172,15 +1199,13 @@ namespace Library
             if (storeName_Enum == StoreName.EMG)
             {
                 StoreModel store = new StoreModel { Name = "EMG" };
-                if (Store.IsThisStoreExist(store, stores))
-                {
-                    return store;
-                }
+                return Store.IsThisStoreExist(store, stores);
             }
-            
-                
-            return new StoreModel { Id = -1} ;
-            
+
+            return new StoreModel { Id = -1 };
+
+
+
         }
         #endregion
 

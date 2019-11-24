@@ -120,6 +120,7 @@
     <Compile Include="LogicalClasses\InstallmentDetails\InstallmentDetails.cs" />
     <Compile Include="LogicalClasses\InstallmentProduct\InstallmentProduct.cs" />
     <Compile Include="LogicalClasses\Installment\Installment.cs" />
+    <Compile Include="LogicalClasses\Investment\Investment.cs" />
     <Compile Include="LogicalClasses\Operation\Operation.cs" />
     <Compile Include="LogicalClasses\OrderPayment\OrderPayment.cs" />
     <Compile Include="LogicalClasses\OrderProduct\OrderProduct.cs" />
@@ -130,6 +131,7 @@
     <Compile Include="LogicalClasses\Organization\Organization.cs" />
     <Compile Include="LogicalClasses\Person\Person.cs" />
     <Compile Include="LogicalClasses\Product\Product.cs" />
+    <Compile Include="LogicalClasses\Revenue\Revenue.cs" />
     <Compile Include="LogicalClasses\ShopBill\ShopBill.cs" />
     <Compile Include="LogicalClasses\Staff\Staff.cs" />
     <Compile Include="LogicalClasses\Stock\Stock.cs" />
@@ -142,6 +144,8 @@
     <Compile Include="Validation\Forced\NumberValidation.cs" />
     <Compile Include="Validation\HumanValidations\PersonValidator.cs" />
     <Compile Include="Validation\OrdersValidations\OrderValidations\OrderProductValidator.cs" />
+    <Compile Include="Validation\OrdersValidations\OwnerOrdersValidations\InvestmentValidator.cs" />
+    <Compile Include="Validation\OrdersValidations\OwnerOrdersValidations\RevenueValidator.cs" />
     <Compile Include="Validation\StoreValidations\ProductValidations\ProductValidator.cs" />
   </ItemGroup>
   <ItemGroup>

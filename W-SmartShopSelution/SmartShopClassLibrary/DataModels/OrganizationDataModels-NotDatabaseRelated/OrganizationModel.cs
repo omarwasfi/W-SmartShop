@@ -105,6 +105,12 @@ namespace Library
         /// <summary>
         /// Return The calculation of over all capital (FreeMoney + Stocks Value + ShopeeWallet Value)
         /// </summary>
-        public decimal GetCapital { get;}
+        public decimal GetCapital 
+        {
+            get
+            {
+                return Organization.GetCapital(this);
+            }
+        }
     }
 }

@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\App.xaml
-321201147809
+36-164502157
 
-36-1341351734
+40351531816
 122-2117100988
-CashUC\CashUC.xaml;Human\CreatePersonUC\CreatePersonUC.xaml;Human\PeopleUC\PeopleUC.xaml;Installament\InstallmentCollectingUC\InstallmentCollectingUC.xaml;Manager\ManagerUC.xaml;Orders\In\BillsManagerUC\BillsManagerUC.xaml;Orders\In\ModifyBill\ModifyBillUC.xaml;Orders\In\PayBillUC\PayBillUC.xaml;Orders\Out\InstallmentOrderUC\InstallmentOrderUC.xaml;Orders\Out\OrderUC\OrderUC.xaml;Orders\Out\SellingOrdersManagerUC\SellingOrdersManagerUC.xaml;PriceListUC\PriceListUC.xaml;Store\AddStockToStoreUC\AddStockToStoreUC.xaml;Human\Supplier\CreateSupplierUC\CreateSupplierUC.xaml;Human\Customer\CustomerLogUC\CustomerLogUC.xaml;Store\GlobalInventoryUC\GlobalInventoryUC.xaml;Orders\In\IncomeOrder\IncomeOrderUC.xaml;Store\Inventory\InventoryUC.xaml;Human\ModifyPersonUC\ModifyPersonUC.xaml;Store\ModifyStockUC\ModifyStockUC.xaml;ProductForms\CreateBrandUC\CreateBrandUC.xaml;ProductForms\CreateCategory\CreateCategoryUC.xaml;Human\Customer\CreateCutomerUC\CreateCustomerUC.xaml;ProductForms\CreateProductUC\CreateProductUC.xaml;Login\LoginForm.xaml;MainForm\MainForm.xaml;ProductForms\ModifyProductUC\ModifyProductUC.xaml;ProductForms\ProductManagerUC\ProductManagerUC.xaml;Orders\Out\SellUC\SellUC.xaml;Human\Staff\ModifyStaffUC\ModifyStaffUC.xaml;Human\Staff\StaffsManagerUC\StaffsManagerUC.xaml;Human\Supplier\SupplierLogUC\SupplierLogUC.xaml;
+CashUC\CashUC.xaml;Manager\InvestUC.xaml;Manager\DeTransformUC.xaml;Human\CreatePersonUC\CreatePersonUC.xaml;Human\PeopleUC\PeopleUC.xaml;Installament\InstallmentCollectingUC\InstallmentCollectingUC.xaml;Manager\ManagerUC.xaml;Orders\In\BillsManagerUC\BillsManagerUC.xaml;Orders\In\ModifyBill\ModifyBillUC.xaml;Orders\In\PayBillUC\PayBillUC.xaml;Orders\Out\InstallmentOrderUC\InstallmentOrderUC.xaml;Orders\Out\OrderUC\OrderUC.xaml;Orders\Out\SellingOrdersManagerUC\SellingOrdersManagerUC.xaml;PriceListUC\PriceListUC.xaml;Manager\RevenueUC.xaml;Store\AddStockToStoreUC\AddStockToStoreUC.xaml;Human\Supplier\CreateSupplierUC\CreateSupplierUC.xaml;Human\Customer\CustomerLogUC\CustomerLogUC.xaml;Store\GlobalInventoryUC\GlobalInventoryUC.xaml;Orders\In\IncomeOrder\IncomeOrderUC.xaml;Store\Inventory\InventoryUC.xaml;Human\ModifyPersonUC\ModifyPersonUC.xaml;Store\ModifyStockUC\ModifyStockUC.xaml;ProductForms\CreateBrandUC\CreateBrandUC.xaml;ProductForms\CreateCategory\CreateCategoryUC.xaml;Human\Customer\CreateCutomerUC\CreateCustomerUC.xaml;ProductForms\CreateProductUC\CreateProductUC.xaml;Login\LoginForm.xaml;MainForm\MainForm.xaml;ProductForms\ModifyProductUC\ModifyProductUC.xaml;ProductForms\ProductManagerUC\ProductManagerUC.xaml;Orders\Out\SellUC\SellUC.xaml;Human\Staff\ModifyStaffUC\ModifyStaffUC.xaml;Human\Staff\StaffsManagerUC\StaffsManagerUC.xaml;Human\Supplier\SupplierLogUC\SupplierLogUC.xaml;Manager\TransformUC.xaml;
 
 False
 

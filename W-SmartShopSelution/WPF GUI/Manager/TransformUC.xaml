@@ -1,0 +1,47 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WPF_GUI"
+                              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:syncfusion="http://schemas.syncfusion.com/wpf" xmlns:Globalization="clr-namespace:System.Globalization;assembly=mscorlib" x:Class="WPF_GUI.TransformUC"
+             mc:Ignorable="d" 
+             d:DesignHeight="650" d:DesignWidth="1343">
+    <Grid>
+
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="8,66,0,0" Text="Total Free Money :" />
+        <syncfusion:CurrencyTextBox  IsReadOnly="True" CurrencyNegativePattern="8"  CurrencyPositivePattern="3"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="155" Value="1234567" Margin="227,72,0,0" Height="27" Background="White" FontSize="18" SelectionBrush="#FF009688" RenderTransformOrigin="0.68,0.352">
+            <syncfusion:CurrencyTextBox.NumberFormat>
+                <Globalization:NumberFormatInfo CurrencyGroupSeparator=" " CurrencyDecimalDigits="2" CurrencyDecimalSeparator="." CurrencySymbol="L.E"/>
+            </syncfusion:CurrencyTextBox.NumberFormat>
+        </syncfusion:CurrencyTextBox>
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="387,66,0,0" Text="Send :" />
+        <syncfusion:CurrencyTextBox  IsReadOnly="True" CurrencyNegativePattern="8"  CurrencyPositivePattern="3"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="155" Value="" Margin="459,72,0,0" Height="27" Background="White" FontSize="18" SelectionBrush="#FF009688" RenderTransformOrigin="0.68,0.352">
+            <syncfusion:CurrencyTextBox.NumberFormat>
+                <Globalization:NumberFormatInfo CurrencyGroupSeparator=" " CurrencyDecimalDigits="2" CurrencyDecimalSeparator="." CurrencySymbol="L.E"/>
+            </syncfusion:CurrencyTextBox.NumberFormat>
+        </syncfusion:CurrencyTextBox>
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="619,66,0,0" Text="To Store :" />
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="726,66,0,0" Text="StoreName" />
+        <Grid Margin="1112,0,0,622">
+            <Button x:Name="CloseButton" Visibility="Collapsed" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Red"   VerticalAlignment="Top"  Margin="3,0,170,0" Height="25"  >
+                <materialDesign:PackIcon Kind="Close" Width="20" Height="20"/>
+            </Button>
+
+            <Button x:Name="RefreshButton"   Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray"   VerticalAlignment="Top"  Margin="171,0,0,0" Height="25"  >
+                <materialDesign:PackIcon Kind="Reload" Width="20" Height="20"/>
+            </Button>
+
+            <Button x:Name="PrintButton" Visibility="Collapsed" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray"   VerticalAlignment="Top"  Margin="115,0,55,0" Height="25"  >
+                <materialDesign:PackIcon Kind="Printer" Width="20" Height="20"/>
+            </Button>
+
+            <Button x:Name="ConfirmButton" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Green"   VerticalAlignment="Top"  Margin="112,0,55,0" Height="25"  >
+                <materialDesign:PackIcon Kind="Done" Width="20" Height="20"/>
+            </Button>
+
+        </Grid>
+
+    </Grid>
+</UserControl>

@@ -48,8 +48,9 @@
             <Grid  Margin="38,0,0,736">
                 <Grid Name="DragMoveGrid" PreviewMouseDown="Window_MouseDown" Margin="75,0,687,0"  >
                     <Button Background="{x:Null}" BorderBrush="{x:Null}"  Cursor="Arrow" Foreground="DarkRed" >
-                        <TextBlock Text="Alpha version" FontSize="18" FontStyle="Italic"  ></TextBlock>
+                        <TextBlock Text="Linked Ashes Alpha version" FontSize="18" FontStyle="Italic"  />
                     </Button>
+                    
                 </Grid>
                 <StackPanel HorizontalAlignment="Left" Margin="20 0">
                     <ComboBox FontSize="15" Width="50" Foreground="#FFA2A2A2" SelectedIndex="0" VerticalAlignment="Center" >
