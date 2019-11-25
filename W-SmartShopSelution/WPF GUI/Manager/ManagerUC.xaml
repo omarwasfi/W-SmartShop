@@ -10,7 +10,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="680" d:DesignWidth="1343">
     <Grid Background="White">
-        <Grid Name="UserGrid" Visibility="Visible">
+        <Grid Name="UserGrid" Visibility="Collapsed">
             
             <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="10,10,0,0" ><Run Text="Capital : "/></TextBlock>
             <syncfusion:CurrencyTextBox Name="CapitalValue"  IsReadOnly="True" CurrencyNegativePattern="8"  CurrencyPositivePattern="3"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="155" Value="1234567" Margin="105,17,0,0" Height="27" Background="White" FontSize="18" SelectionBrush="#FF009688">
@@ -105,11 +105,13 @@
             <Button x:Name="BackToUserGridButton_FromTransformGrid" Click="BackToUserGridButton_FromTransformGrid_Click"  Visibility="Visible" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Green"   VerticalAlignment="Top"  Margin="0,0,1291,0" Height="30"  >
                 <materialDesign:PackIcon Kind="ArrowLeft" Width="20" Height="20"/>
             </Button>
+            <local:TransformUC HorizontalAlignment="Left" Margin="0,30,0,0" VerticalAlignment="Top" Height="650"/>
         </Grid>
         <Grid Name="DeTransformGrid" Visibility="Collapsed">
             <Button x:Name="BackToUserGridButton_FromDeTransformGrid" Click="BackToUserGridButton_FromDeTransformGrid_Click"  Visibility="Visible" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Green"   VerticalAlignment="Top"  Margin="0,0,1291,0" Height="30"  >
                 <materialDesign:PackIcon Kind="ArrowLeft" Width="20" Height="20"/>
             </Button>
+            <local:DeTransformUC HorizontalAlignment="Left" Margin="0,30,0,0" VerticalAlignment="Top" Width="1343" Height="650"/>
         </Grid>
     </Grid>
 </UserControl>

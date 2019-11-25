@@ -10,26 +10,25 @@
              d:DesignHeight="650" d:DesignWidth="1343">
     <Grid>
 
-        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="8,66,0,0" Text="Total Free Money :" />
-        <syncfusion:CurrencyTextBox  IsReadOnly="True" CurrencyNegativePattern="8"  CurrencyPositivePattern="3"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="155" Value="1234567" Margin="227,72,0,0" Height="27" Background="White" FontSize="18" SelectionBrush="#FF009688" RenderTransformOrigin="0.68,0.352">
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="480,93,0,0" Text="Selected Store Shoppe Wallet :" />
+        <syncfusion:CurrencyTextBox x:Name="StoreShoppeWallet" IsReadOnly="True" CurrencyNegativePattern="8"  CurrencyPositivePattern="3"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="154" Value="1234567" Margin="822,99,0,0" Height="27" Background="White" FontSize="18" SelectionBrush="#FF009688" RenderTransformOrigin="0.68,0.352">
             <syncfusion:CurrencyTextBox.NumberFormat>
                 <Globalization:NumberFormatInfo CurrencyGroupSeparator=" " CurrencyDecimalDigits="2" CurrencyDecimalSeparator="." CurrencySymbol="L.E"/>
             </syncfusion:CurrencyTextBox.NumberFormat>
         </syncfusion:CurrencyTextBox>
-        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="387,66,0,0" Text="Get :" />
-        <syncfusion:CurrencyTextBox  IsReadOnly="True" CurrencyNegativePattern="8"  CurrencyPositivePattern="3"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="155" Value="" Margin="443,72,0,0" Height="27" Background="White" FontSize="18" SelectionBrush="#FF009688" RenderTransformOrigin="0.68,0.352">
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="480,153,0,0" Text="Get :" />
+        <syncfusion:CurrencyTextBox Name="DeTransformValue"  CurrencyNegativePattern="8"  CurrencyPositivePattern="3"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="154" Value="0" Margin="536,159,0,0" Height="27" Background="White" FontSize="18" SelectionBrush="#FF009688" RenderTransformOrigin="0.68,0.352">
             <syncfusion:CurrencyTextBox.NumberFormat>
                 <Globalization:NumberFormatInfo CurrencyGroupSeparator=" " CurrencyDecimalDigits="2" CurrencyDecimalSeparator="." CurrencySymbol="L.E"/>
             </syncfusion:CurrencyTextBox.NumberFormat>
         </syncfusion:CurrencyTextBox>
-        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="603,66,0,0" Text="From Store :" />
-        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="742,66,0,0" Text="StoreName" />
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="696,153,0,0" Text="From selected Store" />
         <Grid Margin="1112,0,0,622">
             <Button x:Name="CloseButton" Visibility="Collapsed" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Red"   VerticalAlignment="Top"  Margin="3,0,170,0" Height="25"  >
                 <materialDesign:PackIcon Kind="Close" Width="20" Height="20"/>
             </Button>
 
-            <Button x:Name="RefreshButton"   Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray"   VerticalAlignment="Top"  Margin="171,0,0,0" Height="25"  >
+            <Button x:Name="RefreshButton" Click="RefreshButton_Click"   Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray"   VerticalAlignment="Top"  Margin="171,0,0,0" Height="25"  >
                 <materialDesign:PackIcon Kind="Reload" Width="20" Height="20"/>
             </Button>
 
@@ -37,11 +36,31 @@
                 <materialDesign:PackIcon Kind="Printer" Width="20" Height="20"/>
             </Button>
 
-            <Button x:Name="ConfirmButton" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Green"   VerticalAlignment="Top"  Margin="112,0,55,0" Height="25"  >
+            <Button x:Name="ConfirmButton" Click="ConfirmButton_Click" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Green"   VerticalAlignment="Top"  Margin="112,0,55,0" Height="25"  >
                 <materialDesign:PackIcon Kind="Done" Width="20" Height="20"/>
             </Button>
 
         </Grid>
+        <syncfusion:SfDataGrid x:Name="StoreList" SelectionChanged="StoreList_SelectionChanged" AllowResizingColumns="True" ColumnSizer="Star" AllowDraggingColumns="True" Margin="10,10,868,10" AllowFiltering="True" ShowGroupDropArea="True" AutoGenerateColumns="False" Background="#FFD8D8D8">
+            <syncfusion:SfDataGrid.Columns>
+                <syncfusion:GridTextColumn HeaderText="Name" MappingName="Name" />
+                <syncfusion:GridTextColumn HeaderText="City" MappingName="City" />
+                <syncfusion:GridTextColumn HeaderText="Country" MappingName="Country" />
+            </syncfusion:SfDataGrid.Columns>
+            <syncfusion:SfDataGrid.DetailsViewDefinition>
+                <!--  FirstLevelNestedGrid1 is created here  -->
+                <syncfusion:GridViewDefinition RelationalColumn="GetDeTransforms">
+                    <syncfusion:GridViewDefinition.DataGrid>
+                        <syncfusion:SfDataGrid x:Name="StoresDeTransformList" AllowFiltering="True" AutoGenerateColumns="False">
+                            <syncfusion:SfDataGrid.Columns>
+                                <syncfusion:GridTextColumn HeaderText="Detransform Date" MappingName="Date" />
+                                <syncfusion:GridTextColumn HeaderText="Amount of money" MappingName="TotalMoney" />
+                            </syncfusion:SfDataGrid.Columns>
+                        </syncfusion:SfDataGrid>
+                    </syncfusion:GridViewDefinition.DataGrid>
+                </syncfusion:GridViewDefinition>
+            </syncfusion:SfDataGrid.DetailsViewDefinition>
+        </syncfusion:SfDataGrid>
 
     </Grid>
 </UserControl>

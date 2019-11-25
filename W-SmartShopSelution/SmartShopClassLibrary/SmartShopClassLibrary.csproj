@@ -63,8 +63,8 @@
     <Compile Include="DataAccess\Orders_Access\Order_Access\OrderPaymentAccess.cs" />
     <Compile Include="DataAccess\Orders_Access\OwnerInvests_Access\InvestmentAccess.cs" />
     <Compile Include="DataAccess\Orders_Access\OwnerInvests_Access\RevenueAccess.cs" />
-    <Compile Include="DataAccess\Orders_Access\Owners_Access\DeTransformAccess.cs" />
-    <Compile Include="DataAccess\Orders_Access\Owners_Access\TransformAccess.cs" />
+    <Compile Include="DataAccess\Orders_Access\StoreTransforms_Access\DeTransformAccess.cs" />
+    <Compile Include="DataAccess\Orders_Access\StoreTransforms_Access\TransformAccess.cs" />
     <Compile Include="DataAccess\Orders_Access\ShopBill_Access\ShopBillAccess.cs" />
     <Compile Include="DataAccess\Orders_Access\StaffSalary_Access\StaffSalaryAccess.cs" />
     <Compile Include="DataAccess\Products_Access\BrandAccess.cs" />
@@ -146,6 +146,8 @@
     <Compile Include="Validation\OrdersValidations\OrderValidations\OrderProductValidator.cs" />
     <Compile Include="Validation\OrdersValidations\OwnerOrdersValidations\InvestmentValidator.cs" />
     <Compile Include="Validation\OrdersValidations\OwnerOrdersValidations\RevenueValidator.cs" />
+    <Compile Include="Validation\OrdersValidations\StoreTransformsValidations\DeTransformValidator.cs" />
+    <Compile Include="Validation\OrdersValidations\StoreTransformsValidations\TransformValidator.cs" />
     <Compile Include="Validation\StoreValidations\ProductValidations\ProductValidator.cs" />
   </ItemGroup>
   <ItemGroup>

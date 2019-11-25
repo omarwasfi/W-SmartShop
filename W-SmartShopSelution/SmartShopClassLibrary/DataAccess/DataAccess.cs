@@ -701,6 +701,48 @@ namespace Library
 
         #endregion
 
+        #region Transform
+
+        /// <summary>
+        /// add the Transfrom to the database
+        /// add the transform to the publicVariables.Transforms
+        /// Create Operation to this Transform
+        /// add the operation to publicvariables.Operations
+        /// </summary>
+        /// <param name="transform"></param>
+        /// <returns></returns>
+        public TransformModel AddTransformToTheDatase(TransformModel transform)
+        {
+            transform = TransformAccess.AddTransformToTheDatabase(transform,db);
+            PublicVariables.Transforms.Add(transform);
+            OperationModel operation = new OperationModel { Transform = transform };
+            PublicVariables.Operations.Add(operation);
+            return transform;
+        }
+
+        #endregion
+
+        #region DeTransform
+
+        /// <summary>
+        /// Add the DeTransform to the databse
+        /// Add the deTransform to the publicVariables.DeTransforms
+        /// Create Operation to this Transform
+        /// add the operation to publicvariables.Operations
+        /// /// </summary>
+        /// <param name="deTransform"></param>
+        /// <returns></returns>
+        public DeTransformModel AddDeTransformToTheDabase(DeTransformModel deTransform)
+        {
+            DeTransformAccess.AddDeTransformToTheDatabase(deTransform, db);
+            PublicVariables.DeTransforms.Add(deTransform);
+            OperationModel operation = new OperationModel { DeTransform = deTransform };
+            PublicVariables.Operations.Add(operation);
+            return deTransform;
+        }
+
+        #endregion
+
         #region Income Order
 
         /// <summary>

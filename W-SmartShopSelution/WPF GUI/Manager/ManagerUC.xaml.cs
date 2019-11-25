@@ -34,6 +34,8 @@ namespace WPF_GUI
 
         private void SetInitialValues()
         {
+            UserGrid.Visibility = Visibility.Visible;
+
             CapitalValue.Value = PublicVariables.Organization.GetCapital;
             StockValue.Value = PublicVariables.Organization.GetStockValue;
             ShopeeWalletValue.Value = PublicVariables.Organization.GetShopeeWalletValue;
