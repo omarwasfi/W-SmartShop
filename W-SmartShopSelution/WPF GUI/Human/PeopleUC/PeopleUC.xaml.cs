@@ -38,6 +38,10 @@ namespace WPF_GUI
             PeopleList.ItemsSource = null;
             PeopleList.ItemsSource = PublicVariables.People;
 
+            people.ItemsSource = PublicVariables.People;
+            people.DisplayMemberPath = "FullName";
+            
+
             T.AutoCompleteSource = null;
             T.AutoCompleteSource = PublicVariables.People;
             T.SearchItemPath = "FullName";

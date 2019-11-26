@@ -131,13 +131,16 @@ namespace Library
             {
                 var p = new DynamicParameters();
                 p.Add("@ProductName", newProduct.Name);
+                p.Add("@QuantityType", newProduct.QuantityType);
+                p.Add("@Size", newProduct.Size);
                 p.Add("@BarCode", newProduct.BarCode);
                 p.Add("@SerialNumber", newProduct.SerialNumber);
                 p.Add("@SerialNumber2", newProduct.SerialNumber2);
-                p.Add("@Size", newProduct.Size);
                 p.Add("@Details", newProduct.Details);
                 p.Add("@SalePrice", newProduct.SalePrice);
                 p.Add("@IncomePrice", newProduct.IncomePrice);
+                p.Add("@ExpirationPeriodHours", newProduct.ExpirationPeriodHours);
+                p.Add("@AlarmQuantity", newProduct.AlarmQuantity);
                 p.Add("@BrandId", newProduct.Brand.Id);
                 p.Add("@CategoryId", newProduct.Category.Id);
                 p.Add("@Id", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);

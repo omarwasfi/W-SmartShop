@@ -3676,10 +3676,261 @@ END
 GO
 
 -------------------------------------------------------------------------------------------------------------------------------------
+USE [SmartShopDatabase]
+GO
+/****** Object:  StoredProcedure [dbo].[spProduct_Create]    Script Date: 11/25/2019 12:35:17 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+ALTER PROCEDURE [dbo].[spProduct_Create]
+	
+	@ProductName nvarchar(200),
+	@QuantityType nvarchar(200),
+	@Size nvarchar(200),
+	@BarCode nvarchar(200),
+	@SerialNumber nvarchar(200),
+	@SerialNumber2 nvarchar(200),
+	@Details nvarchar(500),
+	@SalePrice money,
+	@IncomePrice money,
+	@ExpirationPerid int,
+	@AlarmQuantity int,
+	@BrandId int,
+	@CategoryId int,
+
+	@Id int = 0 out 
+AS
+BEGIN
+
+	SET NOCOUNT ON;
+
+	INSERT INTO Product
+	(Name,QuantityType,Size,BarCode,SerialNumber,SerialNumber2,Details,SalePrice,IncomePrice,ExpirationPeriod,AlarmQuantity,BrandId,CategoryId)
+	VALUES (@ProductName,@QuantityType,@Size,@BarCode,@SerialNumber,@SerialNumber2,@Details,@SalePrice,@IncomePrice,@ExpirationPerid,@AlarmQuantity,@BrandId,@CategoryId);
+
+	SELECT @Id = SCOPE_IDENTITY();
+END
+
 -------------------------------------------------------------------------------------------------------------------------------------
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.Product
+	DROP CONSTRAINT DF_Product_CategoryId
+GO
+ALTER TABLE dbo.Product
+	DROP CONSTRAINT DF_Product_BrandId
+GO
+CREATE TABLE dbo.Tmp_Product
+	(
+	Id int NOT NULL IDENTITY (100000, 1),
+	Name nvarchar(200) NOT NULL,
+	QuantityType nvarchar(200) NULL,
+	Size nvarchar(200) NULL,
+	BarCode nvarchar(200) NOT NULL,
+	SerialNumber nvarchar(200) NULL,
+	SerialNumber2 nvarchar(200) NULL,
+	Details nvarchar(500) NULL,
+	CategoryId int NOT NULL,
+	BrandId int NOT NULL,
+	SalePrice money NOT NULL,
+	IncomePrice money NOT NULL,
+	ExpirationPeriod time(7) NULL,
+	AlarmQuantity int NULL
+	)  ON [PRIMARY]
+GO
+ALTER TABLE dbo.Tmp_Product SET (LOCK_ESCALATION = TABLE)
+GO
+ALTER TABLE dbo.Tmp_Product ADD CONSTRAINT
+	DF_Product_CategoryId DEFAULT ((11000)) FOR CategoryId
+GO
+ALTER TABLE dbo.Tmp_Product ADD CONSTRAINT
+	DF_Product_BrandId DEFAULT ((10000)) FOR BrandId
+GO
+SET IDENTITY_INSERT dbo.Tmp_Product ON
+GO
+IF EXISTS(SELECT * FROM dbo.Product)
+	 EXEC('INSERT INTO dbo.Tmp_Product (Id, Name, QuantityType, Size, BarCode, SerialNumber, SerialNumber2, Details, CategoryId, BrandId, SalePrice, IncomePrice, AlarmQuantity)
+		SELECT Id, Name, QuantityType, Size, BarCode, SerialNumber, SerialNumber2, Details, CategoryId, BrandId, SalePrice, IncomePrice, AlarmQuantity FROM dbo.Product WITH (HOLDLOCK TABLOCKX)')
+GO
+SET IDENTITY_INSERT dbo.Tmp_Product OFF
+GO
+ALTER TABLE dbo.IncomeOrderProduct
+	DROP CONSTRAINT FK_IncomeOrderProduct_Product
+GO
+ALTER TABLE dbo.Stock
+	DROP CONSTRAINT FK_Stock_Product
+GO
+ALTER TABLE dbo.OrderProduct
+	DROP CONSTRAINT FK_OrderProduct_Product
+GO
+DROP TABLE dbo.Product
+GO
+EXECUTE sp_rename N'dbo.Tmp_Product', N'Product', 'OBJECT' 
+GO
+ALTER TABLE dbo.Product ADD CONSTRAINT
+	PK_Products PRIMARY KEY CLUSTERED 
+	(
+	Id
+	) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+
+GO
+COMMIT
+select Has_Perms_By_Name(N'dbo.Product', 'Object', 'ALTER') as ALT_Per, Has_Perms_By_Name(N'dbo.Product', 'Object', 'VIEW DEFINITION') as View_def_Per, Has_Perms_By_Name(N'dbo.Product', 'Object', 'CONTROL') as Contr_Per BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.OrderProduct ADD CONSTRAINT
+	FK_OrderProduct_Product FOREIGN KEY
+	(
+	ProductId
+	) REFERENCES dbo.Product
+	(
+	Id
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.OrderProduct SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+select Has_Perms_By_Name(N'dbo.OrderProduct', 'Object', 'ALTER') as ALT_Per, Has_Perms_By_Name(N'dbo.OrderProduct', 'Object', 'VIEW DEFINITION') as View_def_Per, Has_Perms_By_Name(N'dbo.OrderProduct', 'Object', 'CONTROL') as Contr_Per BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.Stock ADD CONSTRAINT
+	FK_Stock_Product FOREIGN KEY
+	(
+	ProductId
+	) REFERENCES dbo.Product
+	(
+	Id
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.Stock SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+select Has_Perms_By_Name(N'dbo.Stock', 'Object', 'ALTER') as ALT_Per, Has_Perms_By_Name(N'dbo.Stock', 'Object', 'VIEW DEFINITION') as View_def_Per, Has_Perms_By_Name(N'dbo.Stock', 'Object', 'CONTROL') as Contr_Per BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.IncomeOrderProduct ADD CONSTRAINT
+	FK_IncomeOrderProduct_Product FOREIGN KEY
+	(
+	ProductId
+	) REFERENCES dbo.Product
+	(
+	Id
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.IncomeOrderProduct SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+select Has_Perms_By_Name(N'dbo.IncomeOrderProduct', 'Object', 'ALTER') as ALT_Per, Has_Perms_By_Name(N'dbo.IncomeOrderProduct', 'Object', 'VIEW DEFINITION') as View_def_Per, Has_Perms_By_Name(N'dbo.IncomeOrderProduct', 'Object', 'CONTROL') as Contr_Per 
 -------------------------------------------------------------------------------------------------------------------------------------
+USE [SmartShopDatabase]
+GO
+/****** Object:  StoredProcedure [dbo].[spProduct_Create]    Script Date: 11/26/2019 6:32:40 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+ALTER PROCEDURE [dbo].[spProduct_Create]
+	
+	@ProductName nvarchar(200),
+	@QuantityType nvarchar(200),
+	@Size nvarchar(200),
+	@BarCode nvarchar(200),
+	@SerialNumber nvarchar(200),
+	@SerialNumber2 nvarchar(200),
+	@Details nvarchar(500),
+	@SalePrice money,
+	@IncomePrice money,
+	@ExpirationPerid time(7),
+	@AlarmQuantity int,
+	@BrandId int,
+	@CategoryId int,
+
+	@Id int = 0 out 
+AS
+BEGIN
+
+	SET NOCOUNT ON;
+
+	INSERT INTO Product
+	(Name,QuantityType,Size,BarCode,SerialNumber,SerialNumber2,Details,SalePrice,IncomePrice,ExpirationPeriod,AlarmQuantity,BrandId,CategoryId)
+	VALUES (@ProductName,@QuantityType,@Size,@BarCode,@SerialNumber,@SerialNumber2,@Details,@SalePrice,@IncomePrice,@ExpirationPerid,@AlarmQuantity,@BrandId,@CategoryId);
+
+	SELECT @Id = SCOPE_IDENTITY();
+END
+
 -------------------------------------------------------------------------------------------------------------------------------------
+USE [SmartShopDatabase]
+GO
+/****** Object:  StoredProcedure [dbo].[spProduct_Create]    Script Date: 11/26/2019 7:54:44 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+ALTER PROCEDURE [dbo].[spProduct_Create]
+	
+	@ProductName nvarchar(200),
+	@QuantityType nvarchar(200),
+	@Size nvarchar(200),
+	@BarCode nvarchar(200),
+	@SerialNumber nvarchar(200),
+	@SerialNumber2 nvarchar(200),
+	@Details nvarchar(500),
+	@SalePrice money,
+	@IncomePrice money,
+	@ExpirationPeriodHours float ,
+	@AlarmQuantity int,
+	@BrandId int,
+	@CategoryId int,
+
+	@Id int = 0 out 
+AS
+BEGIN
+
+	SET NOCOUNT ON;
+
+	INSERT INTO Product
+	(Name,QuantityType,Size,BarCode,SerialNumber,SerialNumber2,Details,SalePrice,IncomePrice,ExpirationPeriodHours,AlarmQuantity,BrandId,CategoryId)
+	VALUES (@ProductName,@QuantityType,@Size,@BarCode,@SerialNumber,@SerialNumber2,@Details,@SalePrice,@IncomePrice,@ExpirationPeriodHours,@AlarmQuantity,@BrandId,@CategoryId);
+
+	SELECT @Id = SCOPE_IDENTITY();
+END
+
 -------------------------------------------------------------------------------------------------------------------------------------
+USE [SmartShopDatabase]
+GO
+/****** Object:  StoredProcedure [dbo].[spProduct_GetAll]    Script Date: 11/26/2019 8:04:07 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+ALTER PROCEDURE [dbo].[spProduct_GetAll]
+
+AS
+BEGIN
+
+	SET NOCOUNT ON;
+	
+	SELECT Id,Name,QuantityType,Size,BarCode,SerialNumber,SerialNumber2,Details,SalePrice,IncomePrice,ExpirationPeriodHours,AlarmQuantity
+	FROM Product;
+END
+
 -------------------------------------------------------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------------------------------------------------------

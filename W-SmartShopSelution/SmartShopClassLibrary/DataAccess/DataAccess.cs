@@ -534,13 +534,16 @@ namespace Library
 
         /// <summary>
         /// Save new brand to the database , return the new brand with new Id
+        /// add the new brand to the publicVariables.Brand
         /// </summary>
         /// <param name="newBrand"> the new brand model </param>
         /// <param name="db"></param>
         /// <returns></returns>
         public BrandModel AddBrandToTheDatabase(BrandModel newBrand)
         {
-            return BrandAccess.AddBrandToTheDatabase(newBrand, db);
+            newBrand =  BrandAccess.AddBrandToTheDatabase(newBrand, db);
+            PublicVariables.Brands.Add(newBrand);
+            return newBrand;
         }
 
 
@@ -574,13 +577,16 @@ namespace Library
 
         /// <summary>
         /// Add the category to the database , return the category with the new Id
+        /// add the new category to the database
         /// </summary>
         /// <param name="newCategory"></param>
         /// <param name="db"></param>
         /// <returns></returns>
         public CategoryModel AddCategoryToTheDatabase(CategoryModel newCategory)
         {
-            return CategoryAccess.AddCategoryToTheDatabase(newCategory, db);
+            newCategory = CategoryAccess.AddCategoryToTheDatabase(newCategory, db);
+            PublicVariables.Categories.Add(newCategory);
+            return newCategory;
         }
 
 
@@ -787,11 +793,25 @@ namespace Library
             return IncomeOrder.IsBillNumberUnique(incomeOrders , billNumber);
         }
 
-      
+
         #endregion
 
 
         #region Product Functions
+
+        /// <summary>
+        /// Add the product to the datbase
+        /// get the new product add to puvlicVariables.Products
+        /// 
+        /// </summary>
+        /// <param name="product"></param>
+        /// <returns>the new product with the new database ID</returns>
+        public ProductModel AddProductToTheDatabase(ProductModel product ) 
+        {
+            product = ProductAccess.AddProductToTheDatabase(product, db);
+            PublicVariables.Products.Add(product);
+            return product;
+        }
 
         /// <summary>
         /// Get All Products from the databse
@@ -897,20 +917,6 @@ namespace Library
 
 
         /// <summary>
-        /// Insert product to the database that Has all the information,
-        /// return product model with the new Id
-        /// </summary>
-        /// <param name="newProduct"></param>
-        /// <param name="db"></param>
-        /// <returns></returns>
-        public ProductModel AddProductToTheDatabase(ProductModel newProduct)
-        {
-
-            return ProductAccess.AddProductToTheDatabase(newProduct, db);
-        }
-
-
-        /// <summary>
         /// Update the   ProductName ,SerialNumber ,IncomePrice,SalePrice ,BrandId ,CategoryId Values with the database
         /// </summary>
         /// <param name="updatedProduct"></param>
@@ -960,11 +966,10 @@ namespace Library
         /// Create a unique BarCode
         /// </summary>
         /// <param name="product"> the new product that we need to create the barCode to it </param>
-        /// <param name="products"> all the product in the database </param>
         /// <returns></returns>
-        public string CreateBarCode(ProductModel product, List<ProductModel> products)
+        public string CreateBarCode(ProductModel product)
         {
-            return Product.CreateBarCode(product, products);
+            return Product.CreateBarCode(product);
 
         }
 
@@ -976,9 +981,9 @@ namespace Library
         /// true if unique
         /// flase if Exist
         /// </returns>
-        public bool CheckIfTheProductBarCodeUnique(List<ProductModel> products, string BarCode)
+        public bool CheckIfTheProductBarCodeUnique(string BarCode)
         {
-            return Product.CheckIfTheProductBarCodeUnique(products, BarCode);
+            return Product.CheckIfTheProductBarCodeUnique( BarCode);
         }
 
         #endregion

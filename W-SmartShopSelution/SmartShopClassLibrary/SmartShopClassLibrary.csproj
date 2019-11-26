@@ -148,6 +148,8 @@
     <Compile Include="Validation\OrdersValidations\OwnerOrdersValidations\RevenueValidator.cs" />
     <Compile Include="Validation\OrdersValidations\StoreTransformsValidations\DeTransformValidator.cs" />
     <Compile Include="Validation\OrdersValidations\StoreTransformsValidations\TransformValidator.cs" />
+    <Compile Include="Validation\StoreValidations\ProductValidations\BrandValidator.cs" />
+    <Compile Include="Validation\StoreValidations\ProductValidations\CategoryValidator.cs" />
     <Compile Include="Validation\StoreValidations\ProductValidations\ProductValidator.cs" />
   </ItemGroup>
   <ItemGroup>

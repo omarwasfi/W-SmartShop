@@ -30,21 +30,16 @@ namespace WPF_GUI.ProductManager
 
         #region Main Variables
 
-        private List<ProductModel> Products { get; set; }
+        StiReport Report;
 
-        StiReport report = new StiReport();
+        
 
 
         #endregion
 
         #region Help variables
 
-        private List<CategoryModel> Categories { get; set; }
-        private List<BrandModel> Brands { get; set; }
-
-        private List<ProductModel> FProducts { get; set; } = new List<ProductModel>();
-
-        private List<string> SearchTypes { get; set; } = new List<string>() { "Name", "SerialNumber" , "Barcode"};
+      
         #endregion
 
         #region set the initianl values
@@ -64,186 +59,61 @@ namespace WPF_GUI.ProductManager
         /// /// </summary>
         private void SetInitialValues()
         {
+            ProductList.ItemsSource = null;
+            ProductList.ItemsSource = PublicVariables.Products;
 
-
-            // set the ProductSearchType_InventoryUC values
-            ProductSearchType_ProductManagerUC.ItemsSource = null;
-            ProductSearchType_ProductManagerUC.ItemsSource = SearchTypes;
-
-            // Update the procducts from the database
-            UpdateProductsFromTheDatabase();
-            ProductsList_ProductManagerUC.ItemsSource = null;
-            ProductsList_ProductManagerUC.ItemsSource = Products;
-
-            
-            UpdateCategoriesFromThePublicVaribles();
-            CategoryValue_ProductManagerUC.ItemsSource = null;
-            CategoryValue_ProductManagerUC.ItemsSource = Categories;
-            CategoryValue_ProductManagerUC.DisplayMemberPath = "Name";
-
-            UpdateBrandsFromThePublicVaribles();
-            BrandValue_ProductManagerUC.ItemsSource = null;
-            BrandValue_ProductManagerUC.ItemsSource = Brands;
-            BrandValue_ProductManagerUC.DisplayMemberPath = "Name";
+           
         }
 
-        /// <summary>
-        /// Update the produts from the database
-        /// - set the Products in Public variable
-        /// </summary>
-        private void UpdateProductsFromTheDatabase()
-        {
-            Products = GlobalConfig.Connection.GetProducts();
-            PublicVariables.Products = Products;
-        }
 
-        /// <summary>
-        /// Updates the categories with the categories public variables
-        /// Called each time we need to update the categories
-        /// </summary>
-        private void UpdateCategoriesFromThePublicVaribles()
-        {
-            Categories = PublicVariables.Categories;
-        }
-
-        /// <summary>
-        /// Updates the brands with the Brands public variables
-        /// Called each time we need to update the brands
-        /// </summary>
-        private void UpdateBrandsFromThePublicVaribles()
-        {
-            Brands = PublicVariables.Brands;
-        }
         #endregion
 
 
-        #region CategoryCB and Brand CB events 
 
-        /// <summary>
-        /// Private event called when CategoryValue_InventoryUC combobox OR BrandValue_InventoryUC combobox sellection  changed to filter the StocksList_Inventory gridView by selected category or brand
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void FilterProductsByCategoryAndBrand(object sender, SelectionChangedEventArgs e)
-        {
-
-            FProducts = GlobalConfig.Connection.GetProductsByCategoryAndBrand(Products, (CategoryModel)CategoryValue_ProductManagerUC.SelectedItem, (BrandModel)BrandValue_ProductManagerUC.SelectedItem);
-
-            ProductsList_ProductManagerUC.ItemsSource = null;
-            ProductsList_ProductManagerUC.ItemsSource = FProducts;
-
-
-        }
-        #endregion
 
         #region Hole Form Events
 
-        /// <summary>
-        /// reset the default value from the hole form from the public variables
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ResetProductsResultsButton_ProductManagerUC_Click(object sender, RoutedEventArgs e)
+
+
+
+        #endregion
+
+        #region Grid Events
+
+        private void RefreshButton_Click(object sender, RoutedEventArgs e)
         {
             SetInitialValues();
-            //SetInitialValues();
         }
 
-        /// <summary>
-        /// called when search button clicked
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ProductSearchButton_ProductManagerUC_Click(object sender, RoutedEventArgs e)
+        private void PrintButton_Click(object sender, RoutedEventArgs e)
         {
-            if (ProductSearchType_ProductManagerUC.Text == "SerialNumber")
-            {
-                FProducts = GlobalConfig.Connection.FilterProductsBySerialNumber(Products, ProductSearchValue_ProductManagerUC.Text);
-                ProductsList_ProductManagerUC.ItemsSource = null;
-                ProductsList_ProductManagerUC.ItemsSource = FProducts;
-            }
-            else if (ProductSearchType_ProductManagerUC.Text == "Name")
-            {
-                FProducts = GlobalConfig.Connection.FilterProductsByName(Products , ProductSearchValue_ProductManagerUC.Text);
-
-                ProductsList_ProductManagerUC.ItemsSource = null;
-                ProductsList_ProductManagerUC.ItemsSource = FProducts;
-            }
-            else if (ProductSearchType_ProductManagerUC.Text == "Barcode")
-            {
-                FProducts = GlobalConfig.Connection.FilterProductsByBarCode(Products, ProductSearchValue_ProductManagerUC.Text);
-
-                ProductsList_ProductManagerUC.ItemsSource = null;
-                ProductsList_ProductManagerUC.ItemsSource = FProducts;
-            }
-            else
-            {
-                MessageBox.Show("CHoose the search type first");
-            }
+            Report = new StiReport();
+            UserGrid.Visibility = Visibility.Collapsed;
+            PrintGrid.Visibility = Visibility.Visible;
+            Report.Load(@"ProductsReport.mrt");
+            Report.Compile();
+            Report.Render();
+            ProductsReportPrint.Report = Report;
         }
 
-        /// <summary>
-        /// SHow CreateProductUC in new window
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void CreateNewProductButton_ProductManagerUC_Click(object sender, RoutedEventArgs e)
-        {
-            CreateProductUC createProduct = new CreateProductUC();
-            Window window = new Window
-            {
-                Title = "Create Product",
-                Content = createProduct,
-                SizeToContent = SizeToContent.WidthAndHeight,
-                ResizeMode = ResizeMode.NoResize
-            };
-            window.ShowDialog();
-            SetInitialValues();
-        }
 
-        private void ModifySelectedButton_ProductManagerUC_Click(object sender, RoutedEventArgs e)
+        private void CreateNewProductButton_Click(object sender, RoutedEventArgs e)
         {
-            if (ProductsList_ProductManagerUC.SelectedItem != null)
-            {
-                ModifyProductUC modifyProduct = new ModifyProductUC((ProductModel)ProductsList_ProductManagerUC.SelectedItem);
-                Window window = new Window
-                {
-                    Title = "Modify Product",
-                    Content = modifyProduct,
-                    SizeToContent = SizeToContent.WidthAndHeight,
-                    ResizeMode = ResizeMode.NoResize
-                };
-                window.ShowDialog();
-                SetInitialValues();
-            }
-            else
-            {
-                MessageBox.Show("There is no selected Product to modify");
-            }
-
+            UserGrid.Visibility = Visibility.Collapsed;
+            CreateNewProductGrid.Visibility = Visibility.Visible;
 
         }
-
-        private void RefreshButton_ProductManagerUC_Click(object sender, RoutedEventArgs e)
+        private void BackToUserGridButton_FromCreateNewProductGrid_Click(object sender, RoutedEventArgs e)
         {
+            UserGrid.Visibility = Visibility.Visible;
+            CreateNewProductGrid.Visibility = Visibility.Collapsed;
+
             SetInitialValues();
         }
 
 
         #endregion
 
-        /// <summary>
-        /// Set the veriables of the report
-        /// then show the report
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void PrintButton_ProductManagerUC_Click(object sender, RoutedEventArgs e)
-        {
-            report.Load(@"ProductsReport.mrt");
-            report.Compile();
-            report.Render();
-            report.Show();
-        }
+
     }
 }

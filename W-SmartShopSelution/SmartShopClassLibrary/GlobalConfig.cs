@@ -21,6 +21,8 @@ namespace Library
         public static TransformValidator TransformValidator { get; set;}
         public static DeTransformValidator DeTransformValidator { get; set; }
         public static PersonValidator PersonValidator { get; set; }
+        public static BrandValidator BrandValidator { get; set; }
+        public static CategoryValidator CategoryValidator { get; set; }
         public static OrderProductValidator OrderProductValidator { get; set; }
 
         public static void InitializeConnection()

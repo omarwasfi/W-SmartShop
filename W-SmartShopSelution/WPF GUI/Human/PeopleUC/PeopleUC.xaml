@@ -16,7 +16,7 @@
 
 
 
-            <syncfusion:SfDataGrid x:Name="PeopleList" AllowResizingColumns="True" ColumnSizer="Star" AllowDraggingColumns="True" Margin="10,28,10,54.167" AllowFiltering="True" ShowGroupDropArea="True" AutoGenerateColumns="False" Background="#FFD8D8D8">
+            <syncfusion:SfDataGrid x:Name="PeopleList" AllowResizingColumns="True" ColumnSizer="Star" AllowDraggingColumns="True" Margin="10,34,10,54" AllowFiltering="True" ShowGroupDropArea="True" AutoGenerateColumns="False" Background="#FFD8D8D8">
                 <syncfusion:SfDataGrid.Columns>
                     <syncfusion:GridTextColumn HeaderText="" MappingName="GetThePersonProperties" />
                     <syncfusion:GridTextColumn HeaderText="Name" MappingName="FullName" />
@@ -50,8 +50,10 @@
 
             </Grid>
 
-            <syncfusion:SfTextBoxExt Name="T" HighlightedTextColor="Red" TextHighlightMode="MultipleOccurrence" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Watermark="Find Person" VerticalAlignment="Top" Width="477" Margin="421,0,0,0"/>
+            <syncfusion:SfTextBoxExt Name="T"  HighlightedTextColor="Red" TextHighlightMode="MultipleOccurrence" HorizontalAlignment="Left" Height="29" TextWrapping="Wrap" Watermark="Find Person" VerticalAlignment="Top" Width="477" Margin="421,0,0,0" FontSize="18" Foreground="Gray"/>
 
+            <ComboBox Name="people" IsTextSearchEnabled="True" TextSearch.TextPath="FullName" Margin="898,1,429,651"   ></ComboBox>
+            
             <Button x:Name="CreatePerson" Content="Create Person"  Click="CreatePerson_Click"  Margin="10,630.833,1211.667,0" VerticalAlignment="Top" Height="39.167"  />
 
         </Grid>

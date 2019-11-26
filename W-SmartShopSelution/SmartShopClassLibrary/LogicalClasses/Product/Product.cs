@@ -262,7 +262,7 @@ namespace Library
         /// true if unique
         /// flase if Exist
         /// </returns>
-        public static bool CheckIfTheProductBarCodeUnique(List<ProductModel> products, string BarCode)
+        public static bool CheckIfTheProductBarCodeUnique(string BarCode)
         {
             if(string.IsNullOrWhiteSpace(BarCode))
             {
@@ -270,7 +270,7 @@ namespace Library
 
             }
 
-            foreach (ProductModel product in products)
+            foreach (ProductModel product in PublicVariables.Products)
             {
                 if (product.BarCode == BarCode)
                 {
@@ -322,12 +322,12 @@ namespace Library
         /// <param name="product"> the new product that we need to create the barCode to it </param>
         /// <param name="products"> all the product in the database </param>
         /// <returns></returns>
-       public static string CreateBarCode(ProductModel product , List<ProductModel> products)
+       public static string CreateBarCode(ProductModel product )
         {
             string barCode = product.GetFirstThreeLitterBarCode;
             int number = 1;
             
-            while(CheckIfTheProductBarCodeUnique(products,barCode + number) == false)
+            while(CheckIfTheProductBarCodeUnique(barCode + number) == false)
             {
                 number++;
             }

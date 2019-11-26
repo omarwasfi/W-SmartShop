@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 
 namespace Library
 {
+    /// <summary>
+    /// The Barcode Has to be Unique
+    /// The SerialNumbers not has to be unique
+    /// </summary>
     public class ProductValidator : AbstractValidator<ProductModel>
     {
         public ProductValidator()
@@ -18,39 +22,40 @@ namespace Library
 
             RuleFor(p => p.IncomePrice)
                 .Cascade(CascadeMode.StopOnFirstFailure)
-                .NotEmpty().WithMessage("The Product {PropertyName} Should not be Empty !")
-                .NotNull().WithMessage("Enter the product {PropertyName} !");
+                .GreaterThanOrEqualTo(0).WithMessage("The Product {PropertyName} can't be less than 0");
 
             RuleFor(p => p.SalePrice )
                 .Cascade(CascadeMode.StopOnFirstFailure)
-                .NotEmpty().WithMessage("The Product {PropertyName} Should not be Empty !")
-                .NotNull().WithMessage("Enter the product {PropertyName} !");
+                .GreaterThanOrEqualTo(0).WithMessage("The Product {PropertyName} can't be less than 0");
+            
             RuleFor(p => p.BarCode)
                 .Cascade(CascadeMode.StopOnFirstFailure)
-                .NotEmpty().WithMessage("The Product {PropertyName} Should not be Empty !")
-                .NotNull().WithMessage("Enter the product {PropertyName} !");
-
-            RuleFor(p => p)
+                .NotEmpty().WithMessage("The Product {PropertyName} Should not be Empty. Generate a new one !")
+                .NotNull().WithMessage("Enter the product {PropertyName}. Generate a new one !")
+                .Must(IsTheBarCodeUnique).WithMessage("This {PropertyName} is used before");
+            RuleFor(p => p.Category)
+                .Cascade(CascadeMode.StopOnFirstFailure)
+                .NotNull().WithMessage("unexpected Error From ProductValidator: The {PropertyName} is NUll !")
+                .NotEmpty().WithMessage("unexpected Error From ProductValidator : The {PropertyName} is NUll !");
+            
+            RuleFor(p => p.Brand)
                .Cascade(CascadeMode.StopOnFirstFailure)
-               .Must(SalePriceIsMoreThanTheIncomePrice).WithMessage("The Sale price has to be more than the income price !");
+               .NotNull().WithMessage("unexpected Error From ProductValidator: The {PropertyName} is NUll !")
+               .NotEmpty().WithMessage("unexpected Error From ProductValidator : The {PropertyName} is NUll !");
+
         }
-        
+
         /// <summary>
-        /// Check if the Sale Price of the product is greater than the Income Product of the product
+        /// Check if the barcode unique 
         /// </summary>
-        /// <param name="product"></param>
-        /// <returns></returns>
-        protected bool SalePriceIsMoreThanTheIncomePrice(ProductModel product)
+        /// <param name="barcode"></param>
+        /// <returns>true if the barcode unique</returns>
+        protected bool IsTheBarCodeUnique(string barcode)
         {
-            if(product.SalePrice > product.IncomePrice)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return Product.CheckIfTheProductBarCodeUnique(barcode);
         }
+
+       
 
         
         

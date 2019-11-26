@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 namespace Library
 {
     /// <summary>
-    /// Product model cotains:
-    /// Database Id , Name , CategoryModel , BrandModel ,current sale price, Current Income Price
+    /// BarCode unique
+    /// serialNumbers not unique (could be used to the same product to get deffrent barcodes for each deffrent incomePrice of each deffrent size
+    ///  
     /// </summary>
     public class ProductModel
     {
@@ -21,7 +22,7 @@ namespace Library
         /// Product Name ( Not has to be Unique ) (200 char)
         /// </summary>
         public string Name { get; set; }
-
+      
         /// <summary>
         /// The quantity type
         /// </summary>
@@ -66,10 +67,22 @@ namespace Library
         /// </summary>
         public decimal IncomePrice { get; set; }
 
+        public float ExpirationPeriodHours { set; get; }
+
         /// <summary>
         /// The time of the expiration in hours
         /// </summary>
-        public int ExpirationPeriod { get; set; }
+        public TimeSpan ExpirationPeriod 
+        {
+            get
+            {
+                return new TimeSpan(0, (int)ExpirationPeriodHours, 0, 0);
+            }
+            set 
+            {
+                ExpirationPeriodHours = (float)value.TotalHours;
+            }
+        }
 
         /// <summary>
         /// The quantity that the user need a notification to increase the number of this product in the stock
@@ -96,6 +109,12 @@ namespace Library
                 string barCode = Category.Name.Substring(0,1) + Brand.Name.Substring(0,1) + Name.Substring(0,1);
                 barCode =  barCode.ToUpper();
                 return barCode;
-            } }
+            }
+        }
+
+        /// <summary>
+        /// Products Has the SameName Or The Same SerialNumber
+        /// </summary>
+        public List<ProductModel> GetSimilarProducts { get;}
     }
 }
