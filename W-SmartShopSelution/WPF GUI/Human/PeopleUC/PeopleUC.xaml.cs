@@ -40,7 +40,9 @@ namespace WPF_GUI
 
             people.ItemsSource = PublicVariables.People;
             people.DisplayMemberPath = "FullName";
-            
+
+            PeopleCB.ItemsSource = PublicVariables.People;
+            PeopleCB.DisplayMemberPath = "FullName";
 
             T.AutoCompleteSource = null;
             T.AutoCompleteSource = PublicVariables.People;

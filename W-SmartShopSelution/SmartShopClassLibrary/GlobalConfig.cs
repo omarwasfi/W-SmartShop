@@ -23,7 +23,12 @@ namespace Library
         public static PersonValidator PersonValidator { get; set; }
         public static BrandValidator BrandValidator { get; set; }
         public static CategoryValidator CategoryValidator { get; set; }
+        public static IncomeOrderProductRecordValidator IncomeOrderProductRecordValidator { get; set; }
+        public static IncomeOrderPaymentValidator IncomeOrderPaymentValidator { get; set; }
+        public static IncomeOrderProductValidator IncomeOrderProductValidator { get; set; }
+         public static IncomeOrderValidator IncomeOrderValidator { get; set; }
         public static OrderProductValidator OrderProductValidator { get; set; }
+        
 
         public static void InitializeConnection()
         {

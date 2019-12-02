@@ -3932,13 +3932,400 @@ BEGIN
 END
 
 -------------------------------------------------------------------------------------------------------------------------------------
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.Stock
+	DROP CONSTRAINT FK_Stock_Product
+GO
+ALTER TABLE dbo.Product SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+select Has_Perms_By_Name(N'dbo.Product', 'Object', 'ALTER') as ALT_Per, Has_Perms_By_Name(N'dbo.Product', 'Object', 'VIEW DEFINITION') as View_def_Per, Has_Perms_By_Name(N'dbo.Product', 'Object', 'CONTROL') as Contr_Per BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.Stock
+	DROP CONSTRAINT FK_Stock_Store
+GO
+ALTER TABLE dbo.Store SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+select Has_Perms_By_Name(N'dbo.Store', 'Object', 'ALTER') as ALT_Per, Has_Perms_By_Name(N'dbo.Store', 'Object', 'VIEW DEFINITION') as View_def_Per, Has_Perms_By_Name(N'dbo.Store', 'Object', 'CONTROL') as Contr_Per BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.Stock
+	DROP CONSTRAINT DF_Stock_Quantity
+GO
+CREATE TABLE dbo.Tmp_Stock
+	(
+	Id int NOT NULL IDENTITY (12000, 1),
+	StoreId int NOT NULL,
+	ProductId int NOT NULL,
+	IncomePrice money NULL,
+	SalePrice money NULL,
+	Date datetime NULL,
+	ExpirationPeriodHours float(53) NULL,
+	ExpirationAlarmEnabled bit NULL,
+	Quantity float(53) NOT NULL,
+	AlarmQuantity int NULL,
+	QuantityAlarmEnabled bit NULL
+	)  ON [PRIMARY]
+GO
+ALTER TABLE dbo.Tmp_Stock SET (LOCK_ESCALATION = TABLE)
+GO
+ALTER TABLE dbo.Tmp_Stock ADD CONSTRAINT
+	DF_Stock_Quantity DEFAULT ((0)) FOR Quantity
+GO
+SET IDENTITY_INSERT dbo.Tmp_Stock ON
+GO
+IF EXISTS(SELECT * FROM dbo.Stock)
+	 EXEC('INSERT INTO dbo.Tmp_Stock (Id, StoreId, ProductId, IncomePrice, SalePrice, Date, ExpirationPeriodHours, ExpirationAlarmEnabled, Quantity, AlarmQuantity, QuantityAlarmEnabled)
+		SELECT Id, StoreId, ProductId, IncomePrice, SalePrice, Date, CONVERT(float(53), ExpirationPeriod), ExpirationAlarmEnabled, Quantity, AlarmQuantity, QuantityAlarmEnabled FROM dbo.Stock WITH (HOLDLOCK TABLOCKX)')
+GO
+SET IDENTITY_INSERT dbo.Tmp_Stock OFF
+GO
+DROP TABLE dbo.Stock
+GO
+EXECUTE sp_rename N'dbo.Tmp_Stock', N'Stock', 'OBJECT' 
+GO
+ALTER TABLE dbo.Stock ADD CONSTRAINT
+	PK_Stock PRIMARY KEY CLUSTERED 
+	(
+	Id
+	) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+
+GO
+ALTER TABLE dbo.Stock ADD CONSTRAINT
+	FK_Stock_Store FOREIGN KEY
+	(
+	StoreId
+	) REFERENCES dbo.Store
+	(
+	Id
+	) ON UPDATE  CASCADE 
+	 ON DELETE  CASCADE 
+	
+GO
+ALTER TABLE dbo.Stock ADD CONSTRAINT
+	FK_Stock_Product FOREIGN KEY
+	(
+	ProductId
+	) REFERENCES dbo.Product
+	(
+	Id
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+COMMIT
+select Has_Perms_By_Name(N'dbo.Stock', 'Object', 'ALTER') as ALT_Per, Has_Perms_By_Name(N'dbo.Stock', 'Object', 'VIEW DEFINITION') as View_def_Per, Has_Perms_By_Name(N'dbo.Stock', 'Object', 'CONTROL') as Contr_Per 
 -------------------------------------------------------------------------------------------------------------------------------------
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.Stock
+	DROP CONSTRAINT FK_Stock_Product
+GO
+ALTER TABLE dbo.Product SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+select Has_Perms_By_Name(N'dbo.Product', 'Object', 'ALTER') as ALT_Per, Has_Perms_By_Name(N'dbo.Product', 'Object', 'VIEW DEFINITION') as View_def_Per, Has_Perms_By_Name(N'dbo.Product', 'Object', 'CONTROL') as Contr_Per BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.Stock
+	DROP CONSTRAINT FK_Stock_Store
+GO
+ALTER TABLE dbo.Store SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+select Has_Perms_By_Name(N'dbo.Store', 'Object', 'ALTER') as ALT_Per, Has_Perms_By_Name(N'dbo.Store', 'Object', 'VIEW DEFINITION') as View_def_Per, Has_Perms_By_Name(N'dbo.Store', 'Object', 'CONTROL') as Contr_Per BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.Stock
+	DROP CONSTRAINT DF_Stock_Quantity
+GO
+CREATE TABLE dbo.Tmp_Stock
+	(
+	Id int NOT NULL IDENTITY (12000, 1),
+	SBarCode nvarchar(200) NOT NULL,
+	StoreId int NOT NULL,
+	ProductId int NOT NULL,
+	IncomePrice money NULL,
+	SalePrice money NULL,
+	Date datetime NULL,
+	ExpirationPeriodHours float(53) NULL,
+	ExpirationAlarmEnabled bit NULL,
+	Quantity float(53) NOT NULL,
+	AlarmQuantity int NULL,
+	QuantityAlarmEnabled bit NULL
+	)  ON [PRIMARY]
+GO
+ALTER TABLE dbo.Tmp_Stock SET (LOCK_ESCALATION = TABLE)
+GO
+ALTER TABLE dbo.Tmp_Stock ADD CONSTRAINT
+	DF_Stock_Quantity DEFAULT ((0)) FOR Quantity
+GO
+SET IDENTITY_INSERT dbo.Tmp_Stock ON
+GO
+IF EXISTS(SELECT * FROM dbo.Stock)
+	 EXEC('INSERT INTO dbo.Tmp_Stock (Id, StoreId, ProductId, IncomePrice, SalePrice, Date, ExpirationPeriodHours, ExpirationAlarmEnabled, Quantity, AlarmQuantity, QuantityAlarmEnabled)
+		SELECT Id, StoreId, ProductId, IncomePrice, SalePrice, Date, ExpirationPeriodHours, ExpirationAlarmEnabled, Quantity, AlarmQuantity, QuantityAlarmEnabled FROM dbo.Stock WITH (HOLDLOCK TABLOCKX)')
+GO
+SET IDENTITY_INSERT dbo.Tmp_Stock OFF
+GO
+DROP TABLE dbo.Stock
+GO
+EXECUTE sp_rename N'dbo.Tmp_Stock', N'Stock', 'OBJECT' 
+GO
+ALTER TABLE dbo.Stock ADD CONSTRAINT
+	PK_Stock PRIMARY KEY CLUSTERED 
+	(
+	Id
+	) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+
+GO
+ALTER TABLE dbo.Stock ADD CONSTRAINT
+	FK_Stock_Store FOREIGN KEY
+	(
+	StoreId
+	) REFERENCES dbo.Store
+	(
+	Id
+	) ON UPDATE  CASCADE 
+	 ON DELETE  CASCADE 
+	
+GO
+ALTER TABLE dbo.Stock ADD CONSTRAINT
+	FK_Stock_Product FOREIGN KEY
+	(
+	ProductId
+	) REFERENCES dbo.Product
+	(
+	Id
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+COMMIT
+select Has_Perms_By_Name(N'dbo.Stock', 'Object', 'ALTER') as ALT_Per, Has_Perms_By_Name(N'dbo.Stock', 'Object', 'VIEW DEFINITION') as View_def_Per, Has_Perms_By_Name(N'dbo.Stock', 'Object', 'CONTROL') as Contr_Per 
 -------------------------------------------------------------------------------------------------------------------------------------
+USE [SmartShopDatabase]
+GO
+/****** Object:  StoredProcedure [dbo].[spStock_GetAll]    Script Date: 12/1/2019 11:56:46 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+ALTER PROCEDURE [dbo].[spStock_GetAll]
+
+AS
+BEGIN
+
+	SET NOCOUNT ON;
+
+	SELECT Id,
+	SBarCode,
+		   IncomePrice,
+		   SalePrice,
+		   Date,
+		   ExpirationPeriodHours,
+		   ExpirationAlarmEnabled,
+		   Quantity,
+		   AlarmQuantity,
+		   QuantityAlarmEnabled 
+	FROM Stock;
+
+END
+
 -------------------------------------------------------------------------------------------------------------------------------------
+USE [SmartShopDatabase]
+GO
+/****** Object:  StoredProcedure [dbo].[spStock_Create]    Script Date: 12/2/2019 11:51:09 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+ALTER PROCEDURE [dbo].[spStock_Create] 
+
+	@SBarCode nvarchar(200),
+	@StoreId int,
+	@ProductId int,
+	@IncomePrice money,
+	@SalePrice money,
+	@Date datetime,
+	@ExpirationPeriodHours float,
+	@ExpirationAlarmEnabled bit,
+	@Quantity int,
+	@AlarmQuantity int,
+	@QuantityAlarmEnabled bit,
+	@Id int = 0 out
+AS
+BEGIN
+
+	SET NOCOUNT ON;
+
+	INSERT INTO 
+	Stock
+	(SBarCode,
+	StoreId,
+	ProductId,
+	IncomePrice,
+	SalePrice,
+	Date,
+	ExpirationPeriodHours,
+	ExpirationAlarmEnabled,
+	Quantity,
+	AlarmQuantity,
+	QuantityAlarmEnabled)
+	VALUES 
+	(@SBarCode,
+	@StoreId,
+	@ProductId,
+	@IncomePrice,
+	@SalePrice,
+	@Date,
+	@ExpirationPeriodHours,
+	@ExpirationAlarmEnabled,
+	@Quantity,
+	@AlarmQuantity
+	,@QuantityAlarmEnabled);
+
+	SELECT @Id = SCOPE_IDENTITY();
+
+END
+
 -------------------------------------------------------------------------------------------------------------------------------------
+USE [SmartShopDatabase]
+GO
+/****** Object:  StoredProcedure [dbo].[spIncomeOrder_CreateIncomeOrder]    Script Date: 12/2/2019 2:30:54 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+ALTER PROCEDURE [dbo].[spIncomeOrder_CreateIncomeOrder]
+
+
+	@SupplierId int ,
+	@BillNumber nvarchar(200),
+	@Date datetime,
+	@StoreId int,
+	@StaffId int,
+	@Details nvarchar(500),
+	@Id int = 0 output
+
+AS
+BEGIN
+
+
+	SET NOCOUNT ON;
+
+	INSERT INTO dbo.IncomeOrder(SupplierId,BillNumber,Date,StoreId,StaffId,Details)
+	VALUES (@SupplierId,@BillNumber,@Date,@StoreId,@StaffId,@Details);
+
+    SELECT @Id = SCOPE_IDENTITY();
+
+END
+
 -------------------------------------------------------------------------------------------------------------------------------------
+USE [SmartShopDatabase]
+GO
+/****** Object:  StoredProcedure [dbo].[spIncomeOrderProduct_Create]    Script Date: 12/2/2019 2:47:49 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+ALTER PROCEDURE [dbo].[spIncomeOrderProduct_Create]
+
+	@IncomeOrderId int,
+	@ProductId int,
+	@IncomePrice int,
+	@Quantity int,
+	@Id int = 0 out 
+
+AS
+BEGIN
+
+
+
+	SET NOCOUNT ON;
+
+	INSERT INTO dbo.IncomeOrderProduct(IncomeOrderId,ProductId,IncomePrice,Quantity)
+	VALUES (@IncomeOrderId,@ProductId,@IncomePrice,@Quantity);
+
+		SELECT @Id = SCOPE_IDENTITY();
+
+END
+
 -------------------------------------------------------------------------------------------------------------------------------------
+
+CREATE PROCEDURE spIncomeOrderPayment_Create
+		@IncomeOrderId int,
+		@StaffId int,
+		@StoreId int,
+		@Paid money,
+		@Date datetime,
+		@Id int = 0 out 
+
+AS
+BEGIN
+
+	SET NOCOUNT ON;
+
+    INSERT INTO IncomeOrderPayment(IncomeOrderId,StaffId,StoreId,Paid,Date)
+	VALUES(@IncomeOrderId,@StaffId,@StoreId,@Paid,@Date);
+
+
+			SELECT @Id = SCOPE_IDENTITY();
+
+END
+GO
+
 -------------------------------------------------------------------------------------------------------------------------------------
+USE [SmartShopDatabase]
+GO
+/****** Object:  StoredProcedure [dbo].[spStock_Update]    Script Date: 12/2/2019 3:47:15 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+ALTER PROCEDURE [dbo].[spStock_Update]
+	@Id int,
+	@Date datetime,
+	@AlarmQuantity int,
+	@QuantityAlarmEnabled bit,
+	@Quantity int
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+	
+	UPDATE Stock 
+	SET 
+	Date = @Date,
+	AlarmQuantity = @AlarmQuantity,
+	QuantityAlarmEnabled = @QuantityAlarmEnabled,
+	Quantity = @Quantity
+	WHERE Stock.Id = @Id;
+END
+
 -------------------------------------------------------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------------------------------------------------------

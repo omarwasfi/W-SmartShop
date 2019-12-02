@@ -18,6 +18,12 @@ namespace Library
         public int Id { get; set; }
 
         /// <summary>
+        /// S barcode is the unique thing about the stock
+        /// Starts with the Prodict.Barcode then first litter of the store then a Number
+        /// </summary>
+        public string SBarCode { get; set; }
+
+        /// <summary>
         /// The Store model
         /// </summary>
         public StoreModel Store { get; set; }
@@ -42,15 +48,29 @@ namespace Library
         /// </summary>
         public DateTime Date { get; set; }
 
+        public float ExpirationPeriodHours { set; get; }
+        
         /// <summary>
-        /// The time of the expiration in hours
+        /// The time of the expiration in in timeSpain
         /// </summary>
-        public int ExpirationPeriod { get; set; }
+        public TimeSpan ExpirationPeriod
+        {
+            get
+            {
+                return new TimeSpan(0, (int)ExpirationPeriodHours, 0, 0);
+            }
+            set
+            {
+                ExpirationPeriodHours = (float)value.TotalHours;
+            }
+        }
+
 
         /// <summary>
         /// if it's disabled the user will not get notification about the ExpirationPeriod
         /// </summary>
         public Boolean ExpirationAlarmEnabled { get; set; }
+
         /// <summary>
         /// The Current Quantity of this product in the store
         /// </summary>
@@ -65,5 +85,8 @@ namespace Library
         /// if it's disabled the user will not get notification about the AlarmQuantity
         /// </summary>
         public Boolean QuantityAlarmEnabled { get; set; }
+
+
+       
     }
 }

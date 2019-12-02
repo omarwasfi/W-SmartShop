@@ -11,6 +11,32 @@ namespace Library
     public static class IncomeOrderProductAccess
     {
         /// <summary>
+        /// Add the new incomeOrderProduct to the database
+        /// return the incomeOrderProduct with the new id
+        /// </summary>
+        /// <param name="incomeOrderProduct"></param>
+        /// <param name="incomeOrder"></param>
+        /// <param name="db"></param>
+        /// <returns></returns>
+        public static IncomeOrderProductModel AddIncomeOrderProductToTheDatabase(IncomeOrderProductModel incomeOrderProduct, IncomeOrderModel incomeOrder , string db)
+        {
+
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnVal(db)))
+            {
+                var p = new DynamicParameters();
+                p.Add("@IncomeOrderId", incomeOrder.Id);
+                p.Add("@ProductId", incomeOrderProduct.Product.Id);
+                p.Add("@IncomePrice", incomeOrderProduct.IncomePrice);
+                p.Add("@Quantity", incomeOrderProduct.Quantity);
+                p.Add("@Id", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
+                connection.Execute("dbo.spIncomeOrderProduct_Create", p, commandType: CommandType.StoredProcedure);
+                incomeOrderProduct.Id = p.Get<int>("@Id");
+            }
+           
+            return incomeOrderProduct;
+        }
+      
+        /// <summary>
         /// Get all IncomeOrderProductModels without ProductModel
         /// </summary>
         /// <param name="db"></param>
@@ -57,8 +83,9 @@ namespace Library
             return incomeOrderProducts;
         }
 
+
         /// <summary>
-        /// Loop throw each IncomeOrderProduct in the IncomeOrder
+        /// -OLD- Loop throw each IncomeOrderProduct in the IncomeOrder
         /// save each one in the IncomeOrderProdcut table with tha Id of the IncomeOrder
         /// </summary>
         /// <param name="order"> IncomeOrder Model Has An Id From IncomeOrder.GetEmptyIncomeOrder </param>
@@ -79,5 +106,6 @@ namespace Library
                 }
             }
         }
+
     }
 }

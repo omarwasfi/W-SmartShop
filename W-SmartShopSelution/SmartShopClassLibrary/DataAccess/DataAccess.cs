@@ -22,21 +22,6 @@ namespace Library
 
          
 
-        /// <summary>
-        /// The Default Id in the category table in the database
-        /// </summary>
-        private const int DefaultCategoryId = 11000 ;
-
-        /// <summary>
-        /// The Default Id in the brand table in the database
-        /// </summary>
-        private const int DefaultBrandId = 10000;
-
-        /// <summary>
-        /// The Default Id in the Perosn table in the database
-        /// </summary>
-        private const int DefaultPerson = 1000000;
-
         
         #region GetTheData and set the public variables
 
@@ -154,6 +139,17 @@ namespace Library
                 Investments = PublicVariables.Investments,
                 Revenues = PublicVariables.Revenues
             };
+
+            //25- Initial the Recently added products
+            PublicVariables.RecentlyAddProducts = new List<ProductModel>();
+
+            //26- Set the Defaults
+            PublicVariables.DefaultBrand = null;
+            PublicVariables.DefaultBrand = PublicVariables.Brands.Find(x => x.Id == 10000);
+            PublicVariables.DefaultCategory = null;
+            PublicVariables.DefaultCategory = PublicVariables.Categories.Find(x=>x.Id == 11000);
+            PublicVariables.DefaultPerson = null;
+            PublicVariables.DefaultPerson = PublicVariables.People.Find(x => x.Id == 1000000);
         }
 
         /// <summary>
@@ -515,6 +511,7 @@ namespace Library
         }
 
 
+
         #endregion
 
 
@@ -752,7 +749,54 @@ namespace Library
         #region Income Order
 
         /// <summary>
-        /// get all the The incomeOrders from the database
+        /// Create a new incomeOrder Get the new Id
+        /// 
+        /// </summary>
+        /// <param name="incomeOrder"></param>
+        /// <param name="newStocks"></param>
+        /// <returns></returns>
+        public IncomeOrderModel AddIncomeOrderToTheDatabase(IncomeOrderModel incomeOrder,List<StockModel> newStocks)
+        {
+            foreach(StockModel stock in newStocks)
+            {
+                StockModel similatStock = Stock.FindSimilarStock(stock);
+                if(similatStock != null)
+                {
+                    similatStock = StockAccess.AddStockToSimilarStockToTheDatabase(similatStock,stock,db);
+                }
+                else
+                {
+                    
+                    stock.SBarCode = Stock.GenerateNewSBarCode(stock);
+                    StockModel FinishStock = StockAccess.AddStockToTheDatabase(stock,db);
+                    PublicVariables.Stocks.Add(FinishStock);
+                    
+                }
+                
+            }
+
+            incomeOrder = IncomeOrderAccess.AddIncomeOrderToTheDatabase(incomeOrder, db);
+            PublicVariables.IncomeOrders.Add(incomeOrder); 
+
+            foreach(IncomeOrderProductModel incomeOrderProduct in incomeOrder.IncomeOrderProducts)
+            {
+                IncomeOrderProductModel FinishIncomeOrderProduct = IncomeOrderProductAccess.AddIncomeOrderProductToTheDatabase(incomeOrderProduct, incomeOrder, db);
+                PublicVariables.IncomeOrderProducts.Add(FinishIncomeOrderProduct);
+            }
+            foreach (IncomeOrderPaymentModel incomeOrderPayment in incomeOrder.IncomeOrderPayments)
+            {
+                IncomeOrderPaymentModel FinishIncomeOrderPaymentModel = IncomeOrderPaymentAccess.AddIncomeOrderPaymentToTheDatabase(incomeOrderPayment, incomeOrder, db);
+                PublicVariables.IncomeOrderPayments.Add(FinishIncomeOrderPaymentModel);
+                OperationModel operation = new OperationModel { IncomeOrderPayment = FinishIncomeOrderPaymentModel };
+                PublicVariables.Operations.Add(operation);
+
+            }
+
+            return incomeOrder;
+        }
+
+        /// <summary>
+        /// -OLD-get all the The incomeOrders from the database
         /// - set the supplier
         ///     - set the personModel To the Supplier
         /// - set the store
@@ -802,7 +846,7 @@ namespace Library
         /// <summary>
         /// Add the product to the datbase
         /// get the new product add to puvlicVariables.Products
-        /// 
+        /// add this product to the publicVariables.recentlyAddProducts
         /// </summary>
         /// <param name="product"></param>
         /// <returns>the new product with the new database ID</returns>
@@ -810,6 +854,7 @@ namespace Library
         {
             product = ProductAccess.AddProductToTheDatabase(product, db);
             PublicVariables.Products.Add(product);
+            PublicVariables.RecentlyAddProducts.Add(product);
             return product;
         }
 
@@ -848,7 +893,7 @@ namespace Library
         /// <returns></returns>
         public  List<ProductModel> GetProductsByCategoryAndBrand(List<ProductModel> products, CategoryModel category, BrandModel brand)
         {
-            List<ProductModel> FProducts = Product.GetProductsByCategoryAndBrand(products, category, DefaultCategoryId, brand, DefaultBrandId);
+            List<ProductModel> FProducts = Product.FilterAllProductsByCategoryAndBrand(category, brand);
             return FProducts;
         }
 
@@ -1413,7 +1458,6 @@ namespace Library
 
         #region Stock
 
-
         /// <summary>
         /// Return the prodcut's stocks
         /// </summary>
@@ -1425,6 +1469,7 @@ namespace Library
             return Stock.GetStocksByProduct(stocks,product);
         }
 
+        
 
         /// <summary>
         /// Get all stocks from the database 
@@ -1463,7 +1508,7 @@ namespace Library
 
 
         /// <summary>
-        /// Filter list of stocks by category and brand of the products in the stock list
+        /// -OLD-Filter list of stocks by category and brand of the products in the stock list
         /// </summary>
         /// <param name="stocks"> list of stock model </param>
         /// <param name="category"> category model </param>
@@ -1471,7 +1516,8 @@ namespace Library
         /// <returns> list of filterd stocks by category and brand</returns>
         public List<StockModel> FilterStocksByCategoryAndBrand(List<StockModel> stocks , CategoryModel category,BrandModel brand)
         {
-            return Stock.FilterStocksByCategoryAndBrand(stocks, category, DefaultCategoryId, brand, DefaultBrandId);
+            //return Stock.FilterStocksByCategoryAndBrand(stocks, category, DefaultCategoryId, brand, DefaultBrandId);
+            return new List<StockModel>();
         }
 
 
@@ -1714,8 +1760,10 @@ namespace Library
         /// <returns></returns>
         public ShopBillModel AddShopBillToTheDatabase(ShopBillModel shopBill)
         {
-
-            return ShopBillAccess.AddShopBillToTheDatabase(shopBill, db);
+            shopBill = ShopBillAccess.AddShopBillToTheDatabase(shopBill, db);
+            OperationModel operation = new OperationModel { ShopBill = shopBill };
+            PublicVariables.Operations.Add(operation);
+            return shopBill;
         }
 
         /// <summary>

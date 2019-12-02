@@ -41,67 +41,46 @@ namespace Library
         /// - brand != null OR brand != default && category == null OR category == default ( Filter by brand Only)
         /// - brand == null OR brand == default && category != null OR category != default ( Filter by category Only)
         /// </summary>
-        /// <param name="products">List of product to filter</param>
         /// <param name="category"> category model </param>
         /// <param name="brand"> Brand model </param>
-        /// <param name="defaultBrandId" > the default product id const value signed in the database</param>
-        /// <param name="defaultCategoryId"> the default brand id const value signed in the database </param>
         /// <returns></returns>
-        public static List<ProductModel> GetProductsByCategoryAndBrand(List<ProductModel> products, CategoryModel category, int defaultCategoryId ,BrandModel brand, int defaultBrandId)
+        public static List<ProductModel> FilterAllProductsByCategoryAndBrand(CategoryModel category,BrandModel brand)
         {
             List<ProductModel> FProducts = new List<ProductModel>();
             bool FilterByBrand = true;
             bool FilterByCategory = true;
 
-            if (brand == null || brand.Id == defaultBrandId)
+            if (brand == null || brand == PublicVariables.DefaultBrand)
                 FilterByBrand = false;
 
-            if (category == null || category.Id == defaultCategoryId)
+            if (category == null || category == PublicVariables.DefaultCategory)
                 FilterByCategory = false;
 
+
+
             // Filter by Brand and category
-            if (FilterByBrand == true && FilterByCategory == true )
+            if (FilterByBrand == true && FilterByCategory == true)
             {
-                foreach (ProductModel product in products)
-                {
-                    if (product.Category.Id == category.Id && product.Brand.Id == brand.Id)
-                    {
-                        FProducts.Add(product);
-                    }
-                }
-                return FProducts;
+               return FProducts = PublicVariables.Products.FindAll(x => x.Brand == brand && x.Category == category);
             }
 
             // Filter by category Only
             else if (FilterByBrand == false && FilterByCategory == true)
             {
-                foreach(ProductModel product in products)
-                {
-                    if(product.Category.Id == category.Id)
-                    {
-                        FProducts.Add(product);
-                    }
-                }
-                return FProducts;
+                return FProducts = PublicVariables.Products.FindAll(x => x.Category == category);
             }
 
             // Filter by brand Only
             else if (FilterByBrand == true && FilterByCategory == false)
             {
-                foreach (ProductModel product in products)
-                {
-                    if (product.Brand.Id == brand.Id)
-                    {
-                        FProducts.Add(product);
-                    }
-                }
-                return FProducts;
+
+                return FProducts = PublicVariables.Products.FindAll(x => x.Brand == brand);
             }
 
             // No Filtering
             else
             {
-                return products;
+                return PublicVariables.Products;
             }
 
         }

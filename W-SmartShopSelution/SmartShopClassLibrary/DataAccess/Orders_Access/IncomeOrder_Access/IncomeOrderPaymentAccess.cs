@@ -11,6 +11,32 @@ namespace Library
     public static class IncomeOrderPaymentAccess
     {
         /// <summary>
+        /// Add incomeorderPayment To the database
+        /// return the incomeOrderPayment with the new id
+        /// </summary>
+        /// <param name="incomeOrderPayment"></param>
+        /// <param name="incomeOrder"></param>
+        /// <param name="db"></param>
+        /// <returns></returns>
+        public static IncomeOrderPaymentModel AddIncomeOrderPaymentToTheDatabase(IncomeOrderPaymentModel incomeOrderPayment, IncomeOrderModel incomeOrder, string  db)
+        {
+
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnVal(db)))
+            {
+                var p = new DynamicParameters();
+                p.Add("@IncomeOrderId", incomeOrder.Id);
+                p.Add("@StaffId", incomeOrderPayment.Staff.Id);
+                p.Add("@StoreId", incomeOrderPayment.Store.Id);
+                p.Add("@Paid", incomeOrderPayment.Paid);
+                p.Add("@Date", incomeOrderPayment.Date);
+                p.Add("@Id", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
+                connection.Execute("dbo.spIncomeOrderPayment_Create", p, commandType: CommandType.StoredProcedure);
+                incomeOrderPayment.Id = p.Get<int>("@Id");
+            }
+                return incomeOrderPayment;
+        }
+
+        /// <summary>
         /// Get IncomeOrderPayments From the database
         /// - without setting StaffModel , StoreModel
         /// </summary>

@@ -132,6 +132,11 @@ namespace Library
         public static List<OperationModel> Operations { get; set; }
 
         /// <summary>
+        /// The last added products
+        /// </summary>
+        public static List<ProductModel> RecentlyAddProducts { get; set; }
+
+        /// <summary>
         /// The Current Staff member that use the program
         /// </summary>
         public static StaffModel Staff { get; set; }
@@ -142,6 +147,21 @@ namespace Library
         public static StoreModel Store { get; set; }
 
         /// <summary>
+        /// The Default personModel
+        /// </summary>
+        public static PersonModel DefaultPerson { get; set; }
+        
+        /// <summary>
+        /// The Default Category
+        /// </summary>
+        public static CategoryModel DefaultCategory { get; set; }
+
+        /// <summary>
+        /// The Default Brand
+        /// </summary>
+        public static BrandModel DefaultBrand { get; set; }
+
+        /// <summary>
         /// The Stocks in the store
         /// {Set} call each time you update the stocks
         /// {get} call each time you need the stocks
@@ -150,12 +170,7 @@ namespace Library
 
 
 
-        /// <summary>
-        /// The last added products
-        /// - set in createProductUC
-        /// - used in incomeOrderUC
-        /// </summary>
-        public static List<ProductModel> RecentlyAddProducts { get; set; }
+        
 
     }
 }

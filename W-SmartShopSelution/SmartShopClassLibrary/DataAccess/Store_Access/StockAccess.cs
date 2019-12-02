@@ -10,6 +10,63 @@ namespace Library
 {
     public static class StockAccess
     {
+
+        /// <summary>
+        /// Update a SimilarStock With new stock 
+        /// </summary>
+        /// <param name="similarStock"></param>
+        /// <param name="newStock"></param>
+        /// <param name="db"></param>
+        /// <returns></returns>
+        public static StockModel AddStockToSimilarStockToTheDatabase(StockModel similarStock,StockModel newStock , string db)
+        {
+            similarStock.Quantity += newStock.Quantity;
+            similarStock.Date = newStock.Date;
+            similarStock.AlarmQuantity = newStock.AlarmQuantity;
+            similarStock.QuantityAlarmEnabled = newStock.QuantityAlarmEnabled;
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnVal(db)))
+            {
+                var p = new DynamicParameters();
+                p.Add("@Id", similarStock.Id);
+                p.Add("@Date", similarStock.Date);
+                p.Add("@AlarmQuantity", similarStock.AlarmQuantity);
+                p.Add("@QuantityAlarmEnabled", similarStock.QuantityAlarmEnabled);
+                p.Add("@Quantity", similarStock.Quantity);
+
+                connection.Execute("dbo.spStock_Update", p, commandType: CommandType.StoredProcedure);
+            }
+
+                return similarStock;
+        }
+       
+        /// <summary>
+        /// Add stock to the database Get the new stock with the new stock Id
+        /// </summary>
+        /// <param name="stock"></param>
+        /// <returns></returns>
+        public static StockModel AddStockToTheDatabase(StockModel stock,string db)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnVal(db)))
+            {
+                var p = new DynamicParameters();
+                p.Add("@SBarCode", stock.SBarCode);
+                p.Add("@StoreId", stock.Store.Id);
+                p.Add("@ProductId", stock.Product.Id);
+                p.Add("@IncomePrice", stock.IncomePrice);
+                p.Add("@SalePrice", stock.SalePrice);
+                p.Add("@Date", stock.Date);
+                p.Add("@ExpirationPeriodHours", stock.ExpirationPeriodHours);
+                p.Add("@ExpirationAlarmEnabled", stock.ExpirationAlarmEnabled);
+                p.Add("@Quantity", stock.Quantity);
+                p.Add("@AlarmQuantity", stock.AlarmQuantity);
+                p.Add("@QuantityAlarmEnabled", stock.QuantityAlarmEnabled);            
+                p.Add("@Id", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
+                connection.Execute("dbo.spStock_Create", p, commandType: CommandType.StoredProcedure);
+                stock.Id = p.Get<int>("@Id");
+            }
+                return stock;
+        }
+
         /// <summary>
         /// Get all stocks from the database without setting the StoreModel And the ProductModel
         /// </summary>
@@ -150,34 +207,9 @@ namespace Library
         }
 
 
-        /// <summary>
-        /// -Need Update- Insert new stock to the stock table in the database
-        /// return stock with the new id
-        /// </summary>
-        /// <param name="NewStock">stock has product , quantity and store</param>
-        /// <returns></returns>
-        public static StockModel AddStockToTheDatabase(StockModel NewStock, string db)
-        {
-            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnVal(db)))
-            {
-                var p = new DynamicParameters();
-                p.Add("@StoreId", NewStock.Store.Id);
-                p.Add("@ProductId", NewStock.Product.Id);
-                p.Add("@Quantity", NewStock.Quantity);
-
-
-                p.Add("@Id", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
-                connection.Execute("dbo.spStock_Create", p, commandType: CommandType.StoredProcedure);
-                NewStock.Id = p.Get<int>("@Id");
-            }
-            return NewStock;
-        }
-
-
-
 
         /// <summary>
-        /// -Need Update- Update the stock quantity If the stock exist
+        /// -OLD-Update the stock Date If the stock exist
         /// </summary>
         /// <param name="updatedStock"></param>
         /// <param name="db"></param>
@@ -193,6 +225,9 @@ namespace Library
 
             }
         }
+
+
+
 
         /// <summary>
         /// Remove stock from the database

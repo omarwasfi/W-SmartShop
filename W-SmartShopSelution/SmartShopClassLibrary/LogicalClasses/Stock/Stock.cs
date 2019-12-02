@@ -11,7 +11,63 @@ namespace Library
 {
     public static class Stock
     {
-        
+
+        /// <summary>
+        /// ExpirationAlarmEnabeled = ture , return Null
+        /// if  x.ExpirationAlarmEnabled == false && x.Store == stock.Store && x.Product == stock.Product && x.IncomePrice == stock.IncomePrice && x.SalePrice == stock.SalePrice
+        /// Return the stockModel
+        /// </summary>
+        /// <returns></returns>
+        public static StockModel FindSimilarStock(StockModel stock)
+        {
+            if(stock.ExpirationAlarmEnabled == true)
+            {
+                return null ;
+            }
+            StockModel stockModel = PublicVariables.Stocks.Find(x => x.ExpirationAlarmEnabled == false && x.Store == stock.Store && x.Product == stock.Product && x.IncomePrice == stock.IncomePrice && x.SalePrice == stock.SalePrice);
+            if(stockModel != null)
+            {
+                return stockModel;
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// Generate a unique SBarcode for the stock
+        /// </summary>
+        /// <param name="stock"></param>
+        /// <returns></returns>
+        public static string GenerateNewSBarCode(StockModel stock)
+        {
+            
+            string startOfTheSBarCode = stock.Product.Name.Substring(0, 1) + stock.Store.Id.ToString();
+            startOfTheSBarCode = startOfTheSBarCode.ToUpper();
+            int number = 1;
+
+            while (CheckIfTheSBarCodeUnique(startOfTheSBarCode + number) == false)
+            {
+                number++;
+            }
+
+            
+
+            return startOfTheSBarCode + number;
+        }
+
+        public static bool CheckIfTheSBarCodeUnique(string startOfTheSBarCode)
+        {
+
+            if (PublicVariables.Stocks.Exists(x => x.SBarCode == startOfTheSBarCode))
+            {
+                return false;
+
+            }
+            else
+            {
+                return true;
+            }
+           
+        }
 
         /// <summary>
         /// Filter all stock list by store
@@ -204,19 +260,10 @@ namespace Library
         /// <param name="stocks"> list of stock </param>
         /// <param name="product"> product model </param>
         /// <returns></returns>
-        public static List<StockModel> GetStocksByProduct(List<StockModel> stocks , ProductModel product)
+        public static List<StockModel> GetStocksByProduct(List<StockModel> stocks ,ProductModel product)
         {
-            List<StockModel> FStocks = new List<StockModel>();
 
-            foreach(StockModel stock in stocks)
-            {
-                if(stock.Product.Id == product.Id)
-                {
-                    FStocks.Add(stock);
-                }
-            }
-
-            return FStocks;
+            return stocks.FindAll(x=>x.Product == product);
         }
         
 

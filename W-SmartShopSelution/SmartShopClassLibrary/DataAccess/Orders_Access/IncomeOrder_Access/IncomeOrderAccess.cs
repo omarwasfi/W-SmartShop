@@ -11,6 +11,48 @@ namespace Library
     public static class IncomeOrderAccess
     {
         /// <summary>
+        /// ADDING incomeorder to the database 
+        /// return the incomeorder with the new ID
+        /// </summary>
+        /// <param name="incomeOrder"></param>
+        /// <param name="db"></param>
+        /// <returns></returns>
+        public static IncomeOrderModel AddIncomeOrderToTheDatabase(IncomeOrderModel incomeOrder, string db)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnVal(db)))
+            {
+                var p = new DynamicParameters();
+                p.Add("@SupplierId", incomeOrder.Supplier.Id);
+                if (!string.IsNullOrWhiteSpace(incomeOrder.BillNumber))
+                {
+                    p.Add("@BillNumber", incomeOrder.BillNumber);
+                }
+                else
+                {
+                    p.Add("@BillNumber", null);
+                }
+
+                p.Add("@Date", incomeOrder.Date);
+                p.Add("@StoreId", incomeOrder.Store.Id);
+                p.Add("@StaffId", incomeOrder.Staff.Id);
+
+                if (!string.IsNullOrWhiteSpace(incomeOrder.Details))
+                {
+                    p.Add("@Details", incomeOrder.Details);
+                }
+                else
+                {
+                    p.Add("@Details", null);
+                }
+
+                p.Add("@Id", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
+                connection.Execute("dbo.spIncomeOrder_CreateIncomeOrder", p, commandType: CommandType.StoredProcedure);
+                incomeOrder.Id = p.Get<int>("@Id");
+            }
+            return incomeOrder;
+        }
+
+        /// <summary>
         /// Get all the IncomeOrders From The database without set the the supplierModel , storeModel , staffModel , list of IncomeOrderProducts
         /// </summary>
         /// <param name="db"></param>

@@ -83,6 +83,7 @@
     <Compile Include="DataAccess\Store_Access\Store_Access.cs" />
     <Compile Include="DataAccess\Human_Access\SupplierAccess.cs" />
     <Compile Include="DataModels\HumanDataModels\OwnerModel.cs" />
+    <Compile Include="DataModels\NotDatabaseRelated\IncomeOrderRecordModel-NotDatabaseRelated\IncomeOrderProductRecordModel.cs" />
     <Compile Include="DataModels\OrdersDataModels\IncomeOrderDataModels\IncomeOrderPaymentModel.cs" />
     <Compile Include="DataModels\OrdersDataModels\TransformationDataModels\DeTransformModel.cs" />
     <Compile Include="DataModels\OrdersDataModels\OrderDataModels\OrderModel.cs" />
@@ -91,7 +92,7 @@
     <Compile Include="DataModels\OrdersDataModels\OwnerDataModels\InvestmentModel.cs" />
     <Compile Include="DataModels\OrdersDataModels\OwnerDataModels\RevenueModel.cs" />
     <Compile Include="DataModels\OrdersDataModels\TransformationDataModels\TransformModel.cs" />
-    <Compile Include="DataModels\OrganizationDataModels-NotDatabaseRelated\OrganizationModel.cs" />
+    <Compile Include="DataModels\NotDatabaseRelated\OrganizationDataModels-NotDatabaseRelated\OrganizationModel.cs" />
     <Compile Include="DataModels\StoreDataModels\ProductDataModels\BrandModel.cs" />
     <Compile Include="DataModels\StoreDataModels\ProductDataModels\CategoryModel.cs" />
     <Compile Include="DataModels\StoreDataModels\ProductDataModels\ProductModel.cs" />
@@ -143,6 +144,10 @@
     <Compile Include="Validation\Forced\MoneyValidator.cs" />
     <Compile Include="Validation\Forced\NumberValidation.cs" />
     <Compile Include="Validation\HumanValidations\PersonValidator.cs" />
+    <Compile Include="Validation\OrdersValidations\IncomeOrderProductRecordValidator\IncomeOrderProductRecordValidator.cs" />
+    <Compile Include="Validation\OrdersValidations\IncomeOrderValidations\IncomeOrderPaymentValidator.cs" />
+    <Compile Include="Validation\OrdersValidations\IncomeOrderValidations\IncomeOrderProductValidator.cs" />
+    <Compile Include="Validation\OrdersValidations\IncomeOrderValidations\IncomeOrderValidator.cs" />
     <Compile Include="Validation\OrdersValidations\OrderValidations\OrderProductValidator.cs" />
     <Compile Include="Validation\OrdersValidations\OwnerOrdersValidations\InvestmentValidator.cs" />
     <Compile Include="Validation\OrdersValidations\OwnerOrdersValidations\RevenueValidator.cs" />
@@ -151,6 +156,7 @@
     <Compile Include="Validation\StoreValidations\ProductValidations\BrandValidator.cs" />
     <Compile Include="Validation\StoreValidations\ProductValidations\CategoryValidator.cs" />
     <Compile Include="Validation\StoreValidations\ProductValidations\ProductValidator.cs" />
+    <Compile Include="Validation\StoreValidations\StockValidations\StockValidator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Code Reports\Bug Report.txt" />
@@ -169,7 +175,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="LogicalClasses\StaffSalary\" />
-    <Folder Include="Validation\OrdersValidations\IncomeOrderValidations\" />
     <Folder Include="Validation\OrdersValidations\ShopBillValidations\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

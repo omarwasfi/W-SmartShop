@@ -1,160 +1,428 @@
-﻿<UserControl x:Class="WPF_GUI.IncomeOrderUC"
+﻿<UserControl
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:WPF_GUI"
-             mc:Ignorable="d" 
+             xmlns:local="clr-namespace:WPF_GUI" 
                           xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
+             xmlns:Globalization="clr-namespace:System.Globalization;assembly=mscorlib" xmlns:CreateProduct="clr-namespace:WPF_GUI.CreateProduct" x:Class="WPF_GUI.IncomeOrderUC"
+             mc:Ignorable="d"
              d:DesignHeight="680" d:DesignWidth="1343">
     <Grid>
-        <Grid Margin="1117,0,0,651">
-            <Button x:Name="CloseButton_IncomeOrderUC" Visibility="Collapsed" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Red"   VerticalAlignment="Top"  Margin="3,0,170,0" Height="25"  >
-                <materialDesign:PackIcon Kind="Close" Width="20" Height="20"/>
-            </Button>
+        <Grid x:Name="UserGrid" Visibility="Visible" Background="White">
 
-            <Button x:Name="RefreshButton_IncomeOrderUC"  Click="RefreshButton_IncomeOrderUC_Click" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray"   VerticalAlignment="Top"  Margin="171,0,0,0" Height="25"  >
-                <materialDesign:PackIcon Kind="Reload" Width="20" Height="20"/>
-            </Button>
-
-            <Button x:Name="PrintButton_IncomeOrderUC" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray"   VerticalAlignment="Top"  Margin="115,0,55,0" Height="25"  >
-                <materialDesign:PackIcon Kind="Printer" Width="20" Height="20"/>
-            </Button>
-
-            <Button x:Name="ConfirmButton_IncomeOrderUC" Click="ConfirmButton_IncomeOrderUC_Click" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Green"   VerticalAlignment="Top"  Margin="56,0,111,0" Height="25"  >
-                <materialDesign:PackIcon Kind="Done" Width="20" Height="20"/>
-            </Button>
-
-        </Grid>
-        <GroupBox Header="Choose Product" HorizontalAlignment="Left" Height="344" Margin="10,29,0,0" VerticalAlignment="Top" Width="870">
-            <Grid Width="858" Margin="0,0,0,2">
-                <!-- Category comoBox & category textblock -->
-                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Category : "/></TextBlock>
-                <ComboBox x:Name="CategoryValue_IncomeOrderUC" SelectionChanged="FilterProductsByCategoryAndBrand" HorizontalAlignment="Left" Margin="124,5,0,0" VerticalAlignment="Top" Width="83" />
-
-                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="0,38,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Barcode : "/></TextBlock>
-                <TextBox x:Name="BarCodeValue_IncomeOrderUC" IsReadOnly="True" HorizontalAlignment="Left" Height="33" Margin="111,38,0,0" Text="" VerticalAlignment="Top" Width="107" MaxLines="1" MaxLength="200"  />
-
-                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="539,38,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Serial Number2 : "/></TextBlock>
-                <TextBox x:Name="SerialNumber2Value_IncomeOrderUC" HorizontalAlignment="Left" Height="33" Margin="729,38,0,0" Text="" VerticalAlignment="Top" Width="119"  MaxLength="200" MaxLines="1" />
-
-                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="0,76,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Details : "/></TextBlock>
-                <TextBox x:Name="ProductDetailsValue_IncomeOrderUC" IsReadOnly="True" HorizontalAlignment="Left" Height="33" Margin="94,76,0,0" Text="" VerticalAlignment="Top" Width="605" MaxLength="500" MaxLines="1"  />
-
-                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="704,76,0,0" RenderTransformOrigin="-0.048,0.481" FontSize="25" ><Run Text="Size : "/></TextBlock>
-                <TextBox x:Name="SizeValue_IncomeOrderUC" HorizontalAlignment="Left" Height="32" Margin="772,77,0,0" Text="" VerticalAlignment="Top" Width="76" MaxLines="1" MaxLength="200"  />
-
-
-                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="212,0,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" Width="82" ><Run Text="Brand : "/></TextBlock>
-                <ComboBox x:Name="BrandValue_IncomeOrderUC" SelectionChanged="FilterProductsByCategoryAndBrand" HorizontalAlignment="Left" Margin="299,5,0,0" VerticalAlignment="Top" Width="100" />
-
-                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="404,0,0,0" ><Run Text="Product : "/></TextBlock>
-                <ComboBox x:Name="ProductValue_IncomeOrderUC" SelectionChanged="ProductValue_IncomeOrderUC_SelectionChanged" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="339" Margin="509,5,0,0"  />
-
-                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="223,38,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" Width="175" ><Run Text="Serial Number : "/></TextBlock>
-                <TextBox x:Name="SerialNumberValue_IncomeOrderUC" KeyDown="SerialNumberValue_IncomeOrderUC_EventHundler" HorizontalAlignment="Left" Height="33" Margin="398,38,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="136"  />
-
-
-
-                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="13,161,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Quantity : "/></TextBlock>
-                <TextBox x:Name="QuantityValue_IncomeOrderUC" KeyDown="QuantityValue_IncomeOrderUC_KeyDown" PreviewTextInput="NumberValidation"  HorizontalAlignment="Left" Height="23" Margin="137,171,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="58" RenderTransformOrigin="0.544,-0.652"  />
-
-                <TextBox x:Name="SalePriceValue_IncomeOrderUC" KeyDown="SalePriceValue_IncomeOrderUC_KeyDown" PreviewTextInput="MoneyValidation" HorizontalAlignment="Left" Height="24" Margin="299,123,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="58" RenderTransformOrigin="0.544,-0.652"  />
-                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="170,114,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Sale Price : "/></TextBlock>
-
-                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="362,114,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Income Price :"/></TextBlock>
-                <TextBox x:Name="IncomeValue_IncomeOrderUC" IsReadOnly="True" KeyDown="IncomeValue_IncomeOrderUC_KeyDown"  HorizontalAlignment="Left" Height="24" Margin="525,123,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="58" RenderTransformOrigin="0.544,-0.652"  />
-
-                <Button x:Name="AddProductButton_IncomeOrderUC" Click="AddProductButton_IncomeOrderUC_Click" Content="ADD" HorizontalAlignment="Left" Margin="646,171,0,0" VerticalAlignment="Top" Width="127" Height="52" FontSize="36" FontWeight="Bold"/>
-                <Button x:Name="ClearProductButton_IncomeOrderUC" Click="ClearProductButton_IncomeOrderUC_Click" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Red"   VerticalAlignment="Top" Height="52" Margin="778,171,10,0"  >
-                    <materialDesign:PackIcon Kind="Clear" Width="50" Height="46"/>
-                </Button>
-                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="13,200,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Total Price : "/></TextBlock>
-                <TextBox x:Name="TotalProductPriceValue_IncomeOrderUC"  IsReadOnly="True" HorizontalAlignment="Left" Height="23" Margin="150,210,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="58" RenderTransformOrigin="0.544,-0.652"/>
-
-                <TextBox x:Name="InStockValue_IncomeOrderUC" HorizontalAlignment="Left" Height="24" Margin="106,123,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="58" RenderTransformOrigin="0.544,-0.652" IsEnabled="True" IsReadOnly="True" />
-                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="0,114,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="In Stock : "/></TextBlock>
-                <Button x:Name="CreateNewProductButton_IncomeOrderUC" Click="CreateNewProductButton_IncomeOrderUC_Click" Margin="579,228,10,0" VerticalAlignment="Top" Height="56"  >
-                    <Grid Width="254">
-                        <materialDesign:PackIcon Kind="AddBox" Width="50" Height="46"/>
-                        <TextBlock FontSize="20" Text="Create New Product" Margin="50,10,10,10"/>
-                    </Grid>
-                </Button>
-                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="Red" Margin="588,131,0,0" RenderTransformOrigin="0.596,0.438" FontSize="10" Height="16" Width="246" Text="Create a new product if the income price not the same" />
-            </Grid>
-
-        </GroupBox>
-        <GroupBox Name="ChooseSupplierGB_IncomeOrderUC" Header="Supplier" Visibility="Collapsed" HorizontalAlignment="Left" Height="264" Margin="885,29,0,0" VerticalAlignment="Top" Width="448">
-            <Grid>
-                <Button x:Name="NewSupplierButton_IncomeOrderUC" Click="NewSupplierButton_IncomeOrderUC_Click" Content="New Supplier" HorizontalAlignment="Left" Margin="266,154,0,0" VerticalAlignment="Top" Width="143" Height="53" FontSize="15" FontWeight="Bold"/>
-
-                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="10,10,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" Width="133" Text="Full Name : " />
-                <TextBox x:Name="SupplierNameValue_IncomeOrderUC" TextChanged="SupplierNameValue_IncomeOrderUC_TextChanged" KeyDown="SupplierNameValue_IncomeOrderUC_KeyDown"  HorizontalAlignment="Left" Margin="224,18,0,0" VerticalAlignment="Top" Width="196" />
-
-                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="10,48,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" Width="193" Text="Phone Number : " />
-                <TextBox x:Name="PhoneNumberValue_IncomeOrderUC" TextChanged="PhoneNumberValue_IncomeOrderUC_TextChanged" KeyDown="SupplierPhoneNumberValue_IncomeOrderUC_KeyDown" HorizontalAlignment="Left" Height="23" Margin="224,58,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="196"/>
-
-                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="10,86,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" Width="209" Text="National Number : " />
-                <TextBox x:Name="NationalNumberValue_IncomeOrderUC" TextChanged="NationalNumberValue_IncomeOrderUC_TextChanged" KeyDown="NationalNumberValue_IncomeOrderUC_KeyDown" HorizontalAlignment="Left" Margin="224,94,0,0" VerticalAlignment="Top" Width="196" />
-
-                <Button x:Name="SelectedSupplierLogButton_IncomeOrderUC"  Content="Selected Supplier log" HorizontalAlignment="Left" Margin="10,154,0,0" VerticalAlignment="Top" Width="209" Height="53" FontSize="15" FontWeight="Bold"/>
-                <Button x:Name="ClearSupplierButton_IncomeOrderUC" Click="ClearSupplierButton_IncomeOrderUC_Click" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Red"   VerticalAlignment="Top" Height="50" Margin="485,157,22,0"  >
-                    <materialDesign:PackIcon Kind="Clear" Width="50" Height="46"/>
+            <Grid Margin="1117,0,0,651">
+                <Button x:Name="CloseButton" Visibility="Collapsed" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Red"   VerticalAlignment="Top"  Margin="3,0,170,0" Height="25"  >
+                    <materialDesign:PackIcon Kind="Close" Width="20" Height="20"/>
                 </Button>
 
-                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="10,116,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" Width="209" Text="Company Name : " />
-                <TextBox x:Name="CompanyNameValue_IncomeOrderUC"  HorizontalAlignment="Left" Margin="224,124,0,0" VerticalAlignment="Top" Width="196" />
+                <Button x:Name="RefreshButton"  Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray"   VerticalAlignment="Top"  Margin="171,0,0,0" Height="25"  >
+                    <materialDesign:PackIcon Kind="Reload" Width="20" Height="20"/>
+                </Button>
+
+                <Button x:Name="PrintButton" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray"   VerticalAlignment="Top"  Margin="115,0,55,0" Height="25"  >
+                    <materialDesign:PackIcon Kind="Printer" Width="20" Height="20"/>
+                </Button>
+
+                <Button x:Name="ConfirmButton" Click="ConfirmButton_Click" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Green"   VerticalAlignment="Top"  Margin="56,0,111,0" Height="25"  >
+                    <materialDesign:PackIcon Kind="Done" Width="20" Height="20"/>
+                </Button>
 
             </Grid>
-        </GroupBox>
-        <DataGrid x:Name="StocksList_IncomeOrderUC" IsReadOnly="True" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="240" Margin="10,380,0,0" VerticalAlignment="Top" Width="1323" Background="LightGray">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Product Name" Binding="{Binding Product.Name }" />
-                <DataGridTextColumn Header="Size" Binding="{Binding Product.Size}" />
-                <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}" />
-                <DataGridTextColumn Header="Income Price" Binding="{Binding IncomePrice}"/>
-                <DataGridTextColumn Header="Sale Price" Binding="{Binding Product.SalePrice}"/>
-                <DataGridTextColumn Header="Total Price" Binding="{Binding GetTotalProductPrice }"/>
-            </DataGrid.Columns>
-        </DataGrid>
-        <Button x:Name="RemoveSelectedStockButton_IncomeOrderUC" Click="RemoveSelectedStockButton_IncomeOrderUC_Click" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Red"  Margin="0,620,1068,0" VerticalAlignment="Top" Height="60"  >
-            <Grid Width="229">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="5*"/>
-                    <RowDefinition Height="42*"/>
-                </Grid.RowDefinitions>
-                <materialDesign:PackIcon Kind="RemoveCircle" Width="50" Height="46" Grid.RowSpan="2"/>
-                <TextBlock FontSize="20" Text="Remove Selected" Margin="50,5,10,10" Grid.Row="1"/>
-            </Grid>
-        </Button>
 
-        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="880,299,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" Width="148" Text="Bill Number : " />
-        <TextBox x:Name="BillNumberValue_IncomeOrderUC"  HorizontalAlignment="Left" Margin="1028,310,0,0" VerticalAlignment="Top" Width="205" />
+            <GroupBox Header="Choose Product" HorizontalAlignment="Left" Height="313" Margin="10,29,0,0" VerticalAlignment="Top" Width="870">
+                <Grid Width="860" Margin="0,0,0,-8">
 
-        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="880,332,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" Width="225" Text="Shipping expenses : " />
-        <TextBox x:Name="ShippingExpensesValue_IncomeOrderUC" KeyDown="ShippingExpensesValue_IncomeOrderUC_KeyDown" PreviewTextInput="MoneyValidation"  HorizontalAlignment="Left" Margin="1105,340,0,0" VerticalAlignment="Top" Width="71" />
+                    <!-- Product Selection -->
 
-        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="1106,637,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Total Price : "/></TextBlock>
-        <TextBox x:Name="TotalPriceValue_IncomeOrderUC" IsReadOnly="True" HorizontalAlignment="Left" Height="23" Margin="1238,647,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="78" RenderTransformOrigin="0.544,-0.652"/>
+                    <!-- Category -->
+                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Category : "/></TextBlock>
+                    <ComboBox x:Name="CategoryFilterValue" SelectionChanged="CategoryOrBrandFilterValue_SelectionChanged" IsTextSearchEnabled="True" TextSearch.TextPath="Name" HorizontalAlignment="Left" Margin="124,5,0,0" VerticalAlignment="Top" Width="83" />
 
-        <GroupBox Name="RecentlyAddedGB_IncomeOrderUC" Header="Recently  added" Visibility="Visible" HorizontalAlignment="Left" Height="264" Margin="885,29,0,0" VerticalAlignment="Top" Width="448">
-            <DataGrid x:Name="RecentlyAddedProductsList_IncomeOrderUC" MouseDoubleClick="RecentlyAddedProductsList_IncomeOrderUC_MouseDoubleClick" IsReadOnly="True" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="227" VerticalAlignment="Top" Width="432" Background="LightGray" Margin="0,-8,0,-7">
+                    <!-- Brand -->
+                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="212,0,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" Width="82" ><Run Text="Brand : "/></TextBlock>
+                    <ComboBox x:Name="BrandFilterValue" SelectionChanged="CategoryOrBrandFilterValue_SelectionChanged" IsTextSearchEnabled="True" TextSearch.TextPath="Name" HorizontalAlignment="Left" Margin="299,5,0,0" VerticalAlignment="Top" Width="100" />
+
+                    <!-- Product -->
+                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="404,0,0,0" ><Run Text="Product : "/></TextBlock>
+                    <ComboBox x:Name="ProductNameFilterValue" SelectionChanged="ProductNameFilterValue_SelectionChanged" IsTextSearchEnabled="True" TextSearch.TextPath="Name" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="17.167" Margin="834.062,5,0,0"  />
+                    <syncfusion:SfMultiColumnDropDownControl x:Name="ProductNameSearchValue" SelectionChanged="ProductNameSearchValue_SelectionChanged" PopupBorderBrush="LightGray" PopupBackground="LightGray"  FlowDirection="RightToLeft" AutoGenerateColumns="False" AllowNullInput="True"  AllowAutoComplete="True" AllowImmediatePopup="True"  HorizontalAlignment="Left" Height="29"  VerticalAlignment="Top" Width="326.49" Margin="507.572,3.96,0,0" Foreground="Black" Background="White" Style="{DynamicResource SfMultiColumnDropDownControlStyle1}">
+                        <syncfusion:SfMultiColumnDropDownControl.Columns>
+                            <syncfusion:GridTextColumn HeaderText="Product Name" MappingName="Name" />
+                            <syncfusion:GridTextColumn HeaderText="Size" MappingName="Size" />
+                            <syncfusion:GridTextColumn HeaderText="Serial Number" MappingName="SerialNumber" />
+                            <syncfusion:GridTextColumn HeaderText="Serial Number 2" MappingName="SerialNumber2" />
+                        </syncfusion:SfMultiColumnDropDownControl.Columns>
+                        <syncfusion:SfMultiColumnDropDownControl.BorderBrush>
+                            <LinearGradientBrush EndPoint="0,20" MappingMode="Absolute" StartPoint="0,0">
+                                <GradientStop Color="#FFABADB3" Offset="0.05"/>
+                                <GradientStop Color="#FFE2E3EA" Offset="0.07"/>
+                                <GradientStop Color="Gray" Offset="1"/>
+                            </LinearGradientBrush>
+                        </syncfusion:SfMultiColumnDropDownControl.BorderBrush>
+                    </syncfusion:SfMultiColumnDropDownControl>
+
+                    <!-- BarCode -->
+                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="0,38,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" Width="106.333" ><Run Text="Barcode : "/></TextBlock>
+                    <syncfusion:SfTextBoxExt x:Name="ProductBarCodeSearchValue" SelectionChanged="ProductBarCodeSearchValue_SelectionChanged" FlowDirection="LeftToRight"  HighlightedTextColor="Red" TextHighlightMode="MultipleOccurrence" HorizontalAlignment="Left" Height="29"  VerticalAlignment="Top" Width="112" Margin="106,42,0,0" Foreground="Black" Background="White" MaxLines="1" FontSize="18">
+                        <syncfusion:SfTextBoxExt.BorderBrush>
+                            <LinearGradientBrush EndPoint="0,20" MappingMode="Absolute" StartPoint="0,0">
+                                <GradientStop Color="#FFABADB3" Offset="0.05"/>
+                                <GradientStop Color="#FFE2E3EA" Offset="0.07"/>
+                                <GradientStop Color="Gray" Offset="1"/>
+                            </LinearGradientBrush>
+                        </syncfusion:SfTextBoxExt.BorderBrush>
+                    </syncfusion:SfTextBoxExt>
+
+                    <!-- SerialNumber -->
+                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="223,38,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" Width="176" ><Run Text="Serial Number : "/></TextBlock>
+                    <syncfusion:SfTextBoxExt x:Name="ProductSerialNumberSearchValue" SelectionChanged="ProductSerialNumberSearchValue_SelectionChanged" FlowDirection="LeftToRight" HighlightedTextColor="Red" TextHighlightMode="MultipleOccurrence" HorizontalAlignment="Left" Height="29"  VerticalAlignment="Top" Width="134" Margin="399,42,0,0" FontSize="18" Foreground="Black" Background="White" MaxLines="1">
+                        <syncfusion:SfTextBoxExt.BorderBrush>
+                            <LinearGradientBrush EndPoint="0,20" MappingMode="Absolute" StartPoint="0,0">
+                                <GradientStop Color="#FFABADB3" Offset="0.05"/>
+                                <GradientStop Color="#FFE2E3EA" Offset="0.07"/>
+                                <GradientStop Color="Gray" Offset="1"/>
+                            </LinearGradientBrush>
+                        </syncfusion:SfTextBoxExt.BorderBrush>
+                    </syncfusion:SfTextBoxExt>
+
+                    <!-- SerialNumber2 -->
+                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="535.49,38,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" Width="185.196" ><Run Text="Serial Number2 : "/></TextBlock>
+                    <syncfusion:SfTextBoxExt x:Name="ProductSerialNumber2SearchValue" SelectionChanged="ProductSerialNumber2SearchValue_SelectionChanged" FlowDirection="LeftToRight" HighlightedTextColor="Red" TextHighlightMode="MultipleOccurrence" HorizontalAlignment="Left" Height="29"  VerticalAlignment="Top" Width="130" Margin="720,38,0,0" FontSize="18" Foreground="Black" Background="White" MaxLines="1">
+                        <syncfusion:SfTextBoxExt.BorderBrush>
+                            <LinearGradientBrush EndPoint="0,20" MappingMode="Absolute" StartPoint="0,0">
+                                <GradientStop Color="#FFABADB3" Offset="0.05"/>
+                                <GradientStop Color="#FFE2E3EA" Offset="0.07"/>
+                                <GradientStop Color="Gray" Offset="1"/>
+                            </LinearGradientBrush>
+                        </syncfusion:SfTextBoxExt.BorderBrush>
+                    </syncfusion:SfTextBoxExt>
+
+                    <!-- Details -->
+                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="0,76,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Details : "/></TextBlock>
+                    <TextBox x:Name="ProductDetailsValue" IsReadOnly="True" HorizontalAlignment="Left" Height="33" Margin="94,76,0,0" Text="" VerticalAlignment="Top" Width="607" MaxLength="500" MaxLines="1"  />
+
+                    <!-- Size -->
+                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="706,76,0,0" RenderTransformOrigin="-0.048,0.481" FontSize="25" Width="58" ><Run Text="Size : "/></TextBlock>
+                    <TextBox x:Name="ProductSizeValue" IsReadOnly="True" HorizontalAlignment="Left" Height="33" Margin="769,76,0,0" Text="" VerticalAlignment="Top" Width="81" MaxLength="200" MaxLines="1"  />
+
+
+                    <!-- Stock INFO -->
+
+                    <!-- SBarcode -->
+                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="0,109.746,0,0" ><Run Text="SBarcode : "/></TextBlock>
+                    <syncfusion:SfTextBoxExt x:Name="SBarCodeSearchValue" SelectionChanged="SBarCodeSearchValue_SelectionChanged" FlowDirection="RightToLeft" HighlightedTextColor="Red" TextHighlightMode="MultipleOccurrence" HorizontalAlignment="Left" Height="29" TextWrapping="Wrap"  VerticalAlignment="Top" Width="98" Margin="118,114,0,0" FontSize="18" Foreground="Black" Background="White" MaxLines="1">
+                        <syncfusion:SfTextBoxExt.BorderBrush>
+                            <LinearGradientBrush EndPoint="0,20" MappingMode="Absolute" StartPoint="0,0">
+                                <GradientStop Color="#FFABADB3" Offset="0.05"/>
+                                <GradientStop Color="#FFE2E3EA" Offset="0.07"/>
+                                <GradientStop Color="Gray" Offset="1"/>
+                            </LinearGradientBrush>
+                        </syncfusion:SfTextBoxExt.BorderBrush>
+                    </syncfusion:SfTextBoxExt>
+                    <ComboBox x:Name="SBarCodeFilterValue" SelectionChanged="SBarCodeFilterValue_SelectionChanged" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="17.167" Margin="215.71,115.039,0,0"  />
+
+                    <!-- In Stock -->
+                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="282,110,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" Width="102" ><Run Text="In Stock : "/></TextBlock>
+                    <syncfusion:DoubleTextBox x:Name="InStockValue" IsReadOnly="True" MinValue="0" HorizontalAlignment="Left" Height="28" Margin="389,116,0,0" NumberGroupSeparator="," NumberDecimalDigits="2" NumberDecimalSeparator="." Text="DoubleTextBox" Value="0" VerticalAlignment="Top" Width="60" FontSize="18" MaxLines="1">
+                        <syncfusion:DoubleTextBox.BorderBrush>
+                            <LinearGradientBrush EndPoint="0,20" MappingMode="Absolute" StartPoint="0,0">
+                                <GradientStop Color="#FFABADB3" Offset="0.05"/>
+                                <GradientStop Color="#FFE2E3EA" Offset="0.07"/>
+                                <GradientStop Color="Gray" Offset="1"/>
+                            </LinearGradientBrush>
+                        </syncfusion:DoubleTextBox.BorderBrush>
+                    </syncfusion:DoubleTextBox>
+
+                    <!-- Sale Price -->
+                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="0,151.674,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Sale Price : "/></TextBlock>
+                    <syncfusion:CurrencyTextBox x:Name="StockSalePriceValue" IsReadOnly="False" Value="0" CurrencyNegativePattern="8"  CurrencyPositivePattern="3"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="96"  Margin="119.71,157.929,0,0" Height="27" Background="{x:Null}" FontSize="18" SelectionBrush="#FF009688" RenderTransformOrigin="0.68,0.352" MinValue="0" MaxLines="1">
+                        <syncfusion:CurrencyTextBox.NumberFormat>
+                            <Globalization:NumberFormatInfo CurrencyGroupSeparator=" " CurrencyDecimalDigits="2" CurrencyDecimalSeparator="." CurrencySymbol="L.E"/>
+                        </syncfusion:CurrencyTextBox.NumberFormat>
+                        <syncfusion:CurrencyTextBox.BorderBrush>
+                            <LinearGradientBrush EndPoint="0,20" MappingMode="Absolute" StartPoint="0,0">
+                                <GradientStop Color="#FFABADB3" Offset="0.05"/>
+                                <GradientStop Color="#FFE2E3EA" Offset="0.07"/>
+                                <GradientStop Color="Gray" Offset="1"/>
+                            </LinearGradientBrush>
+                        </syncfusion:CurrencyTextBox.BorderBrush>
+                    </syncfusion:CurrencyTextBox>
+
+                    <!-- Income Price -->
+                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="282,152,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Income Price :"/></TextBlock>
+                    <syncfusion:CurrencyTextBox x:Name="StockIncomePriceValue" TextChanged="StockIncomePriceValue_TextChanged" IsReadOnly="False" Value="0"  CurrencyNegativePattern="8"  CurrencyPositivePattern="3"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="96"  Margin="441,159,0,0" Height="27" Background="{x:Null}" FontSize="18" SelectionBrush="#FF009688" RenderTransformOrigin="0.68,0.352" MinValue="0" MaxLines="1">
+                        <syncfusion:CurrencyTextBox.NumberFormat>
+                            <Globalization:NumberFormatInfo CurrencyGroupSeparator=" " CurrencyDecimalDigits="2" CurrencyDecimalSeparator="." CurrencySymbol="L.E"/>
+                        </syncfusion:CurrencyTextBox.NumberFormat>
+                        <syncfusion:CurrencyTextBox.BorderBrush>
+                            <LinearGradientBrush EndPoint="0,20" MappingMode="Absolute" StartPoint="0,0">
+                                <GradientStop Color="#FFABADB3" Offset="0.05"/>
+                                <GradientStop Color="#FFE2E3EA" Offset="0.07"/>
+                                <GradientStop Color="Gray" Offset="1"/>
+                            </LinearGradientBrush>
+                        </syncfusion:CurrencyTextBox.BorderBrush>
+                    </syncfusion:CurrencyTextBox>
+
+                    <!-- Quantity -->
+                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="0,192,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Quantity : "/></TextBlock>
+                    <syncfusion:DoubleTextBox x:Name="IncomeOrderProductQuantityValue" TextChanged="IncomeOrderProductQuantityValue_TextChanged" MinValue="0" HorizontalAlignment="Left" Height="27" Margin="114,198,0,0" NumberGroupSeparator="," NumberDecimalDigits="2" NumberDecimalSeparator="." Text="DoubleTextBox" Value="0" VerticalAlignment="Top" Width="60" FontSize="18" MaxLines="1">
+                        <syncfusion:DoubleTextBox.BorderBrush>
+                            <LinearGradientBrush EndPoint="0,20" MappingMode="Absolute" StartPoint="0,0">
+                                <GradientStop Color="#FFABADB3" Offset="0.05"/>
+                                <GradientStop Color="#FFE2E3EA" Offset="0.07"/>
+                                <GradientStop Color="Gray" Offset="1"/>
+                            </LinearGradientBrush>
+                        </syncfusion:DoubleTextBox.BorderBrush>
+                    </syncfusion:DoubleTextBox>
+
+                    <!-- IncomeOrderProduct Total Price -->
+                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="0,230,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" Width="127" ><Run Text="Total Price : "/></TextBlock>
+                    <syncfusion:CurrencyTextBox x:Name="IncomeOrderProductTotalPriceValue" IsReadOnly="True" Value="0" CurrencyNegativePattern="8"  CurrencyPositivePattern="3"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="130"  Margin="127,236,0,0" Height="27" Background="{x:Null}" FontSize="18" SelectionBrush="#FF009688" RenderTransformOrigin="0.68,0.352" MinValue="0" MaxLines="1">
+                        <syncfusion:CurrencyTextBox.NumberFormat>
+                            <Globalization:NumberFormatInfo CurrencyGroupSeparator=" " CurrencyDecimalDigits="2" CurrencyDecimalSeparator="." CurrencySymbol="L.E"/>
+                        </syncfusion:CurrencyTextBox.NumberFormat>
+                        <syncfusion:CurrencyTextBox.BorderBrush>
+                            <LinearGradientBrush EndPoint="0,20" MappingMode="Absolute" StartPoint="0,0">
+                                <GradientStop Color="#FFABADB3" Offset="0.05"/>
+                                <GradientStop Color="#FFE2E3EA" Offset="0.07"/>
+                                <GradientStop Color="Gray" Offset="1"/>
+                            </LinearGradientBrush>
+                        </syncfusion:CurrencyTextBox.BorderBrush>
+                    </syncfusion:CurrencyTextBox>
+
+                    <!-- Alarms -->
+
+                    <!-- Choose Product Buttons -->
+
+                    <Button x:Name="IncomeOrderProductButton" Click="IncomeOrderProductButton_Click" Content="ADD" HorizontalAlignment="Left" Margin="716,190,0,0" VerticalAlignment="Top" Width="73" Height="34" FontSize="17" FontWeight="Bold"/>
+
+                    <Button x:Name="ClearIncomeOrderProductButton" Click="ClearIncomeOrderProductButton_Click" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Red"   VerticalAlignment="Top" Height="35" Margin="794,191,10,0"  >
+                        <materialDesign:PackIcon Kind="Clear" Width="30" Height="30"/>
+                    </Button>
+
+                    <Button x:Name="CreateNewProductButton" Click="CreateNewProductButton_Click" Margin="629,230,10,0" VerticalAlignment="Top" Height="33"  >
+                        <Grid Width="215" Height="33">
+                            <materialDesign:PackIcon Kind="PlusBox" Width="25" Height="25"/>
+                            <TextBlock FontSize="17" Text="Create New Product" Margin="30,0,25,10"/>
+                        </Grid>
+                    </Button>
+
+                    <!-- Quantity alarm -->
+                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="263,199,0,0" ><Run Text="Quantity Alarm : "/></TextBlock>
+                    <syncfusion:IntegerTextBox x:Name="StockQuantityAlarmValue" IsEnabled="False"  HorizontalAlignment="Left" Height="23" Margin="491,207,0,0" MinWidth="100" NumberGroupSeparator="," Text="100" VerticalAlignment="Top" Width="100" Background="{x:Null}" SelectionBrush="{x:Null}" MaxValue="2147483647" MinValue="0" MaxLines="1">
+                        <syncfusion:IntegerTextBox.BorderBrush>
+                            <LinearGradientBrush EndPoint="0,20" MappingMode="Absolute" StartPoint="0,0">
+                                <GradientStop Color="#FFABADB3" Offset="0.05"/>
+                                <GradientStop Color="#FFE2E3EA" Offset="0.07"/>
+                                <GradientStop Color="Gray" Offset="1"/>
+                            </LinearGradientBrush>
+                        </syncfusion:IntegerTextBox.BorderBrush>
+                    </syncfusion:IntegerTextBox>
+                    <CheckBox x:Name="QuantityAlarmCB" Checked="QuantityAlarmCB_Checked" Unchecked="QuantityAlarmCB_Unchecked" HorizontalAlignment="Left" Margin="468,208,0,0" VerticalAlignment="Top"/>
+
+                    <!-- Expiration Period alarm -->
+                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="262,232,0,0" ><Run Text="Expiration Period : "/></TextBlock>
+                    <syncfusion:TimeSpanEdit x:Name="StockExpirationPeriodValue" IsEnabled="False" MaxValue="999" MinValue="0" Value="30:12:0:0" AllowNull="False" Format="d 'Days' h 'Hours'" HorizontalAlignment="Left" Height="30" Margin="491,235,0,0"  VerticalAlignment="Top" Width="133" Background="{x:Null}" MaxLines="1">
+                        <syncfusion:TimeSpanEdit.BorderBrush>
+                            <LinearGradientBrush EndPoint="0,20" MappingMode="Absolute" StartPoint="0,0">
+                                <GradientStop Color="#FFABADB3" Offset="0.05"/>
+                                <GradientStop Color="#FFE2E3EA" Offset="0.07"/>
+                                <GradientStop Color="Gray" Offset="1"/>
+                            </LinearGradientBrush>
+                        </syncfusion:TimeSpanEdit.BorderBrush>
+                    </syncfusion:TimeSpanEdit>
+                    <CheckBox x:Name="StockExpirationPeriodCB" Checked="StockExpirationPeriodCB_Checked" Unchecked="StockExpirationPeriodCB_Unchecked"  HorizontalAlignment="Left" Margin="468,241,0,0" VerticalAlignment="Top"/>
+
+                </Grid>
+
+            </GroupBox>
+
+            <GroupBox x:Name="ChooseSupplierGB" Header="Supplier" Visibility="Visible" HorizontalAlignment="Left" Height="237" Margin="885,29,0,0" VerticalAlignment="Top" Width="448">
+                <Grid Margin="0,0,0,-7">
+
+
+
+                    <!--buttons-->
+                    <Button x:Name="SelectedSupplierButton"   Margin="10,111,195,0" VerticalAlignment="Top" Height="33"  >
+                        <Grid Width="208" Height="33">
+                            <materialDesign:PackIcon Kind="FormatListBulletedSquare" Width="25" Height="25"/>
+                            <TextBlock FontSize="17" Text="Selected Supplier log" Margin="30,0,10,10"/>
+                        </Grid>
+                    </Button>
+
+                    <Button x:Name="AddNewSupplierButton"  Margin="10,149,199,0" VerticalAlignment="Top" Height="33"  >
+                        <Grid Width="215" Height="33">
+                            <materialDesign:PackIcon Kind="PlusBox" Width="25" Height="25"/>
+                            <TextBlock FontSize="17" Text="Add New Supplier" Margin="30,0,25,10"/>
+                        </Grid>
+                    </Button>
+
+                    <Button x:Name="ClearSupplierSupplier" Click="ClearSupplierSupplier_Click"  Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Red"   VerticalAlignment="Top" Height="35" Margin="364,147,10,0"  >
+                        <materialDesign:PackIcon Kind="Clear" Width="30" Height="30"/>
+                    </Button>
+
+                    <ComboBox x:Name="SupplierSearchTypeValue" SelectionChanged="SupplierSearchTypeValue_SelectionChanged" IsTextSearchEnabled="True" TextSearch.TextPath="Name" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="17" Margin="411,11,0,0"  />
+                    <syncfusion:SfMultiColumnDropDownControl x:Name="SupplierSearchValue"  PopupBorderBrush="LightGray" PopupBackground="LightGray"  FlowDirection="RightToLeft" AutoGenerateColumns="False" AllowNullInput="True"  AllowAutoComplete="True" AllowImmediatePopup="True"  HorizontalAlignment="Left" Height="29"  VerticalAlignment="Top" Width="407" Margin="4,10,0,0" Foreground="Black" Background="White" Style="{DynamicResource SfMultiColumnDropDownControlStyle1}">
+                        <syncfusion:SfMultiColumnDropDownControl.Columns>
+                            <syncfusion:GridTextColumn HeaderText="Supplier Name" MappingName="Person.FullName" />
+                            <syncfusion:GridTextColumn HeaderText="Phone Number" MappingName="Person.PhoneNumber" />
+                            <syncfusion:GridTextColumn HeaderText="National Number" MappingName="Person.NationalNumber" />
+                            <syncfusion:GridTextColumn HeaderText="Company" MappingName="Company" />
+                        </syncfusion:SfMultiColumnDropDownControl.Columns>
+                        <syncfusion:SfMultiColumnDropDownControl.BorderBrush>
+                            <LinearGradientBrush EndPoint="0,20" MappingMode="Absolute" StartPoint="0,0">
+                                <GradientStop Color="#FFABADB3" Offset="0.05"/>
+                                <GradientStop Color="#FFE2E3EA" Offset="0.07"/>
+                                <GradientStop Color="Gray" Offset="1"/>
+                            </LinearGradientBrush>
+                        </syncfusion:SfMultiColumnDropDownControl.BorderBrush>
+                    </syncfusion:SfMultiColumnDropDownControl>
+
+                </Grid>
+            </GroupBox>
+
+            <DataGrid x:Name="IncomeOrderProductRecordsList" IsReadOnly="True"  AutoGenerateColumns="False" HorizontalAlignment="Left" Height="240" Margin="10,347,0,0" VerticalAlignment="Top" Width="1323" Background="LightGray">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Product Name" Binding="{Binding Name }" />
-                    <DataGridTextColumn Header="Barcode" Binding="{Binding BarCode}" />
-                    <DataGridTextColumn Header="Serial Number" Binding="{Binding SerialNumber}"/>
-                    <DataGridTextColumn Header="Serial Number 2" Binding="{Binding SerialNumber2}"/>
+                    <DataGridTextColumn Header="Product Name" Binding="{Binding IncomeOrderProduct.Product.Name}" />
+                    <DataGridTextColumn Header="Size" Binding="{Binding IncomeOrderProduct.Product.Size}" />
+                    <DataGridTextColumn Header="Product Barcode" Binding="{Binding IncomeOrderProduct.Product.BarCode}" />
+                    <DataGridTextColumn Header="Quantity" Binding="{Binding IncomeOrderProduct.Quantity}" />
+                    <DataGridTextColumn Header="Income Price" Binding="{Binding IncomeOrderProduct.IncomePrice}"/>
+                    <DataGridTextColumn Header="Sale Price" Binding="{Binding Stock.SalePrice}"/>
+                    <DataGridTextColumn Header="Total Price" Binding="{Binding IncomeOrderProduct.GetTotalProductPrice}"/>
                 </DataGrid.Columns>
             </DataGrid>
-        </GroupBox>
 
-        <Button x:Name="SupplierSwichGBButton_IncomeOrderUC" Click="SupplierSwichGBButton_IncomeOrderUC_Click" Content="Supplier" HorizontalAlignment="Left" Margin="885,0,0,0" VerticalAlignment="Top" Width="79" Height="26" FontSize="11" FontWeight="Bold"/>
-        <Button x:Name="RecentAddedProductsSwichGBButton_IncomeOrderUC" Click="RecentAddedProductsSwichGBButton_IncomeOrderUC_Click" Content="Recent Added Products" HorizontalAlignment="Left" Margin="969,0,0,0" VerticalAlignment="Top" Width="155" Height="26" FontSize="11" FontWeight="Bold"/>
+            <Button x:Name="RemoveSelectedIncomeOrderProductRecormButton" Click="RemoveSelectedIncomeOrderProductRecormButton_Click" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Red"  Margin="0,587,1068,0" VerticalAlignment="Top" Height="55"  >
+                <Grid Width="229">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="5*"/>
+                        <RowDefinition Height="42*"/>
+                    </Grid.RowDefinitions>
+                    <materialDesign:PackIcon Kind="RemoveCircle" Width="50" Height="46" Grid.RowSpan="2"/>
+                    <TextBlock FontSize="20" Text="Remove Selected" Margin="50,5,10,10" Grid.Row="1"/>
+                </Grid>
+            </Button>
 
-        <DatePicker Name="DateValue_IncomeOrderUC" HorizontalAlignment="Left" Margin="1238,310,0,0" VerticalAlignment="Top" Width="95" SelectedDateFormat="Short"/>
-        
-        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="280,638,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Details : "/></TextBlock>
-        <TextBox x:Name="OrderDetailsValue_IncomeOrderUC" HorizontalAlignment="Left" Height="32" Margin="379,639,0,0" Text="" VerticalAlignment="Top" Width="722" MaxLength="500" MaxLines="1"  />
+            <!--BillNumber-->
+            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="880,271,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" Width="148" Text="Bill Number : " />
+            <TextBox x:Name="BillNumberValue"  HorizontalAlignment="Left" Margin="1028,279,0,0" VerticalAlignment="Top" Width="205" />
+            <DatePicker x:Name="DateValue" HorizontalAlignment="Left" Margin="1238,279,0,0" VerticalAlignment="Top" Width="95" SelectedDateFormat="Short"/>
+
+
+            <!--Shipping Expenses-->
+            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="880,309,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" Width="221" Text="Shipping expenses : " />
+            <syncfusion:CurrencyTextBox x:Name="ShippingExpensesValue" TextChanged="ShippingExpensesValue_TextChanged" IsReadOnly="False" Value="0" CurrencyNegativePattern="8"  CurrencyPositivePattern="3"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="96"  Margin="1101,315,0,0" Height="27" Background="{x:Null}" FontSize="18" SelectionBrush="#FF009688" RenderTransformOrigin="0.68,0.352" MinValue="0" MaxLines="1">
+                <syncfusion:CurrencyTextBox.NumberFormat>
+                    <Globalization:NumberFormatInfo CurrencyGroupSeparator=" " CurrencyDecimalDigits="2" CurrencyDecimalSeparator="." CurrencySymbol="L.E"/>
+                </syncfusion:CurrencyTextBox.NumberFormat>
+                <syncfusion:CurrencyTextBox.BorderBrush>
+                    <LinearGradientBrush EndPoint="0,20" MappingMode="Absolute" StartPoint="0,0">
+                        <GradientStop Color="#FFABADB3" Offset="0.05"/>
+                        <GradientStop Color="#FFE2E3EA" Offset="0.07"/>
+                        <GradientStop Color="Gray" Offset="1"/>
+                    </LinearGradientBrush>
+                </syncfusion:CurrencyTextBox.BorderBrush>
+            </syncfusion:CurrencyTextBox>
+
+            <!--Total IncomeOrder Price -->
+            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="275,605,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Total Price : "/></TextBlock>
+            <syncfusion:CurrencyTextBox x:Name="IncomeOrderTotalPriceValue" IsReadOnly="True" Value="0" CurrencyNegativePattern="8"  CurrencyPositivePattern="3"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="133"  Margin="407,611,0,0" Height="27" Background="{x:Null}" FontSize="18" SelectionBrush="#FF009688" RenderTransformOrigin="0.68,0.352" MinValue="0">
+                <syncfusion:CurrencyTextBox.NumberFormat>
+                    <Globalization:NumberFormatInfo CurrencyGroupSeparator=" " CurrencyDecimalDigits="2" CurrencyDecimalSeparator="." CurrencySymbol="L.E"/>
+                </syncfusion:CurrencyTextBox.NumberFormat>
+                <syncfusion:CurrencyTextBox.BorderBrush>
+                    <LinearGradientBrush EndPoint="0,20" MappingMode="Absolute" StartPoint="0,0">
+                        <GradientStop Color="#FFABADB3" Offset="0.05"/>
+                        <GradientStop Color="#FFE2E3EA" Offset="0.07"/>
+                        <GradientStop Color="Gray" Offset="1"/>
+                    </LinearGradientBrush>
+                </syncfusion:CurrencyTextBox.BorderBrush>
+            </syncfusion:CurrencyTextBox>
+
+
+            <Grid x:Name="RecentlyAddedGrid"  Visibility="Collapsed" HorizontalAlignment="Left" Height="264" Margin="885,29,0,0" VerticalAlignment="Top" Width="448">
+                <syncfusion:SfDataGrid x:Name="RecentlyAddProductsList" AllowResizingColumns="True" ColumnSizer="AutoWithLastColumnFill" AllowDraggingColumns="True" AllowFiltering="True" ShowGroupDropArea="True" AutoGenerateColumns="False" Background="#FFD8D8D8" Margin="0,0,0,28">
+                    <syncfusion:SfDataGrid.Columns>
+                        <syncfusion:GridTextColumn HeaderText="Product" MappingName="Name" />
+                        <syncfusion:GridTextColumn HeaderText="Barcode" MappingName="BarCode" />
+                        <syncfusion:GridTextColumn HeaderText="Size" MappingName="Size" />
+                        <syncfusion:GridTextColumn HeaderText="Serial Number" MappingName="SerialNumber" />
+                        <syncfusion:GridTextColumn HeaderText="Serial Number 2" MappingName="SerialNumber2" />
+                    </syncfusion:SfDataGrid.Columns>
+                </syncfusion:SfDataGrid>
+            </Grid>
+
+            <Button x:Name="SupplierSwichGBButton" Content="Supplier" HorizontalAlignment="Left" Margin="885,0,0,0" VerticalAlignment="Top" Width="79" Height="26" FontSize="11" FontWeight="Bold"/>
+            <Button x:Name="RecentAddedProductsSwichButton" Content="Recent Added Products" HorizontalAlignment="Left" Margin="969,0,0,0" VerticalAlignment="Top" Width="155" Height="26" FontSize="11" FontWeight="Bold"/>
+
+
+            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="16,642,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Details : "/></TextBlock>
+            <TextBox x:Name="IncomeOrderDetailsValue" HorizontalAlignment="Left" Height="32" Margin="115,643,0,0" Text="" VerticalAlignment="Top" Width="715" MaxLength="500" MaxLines="1"  />
+
+            <!--Payment-->
+
+            <!--CheckBoxs-->
+            <RadioButton x:Name="CashRadioButton" Checked="CashRadioButton_Checked"  Visibility="Visible" Content="Cash" HorizontalAlignment="Left" Margin="902,587,0,0" VerticalAlignment="Top"/>
+            <RadioButton x:Name="SuspendPayementRadioButton" Checked="SuspendPayementRadioButton_Checked"  Visibility="Visible" Content="Suspend payment for later" HorizontalAlignment="Left" Margin="997,587,0,0" VerticalAlignment="Top"/>
+
+            <!--Store will pay now-->
+            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="902,610,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Store will Pay Now: "/></TextBlock>
+            <syncfusion:CurrencyTextBox x:Name="StoreWillPayNowValue" TextChanged="StoreWillPayNowValue_TextChanged" IsReadOnly="False" Value="0" CurrencyNegativePattern="8"  CurrencyPositivePattern="3"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="115"  Margin="1118,615,0,0" Height="27" Background="{x:Null}" FontSize="18" SelectionBrush="#FF009688" RenderTransformOrigin="0.68,0.352" MinValue="0">
+                <syncfusion:CurrencyTextBox.NumberFormat>
+                    <Globalization:NumberFormatInfo CurrencyGroupSeparator=" " CurrencyDecimalDigits="2" CurrencyDecimalSeparator="." CurrencySymbol="L.E"/>
+                </syncfusion:CurrencyTextBox.NumberFormat>
+                <syncfusion:CurrencyTextBox.BorderBrush>
+                    <LinearGradientBrush EndPoint="0,20" MappingMode="Absolute" StartPoint="0,0">
+                        <GradientStop Color="#FFABADB3" Offset="0.05"/>
+                        <GradientStop Color="#FFE2E3EA" Offset="0.07"/>
+                        <GradientStop Color="Gray" Offset="1"/>
+                    </LinearGradientBrush>
+                </syncfusion:CurrencyTextBox.BorderBrush>
+            </syncfusion:CurrencyTextBox>
+
+            <!--Store will pay Later-->
+            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="902,642,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Store will pay later: "/></TextBlock>
+            <syncfusion:CurrencyTextBox x:Name="StoreWillPayLaterValue" TextChanged="StoreWillPayLaterValue_TextChanged" IsReadOnly="False" Value="0" CurrencyNegativePattern="8"  CurrencyPositivePattern="3"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="115"  Margin="1118,648,0,0" Height="27" Background="{x:Null}" FontSize="18" SelectionBrush="#FF009688" RenderTransformOrigin="0.68,0.352" MinValue="0">
+                <syncfusion:CurrencyTextBox.NumberFormat>
+                    <Globalization:NumberFormatInfo CurrencyGroupSeparator=" " CurrencyDecimalDigits="2" CurrencyDecimalSeparator="." CurrencySymbol="L.E"/>
+                </syncfusion:CurrencyTextBox.NumberFormat>
+                <syncfusion:CurrencyTextBox.BorderBrush>
+                    <LinearGradientBrush EndPoint="0,20" MappingMode="Absolute" StartPoint="0,0">
+                        <GradientStop Color="#FFABADB3" Offset="0.05"/>
+                        <GradientStop Color="#FFE2E3EA" Offset="0.07"/>
+                        <GradientStop Color="Gray" Offset="1"/>
+                    </LinearGradientBrush>
+                </syncfusion:CurrencyTextBox.BorderBrush>
+            </syncfusion:CurrencyTextBox>
+
+            <!--Shoppee Wallet-->
+            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="561,605,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Shoppee Wallet : "/></TextBlock>
+            <syncfusion:CurrencyTextBox x:Name="ShoppeeWalletValue" IsReadOnly="True" Value="0" CurrencyNegativePattern="8"  CurrencyPositivePattern="3"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="122"  Margin="758,611,0,0" Height="27" Background="{x:Null}" FontSize="18" SelectionBrush="#FF009688" RenderTransformOrigin="0.68,0.352" MinValue="0">
+                <syncfusion:CurrencyTextBox.NumberFormat>
+                    <Globalization:NumberFormatInfo CurrencyGroupSeparator=" " CurrencyDecimalDigits="2" CurrencyDecimalSeparator="." CurrencySymbol="L.E"/>
+                </syncfusion:CurrencyTextBox.NumberFormat>
+                <syncfusion:CurrencyTextBox.BorderBrush>
+                    <LinearGradientBrush EndPoint="0,20" MappingMode="Absolute" StartPoint="0,0">
+                        <GradientStop Color="#FFABADB3" Offset="0.05"/>
+                        <GradientStop Color="#FFE2E3EA" Offset="0.07"/>
+                        <GradientStop Color="Gray" Offset="1"/>
+                    </LinearGradientBrush>
+                </syncfusion:CurrencyTextBox.BorderBrush>
+            </syncfusion:CurrencyTextBox>
+        </Grid>
+
+        <Grid x:Name="NewProductGrid" Visibility="Collapsed">
+            <Button x:Name="BackToUserGridButton_FromCreateNewProductGrid" Click="BackToUserGridButton_FromCreateNewProductGrid_Click" Visibility="Visible" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Green"   VerticalAlignment="Top"  Margin="0,0,1291,0" Height="30"  >
+                <materialDesign:PackIcon Kind="ArrowLeft" Width="20" Height="20"/>
+            </Button>
+            <CreateProduct:CreateProductUC HorizontalAlignment="Left" Margin="0,30,0,0" VerticalAlignment="Top"/>
+        </Grid>
+        <Grid x:Name="NewSupplierGrid" Visibility="Collapsed"/>
+        <Grid x:Name="SelectedSupplierLogGrid" Visibility="Collapsed"/>
 
     </Grid>
+
 </UserControl>

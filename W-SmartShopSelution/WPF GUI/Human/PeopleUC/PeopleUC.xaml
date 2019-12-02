@@ -12,11 +12,11 @@
 
 
     <Grid>
-        <Grid x:Name="MainGrid_PeopleUC" Visibility="Visible" >
+        <Grid x:Name="MainGrid_PeopleUC" Visibility="Visible" Background="White" >
 
 
 
-            <syncfusion:SfDataGrid x:Name="PeopleList" AllowResizingColumns="True" ColumnSizer="Star" AllowDraggingColumns="True" Margin="10,34,10,54" AllowFiltering="True" ShowGroupDropArea="True" AutoGenerateColumns="False" Background="#FFD8D8D8">
+            <syncfusion:SfDataGrid x:Name="PeopleList" AllowResizingColumns="True" ColumnSizer="Star" AllowDraggingColumns="True" Margin="10,103,10,54" AllowFiltering="True" ShowGroupDropArea="True" AutoGenerateColumns="False" Background="#FFD8D8D8">
                 <syncfusion:SfDataGrid.Columns>
                     <syncfusion:GridTextColumn HeaderText="" MappingName="GetThePersonProperties" />
                     <syncfusion:GridTextColumn HeaderText="Name" MappingName="FullName" />
@@ -50,10 +50,19 @@
 
             </Grid>
 
-            <syncfusion:SfTextBoxExt Name="T"  HighlightedTextColor="Red" TextHighlightMode="MultipleOccurrence" HorizontalAlignment="Left" Height="29" TextWrapping="Wrap" Watermark="Find Person" VerticalAlignment="Top" Width="477" Margin="421,0,0,0" FontSize="18" Foreground="Gray"/>
+            <syncfusion:SfTextBoxExt Name="T"  HighlightedTextColor="Red" TextHighlightMode="MultipleOccurrence" HorizontalAlignment="Left" Height="29" TextWrapping="Wrap" Watermark="Find Person" VerticalAlignment="Top" Width="477" Margin="157,17.04,0,0" FontSize="18" Foreground="Gray" Background="White">
+                <syncfusion:SfTextBoxExt.BorderBrush>
+                    <LinearGradientBrush EndPoint="0,20" MappingMode="Absolute" StartPoint="0,0">
+                        <GradientStop Color="#FFABADB3" Offset="0.05"/>
+                        <GradientStop Color="#FFE2E3EA" Offset="0.07"/>
+                        <GradientStop Color="Gray" Offset="1"/>
+                    </LinearGradientBrush>
+                </syncfusion:SfTextBoxExt.BorderBrush>
+            </syncfusion:SfTextBoxExt>
+            <syncfusion:ComboBoxAdv x:Name="PeopleCB" IsTextSearchEnabled="True" TextSearch.TextPath="FullName" HorizontalAlignment="Left" Height="27.96" Margin="712.5,1.04,0,0" VerticalAlignment="Top" Width="18"/>
 
-            <ComboBox Name="people" IsTextSearchEnabled="True" TextSearch.TextPath="FullName" Margin="898,1,429,651"   ></ComboBox>
-            
+            <ComboBox Name="people" IsTextSearchEnabled="True" TextSearch.TextPath="FullName" Margin="634,18.08,691.833,633.96"   ></ComboBox>
+
             <Button x:Name="CreatePerson" Content="Create Person"  Click="CreatePerson_Click"  Margin="10,630.833,1211.667,0" VerticalAlignment="Top" Height="39.167"  />
 
         </Grid>

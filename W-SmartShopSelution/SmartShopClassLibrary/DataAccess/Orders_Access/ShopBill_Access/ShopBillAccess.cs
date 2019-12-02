@@ -10,6 +10,33 @@ namespace Library
 {
     public static class ShopBillAccess
     {
+        /// <summary>
+        /// Add shopBill to the database
+        /// </summary>
+        /// <param name="shopBill"></param>
+        /// <param name="db"></param>
+        /// <returns></returns>
+        public static ShopBillModel AddShopBillToTheDatabase(ShopBillModel shopBill, string db)
+        {
+
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnVal(db)))
+            {
+                var p = new DynamicParameters();
+                p.Add("@StoreId", shopBill.Store.Id);
+                p.Add("@StaffId", shopBill.Staff.Id);
+                p.Add("@Date", shopBill.Date);
+                p.Add("@Details", shopBill.Details);
+                p.Add("@TotalMoney", shopBill.TotalMoney);
+                p.Add("@Id", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
+                connection.Execute("dbo.spShopBill_Create", p, commandType: CommandType.StoredProcedure);
+                shopBill.Id = p.Get<int>("@Id");
+
+            }
+
+            return shopBill;
+        }
+
+
         public static List<ShopBillModel>GetShopBillsFromTheDatabase(string db)
         {
             List<ShopBillModel> shopBills = new List<ShopBillModel>();
@@ -87,32 +114,7 @@ namespace Library
 
 
 
-        /// <summary>
-        /// -OLD-Add shopBill to the database
-        /// </summary>
-        /// <param name="shopBill"></param>
-        /// <param name="db"></param>
-        /// <returns></returns>
-        public static ShopBillModel AddShopBillToTheDatabase(ShopBillModel shopBill, string db)
-        {
-
-            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnVal(db)))
-            {
-                var p = new DynamicParameters();
-                p.Add("@StoreId", shopBill.Store.Id);
-                p.Add("@StaffId", shopBill.Staff.Id);
-                p.Add("@Date", shopBill.Date);
-                p.Add("@Details", shopBill.Details);
-                p.Add("@TotalMoney", shopBill.TotalMoney);
-                p.Add("@Id", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
-                connection.Execute("dbo.spShopBill_Create", p, commandType: CommandType.StoredProcedure);
-                shopBill.Id = p.Get<int>("@Id");
-
-            }
-
-            return shopBill;
-        }
-
+       
 
         /// <summary>
         /// -OLD-Get all shopBills from the database

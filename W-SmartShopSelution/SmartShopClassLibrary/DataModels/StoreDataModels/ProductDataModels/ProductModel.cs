@@ -67,10 +67,13 @@ namespace Library
         /// </summary>
         public decimal IncomePrice { get; set; }
 
+        /// <summary>
+        /// The time of the expiration in hours
+        /// </summary>
         public float ExpirationPeriodHours { set; get; }
 
         /// <summary>
-        /// The time of the expiration in hours
+        /// The time of the expiration in in timeSpain
         /// </summary>
         public TimeSpan ExpirationPeriod 
         {
