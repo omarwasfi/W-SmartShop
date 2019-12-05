@@ -25,19 +25,13 @@ namespace WPF_GUI.Orders.In.BillsManagerUC
 
         #region Main variables
 
-        /// <summary>
-        /// All the orders in the database
-        /// </summary>
-        private List<ShopBillModel> ShopBills = new List<ShopBillModel>();
+
 
         #endregion
 
         #region Help Variables
 
-        /// <summary>
-        /// The filtered shopBills
-        /// </summary>
-        private List<ShopBillModel> FShopBills { get; set; } = new List<ShopBillModel>();
+       
 
         #endregion
 
@@ -53,88 +47,38 @@ namespace WPF_GUI.Orders.In.BillsManagerUC
 
         public void SetInitialValues()
         {
-            UpdateTheShopBillsFromThePublicVariables();
+            // Grids
+            UserGrid.Visibility = Visibility.Visible;
+            PayBillGrid.Visibility = Visibility.Collapsed;
 
-            BillsList_BillsManagerUC.ItemsSource = null;
-            BillsList_BillsManagerUC.ItemsSource = ShopBills;
+            BillsList.ItemsSource = null;
+            BillsList.ItemsSource = PublicVariables.ShopBills;
         }
 
 
-        /// <summary>
-        /// Update And get the shopBills From the publicVariables
-        /// </summary>
-        private void UpdateTheShopBillsFromThePublicVariables()
-        {
-            PublicVariables.ShopBills = GlobalConfig.Connection.GetShopBills();
-            ShopBills = null;
-            ShopBills = PublicVariables.ShopBills;
-        }
+
 
 
         #endregion
 
         #region Hole form events , functions
 
-
-
-
-        /// <summary>
-        /// NotDone
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void PayBillButton_BillsManagerUC_Click(object sender, RoutedEventArgs e)
+        private void PayBillButton_Click(object sender, RoutedEventArgs e)
         {
-            PayBillUC.PayBillUC payBill = new PayBillUC.PayBillUC();
-            Window window = new Window
-            {
-                Title = "Pay Bill",
-                Content = payBill,
-                SizeToContent = SizeToContent.WidthAndHeight,
-                ResizeMode = ResizeMode.NoResize
-            };
-            window.ShowDialog();
-            SetInitialValues();
-
+            PayBillGrid.Visibility = Visibility.Visible;
+            UserGrid.Visibility = Visibility.Collapsed;
         }
 
-        private void ReloadTabButton_BillsManagerUC_Click(object sender, RoutedEventArgs e)
+        private void BackToNormalGridButton_FromPayBillGrid_Click(object sender, RoutedEventArgs e)
         {
+            UserGrid.Visibility = Visibility.Visible;
+            PayBillGrid.Visibility = Visibility.Collapsed;
             SetInitialValues();
         }
 
-
-        private void BillsList_BillsManagerUC_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            if (BillsList_BillsManagerUC.SelectedItem != null)
-            {
-                ShopBillModel shopBill = (ShopBillModel)BillsList_BillsManagerUC.SelectedItem;
-                ModifyBillUC modifyBill = new ModifyBillUC(shopBill);
-
-                Window window = new Window
-                {
-                    Title = "Bill",
-                    Content = modifyBill,
-                    SizeToContent = SizeToContent.WidthAndHeight,
-                    ResizeMode = ResizeMode.NoResize
-                };
-                window.ShowDialog();
-                SetInitialValues();
-            }
-        }
-
-
-        private void DateFilterValue_BillsManagerUC_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
-        {
-            FShopBills = new List<ShopBillModel>();
-            FShopBills =  GlobalConfig.Connection.FilterShopBillsByDate(ShopBills, (DateTime)DateFilterValue_BillsManagerUC.SelectedDate);
-
-            BillsList_BillsManagerUC.ItemsSource = null;
-            BillsList_BillsManagerUC.ItemsSource = FShopBills;
-        }
 
         #endregion
 
-
+       
     }
 }

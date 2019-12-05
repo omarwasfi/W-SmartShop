@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ValidationResult = FluentValidation.Results.ValidationResult;
 using Library;
 
 namespace WPF_GUI.Orders.In.PayBillUC
@@ -24,10 +25,6 @@ namespace WPF_GUI.Orders.In.PayBillUC
 
         #region Main Variables
 
-        /// <summary>
-        /// The shopBill MOdel 
-        /// </summary>
-        ShopBillModel ShopBill = new ShopBillModel();
 
         #endregion
         #region set the initianl values
@@ -44,16 +41,11 @@ namespace WPF_GUI.Orders.In.PayBillUC
 
         private void SetInitialValues()
         {
-            ShopBill = new ShopBillModel();
-
-            TotalPriceValue_PayBillUC.Text = "";
-
-            DateValue_PayBillUC.DisplayDateEnd = DateTime.Now;
-            DateValue_PayBillUC.DisplayDateStart = new DateTime(2010, 1, 1);
-            DateValue_PayBillUC.SelectedDate = DateTime.Now;
-
-            BillDetailsValue_PayBillUC.Text = "";
+            ShoppeeWalletValue.Value = PublicVariables.Store.GetShopeeWallet;
+            TotalPriceValue.Value = 0;
+            BillDetailsValue.Text = "";
         }
+
 
 
         #endregion
@@ -61,78 +53,46 @@ namespace WPF_GUI.Orders.In.PayBillUC
         #region Hole Form Events, functions
 
 
-        /// <summary>
-        /// Money validation for any text accepts money
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void MoneyValidation(object sender, TextCompositionEventArgs e)
+        private void TotalPriceValue_TextChanged(object sender, TextChangedEventArgs e)
         {
-            GlobalConfig.NumberValidation.MoneyValidationTextBox(sender, e);
+            decimal totalPrice = TotalPriceValue.Value.Value;
+
+            if (totalPrice >= ShoppeeWalletValue.Value)
+            {
+                TotalPriceValue.Value = ShoppeeWalletValue.Value;
+            }
+
         }
 
-        /// <summary>
-        /// Check if the Shopbill Valid to save in the database
-        /// </summary>
-        /// <returns></returns>
-        private Boolean IsValid()
+        private void RefreshButton_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(TotalPriceValue_PayBillUC.Text) == false) 
+            SetInitialValues();
+        }
+
+        private void ConfirmButton_Click(object sender, RoutedEventArgs e)
+        {
+            ShopBillModel shopBill = new ShopBillModel();
+            shopBill.Store = PublicVariables.Store;
+            shopBill.Staff = PublicVariables.Staff;
+            shopBill.TotalMoney = TotalPriceValue.Value.Value;
+            shopBill.Date = DateTime.Now;
+            shopBill.Details = BillDetailsValue.Text;
+
+            GlobalConfig.ShopBillValidator = new ShopBillValidator();
+
+            ValidationResult result = GlobalConfig.ShopBillValidator.Validate(shopBill);
+
+            if (result.IsValid == false)
             {
-                
+
+                MessageBox.Show(result.Errors[0].ErrorMessage);
+
             }
             else
             {
-                MessageBox.Show("Enter the Total Price !");
-                return false;
-            }
-
-
-            return true;
-        }
-
-        private void ConfirmButton_PayBillUC_Click(object sender, RoutedEventArgs e)
-        {
-
-            if (IsValid())
-            {
-                ShopBill.Store = PublicVariables.Store;
-                ShopBill.Staff = PublicVariables.Staff;
-
-                // Setting the dateTime
-                int hours = DateTime.Now.Hour;
-                int minutes = DateTime.Now.Minute;
-                int second = DateTime.Now.Second;
-
-                DateTime selectedDate = new DateTime();
-                selectedDate = (DateTime)DateValue_PayBillUC.SelectedDate;
-
-                DateTime shopBillDateTime = new DateTime(selectedDate.Year, selectedDate.Month, selectedDate.Day, hours, minutes, second);
-
-                ShopBill.Date = shopBillDateTime;
-
-                ShopBill.Details = BillDetailsValue_PayBillUC.Text;
-
-                ShopBill.TotalMoney = decimal.Parse(TotalPriceValue_PayBillUC.Text);
-
-
-                ShopBill = GlobalConfig.Connection.AddShopBillToTheDatabase(ShopBill);
-
-                OperationModel operation = new OperationModel();
-              /*  operation.Date = ShopBill.Date;
-                operation.AmountOfMoney = ShopBill.TotalMoney;
-                operation.ShopBill = ShopBill;
-
-                GlobalConfig.Connection.AddOperationToDatabase(operation);
-                */
+                GlobalConfig.Connection.AddShopBillToTheDatabase(shopBill);
                 SetInitialValues();
             }
-
-        }
-        
-        private void RefreshButton_PayBillUC_Click(object sender, RoutedEventArgs e)
-        {
-            SetInitialValues();
         }
 
         #endregion

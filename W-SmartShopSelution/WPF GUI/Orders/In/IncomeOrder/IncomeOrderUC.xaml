@@ -10,7 +10,7 @@
              mc:Ignorable="d"
              d:DesignHeight="680" d:DesignWidth="1343">
     <Grid>
-        <Grid x:Name="UserGrid" Visibility="Collapsed" Background="White">
+        <Grid x:Name="UserGrid" Visibility="Visible" Background="White">
 
             <Grid Margin="1117,0,0,651">
                 <Button x:Name="CloseButton" Visibility="Collapsed" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Red"   VerticalAlignment="Top"  Margin="3,0,170,0" Height="25"  >

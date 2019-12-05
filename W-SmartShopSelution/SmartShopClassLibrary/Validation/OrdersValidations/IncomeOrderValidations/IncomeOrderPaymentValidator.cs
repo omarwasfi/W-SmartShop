@@ -26,7 +26,8 @@ namespace Library
            .Cascade(CascadeMode.StopOnFirstFailure)
            .NotNull().WithMessage("unexpected Error From IncomeOrderPaymentValidator : The Paid is NUll")
            .NotEmpty().WithMessage("The paid value can't be 0")
-           .GreaterThan(0).WithMessage("The paid value has to be more than 0");
+           .GreaterThan(0).WithMessage("The paid value has to be more than 0")
+           .LessThan(PublicVariables.Store.GetShopeeWallet).WithMessage("The paid amount is more thant the shoppee wallet !");
 
             RuleFor(p => p.Date)
            .Cascade(CascadeMode.StopOnFirstFailure)

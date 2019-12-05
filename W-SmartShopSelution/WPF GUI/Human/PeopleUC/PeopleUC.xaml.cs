@@ -36,19 +36,7 @@ namespace WPF_GUI
         {
 
             PeopleList.ItemsSource = null;
-            PeopleList.ItemsSource = PublicVariables.People;
-
-            people.ItemsSource = PublicVariables.People;
-            people.DisplayMemberPath = "FullName";
-
-            PeopleCB.ItemsSource = PublicVariables.People;
-            PeopleCB.DisplayMemberPath = "FullName";
-
-            T.AutoCompleteSource = null;
-            T.AutoCompleteSource = PublicVariables.People;
-            T.SearchItemPath = "FullName";
-            T.AutoCompleteMode = Syncfusion.Windows.Controls.Input.AutoCompleteMode.SuggestAppend;
-            T.SuggestionMode = Syncfusion.Windows.Controls.Input.SuggestionMode.Contains;
+            PeopleList.ItemsSource = PublicVariables.People;        
 
         }
 

@@ -1190,12 +1190,16 @@ namespace Library
             {
                 OrderPaymentAccess.AddOrderPaymentToTheDatabase(orderPayment, order, db);
                 PublicVariables.OrderPayments.Add(orderPayment);
+                OperationModel operation = new OperationModel { OrderPayment = orderPayment };
+                PublicVariables.Operations.Add(operation);
             }
 
             foreach(OrderProductRecordModel orderProductRecord in orderProductRecords)
             {
                 StockAccess.ReduseStock(orderProductRecord.Stock, orderProductRecord.OrderProduct.Quantity, db);
             }
+
+            
 
             return order;
         }
@@ -1789,6 +1793,7 @@ namespace Library
 
         #region ShopBill
 
+        
         /// <summary>
         /// Add shopBill to the database
         /// </summary>
@@ -1798,6 +1803,7 @@ namespace Library
         public ShopBillModel AddShopBillToTheDatabase(ShopBillModel shopBill)
         {
             shopBill = ShopBillAccess.AddShopBillToTheDatabase(shopBill, db);
+            PublicVariables.ShopBills.Add(shopBill);
             OperationModel operation = new OperationModel { ShopBill = shopBill };
             PublicVariables.Operations.Add(operation);
             return shopBill;

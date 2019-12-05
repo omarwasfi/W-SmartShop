@@ -31,7 +31,8 @@ namespace Library
         public static OrderPaymentValidator OrderPaymentValidator { get; set; }
         public static OrderValidator OrderValidator { get; set;}
         public static OrderProductValidator OrderProductValidator { get; set; }
-        
+        public static ShopBillValidator ShopBillValidator { get; set; }
+
 
         public static void InitializeConnection()
         {

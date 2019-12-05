@@ -156,6 +156,7 @@
     <Compile Include="Validation\OrdersValidations\OrderValidations\OrderValidator.cs" />
     <Compile Include="Validation\OrdersValidations\OwnerOrdersValidations\InvestmentValidator.cs" />
     <Compile Include="Validation\OrdersValidations\OwnerOrdersValidations\RevenueValidator.cs" />
+    <Compile Include="Validation\OrdersValidations\ShopBillValidations\ShopBillValidator.cs" />
     <Compile Include="Validation\OrdersValidations\StoreTransformsValidations\DeTransformValidator.cs" />
     <Compile Include="Validation\OrdersValidations\StoreTransformsValidations\TransformValidator.cs" />
     <Compile Include="Validation\StoreValidations\ProductValidations\BrandValidator.cs" />
@@ -180,7 +181,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="LogicalClasses\StaffSalary\" />
-    <Folder Include="Validation\OrdersValidations\ShopBillValidations\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
