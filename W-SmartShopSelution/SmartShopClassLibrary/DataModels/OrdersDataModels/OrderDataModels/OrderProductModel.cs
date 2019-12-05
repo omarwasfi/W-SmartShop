@@ -50,10 +50,7 @@ namespace Library
             get
             {
                 decimal total = (decimal)Quantity * SalePrice;
-                decimal discount = (decimal)Quantity * Discount;
-
-                total -= discount;
-
+ 
                 return total ;
             }
         }
@@ -70,17 +67,6 @@ namespace Library
         }
 
 
-
-        /// <summary>
-        /// -OLD- GetThe Profit (  salePrice - IncomePrice of the product )
-        /// </summary>
-        public decimal GetProfit
-        {
-            get
-            {
-                return SalePrice - Product.IncomePrice;
-            }
-        }
 
 
 

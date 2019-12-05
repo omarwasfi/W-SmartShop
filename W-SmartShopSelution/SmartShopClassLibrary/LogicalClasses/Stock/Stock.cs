@@ -34,6 +34,7 @@ namespace Library
 
         /// <summary>
         /// Generate a unique SBarcode for the stock
+        /// Based on StoreID + First char of the productName + Number
         /// </summary>
         /// <param name="stock"></param>
         /// <returns></returns>
@@ -67,6 +68,32 @@ namespace Library
                 return true;
             }
            
+        }
+
+        /// <summary>
+        /// Get the Expiration state (The days and hours left OR expired !! OR Don't Expire )
+        /// </summary>
+        /// <param name="stock"></param>
+        /// <returns></returns>
+        public static string ExpirationState(StockModel stock)
+        {
+            if(stock.ExpirationAlarmEnabled == true)
+            {
+                TimeSpan inStore = DateTime.Now - stock.Date;
+                TimeSpan timeLeft = stock.ExpirationPeriod - inStore;
+                if(timeLeft > new TimeSpan(0, 0, 0, 0))
+                {
+                    return "Days: " + timeLeft.Days + " ,Hours: " + timeLeft.Hours;
+                }
+                else
+                {
+                    return "Expired !!";
+                }
+            }
+            else
+            {
+                return "Don't Expire";
+            }
         }
 
         /// <summary>

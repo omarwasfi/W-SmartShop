@@ -50,7 +50,7 @@ WHERE OrderProduct.OrderId = '{OrderId}'</SqlCommand>
     <Relations isList="true" count="0" />
     <Report isRef="0" />
     <Resources isList="true" count="0" />
-    <Variables isList="true" count="17">
+    <Variables isList="true" count="18">
       <value>,CustomerName,CustomerName,,System.String,Customer_x0020_Name,False,False,False,False</value>
       <value>,OrganizationName,OrganizationName,,System.String,Organization_x0020_Name,False,False,False,False</value>
       <value>,OrderId,OrderId,The_x0020_Id_x0020_of_x0020_the_x0020_order,System.Int32,_x0032_07104,False,False,False,False</value>
@@ -68,6 +68,7 @@ WHERE OrderProduct.OrderId = '{OrderId}'</SqlCommand>
       <value>,CustomerAddress,CustomerAddress,,System.String,,False,False,False,False</value>
       <value>,TotalOrderProduct,TotalOrderProduct,,System.String,,False,False,False,False</value>
       <value>,PrintLast,PrintLast,,System.String,Payment_x0020_due_x0020_within_x0020_30_x0020_days_x0020_from_x0020_date_x0020_of_x0020_invoice_x000D__x000A_Thank_x0020_you_x0020_for_x0020_your_x0020_business_x0021_,False,False,False,False</value>
+      <value>,TotalPaid,TotalPaid,,System.String,,False,False,False,False</value>
     </Variables>
   </Dictionary>
   <EngineVersion>EngineV2</EngineVersion>
@@ -541,7 +542,7 @@ WHERE OrderProduct.OrderId = '{OrderId}'</SqlCommand>
         <FooterOrderReport Ref="38" type="FooterBand" isKey="true">
           <Brush>Transparent</Brush>
           <ClientRectangle>0,4.3,7.49,0.3</ClientRectangle>
-          <Components isList="true" count="15">
+          <Components isList="true" count="17">
             <FooterOrderReport_Row_ Ref="39" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,0,0.7,0.3</ClientRectangle>
@@ -739,7 +740,7 @@ WHERE OrderProduct.OrderId = '{OrderId}'</SqlCommand>
             <Text5 Ref="52" type="Text" isKey="true">
               <Border>None;[155:155:155];1;Solid;False;4;Black;True</Border>
               <Brush>Silver</Brush>
-              <ClientRectangle>4.5,0,1,0.3</ClientRectangle>
+              <ClientRectangle>2.6,0,1,0.3</ClientRectangle>
               <ComponentPlacement>f.FooterBand1</ComponentPlacement>
               <ComponentStyle>Black Total</ComponentStyle>
               <Conditions isList="true" count="0" />
@@ -759,7 +760,7 @@ WHERE OrderProduct.OrderId = '{OrderId}'</SqlCommand>
             <Text4 Ref="53" type="Text" isKey="true">
               <Border>None;[155:155:155];1;Solid;False;4;Black;True</Border>
               <Brush>Silver</Brush>
-              <ClientRectangle>3.6,0,0.9,0.3</ClientRectangle>
+              <ClientRectangle>1.7,0,0.9,0.3</ClientRectangle>
               <ComponentPlacement>f.FooterBand1</ComponentPlacement>
               <ComponentStyle>Black Total</ComponentStyle>
               <Conditions isList="true" count="0" />
@@ -776,6 +777,46 @@ WHERE OrderProduct.OrderId = '{OrderId}'</SqlCommand>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text4>
+            <Text10 Ref="54" type="Text" isKey="true">
+              <Border>None;[155:155:155];1;Solid;False;4;Black;True</Border>
+              <Brush>Silver</Brush>
+              <ClientRectangle>4.5,0,1,0.3</ClientRectangle>
+              <ComponentPlacement>f.FooterBand1</ComponentPlacement>
+              <ComponentStyle>Black Total</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Editable>True</Editable>
+              <Font>Microsoft Sans Serif,12,Bold,Point,False,204</Font>
+              <Guid>7cca2e018e3441c0aeed380c02ea2e1d</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>5,0,0,0</Margins>
+              <Name>Text10</Name>
+              <Page isRef="4" />
+              <Parent isRef="38" />
+              <Text>تم دفع</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text10>
+            <Text11 Ref="55" type="Text" isKey="true">
+              <Border>None;[155:155:155];1;Solid;False;4;Black;True</Border>
+              <Brush>Silver</Brush>
+              <ClientRectangle>3.6,0,0.9,0.3</ClientRectangle>
+              <ComponentPlacement>f.FooterBand1</ComponentPlacement>
+              <ComponentStyle>Black Total</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Font>Microsoft Sans Serif,12,Bold,Point,False,204</Font>
+              <Guid>d855b673213c460baf94f5299eae5cdb</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,5,0,0</Margins>
+              <Name>Text11</Name>
+              <Page isRef="4" />
+              <Parent isRef="38" />
+              <Tag>TOTAL</Tag>
+              <Text>{TotalPaid}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text11>
           </Components>
           <Conditions isList="true" count="0" />
           <Name>FooterOrderReport</Name>
@@ -804,10 +845,10 @@ WHERE OrderProduct.OrderId = '{OrderId}'</SqlCommand>
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>11/3/2019 2:06:15 PM</ReportChanged>
+  <ReportChanged>12/5/2019 10:44:35 AM</ReportChanged>
   <ReportCreated>9/16/2019 6:37:47 AM</ReportCreated>
   <ReportFile>C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\Orders\Out\SellUC\SellOrderReportARforEMG.mrt</ReportFile>
-  <ReportGuid>450cb1674bca44f4a88d5ab01f5a2edc</ReportGuid>
+  <ReportGuid>fb46915757f84f1ab7a58869d6a95f4b</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Inches</ReportUnit>
   <ReportVersion>2019.3.1.0</ReportVersion>
@@ -836,394 +877,394 @@ namespace Reports
 </Script>
   <ScriptLanguage>CSharp</ScriptLanguage>
   <Styles isList="true" count="24">
-    <Dark_x0020_Azure_Report_Title1 Ref="54" type="Stimulsoft.Report.StiStyle" isKey="true">
-      <Border>None;[0:0:0];1;Solid;False;4;Black</Border>
-      <Brush>Transparent</Brush>
-      <CollectionName>Dark Azure</CollectionName>
-      <Conditions isList="true" count="1">
-        <Item50 Ref="55" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
-          <ComponentType>Text, Primitive, Image</ComponentType>
-          <Placement>ReportTitle</Placement>
-          <Type>ComponentType, Placement, PlacementNestedLevel</Type>
-        </Item50>
-      </Conditions>
-      <Font>Arial,14,Bold</Font>
-      <Name>Dark Azure_Report_Title1</Name>
-      <NegativeTextBrush>Red</NegativeTextBrush>
-      <TextBrush>Black</TextBrush>
-    </Dark_x0020_Azure_Report_Title1>
-    <Dark_x0020_Azure_Report_Title2 Ref="56" type="Stimulsoft.Report.StiStyle" isKey="true">
+    <Dark_x0020_Azure_Report_Title1 Ref="56" type="Stimulsoft.Report.StiStyle" isKey="true">
       <Border>None;[0:0:0];1;Solid;False;4;Black</Border>
       <Brush>Transparent</Brush>
       <CollectionName>Dark Azure</CollectionName>
       <Conditions isList="true" count="1">
         <Item52 Ref="57" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
           <ComponentType>Text, Primitive, Image</ComponentType>
-          <OperationPlacementNestedLevel>GreaterThanOrEqualTo</OperationPlacementNestedLevel>
           <Placement>ReportTitle</Placement>
-          <PlacementNestedLevel>2</PlacementNestedLevel>
           <Type>ComponentType, Placement, PlacementNestedLevel</Type>
         </Item52>
       </Conditions>
-      <Font>Arial,10,Bold</Font>
-      <Name>Dark Azure_Report_Title2</Name>
+      <Font>Arial,14,Bold</Font>
+      <Name>Dark Azure_Report_Title1</Name>
       <NegativeTextBrush>Red</NegativeTextBrush>
       <TextBrush>Black</TextBrush>
-    </Dark_x0020_Azure_Report_Title2>
-    <Dark_x0020_Azure_Report_Summary Ref="58" type="Stimulsoft.Report.StiStyle" isKey="true">
+    </Dark_x0020_Azure_Report_Title1>
+    <Dark_x0020_Azure_Report_Title2 Ref="58" type="Stimulsoft.Report.StiStyle" isKey="true">
       <Border>None;[0:0:0];1;Solid;False;4;Black</Border>
       <Brush>Transparent</Brush>
       <CollectionName>Dark Azure</CollectionName>
       <Conditions isList="true" count="1">
         <Item54 Ref="59" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
           <ComponentType>Text, Primitive, Image</ComponentType>
-          <Placement>ReportSummary</Placement>
-          <Type>ComponentType, Placement</Type>
+          <OperationPlacementNestedLevel>GreaterThanOrEqualTo</OperationPlacementNestedLevel>
+          <Placement>ReportTitle</Placement>
+          <PlacementNestedLevel>2</PlacementNestedLevel>
+          <Type>ComponentType, Placement, PlacementNestedLevel</Type>
         </Item54>
       </Conditions>
       <Font>Arial,10,Bold</Font>
-      <Name>Dark Azure_Report_Summary</Name>
+      <Name>Dark Azure_Report_Title2</Name>
       <NegativeTextBrush>Red</NegativeTextBrush>
       <TextBrush>Black</TextBrush>
-    </Dark_x0020_Azure_Report_Summary>
-    <Dark_x0020_Azure_Page_Header Ref="60" type="Stimulsoft.Report.StiStyle" isKey="true">
+    </Dark_x0020_Azure_Report_Title2>
+    <Dark_x0020_Azure_Report_Summary Ref="60" type="Stimulsoft.Report.StiStyle" isKey="true">
       <Border>None;[0:0:0];1;Solid;False;4;Black</Border>
       <Brush>Transparent</Brush>
       <CollectionName>Dark Azure</CollectionName>
       <Conditions isList="true" count="1">
         <Item56 Ref="61" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
           <ComponentType>Text, Primitive, Image</ComponentType>
-          <Placement>PageHeader</Placement>
+          <Placement>ReportSummary</Placement>
           <Type>ComponentType, Placement</Type>
         </Item56>
       </Conditions>
-      <Font>Arial,10</Font>
-      <Name>Dark Azure_Page_Header</Name>
+      <Font>Arial,10,Bold</Font>
+      <Name>Dark Azure_Report_Summary</Name>
       <NegativeTextBrush>Red</NegativeTextBrush>
       <TextBrush>Black</TextBrush>
-    </Dark_x0020_Azure_Page_Header>
-    <Dark_x0020_Azure_Page_Footer Ref="62" type="Stimulsoft.Report.StiStyle" isKey="true">
+    </Dark_x0020_Azure_Report_Summary>
+    <Dark_x0020_Azure_Page_Header Ref="62" type="Stimulsoft.Report.StiStyle" isKey="true">
       <Border>None;[0:0:0];1;Solid;False;4;Black</Border>
       <Brush>Transparent</Brush>
       <CollectionName>Dark Azure</CollectionName>
       <Conditions isList="true" count="1">
         <Item58 Ref="63" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
           <ComponentType>Text, Primitive, Image</ComponentType>
-          <Placement>PageFooter</Placement>
+          <Placement>PageHeader</Placement>
           <Type>ComponentType, Placement</Type>
         </Item58>
       </Conditions>
       <Font>Arial,10</Font>
-      <Name>Dark Azure_Page_Footer</Name>
+      <Name>Dark Azure_Page_Header</Name>
       <NegativeTextBrush>Red</NegativeTextBrush>
       <TextBrush>Black</TextBrush>
-    </Dark_x0020_Azure_Page_Footer>
-    <Dark_x0020_Azure_Group_Header1 Ref="64" type="Stimulsoft.Report.StiStyle" isKey="true">
+    </Dark_x0020_Azure_Page_Header>
+    <Dark_x0020_Azure_Page_Footer Ref="64" type="Stimulsoft.Report.StiStyle" isKey="true">
       <Border>None;[0:0:0];1;Solid;False;4;Black</Border>
       <Brush>Transparent</Brush>
       <CollectionName>Dark Azure</CollectionName>
       <Conditions isList="true" count="1">
         <Item60 Ref="65" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
           <ComponentType>Text, Primitive, Image</ComponentType>
-          <OperationPlacementNestedLevel>GreaterThanOrEqualTo</OperationPlacementNestedLevel>
-          <Placement>GroupHeader</Placement>
-          <Type>ComponentType, Placement, PlacementNestedLevel</Type>
+          <Placement>PageFooter</Placement>
+          <Type>ComponentType, Placement</Type>
         </Item60>
       </Conditions>
-      <Font>Arial,13,Bold</Font>
-      <Name>Dark Azure_Group_Header1</Name>
+      <Font>Arial,10</Font>
+      <Name>Dark Azure_Page_Footer</Name>
       <NegativeTextBrush>Red</NegativeTextBrush>
       <TextBrush>Black</TextBrush>
-    </Dark_x0020_Azure_Group_Header1>
-    <Dark_x0020_Azure_Group_Footer1 Ref="66" type="Stimulsoft.Report.StiStyle" isKey="true">
+    </Dark_x0020_Azure_Page_Footer>
+    <Dark_x0020_Azure_Group_Header1 Ref="66" type="Stimulsoft.Report.StiStyle" isKey="true">
       <Border>None;[0:0:0];1;Solid;False;4;Black</Border>
       <Brush>Transparent</Brush>
       <CollectionName>Dark Azure</CollectionName>
       <Conditions isList="true" count="1">
         <Item62 Ref="67" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
           <ComponentType>Text, Primitive, Image</ComponentType>
-          <Placement>GroupFooter</Placement>
+          <OperationPlacementNestedLevel>GreaterThanOrEqualTo</OperationPlacementNestedLevel>
+          <Placement>GroupHeader</Placement>
           <Type>ComponentType, Placement, PlacementNestedLevel</Type>
         </Item62>
+      </Conditions>
+      <Font>Arial,13,Bold</Font>
+      <Name>Dark Azure_Group_Header1</Name>
+      <NegativeTextBrush>Red</NegativeTextBrush>
+      <TextBrush>Black</TextBrush>
+    </Dark_x0020_Azure_Group_Header1>
+    <Dark_x0020_Azure_Group_Footer1 Ref="68" type="Stimulsoft.Report.StiStyle" isKey="true">
+      <Border>None;[0:0:0];1;Solid;False;4;Black</Border>
+      <Brush>Transparent</Brush>
+      <CollectionName>Dark Azure</CollectionName>
+      <Conditions isList="true" count="1">
+        <Item64 Ref="69" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
+          <ComponentType>Text, Primitive, Image</ComponentType>
+          <Placement>GroupFooter</Placement>
+          <Type>ComponentType, Placement, PlacementNestedLevel</Type>
+        </Item64>
       </Conditions>
       <Font>Arial,9.75,Bold,Point,False,204</Font>
       <Name>Dark Azure_Group_Footer1</Name>
       <NegativeTextBrush>Red</NegativeTextBrush>
       <TextBrush>Black</TextBrush>
     </Dark_x0020_Azure_Group_Footer1>
-    <Dark_x0020_Azure_Header1 Ref="68" type="Stimulsoft.Report.StiStyle" isKey="true">
+    <Dark_x0020_Azure_Header1 Ref="70" type="Stimulsoft.Report.StiStyle" isKey="true">
       <Border>None;[0:0:0];1;Solid;False;4;Black;True</Border>
       <Brush>[0:0:0]</Brush>
       <CollectionName>Dark Azure</CollectionName>
       <Conditions isList="true" count="1">
-        <Item64 Ref="69" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
+        <Item66 Ref="71" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
           <ComponentType>Text, Primitive, Image</ComponentType>
           <OperationPlacementNestedLevel>GreaterThanOrEqualTo</OperationPlacementNestedLevel>
           <Placement>Header</Placement>
           <Type>ComponentType, Placement, PlacementNestedLevel</Type>
-        </Item64>
+        </Item66>
       </Conditions>
       <Font>Arial,8,Bold</Font>
       <Name>Dark Azure_Header1</Name>
       <NegativeTextBrush>Red</NegativeTextBrush>
       <TextBrush>White</TextBrush>
     </Dark_x0020_Azure_Header1>
-    <Dark_x0020_Azure_Data1 Ref="70" type="Stimulsoft.Report.StiStyle" isKey="true">
+    <Dark_x0020_Azure_Data1 Ref="72" type="Stimulsoft.Report.StiStyle" isKey="true">
       <Border>None;[0:0:0];1;Solid;False;4;Black</Border>
       <Brush>Transparent</Brush>
       <CollectionName>Dark Azure</CollectionName>
       <Conditions isList="true" count="1">
-        <Item66 Ref="71" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
+        <Item68 Ref="73" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
           <ComponentType>Text, Primitive, Image, CheckBox</ComponentType>
           <OperationPlacementNestedLevel>GreaterThanOrEqualTo</OperationPlacementNestedLevel>
           <Placement>Data</Placement>
           <Type>ComponentType, Placement, PlacementNestedLevel</Type>
-        </Item66>
+        </Item68>
       </Conditions>
       <Font>Arial,8</Font>
       <Name>Dark Azure_Data1</Name>
       <NegativeTextBrush>Red</NegativeTextBrush>
       <TextBrush>White</TextBrush>
     </Dark_x0020_Azure_Data1>
-    <Dark_x0020_Azure_Data1_Odd_x0020_Style Ref="72" type="Stimulsoft.Report.StiStyle" isKey="true">
+    <Dark_x0020_Azure_Data1_Odd_x0020_Style Ref="74" type="Stimulsoft.Report.StiStyle" isKey="true">
       <Border>None;[0:0:0];1;Solid;False;4;Black</Border>
       <Brush>[54:95:145]</Brush>
       <CollectionName>Dark Azure</CollectionName>
       <Conditions isList="true" count="1">
-        <Item68 Ref="73" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
+        <Item70 Ref="75" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
           <OperationPlacementNestedLevel>GreaterThanOrEqualTo</OperationPlacementNestedLevel>
           <Placement>DataOddStyle</Placement>
           <Type>Placement, PlacementNestedLevel</Type>
-        </Item68>
+        </Item70>
       </Conditions>
       <Font>Arial,8</Font>
       <Name>Dark Azure_Data1_Odd Style</Name>
       <NegativeTextBrush>Red</NegativeTextBrush>
       <TextBrush>White</TextBrush>
     </Dark_x0020_Azure_Data1_Odd_x0020_Style>
-    <Dark_x0020_Azure_Data1_Even_x0020_Style Ref="74" type="Stimulsoft.Report.StiStyle" isKey="true">
+    <Dark_x0020_Azure_Data1_Even_x0020_Style Ref="76" type="Stimulsoft.Report.StiStyle" isKey="true">
       <Border>None;[0:0:0];1;Solid;False;4;Black</Border>
       <Brush>[79:129:187]</Brush>
       <CollectionName>Dark Azure</CollectionName>
       <Conditions isList="true" count="1">
-        <Item70 Ref="75" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
+        <Item72 Ref="77" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
           <OperationPlacementNestedLevel>GreaterThanOrEqualTo</OperationPlacementNestedLevel>
           <Placement>DataEvenStyle</Placement>
           <Type>Placement, PlacementNestedLevel</Type>
-        </Item70>
+        </Item72>
       </Conditions>
       <Font>Arial,8</Font>
       <Name>Dark Azure_Data1_Even Style</Name>
       <NegativeTextBrush>Red</NegativeTextBrush>
       <TextBrush>White</TextBrush>
     </Dark_x0020_Azure_Data1_Even_x0020_Style>
-    <Dark_x0020_Azure_Footer1 Ref="76" type="Stimulsoft.Report.StiStyle" isKey="true">
+    <Dark_x0020_Azure_Footer1 Ref="78" type="Stimulsoft.Report.StiStyle" isKey="true">
       <Border>None;[0:0:0];1;Solid;False;4;Black</Border>
       <Brush>[36:63:96]</Brush>
       <CollectionName>Dark Azure</CollectionName>
       <Conditions isList="true" count="1">
-        <Item72 Ref="77" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
+        <Item74 Ref="79" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
           <ComponentType>Text, Primitive, Image</ComponentType>
           <Placement>Footer</Placement>
           <Type>ComponentType, Placement, PlacementNestedLevel</Type>
-        </Item72>
+        </Item74>
       </Conditions>
       <Font>Arial,8</Font>
       <Name>Dark Azure_Footer1</Name>
       <NegativeTextBrush>Red</NegativeTextBrush>
       <TextBrush>White</TextBrush>
     </Dark_x0020_Azure_Footer1>
-    <Evening_Report_Title1 Ref="78" type="Stimulsoft.Report.StiStyle" isKey="true">
-      <Border>None;[0:0:0];1;Solid;False;4;Black</Border>
-      <Brush>Transparent</Brush>
-      <CollectionName>Evening</CollectionName>
-      <Conditions isList="true" count="1">
-        <Item74 Ref="79" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
-          <ComponentType>Text, Primitive, Image</ComponentType>
-          <Placement>ReportTitle</Placement>
-          <Type>ComponentType, Placement, PlacementNestedLevel</Type>
-        </Item74>
-      </Conditions>
-      <Font>Arial,14,Bold</Font>
-      <Name>Evening_Report_Title1</Name>
-      <NegativeTextBrush>Red</NegativeTextBrush>
-      <TextBrush>Black</TextBrush>
-    </Evening_Report_Title1>
-    <Evening_Report_Title2 Ref="80" type="Stimulsoft.Report.StiStyle" isKey="true">
+    <Evening_Report_Title1 Ref="80" type="Stimulsoft.Report.StiStyle" isKey="true">
       <Border>None;[0:0:0];1;Solid;False;4;Black</Border>
       <Brush>Transparent</Brush>
       <CollectionName>Evening</CollectionName>
       <Conditions isList="true" count="1">
         <Item76 Ref="81" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
           <ComponentType>Text, Primitive, Image</ComponentType>
-          <OperationPlacementNestedLevel>GreaterThanOrEqualTo</OperationPlacementNestedLevel>
           <Placement>ReportTitle</Placement>
-          <PlacementNestedLevel>2</PlacementNestedLevel>
           <Type>ComponentType, Placement, PlacementNestedLevel</Type>
         </Item76>
       </Conditions>
-      <Font>Arial,10,Bold</Font>
-      <Name>Evening_Report_Title2</Name>
+      <Font>Arial,14,Bold</Font>
+      <Name>Evening_Report_Title1</Name>
       <NegativeTextBrush>Red</NegativeTextBrush>
       <TextBrush>Black</TextBrush>
-    </Evening_Report_Title2>
-    <Evening_Report_Summary Ref="82" type="Stimulsoft.Report.StiStyle" isKey="true">
+    </Evening_Report_Title1>
+    <Evening_Report_Title2 Ref="82" type="Stimulsoft.Report.StiStyle" isKey="true">
       <Border>None;[0:0:0];1;Solid;False;4;Black</Border>
       <Brush>Transparent</Brush>
       <CollectionName>Evening</CollectionName>
       <Conditions isList="true" count="1">
         <Item78 Ref="83" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
           <ComponentType>Text, Primitive, Image</ComponentType>
-          <Placement>ReportSummary</Placement>
-          <Type>ComponentType, Placement</Type>
+          <OperationPlacementNestedLevel>GreaterThanOrEqualTo</OperationPlacementNestedLevel>
+          <Placement>ReportTitle</Placement>
+          <PlacementNestedLevel>2</PlacementNestedLevel>
+          <Type>ComponentType, Placement, PlacementNestedLevel</Type>
         </Item78>
       </Conditions>
       <Font>Arial,10,Bold</Font>
-      <Name>Evening_Report_Summary</Name>
+      <Name>Evening_Report_Title2</Name>
       <NegativeTextBrush>Red</NegativeTextBrush>
       <TextBrush>Black</TextBrush>
-    </Evening_Report_Summary>
-    <Evening_Page_Header Ref="84" type="Stimulsoft.Report.StiStyle" isKey="true">
+    </Evening_Report_Title2>
+    <Evening_Report_Summary Ref="84" type="Stimulsoft.Report.StiStyle" isKey="true">
       <Border>None;[0:0:0];1;Solid;False;4;Black</Border>
       <Brush>Transparent</Brush>
       <CollectionName>Evening</CollectionName>
       <Conditions isList="true" count="1">
         <Item80 Ref="85" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
           <ComponentType>Text, Primitive, Image</ComponentType>
-          <Placement>PageHeader</Placement>
+          <Placement>ReportSummary</Placement>
           <Type>ComponentType, Placement</Type>
         </Item80>
       </Conditions>
-      <Font>Arial,10</Font>
-      <Name>Evening_Page_Header</Name>
+      <Font>Arial,10,Bold</Font>
+      <Name>Evening_Report_Summary</Name>
       <NegativeTextBrush>Red</NegativeTextBrush>
       <TextBrush>Black</TextBrush>
-    </Evening_Page_Header>
-    <Evening_Page_Footer Ref="86" type="Stimulsoft.Report.StiStyle" isKey="true">
+    </Evening_Report_Summary>
+    <Evening_Page_Header Ref="86" type="Stimulsoft.Report.StiStyle" isKey="true">
       <Border>None;[0:0:0];1;Solid;False;4;Black</Border>
       <Brush>Transparent</Brush>
       <CollectionName>Evening</CollectionName>
       <Conditions isList="true" count="1">
         <Item82 Ref="87" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
           <ComponentType>Text, Primitive, Image</ComponentType>
-          <Placement>PageFooter</Placement>
+          <Placement>PageHeader</Placement>
           <Type>ComponentType, Placement</Type>
         </Item82>
       </Conditions>
       <Font>Arial,10</Font>
-      <Name>Evening_Page_Footer</Name>
+      <Name>Evening_Page_Header</Name>
       <NegativeTextBrush>Red</NegativeTextBrush>
       <TextBrush>Black</TextBrush>
-    </Evening_Page_Footer>
-    <Evening_Group_Header1 Ref="88" type="Stimulsoft.Report.StiStyle" isKey="true">
+    </Evening_Page_Header>
+    <Evening_Page_Footer Ref="88" type="Stimulsoft.Report.StiStyle" isKey="true">
       <Border>None;[0:0:0];1;Solid;False;4;Black</Border>
       <Brush>Transparent</Brush>
       <CollectionName>Evening</CollectionName>
       <Conditions isList="true" count="1">
         <Item84 Ref="89" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
           <ComponentType>Text, Primitive, Image</ComponentType>
-          <OperationPlacementNestedLevel>GreaterThanOrEqualTo</OperationPlacementNestedLevel>
-          <Placement>GroupHeader</Placement>
-          <Type>ComponentType, Placement, PlacementNestedLevel</Type>
+          <Placement>PageFooter</Placement>
+          <Type>ComponentType, Placement</Type>
         </Item84>
       </Conditions>
-      <Font>Arial,13,Bold</Font>
-      <Name>Evening_Group_Header1</Name>
+      <Font>Arial,10</Font>
+      <Name>Evening_Page_Footer</Name>
       <NegativeTextBrush>Red</NegativeTextBrush>
       <TextBrush>Black</TextBrush>
-    </Evening_Group_Header1>
-    <Evening_Group_Footer1 Ref="90" type="Stimulsoft.Report.StiStyle" isKey="true">
+    </Evening_Page_Footer>
+    <Evening_Group_Header1 Ref="90" type="Stimulsoft.Report.StiStyle" isKey="true">
       <Border>None;[0:0:0];1;Solid;False;4;Black</Border>
       <Brush>Transparent</Brush>
       <CollectionName>Evening</CollectionName>
       <Conditions isList="true" count="1">
         <Item86 Ref="91" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
           <ComponentType>Text, Primitive, Image</ComponentType>
-          <Placement>GroupFooter</Placement>
+          <OperationPlacementNestedLevel>GreaterThanOrEqualTo</OperationPlacementNestedLevel>
+          <Placement>GroupHeader</Placement>
           <Type>ComponentType, Placement, PlacementNestedLevel</Type>
         </Item86>
+      </Conditions>
+      <Font>Arial,13,Bold</Font>
+      <Name>Evening_Group_Header1</Name>
+      <NegativeTextBrush>Red</NegativeTextBrush>
+      <TextBrush>Black</TextBrush>
+    </Evening_Group_Header1>
+    <Evening_Group_Footer1 Ref="92" type="Stimulsoft.Report.StiStyle" isKey="true">
+      <Border>None;[0:0:0];1;Solid;False;4;Black</Border>
+      <Brush>Transparent</Brush>
+      <CollectionName>Evening</CollectionName>
+      <Conditions isList="true" count="1">
+        <Item88 Ref="93" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
+          <ComponentType>Text, Primitive, Image</ComponentType>
+          <Placement>GroupFooter</Placement>
+          <Type>ComponentType, Placement, PlacementNestedLevel</Type>
+        </Item88>
       </Conditions>
       <Font>Arial,9.75,Bold,Point,False,204</Font>
       <Name>Evening_Group_Footer1</Name>
       <NegativeTextBrush>Red</NegativeTextBrush>
       <TextBrush>Black</TextBrush>
     </Evening_Group_Footer1>
-    <Evening_Header1 Ref="92" type="Stimulsoft.Report.StiStyle" isKey="true">
+    <Evening_Header1 Ref="94" type="Stimulsoft.Report.StiStyle" isKey="true">
       <Border>Bottom;[192:80:70];3;Solid;False;4;Black;True</Border>
       <Brush>White</Brush>
       <CollectionName>Evening</CollectionName>
       <Conditions isList="true" count="1">
-        <Item88 Ref="93" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
+        <Item90 Ref="95" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
           <ComponentType>Text, Primitive, Image</ComponentType>
           <OperationPlacementNestedLevel>GreaterThanOrEqualTo</OperationPlacementNestedLevel>
           <Placement>Header</Placement>
           <Type>ComponentType, Placement, PlacementNestedLevel</Type>
-        </Item88>
+        </Item90>
       </Conditions>
       <Font>Arial,8,Bold</Font>
       <Name>Evening_Header1</Name>
       <NegativeTextBrush>Red</NegativeTextBrush>
       <TextBrush>Black</TextBrush>
     </Evening_Header1>
-    <Evening_Data1 Ref="94" type="Stimulsoft.Report.StiStyle" isKey="true">
+    <Evening_Data1 Ref="96" type="Stimulsoft.Report.StiStyle" isKey="true">
       <Border>All;White;1;Solid;False;4;Black</Border>
       <Brush>Transparent</Brush>
       <CollectionName>Evening</CollectionName>
       <Conditions isList="true" count="1">
-        <Item90 Ref="95" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
+        <Item92 Ref="97" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
           <ComponentType>Text, Primitive, Image, CheckBox</ComponentType>
           <OperationPlacementNestedLevel>GreaterThanOrEqualTo</OperationPlacementNestedLevel>
           <Placement>Data</Placement>
           <Type>ComponentType, Placement, PlacementNestedLevel</Type>
-        </Item90>
+        </Item92>
       </Conditions>
       <Font>Arial,8</Font>
       <Name>Evening_Data1</Name>
       <NegativeTextBrush>Red</NegativeTextBrush>
       <TextBrush>[0:0:0]</TextBrush>
     </Evening_Data1>
-    <Evening_Data1_Odd_x0020_Style Ref="96" type="Stimulsoft.Report.StiStyle" isKey="true">
+    <Evening_Data1_Odd_x0020_Style Ref="98" type="Stimulsoft.Report.StiStyle" isKey="true">
       <Border>None;[0:0:0];1;Solid;False;4;Black</Border>
       <Brush>[128:128:128]</Brush>
       <CollectionName>Evening</CollectionName>
       <Conditions isList="true" count="1">
-        <Item92 Ref="97" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
+        <Item94 Ref="99" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
           <OperationPlacementNestedLevel>GreaterThanOrEqualTo</OperationPlacementNestedLevel>
           <Placement>DataOddStyle</Placement>
           <Type>Placement, PlacementNestedLevel</Type>
-        </Item92>
+        </Item94>
       </Conditions>
       <Font>Arial,8</Font>
       <Name>Evening_Data1_Odd Style</Name>
       <NegativeTextBrush>Red</NegativeTextBrush>
       <TextBrush>[0:0:0]</TextBrush>
     </Evening_Data1_Odd_x0020_Style>
-    <Evening_Data1_Even_x0020_Style Ref="98" type="Stimulsoft.Report.StiStyle" isKey="true">
+    <Evening_Data1_Even_x0020_Style Ref="100" type="Stimulsoft.Report.StiStyle" isKey="true">
       <Border>None;[0:0:0];1;Solid;False;4;Black</Border>
       <Brush>[230:230:230]</Brush>
       <CollectionName>Evening</CollectionName>
       <Conditions isList="true" count="1">
-        <Item94 Ref="99" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
+        <Item96 Ref="101" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
           <OperationPlacementNestedLevel>GreaterThanOrEqualTo</OperationPlacementNestedLevel>
           <Placement>DataEvenStyle</Placement>
           <Type>Placement, PlacementNestedLevel</Type>
-        </Item94>
+        </Item96>
       </Conditions>
       <Font>Arial,8</Font>
       <Name>Evening_Data1_Even Style</Name>
       <NegativeTextBrush>Red</NegativeTextBrush>
       <TextBrush>[0:0:0]</TextBrush>
     </Evening_Data1_Even_x0020_Style>
-    <Evening_Footer1 Ref="100" type="Stimulsoft.Report.StiStyle" isKey="true">
+    <Evening_Footer1 Ref="102" type="Stimulsoft.Report.StiStyle" isKey="true">
       <Border>None;[0:0:0];1;Solid;False;4;Black</Border>
       <Brush>[10:10:10]</Brush>
       <CollectionName>Evening</CollectionName>
       <Conditions isList="true" count="1">
-        <Item96 Ref="101" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
+        <Item98 Ref="103" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
           <ComponentType>Text, Primitive, Image</ComponentType>
           <Placement>Footer</Placement>
           <Type>ComponentType, Placement, PlacementNestedLevel</Type>
-        </Item96>
+        </Item98>
       </Conditions>
       <Font>Arial,8</Font>
       <Name>Evening_Footer1</Name>

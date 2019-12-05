@@ -86,7 +86,18 @@ namespace Library
         /// </summary>
         public Boolean QuantityAlarmEnabled { get; set; }
 
+        /// <summary>
+        /// Get how much time to be complitly expired
+        /// Or is it expited
+        /// Or it's not has an expiration period
+        /// </summary>
+        public string ExpirationState
+        {
+            get
+            {
+                return Stock.ExpirationState(this);
+            }
+        }
 
-       
     }
 }

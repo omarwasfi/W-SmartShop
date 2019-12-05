@@ -10,7 +10,7 @@
              mc:Ignorable="d"
              d:DesignHeight="680" d:DesignWidth="1343">
     <Grid>
-        <Grid x:Name="UserGrid" Visibility="Visible" Background="White">
+        <Grid x:Name="UserGrid" Visibility="Collapsed" Background="White">
 
             <Grid Margin="1117,0,0,651">
                 <Button x:Name="CloseButton" Visibility="Collapsed" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Red"   VerticalAlignment="Top"  Margin="3,0,170,0" Height="25"  >
@@ -329,7 +329,7 @@
 
             <!--Total IncomeOrder Price -->
             <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="275,605,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Total Price : "/></TextBlock>
-            <syncfusion:CurrencyTextBox x:Name="IncomeOrderTotalPriceValue" IsReadOnly="True" Value="0" CurrencyNegativePattern="8"  CurrencyPositivePattern="3"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="133"  Margin="407,611,0,0" Height="27" Background="{x:Null}" FontSize="18" SelectionBrush="#FF009688" RenderTransformOrigin="0.68,0.352" MinValue="0">
+            <syncfusion:CurrencyTextBox x:Name="IncomeOrderTotalPriceValue" IsReadOnly="True" Value="0" CurrencyNegativePattern="8"  CurrencyPositivePattern="3"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="130"  Margin="407,611,0,0" Height="27" Background="{x:Null}" FontSize="18" SelectionBrush="#FF009688" RenderTransformOrigin="0.68,0.352" MinValue="0">
                 <syncfusion:CurrencyTextBox.NumberFormat>
                     <Globalization:NumberFormatInfo CurrencyGroupSeparator=" " CurrencyDecimalDigits="2" CurrencyDecimalSeparator="." CurrencySymbol="L.E"/>
                 </syncfusion:CurrencyTextBox.NumberFormat>

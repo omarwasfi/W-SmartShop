@@ -172,6 +172,7 @@ namespace Library
                     connection.Execute("dbo.spStock_ReduseStock", p, commandType: CommandType.StoredProcedure);
 
                 }
+                stock.Quantity -= quantity;
             }
             else
             {
@@ -183,6 +184,7 @@ namespace Library
                     connection.Execute("dbo.spStock_Delete", p, commandType: CommandType.StoredProcedure);
 
                 }
+                PublicVariables.Stocks.Remove(stock);
             }
 
 

@@ -893,7 +893,7 @@ namespace Library
         /// <returns></returns>
         public  List<ProductModel> GetProductsByCategoryAndBrand(List<ProductModel> products, CategoryModel category, BrandModel brand)
         {
-            List<ProductModel> FProducts = Product.FilterAllProductsByCategoryAndBrand(category, brand);
+            List<ProductModel> FProducts = Product.FilterProductsByCategoryAndBrand(category, brand);
             return FProducts;
         }
 
@@ -1164,6 +1164,43 @@ namespace Library
         #region order
 
         /// <summary>
+        /// Add the order to the database
+        /// add to the publicVariables
+        /// add the orderProducts to the database
+        /// add to the publicVariables
+        /// add the orderPaymens to the database
+        /// add to the publicVariables
+        /// Reduce the stocks or remove it
+        /// </summary>
+        /// <param name="order">The new Order</param>
+        /// <param name="orderProductRecords">The orderProductRecords list</param>
+        /// <returns></returns>
+        public OrderModel AddOrderToTheDatabase(OrderModel order,List<OrderProductRecordModel> orderProductRecords)
+        {
+            order = OrderAccess.AddOrderToTheDatabase(order,db);
+            PublicVariables.Orders.Add(order);
+
+            foreach(OrderProductModel orderProduct in order.OrderProducts)
+            {
+                OrderProductAccess.AddOrderProductToTheDatabase(orderProduct, order, db);
+                PublicVariables.OrderProducts.Add(orderProduct);
+            }
+
+            foreach(OrderPaymentModel orderPayment in order.OrderPayments)
+            {
+                OrderPaymentAccess.AddOrderPaymentToTheDatabase(orderPayment, order, db);
+                PublicVariables.OrderPayments.Add(orderPayment);
+            }
+
+            foreach(OrderProductRecordModel orderProductRecord in orderProductRecords)
+            {
+                StockAccess.ReduseStock(orderProductRecord.Stock, orderProductRecord.OrderProduct.Quantity, db);
+            }
+
+            return order;
+        }
+
+        /// <summary>
         /// save the order to the database by :
         /// Calling order.getemptyorder to get Id for the order
         /// then save each orderProdcut alone in the database throw func. OrderProduct.saveOrderProductListToTheDataBase
@@ -1185,7 +1222,7 @@ namespace Library
         /// <param name="db"> Database Connection Name </param>
         public OrderModel GetEmptyOrderFromTheDatabase(OrderModel order)
         {
-            return OrderAccess.GetEmptyOrderFromTheDatabase(order, db);
+            return OrderAccess.AddOrderToTheDatabase(order, db);
 
 
         }

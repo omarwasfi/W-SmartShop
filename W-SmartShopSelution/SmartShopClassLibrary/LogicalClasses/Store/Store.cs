@@ -160,6 +160,60 @@ namespace Library
         }
 
         /// <summary>
+        /// Get all products that exist in the stock of the store
+        /// </summary>
+        /// <param name="store"></param>
+        /// <returns></returns>
+        public static List<ProductModel>GetExistProducts(StoreModel store)
+        {
+            List<ProductModel> products = new List<ProductModel>();
+            foreach(ProductModel product in PublicVariables.Products)
+            {
+                if(store.GetStocks.Exists(x=>x.Product == product))
+                {
+                    products.Add(product);
+                }
+            }
+            return products;
+        }
+
+        /// <summary>
+        /// Get all categiries that exist in the stocks of the store
+        /// </summary>
+        /// <param name="store"></param>
+        /// <returns></returns>
+        public static List<CategoryModel>GetExistCategories(StoreModel store)
+        {
+            List<CategoryModel> categories = new List<CategoryModel>();
+            foreach(CategoryModel category in PublicVariables.Categories)
+            {
+                if(store.GetStocks.Exists(x=>x.Product.Category == category) || category == PublicVariables.DefaultCategory)
+                {
+                    categories.Add(category);
+                }
+            }
+            return categories;
+        }
+
+        /// <summary>
+        /// Get all brands that exist in the stocks of the store
+        /// </summary>
+        /// <param name="store"></param>
+        /// <returns></returns>
+        public static List<BrandModel> GetExistBrands(StoreModel store)
+        {
+            List<BrandModel> brands = new List<BrandModel>();
+            foreach (BrandModel brand in PublicVariables.Brands)
+            {
+                if (store.GetStocks.Exists(x => x.Product.Brand == brand) || brand == PublicVariables.DefaultBrand)
+                {
+                    brands.Add(brand);
+                }
+            }
+            return brands;
+        }
+
+        /// <summary>
         ///  The Stocks IncomeValue in this store
         /// </summary>
         /// <param name="store"></param>

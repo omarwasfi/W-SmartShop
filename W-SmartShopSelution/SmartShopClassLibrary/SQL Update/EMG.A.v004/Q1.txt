@@ -4327,8 +4327,85 @@ BEGIN
 END
 
 -------------------------------------------------------------------------------------------------------------------------------------
+USE [SmartShopDatabase]
+GO
+/****** Object:  StoredProcedure [dbo].[spOrders_CreateOrder]    Script Date: 12/4/2019 11:40:33 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+ALTER PROCEDURE [dbo].[spOrders_CreateOrder] 
+	
+	@CustomerId int,
+	@DateTimeOfTheOrder datetime,
+	@StoreId int,
+	@StaffId int,
+	@Details nvarchar(500),
+	@Id int = 0 output
+AS
+BEGIN
+
+	SET NOCOUNT ON;
+
+	INSERT INTO dbo.Orders(CustomerId,DateTimeOfTheOrder,StoreId,StaffId,Details)
+	VALUES (@CustomerId,@DateTimeOfTheOrder,@StoreId,@StaffId,@Details);
+
+	SELECT @Id = SCOPE_IDENTITY();
+	
+END
+
 -------------------------------------------------------------------------------------------------------------------------------------
+USE [SmartShopDatabase]
+GO
+/****** Object:  StoredProcedure [dbo].[spOrderProduct_Create]    Script Date: 12/5/2019 9:30:49 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+ALTER PROCEDURE [dbo].[spOrderProduct_Create]
+					@OrderId int,
+                    @ProductId int,
+					@Quantity int,
+                    @SalePrice money,
+                    @Discount money,
+					@Profit money,
+					@Id int = 0 output
+AS
+BEGIN
+
+	SET NOCOUNT ON;
+
+	INSERT INTO OrderProduct(OrderId,ProductId,Quantity,SalePrice,Discount,Profit)
+	VALUES (@OrderId,@ProductId,@Quantity,@SalePrice,@Discount,@Profit);
+		SELECT @Id = SCOPE_IDENTITY();
+
+
+END
+
 -------------------------------------------------------------------------------------------------------------------------------------
+
+CREATE PROCEDURE spOrderPayment_Create
+		@OrderId int,
+		@StaffId int,
+		@StoreId int,
+		@Paid money,
+		@Date datetime,
+		@Id int = 0 out 
+AS
+BEGIN
+
+	SET NOCOUNT ON;
+  INSERT INTO OrderPayment(OrderId,StaffId,StoreId,Paid,Date)
+	VALUES(@OrderId,@StaffId,@StoreId,@Paid,@Date);
+
+
+			SELECT @Id = SCOPE_IDENTITY();
+END
+GO
+
 -------------------------------------------------------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------------------------------------------------------

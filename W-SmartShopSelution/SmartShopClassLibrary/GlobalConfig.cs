@@ -26,7 +26,10 @@ namespace Library
         public static IncomeOrderProductRecordValidator IncomeOrderProductRecordValidator { get; set; }
         public static IncomeOrderPaymentValidator IncomeOrderPaymentValidator { get; set; }
         public static IncomeOrderProductValidator IncomeOrderProductValidator { get; set; }
-         public static IncomeOrderValidator IncomeOrderValidator { get; set; }
+        public static IncomeOrderValidator IncomeOrderValidator { get; set; }
+        public static OrderProductRecordValidator OrderProductRecordValidator { get; set; }
+        public static OrderPaymentValidator OrderPaymentValidator { get; set; }
+        public static OrderValidator OrderValidator { get; set;}
         public static OrderProductValidator OrderProductValidator { get; set; }
         
 

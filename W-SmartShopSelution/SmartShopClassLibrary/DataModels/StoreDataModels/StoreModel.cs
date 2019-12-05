@@ -144,6 +144,39 @@ namespace Library
         }
 
         /// <summary>
+        /// Get all the products that only exist in the store
+        /// </summary>
+        public List<ProductModel> GetExistProducts
+        {
+            get
+            {
+                return Store.GetExistProducts(this);
+            }
+        }
+
+        /// <summary>
+        /// Get all the categories that only exist in the store
+        /// </summary>
+        public List<CategoryModel> GetExistCategories
+        {
+            get
+            {
+                return Store.GetExistCategories(this);
+            }
+        }
+
+        /// <summary>
+        /// Get all the brands that only exist in the store
+        /// </summary>
+        public List<BrandModel> GetExistBrands
+        {
+            get
+            {
+                return Store.GetExistBrands(this);
+            }
+        }
+
+        /// <summary>
         /// The Stocks IncomeValue in this store
         /// </summary>
         public decimal GetStocksIncomeValue 

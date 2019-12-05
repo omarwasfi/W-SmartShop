@@ -44,7 +44,7 @@ namespace Library
         /// <param name="category"> category model </param>
         /// <param name="brand"> Brand model </param>
         /// <returns></returns>
-        public static List<ProductModel> FilterAllProductsByCategoryAndBrand(CategoryModel category,BrandModel brand)
+        public static List<ProductModel> FilterProductsByCategoryAndBrand(CategoryModel category,BrandModel brand)
         {
             List<ProductModel> FProducts = new List<ProductModel>();
             bool FilterByBrand = true;
@@ -81,6 +81,54 @@ namespace Library
             else
             {
                 return PublicVariables.Products;
+            }
+
+        }
+
+        /// <summary>
+        /// Filter The given products with the categories and brands
+        /// </summary>
+        /// <param name="products"></param>
+        /// <param name="category"></param>
+        /// <param name="brand"></param>
+        /// <returns></returns>
+        public static List<ProductModel> FilterProductsByCategoryAndBrand(List<ProductModel> products,CategoryModel category, BrandModel brand)
+        {
+            List<ProductModel> FProducts = new List<ProductModel>();
+            bool FilterByBrand = true;
+            bool FilterByCategory = true;
+
+            if (brand == null || brand == PublicVariables.DefaultBrand)
+                FilterByBrand = false;
+
+            if (category == null || category == PublicVariables.DefaultCategory)
+                FilterByCategory = false;
+
+
+
+            // Filter by Brand and category
+            if (FilterByBrand == true && FilterByCategory == true)
+            {
+                return FProducts = products.FindAll(x => x.Brand == brand && x.Category == category);
+            }
+
+            // Filter by category Only
+            else if (FilterByBrand == false && FilterByCategory == true)
+            {
+                return FProducts = products.FindAll(x => x.Category == category);
+            }
+
+            // Filter by brand Only
+            else if (FilterByBrand == true && FilterByCategory == false)
+            {
+
+                return FProducts = products.FindAll(x => x.Brand == brand);
+            }
+
+            // No Filtering
+            else
+            {
+                return products;
             }
 
         }

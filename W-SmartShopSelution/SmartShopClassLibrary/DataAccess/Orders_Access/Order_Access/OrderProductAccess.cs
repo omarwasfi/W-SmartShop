@@ -10,6 +10,33 @@ namespace Library
     public static class OrderProductAccess
     {
         /// <summary>
+        /// Add orderProduct to the database
+        /// return it with the new Id
+        /// </summary>
+        /// <param name="OrderProduct"></param>
+        /// <param name="Order"></param>
+        /// <param name="db"></param>
+        /// <returns></returns>
+        public static OrderProductModel AddOrderProductToTheDatabase(OrderProductModel OrderProduct, OrderModel Order, string db)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnVal(db)))
+            {
+                var p = new DynamicParameters();
+                p.Add("@OrderId", Order.Id);
+                p.Add("@ProductId", OrderProduct.Product.Id);
+                p.Add("@SalePrice", OrderProduct.SalePrice);
+                p.Add("@Quantity", OrderProduct.Quantity);
+                p.Add("@Discount", OrderProduct.Discount);
+                p.Add("@Profit", OrderProduct.Profit);
+                p.Add("@Id", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
+                connection.Execute("dbo.spOrderProduct_Create", p, commandType: CommandType.StoredProcedure);
+                OrderProduct.Id = p.Get<int>("@Id");
+            }
+
+            return OrderProduct;
+        }
+
+        /// <summary>
         /// Get the Orders from the database Without the ProductModel
         /// </summary>
         /// <param name="db"></param>

@@ -6,83 +6,46 @@
              xmlns:local="clr-namespace:WPF_GUI.Inventory"
              mc:Ignorable="d" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
              d:DesignHeight="680" d:DesignWidth="1343">
-    <Grid Height="680" VerticalAlignment="Bottom">
-        <!-- Category comoBox & category textblock -->
-        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="6,34,0,0" ><Run Text="Category : "/></TextBlock>
-        <ComboBox x:Name="CategoryValue_InventoryUC" HorizontalAlignment="Left" Margin="130,39,0,0" VerticalAlignment="Top" Width="206" IsTextSearchEnabled="True" TextSearch.TextPath="Name" SelectionChanged="FilterStocksByCategoryAndBrand"/>
+    <Grid >
+        <Grid Name="UserGrid" Visibility="Visible">
+            <Grid Margin="1117,0,0,651">
+                <Button x:Name="CloseTabButton" Visibility="Collapsed" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Red"   VerticalAlignment="Top"  Margin="3,0,170,0" Height="25"  >
+                    <materialDesign:PackIcon Kind="Close" Width="20" Height="20"/>
+                </Button>
 
-        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="341,34,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" Width="82" ><Run Text="Brand : "/></TextBlock>
-        <ComboBox x:Name="BrandValue_InventoryUC" HorizontalAlignment="Left" Margin="428,39,0,0" VerticalAlignment="Top" Width="164" IsTextSearchEnabled="True" TextSearch.TextPath="Name" SelectionChanged="FilterStocksByCategoryAndBrand"  />
+                <Button x:Name="RefreshButton" Click="RefreshButton_Click" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray"   VerticalAlignment="Top"  Margin="171,0,0,0" Height="25"  >
+                    <materialDesign:PackIcon Kind="Reload" Width="20" Height="20"/>
+                </Button>
 
-        <TextBox x:Name ="ProductSearchValue_InventoryUC" HorizontalAlignment="Left" Height="28" Margin="597,39,0,0" TextWrapping="Wrap" Text="Search... " VerticalAlignment="Top" Width="446" />
-        <ComboBox x:Name="ProductSearchType_InventoryUC" HorizontalAlignment="Left" Margin="1048,34,0,0" VerticalAlignment="Top" Width="120" Height="33" />
-        <Button Name="ProductSearchButton_InventoryUC" Click="ProductSearchButton_InventoryUC_Click" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FFA2A2A2" VerticalAlignment="Center"  Margin="1173,29,72,613"  Height="38" >
-            <materialDesign:PackIcon Kind="Search" Width="25" Height="25" />
-        </Button>
+                <Button x:Name="PrintButton_InventoryUC" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray"   VerticalAlignment="Top"  Margin="115,0,55,0" Height="25"  >
+                    <materialDesign:PackIcon Kind="Printer" Width="20" Height="20"/>
+                </Button>
 
-        <Button x:Name="ResetStockResultsButton_InventoryUC" Click="ResetStockResultsButton_InventoryUC_Click" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Red"   VerticalAlignment="Top" Height="34" Margin="1276,29,10,0"  >
-            <materialDesign:PackIcon Kind="Clear" Width="30" Height="30"/>
-        </Button>
+                <Button x:Name="ConfitmButton_InventoryUC" Visibility="Collapsed" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Green"   VerticalAlignment="Top"  Margin="56,0,111,0" Height="25"  >
+                    <materialDesign:PackIcon Kind="Done" Width="20" Height="20"/>
+                </Button>
 
-        <DataGrid x:Name="StocksList_Inventory" IsReadOnly="True" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="523" Margin="10,72,0,0" VerticalAlignment="Top" Width="1323" Background="LightGray">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Product Name" Binding="{Binding Path=Product.Name}"/>
-                <DataGridTextColumn Header="Size" Binding="{Binding Path=Product.Size}"/>
-                <DataGridTextColumn Header="Barcode" Binding="{Binding Path=Product.BarCode}"/>
-                <DataGridTextColumn Header="In Stock" Binding="{Binding Path=Quantity}"/>
-                <DataGridTextColumn Header="Category" Binding="{Binding Path=Product.Category.Name}"/>
-                <DataGridTextColumn Header="Brand" Binding="{Binding Path=Product.Brand.Name}"/>
-                <DataGridTextColumn Header="Serial Number" Binding="{Binding Path=Product.SerialNumber}"/>
-                <DataGridTextColumn Header="Serial Number2" Binding="{Binding Path=Product.SerialNumber2}"/>
-                <DataGridTextColumn Header="Sale Price" Binding="{Binding Path=Product.SalePrice}"/>
-            </DataGrid.Columns>
-            <DataGrid.RowDetailsTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding Path=Product.Details}" Margin="10" />
-                </DataTemplate>
-            </DataGrid.RowDetailsTemplate>
-        </DataGrid>
-
-        <Button Name="ModifySelectedButton_InventoryUC" Click="ModifySelectedButton_InventoryUC_Click" Margin="428,600,643,0" VerticalAlignment="Top" Height="70"  >
-            <Grid Width="254">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="111*"/>
-                    <ColumnDefinition Width="16*"/>
-                </Grid.ColumnDefinitions>
-                <materialDesign:PackIcon Kind="Pencil"  Width="50" Height="46"/>
-                <TextBlock FontSize="20" Text="Modify selected" Margin="50,10,10,10" Grid.ColumnSpan="2"/>
             </Grid>
-        </Button>
+            <syncfusion:SfDataGrid x:Name="StocksList" AllowResizingColumns="True" ColumnSizer="Star" AllowDraggingColumns="True" Margin="10,34,10,10" AllowFiltering="True" ShowGroupDropArea="True" AutoGenerateColumns="False" Background="#FFD8D8D8">
+                <syncfusion:SfDataGrid.Columns>
+                    <syncfusion:GridTextColumn HeaderText="Category" MappingName="Product.Category.Name" />
+                    <syncfusion:GridTextColumn HeaderText="Brand" MappingName="Product.Brand.Name" />
+                    <syncfusion:GridTextColumn HeaderText="Barcode" MappingName="Product.BarCode" />
+                    <syncfusion:GridTextColumn HeaderText="Product Name" MappingName="Product.Name" />
+                    <syncfusion:GridTextColumn HeaderText="Size" MappingName="Product.Size" />
+                    <syncfusion:GridTextColumn HeaderText="SBarcode" MappingName="SBarCode" />
+                    <syncfusion:GridTextColumn HeaderText="In Stock" MappingName="Quantity" />
+                    <syncfusion:GridTextColumn HeaderText="Income Price" MappingName="IncomePrice" />
+                    <syncfusion:GridTextColumn HeaderText="Sale Price" MappingName="SalePrice" />
+                    <syncfusion:GridTextColumn HeaderText="Expiration" MappingName="ExpirationState" />
+                </syncfusion:SfDataGrid.Columns>
+            </syncfusion:SfDataGrid>
 
-        <Button Name="AddNewProdcutToTheInventoryButton_InventoryUC" Click="AddNewProdcutToTheInventoryButton_InventoryUC_Click"  Margin="10,600,920,0" VerticalAlignment="Top" Height="70"  >
-            <Grid Width="372">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="78*"/>
-                    <ColumnDefinition Width="7*"/>
-                </Grid.ColumnDefinitions>
-                <materialDesign:PackIcon Kind="PlusBox" Width="50" Height="46"/>
-                <TextBlock FontSize="20" Text="Add New Product to the Inventory" Margin="50,10,10,10" Grid.ColumnSpan="2"/>
-            </Grid>
-        </Button>
-        
-        <Grid Margin="1117,0,0,651">
-            <Button x:Name="CloseTabButton_InventoryUC" Visibility="Collapsed" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Red"   VerticalAlignment="Top"  Margin="3,0,170,0" Height="25"  >
-                <materialDesign:PackIcon Kind="Close" Width="20" Height="20"/>
-            </Button>
-
-            <Button x:Name="RefreshButton_InventoryUC" Click="RefreshButton_InventoryUC_Click" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray"   VerticalAlignment="Top"  Margin="171,0,0,0" Height="25"  >
-                <materialDesign:PackIcon Kind="Reload" Width="20" Height="20"/>
-            </Button>
-
-            <Button x:Name="PrintButton_InventoryUC" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray"   VerticalAlignment="Top"  Margin="115,0,55,0" Height="25"  >
-                <materialDesign:PackIcon Kind="Printer" Width="20" Height="20"/>
-            </Button>
-
-            <Button x:Name="ConfitmButton_InventoryUC" Visibility="Collapsed" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Green"   VerticalAlignment="Top"  Margin="56,0,111,0" Height="25"  >
-                <materialDesign:PackIcon Kind="Done" Width="20" Height="20"/>
-            </Button>
-
+        </Grid>
+        <Grid Name="PrintGrid" Visibility="Collapsed">
+            
         </Grid>
 
     </Grid>

@@ -7,6 +7,31 @@ namespace Library
 {
     public static class OrderAccess
     {
+
+        /// <summary>
+        /// Gets Empty Order that have Id  ,
+        /// The order should Have The main info of thist variables:
+        /// CustomerId, DataTimeOfTheOrder, StoreId, StaffId
+        /// </summary>
+        /// <param name="order">order model</param>
+        /// <param name="db"> Database Connection Name </param>
+        public static OrderModel AddOrderToTheDatabase(OrderModel order, string db)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnVal(db)))
+            {
+                var p = new DynamicParameters();
+                p.Add("@CustomerId", order.Customer.Id);
+                p.Add("@DateTimeOfTheOrder", order.DateTimeOfTheOrder);
+                p.Add("@StoreId", order.Store.Id);
+                p.Add("@StaffId", order.Staff.Id);
+                p.Add("@Details", order.Details);
+                p.Add("@Id", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
+                connection.Execute("dbo.spOrders_CreateOrder", p, commandType: CommandType.StoredProcedure);
+                order.Id = p.Get<int>("@Id");
+            }
+            return order;
+        }
+
         /// <summary>
         /// Get all Orders From the database without the CustomerModel ,storemodel , staffmodel , List of the OrderProductModel
         /// </summary>
@@ -228,30 +253,7 @@ namespace Library
             }
         }
 
-        /// <summary>
-        /// Gets Empty Order that have Id  ,
-        /// The order should Have The main info of thist variables:
-        /// CustomerId, DataTimeOfTheOrder, StoreId, StaffId,TotalPrice
-        /// </summary>
-        /// <param name="order">order model</param>
-        /// <param name="db"> Database Connection Name </param>
-        public static OrderModel GetEmptyOrderFromTheDatabase(OrderModel order, string db)
-        {
-            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnVal(db)))
-            {
-                var p = new DynamicParameters();
-                p.Add("@CustomerId", order.Customer.Id);
-                p.Add("@DateTimeOfTheOrder", order.DateTimeOfTheOrder);
-                p.Add("@StoreId", order.Store.Id);
-                p.Add("@StaffId", order.Staff.Id);
-                
-                p.Add("@Details", order.Details);
-                p.Add("@Id", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
-                connection.Execute("dbo.spOrders_CreateOrder", p, commandType: CommandType.StoredProcedure);
-                order.Id = p.Get<int>("@Id");
-            }
-            return order;
-        }
+       
 
         /// <summary>
         /// update the order data , Total Price , details

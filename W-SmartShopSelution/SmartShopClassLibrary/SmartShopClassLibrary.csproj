@@ -84,6 +84,7 @@
     <Compile Include="DataAccess\Human_Access\SupplierAccess.cs" />
     <Compile Include="DataModels\HumanDataModels\OwnerModel.cs" />
     <Compile Include="DataModels\NotDatabaseRelated\IncomeOrderRecordModel-NotDatabaseRelated\IncomeOrderProductRecordModel.cs" />
+    <Compile Include="DataModels\NotDatabaseRelated\OrderProductRecordModel-NotDatabaseRelated\OrderProductRecordModel.cs" />
     <Compile Include="DataModels\OrdersDataModels\IncomeOrderDataModels\IncomeOrderPaymentModel.cs" />
     <Compile Include="DataModels\OrdersDataModels\TransformationDataModels\DeTransformModel.cs" />
     <Compile Include="DataModels\OrdersDataModels\OrderDataModels\OrderModel.cs" />
@@ -124,6 +125,7 @@
     <Compile Include="LogicalClasses\Investment\Investment.cs" />
     <Compile Include="LogicalClasses\Operation\Operation.cs" />
     <Compile Include="LogicalClasses\OrderPayment\OrderPayment.cs" />
+    <Compile Include="LogicalClasses\OrderProductRecord\OrderProductRecord.cs" />
     <Compile Include="LogicalClasses\OrderProduct\OrderProduct.cs" />
     <Compile Include="LogicalClasses\Category\Category.cs" />
     <Compile Include="LogicalClasses\Customer\Customer.cs" />
@@ -148,7 +150,10 @@
     <Compile Include="Validation\OrdersValidations\IncomeOrderValidations\IncomeOrderPaymentValidator.cs" />
     <Compile Include="Validation\OrdersValidations\IncomeOrderValidations\IncomeOrderProductValidator.cs" />
     <Compile Include="Validation\OrdersValidations\IncomeOrderValidations\IncomeOrderValidator.cs" />
+    <Compile Include="Validation\OrdersValidations\OrderProductRecordValidation\OrderProductRecordValidator.cs" />
+    <Compile Include="Validation\OrdersValidations\OrderValidations\OrderPaymentValidator.cs" />
     <Compile Include="Validation\OrdersValidations\OrderValidations\OrderProductValidator.cs" />
+    <Compile Include="Validation\OrdersValidations\OrderValidations\OrderValidator.cs" />
     <Compile Include="Validation\OrdersValidations\OwnerOrdersValidations\InvestmentValidator.cs" />
     <Compile Include="Validation\OrdersValidations\OwnerOrdersValidations\RevenueValidator.cs" />
     <Compile Include="Validation\OrdersValidations\StoreTransformsValidations\DeTransformValidator.cs" />

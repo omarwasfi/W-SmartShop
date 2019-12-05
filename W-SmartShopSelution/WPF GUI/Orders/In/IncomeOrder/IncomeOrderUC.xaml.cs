@@ -264,7 +264,7 @@ namespace WPF_GUI
             BrandModel brand = (BrandModel)BrandFilterValue.SelectedItem;
             CategoryModel category = (CategoryModel)CategoryFilterValue.SelectedItem;
 
-            FProducts = Product.FilterAllProductsByCategoryAndBrand(category, brand);
+            FProducts = Product.FilterProductsByCategoryAndBrand(category, brand);
             ProductNameFilterValue.ItemsSource = null;
             ProductNameFilterValue.ItemsSource = FProducts;
             ProductNameFilterValue.DisplayMemberPath = "Name";

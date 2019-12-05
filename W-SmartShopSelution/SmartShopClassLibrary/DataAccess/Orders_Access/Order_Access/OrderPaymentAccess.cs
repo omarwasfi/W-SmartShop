@@ -10,6 +10,31 @@ namespace Library
 {
     public static class OrderPaymentAccess
     {
+        /// <summary>
+        /// Add OrderPayment to the database 
+        /// Get the orderPayment with the new ID
+        /// </summary>
+        /// <param name="orderPayment"></param>
+        /// <param name="order"></param>
+        /// <param name="db"></param>
+        /// <returns></returns>
+        public static OrderPaymentModel AddOrderPaymentToTheDatabase(OrderPaymentModel orderPayment , OrderModel order ,string db)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnVal(db)))
+            {
+                var p = new DynamicParameters();
+                p.Add("@OrderId", order.Id);
+                p.Add("@StaffId", orderPayment.Staff.Id);
+                p.Add("@StoreId", orderPayment.Store.Id);
+                p.Add("@Paid", orderPayment.Paid);
+                p.Add("@Date", orderPayment.Date);
+                p.Add("@Id", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
+                connection.Execute("dbo.spOrderPayment_Create", p, commandType: CommandType.StoredProcedure);
+                orderPayment.Id = p.Get<int>("@Id");
+            }
+            return orderPayment;
+        }
+
 
         /// <summary>
         /// Get all OrderPayments From the database
