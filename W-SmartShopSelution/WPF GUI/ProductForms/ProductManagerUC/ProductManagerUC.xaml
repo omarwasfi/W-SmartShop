@@ -11,7 +11,7 @@
 
              d:DesignHeight="680" d:DesignWidth="1343">
     <Grid>
-        <Grid x:Name="UserGrid" Visibility="Collapsed">
+        <Grid x:Name="UserGrid" Visibility="Visible">
             <Button x:Name="CreateNewProductButton" Click="CreateNewProductButton_Click"  Margin="10,637,1114,0" VerticalAlignment="Top" Height="33"  >
                 <Grid Width="215" Height="33">
                     <materialDesign:PackIcon Kind="PlusBox" Width="25" Height="25"/>

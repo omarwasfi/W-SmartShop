@@ -4,68 +4,205 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WPF_GUI"
-             xmlns:wpfViewer="schemas-stimulsoft-com:wpf-viewer" xmlns:Wpf="clr-namespace:Stimulsoft.Dashboard.Viewer.Wpf;assembly=Stimulsoft.Dashboard.Viewer.Wpf" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="WPF_GUI.CashUC"
+             xmlns:wpfViewer="schemas-stimulsoft-com:wpf-viewer" xmlns:Wpf="clr-namespace:Stimulsoft.Dashboard.Viewer.Wpf;assembly=Stimulsoft.Dashboard.Viewer.Wpf" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
+    xmlns:Globalization="clr-namespace:System.Globalization;assembly=mscorlib" x:Class="WPF_GUI.CashUC"
              mc:Ignorable="d" 
-             d:DesignHeight="680" d:DesignWidth="1343">
+             d:DesignHeight="680" d:DesignWidth="1343" Background="White">
     <Grid>
+        <syncfusion:SfDataGrid x:Name="OperationsList"  AllowResizingColumns="True" ColumnSizer="AutoLastColumnFill" AllowDraggingColumns="True" Margin="10,10,751,10" AllowFiltering="True" ShowGroupDropArea="True" AutoGenerateColumns="False" Background="#FFD8D8D8">
+            <syncfusion:SfDataGrid.Columns>
+                <syncfusion:GridTextColumn HeaderText="Type" MappingName="GetTheOperationName" />
+                <syncfusion:GridTextColumn HeaderText="ID" MappingName="GetTheId" />
+                <syncfusion:GridTextColumn HeaderText="Date" MappingName="GetDate" />
+                <syncfusion:GridTextColumn HeaderText="Amount of money" MappingName="GetTheValueOfTheMoney" />
+            </syncfusion:SfDataGrid.Columns>
+        </syncfusion:SfDataGrid>
 
-        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="103,10,0,0" ><Run Text="From : "/></TextBlock>
-        <DatePicker Name="StartDateValue_CashUC" SelectedDateChanged="StartDateValue_CashUC_SelectedDateChanged" HorizontalAlignment="Left" Margin="184,18,0,0" VerticalAlignment="Top" Width="97"/>
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="654,10,0,0" ><Run Text="From : "/></TextBlock>
+        <DatePicker Name="StartDateValue" HorizontalAlignment="Left" Margin="735,18,0,0" VerticalAlignment="Top" Width="97"/>
 
-        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="286,10,0,0" ><Run Text="To : "/></TextBlock>
-        <DatePicker Name="EndDateValue_CashUC" SelectedDateChanged="EndDateValue_CashUC_SelectedDateChanged" HorizontalAlignment="Left" Margin="335,18,0,0" VerticalAlignment="Top" Width="109"/>
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="837,10,0,0" ><Run Text="To : "/></TextBlock>
+        <DatePicker Name="EndDateValue" HorizontalAlignment="Left" Margin="886,18,0,0" VerticalAlignment="Top" Width="109"/>
 
         <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="597,88,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Total sells : "/></TextBlock>
-        <TextBox x:Name="TotalSellsValue_CashUC"  IsReadOnly="True" HorizontalAlignment="Left" Height="24" Margin="732,94,0,0" Text="" VerticalAlignment="Top" Width="93" RenderTransformOrigin="0.544,-0.652" MaxLines="1"/>
+        <syncfusion:CurrencyTextBox x:Name="TotalSellsValue" IsReadOnly="True" Value="0" CurrencyNegativePattern="8"  CurrencyPositivePattern="3"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="130"  Margin="727,94,0,0" Height="27" Background="{x:Null}" FontSize="18" SelectionBrush="#FF009688" RenderTransformOrigin="0.68,0.352" MinValue="0" MaxLines="1">
+            <syncfusion:CurrencyTextBox.NumberFormat>
+                <Globalization:NumberFormatInfo CurrencyGroupSeparator=" " CurrencyDecimalDigits="2" CurrencyDecimalSeparator="." CurrencySymbol="L.E"/>
+            </syncfusion:CurrencyTextBox.NumberFormat>
+            <syncfusion:CurrencyTextBox.BorderBrush>
+                <LinearGradientBrush EndPoint="0,20" MappingMode="Absolute" StartPoint="0,0">
+                    <GradientStop Color="#FFABADB3" Offset="0.05"/>
+                    <GradientStop Color="#FFE2E3EA" Offset="0.07"/>
+                    <GradientStop Color="Gray" Offset="1"/>
+                </LinearGradientBrush>
+            </syncfusion:CurrencyTextBox.BorderBrush>
+        </syncfusion:CurrencyTextBox>
+        
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="868,88,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Total sells Profit : "/></TextBlock>
+        <syncfusion:CurrencyTextBox x:Name="TotalSellsProfitValue" IsReadOnly="True" Value="0" CurrencyNegativePattern="8"  CurrencyPositivePattern="3"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="130"  Margin="1059,94,0,0" Height="27" Background="{x:Null}" FontSize="18" SelectionBrush="#FF009688" RenderTransformOrigin="0.68,0.352" MinValue="0" MaxLines="1">
+            <syncfusion:CurrencyTextBox.NumberFormat>
+                <Globalization:NumberFormatInfo CurrencyGroupSeparator=" " CurrencyDecimalDigits="2" CurrencyDecimalSeparator="." CurrencySymbol="L.E"/>
+            </syncfusion:CurrencyTextBox.NumberFormat>
+            <syncfusion:CurrencyTextBox.BorderBrush>
+                <LinearGradientBrush EndPoint="0,20" MappingMode="Absolute" StartPoint="0,0">
+                    <GradientStop Color="#FFABADB3" Offset="0.05"/>
+                    <GradientStop Color="#FFE2E3EA" Offset="0.07"/>
+                    <GradientStop Color="Gray" Offset="1"/>
+                </LinearGradientBrush>
+            </syncfusion:CurrencyTextBox.BorderBrush>
+        </syncfusion:CurrencyTextBox>
+        
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="597,126,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Total Paid : "/></TextBlock>
+        <syncfusion:CurrencyTextBox x:Name="TotalPaidOrdersValue" IsReadOnly="True" Value="0" CurrencyNegativePattern="8"  CurrencyPositivePattern="3"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="130"  Margin="722,132,0,0" Height="27" Background="{x:Null}" FontSize="18" SelectionBrush="#FF009688" RenderTransformOrigin="0.68,0.352" MinValue="0" MaxLines="1">
+            <syncfusion:CurrencyTextBox.NumberFormat>
+                <Globalization:NumberFormatInfo CurrencyGroupSeparator=" " CurrencyDecimalDigits="2" CurrencyDecimalSeparator="." CurrencySymbol="L.E"/>
+            </syncfusion:CurrencyTextBox.NumberFormat>
+            <syncfusion:CurrencyTextBox.BorderBrush>
+                <LinearGradientBrush EndPoint="0,20" MappingMode="Absolute" StartPoint="0,0">
+                    <GradientStop Color="#FFABADB3" Offset="0.05"/>
+                    <GradientStop Color="#FFE2E3EA" Offset="0.07"/>
+                    <GradientStop Color="Gray" Offset="1"/>
+                </LinearGradientBrush>
+            </syncfusion:CurrencyTextBox.BorderBrush>
+        </syncfusion:CurrencyTextBox>
+        
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="868,126,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Total not Paid : "/></TextBlock>
+        <syncfusion:CurrencyTextBox x:Name="TotalNotPaidValue" IsReadOnly="True" Value="0" CurrencyNegativePattern="8"  CurrencyPositivePattern="3"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="130"  Margin="1059,132,0,0" Height="27" Background="{x:Null}" FontSize="18" SelectionBrush="#FF009688" RenderTransformOrigin="0.68,0.352" MinValue="0" MaxLines="1">
+            <syncfusion:CurrencyTextBox.NumberFormat>
+                <Globalization:NumberFormatInfo CurrencyGroupSeparator=" " CurrencyDecimalDigits="2" CurrencyDecimalSeparator="." CurrencySymbol="L.E"/>
+            </syncfusion:CurrencyTextBox.NumberFormat>
+            <syncfusion:CurrencyTextBox.BorderBrush>
+                <LinearGradientBrush EndPoint="0,20" MappingMode="Absolute" StartPoint="0,0">
+                    <GradientStop Color="#FFABADB3" Offset="0.05"/>
+                    <GradientStop Color="#FFE2E3EA" Offset="0.07"/>
+                    <GradientStop Color="Gray" Offset="1"/>
+                </LinearGradientBrush>
+            </syncfusion:CurrencyTextBox.BorderBrush>
+        </syncfusion:CurrencyTextBox>
+        
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="597,190,0,0" RenderTransformOrigin="0.442,1.056" FontSize="25" ><Run Text="Total Income Orders : "/></TextBlock>
+        <syncfusion:CurrencyTextBox x:Name="TotalIncomeOrdersValue" IsReadOnly="True" Value="0" CurrencyNegativePattern="8"  CurrencyPositivePattern="3"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="130"  Margin="844,196,0,0" Height="27" Background="{x:Null}" FontSize="18" SelectionBrush="#FF009688" RenderTransformOrigin="0.68,0.352" MinValue="0" MaxLines="1">
+            <syncfusion:CurrencyTextBox.NumberFormat>
+                <Globalization:NumberFormatInfo CurrencyGroupSeparator=" " CurrencyDecimalDigits="2" CurrencyDecimalSeparator="." CurrencySymbol="L.E"/>
+            </syncfusion:CurrencyTextBox.NumberFormat>
+            <syncfusion:CurrencyTextBox.BorderBrush>
+                <LinearGradientBrush EndPoint="0,20" MappingMode="Absolute" StartPoint="0,0">
+                    <GradientStop Color="#FFABADB3" Offset="0.05"/>
+                    <GradientStop Color="#FFE2E3EA" Offset="0.07"/>
+                    <GradientStop Color="Gray" Offset="1"/>
+                </LinearGradientBrush>
+            </syncfusion:CurrencyTextBox.BorderBrush>
+        </syncfusion:CurrencyTextBox>
+        
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="597,228,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Total Paid : "/></TextBlock>
+        <syncfusion:CurrencyTextBox x:Name="TotalPaidIncomeOrdersValue" IsReadOnly="True" Value="0" CurrencyNegativePattern="8"  CurrencyPositivePattern="3"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="130"  Margin="722,234,0,0" Height="27" Background="{x:Null}" FontSize="18" SelectionBrush="#FF009688" RenderTransformOrigin="0.68,0.352" MinValue="0" MaxLines="1">
+            <syncfusion:CurrencyTextBox.NumberFormat>
+                <Globalization:NumberFormatInfo CurrencyGroupSeparator=" " CurrencyDecimalDigits="2" CurrencyDecimalSeparator="." CurrencySymbol="L.E"/>
+            </syncfusion:CurrencyTextBox.NumberFormat>
+            <syncfusion:CurrencyTextBox.BorderBrush>
+                <LinearGradientBrush EndPoint="0,20" MappingMode="Absolute" StartPoint="0,0">
+                    <GradientStop Color="#FFABADB3" Offset="0.05"/>
+                    <GradientStop Color="#FFE2E3EA" Offset="0.07"/>
+                    <GradientStop Color="Gray" Offset="1"/>
+                </LinearGradientBrush>
+            </syncfusion:CurrencyTextBox.BorderBrush>
+        </syncfusion:CurrencyTextBox>
+        
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="857,228,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Total not Paid : "/></TextBlock>
+        <syncfusion:CurrencyTextBox x:Name="TotalNotPaidIncomeOrdersValue" IsReadOnly="True" Value="0" CurrencyNegativePattern="8"  CurrencyPositivePattern="3"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="130"  Margin="1026,234,0,0" Height="27" Background="{x:Null}" FontSize="18" SelectionBrush="#FF009688" RenderTransformOrigin="0.68,0.352" MinValue="0" MaxLines="1">
+            <syncfusion:CurrencyTextBox.NumberFormat>
+                <Globalization:NumberFormatInfo CurrencyGroupSeparator=" " CurrencyDecimalDigits="2" CurrencyDecimalSeparator="." CurrencySymbol="L.E"/>
+            </syncfusion:CurrencyTextBox.NumberFormat>
+            <syncfusion:CurrencyTextBox.BorderBrush>
+                <LinearGradientBrush EndPoint="0,20" MappingMode="Absolute" StartPoint="0,0">
+                    <GradientStop Color="#FFABADB3" Offset="0.05"/>
+                    <GradientStop Color="#FFE2E3EA" Offset="0.07"/>
+                    <GradientStop Color="Gray" Offset="1"/>
+                </LinearGradientBrush>
+            </syncfusion:CurrencyTextBox.BorderBrush>
+        </syncfusion:CurrencyTextBox>
 
-        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="830,88,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Total sells Profit : "/></TextBlock>
-        <TextBox x:Name="TotalSellsProfitValue_CashUC"  IsReadOnly="True" HorizontalAlignment="Left" Height="24" Margin="1026,96,0,0" Text="" VerticalAlignment="Top" Width="94" RenderTransformOrigin="0.544,-0.652" MaxLines="1"/>
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="597,270,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Total shop bills : "/></TextBlock>
+        <syncfusion:CurrencyTextBox x:Name="TotalShopBillsValue" IsReadOnly="True" Value="0" CurrencyNegativePattern="8"  CurrencyPositivePattern="3"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="130"  Margin="780,276,0,0" Height="27" Background="{x:Null}" FontSize="18" SelectionBrush="#FF009688" RenderTransformOrigin="0.68,0.352" MinValue="0" MaxLines="1">
+            <syncfusion:CurrencyTextBox.NumberFormat>
+                <Globalization:NumberFormatInfo CurrencyGroupSeparator=" " CurrencyDecimalDigits="2" CurrencyDecimalSeparator="." CurrencySymbol="L.E"/>
+            </syncfusion:CurrencyTextBox.NumberFormat>
+            <syncfusion:CurrencyTextBox.BorderBrush>
+                <LinearGradientBrush EndPoint="0,20" MappingMode="Absolute" StartPoint="0,0">
+                    <GradientStop Color="#FFABADB3" Offset="0.05"/>
+                    <GradientStop Color="#FFE2E3EA" Offset="0.07"/>
+                    <GradientStop Color="Gray" Offset="1"/>
+                </LinearGradientBrush>
+            </syncfusion:CurrencyTextBox.BorderBrush>
+        </syncfusion:CurrencyTextBox>
+        
+        <TextBlock HorizontalAlignment="Left" Visibility="Visible" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="597,299,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Salary : "/></TextBlock>
+        <syncfusion:CurrencyTextBox x:Name="TotalSalaryValue" IsReadOnly="True" Value="0" CurrencyNegativePattern="8"  CurrencyPositivePattern="3"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="130"  Margin="780,305,0,0" Height="27" Background="{x:Null}" FontSize="18" SelectionBrush="#FF009688" RenderTransformOrigin="0.68,0.352" MinValue="0" MaxLines="1">
+            <syncfusion:CurrencyTextBox.NumberFormat>
+                <Globalization:NumberFormatInfo CurrencyGroupSeparator=" " CurrencyDecimalDigits="2" CurrencyDecimalSeparator="." CurrencySymbol="L.E"/>
+            </syncfusion:CurrencyTextBox.NumberFormat>
+            <syncfusion:CurrencyTextBox.BorderBrush>
+                <LinearGradientBrush EndPoint="0,20" MappingMode="Absolute" StartPoint="0,0">
+                    <GradientStop Color="#FFABADB3" Offset="0.05"/>
+                    <GradientStop Color="#FFE2E3EA" Offset="0.07"/>
+                    <GradientStop Color="Gray" Offset="1"/>
+                </LinearGradientBrush>
+            </syncfusion:CurrencyTextBox.BorderBrush>
+        </syncfusion:CurrencyTextBox>
 
 
-        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="602,164,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Total shop bills : "/></TextBlock>
-        <TextBox x:Name="TotalShopBillsValue_CashUC"  IsReadOnly="True" HorizontalAlignment="Left" Height="24" Margin="849,173,0,0" Text="" VerticalAlignment="Top" Width="84" RenderTransformOrigin="0.544,-0.652" MaxLines="1"/>
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="598,337,0,0" RenderTransformOrigin="0.442,1.056" FontSize="25" Text="Shopee Wallet at " />
+        <syncfusion:CurrencyTextBox x:Name="ShopeeWalletAtDateValue" IsReadOnly="True" Value="0" CurrencyNegativePattern="8"  CurrencyPositivePattern="3"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="130"  Margin="929,343,0,0" Height="27" Background="{x:Null}" FontSize="18" SelectionBrush="#FF009688" RenderTransformOrigin="0.68,0.352" MinValue="0" MaxLines="1">
+            <syncfusion:CurrencyTextBox.NumberFormat>
+                <Globalization:NumberFormatInfo CurrencyGroupSeparator=" " CurrencyDecimalDigits="2" CurrencyDecimalSeparator="." CurrencySymbol="L.E"/>
+            </syncfusion:CurrencyTextBox.NumberFormat>
+            <syncfusion:CurrencyTextBox.BorderBrush>
+                <LinearGradientBrush EndPoint="0,20" MappingMode="Absolute" StartPoint="0,0">
+                    <GradientStop Color="#FFABADB3" Offset="0.05"/>
+                    <GradientStop Color="#FFE2E3EA" Offset="0.07"/>
+                    <GradientStop Color="Gray" Offset="1"/>
+                </LinearGradientBrush>
+            </syncfusion:CurrencyTextBox.BorderBrush>
+        </syncfusion:CurrencyTextBox>
+        <DatePicker x:Name="DateValue" HorizontalAlignment="Left" Margin="796,345,0,0" VerticalAlignment="Top" Width="95" SelectedDateFormat="Short"/>
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="896,337,0,0" RenderTransformOrigin="0.442,1.056" FontSize="25" Text="is : " />
 
-        <TextBlock HorizontalAlignment="Left" Visibility="Visible" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="602,193,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Salary : "/></TextBlock>
-        <TextBox x:Name="TotalSalaryValue_CashUC" Visibility="Visible"  IsReadOnly="True" HorizontalAlignment="Left" Height="24" Margin="849,202,0,0" Text="" VerticalAlignment="Top" Width="84" RenderTransformOrigin="0.544,-0.652" MaxLines="1"/>
-
-        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="602,126,0,0" RenderTransformOrigin="0.442,1.056" FontSize="25" ><Run Text="Total Income Orders : "/></TextBlock>
-        <TextBox x:Name="TotalIncomeOrdersValue_CashUC"  IsReadOnly="True" HorizontalAlignment="Left" Height="24" Margin="849,135,0,0" Text="" VerticalAlignment="Top" Width="84" RenderTransformOrigin="0.544,-0.652" MaxLines="1"/>
-
-
-        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="603,231,0,0" RenderTransformOrigin="0.442,1.056" FontSize="25" Text="Shopee Wallet at " />
-        <TextBox x:Name="ShopeeWalletAtDateValue_CashUC"  IsReadOnly="True" HorizontalAlignment="Left" Height="24" Margin="929,240,0,0" Text="" VerticalAlignment="Top" Width="104" RenderTransformOrigin="0.544,-0.652" MaxLines="1"/>
-        <TextBlock Name="DateOfShopeeWalletValue_CashUC" HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="796,231,0,0" RenderTransformOrigin="0.442,1.056" FontSize="25" Text="21-9-2018" />
-
-        <DataGrid x:Name="OperationsList_CashUC" IsReadOnly="True" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="622" Margin="10,48,0,0" VerticalAlignment="Top" Width="587" Background="LightGray">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Type" Binding="{Binding GetTheOperationName}" />
-                <DataGridTextColumn Header="Id" Binding="{Binding GetTheId}" />
-                <DataGridTextColumn Header="Amount Of Money" Binding="{Binding AmountOfMoney}" />
-                <DataGridTextColumn Header="Date Time" Binding="{Binding Date}" />
-            </DataGrid.Columns>
-        </DataGrid>
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="974,637,0,0" RenderTransformOrigin="0.442,1.056" FontSize="25" Text="Shopee Wallet Now " />
+        <syncfusion:CurrencyTextBox x:Name="ShopeeWalletNowValue" IsReadOnly="True" Value="0" CurrencyNegativePattern="8"  CurrencyPositivePattern="3"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="130"  Margin="1203,643,0,0" Height="27" Background="{x:Null}" FontSize="18" SelectionBrush="#FF009688" RenderTransformOrigin="0.68,0.352" MinValue="0" MaxLines="1">
+            <syncfusion:CurrencyTextBox.NumberFormat>
+                <Globalization:NumberFormatInfo CurrencyGroupSeparator=" " CurrencyDecimalDigits="2" CurrencyDecimalSeparator="." CurrencySymbol="L.E"/>
+            </syncfusion:CurrencyTextBox.NumberFormat>
+            <syncfusion:CurrencyTextBox.BorderBrush>
+                <LinearGradientBrush EndPoint="0,20" MappingMode="Absolute" StartPoint="0,0">
+                    <GradientStop Color="#FFABADB3" Offset="0.05"/>
+                    <GradientStop Color="#FFE2E3EA" Offset="0.07"/>
+                    <GradientStop Color="Gray" Offset="1"/>
+                </LinearGradientBrush>
+            </syncfusion:CurrencyTextBox.BorderBrush>
+        </syncfusion:CurrencyTextBox>
 
         <Grid Margin="1117,0,0,651">
-            <Button x:Name="CloseTabButton_CashUC" Visibility="Collapsed" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Red"   VerticalAlignment="Top"  Margin="3,0,170,0" Height="25"  >
+            <Button x:Name="CloseTabButton" Visibility="Collapsed" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Red"   VerticalAlignment="Top"  Margin="3,0,170,0" Height="25"  >
                 <materialDesign:PackIcon Kind="Close" Width="20" Height="20"/>
             </Button>
 
-            <Button x:Name="ReloadTabButton_CashUC" Click="ReloadTabButton_CashUC_Click" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray"   VerticalAlignment="Top"  Margin="171,0,0,0" Height="25"  >
+            <Button x:Name="ReloadTabButton" Click="ReloadTabButton_Click" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray"   VerticalAlignment="Top"  Margin="171,0,0,0" Height="25"  >
                 <materialDesign:PackIcon Kind="Reload" Width="20" Height="20"/>
             </Button>
 
-            <Button x:Name="PrintButton_CashUC" Visibility="Collapsed"  Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray"   VerticalAlignment="Top"  Margin="115,0,55,0" Height="25"  >
+            <Button x:Name="PrintButton" Visibility="Collapsed"  Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray"   VerticalAlignment="Top"  Margin="115,0,55,0" Height="25"  >
                 <materialDesign:PackIcon Kind="Printer" Width="20" Height="20"/>
             </Button>
 
-            <Button x:Name="ConfitmButton_CashUC" Visibility="Collapsed"  Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Green"   VerticalAlignment="Top"  Margin="56,0,111,0" Height="25"  >
+            <Button x:Name="ConfitmButton" Visibility="Collapsed"  Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Green"   VerticalAlignment="Top"  Margin="56,0,111,0" Height="25"  >
                 <materialDesign:PackIcon Kind="Done" Width="20" Height="20"/>
             </Button>
 
         </Grid>
 
-        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="1000,637,0,0" RenderTransformOrigin="0.442,1.056" FontSize="25" Text="Shopee Wallet Now " />
-        <TextBox x:Name="ShopeeWalletNowValue_CashUC"  IsReadOnly="True" HorizontalAlignment="Left" Height="24" Margin="1229,646,0,0" Text="" VerticalAlignment="Top" Width="104" RenderTransformOrigin="0.544,-0.652" MaxLines="1"/>
+        
+       
 
 
 

@@ -23,25 +23,12 @@ namespace WPF_GUI
     {
         #region Main variables
 
-        /// <summary>
-        /// All the Operations in the database
-        /// </summary>
-        private List<OperationModel> Operations { get; set; }
 
         #endregion
 
         #region Help Variables
 
-        /// <summary>
-        /// The filtered operations 
-        /// </summary>
-        private List<OperationModel> FOperations { get; set; }
-        
 
-        /// <summary>
-        /// Used to prevent the Operation loading in the initializing proces
-        /// </summary>
-        private Boolean CanLoadTheOperation { get; set; }
 
         #endregion
 
@@ -57,50 +44,19 @@ namespace WPF_GUI
 
         private void SetInitialValues()
         {
-            
-            
+            OperationsList.ItemsSource = null;
+            OperationsList.ItemsSource = PublicVariables.Operations;
 
-            UpdateTheOperationsFromThePublicVariables();
+            TotalPaidOrdersValue.Value = PublicVariables.Store.GetTotalPaidOrders;
+            TotalNotPaidValue.Value = PublicVariables.Store.GetNotPaidOrdersValue;
 
-            OperationsList_CashUC.ItemsSource = Operations;
-            //TotalSellsValue_CashUC.Text = GlobalConfig.Connection.TotalSellsIncome(Operations).ToString();
+            TotalPaidIncomeOrdersValue.Value = PublicVariables.Store.GetTotalPaidIncomeOrdersValue;
+            TotalNotPaidIncomeOrdersValue.Value = PublicVariables.Store.GetLoans;
 
-            EndDateValue_CashUC.DisplayDateEnd = DateTime.Now;
-            EndDateValue_CashUC.DisplayDateStart = new DateTime(2010,1,1);
-            EndDateValue_CashUC.SelectedDate = DateTime.Now;
-
-            StartDateValue_CashUC.DisplayDateEnd = DateTime.Now;
-            StartDateValue_CashUC.DisplayDateStart = new DateTime(2010,1,1);
-            StartDateValue_CashUC.SelectedDate = new DateTime(2019, 9, 1);
-
-           /* ShopeeWalletNowValue_CashUC.Text = GlobalConfig.Connection.GetTheShopeeWallet(Operations).ToString();
-            TotalSellsValue_CashUC.Text = GlobalConfig.Connection.TotalSellsIncome(Operations).ToString();
-            TotalSellsProfitValue_CashUC.Text = GlobalConfig.Connection.TotalSellsProfit(Operations).ToString();
-
-            TotalIncomeOrdersValue_CashUC.Text = GlobalConfig.Connection.TotalIncomeOrderPrice(Operations).ToString();
-            TotalShopBillsValue_CashUC.Text = GlobalConfig.Connection.TotalShopBillsPrice(Operations).ToString();
-            DateOfShopeeWalletValue_CashUC.Text = DateTime.Now.ToShortDateString();
-            ShopeeWalletAtDateValue_CashUC.Text = GlobalConfig.Connection.GetTheShopeeWallet(GlobalConfig.Connection.FilterOperationsByDate(Operations, new DateTime(2010, 1, 1), DateTime.Now)).ToString();
-            */
-
-            CanLoadTheOperation = false;
-            LoadTheOperations();
-            CanLoadTheOperation = true;
+            ShopeeWalletNowValue.Value = PublicVariables.Store.GetShopeeWallet;
         }
 
-        /// <summary>
-        /// Update and set the operations , Update all kind of orders
-        /// </summary>
-        private void UpdateTheOperationsFromThePublicVariables()
-        {
-            PublicVariables.Orders = GlobalConfig.Connection.GetOrders();
-            PublicVariables.IncomeOrders = GlobalConfig.Connection.GetIncomeOrders();
-            PublicVariables.ShopBills = GlobalConfig.Connection.GetShopBills();
 
-          //  PublicVariables.Operations = GlobalConfig.Connection.GetOperations();
-            Operations = null;
-            Operations = PublicVariables.Operations;
-        }
 
 
 
@@ -108,44 +64,7 @@ namespace WPF_GUI
 
         #region Hole User Grid Events
 
-        /// <summary>
-        /// Filter all the operations by date
-        /// </summary>
-        private void LoadTheOperations()
-        {
-            if (CanLoadTheOperation)
-            {
-                DateTime startDate = (DateTime)StartDateValue_CashUC.SelectedDate;
-                DateTime endDate = (DateTime)EndDateValue_CashUC.SelectedDate;
-
-
-             /*   FOperations = GlobalConfig.Connection.FilterOperationsByDate(Operations, startDate, endDate);
-                OperationsList_CashUC.ItemsSource = null;
-                OperationsList_CashUC.ItemsSource = FOperations;
-
-                TotalSellsValue_CashUC.Text = GlobalConfig.Connection.TotalSellsIncome(FOperations).ToString();
-                TotalSellsProfitValue_CashUC.Text = GlobalConfig.Connection.TotalSellsProfit(FOperations).ToString();
-                TotalIncomeOrdersValue_CashUC.Text = GlobalConfig.Connection.TotalIncomeOrderPrice(FOperations).ToString();
-                TotalShopBillsValue_CashUC.Text = GlobalConfig.Connection.TotalShopBillsPrice(FOperations).ToString();
-                DateOfShopeeWalletValue_CashUC.Text = endDate.ToShortDateString();
-                ShopeeWalletAtDateValue_CashUC.Text = GlobalConfig.Connection.GetTheShopeeWallet(GlobalConfig.Connection.FilterOperationsByDate(Operations, new DateTime(2010, 1, 1),endDate)).ToString();
-                */
-            }
-
-        }
-
-        private void EndDateValue_CashUC_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
-        {
-            LoadTheOperations();
-            
-        }
-
-        private void StartDateValue_CashUC_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
-        {
-            LoadTheOperations();
-        }
-
-        private void ReloadTabButton_CashUC_Click(object sender, RoutedEventArgs e)
+        private void ReloadTabButton_Click(object sender, RoutedEventArgs e)
         {
             SetInitialValues();
         }
