@@ -1101,7 +1101,27 @@ namespace Library
 
         #endregion
 
-        
+        #region OrderPayment
+
+        /// <summary>
+        /// Add OrderPayment To the database
+        /// Add to the public variables
+        /// add to the order
+        /// return the  orderpayment
+        /// </summary>
+        /// <param name="order"></param>
+        /// <param name="orderPayment"></param>
+        /// <returns></returns>
+        public OrderPaymentModel AddOrderPaymentToTheDatabase(OrderModel order , OrderPaymentModel orderPayment)
+        {
+            // Save the orderPayment to the database
+            OrderPaymentAccess.AddOrderPaymentToTheDatabase(orderPayment, order, db);
+            PublicVariables.OrderPayments.Add(orderPayment);
+            order.OrderPayments.Add(orderPayment);
+            return orderPayment;
+        }
+
+        #endregion
 
         #region Person
 

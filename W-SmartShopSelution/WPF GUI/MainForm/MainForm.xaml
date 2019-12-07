@@ -98,7 +98,7 @@
         </Button>
 
         <Grid Margin="10,22,10,10" Grid.Row="1">
-            <dragablz:TabablzControl  Name="MainTab" ShowDefaultCloseButton="True"  >
+            <dragablz:TabablzControl  Name="MainTab"  ShowDefaultCloseButton="True"  >
                 <dragablz:TabablzControl.InterTabController>
                     <dragablz:InterTabController  />
                 </dragablz:TabablzControl.InterTabController>

@@ -788,7 +788,23 @@ namespace WPF_GUI.Sell
                 order.OrderProducts = new List<OrderProductModel>();
                 foreach (OrderProductRecordModel orderProductRecord in OrderProductRecords)
                 {
-                    order.OrderProducts.Add(orderProductRecord.OrderProduct);
+                    // Validation
+                    GlobalConfig.OrderProductRecordValidator = new OrderProductRecordValidator();
+
+                    ValidationResult result = GlobalConfig.OrderProductRecordValidator.Validate(orderProductRecord);
+
+                    if (result.IsValid == false)
+                    {
+
+                        MessageBox.Show(result.Errors[0].ErrorMessage);
+                        valid = false;
+
+                    }
+                    else
+                    {
+                        order.OrderProducts.Add(orderProductRecord.OrderProduct);
+                    }
+                   
                 }
 
                 GlobalConfig.OrderValidator = new OrderValidator();
@@ -932,8 +948,6 @@ namespace WPF_GUI.Sell
             {
                 CustomerWillPayLaterValue.Value = OrderTotalPriceValue.Value;
                 CustomerWillPayNowValue.Value = 0;
-
-
             }
             else if (payLater == 0)
             {
