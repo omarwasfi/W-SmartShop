@@ -4,78 +4,112 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WPF_GUI"
-             xmlns:ProductManager="clr-namespace:WPF_GUI.ProductManager" xmlns:CreateCategory="clr-namespace:WPF_GUI.CreateCategory" x:Class="WPF_GUI.CreateSupplierUC"
-             mc:Ignorable="d" 
+             xmlns:ProductManager="clr-namespace:WPF_GUI.ProductManager" xmlns:CreateCategory="clr-namespace:WPF_GUI.CreateCategory" 
                  xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
 
-             d:DesignHeight="680" d:DesignWidth="1343">
+             xmlns:syncfusion="http://schemas.syncfusion.com/wpf" x:Class="WPF_GUI.CreateSupplierUC"
+             mc:Ignorable="d"
+
+             d:DesignHeight="650" d:DesignWidth="1343">
     <Grid Margin="10">
 
-        <RadioButton Name="OldCustomerRadioButton_CreateSupplierUC" Checked="OldCustomerRadioButton_CreateSupplierUC_Checked"  Content="Old Customer" FontSize="20" Foreground="#707070"  HorizontalAlignment="Left" Margin="729,12,0,0" VerticalAlignment="Top"/>
-        <RadioButton Name="NewPersonRadioButton_CreateSupplierUC" Checked="NewPersonRadioButton_CreateSupplierUC_Checked"  Content="New Person" FontSize="20" Foreground="#707070" HorizontalAlignment="Left" Margin="28,12,0,0" VerticalAlignment="Top"/>
+        <RadioButton x:Name="OldPersonRadioButton" Checked="OldPersonRadioButton_Checked"  Content="Old Customer" FontSize="20" Foreground="#707070"  HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <RadioButton x:Name="NewPersonRadioButton" Checked="NewPersonRadioButton_Checked" Content="New Person" FontSize="20" Foreground="#707070" HorizontalAlignment="Left" Margin="10,178,0,0" VerticalAlignment="Top"/>
 
-        <GroupBox Name="NewPersonGB_CreateSupplierUC" Header="Add New Person" HorizontalAlignment="Left" Height="537" Margin="10,50,0,0" VerticalAlignment="Top" Width="714">
-            <Grid Width="695" Margin="0,0,0,3">
+        <GroupBox x:Name="NewPersonGB" Header="Add New Person" HorizontalAlignment="Left" Height="418" Margin="10,212,0,0" VerticalAlignment="Top" Width="1303">
+            <Grid Width="1289" Margin="0,0,0,3">
+                <TextBlock  HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="4,6,0,0" Width="192" Height="30" ><Run Text="First Name : "/></TextBlock>
+                <TextBox x:Name="FirstNameValue" MaxLength="50" MaxLines="1" HorizontalAlignment="Left" Margin="294,11,0,0" VerticalAlignment="Top" Width="368" />
 
-                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="12,18,0,0" Width="192" Height="30" ><Run Text="First Name : "/></TextBlock>
-                <TextBox x:Name="PersonFirstNameValue_CreateSupplierUC" HorizontalAlignment="Left" Margin="303,23,0,0" VerticalAlignment="Top" Width="319" />
-                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="Red" RenderTransformOrigin="0.596,0.438" FontSize="15"  Margin="627,7,-29,0" Width="63" Height="30" ><Run  Text="required"/></TextBlock>
+                <TextBlock  HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="4,41,0,0" Width="192" Height="30" ><Run Text="Last Name : "/></TextBlock>
+                <TextBox x:Name="LastNameValue" MaxLength="50" MaxLines="1" HorizontalAlignment="Left" Margin="294,46,0,0" VerticalAlignment="Top" Width="368" />
 
+                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="4,76,0,0" Width="286" Height="30" ><Run Text="Phone Number/Numbers: "/></TextBlock>
+                <TextBox x:Name="PhoneNumberValue" MaxLength="200" MaxLines="1" HorizontalAlignment="Left" Margin="294,81,0,0" VerticalAlignment="Top" Width="368" />
 
-                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="12,53,0,0" Width="192" Height="30" ><Run Text="Last Name : "/></TextBlock>
-                <TextBox x:Name="PersonLastNameValue_CreateSupplierUC" HorizontalAlignment="Left" Margin="303,58,0,0" VerticalAlignment="Top" Width="319" />
+                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="4,111,0,0" Width="210" Height="30" ><Run Text="National Number : "/></TextBlock>
+                <TextBox x:Name="NationalNumberValue" MaxLength="200" MaxLines="1" HorizontalAlignment="Left" Margin="294,116,0,0" VerticalAlignment="Top" Width="368" />
 
-                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="12,88,0,0" Width="286" Height="30" ><Run Text="Phone Number/Numbers: "/></TextBlock>
-                <TextBox x:Name="PersonPhoneNumberValue_CreateSupplierUC" HorizontalAlignment="Left" Margin="303,93,0,0" VerticalAlignment="Top" Width="319" />
+                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="715,6,0,0" Width="85" Height="30" ><Run Text="Email : "/></TextBlock>
+                <TextBox x:Name="EmailValue" MaxLength="200" MaxLines="1" HorizontalAlignment="Left" Margin="827,11,0,0" VerticalAlignment="Top" Width="452" />
 
-                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="12,123,0,0" Width="210" Height="30" ><Run Text="National Number : "/></TextBlock>
-                <TextBox x:Name="PersonNationalNumberValue_CreateSupplierUC" HorizontalAlignment="Left" Margin="303,128,0,0" VerticalAlignment="Top" Width="319" />
+                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="715,41,0,0" Width="112" Height="30" ><Run Text="Address : "/></TextBlock>
+                <TextBox x:Name="AddressValue" MaxLength="200" MaxLines="1" HorizontalAlignment="Left" Margin="827,46,0,0" VerticalAlignment="Top" Width="452" />
 
-                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="12,158,0,0" Width="210" Height="30" ><Run Text="Email : "/></TextBlock>
-                <TextBox x:Name="PersonEmailValue_CreateSupplierUC" HorizontalAlignment="Left" Margin="303,163,0,0" VerticalAlignment="Top" Width="319" />
+                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="715,76,0,0" Width="82" Height="30" ><Run Text="City : "/></TextBlock>
+                <TextBox x:Name="CityValue"  MaxLength="100" MaxLines="1" HorizontalAlignment="Left" Margin="827,81,0,0" VerticalAlignment="Top" Width="114" />
 
-                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="12,193,0,0" Width="210" Height="30" ><Run Text="Address : "/></TextBlock>
-                <TextBox x:Name="PersonAddressValue_CreateSupplierUC" HorizontalAlignment="Left" Margin="303,198,0,0" VerticalAlignment="Top" Width="319" />
+                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="715,111,0,0" Width="109" Height="30" ><Run Text="Country : "/></TextBlock>
+                <TextBox x:Name="CountryValue"  MaxLength="100" MaxLines="1" HorizontalAlignment="Left" Margin="832,116,0,0" VerticalAlignment="Top" Width="114" />
 
-                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="10,228,0,0" Width="210" Height="30" ><Run Text="City : "/></TextBlock>
-                <TextBox x:Name="PersonCityValue_CreateSupplierUC" HorizontalAlignment="Left" Margin="303,233,0,0" VerticalAlignment="Top" Width="114" />
+                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="4,146,0,0" Width="210" Height="30" ><Run Text="Date Of Birth : "/></TextBlock>
+                <DatePicker x:Name="BirthDateValue" HorizontalAlignment="Left" Margin="294,151,0,0" VerticalAlignment="Top" Width="142"/>
 
-                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="10,263,0,0" Width="210" Height="30" ><Run Text="Country : "/></TextBlock>
-                <TextBox x:Name="PersonCountryValue_CreateSupplierUC" HorizontalAlignment="Left" Margin="303,268,0,0" VerticalAlignment="Top" Width="114" />
+                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="4,181,0,0" Width="210" Height="30" ><Run Text="Jop Title : "/></TextBlock>
+                <TextBox x:Name="JopTitleValue"  MaxLength="200" MaxLines="1" HorizontalAlignment="Left" Margin="294,181,0,0" VerticalAlignment="Top" Width="368" />
 
-                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="10,293,0,0" Width="210" Height="30" ><Run Text="Company : "/></TextBlock>
-                <TextBox x:Name="SupplierCompanyValue_CreateSupplierUC" HorizontalAlignment="Left" Margin="303,298,0,0" VerticalAlignment="Top" Width="203" />
-                
-                <Button x:Name="ClearPersonButton_CreateSupplierUC" Click="ClearPersonButton_CreateSupplierUC_Click" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Red"   VerticalAlignment="Top" Height="50" Margin="601,422,10,0"  >
-                    <materialDesign:PackIcon Kind="Clear" Width="50" Height="46"/>
-                </Button>
+                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="2,216,0,0" Width="210" Height="30" ><Run Text="Jop Address : "/></TextBlock>
+                <TextBox x:Name="JopAddressValue"  MaxLength="200" MaxLines="1" HorizontalAlignment="Left" Margin="294,221,0,0" VerticalAlignment="Top" Width="368" />
+
+                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="2,251,0,0" Width="222" Height="30" ><Run Text="Date Of Gradution : "/></TextBlock>
+                <DatePicker x:Name="GraduationDateValue" HorizontalAlignment="Left" Margin="294,256,0,0" VerticalAlignment="Top" Width="142"/>
+
+                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="2,286,0,0" Width="210" Height="30" ><Run Text="Qualification : "/></TextBlock>
+                <TextBox x:Name="QualificationValue"  MaxLength="200" MaxLines="1" HorizontalAlignment="Left" Margin="294,291,0,0" VerticalAlignment="Top" Width="368" />
+
+                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="2,321,0,0" Width="109" Height="30" ><Run Text="Details : "/></TextBlock>
+                <TextBox x:Name="DetailsValue"  MaxLength="500" MaxLines="1" HorizontalAlignment="Left" Margin="116,326,0,0" VerticalAlignment="Top" Width="546" />
+
+                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="715,181,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Company: "/></TextBlock>
+                <TextBox x:Name="CompanyValue" IsReadOnly="True" HorizontalAlignment="Left" Height="33" Margin="832,181,0,0" Text="" VerticalAlignment="Top" Width="447" MaxLength="500" MaxLines="1"  />
+
 
             </Grid>
         </GroupBox>
-        <GroupBox Name="OldCustomerGB_CreateSupplierUC"  Header="Search if he is a customer" HorizontalAlignment="Left" Height="538" Margin="729,50,0,0" VerticalAlignment="Top" Width="584">
-            <Grid Width="584">
-                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="10,10,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" Width="133" Text="Full Name : " />
-                <TextBox x:Name="CustomerNameValue_CreateSupplierUC" TextChanged="CustomerNameValue_CreateSupplierUC_TextChanged" KeyDown="CustomerNameValue_CreateSupplierUC_KeyDown" HorizontalAlignment="Left" Margin="224,18,0,0" VerticalAlignment="Top" Width="332" />
+        <GroupBox x:Name="OldPersonGB"  Header="Search for the people (Only not suppliers)" HorizontalAlignment="Left" Height="134" Margin="10,39,0,0" VerticalAlignment="Top" Width="1303">
+            <Grid>
+                <syncfusion:SfMultiColumnDropDownControl x:Name="PersonSearchValue"  PopupBorderBrush="LightGray" PopupBackground="LightGray"  FlowDirection="RightToLeft" AutoGenerateColumns="False" AllowNullInput="True"  AllowAutoComplete="True" AllowImmediatePopup="True"  HorizontalAlignment="Left" Height="29"  VerticalAlignment="Top" Width="1261" Margin="7,4,0,0" Foreground="Black" Background="White" Style="{DynamicResource SfMultiColumnDropDownControlStyle1}">
+                    <syncfusion:SfMultiColumnDropDownControl.Columns>
+                        <syncfusion:GridTextColumn HeaderText="" MappingName="GetThePersonProperties" />
+                        <syncfusion:GridTextColumn HeaderText="Name" MappingName="FullName" />
+                        <syncfusion:GridTextColumn HeaderText="Phone Number" MappingName="PhoneNumber" />
+                        <syncfusion:GridTextColumn HeaderText="National Number" MappingName="NationalNumber" />
+                        <syncfusion:GridTextColumn HeaderText="City" MappingName="City" />
+                        <syncfusion:GridTextColumn HeaderText="Address" MappingName="Address" />
+                        <syncfusion:GridTextColumn HeaderText="Jop" MappingName="JopTitle" />
+                        <syncfusion:GridTextColumn HeaderText="Details" MappingName="Details" />
+                    </syncfusion:SfMultiColumnDropDownControl.Columns>
+                    <syncfusion:SfMultiColumnDropDownControl.BorderBrush>
+                        <LinearGradientBrush EndPoint="0,20" MappingMode="Absolute" StartPoint="0,0">
+                            <GradientStop Color="#FFABADB3" Offset="0.05"/>
+                            <GradientStop Color="#FFE2E3EA" Offset="0.07"/>
+                            <GradientStop Color="Gray" Offset="1"/>
+                        </LinearGradientBrush>
+                    </syncfusion:SfMultiColumnDropDownControl.BorderBrush>
+                </syncfusion:SfMultiColumnDropDownControl>
 
-                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="10,48,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" Width="193" Text="Phone Number : " />
-                <TextBox x:Name="PhoneNumberValue_CreateSupplierUC" TextChanged="PhoneNumberValue_CreateSupplierUC_TextChanged" KeyDown="PhoneNumberValue_CreateSupplierUC_KeyDown" HorizontalAlignment="Left" Height="23" Margin="224,58,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="332"/>
-
-                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="10,86,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" Width="209" Text="National Number : " />
-                <TextBox x:Name="NationalNumberValue_CreateSupplierUC"  TextChanged="NationalNumberValue_CreateSupplierUC_TextChanged" KeyDown="NationalNumberValue_CreateSupplierUC_KeyDown" HorizontalAlignment="Left" Margin="224,94,0,0" VerticalAlignment="Top" Width="332" />
-
-                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="10,124,0,0" Width="210" Height="47" ><Run Text="Company : "/></TextBlock>
-                <TextBox x:Name="SupplierCompanyNameValue_CreateSupplierUC" HorizontalAlignment="Left" Margin="225,129,0,0" VerticalAlignment="Top" Width="191" />
-
-                <Button x:Name="SelectedCustomerLogButton_CreateSupplierUC" Click="SelectedCustomerLogButton_CreateSupplierUC_Click"  Content="Selected Customer log" HorizontalAlignment="Left" Margin="10,176,0,0" VerticalAlignment="Top" Width="193" Height="40" FontSize="15" FontWeight="Bold"/>
-                <Button x:Name="ClearCustomerButton_CreateSupplierUC" Click="ClearCustomerButton_CreateSupplierUC_Click" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Red"   VerticalAlignment="Top" Height="50" Margin="490,176,10,0"  >
-                    <materialDesign:PackIcon Kind="Clear" Width="50" Height="46"/>
-                </Button>
+                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="9,44,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Company: "/></TextBlock>
+                <TextBox x:Name="CompanyValue_OldCustomer" IsReadOnly="False" HorizontalAlignment="Left" Height="33" Margin="132,44,0,0" Text="" VerticalAlignment="Top" Width="424" MaxLength="200" MaxLines="1"  />
             </Grid>
         </GroupBox>
+        <Grid Margin="1097,0,0,601">
+            <Button x:Name="CloseTabButton" Visibility="Collapsed" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Red"   VerticalAlignment="Top"  Margin="3,0,170,0" Height="25"  >
+                <materialDesign:PackIcon Kind="Close" Width="20" Height="20"/>
+            </Button>
 
-        <Button x:Name="ConfirmButton_CreateSupplierUC" Click="ConfirmButton_CreateSupplierUC_Click" Content="Confirm" HorizontalAlignment="Left" Margin="1057,618,0,0" VerticalAlignment="Top" Width="93"/>
-        <Button x:Name="ClearButton_CreateSupplierUC" Click="ClearButton_CreateSupplierUC_Click"  Content="Clear" HorizontalAlignment="Left" Margin="1155,618,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="CloseButton_CreateSupplierUC" Click="CloseButton_CreateSupplierUC_Click" Content="Close" HorizontalAlignment="Left" Margin="1238,618,0,0" VerticalAlignment="Top" Width="75"/>
+            <Button x:Name="ReloadTabButton" Click="ReloadTabButton_Click" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray"   VerticalAlignment="Top"  Margin="171,0,0,0" Height="25"  >
+                <materialDesign:PackIcon Kind="Reload" Width="20" Height="20"/>
+            </Button>
+
+            <Button x:Name="PrintButton" Visibility="Collapsed" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray"   VerticalAlignment="Top"  Margin="115,0,55,0" Height="25"  >
+                <materialDesign:PackIcon Kind="Printer" Width="20" Height="20"/>
+            </Button>
+
+            <Button x:Name="ConfitmButton" Click="ConfitmButton_Click" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Green"   VerticalAlignment="Top"  Margin="112,0,55,0" Height="25"  >
+                <materialDesign:PackIcon Kind="Done" Width="20" Height="20"/>
+            </Button>
+
+        </Grid>
 
 
 

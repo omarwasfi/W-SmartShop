@@ -15,9 +15,7 @@
     <Grid>
         <Grid x:Name="MainGrid_PeopleUC" Visibility="Visible" Background="White" >
 
-
-
-            <syncfusion:SfDataGrid x:Name="PeopleList"  AllowResizingColumns="True" ColumnSizer="Star" AllowDraggingColumns="True" Margin="10,29,10,54" AllowFiltering="True" ShowGroupDropArea="True" AutoGenerateColumns="False" Background="#FFD8D8D8">
+            <syncfusion:SfDataGrid x:Name="PeopleList" MouseDoubleClick="PeopleList_MouseDoubleClick"  AllowResizingColumns="True" ColumnSizer="Star" AllowDraggingColumns="True" Margin="10,29,10,54" AllowFiltering="True" ShowGroupDropArea="True" AutoGenerateColumns="False" Background="#FFD8D8D8">
                 <syncfusion:SfDataGrid.Columns>
                     <syncfusion:GridTextColumn HeaderText="" MappingName="GetThePersonProperties" />
                     <syncfusion:GridTextColumn HeaderText="Name" MappingName="FullName" />
@@ -61,6 +59,14 @@
                 <materialDesign:PackIcon Kind="ArrowLeft" Width="20" Height="20"/>
             </Button>
             <local:CreatePersonUC HorizontalAlignment="Left" Margin="0,30,0,0" VerticalAlignment="Top" Height="650" Width="1343"/>
+
+        </Grid>
+
+        <Grid x:Name="PersonGrid" Visibility="Collapsed" >
+            <Button x:Name="BackToNormalGridButton_FromPersonGrid" Click="BackToNormalGridButton_FromPersonGrid_Click"  Visibility="Visible" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Green"   VerticalAlignment="Top"  Margin="0,0,1291,0" Height="30"  >
+                <materialDesign:PackIcon Kind="ArrowLeft" Width="20" Height="20"/>
+            </Button>
+            <ContentControl Name="PersonContentControl" Content="ContentControl" HorizontalAlignment="Left" Margin="0,30,0,0" VerticalAlignment="Top" Height="650" Width="1343"/>
 
         </Grid>
 

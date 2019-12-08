@@ -24,10 +24,7 @@ namespace WPF_GUI.ModifyPersonUC
 
         #region Main veriables
 
-        /// <summary>
-        /// The person that we need to edit
-        /// </summary>
-        private PersonModel Person = new PersonModel();
+
 
         #endregion
 
@@ -42,104 +39,42 @@ namespace WPF_GUI.ModifyPersonUC
         {
             InitializeComponent();
 
-            Person = person;
 
-            SetInitialValues();
+            SetInitialValues( person);
 
         }
 
 
-        private void SetInitialValues()
+        private void SetInitialValues(PersonModel person)
         {
-            SetGuiDefaultValues();
+            FirstNameValue.Text = person.FirstName;
+            LastNameValue.Text = person.LastName;
+            PhoneNumberValue.Text = person.PhoneNumber;
+            NationalNumberValue.Text = person.NationalNumber;
+            EmailValue.Text = person.Email;
+            AddressValue.Text = person.Address;
+            CityValue.Text = person.City;
+            CountryValue.Text = person.Country;
+            BirthDateValue.SelectedDate = person.BirthDate;
+            JopTitleValue.Text = person.JopTitle;
+            JopAddressValue.Text = person.JopAddress;
+            GraduationDateValue.SelectedDate = person.GraduationDate;
+            QualificationValue.Text = person.Qualification;
+            DetailsValue.Text = person.Details;
         }
 
-        private void SetGuiDefaultValues()
-        {
-            FirstNameValue_ModifyPersonUC.Text = Person.FirstName;
-            LastNameValue_ModifyPersonUC.Text = Person.LastName;
-            PhoneNumberValue_ModifyPersonUC.Text = Person.PhoneNumber;
-            NationalNumberValue_ModifyPersonUC.Text = Person.NationalNumber;
-            EmailValue_ModifyPersonUC.Text = Person.Email;
-            AddressValue_ModifyPersonUC.Text = Person.Address;
-            CityValue_ModifyPersonUC.Text = Person.City;
-            CountryValue_ModifyPersonUC.Text = Person.Country;
 
-        }
 
         #endregion
 
         #region Hole form events
 
-        /// <summary>
-        /// Close the Window
-        /// source : https://stackoverflow.com/questions/1262115/how-do-you-display-a-custom-usercontrol-as-a-dialog
-        /// </summary>
-        private void CloseButton_ModifyPersonUC_Click(object sender, RoutedEventArgs e)
+         private void RefreshButton_Click(object sender, RoutedEventArgs e)
         {
-            var parent = this.Parent as Window;
-            if (parent != null) { parent.DialogResult = true; parent.Close(); }
-        }
-
-        /// <summary>
-        /// Reset the form 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ResetButton_ModifyPersonUC_Click(object sender, RoutedEventArgs e)
-        {
-            SetInitialValues();
-        }
-
-
-        /// <summary>
-        /// Check if the first name is not null
-        /// check it the national number is not used with other person before
-        /// if every thing ok Update the person with the database
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ConfirmButton_ModifyPersonUC_Click(object sender, RoutedEventArgs e)
-        {
-            bool confirm = true;
-
-            if(FirstNameValue_ModifyPersonUC.Text.Length > 0)
-            {
-                if ( NationalNumberValue_ModifyPersonUC.Text == Person.NationalNumber  || GlobalConfig.Connection.CheckIfTheNationalNumberUnique(NationalNumberValue_ModifyPersonUC.Text))
-                {
-
-                }
-                else
-                {
-                    MessageBox.Show("This national Number is used before with other person !");
-                    confirm = false;
-                }
-            }
-            else
-            {
-                MessageBox.Show("First name cant be less than 1 chareter");
-                confirm = false;
-
-            }
-
-            if (confirm)
-            {
-                Person.FirstName = FirstNameValue_ModifyPersonUC.Text;
-                Person.LastName = LastNameValue_ModifyPersonUC.Text;
-                Person.PhoneNumber = PhoneNumberValue_ModifyPersonUC.Text;
-                Person.NationalNumber = NationalNumberValue_ModifyPersonUC.Text;
-                Person.Email = EmailValue_ModifyPersonUC.Text;
-                Person.Address = AddressValue_ModifyPersonUC.Text;
-                Person.City = CityValue_ModifyPersonUC.Text;
-                Person.Country = CountryValue_ModifyPersonUC.Text;
-
-                GlobalConfig.Connection.UpdatePersonData(Person);
-
-                var parent = this.Parent as Window;
-                if (parent != null) { parent.DialogResult = true; parent.Close(); }
-            }
         }
 
         #endregion
+
+       
     }
 }

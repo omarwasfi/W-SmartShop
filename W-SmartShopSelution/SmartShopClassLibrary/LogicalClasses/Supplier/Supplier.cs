@@ -12,7 +12,15 @@ namespace Library
     {
         
 
-
+        /// <summary>
+        /// Get all the incomeorders That the supplier in
+        /// </summary>
+        /// <param name=""></param>
+        /// <returns></returns>
+        public static List<IncomeOrderModel> GetIncomeOrders(SupplierModel supplier)
+        {
+            return PublicVariables.IncomeOrders.FindAll(x => x.Supplier == supplier);
+        }
 
     }
 }

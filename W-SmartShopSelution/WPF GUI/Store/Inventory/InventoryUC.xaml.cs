@@ -63,6 +63,7 @@ namespace WPF_GUI.Inventory
             StocksList.ItemsSource = null;
             StocksList.ItemsSource = PublicVariables.Store.GetStocks;
 
+            StockValue.Value = PublicVariables.Store.GetStocksIncomeValue;
         }
 
 

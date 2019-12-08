@@ -248,7 +248,7 @@
                     <ComboBox x:Name="CustomerSearchTypeValue" SelectionChanged="CustomerSearchTypeValue_SelectionChanged" Width="17" VerticalAlignment="Top" TextSearch.TextPath="Name"  Margin="1220,5,0,0" IsTextSearchEnabled="True" HorizontalAlignment="Left"/>
                     <syncfusion:SfMultiColumnDropDownControl x:Name="CustomerSearchValue"  PopupBorderBrush="LightGray" PopupBackground="LightGray"  FlowDirection="RightToLeft" AutoGenerateColumns="False" AllowNullInput="True"  AllowAutoComplete="True" AllowImmediatePopup="True"  HorizontalAlignment="Left" Height="29"  VerticalAlignment="Top" Width="574" Margin="646,4,0,0" Foreground="Black" Background="White" Style="{DynamicResource SfMultiColumnDropDownControlStyle1}">
                         <syncfusion:SfMultiColumnDropDownControl.Columns>
-                            <syncfusion:GridTextColumn HeaderText="Supplier Name" MappingName="Person.FullName" />
+                            <syncfusion:GridTextColumn HeaderText="Customer Name" MappingName="Person.FullName" />
                             <syncfusion:GridTextColumn HeaderText="Phone Number" MappingName="Person.PhoneNumber" />
                             <syncfusion:GridTextColumn HeaderText="National Number" MappingName="Person.NationalNumber" />
                         </syncfusion:SfMultiColumnDropDownControl.Columns>

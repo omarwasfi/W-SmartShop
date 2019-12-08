@@ -112,5 +112,15 @@ namespace Library
                 return Organization.GetCapital(this);
             }
         }
+        
+        /// <summary>
+        /// Get people that not suppliers
+        /// </summary>
+        public List<PersonModel> GetPeopleNotSuppliers
+        { 
+            get
+            { return Organization.GetPeopleNotSuppliers(this); 
+            } 
+        }
     }
 }

@@ -33,6 +33,8 @@ namespace Library
         public static OrderProductValidator OrderProductValidator { get; set; }
         public static ShopBillValidator ShopBillValidator { get; set; }
 
+        public static SupplierValidator SupplierValidator { get; set; }
+
 
         public static void InitializeConnection()
         {
@@ -55,7 +57,7 @@ namespace Library
             //string databaseName = "SmartShopDatabase.mdf";
 
             //return @" data source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + path + @"\" + databaseName + ";Integrated Security=True";
-            //return @" data source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\SSData"+@"\" + databaseName + ";Integrated Security=True";
+           // return @" data source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\SSData"+@"\" + databaseName + ";Integrated Security=True";
 
 
         }

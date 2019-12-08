@@ -1703,6 +1703,18 @@ namespace Library
         #region Supplier
 
         /// <summary>
+        /// Add the Supplier to the database
+        /// add the supplier to the publicVariables
+        /// </summary>
+        /// <returns></returns>
+        public SupplierModel AddSupplierWithOldPersonToTheDatabase(SupplierModel supplier)
+        {
+            SupplierAccess.AddSupplierToTheDatabase(supplier, db);
+            PublicVariables.Suppliers.Add(supplier);
+            return supplier;
+        }
+
+        /// <summary>
         /// Get the all the suppliers in the database And set the personModel for each one
         /// </summary>
         /// <param name="db"></param>
@@ -1721,7 +1733,7 @@ namespace Library
         /// <param name="db"></param>
         public void CreateSupplier(SupplierModel supplier)
         {
-            SupplierAccess.CreateSupplier(supplier, db);
+            SupplierAccess.AddSupplierToTheDatabase(supplier, db);
         }
 
         #endregion

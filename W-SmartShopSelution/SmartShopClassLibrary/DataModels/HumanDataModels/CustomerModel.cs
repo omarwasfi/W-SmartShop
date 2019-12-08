@@ -23,7 +23,16 @@ namespace Library
         /// </summary>
         public PersonModel  Person { get; set; }
 
-
+        /// <summary>
+        /// Get the orders that the customer made
+        /// </summary>
+        public List<OrderModel> GetOrders
+        {
+            get
+            {
+               return Customer.GetOrders(this);
+            }
+        }
         
 
     }

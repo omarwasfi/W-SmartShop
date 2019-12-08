@@ -95,7 +95,7 @@ namespace Library
         /// </summary>
         /// <param name="supplier"></param>
         /// <param name="db"></param>
-        public static void CreateSupplier(SupplierModel supplier, string db)
+        public static void AddSupplierToTheDatabase(SupplierModel supplier, string db)
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnVal(db)))
             {

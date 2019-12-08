@@ -146,6 +146,7 @@
     <Compile Include="Validation\Forced\MoneyValidator.cs" />
     <Compile Include="Validation\Forced\NumberValidation.cs" />
     <Compile Include="Validation\HumanValidations\PersonValidator.cs" />
+    <Compile Include="Validation\HumanValidations\SupplierValidator.cs" />
     <Compile Include="Validation\OrdersValidations\IncomeOrderProductRecordValidator\IncomeOrderProductRecordValidator.cs" />
     <Compile Include="Validation\OrdersValidations\IncomeOrderValidations\IncomeOrderPaymentValidator.cs" />
     <Compile Include="Validation\OrdersValidations\IncomeOrderValidations\IncomeOrderProductValidator.cs" />

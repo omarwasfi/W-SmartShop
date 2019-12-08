@@ -85,8 +85,6 @@ namespace Library
 
             return shopeeWallet;
         }
-
-
         public static decimal GetCapital(OrganizationModel organization)
         {
             decimal capital = new decimal();
@@ -94,6 +92,11 @@ namespace Library
             capital = organization.GetFreeMoney  + organization.GetStockValue + organization.GetShopeeWalletValue - organization.GetLoans + organization.GetNotPaidOrdersValue;
 
             return capital;
+        }
+
+        public static List<PersonModel> GetPeopleNotSuppliers(OrganizationModel organization)
+        {
+            return PublicVariables.People.FindAll(x => x.GetAsASupplier == null);
         }
     }
 }

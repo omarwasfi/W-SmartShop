@@ -196,13 +196,13 @@
 
                     <!-- Choose Product Buttons -->
 
-                    <Button x:Name="IncomeOrderProductButton" Click="IncomeOrderProductButton_Click" Content="ADD" HorizontalAlignment="Left" Margin="716,190,0,0" VerticalAlignment="Top" Width="73" Height="34" FontSize="17" FontWeight="Bold"/>
+                    <Button x:Name="IncomeOrderProductButton" Click="IncomeOrderProductButton_Click" Content="ADD" HorizontalAlignment="Left" Margin="716,146,0,0" VerticalAlignment="Top" Width="73" Height="34" FontSize="17" FontWeight="Bold"/>
 
-                    <Button x:Name="ClearIncomeOrderProductButton" Click="ClearIncomeOrderProductButton_Click" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Red"   VerticalAlignment="Top" Height="35" Margin="794,191,10,0"  >
+                    <Button x:Name="ClearIncomeOrderProductButton" Click="ClearIncomeOrderProductButton_Click" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Red"   VerticalAlignment="Top" Height="35" Margin="794,145,10,0"  >
                         <materialDesign:PackIcon Kind="Clear" Width="30" Height="30"/>
                     </Button>
 
-                    <Button x:Name="CreateNewProductButton" Click="CreateNewProductButton_Click" Margin="629,230,10,0" VerticalAlignment="Top" Height="33"  >
+                    <Button x:Name="CreateNewProductButton" Click="CreateNewProductButton_Click" Margin="630,185,9,0" VerticalAlignment="Top" Height="33"  >
                         <Grid Width="215" Height="33">
                             <materialDesign:PackIcon Kind="PlusBox" Width="25" Height="25"/>
                             <TextBlock FontSize="17" Text="Create New Product" Margin="30,0,25,10"/>
@@ -224,7 +224,7 @@
 
                     <!-- Expiration Period alarm -->
                     <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="262,232,0,0" ><Run Text="Expiration Period : "/></TextBlock>
-                    <syncfusion:TimeSpanEdit x:Name="StockExpirationPeriodValue" IsEnabled="False" MaxValue="999" MinValue="0" Value="30:12:0:0" AllowNull="False" Format="d 'Days' h 'Hours'" HorizontalAlignment="Left" Height="30" Margin="491,235,0,0"  VerticalAlignment="Top" Width="133" Background="{x:Null}" MaxLines="1">
+                    <syncfusion:TimeSpanEdit x:Name="StockExpirationPeriodValue" IsEnabled="False" MinValue="0" Value="30:12:0:0" AllowNull="False" Format="d 'Days' h 'Hours'" ShowArrowButtons="False" HorizontalAlignment="Left" Height="30" Margin="491,235,0,0"  VerticalAlignment="Top" Width="201" Background="{x:Null}" MaxLines="1">
                         <syncfusion:TimeSpanEdit.BorderBrush>
                             <LinearGradientBrush EndPoint="0,20" MappingMode="Absolute" StartPoint="0,0">
                                 <GradientStop Color="#FFABADB3" Offset="0.05"/>
@@ -233,6 +233,7 @@
                             </LinearGradientBrush>
                         </syncfusion:TimeSpanEdit.BorderBrush>
                     </syncfusion:TimeSpanEdit>
+                    <DatePicker x:Name="ExpirationDateValue" SelectedDateChanged="ExpirationDateValue_SelectedDateChanged" HorizontalAlignment="Left" Margin="706,238,0,0" VerticalAlignment="Top" Width="128" SelectedDateFormat="Short"/>
                     <CheckBox x:Name="StockExpirationPeriodCB" Checked="StockExpirationPeriodCB_Checked" Unchecked="StockExpirationPeriodCB_Unchecked"  HorizontalAlignment="Left" Margin="468,241,0,0" VerticalAlignment="Top"/>
 
                 </Grid>
@@ -245,14 +246,14 @@
 
 
                     <!--buttons-->
-                    <Button x:Name="SelectedSupplierButton"   Margin="10,111,195,0" VerticalAlignment="Top" Height="33"  >
+                    <Button x:Name="SelectedPersonButton" Click="SelectedPersonButton_Click"  Margin="10,111,195,0" VerticalAlignment="Top" Height="33"  >
                         <Grid Width="208" Height="33">
                             <materialDesign:PackIcon Kind="FormatListBulletedSquare" Width="25" Height="25"/>
                             <TextBlock FontSize="17" Text="Selected Supplier log" Margin="30,0,10,10"/>
                         </Grid>
                     </Button>
 
-                    <Button x:Name="AddNewSupplierButton"  Margin="10,149,199,0" VerticalAlignment="Top" Height="33"  >
+                    <Button x:Name="AddNewSupplierButton" Click="AddNewSupplierButton_Click"  Margin="10,149,199,0" VerticalAlignment="Top" Height="33"  >
                         <Grid Width="215" Height="33">
                             <materialDesign:PackIcon Kind="PlusBox" Width="25" Height="25"/>
                             <TextBlock FontSize="17" Text="Add New Supplier" Margin="30,0,25,10"/>
@@ -420,8 +421,20 @@
             </Button>
             <CreateProduct:CreateProductUC HorizontalAlignment="Left" Margin="0,30,0,0" VerticalAlignment="Top"/>
         </Grid>
-        <Grid x:Name="NewSupplierGrid" Visibility="Collapsed"/>
-        <Grid x:Name="SelectedSupplierLogGrid" Visibility="Collapsed"/>
+        <Grid x:Name="NewSupplierGrid" Visibility="Collapsed">
+            <Button x:Name="BackToUserGridButton_FromCreateNewSupplierGrid" Click="BackToUserGridButton_FromCreateNewSupplierGrid_Click" Visibility="Visible" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Green"   VerticalAlignment="Top"  Margin="0,0,1291,0" Height="30"  >
+                <materialDesign:PackIcon Kind="ArrowLeft" Width="20" Height="20"/>
+            </Button>
+            <local:CreateSupplierUC HorizontalAlignment="Left" Margin="0,30,0,0" VerticalAlignment="Top"/>
+        </Grid>
+        <Grid x:Name="SelectedSupplierLogGrid" Visibility="Collapsed">
+            <Button x:Name="BackToUserGridButton_FromSelectedSupplierGrid" Click="BackToUserGridButton_FromSelectedSupplierGrid_Click" Visibility="Visible" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Green"   VerticalAlignment="Top"  Margin="0,0,1291,0" Height="30"  >
+                <materialDesign:PackIcon Kind="ArrowLeft" Width="20" Height="20"/>
+            </Button>
+            <ContentControl Name="SelectedSupplierContentControl" Content="ContentControl" HorizontalAlignment="Left" Margin="0,30,0,0" VerticalAlignment="Top" Height="650" Width="1343"/>
+
+
+        </Grid>
 
     </Grid>
 

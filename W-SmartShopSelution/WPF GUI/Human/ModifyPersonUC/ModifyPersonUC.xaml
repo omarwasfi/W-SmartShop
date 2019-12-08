@@ -5,35 +5,68 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WPF_GUI.ModifyPersonUC"
              mc:Ignorable="d" 
-                                       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" Height="632.68" Width="1281.659">
-    <Grid Margin="10">
-        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="12,18,0,0" Width="192" Height="30" ><Run Text="First Name : "/></TextBlock>
-        <TextBox x:Name="FirstNameValue_ModifyPersonUC" HorizontalAlignment="Left" Margin="303,23,0,0" VerticalAlignment="Top" Width="368" />
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" Height="620.68" Width="1281.659">
+    <Grid>
+
+        <Grid Margin="1038,0,0,595">
+            <Button x:Name="CloseButton" Visibility="Collapsed" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Red"   VerticalAlignment="Top"  Margin="3,0,170,0" Height="25"  >
+                <materialDesign:PackIcon Kind="Close" Width="20" Height="20"/>
+            </Button>
+
+            <Button x:Name="RefreshButton" Click="RefreshButton_Click" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray"   VerticalAlignment="Top"  Margin="171,0,0,0" Height="25"  >
+                <materialDesign:PackIcon Kind="Reload" Width="20" Height="20"/>
+            </Button>
+
+            <Button x:Name="PrintButton" Visibility="Collapsed" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray"   VerticalAlignment="Top"  Margin="115,0,55,0" Height="25"  >
+                <materialDesign:PackIcon Kind="Printer" Width="20" Height="20"/>
+            </Button>
+
+            <Button x:Name="ConfirmButton"  Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Green"   VerticalAlignment="Top"  Margin="107,0,60,0" Height="25"  >
+                <materialDesign:PackIcon Kind="Done" Width="20" Height="20"/>
+            </Button>
+
+        </Grid>
+        <TextBlock  HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="12,18,0,0" Width="192" Height="30" ><Run Text="First Name : "/></TextBlock>
+        <TextBox x:Name="FirstNameValue" MaxLength="50" MaxLines="1" HorizontalAlignment="Left" Margin="303,23,0,0" VerticalAlignment="Top" Width="368" />
 
 
-        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="12,53,0,0" Width="192" Height="30" ><Run Text="Last Name : "/></TextBlock>
-        <TextBox x:Name="LastNameValue_ModifyPersonUC" HorizontalAlignment="Left" Margin="303,58,0,0" VerticalAlignment="Top" Width="368" />
+        <TextBlock  HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="12,53,0,0" Width="192" Height="30" ><Run Text="Last Name : "/></TextBlock>
+        <TextBox x:Name="LastNameValue" MaxLength="50" MaxLines="1" HorizontalAlignment="Left" Margin="303,58,0,0" VerticalAlignment="Top" Width="368" />
 
         <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="12,88,0,0" Width="286" Height="30" ><Run Text="Phone Number/Numbers: "/></TextBlock>
-        <TextBox x:Name="PhoneNumberValue_ModifyPersonUC" HorizontalAlignment="Left" Margin="303,93,0,0" VerticalAlignment="Top" Width="368" />
+        <TextBox x:Name="PhoneNumberValue" MaxLength="200" MaxLines="1" HorizontalAlignment="Left" Margin="303,93,0,0" VerticalAlignment="Top" Width="368" />
 
         <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="12,123,0,0" Width="210" Height="30" ><Run Text="National Number : "/></TextBlock>
-        <TextBox x:Name="NationalNumberValue_ModifyPersonUC" HorizontalAlignment="Left" Margin="303,128,0,0" VerticalAlignment="Top" Width="368" />
+        <TextBox x:Name="NationalNumberValue" MaxLength="200" MaxLines="1" HorizontalAlignment="Left" Margin="303,128,0,0" VerticalAlignment="Top" Width="368" />
 
-        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="12,158,0,0" Width="210" Height="30" ><Run Text="Email : "/></TextBlock>
-        <TextBox x:Name="EmailValue_ModifyPersonUC" HorizontalAlignment="Left" Margin="303,163,0,0" VerticalAlignment="Top" Width="368" />
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="12,332,0,0" Width="210" Height="30" ><Run Text="Email : "/></TextBlock>
+        <TextBox x:Name="EmailValue" MaxLength="200" MaxLines="1" HorizontalAlignment="Left" Margin="303,337,0,0" VerticalAlignment="Top" Width="368" />
 
-        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="12,193,0,0" Width="210" Height="30" ><Run Text="Address : "/></TextBlock>
-        <TextBox x:Name="AddressValue_ModifyPersonUC" HorizontalAlignment="Left" Margin="303,198,0,0" VerticalAlignment="Top" Width="368" />
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="12,367,0,0" Width="210" Height="30" ><Run Text="Address : "/></TextBlock>
+        <TextBox x:Name="AddressValue" MaxLength="200" MaxLines="1" HorizontalAlignment="Left" Margin="303,372,0,0" VerticalAlignment="Top" Width="368" />
 
-        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="10,228,0,0" Width="210" Height="30" ><Run Text="City : "/></TextBlock>
-        <TextBox x:Name="CityValue_ModifyPersonUC" HorizontalAlignment="Left" Margin="303,233,0,0" VerticalAlignment="Top" Width="114" />
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="10,402,0,0" Width="210" Height="30" ><Run Text="City : "/></TextBlock>
+        <TextBox x:Name="CityValue"  MaxLength="100" MaxLines="1" HorizontalAlignment="Left" Margin="303,407,0,0" VerticalAlignment="Top" Width="114" />
 
-        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="10,263,0,0" Width="210" Height="30" ><Run Text="Country : "/></TextBlock>
-        <TextBox x:Name="CountryValue_ModifyPersonUC" HorizontalAlignment="Left" Margin="303,268,0,0" VerticalAlignment="Top" Width="114" />
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="10,437,0,0" Width="210" Height="30" ><Run Text="Country : "/></TextBlock>
+        <TextBox x:Name="CountryValue"  MaxLength="100" MaxLines="1" HorizontalAlignment="Left" Margin="303,442.04,0,0" VerticalAlignment="Top" Width="114" />
 
-        <Button x:Name="CloseButton_ModifyPersonUC" Click="CloseButton_ModifyPersonUC_Click" Content="Close" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" Margin="1143,540,0,0" RenderTransformOrigin="0.374,-2.702"/>
-        <Button x:Name="ResetButton_ModifyPersonUC" Click="ResetButton_ModifyPersonUC_Click" Content="Reset" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" Margin="1063,540,0,0"/>
-        <Button x:Name="ConfirmButton_ModifyPersonUC" Click="ConfirmButton_ModifyPersonUC_Click" Content="Confirm" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="103" Margin="955,540,0,0"/>
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="12,158,0,0" Width="210" Height="30" ><Run Text="Date Of Birth : "/></TextBlock>
+        <DatePicker x:Name="BirthDateValue" HorizontalAlignment="Left" Margin="303,163,0,0" VerticalAlignment="Top" Width="141"/>
+
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="12,193,0,0" Width="210" Height="30" ><Run Text="Jop Title : "/></TextBlock>
+        <TextBox x:Name="JopTitleValue"  MaxLength="200" MaxLines="1" HorizontalAlignment="Left" Margin="303,193,0,0" VerticalAlignment="Top" Width="368" />
+
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="10,228,0,0" Width="210" Height="30" ><Run Text="Jop Address : "/></TextBlock>
+        <TextBox x:Name="JopAddressValue"  MaxLength="200" MaxLines="1" HorizontalAlignment="Left" Margin="303,233.04,0,0" VerticalAlignment="Top" Width="368" />
+
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="10,263,0,0" Width="223" Height="30" ><Run Text="Date Of Gradution : "/></TextBlock>
+        <DatePicker x:Name="GraduationDateValue" HorizontalAlignment="Left" Margin="303,268,0,0" VerticalAlignment="Top" Width="141"/>
+
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="10,298,0,0" Width="210" Height="30" ><Run Text="Qualification : "/></TextBlock>
+        <TextBox x:Name="QualificationValue"  MaxLength="200" MaxLines="1" HorizontalAlignment="Left" Margin="303,303.04,0,0" VerticalAlignment="Top" Width="368" />
+
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="10,472,0,0" Width="210" Height="30" ><Run Text="Details : "/></TextBlock>
+        <TextBox x:Name="DetailsValue"  MaxLength="500" MaxLines="1" HorizontalAlignment="Left" Margin="303,477.04,0,0" VerticalAlignment="Top" Width="586" />
     </Grid>
 </UserControl>

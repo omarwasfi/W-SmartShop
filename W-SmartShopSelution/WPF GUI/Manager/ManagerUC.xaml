@@ -10,7 +10,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="680" d:DesignWidth="1343">
     <Grid Background="White">
-        <Grid Name="UserGrid" Visibility="Collapsed">
+        <Grid Name="UserGrid" Visibility="Visible">
             
             <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="10,10,0,0" ><Run Text="Capital : "/></TextBlock>
             <syncfusion:CurrencyTextBox Name="CapitalValue"  IsReadOnly="True" CurrencyNegativePattern="8"  CurrencyPositivePattern="3"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="155" Value="1234567" Margin="105,17,0,0" Height="27" Background="White" FontSize="18" SelectionBrush="#FF009688">

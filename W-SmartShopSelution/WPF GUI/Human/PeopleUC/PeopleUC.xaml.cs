@@ -48,11 +48,29 @@ namespace WPF_GUI
             CreatePersonGrid.Visibility = Visibility.Visible;
         }
 
+       
+        private void PeopleList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            PersonModel person = (PersonModel)PeopleList.SelectedItem;
+            if(person != null)
+            {
+                PersonUC personUC = new PersonUC(person);
+                PersonGrid.Visibility = Visibility.Visible;
+                MainGrid_PeopleUC.Visibility = Visibility.Collapsed;
+                PersonContentControl.Content = personUC;
+            }
+        }
+
         private void BackToNormalGridButton_SellUC_Click(object sender, RoutedEventArgs e)
         {
             CreatePersonGrid.Visibility = Visibility.Collapsed;
             MainGrid_PeopleUC.Visibility = Visibility.Visible;
             SetInitialValues();
+        }
+        private void BackToNormalGridButton_FromPersonGrid_Click(object sender, RoutedEventArgs e)
+        {
+            PersonGrid.Visibility = Visibility.Collapsed;
+            MainGrid_PeopleUC.Visibility = Visibility.Visible;
         }
     }
 }

@@ -16,6 +16,7 @@ using System.Windows.Shapes;
 using WPF_GUI.CreateProduct;
 using WPF_GUI.Inventory;
 using WPF_GUI.Orders.In.BillsManagerUC;
+using WPF_GUI.Orders.In.IncomeOrderManager;
 using WPF_GUI.Orders.Out.SellingOrdersManagerUC;
 using WPF_GUI.PriceListUC;
 using WPF_GUI.ProductManager;
@@ -80,7 +81,7 @@ namespace WPF_GUI
             }
             if (staff.Permission.CanGlobalInventoryUC)
             {
-                GlobalInventoryViewItem.Visibility = Visibility.Visible;
+                GlobalInventoryViewItem.Visibility = Visibility.Collapsed;
             }
             if (staff.Permission.CanIncomeOrderUC)
             {
@@ -92,11 +93,11 @@ namespace WPF_GUI
             }
             if (staff.Permission.CanStaffsManagerUC)
             {
-                StaffsManagerViewItem.Visibility = Visibility.Visible;
+                StaffsManagerViewItem.Visibility = Visibility.Collapsed;
             }
             if (staff.Permission.CanInstallmentOrderUC)
             {
-                InstallmentOrderViewItem.Visibility = Visibility.Visible;
+                InstallmentOrderViewItem.Visibility = Visibility.Collapsed;
             }
             if (staff.Permission.CanCashFlowUC)
             {
@@ -108,7 +109,7 @@ namespace WPF_GUI
             }
             if (staff.Permission.CanPriceListUC)
             {
-                PriceListViewItem.Visibility = Visibility.Visible;
+                PriceListViewItem.Visibility = Visibility.Collapsed;
             }
         }
         
@@ -239,6 +240,16 @@ namespace WPF_GUI
 
         }
 
+        private void IncomeOrderManagerViewItem_Selected(object sender, RoutedEventArgs e)
+        {
+            CloseMenu_BeginStoryboard.Storyboard.Begin();
+
+            IncomeOrderManagerUC incomeOrderManagerUC = new IncomeOrderManagerUC();
+            TabItem incomeOrderMangerTab = new TabItem { Header = "Income Order Manager" };
+            incomeOrderMangerTab.Content = incomeOrderManagerUC;
+            MainTab.Items.Add(incomeOrderMangerTab);
+        }
+
         private void InstallmentOrderViewItem_Selected(object sender, RoutedEventArgs e)
         {
             InstallmentOrderUC installmentOrderUC = new InstallmentOrderUC();
@@ -297,6 +308,7 @@ namespace WPF_GUI
             if (e.ChangedButton == MouseButton.Left)
                 this.DragMove();
         }
+
 
 
 

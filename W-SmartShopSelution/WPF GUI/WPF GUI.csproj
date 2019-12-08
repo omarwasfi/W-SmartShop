@@ -487,6 +487,9 @@
     <Compile Include="Orders\In\BillsManagerUC\BillsManagerUC.xaml.cs">
       <DependentUpon>BillsManagerUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Orders\In\IncomeOrderManager\IncomeOrderManager.xaml.cs">
+      <DependentUpon>IncomeOrderManager.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Orders\In\ModifyBill\ModifyBillUC.xaml.cs">
       <DependentUpon>ModifyBillUC.xaml</DependentUpon>
     </Compile>
@@ -501,6 +504,9 @@
     </Compile>
     <Compile Include="Orders\Out\SellingOrdersManagerUC\SellingOrdersManagerUC.xaml.cs">
       <DependentUpon>SellingOrdersManagerUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Human\Person\PersonUC.xaml.cs">
+      <DependentUpon>PersonUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="PriceListUC\PriceListUC.xaml.cs">
       <DependentUpon>PriceListUC.xaml</DependentUpon>
@@ -597,6 +603,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Orders\In\IncomeOrderManager\IncomeOrderManager.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Orders\In\ModifyBill\ModifyBillUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -614,6 +624,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Orders\Out\SellingOrdersManagerUC\SellingOrdersManagerUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Human\Person\PersonUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

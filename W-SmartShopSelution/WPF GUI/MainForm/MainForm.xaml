@@ -168,6 +168,13 @@
                             </StackPanel>
                         </ListViewItem>
 
+                        <ListViewItem Name="IncomeOrderManagerViewItem" Visibility="Visible" Height="45" Padding="0" Selected="IncomeOrderManagerViewItem_Selected" >
+                            <StackPanel Orientation="Horizontal" Margin="10 0">
+                                <materialDesign:PackIcon Kind="InboxArrowDown" Width="20" Height="20" Foreground="Gray" Margin="5" VerticalAlignment="Center"/>
+                                <TextBlock Text="Income Orders" Margin="10"/>
+                            </StackPanel>
+                        </ListViewItem>
+
                         <ListViewItem Name="BillsManagerViewItem" Visibility="Visible" Height="45" Padding="0" Selected="BillsManagerViewItem_Selected" >
                             <StackPanel Orientation="Horizontal" Margin="10 0">
                                 <materialDesign:PackIcon Kind="Qi" Width="20" Height="20" Foreground="Gray" Margin="5" VerticalAlignment="Center"/>
@@ -182,7 +189,7 @@
                             </StackPanel>
                         </ListViewItem>
 
-                        <ListViewItem Name="PriceListViewItem" Visibility="Visible" Height="45" Padding="0" Selected="PriceListViewItem_Selected" >
+                        <ListViewItem Name="PriceListViewItem" Visibility="Collapsed" Height="45" Padding="0" Selected="PriceListViewItem_Selected" >
                             <StackPanel Orientation="Horizontal" Margin="10 0">
                                 <materialDesign:PackIcon Kind="Printer" Width="20" Height="20" Foreground="Gray" Margin="5" VerticalAlignment="Center"/>
                                 <TextBlock Text="Print Price List" Margin="10"/>

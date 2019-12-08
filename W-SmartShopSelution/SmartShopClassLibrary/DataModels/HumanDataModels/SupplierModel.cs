@@ -26,5 +26,17 @@ namespace Library
         /// The company of the supplier
         /// </summary>
         public String Company { get; set; }
+
+        /// <summary>
+        /// Get all the incomeorders That this Supplier did
+        /// </summary>
+        public List<IncomeOrderModel> GetIncomeOrders
+        {
+            get
+            {
+                return Supplier.GetIncomeOrders(this);
+            }
+        }
+
     }
 }

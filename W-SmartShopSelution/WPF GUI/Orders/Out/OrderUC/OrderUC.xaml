@@ -194,7 +194,7 @@
                 </syncfusion:CurrencyTextBox.BorderBrush>
             </syncfusion:CurrencyTextBox>
 
-            <syncfusion:SfDataGrid x:Name="OrderPaymentsList" AllowResizingColumns="True" ColumnSizer="AutoWithLastColumnFill" AllowDraggingColumns="True" Margin="894,289,10,86" AllowFiltering="True" ShowGroupDropArea="True" AutoGenerateColumns="False" Background="#FFD8D8D8">
+            <syncfusion:SfDataGrid x:Name="OrderPaymentsList" AllowResizingColumns="True" ColumnSizer="AutoWithLastColumnFill"  AllowDraggingColumns="True" Margin="894,289,10,86" AllowFiltering="True" ShowGroupDropArea="True" AutoGenerateColumns="False" Background="#FFD8D8D8">
                 <syncfusion:SfDataGrid.Columns>
                     <syncfusion:GridTextColumn HeaderText="Staff" MappingName="Staff.Person.FullName" />
                     <syncfusion:GridTextColumn HeaderText="Store" MappingName="Store.Name" />

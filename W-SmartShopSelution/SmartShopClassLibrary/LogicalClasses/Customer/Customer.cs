@@ -11,7 +11,15 @@ namespace Library
     public static class Customer
     {
 
-     
+        /// <summary>
+        /// Get all the orders that the customer made with the organization
+        /// </summary>
+        /// <param name=""></param>
+        /// <returns></returns>
+        public static List<OrderModel> GetOrders(CustomerModel customer)
+        {
+            return PublicVariables.Orders.FindAll(x => x.Customer == customer);
+        }
 
         // TODO - Need Some changes HERE (Change the way we get default customer)
         /// <summary>
@@ -25,6 +33,8 @@ namespace Library
 
             return customer;
         }
+
+
 
        
     }

@@ -104,7 +104,7 @@ namespace Library
             foreach (IncomeOrderPaymentModel incomeOrderPaymentModel in incomeOrderPayments)
             {
 
-                incomeOrderPaymentModel.Store = stores.Find(x => x.Id == incomeOrderPaymentModel.Staff.Id);
+                incomeOrderPaymentModel.Store = stores.Find(x => x.Id == incomeOrderPaymentModel.Store.Id);
             }
             return incomeOrderPayments;
         }

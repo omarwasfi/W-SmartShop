@@ -151,6 +151,8 @@ namespace WPF_GUI
             StockQuantityAlarmValue.Value = 5;
             StockExpirationPeriodCB.IsChecked = false;
             StockExpirationPeriodValue.Value = new TimeSpan(30,12,0,0);
+            ExpirationDateValue.DisplayDateStart = DateTime.Now;
+            ExpirationDateValue.IsEnabled = false;
 
             // Supplier GB
             List<string> supplierSearchTypes = new List<string>();
@@ -495,13 +497,27 @@ namespace WPF_GUI
         private void StockExpirationPeriodCB_Checked(object sender, RoutedEventArgs e)
         {
             StockExpirationPeriodValue.IsEnabled = true;
+            ExpirationDateValue.IsEnabled = true;
         }
 
         private void StockExpirationPeriodCB_Unchecked(object sender, RoutedEventArgs e)
         {
             StockExpirationPeriodValue.IsEnabled = false;
+            ExpirationDateValue.IsEnabled = false;
+
         }
 
+        private void ExpirationDateValue_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            TimeSpan expirationPeriod = new TimeSpan();
+            expirationPeriod = ExpirationDateValue.SelectedDate.Value - DateTime.Now;
+            
+                StockExpirationPeriodValue.Value = expirationPeriod;
+            
+            
+        }
+
+      
         private void ClearIncomeOrderProductButton_Click(object sender, RoutedEventArgs e)
         {
             ClearProduct();
@@ -852,8 +868,65 @@ namespace WPF_GUI
 
         }
 
+        private void AddNewSupplierButton_Click(object sender, RoutedEventArgs e)
+        {
+            UserGrid.Visibility = Visibility.Collapsed;
+            NewSupplierGrid.Visibility = Visibility.Visible;
+        }
 
+        private void BackToUserGridButton_FromCreateNewSupplierGrid_Click(object sender, RoutedEventArgs e)
+        {
+            UserGrid.Visibility = Visibility.Visible;
+            NewSupplierGrid.Visibility = Visibility.Collapsed;
 
+            // Supplier GB
+            List<string> supplierSearchTypes = new List<string>();
+            supplierSearchTypes.Add("Name");
+            supplierSearchTypes.Add("Phone Number");
+            supplierSearchTypes.Add("National Number");
+
+            SupplierSearchTypeValue.ItemsSource = null;
+            SupplierSearchTypeValue.ItemsSource = supplierSearchTypes;
+            SupplierSearchTypeValue.SelectedIndex = 0;
+
+            SupplierSearchValue.ItemsSource = null;
+            SupplierSearchValue.ItemsSource = PublicVariables.Suppliers;
+            SupplierSearchValue.DisplayMember = "Person.FullName";
+
+        }
+         private void SelectedPersonButton_Click(object sender, RoutedEventArgs e)
+        {
+            SupplierModel supplier = (SupplierModel)SupplierSearchValue.SelectedItem;
+            if (supplier != null)
+            {
+                PersonUC personUC = new PersonUC(supplier.Person);
+                SelectedSupplierContentControl.Content = personUC;
+
+                SelectedSupplierLogGrid.Visibility = Visibility.Visible;
+                UserGrid.Visibility = Visibility.Collapsed;
+            }
+        }
+
+        private void BackToUserGridButton_FromSelectedSupplierGrid_Click(object sender, RoutedEventArgs e)
+        {
+            UserGrid.Visibility = Visibility.Visible;
+            SelectedSupplierLogGrid.Visibility = Visibility.Collapsed;
+
+            // Supplier GB
+            List<string> supplierSearchTypes = new List<string>();
+            supplierSearchTypes.Add("Name");
+            supplierSearchTypes.Add("Phone Number");
+            supplierSearchTypes.Add("National Number");
+
+            SupplierSearchTypeValue.ItemsSource = null;
+            SupplierSearchTypeValue.ItemsSource = supplierSearchTypes;
+            SupplierSearchTypeValue.SelectedIndex = 0;
+
+            SupplierSearchValue.ItemsSource = null;
+            SupplierSearchValue.ItemsSource = PublicVariables.Suppliers;
+            SupplierSearchValue.DisplayMember = "Person.FullName";
+
+        }
 
 
 
