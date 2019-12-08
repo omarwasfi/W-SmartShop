@@ -125,7 +125,7 @@ namespace WPF_GUI
              gohary lab 6C4FEBF86BD55BAFBFF
              */
 
-            if (getUniqueID("C") == "6E9FEBFAA624579FBFF")
+            if (getUniqueID("C") == "6C4FEBF86BD55BAFBFF")
             {
                 Store = GlobalConfig.GetTheStoreFromTheDatabase(PublicVariables.Stores);
                 if (Store.Id == -1)
