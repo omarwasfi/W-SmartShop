@@ -12,54 +12,138 @@
             <TextBlock  HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="12,18,0,0" Width="131" Height="30" ><Run Text="Full Name : "/></TextBlock>
             <TextBox x:Name="PersonFullNameValue" IsReadOnly="True" HorizontalAlignment="Left" Height="33" Margin="148,15,0,0" Text="" VerticalAlignment="Top" Width="250" MaxLength="500" MaxLines="1"  />
 
-            <TextBlock x:Name="PersonProperties" HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="481,15,0,0" Width="386" Height="38" ><Run Text="Customer , supplier , staff , owner "/></TextBlock>
-            <GroupBox Header="Orders" HorizontalAlignment="Left" Height="582" Margin="0,58,0,0" VerticalAlignment="Top" Width="1343">
-                <syncfusion:SfDataGrid x:Name="OrdersList" AllowResizingColumns="True" ColumnSizer="AutoWithLastColumnFill" AllowDraggingColumns="True" Margin="0,0,0,-4" AllowFiltering="True" ShowGroupDropArea="True" AutoGenerateColumns="False" Background="#FFD8D8D8" Width="1316">
-                    <syncfusion:SfDataGrid.Columns>
-                        <syncfusion:GridTextColumn HeaderText="ID" MappingName="Id" />
-                        <syncfusion:GridTextColumn HeaderText="Date" MappingName="DateTimeOfTheOrder" />
-                        <syncfusion:GridTextColumn HeaderText="Staff" MappingName="Staff.Person.FullName" />
-                        <syncfusion:GridTextColumn HeaderText="Store" MappingName="Store.Name" />
-                        <syncfusion:GridTextColumn HeaderText="Total Price" MappingName="GetTotalPrice" />
-                        <syncfusion:GridTextColumn HeaderText="Total Paid" MappingName="GetTotalPaid" />
-                        <syncfusion:GridTextColumn HeaderText="Total Not Paid" MappingName="GetTotalNotPaid" />
-                        <syncfusion:GridTextColumn HeaderText="Details" MappingName="Details" />
-                    </syncfusion:SfDataGrid.Columns>
-                    <syncfusion:SfDataGrid.DetailsViewDefinition>
-                        <!--  FirstLevelNestedGrid1 is created here  -->
-                        <syncfusion:GridViewDefinition RelationalColumn="OrderProducts">
-                            <syncfusion:GridViewDefinition.DataGrid>
-                                <syncfusion:SfDataGrid x:Name="OrderProductsList" AllowFiltering="True" AutoGenerateColumns="False">
-                                    <syncfusion:SfDataGrid.Columns>
-                                        <syncfusion:GridTextColumn HeaderText="Product" MappingName="Product.Name" />
-                                        <syncfusion:GridTextColumn HeaderText="Size" MappingName="Product.Size" />
-                                        <syncfusion:GridTextColumn HeaderText="Quantity" MappingName="Quantity" />
-                                        <syncfusion:GridTextColumn HeaderText="Sale Price" MappingName="SalePrice" />
-                                        <syncfusion:GridTextColumn HeaderText="Discount" MappingName="Discount" />
-                                        <syncfusion:GridTextColumn HeaderText="Profit" MappingName="Profit" />
-                                        <syncfusion:GridTextColumn HeaderText="Total Profit" MappingName="GetTotalProfit" />
-                                        <syncfusion:GridTextColumn HeaderText="Total Price" MappingName="GetTotalPrice" />
-                                    </syncfusion:SfDataGrid.Columns>
-                                </syncfusion:SfDataGrid>
-                            </syncfusion:GridViewDefinition.DataGrid>
-                        </syncfusion:GridViewDefinition>
-                        <!--  FirstLevelNestedGrid2 is created here  -->
-                        <syncfusion:GridViewDefinition RelationalColumn="OrderPayments">
-                            <syncfusion:GridViewDefinition.DataGrid>
-                                <syncfusion:SfDataGrid x:Name="OrderPaymentList" AllowFiltering="True" AutoGenerateColumns="False">
-                                    <syncfusion:SfDataGrid.Columns>
-                                        <syncfusion:GridTextColumn HeaderText="Staff" MappingName="Staff.Person.FullName" />
-                                        <syncfusion:GridTextColumn HeaderText="Store" MappingName="Store.Name" />
-                                        <syncfusion:GridTextColumn HeaderText="Paid" MappingName="Paid" />
-                                        <syncfusion:GridTextColumn HeaderText="Date" MappingName="Date" />
-                                    </syncfusion:SfDataGrid.Columns>
-                                </syncfusion:SfDataGrid>
-                            </syncfusion:GridViewDefinition.DataGrid>
-                        </syncfusion:GridViewDefinition>
-                    </syncfusion:SfDataGrid.DetailsViewDefinition>
+            <Button x:Name="CustomerSwichButton" Click="CustomerSwichButton_Click" Content="Cusotmer" HorizontalAlignment="Left" Margin="500,22,0,0" VerticalAlignment="Top" Width="85" Height="26" FontSize="11" FontWeight="Bold"/>
+            <Button x:Name="SupplierSwichButton" Click="SupplierSwichButton_Click" Content="Supplier" HorizontalAlignment="Left" Margin="590,22,0,0" VerticalAlignment="Top" Width="81" Height="26" FontSize="11" FontWeight="Bold"/>
+            <Button x:Name="StaffSwichButton" Click="StaffSwichButton_Click" Content="Staff" HorizontalAlignment="Left" Margin="676,22,0,0" VerticalAlignment="Top" Width="73" Height="26" FontSize="11" FontWeight="Bold"/>
+            <Button x:Name="OwnerSwichButton" Click="OwnerSwichButton_Click" Content="Owner" HorizontalAlignment="Left" Margin="754,22,0,0" VerticalAlignment="Top" Width="73" Height="26" FontSize="11" FontWeight="Bold"/>
 
-                </syncfusion:SfDataGrid>
-            </GroupBox>
+            <Grid Name="OrdersGrid" Visibility="Collapsed" Margin="0,53,0,0">
+                <GroupBox Header="Orders" HorizontalAlignment="Left" Height="582" VerticalAlignment="Top" Width="1343">
+                    <syncfusion:SfDataGrid x:Name="OrdersList" AllowResizingColumns="True" ColumnSizer="AutoWithLastColumnFill" AllowDraggingColumns="True" Margin="0,0,0,-4" AllowFiltering="True" ShowGroupDropArea="True" AutoGenerateColumns="False" Background="#FFD8D8D8" Width="1316">
+                        <syncfusion:SfDataGrid.Columns>
+                            <syncfusion:GridTextColumn HeaderText="ID" MappingName="Id" />
+                            <syncfusion:GridTextColumn HeaderText="Date" MappingName="DateTimeOfTheOrder" />
+                            <syncfusion:GridTextColumn HeaderText="Staff" MappingName="Staff.Person.FullName" />
+                            <syncfusion:GridTextColumn HeaderText="Store" MappingName="Store.Name" />
+                            <syncfusion:GridTextColumn HeaderText="Total Price" MappingName="GetTotalPrice" />
+                            <syncfusion:GridTextColumn HeaderText="Total Paid" MappingName="GetTotalPaid" />
+                            <syncfusion:GridTextColumn HeaderText="Total Not Paid" MappingName="GetTotalNotPaid" />
+                            <syncfusion:GridTextColumn HeaderText="Details" MappingName="Details" />
+                        </syncfusion:SfDataGrid.Columns>
+                        <syncfusion:SfDataGrid.DetailsViewDefinition>
+                            <!--  FirstLevelNestedGrid1 is created here  -->
+                            <syncfusion:GridViewDefinition RelationalColumn="OrderProducts">
+                                <syncfusion:GridViewDefinition.DataGrid>
+                                    <syncfusion:SfDataGrid x:Name="OrderProductsList" AllowFiltering="True" AutoGenerateColumns="False">
+                                        <syncfusion:SfDataGrid.Columns>
+                                            <syncfusion:GridTextColumn HeaderText="Product" MappingName="Product.Name" />
+                                            <syncfusion:GridTextColumn HeaderText="Size" MappingName="Product.Size" />
+                                            <syncfusion:GridTextColumn HeaderText="Quantity" MappingName="Quantity" />
+                                            <syncfusion:GridTextColumn HeaderText="Sale Price" MappingName="SalePrice" />
+                                            <syncfusion:GridTextColumn HeaderText="Discount" MappingName="Discount" />
+                                            <syncfusion:GridTextColumn HeaderText="Profit" MappingName="Profit" />
+                                            <syncfusion:GridTextColumn HeaderText="Total Profit" MappingName="GetTotalProfit" />
+                                            <syncfusion:GridTextColumn HeaderText="Total Price" MappingName="GetTotalPrice" />
+                                        </syncfusion:SfDataGrid.Columns>
+                                    </syncfusion:SfDataGrid>
+                                </syncfusion:GridViewDefinition.DataGrid>
+                            </syncfusion:GridViewDefinition>
+                            <!--  FirstLevelNestedGrid2 is created here  -->
+                            <syncfusion:GridViewDefinition RelationalColumn="OrderPayments">
+                                <syncfusion:GridViewDefinition.DataGrid>
+                                    <syncfusion:SfDataGrid x:Name="OrderPaymentList" AllowFiltering="True" AutoGenerateColumns="False">
+                                        <syncfusion:SfDataGrid.Columns>
+                                            <syncfusion:GridTextColumn HeaderText="Staff" MappingName="Staff.Person.FullName" />
+                                            <syncfusion:GridTextColumn HeaderText="Store" MappingName="Store.Name" />
+                                            <syncfusion:GridTextColumn HeaderText="Paid" MappingName="Paid" />
+                                            <syncfusion:GridTextColumn HeaderText="Date" MappingName="Date" />
+                                        </syncfusion:SfDataGrid.Columns>
+                                    </syncfusion:SfDataGrid>
+                                </syncfusion:GridViewDefinition.DataGrid>
+                            </syncfusion:GridViewDefinition>
+                        </syncfusion:SfDataGrid.DetailsViewDefinition>
+
+                    </syncfusion:SfDataGrid>
+                </GroupBox>
+            </Grid>
+            <Grid Name="OperationsGrid" Visibility="Collapsed" Margin="0,53,0,0">
+                <GroupBox Header="Operations" HorizontalAlignment="Left" Height="582" VerticalAlignment="Top" Width="1343">
+                    <syncfusion:SfDataGrid x:Name="OperationsList"  AllowResizingColumns="True" ColumnSizer="Star" AllowDraggingColumns="True" Margin="0,10" AllowFiltering="True" ShowGroupDropArea="True" AutoGenerateColumns="False" Background="#FFD8D8D8" Width="1323">
+                        <syncfusion:SfDataGrid.Columns>
+                            <syncfusion:GridTextColumn HeaderText="Type" MappingName="GetTheOperationName" />
+                            <syncfusion:GridTextColumn HeaderText="ID" MappingName="GetTheId" />
+                            <syncfusion:GridTextColumn HeaderText="Date" MappingName="GetDate" />
+                            <syncfusion:GridTextColumn HeaderText="Amount of money" MappingName="GetTheValueOfTheMoney" />
+                        </syncfusion:SfDataGrid.Columns>
+                    </syncfusion:SfDataGrid>
+                </GroupBox>
+            </Grid>
+            <Grid Name="IncomeOrdersGrid" Visibility="Collapsed" Margin="0,53,0,0">
+                <GroupBox Header="Income Orders" HorizontalAlignment="Left" Height="582" VerticalAlignment="Top" Width="1343">
+                    <syncfusion:SfDataGrid x:Name="IncomeOrdersList" AllowResizingColumns="True" ColumnSizer="AutoWithLastColumnFill" AllowDraggingColumns="True" Margin="0,0,0,10" AllowFiltering="True" ShowGroupDropArea="True" AutoGenerateColumns="False" Background="#FFD8D8D8">
+                        <syncfusion:SfDataGrid.Columns>
+                            <syncfusion:GridTextColumn HeaderText="ID" MappingName="Id" />
+                            <syncfusion:GridTextColumn HeaderText="Date" MappingName="DateTimeOfTheOrder" />
+                            <syncfusion:GridTextColumn HeaderText="Supplier" MappingName="Customer.Person.FullName" />
+                            <syncfusion:GridTextColumn HeaderText="Staff" MappingName="Staff.Person.FullName" />
+                            <syncfusion:GridTextColumn HeaderText="Store" MappingName="Store.Name" />
+                            <syncfusion:GridTextColumn HeaderText="Total Price" MappingName="GetTotalPrice" />
+                            <syncfusion:GridTextColumn HeaderText="Total Paid" MappingName="GetTotalPaid" />
+                            <syncfusion:GridTextColumn HeaderText="Total Not Paid" MappingName="GetTotalNotPaid" />
+                            <syncfusion:GridTextColumn HeaderText="Details" MappingName="Details" />
+                        </syncfusion:SfDataGrid.Columns>
+                        <syncfusion:SfDataGrid.DetailsViewDefinition>
+                            <!--  FirstLevelNestedGrid1 is created here  -->
+                            <syncfusion:GridViewDefinition RelationalColumn="IncomeOrderProducts">
+                                <syncfusion:GridViewDefinition.DataGrid>
+                                    <syncfusion:SfDataGrid x:Name="IncomeOrderProductsList" AllowFiltering="True" AutoGenerateColumns="False">
+                                        <syncfusion:SfDataGrid.Columns>
+                                            <syncfusion:GridTextColumn HeaderText="Product" MappingName="Product.Name" />
+                                            <syncfusion:GridTextColumn HeaderText="Size" MappingName="Product.Size" />
+                                            <syncfusion:GridTextColumn HeaderText="Quantity" MappingName="Quantity" />
+                                            <syncfusion:GridTextColumn HeaderText="Income Price" MappingName="IncomePrice" />
+                                            <syncfusion:GridTextColumn HeaderText="Total Price" MappingName="GetTotalProductPrice" />
+                                        </syncfusion:SfDataGrid.Columns>
+                                    </syncfusion:SfDataGrid>
+                                </syncfusion:GridViewDefinition.DataGrid>
+                            </syncfusion:GridViewDefinition>
+                            <!--  FirstLevelNestedGrid2 is created here  -->
+                            <syncfusion:GridViewDefinition RelationalColumn="IncomeOrderPayments">
+                                <syncfusion:GridViewDefinition.DataGrid>
+                                    <syncfusion:SfDataGrid x:Name="IncomeOrderPaymentList" AllowFiltering="True" AutoGenerateColumns="False">
+                                        <syncfusion:SfDataGrid.Columns>
+                                            <syncfusion:GridTextColumn HeaderText="Staff" MappingName="Staff.Person.FullName" />
+                                            <syncfusion:GridTextColumn HeaderText="Store" MappingName="Store.Name" />
+                                            <syncfusion:GridTextColumn HeaderText="Paid" MappingName="Paid" />
+                                            <syncfusion:GridTextColumn HeaderText="Date" MappingName="Date" />
+                                        </syncfusion:SfDataGrid.Columns>
+                                    </syncfusion:SfDataGrid>
+                                </syncfusion:GridViewDefinition.DataGrid>
+                            </syncfusion:GridViewDefinition>
+                        </syncfusion:SfDataGrid.DetailsViewDefinition>
+
+                    </syncfusion:SfDataGrid>
+                </GroupBox>
+            </Grid>
+            <Grid Name="OwnerGrid" Visibility="Visible">
+                <GroupBox Header="Investmens and Revenues" Margin="0,57,0,10">
+                    <Grid >
+                        <syncfusion:SfDataGrid x:Name="InvestList" AllowResizingColumns="True" ColumnSizer="Star" AllowDraggingColumns="True" Margin="0,0,688,10" AllowFiltering="True" ShowGroupDropArea="True" AutoGenerateColumns="False" Background="#FFD8D8D8">
+                            <syncfusion:SfDataGrid.Columns>
+                                <syncfusion:GridTextColumn HeaderText="Investment Date" MappingName="Date" />
+                                <syncfusion:GridTextColumn HeaderText="Amount of money" MappingName="TotalMoney" />
+                            </syncfusion:SfDataGrid.Columns>
+                        </syncfusion:SfDataGrid>
+                        <syncfusion:SfDataGrid x:Name="RevenueList" AllowResizingColumns="True" ColumnSizer="Star" AllowDraggingColumns="True" Margin="682,0,10,10" AllowFiltering="True" ShowGroupDropArea="True" AutoGenerateColumns="False" Background="#FFD8D8D8">
+                            <syncfusion:SfDataGrid.Columns>
+                                <syncfusion:GridTextColumn HeaderText="Revenue Date" MappingName="Date" />
+                                <syncfusion:GridTextColumn HeaderText="Amount of money" MappingName="TotalMoney" />
+                            </syncfusion:SfDataGrid.Columns>
+                        </syncfusion:SfDataGrid>
+                    </Grid>
+                </GroupBox>
+            </Grid>
+
             <GroupBox Header="IncomeOrders" Visibility="Collapsed" HorizontalAlignment="Left" Height="276" Margin="0,364,0,0" VerticalAlignment="Top" Width="1343"/>
             <Grid Margin="1117,0,0,621">
                 <Button x:Name="CloseTabButton" Visibility="Collapsed" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Red"   VerticalAlignment="Top"  Margin="3,0,170,0" Height="25"  >
@@ -83,6 +167,7 @@
                 </Button>
 
             </Grid>
+
         </Grid>
 
         <Grid x:Name="EditGrid" Visibility="Collapsed">

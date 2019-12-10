@@ -58,10 +58,10 @@
                 <TextBox x:Name="QualificationValue"  MaxLength="200" MaxLines="1" HorizontalAlignment="Left" Margin="294,291,0,0" VerticalAlignment="Top" Width="368" />
 
                 <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="2,321,0,0" Width="109" Height="30" ><Run Text="Details : "/></TextBlock>
-                <TextBox x:Name="DetailsValue"  MaxLength="500" MaxLines="1" HorizontalAlignment="Left" Margin="116,326,0,0" VerticalAlignment="Top" Width="546" />
+                <TextBox x:Name="DetailsValue" IsReadOnly="False"  MaxLength="500" MaxLines="1" HorizontalAlignment="Left" Margin="116,326,0,0" VerticalAlignment="Top" Width="546" />
 
                 <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="715,181,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Company: "/></TextBlock>
-                <TextBox x:Name="CompanyValue" IsReadOnly="True" HorizontalAlignment="Left" Height="33" Margin="832,181,0,0" Text="" VerticalAlignment="Top" Width="447" MaxLength="500" MaxLines="1"  />
+                <TextBox x:Name="CompanyValue" IsReadOnly="False" HorizontalAlignment="Left" Height="33" Margin="832,181,0,0" Text="" VerticalAlignment="Top" Width="447" MaxLength="500" MaxLines="1"  />
 
 
             </Grid>

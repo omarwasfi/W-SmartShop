@@ -127,6 +127,14 @@ namespace Library
             }
         }
 
+        public StaffModel GetStaff
+        {
+            get
+            {
+                return Operation.GetStaff(this);
+            }
+        }
+
         /// <summary>
         /// Get the id of any of {"DeTransform","Transform","OrderPayment","IncomeOrderPayment","ShopBill",StaffSalary}
         /// </summary>

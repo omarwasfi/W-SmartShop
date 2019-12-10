@@ -80,8 +80,10 @@ namespace WPF_GUI
             GraduationDateValue.SelectedDate = new DateTime(1900, 1, 1);
             QualificationValue.Text = "";
             DetailsValue.Text = "";
+            CompanyValue.Text = "";
 
-            
+
+
 
             OldPersonRadioButton.IsChecked = true;
             NewPersonRadioButton.IsChecked = false;
@@ -149,7 +151,42 @@ namespace WPF_GUI
             }
             else
             {
+                PersonModel person = new PersonModel();
+                person.FirstName = FirstNameValue.Text;
+                person.LastName = LastNameValue.Text;
+                person.PhoneNumber = PhoneNumberValue.Text;
+                person.NationalNumber = NationalNumberValue.Text;
+                person.Email = EmailValue.Text;
+                person.Address = AddressValue.Text;
+                person.City = CityValue.Text;
+                person.Country = CountryValue.Text;
+                person.BirthDate = (DateTime)BirthDateValue.SelectedDate;
+                person.JopTitle = JopTitleValue.Text;
+                person.JopAddress = JopAddressValue.Text;
+                person.GraduationDate = (DateTime)GraduationDateValue.SelectedDate;
+                person.Qualification = QualificationValue.Text;
+                person.Details = DetailsValue.Text;
 
+                GlobalConfig.PersonValidator = new PersonValidator();
+
+                ValidationResult result = GlobalConfig.PersonValidator.Validate(person);
+
+                if (result.IsValid == false)
+                {
+
+                    MessageBox.Show(result.Errors[0].ErrorMessage);
+
+                }
+                else
+                {
+                    GlobalConfig.Connection.AddPersonToTheDatabase(person);
+                    SupplierModel supplier = new SupplierModel();
+                    supplier.Person = person;
+                    supplier.Company = CompanyValue.Text;
+                    GlobalConfig.Connection.AddSupplierWithOldPersonToTheDatabase(supplier);
+
+                    SetInitialValues();
+                }
             }
         }
 

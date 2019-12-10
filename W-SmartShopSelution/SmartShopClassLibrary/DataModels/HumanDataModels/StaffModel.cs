@@ -113,6 +113,17 @@ namespace Library
             }
         }
 
+        /// <summary>
+        /// Get all the operations that this staff did
+        /// </summary>
+        public List<OperationModel> GetOperations 
+        {
+            get
+            {
+                return Staff.FilterOperationsByStaff(this);
+            }
+        }
+
         #endregion
     }
 }

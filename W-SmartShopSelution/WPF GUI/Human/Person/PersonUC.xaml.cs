@@ -35,10 +35,45 @@ namespace WPF_GUI
         private void SetInitialValues()
         {
             PersonFullNameValue.Text = Person.FullName;
-            PersonProperties.Text = Person.GetThePersonProperties;
 
-            OrdersList.ItemsSource = null;
-            OrdersList.ItemsSource = Person.GetAsACustomer.GetOrders;
+            CustomerSwichButton.IsEnabled = false;
+            SupplierSwichButton.IsEnabled = false;
+            StaffSwichButton.IsEnabled = false;
+            OwnerSwichButton.IsEnabled = false;
+
+            if (Person.GetThePersonProperties.Contains("Customer"))
+            {
+                CustomerSwichButton.IsEnabled = true;
+                OrdersList.ItemsSource = null;
+                OrdersList.ItemsSource = Person.GetAsACustomer.GetOrders;
+                
+                OrdersGrid.Visibility = Visibility.Visible;
+                IncomeOrdersGrid.Visibility = Visibility.Collapsed;
+                OperationsGrid.Visibility = Visibility.Collapsed;
+                OwnerGrid.Visibility = Visibility.Collapsed;
+            }
+            if (Person.GetThePersonProperties.Contains("Supplier"))
+            {
+                SupplierSwichButton.IsEnabled = true;
+                IncomeOrdersList.ItemsSource = null;
+                IncomeOrdersList.ItemsSource = Person.GetAsASupplier.GetIncomeOrders;
+            }
+            if (Person.GetThePersonProperties.Contains("Staff"))
+            {
+                StaffSwichButton.IsEnabled = true;
+                OperationsList.ItemsSource = null;
+                OperationsList.ItemsSource = Person.GetAsAStaff.GetOperations;
+            }
+
+            if (Person.GetThePersonProperties.Contains("Owner"))
+            {
+                OwnerSwichButton.IsEnabled = true;
+                InvestList.ItemsSource = null;
+                InvestList.ItemsSource = Person.GetAsOwner.Investments;
+                RevenueList.ItemsSource = null;
+                RevenueList.ItemsSource = Person.GetAsOwner.Revenues;
+            }
+
         }
 
         #endregion
@@ -65,8 +100,41 @@ namespace WPF_GUI
         {
             SetInitialValues();
         }
+
+        private void CustomerSwichButton_Click(object sender, RoutedEventArgs e)
+        {
+            OrdersGrid.Visibility = Visibility.Visible;
+            IncomeOrdersGrid.Visibility = Visibility.Collapsed;
+            OperationsGrid.Visibility = Visibility.Collapsed;
+            OwnerGrid.Visibility = Visibility.Collapsed;
+        }
+
+        private void SupplierSwichButton_Click(object sender, RoutedEventArgs e)
+        {
+            OrdersGrid.Visibility = Visibility.Collapsed;
+            IncomeOrdersGrid.Visibility = Visibility.Visible;
+            OperationsGrid.Visibility = Visibility.Collapsed;
+            OwnerGrid.Visibility = Visibility.Collapsed;
+        }
+
+        private void StaffSwichButton_Click(object sender, RoutedEventArgs e)
+        {
+            OrdersGrid.Visibility = Visibility.Collapsed;
+            IncomeOrdersGrid.Visibility = Visibility.Collapsed;
+            OperationsGrid.Visibility = Visibility.Visible;
+            OwnerGrid.Visibility = Visibility.Collapsed;
+        }
+
+        private void OwnerSwichButton_Click(object sender, RoutedEventArgs e)
+        {
+            OrdersGrid.Visibility = Visibility.Collapsed;
+            IncomeOrdersGrid.Visibility = Visibility.Collapsed;
+            OperationsGrid.Visibility = Visibility.Collapsed;
+            OwnerGrid.Visibility = Visibility.Visible;
+        }
+
         #endregion
 
-      
+
     }
 }

@@ -11,8 +11,15 @@ namespace Library
 {
     public static class Staff
     {
-        
-       
+        /// <summary>
+        /// Filter all staff
+        /// </summary>
+        /// <param name="staff"></param>
+        /// <returns></returns>
+      public static List<OperationModel> FilterOperationsByStaff(StaffModel staff)
+      {
+         return PublicVariables.Operations.FindAll(x => x.GetStaff == staff);
+      }
 
         /// <summary>
         /// Get the Staffs whoes works in store

@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ADODB.dll" size="119680">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ADODB.dll" size="119880">
       <assemblyIdentity name="ADODB" version="7.0.3300.0" publicKeyToken="B03F5F7F11D50A3A" language="neutral" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>uzMYdNVQpopGZKt6CB8G93f1/aGJ4K+0TwKhJpbXTgw=</dsig:DigestValue>
+        <dsig:DigestValue>0n+9fG7h5PEPDvaYW0UcnloDhUzr8nbjjdq82t6V4Zw=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -133,7 +133,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>Ktmq8WT7Sclal18v3IxRJvcgoY087C3TZIw7TcIsp+E=</dsig:DigestValue>
+        <dsig:DigestValue>E8NN9q4E0rsjXFR0JbIsW2PCF3yjysSFBWZY12PcUds=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -1321,7 +1321,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>MiHgCreX/wA9nYXS+whb2ybTWQQt7IrrmTv4nJauVPQ=</dsig:DigestValue>
+        <dsig:DigestValue>3kYbaoaZ0JZRKbCVmGtNCFuYM23Y+j5jrho9vnbWfAo=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
