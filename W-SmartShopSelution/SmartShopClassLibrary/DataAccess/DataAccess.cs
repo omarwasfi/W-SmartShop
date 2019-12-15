@@ -1118,7 +1118,78 @@ namespace Library
             OrderPaymentAccess.AddOrderPaymentToTheDatabase(orderPayment, order, db);
             PublicVariables.OrderPayments.Add(orderPayment);
             order.OrderPayments.Add(orderPayment);
+            OperationModel operation = new OperationModel
+            {
+                OrderPayment = orderPayment
+            };
+            PublicVariables.Operations.Add(operation);
+
             return orderPayment;
+        }
+
+        /// <summary>
+        /// If the customer should receive money we will reduce the total paid value by Update or remove the order.OrderPayments
+        /// </summary>
+        /// <param name="order"></param>
+        /// <returns></returns>
+        public OrderModel StorePayment(OrderModel order,decimal storePaid)
+        {
+            // Get the last OrderPayment
+            OrderPaymentModel orderPaymentModel = new OrderPaymentModel();
+            if (order.OrderPayments.Count > 0)
+            {
+                orderPaymentModel = order.OrderPayments.Last();
+            }
+            foreach (OrderPaymentModel orderPayment in order.OrderPayments)
+            {
+                if(orderPaymentModel.Date < orderPayment.Date)
+                {
+                    orderPaymentModel = orderPayment;
+                }
+            }
+
+            
+            while(storePaid > 0)
+            {
+                if(orderPaymentModel.Paid <= storePaid)
+                { 
+                    storePaid -= orderPaymentModel.Paid;
+
+                    // Remove the orderProducts From the database 
+                    OrderPaymentAccess.RemoveOrderPayment(orderPaymentModel,db);
+
+                    // remove the orderpayment from the Order 
+                    order.OrderPayments.Remove(orderPaymentModel);
+
+                    // remove the orderpayment from the publicVariables 
+                    PublicVariables.OrderPayments.Remove(orderPaymentModel);
+
+                    // remove the orderpayment from the operation of this orderPayment
+                    OperationModel operation = PublicVariables.Operations.Find(x => x.OrderPayment == orderPaymentModel);
+                    PublicVariables.Operations.Remove(operation);
+
+                    if (order.OrderPayments.Count > 0)
+                    {
+                        orderPaymentModel = order.OrderPayments.Last();
+                    }
+                    foreach (OrderPaymentModel orderPayment in order.OrderPayments)
+                    {
+                        if (orderPaymentModel.Date < orderPayment.Date)
+                        {
+                            orderPaymentModel = orderPayment;
+                        }
+                    }
+
+                }
+                else
+                {
+                    orderPaymentModel.Paid -= storePaid;
+                    OrderPaymentAccess.UpdateOrderPayment(orderPaymentModel,db);
+                    storePaid = 0;
+                }
+            }
+
+            return order;
         }
 
         #endregion
@@ -1222,6 +1293,76 @@ namespace Library
             
 
             return order;
+        }
+
+        /// <summary>
+        /// Update the Orignal Order Data after remove the RemovedOrderProducts list
+        /// Create the new stocks
+        /// add the new stocks to the database and the publicVariables
+        /// </summary>
+        /// <param name="OrignalOrder"></param>
+        /// <param name="RemovedOrderProducts"></param>
+        /// <returns></returns>
+        public OrderModel UpdateOrder(OrderModel OrignalOrder , List<OrderProductModel> RemovedOrderProducts)
+        {
+            
+            foreach(OrderProductModel removedOrderProduct in RemovedOrderProducts)
+            {
+                // Update the order
+                OrderProductModel orderProduct = OrignalOrder.OrderProducts.Find(x => x.Id == removedOrderProduct.Id);
+                if (orderProduct != null)
+                {
+                    orderProduct.Quantity -= removedOrderProduct.Quantity;
+                    
+                    if(orderProduct.Quantity == 0)
+                    {
+                        OrderProductAccess.RemoveOrderProduct(orderProduct,db);
+                        OrignalOrder.OrderProducts.Remove(orderProduct);
+                        PublicVariables.OrderProducts.Remove(orderProduct);
+                    }
+                    else
+                    {
+                        OrderProductAccess.UpdateOrderProduct(orderProduct, db);
+                    }
+                }
+
+                // Create the Stock
+                StockModel stock = new StockModel();
+                stock.Store = PublicVariables.Store;
+                stock.Product = PublicVariables.Products.Find(x => x.Id == removedOrderProduct.Product.Id);
+                stock.IncomePrice = removedOrderProduct.GetIncomePrice;
+                stock.SalePrice = stock.Product.SalePrice;
+                stock.Date = DateTime.Now;
+                stock.ExpirationAlarmEnabled = false;
+                stock.QuantityAlarmEnabled = false;
+                stock.Quantity = removedOrderProduct.Quantity;
+
+                StockModel similatStock = Stock.FindSimilarStock(stock);
+                if (similatStock != null)
+                {
+                    similatStock = StockAccess.AddStockToSimilarStockToTheDatabase(similatStock, stock, db);
+                }
+                else
+                {
+
+                    stock.SBarCode = Stock.GenerateNewSBarCode(stock);
+                    StockModel FinishStock = StockAccess.AddStockToTheDatabase(stock, db);
+                    PublicVariables.Stocks.Add(FinishStock);
+
+                }
+
+
+            }
+
+            if(OrignalOrder.OrderProducts.Count == 0 && OrignalOrder.OrderPayments.Count == 0)
+            {
+                // Delete the order from the database
+                OrderAccess.RemoveOrder(OrignalOrder, db);
+                // remove from the publicVariables
+                PublicVariables.Orders.Remove(OrignalOrder);
+            }
+
+            return OrignalOrder;
         }
 
         /// <summary>

@@ -112,5 +112,37 @@ namespace Library
             return orderPayments;
         }
 
+        /// <summary>
+        /// Remove OrderPayment from the database 
+        /// </summary>
+        /// <param name="orderPayment"></param>
+        /// <param name="db"></param>
+        public static void RemoveOrderPayment(OrderPaymentModel orderPayment, string db)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnVal(db)))
+            {
+                var p = new DynamicParameters();
+                p.Add("@Id", orderPayment.Id);
+                connection.Execute("dbo.spOrderPayment_Delete", p, commandType: CommandType.StoredProcedure);
+            }
+        }
+
+        /// <summary>
+        /// Update the orderPayment with the database
+        /// Update the "Paid"
+        /// </summary>
+        /// <param name="orderPayment"></param>
+        /// <param name="db"></param>
+        public static void UpdateOrderPayment(OrderPaymentModel orderPayment, string db)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnVal(db)))
+            {
+
+                var p = new DynamicParameters();
+                p.Add("@Id", orderPayment.Id);
+                p.Add("@Paid", orderPayment.Paid);
+                connection.Execute("dbo.spOrderPayment_Update", p, commandType: CommandType.StoredProcedure);
+            }
+        }
     }
 }

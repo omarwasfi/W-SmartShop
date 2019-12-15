@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Library
 {
+    [Serializable]
     /// <summary>
     /// Brand model of the Products contains
     /// Database Id , Name , List of Product Model

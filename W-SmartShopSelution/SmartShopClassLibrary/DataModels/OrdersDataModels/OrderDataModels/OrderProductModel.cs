@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Library
 {
+    [Serializable]
     public class OrderProductModel
     {
         public int Id { get; set; }
@@ -66,7 +67,17 @@ namespace Library
             }
         }
 
-
+        /// <summary>
+        /// Calculate the IncomePrice for the Single Product
+        /// </summary>
+        public decimal GetIncomePrice 
+        {
+            get
+            {
+                return SalePrice - Profit;
+            }
+            
+        }
 
 
 

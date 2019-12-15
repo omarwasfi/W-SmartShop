@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Library
 {
+    [Serializable]
     /// <summary>
     /// Customer model contain the customer details
     /// Database Id, Person model

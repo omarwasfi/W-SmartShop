@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Library
 {
+    [Serializable]
     /// <summary>
     /// Category model catain:
     /// Database Id , Name , List of products of this category

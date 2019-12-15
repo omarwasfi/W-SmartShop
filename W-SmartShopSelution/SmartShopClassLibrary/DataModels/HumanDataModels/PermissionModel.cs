@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Library
 {
+    [Serializable]
     /// <summary>
     /// Permisson model hold the permission that the user has .
     /// each permission is boolen value for a UC , says if the user can open or not.

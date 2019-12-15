@@ -131,6 +131,23 @@ namespace Library
             }
         }
 
+        /// <summary>
+        /// Update the orderProduct with the database
+        /// Updates the quantity
+        /// </summary>
+        /// <param name="orderProduct"></param>
+        /// <param name="db"></param>
+        public static void UpdateOrderProduct(OrderProductModel orderProduct, string db)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnVal(db)))
+            {
+
+                var p = new DynamicParameters();
+                p.Add("@Id", orderProduct.Id);
+                p.Add("@Quantity", orderProduct.Quantity);
+                connection.Execute("dbo.spOrderProduct_Update", p, commandType: CommandType.StoredProcedure);
+            }
+        }
 
     }
 }

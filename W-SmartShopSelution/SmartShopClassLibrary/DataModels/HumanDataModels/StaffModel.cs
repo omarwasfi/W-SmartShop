@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Library
 {
+    [Serializable]
     /// <summary>
     /// Staff model contain the staff member details 
     /// Id, Username, Password, Person model, List of Stores He works on Or have Access to Login there

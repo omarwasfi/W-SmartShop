@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace Library
 {
+
+    [Serializable]
     public class StoreModel
     {
         public int Id { get; set; }

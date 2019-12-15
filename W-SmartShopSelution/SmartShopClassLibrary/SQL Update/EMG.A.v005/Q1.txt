@@ -1,0 +1,87 @@
+﻿
+// Add the OrderProduct update
+
+CREATE PROCEDURE spOrderProduct_Update
+	
+	@Id int,
+	@Quantity float
+
+AS
+BEGIN
+
+
+	SET NOCOUNT ON;
+
+	UPDATE OrderProduct
+	SET Quantity = @Quantity
+	WHERE Id = Id;
+	
+    
+END
+GO
+
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+// Removing the orderpayment From the database
+
+CREATE PROCEDURE spOrderPayment_Delete
+	@Id int
+AS
+BEGIN
+	
+
+	SET NOCOUNT ON;
+
+	DELETE FROM OrderPayment
+	WHERE Id = @Id;
+    
+END
+GO
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------
+
+// OrderPayment Update
+
+CREATE PROCEDURE spOrderPayment_Update 
+	@Id int,
+	@Paid money
+AS
+BEGIN
+
+	SET NOCOUNT ON;
+
+	
+	UPDATE OrderPayment
+	SET Paid = @Paid
+	WHERE Id = Id;
+
+END
+GO
+
+----------------------------------------------------------------------------------------------------------------------------------------------------
+// OrderPayment Update FIX
+
+
+USE [SmartShopDatabase]
+GO
+/****** Object:  StoredProcedure [dbo].[spOrderPayment_Update]    Script Date: 12/15/2019 5:03:02 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+ALTER PROCEDURE [dbo].[spOrderPayment_Update] 
+	@Id int,
+	@Paid money
+AS
+BEGIN
+
+	SET NOCOUNT ON;
+
+	
+	UPDATE OrderPayment
+	SET Paid = @Paid
+	WHERE Id = @Id;
+
+END

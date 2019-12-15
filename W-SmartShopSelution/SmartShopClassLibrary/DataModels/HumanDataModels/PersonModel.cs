@@ -3,11 +3,12 @@ using System.ComponentModel;
 
 namespace Library
 {
+    [Serializable]
     /// <summary>
     /// Person model cotain details about the person
     /// Database Id, FirstName , LastName , PhoneNumber OR Numbers , Email Or Emails , Address , Ciry , Country
     /// </summary>
-    public class PersonModel : INotifyPropertyChanged
+    public class PersonModel
     {
         private int id;
 
@@ -17,7 +18,7 @@ namespace Library
         public int Id
         {
             get { return id; }
-            set { id = value; OnPropertyChanged("id"); }
+            set { id = value; }
         }
 
         private string firstName;
@@ -31,8 +32,7 @@ namespace Library
             set 
             { 
                 firstName = value; 
-                OnPropertyChanged("FirstName");
-                OnPropertyChanged("FullName");
+              
 
             }
         }
@@ -48,8 +48,7 @@ namespace Library
             set
             {
                 lastName = value; 
-                OnPropertyChanged("LastName");
-                OnPropertyChanged("FullName");
+        
 
             }
         }
@@ -191,16 +190,5 @@ namespace Library
 
         #endregion
 
-        #region INotifyPropertyChanged
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        public void OnPropertyChanged(string propertyName)
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        #endregion INotifyPropertyChanged
     }
 }

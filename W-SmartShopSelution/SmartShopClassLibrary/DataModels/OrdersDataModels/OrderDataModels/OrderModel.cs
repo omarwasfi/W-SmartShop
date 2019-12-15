@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace Library
 {
+    [Serializable]
     /// <summary>
     /// Cash order contain:
     /// Database Id , Customer model ,  date and time , Store model , staff model , List of the Products
@@ -51,6 +52,32 @@ namespace Library
         public List<OrderProductModel> OrderProducts { get; set; }
 
         /// <summary>
+        /// Get the orderState ("DONE" , "Customer Should Receive" , "Customer Should Pay")
+        /// </summary>
+        public string GetOrderState 
+        {
+            get
+            {
+                if(GetTotalPaid == GetTotalPrice)
+                {
+                    return "DONE";
+                }
+                else if(GetTotalNotPaid > 0)
+                {
+                    return "Customer Should Pay";
+                }
+                else if(GetCustomerShouldReceive > 0)
+                {
+                    return "Customer Should Receive";
+                }
+                else
+                {
+                    return "Something wrong !";
+                }
+            }
+        }
+
+        /// <summary>
         /// Get all the total paid money
         /// </summary>
         public decimal GetTotalPaid
@@ -69,6 +96,17 @@ namespace Library
             get
             {
                 return Order.GetTotalNotPaid(this);
+            }
+        }
+
+        /// <summary>
+        /// What customer should receive ( has a value when the customer return a product and the shop didn't pay him hit money)
+        /// </summary>
+        public decimal GetCustomerShouldReceive 
+        { 
+            get
+            {
+                return GetTotalPaid - GetTotalPrice;
             }
         }
 

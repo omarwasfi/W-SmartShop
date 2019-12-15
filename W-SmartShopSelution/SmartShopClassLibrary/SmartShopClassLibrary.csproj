@@ -117,6 +117,7 @@
     <Compile Include="Interfaces\WPFInterfaces\ICustomerRequester.cs" />
     <Compile Include="LogicalClasses\Brand\Brand.cs" />
     <Compile Include="LogicalClasses\CashFlow\CashFlow.cs" />
+    <Compile Include="LogicalClasses\Clone\CloneObjectSerializable.cs" />
     <Compile Include="LogicalClasses\IncomeOrderPayment\IncomeOrderPayment.cs" />
     <Compile Include="LogicalClasses\IncomeOrderProduct\IncomeOrderProduct.cs" />
     <Compile Include="LogicalClasses\InstallmentDetails\InstallmentDetails.cs" />
@@ -171,6 +172,7 @@
     <Content Include="Code Reports\Progress Report.txt" />
     <Content Include="SQL Update\EMG.A.v002\Q1.txt" />
     <Content Include="SQL Update\EMG.A.v004\Q1.txt" />
+    <Content Include="SQL Update\EMG.A.v005\Q1.txt" />
     <Content Include="WPF Logic Planning\InstallmentOrderUC Logic.txt" />
     <Content Include="WPF Logic Planning\SellUCLogic.txt" />
     <Content Include="WPF Planing\FirstPhase.txt" />

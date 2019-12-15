@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Library
 {
+    [Serializable]
     /// <summary>
     /// BarCode unique
     /// serialNumbers not unique (could be used to the same product to get deffrent barcodes for each deffrent incomePrice of each deffrent size
