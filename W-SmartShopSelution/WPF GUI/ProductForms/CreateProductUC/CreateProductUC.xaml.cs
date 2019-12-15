@@ -77,6 +77,15 @@ namespace WPF_GUI.CreateProduct
             SameBarCodeGrid_CreateProductUC.Visibility = Visibility.Visible;
             DifferentBarCodeGrid_CreateProductUC.Visibility = Visibility.Collapsed;
 
+            SameSizeCheckBox.IsChecked = false;
+            SameSalePriceCheckBox.IsChecked = false;
+            SameIncomePriceCheckBox.IsChecked = false;
+            SameSalePriceCheckBox.IsChecked = false;
+            SameSerialNumberCheckBox.IsChecked = false;
+            SameSerialNumber2CheckBox.IsChecked = false;
+            SameExpirationPeriodCheckBox.IsChecked = false;
+            SameQuantityAlarmCheckBox.IsChecked = false;
+
         }
 
 
@@ -202,6 +211,7 @@ namespace WPF_GUI.CreateProduct
             }
             else
             {
+                bool confirm = true;
                 for (int i = 1; i <= NewProducts.Count; i++)
                 {
                     ProductModel product = NewProducts[i - 1];
@@ -214,49 +224,22 @@ namespace WPF_GUI.CreateProduct
                     {
 
                         MessageBox.Show("number " + i + " " + result.Errors[0].ErrorMessage);
-
+                        confirm = false;
                     }
                     else
                     {
-                        /* if (GlobalConfig.Connection.CheckIfTheProductBarCodeUnique(Products, product.BarCode))
-                         {
-                             // Save the Product to the database
-
-                             product = GlobalConfig.Connection.AddProductToTheDatabase(product);
-                             PublicVariables.RecentlyAddProducts.Add(product);
-                         }
-                         else
-                         {
-                             MessageBox.Show("The Barcode Value is used before and it has to be unique , we will Generate the barcode Value for you.");
-
-
-
-                             List<ProductModel> products = new List<ProductModel>();
-                             foreach (ProductModel productModel in Products)
-                             {
-                                 products.Add(productModel);
-
-                             }
-                             foreach (ProductModel productModel in NewProducts)
-                             {
-                                 products.Add(productModel);
-
-                             }
-
-                             product.BarCode = GlobalConfig.Connection.CreateBarCode(product, products);
-                             products.Add(product);
-
-                             NewProductsList_CreateProductUC.ItemsSource = null;
-                             NewProductsList_CreateProductUC.ItemsSource = NewProducts;
-
-
-                         }*/
-
-
+                        
                     }
                 }
+                if (confirm)
+                {
+                    foreach(ProductModel product in NewProducts)
+                    {
+                        GlobalConfig.Connection.AddProductToTheDatabase(product);
+                    }
+                    SetInitialValues();
+                }
 
-                SetInitialValues();
 
             }
         }
@@ -266,89 +249,144 @@ namespace WPF_GUI.CreateProduct
         #endregion
 
 
+        #region DifferentBarCodeGrid
+
+        private void UpdateDifferentBarCodeGrid()
+        {
+
+            if (SameSizeCheckBox.IsChecked == true)
+            {
+                foreach(ProductModel product in NewProducts)
+                {
+                    product.Size = SameSizeValue.Text;
+                }
+            }
+            if (SameSalePriceCheckBox.IsChecked == true)
+            {
+                foreach (ProductModel product in NewProducts)
+                {
+                    product.SalePrice = (decimal)SameSalePriceValue.Value.Value;
+                }
+
+            }
+            if (SameIncomePriceCheckBox.IsChecked == true)
+            {
+                foreach (ProductModel product in NewProducts)
+                {
+                    product.IncomePrice = (decimal)SameIncomePriceValue.Value.Value;
+                }
+
+            }
+            if (SameSerialNumberCheckBox.IsChecked == true)
+            {
+                foreach (ProductModel product in NewProducts)
+                {
+                    product.SerialNumber = SameSerialNumberValue.Text;
+                }
+
+            }
+            if (SameSerialNumber2CheckBox.IsChecked == true)
+            {
+                foreach (ProductModel product in NewProducts)
+                {
+                    product.SerialNumber2 = SameSerialNumber2Value.Text;
+                }
+
+            }
+            if (SameExpirationPeriodCheckBox.IsChecked == true)
+            {
+                if ((TimeSpan)SameExpirationPeridValue.Value.Value!= null)
+                {
+                    foreach (ProductModel product in NewProducts)
+                    {
+                        product.ExpirationPeriod = (TimeSpan)SameExpirationPeridValue.Value.Value;
+                    }
+                }
+               
+
+            }
+            if (SameQuantityAlarmCheckBox.IsChecked == true)
+            {
+                foreach (ProductModel product in NewProducts)
+                {
+                    product.AlarmQuantity = (int)SameQuantityAlarmValue.Value.Value;
+                }
+            }
+
+
+            NewProductsList.ItemsSource = null;
+            NewProductsList.ItemsSource = NewProducts;
+        }
 
         #region DifferentBarCodeGrid Events
 
-        /// <summary>
-        /// After press enter While select the quantity textBox
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void QuantityValue_CreateproductUC_KeyDown(object sender, KeyEventArgs e)
+        private void QuantityValue_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (e.Key == Key.Enter)
+            if (QuantityValue.Value.Value > 0)
             {
-                int quantity;
-                if(int.TryParse(QuantityValue_CreateproductUC.Text, out quantity))
+                if (ProductNameValue.Text.Length > 0)
                 {
-
-                    if(quantity > 0)
+                    if (BrandValue.Text.Length < 1)
                     {
-                        if (ProductNameValue.Text.Length > 0)
-                        {
-                            if (BrandValue.Text.Length < 1)
-                            {
-                                BrandValue.SelectedIndex = 0;
+                        BrandValue.SelectedIndex = 0;
 
-                            }
-                            if (CategoryValue.Text.Length < 1)
-                            {
-                                CategoryValue.SelectedIndex = 0;
-                            }
-
-                            NewProducts = new List<ProductModel>();
-
-                            for(int i = 1; i <= quantity; i++)
-                            {
-                                ProductModel product = new ProductModel();
-                                product.Name = ProductNameValue.Text;
-                                product.Category = (CategoryModel)CategoryValue.SelectedItem;
-                                product.Brand = (BrandModel)BrandValue.SelectedItem;
-                                product.QuantityType = QuantityTypeValue.Text;
-                                product.Size = "";
-                                product.BarCode = GlobalConfig.Connection.CreateBarCode(product);
-                                product.SerialNumber = "";
-                                product.SerialNumber2 = "";
-                                product.Details = DetailsValue.Text;
-                                product.SalePrice = new decimal();
-                                product.IncomePrice = new decimal();
-                                product.ExpirationPeriod = new TimeSpan(0, 0, 0, 0);
-                                product.AlarmQuantity = new int();
-                                NewProducts.Add(product);
-
-                            }
-
-                            NewProductsList.ItemsSource = null;
-                            NewProductsList.ItemsSource = NewProducts;
-
-                        }
-                        else
-                        {
-                            MessageBox.Show("Enter the Product Name First");
-                        }
                     }
-                    else
+                    if (CategoryValue.Text.Length < 1)
                     {
-                        MessageBox.Show("Quantity should be 1 or more");
+                        CategoryValue.SelectedIndex = 0;
                     }
+
+                    NewProducts = new List<ProductModel>();
+
+                    for (int i = 1; i <= QuantityValue.Value.Value; i++)
+                    {
+                        ProductModel product = new ProductModel();
+                        product.Name = ProductNameValue.Text;
+                        product.Category = (CategoryModel)CategoryValue.SelectedItem;
+                        product.Brand = (BrandModel)BrandValue.SelectedItem;
+                        product.QuantityType = QuantityTypeValue.Text;
+                        product.Size = "";
+                        product.BarCode = GlobalConfig.Connection.CreateBarCode(product);
+                        product.SerialNumber = "";
+                        product.SerialNumber2 = "";
+                        product.Details = DetailsValue.Text;
+                        product.SalePrice = new decimal();
+                        product.IncomePrice = new decimal();
+                        product.ExpirationPeriod = new TimeSpan(0, 0, 0, 0);
+                        product.AlarmQuantity = new int();
+                        NewProducts.Add(product);
+
+                    }
+
+                    UpdateDifferentBarCodeGrid();
+
                 }
                 else
                 {
-                    MessageBox.Show("Quantity should be a number !");
+                    MessageBox.Show("Enter the Product Name First");
                 }
-
-
-               
             }
-
-         
-
         }
 
-
-        private void SameSalePriceCheckBox_CreateProductUC_Click(object sender, RoutedEventArgs e)
+        private void SameSizeCheckBox_Click(object sender, RoutedEventArgs e)
         {
-            if(SameSalePriceCheckBox_CreateProductUC.IsChecked == true)
+            if(SameSizeCheckBox.IsEnabled == true)
+            {
+                SameSizeValue.IsEnabled = true;
+            }
+            else
+            {
+                SameSizeValue.IsEnabled = false;
+            }
+        }
+        private void SameSizeValue_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            UpdateDifferentBarCodeGrid();
+        }
+
+        private void SameSalePriceCheckBox_Click(object sender, RoutedEventArgs e)
+        {
+            if(SameSalePriceCheckBox.IsChecked == true)
             {
                 SameSalePriceValue.IsEnabled = true;
 
@@ -359,11 +397,15 @@ namespace WPF_GUI.CreateProduct
             }
             
         }
+        private void SameSalePriceValue_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            UpdateDifferentBarCodeGrid();
+        }
 
-        private void SameIncomePriceCheckBox_CreateProductUC_Click(object sender, RoutedEventArgs e)
+        private void SameIncomePriceCheckBox_Click(object sender, RoutedEventArgs e)
         {
 
-            if (SameIncomePriceCheckBox_CreateProductUC.IsChecked == true)
+            if (SameIncomePriceCheckBox.IsChecked == true)
             {
                 SameIncomePriceValue.IsEnabled = true;
 
@@ -373,145 +415,82 @@ namespace WPF_GUI.CreateProduct
                 SameIncomePriceValue.IsEnabled = false;
             }
         }
-
-        private void SameSerialNumberCheckBox_CreateProductUC_Click(object sender, RoutedEventArgs e)
+        private void SameIncomePriceValue_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (SameSerialNumberCheckBox_CreateProductUC.IsChecked == true)
+            UpdateDifferentBarCodeGrid();
+        }
+
+        private void SameSerialNumberCheckBox_Click(object sender, RoutedEventArgs e)
+        {
+            if (SameSerialNumberCheckBox.IsChecked == true)
             {
-                SameSerialNumberValue_CreateproductUC.IsEnabled = true;
+                SameSerialNumberValue.IsEnabled = true;
 
             }
             else
             {
-                SameSerialNumberValue_CreateproductUC.IsEnabled = false;
+                SameSerialNumberValue.IsEnabled = false;
             }
         }
-        private void SameSerialNumber2CheckBox_CreateProductUC_Click(object sender, RoutedEventArgs e)
+        private void SameSerialNumberValue_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (SameSerialNumber2CheckBox_CreateProductUC.IsChecked == true)
+            UpdateDifferentBarCodeGrid();
+        }
+
+        private void SameSerialNumber2CheckBox_Click(object sender, RoutedEventArgs e)
+        {
+            if (SameSerialNumber2CheckBox.IsChecked == true)
             {
-                SameSerialNumber2Value_CreateproductUC.IsEnabled = true;
+                SameSerialNumber2Value.IsEnabled = true;
 
             }
             else
             {
-                SameSerialNumber2Value_CreateproductUC.IsEnabled = false;
+                SameSerialNumber2Value.IsEnabled = false;
             }
         }
-
-        private void SameSalePriceValue_CreateproductUC_KeyDown(object sender, KeyEventArgs e)
+        private void SameSerialNumber2Value_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (e.Key == Key.Enter)
-            {
-               /* if (decimal.TryParse(SameSalePriceValue_CreateproductUC.Text, out decimal salePrice))
-                {
-                    foreach (ProductModel product in NewProducts)
-                    {
-                        product.SalePrice = salePrice;
-                    }
-                    NewProductsList_CreateProductUC.ItemsSource = null;
-                    NewProductsList_CreateProductUC.ItemsSource = NewProducts;
-                }
-                else
-                {
-                    foreach (ProductModel product in NewProducts)
-                    {
-                        product.SalePrice = 0;
-                    }
-                    NewProductsList_CreateProductUC.ItemsSource = null;
-                    NewProductsList_CreateProductUC.ItemsSource = NewProducts;
-                }*/
-
-            }
-
+            UpdateDifferentBarCodeGrid();
         }
 
-        private void SameIncomePriceValue_CreateproductUC_KeyDown(object sender, KeyEventArgs e)
+        private void SameExpirationPeriodCheckBox_Click(object sender, RoutedEventArgs e)
         {
-            if (e.Key == Key.Enter)
+            if (SameExpirationPeriodCheckBox.IsChecked == true)
             {
-               /* if (decimal.TryParse(SameIncomePriceValue_CreateproductUC.Text, out decimal incomePrice))
-                {
-                    foreach (ProductModel product in NewProducts)
-                    {
-                        product.IncomePrice = incomePrice;
-                    }
-                    NewProductsList_CreateProductUC.ItemsSource = null;
-                    NewProductsList_CreateProductUC.ItemsSource = NewProducts;
-                }
-                else
-                {
-                    foreach (ProductModel product in NewProducts)
-                    {
-                        product.IncomePrice = 0;
-                    }
-                    NewProductsList_CreateProductUC.ItemsSource = null;
-                    NewProductsList_CreateProductUC.ItemsSource = NewProducts;
-                }*/
+                SameExpirationPeridValue.IsEnabled = true;
 
             }
-
+            else
+            {
+                SameExpirationPeridValue.IsEnabled = false;
+            }
         }
-
-        private void SameSerialNumberValue_CreateproductUC_KeyDown(object sender, KeyEventArgs e)
+        private void SameExpirationPeridValue_ValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            if (e.Key == Key.Enter)
-            {
-               /* if (SameSerialNumberValue_CreateproductUC.Text.Length > 0)
-                {
-                    foreach (ProductModel product in NewProducts)
-                    {
-                        product.SerialNumber = SameSerialNumberValue_CreateproductUC.Text;
-                    }
-                    NewProductsList_CreateProductUC.ItemsSource = null;
-                    NewProductsList_CreateProductUC.ItemsSource = NewProducts;
-                }
-                else
-                {
-                    foreach (ProductModel product in NewProducts)
-                    {
-                        product.SerialNumber = "";
-                    }
-                    NewProductsList_CreateProductUC.ItemsSource = null;
-                    NewProductsList_CreateProductUC.ItemsSource = NewProducts;
-                }*/
-
-            }
+            UpdateDifferentBarCodeGrid();
         }
 
-        private void SameSerialNumber2Value_CreateproductUC_KeyDown(object sender, KeyEventArgs e)
+        private void SameQuantityChdeckBox_Click(object sender, RoutedEventArgs e)
         {
-            if (e.Key == Key.Enter)
+            if (SameQuantityAlarmCheckBox.IsChecked == true)
             {
-                /*if (SameSerialNumber2Value_CreateproductUC.Text.Length > 0)
-                {
-                    foreach (ProductModel product in NewProducts)
-                    {
-                        product.SerialNumber2 = SameSerialNumber2Value_CreateproductUC.Text;
-                    }
-                    NewProductsList_CreateProductUC.ItemsSource = null;
-                    NewProductsList_CreateProductUC.ItemsSource = NewProducts;
-                }
-                else
-                {
-                    foreach (ProductModel product in NewProducts)
-                    {
-                        product.SerialNumber2 = "";
-                    }
-                    NewProductsList_CreateProductUC.ItemsSource = null;
-                    NewProductsList_CreateProductUC.ItemsSource = NewProducts;
-
-                }*/
+                SameQuantityAlarmValue.IsEnabled = true;
 
             }
+            else
+            {
+                SameQuantityAlarmValue.IsEnabled = false;
+            }
         }
-
-
-
-
-
+        private void SameQuantityAlarmValue_ValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            UpdateDifferentBarCodeGrid();
+        }
 
         #endregion
+        #endregion
+
 
         #region Grid Switching events
 
@@ -547,7 +526,17 @@ namespace WPF_GUI.CreateProduct
         }
 
 
+
+
+
+
+
+
+
+
         #endregion
+
+      
 
       
     }
