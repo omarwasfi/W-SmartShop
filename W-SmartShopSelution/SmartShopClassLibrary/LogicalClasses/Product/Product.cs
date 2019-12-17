@@ -281,31 +281,7 @@ namespace Library
             return true;
         }
 
-        /// <summary>
-        /// Check if the product barCode is Unique In the list of products true if unique , flase if Exist
-        /// </summary>
-        /// <param name="BarCode"> The barcode that we need to check </param>
-        /// <returns> 
-        /// true if unique
-        /// flase if Exist
-        /// </returns>
-        public static bool CheckIfTheProductBarCodeUnique(string BarCode)
-        {
-            if(string.IsNullOrWhiteSpace(BarCode))
-            {
-                return false;
 
-            }
-
-            foreach (ProductModel product in PublicVariables.Products)
-            {
-                if (product.BarCode == BarCode)
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
 
 
      
@@ -363,7 +339,87 @@ namespace Library
             
         }
 
-        
+        /// <summary>
+        /// Check if the product barCode is Unique In the list of products true if unique , flase if Exist
+        /// </summary>
+        /// <param name="BarCode"> The barcode that we need to check </param>
+        /// <returns> 
+        /// true if unique
+        /// flase if Exist
+        /// </returns>
+        public static bool CheckIfTheProductBarCodeUnique(string BarCode)
+        {
+            if(string.IsNullOrWhiteSpace(BarCode))
+            {
+                return false;
+
+            }
+
+            foreach (ProductModel product in PublicVariables.Products)
+            {
+                if (product.BarCode == BarCode)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+
+        /// <summary>
+        /// Create a unique BarCode
+        /// </summary>
+        /// <param name="product"> the new product that we need to create the barCode to it </param>
+        /// <param name="newProducts"> The new products that's not in the database </param>
+        /// <returns></returns>
+        public static string CreateBarCode(ProductModel product,List<ProductModel> newProducts)
+        {
+            string barCode = product.GetFirstThreeLitterBarCode;
+            int number = 1;
+
+            while (CheckIfTheProductBarCodeUnique(barCode + number,newProducts) == false)
+            {
+                number++;
+            }
+
+            return barCode + number;
+
+        }
+
+        /// <summary>
+        /// Check if the product barCode is Unique In the list of products true if unique , flase if Exist
+        /// </summary>
+        /// <param name="BarCode"> The barcode that we need to check </param>
+        /// <param name="newProducts">The new products that's not in the database </param>
+        /// <returns> 
+        /// true if unique
+        /// flase if Exist
+        /// </returns>
+        public static bool CheckIfTheProductBarCodeUnique(string BarCode,List<ProductModel> newProducts)
+        {
+            if (string.IsNullOrWhiteSpace(BarCode))
+            {
+                return false;
+
+            }
+            
+            foreach (ProductModel product in PublicVariables.Products)
+            {
+                if (product.BarCode == BarCode)
+                {
+                    return false;
+                }
+            }
+            foreach (ProductModel product in newProducts)
+            {
+                if (product.BarCode == BarCode)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
 
     }
 }

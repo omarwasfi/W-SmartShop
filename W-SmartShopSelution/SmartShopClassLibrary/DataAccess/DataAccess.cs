@@ -858,6 +858,12 @@ namespace Library
             return product;
         }
 
+        public ProductModel UpdateProductDataWithTheDatabase(ProductModel product)
+        {
+
+            return ProductAccess.UpdateProdcutData(product, db); 
+        }
+
         /// <summary>
         /// Get All Products from the databse
         /// </summary>

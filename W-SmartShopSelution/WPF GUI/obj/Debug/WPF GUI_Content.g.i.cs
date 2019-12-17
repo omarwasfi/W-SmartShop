@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("mainform/ashesmenulogo.jpg")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("mainform/assets/icon.png")]
 
 

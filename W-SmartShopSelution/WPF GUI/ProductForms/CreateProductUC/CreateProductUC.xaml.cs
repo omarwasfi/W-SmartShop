@@ -346,7 +346,7 @@ namespace WPF_GUI.CreateProduct
                         product.Brand = (BrandModel)BrandValue.SelectedItem;
                         product.QuantityType = QuantityTypeValue.Text;
                         product.Size = "";
-                        product.BarCode = GlobalConfig.Connection.CreateBarCode(product);
+                        product.BarCode = Product.CreateBarCode(product,NewProducts);
                         product.SerialNumber = "";
                         product.SerialNumber2 = "";
                         product.Details = DetailsValue.Text;
@@ -524,15 +524,6 @@ namespace WPF_GUI.CreateProduct
             BrandValue.ItemsSource = null;
             BrandValue.ItemsSource = PublicVariables.Brands;
         }
-
-
-
-
-
-
-
-
-
 
         #endregion
 

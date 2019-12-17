@@ -111,6 +111,26 @@ namespace WPF_GUI.ProductManager
             SetInitialValues();
         }
 
+        private void ModifySelectedButton_Click(object sender, RoutedEventArgs e)
+        {
+            ProductModel product = (ProductModel)ProductList.SelectedItem;
+            if (product != null)
+            {
+                ModifyProductUC modifyProduct = new ModifyProductUC(product);
+                ModifyProductContentControl.Content = modifyProduct;
+                UserGrid.Visibility = Visibility.Collapsed;
+                ModifyProductGrid.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void BackToUserGridButton_FromModifyProductGrid_Click(object sender, RoutedEventArgs e)
+        {
+            UserGrid.Visibility = Visibility.Visible;
+            ModifyProductGrid.Visibility = Visibility.Collapsed;
+
+            SetInitialValues();
+        }
+
 
         #endregion
 

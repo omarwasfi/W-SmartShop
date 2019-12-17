@@ -13,13 +13,13 @@
     <Grid>
         
         <Grid x:Name="UserGrid" Visibility="Visible" Grid.RowSpan="2">
-            <Button x:Name="CreateNewCategoryButton_CreateProductUC" Click="CreateNewCategoryButton_CreateProductUC_Click" Margin="1094,33,0,0" VerticalAlignment="Top" Height="35"  >
+            <Button x:Name="CreateNewCategoryButton_CreateProductUC" Click="CreateNewCategoryButton_CreateProductUC_Click" Margin="1094,33,10,0" VerticalAlignment="Top" Height="35"  >
                 <Grid Width="215" Height="33">
                     <materialDesign:PackIcon Kind="PlusBox" Width="25" Height="25"/>
                     <TextBlock FontSize="17" Text="Create New Category" Margin="30,0,20,10"/>
                 </Grid>
             </Button>
-            <Button x:Name="CreateNewBrandButton_CreateProductUC" Click="CreateNewBrandButton_CreateProductUC_Click"  Margin="1094,73,0,0" VerticalAlignment="Top" Height="35"  >
+            <Button x:Name="CreateNewBrandButton_CreateProductUC" Click="CreateNewBrandButton_CreateProductUC_Click"  Margin="1094,73,10,0" VerticalAlignment="Top" Height="35"  >
                 <Grid Width="215" Height="33">
                     <materialDesign:PackIcon Kind="PlusBox" Width="25" Height="25"/>
                     <TextBlock FontSize="17" Text="Create New Brand" Margin="30,0,25,10"/>
@@ -38,7 +38,7 @@
             <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="12,132,0,0" Width="87" ><Run Text="Details : "/></TextBlock>
             <TextBox x:Name="DetailsValue" HorizontalAlignment="Left" Height="32" Margin="104,132,0,0"  VerticalAlignment="Top" Width="963" MaxLines="1" MaxLength="500"/>
 
-            <Grid x:Name="SameBarCodeGrid_CreateProductUC" Visibility="Collapsed" Margin="12,170,10,313">
+            <Grid x:Name="SameBarCodeGrid_CreateProductUC" Visibility="Visible" Margin="12,170,10,313">
                 <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="0,38,0,0" RenderTransformOrigin="-0.048,0.481" FontSize="25" ><Run Text="Size : "/></TextBlock>
                 <TextBox x:Name="SizeValue" HorizontalAlignment="Left" Height="32" Margin="68,40,0,0" Text="" VerticalAlignment="Top" Width="76" MaxLines="1" MaxLength="200"   />
 
@@ -75,7 +75,7 @@
 
 
             </Grid>
-            <Grid x:Name="DifferentBarCodeGrid_CreateProductUC" Visibility="Visible" Margin="10,170,10,0">
+            <Grid x:Name="DifferentBarCodeGrid_CreateProductUC" Visibility="Collapsed" Margin="10,170,10,0">
 
                 <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="0,10,0,0" ><Run Text="Quantity : "/></TextBlock>
                 <syncfusion:IntegerTextBox x:Name="QuantityValue" TextChanged="QuantityValue_TextChanged"  MinValue="0" HorizontalAlignment="Left" Height="27" Margin="114,16,0,0" NumberGroupSeparator="," Value="0" VerticalAlignment="Top" Width="60" FontSize="18" MaxLines="1">

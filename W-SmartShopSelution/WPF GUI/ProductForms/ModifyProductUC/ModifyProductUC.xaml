@@ -4,61 +4,169 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WPF_GUI.ModifyProduct"
-             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="WPF_GUI.ModifyProduct.ModifyProductUC"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:syncfusion="http://schemas.syncfusion.com/wpf" xmlns:Globalization="clr-namespace:System.Globalization;assembly=mscorlib"
+    xmlns:CreateCategory="clr-namespace:WPF_GUI.CreateCategory"
+    xmlns:CreateBrand="clr-namespace:WPF_GUI.CreateBrand" x:Class="WPF_GUI.ModifyProduct.ModifyProductUC"
              mc:Ignorable="d" 
-             d:DesignHeight="680" d:DesignWidth="1343">
+             d:DesignHeight="650" d:DesignWidth="1343">
     <Grid>
-        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="12,18,0,0" ><Run Text="Category : "/></TextBlock>
-        <ComboBox x:Name="CategoryValue_ModifyProductUC" HorizontalAlignment="Left" Margin="136,23,0,0" VerticalAlignment="Top" Width="207" />
-        
-        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="12,56,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" Width="82" ><Run Text="Brand : "/></TextBlock>
-        <ComboBox x:Name="BrandValue_ModifyProductUC" HorizontalAlignment="Left" Margin="136,61,0,0" VerticalAlignment="Top" Width="207" />
-        
-        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="10,99,0,0" ><Run Text="Product Name : "/></TextBlock>
-        <TextBox x:Name="ProductNameValue_ModifyProductUC" HorizontalAlignment="Left" Height="33" Margin="195,99,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="335"/>
-        
-        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="10,175,0,0" ><Run Text="Sale price : "/></TextBlock>
-        <TextBox x:Name="SalePriceValue_ModifyProductUC" HorizontalAlignment="Left" Height="24" Margin="193,184,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="78"/>
-        
-        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="12,204,0,0" ><Run Text="Income price : "/></TextBlock>
-        <TextBox x:Name="IncomeValue_ModifyProductUC" HorizontalAlignment="Left" Height="24" Margin="195,213,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="78"/>
-        
-        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="10,137,0,0" ><Run Text="Serial Number : "/></TextBlock>
-        <TextBox x:Name="SerialNumberValue_ModifyProductUC" HorizontalAlignment="Left" Height="33" Margin="195,137,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="335"/>
 
+        <Grid x:Name="UserGrid" Visibility="Visible">
+            <Grid Margin="1097,0,0,626">
+                <Button x:Name="CloseButton" Visibility="Collapsed" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Red"   VerticalAlignment="Top"  Margin="3,0,170,0" Height="25"  >
+                    <materialDesign:PackIcon Kind="Close" Width="20" Height="20"/>
+                </Button>
 
-        <Button x:Name="CreateNewBrandButton_ModifyProductUC" Click="CreateNewBrandButton_ModifyProductUC_Click"  Margin="1008,99,53,0" VerticalAlignment="Top" Height="66"  >
-            <Grid Width="254">
-                <materialDesign:PackIcon Kind="PlusBox" Width="50" Height="46"/>
-                <TextBlock FontSize="19" Text="Create New Brand" Margin="50,10,10,10"/>
+                <Button x:Name="RefreshButton" Click="RefreshButton_Click" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray"   VerticalAlignment="Top"  Margin="196,0,0,-1" Height="25"  >
+                    <materialDesign:PackIcon Kind="Reload" Width="20" Height="20"/>
+                </Button>
+
+                <Button x:Name="PrintButton" Visibility="Collapsed" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray"   VerticalAlignment="Top"  Margin="115,0,55,0" Height="25"  >
+                    <materialDesign:PackIcon Kind="Printer" Width="20" Height="20"/>
+                </Button>
+
+                <Button x:Name="ConfitmButton" Click="ConfitmButton_Click" Visibility="Visible" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Green"   VerticalAlignment="Top"  Margin="146,0,50,-1" Height="25"  >
+                    <materialDesign:PackIcon Kind="Done" Width="20" Height="20"/>
+                </Button>
+
             </Grid>
-        </Button>
 
-        <Button x:Name="CreateNewCategoryButton_ModifyProductUC" Click="CreateNewCategoryButton_ModifyProductUC_Click" Margin="1008,23,53,0" VerticalAlignment="Top" Height="66"  >
-            <Grid Width="254">
-                <materialDesign:PackIcon Kind="PlusBox" Width="50" Height="46"/>
-                <TextBlock FontSize="19" Text="Create New Category" Margin="50,10,10,10"/>
-            </Grid>
-        </Button>
+            <Button x:Name="CreateNewCategoryButton_CreateProductUC" Click="CreateNewCategoryButton_CreateProductUC_Click" Margin="1094,33,10,0" VerticalAlignment="Top" Height="35"  >
+                <Grid Width="215" Height="33">
+                    <materialDesign:PackIcon Kind="PlusBox" Width="25" Height="25"/>
+                    <TextBlock FontSize="17" Text="Create New Category" Margin="30,0,20,10"/>
+                </Grid>
+            </Button>
+            <Button x:Name="CreateNewBrandButton_CreateProductUC" Click="CreateNewBrandButton_CreateProductUC_Click"  Margin="1094,73,10,0" VerticalAlignment="Top" Height="35"  >
+                <Grid Width="215" Height="33">
+                    <materialDesign:PackIcon Kind="PlusBox" Width="25" Height="25"/>
+                    <TextBlock FontSize="17" Text="Create New Brand" Margin="30,0,25,10"/>
+                </Grid>
+            </Button>
 
-        <Grid Margin="1070,626,10,10">
-            <Button Name="CloseButton_ModifyProductUC" Click="CloseButton_ModifyProductUC_Click" Content="Close" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" Margin="166,0,0,0"/>
-            <Button Name="ClearButton_ModifyProductUC" Click="ClearButton_ModifyProductUC_Click" Content="Clear" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" Margin="86,0,0,0"/>
-            <Button x:Name="ConfirmButton_ModifyProductUC" Click="ConfirmButton_ModifyProductUC_Click" Content="Confirm" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="81"/>
+            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="12,18,0,0" ><Run Text="Category : "/></TextBlock>
+            <ComboBox x:Name="CategoryValue"  IsTextSearchEnabled="True" TextSearch.TextPath="Name" HorizontalAlignment="Left" Margin="136,23,0,0" VerticalAlignment="Top" Width="207" />
+
+            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="12,56,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" Width="82" ><Run Text="Brand : "/></TextBlock>
+            <ComboBox x:Name="BrandValue" IsTextSearchEnabled="True" TextSearch.TextPath="Name" HorizontalAlignment="Left" Margin="136,61,0,0" VerticalAlignment="Top" Width="207" />
+
+            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="10,94,0,0" ><Run Text="Product Name : "/></TextBlock>
+            <TextBox x:Name="ProductNameValue" HorizontalAlignment="Left" Height="33" Margin="193,94,0,0"  VerticalAlignment="Top" Width="335" MaxLines="1" MaxLength="200"/>
+
+            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="533,94,0,0" RenderTransformOrigin="-0.048,0.481" FontSize="25" ><Run Text="Size : "/></TextBlock>
+            <TextBox x:Name="SizeValue" HorizontalAlignment="Left" Height="32" Margin="601,95,0,0" Text="" VerticalAlignment="Top" Width="76" MaxLines="1" MaxLength="200"   />
+
+            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="682,94,0,0" Text="Quantity Type :" />
+            <TextBox x:Name="QuantityTypeValue" HorizontalAlignment="Left" Height="33" Margin="853,94,0,0"  VerticalAlignment="Top" Width="100" MaxLines="1" MaxLength="200"/>
+
+            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="12,132,0,0" Width="87" ><Run Text="Details : "/></TextBlock>
+            <TextBox x:Name="DetailsValue" HorizontalAlignment="Left" Height="32" Margin="104,132,0,0"  VerticalAlignment="Top" Width="963" MaxLines="1" MaxLength="500"/>
+
+            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="10,171,0,0" ><Run Text="Barcode : "/></TextBlock>
+            <TextBox x:Name="ProductBarCodeValue" IsReadOnly="True" HorizontalAlignment="Left" Height="32" Margin="124,171,0,0"  VerticalAlignment="Top" Width="143" MaxLines="1" MaxLength="200"/>
+
+            <TextBlock VerticalAlignment="Top" TextWrapping="Wrap" RenderTransformOrigin="0.596,0.438" Margin="388,256,0,0" HorizontalAlignment="Left" FontSize="25" Foreground="#707070"><Run Text="Sale price : "/></TextBlock>
+            <syncfusion:CurrencyTextBox x:Name="SalePriceValue" IsReadOnly="False" Value="0" CurrencyNegativePattern="8"  CurrencyPositivePattern="3"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="96"  Margin="518,264,0,0" Height="27" Background="{x:Null}" FontSize="18" SelectionBrush="#FF009688" RenderTransformOrigin="0.68,0.352" MinValue="0">
+                <syncfusion:CurrencyTextBox.NumberFormat>
+                    <Globalization:NumberFormatInfo CurrencyGroupSeparator=" " CurrencyDecimalDigits="2" CurrencyDecimalSeparator="." CurrencySymbol="L.E"/>
+                </syncfusion:CurrencyTextBox.NumberFormat>
+            </syncfusion:CurrencyTextBox>
+
+            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="619,256,0,0" ><Run Text="Income price : "/></TextBlock>
+            <syncfusion:CurrencyTextBox x:Name="IncomePriceValue" IsReadOnly="False" Value="0" CurrencyNegativePattern="8"  CurrencyPositivePattern="3"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="96"  Margin="781,262,0,0" Height="27" Background="{x:Null}" FontSize="18" SelectionBrush="#FF009688" RenderTransformOrigin="0.68,0.352" MinValue="0">
+                <syncfusion:CurrencyTextBox.NumberFormat>
+                    <Globalization:NumberFormatInfo CurrencyGroupSeparator=" " CurrencyDecimalDigits="2" CurrencyDecimalSeparator="." CurrencySymbol="L.E"/>
+                </syncfusion:CurrencyTextBox.NumberFormat>
+            </syncfusion:CurrencyTextBox>
+
+            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="272,171,0,0" ><Run Text="Serial Number : "/></TextBlock>
+            <TextBox x:Name="SerialNumberValue" IsReadOnly="True" HorizontalAlignment="Left" Height="32" Margin="454,172,0,0"  VerticalAlignment="Top" Width="336" MaxLines="1" MaxLength="200"/>
+
+            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="795,171,0,0" ><Run Text="Serial Number 2 : "/></TextBlock>
+            <TextBox x:Name="SerialNumber2Value" IsReadOnly="True" HorizontalAlignment="Left" Height="32" Margin="997,172,0,0"  VerticalAlignment="Top" Width="336" MaxLength="200" MaxLines="1"/>
+
+            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="13,208,0,0" ><Run Text="Expiration Period : "/></TextBlock>
+            <syncfusion:TimeSpanEdit x:Name="ExpirationPerid" MinValue="0" Value="4:5:0:0" AllowNull="False" Format="d 'Days' h 'Hours'" HorizontalAlignment="Left" Height="30" Margin="223,211,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="145" Background="{x:Null}" MaxLines="1"/>
+
+            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="373,208,0,0" ><Run Text="Quantity Alarm : "/></TextBlock>
+            <syncfusion:IntegerTextBox x:Name="QuantityAlarmValue"  HorizontalAlignment="Left" Height="23" Margin="564,218,0,0" MinWidth="100" NumberGroupSeparator="," TextWrapping="Wrap" Text="100" VerticalAlignment="Top" Width="50" Background="{x:Null}" SelectionBrush="{x:Null}" MaxValue="2147483647" MinValue="0"/>
+
+            <GroupBox Header="Create Similar Product" Margin="0,294,0,0">
+                <Grid>
+                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="2,2,0,0" ><Run Text="Quantity : "/></TextBlock>
+                    <syncfusion:IntegerTextBox x:Name="QuantityValue" TextChanged="QuantityValue_TextChanged"  MinValue="0" HorizontalAlignment="Left" Height="27" Margin="116,8,0,0" NumberGroupSeparator="," Value="0" VerticalAlignment="Top" Width="60" FontSize="18" MaxLines="1">
+                        <syncfusion:IntegerTextBox.BorderBrush>
+                            <LinearGradientBrush EndPoint="0,20" MappingMode="Absolute" StartPoint="0,0">
+                                <GradientStop Color="#FFABADB3" Offset="0.05"/>
+                                <GradientStop Color="#FFE2E3EA" Offset="0.07"/>
+                                <GradientStop Color="Gray" Offset="1"/>
+                            </LinearGradientBrush>
+                        </syncfusion:IntegerTextBox.BorderBrush>
+                    </syncfusion:IntegerTextBox>
+                    <CheckBox x:Name="SameSizeCheckBox"  Click="SameSizeCheckBox_Click" Content="Same Size" Foreground="Gray" HorizontalAlignment="Left" Margin="181,17,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="SameSizeValue" TextChanged="SameSizeValue_TextChanged" IsEnabled="False" HorizontalAlignment="Left" Height="24" Margin="261,11,0,0"  VerticalAlignment="Top" Width="77" MaxLines="1" MaxLength="200" RenderTransformOrigin="0.62,0.806"/>
+                    <CheckBox x:Name="SameSalePriceCheckBox" Click="SameSalePriceCheckBox_Click"  Content="Same Sale Price" Foreground="Gray" HorizontalAlignment="Left" Margin="343,17,0,0" VerticalAlignment="Top"/>
+                    <syncfusion:CurrencyTextBox x:Name="SameSalePriceValue" TextChanged="SameSalePriceValue_TextChanged" IsEnabled="False" IsReadOnly="False" Value="0" CurrencyNegativePattern="8"  CurrencyPositivePattern="3"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="91"  Margin="453,8,0,0" Height="27" Background="{x:Null}" FontSize="18" SelectionBrush="#FF009688" RenderTransformOrigin="0.68,0.352">
+                        <syncfusion:CurrencyTextBox.NumberFormat>
+                            <Globalization:NumberFormatInfo CurrencyGroupSeparator=" " CurrencyDecimalDigits="2" CurrencyDecimalSeparator="." CurrencySymbol="L.E"/>
+                        </syncfusion:CurrencyTextBox.NumberFormat>
+                    </syncfusion:CurrencyTextBox>
+                    <CheckBox x:Name="SameIncomePriceCheckBox" Click="SameIncomePriceCheckBox_Click" Content="Same Income Price" Foreground="Gray" HorizontalAlignment="Left" Margin="549,17,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.803,0.111"/>
+                    <syncfusion:CurrencyTextBox x:Name="SameIncomePriceValue" TextChanged="SameIncomePriceValue_TextChanged" IsEnabled="False" IsReadOnly="False" Value="0" CurrencyNegativePattern="8"  CurrencyPositivePattern="3"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="91"  Margin="676,8,0,0" Height="27" Background="{x:Null}" FontSize="18" SelectionBrush="#FF009688" RenderTransformOrigin="0.68,0.352">
+                        <syncfusion:CurrencyTextBox.NumberFormat>
+                            <Globalization:NumberFormatInfo CurrencyGroupSeparator=" " CurrencyDecimalDigits="2" CurrencyDecimalSeparator="." CurrencySymbol="L.E"/>
+                        </syncfusion:CurrencyTextBox.NumberFormat>
+                    </syncfusion:CurrencyTextBox>
+                    <CheckBox x:Name="SameSerialNumberCheckBox" Click="SameSerialNumberCheckBox_Click" Content="Same Serial Number" Foreground="Gray" HorizontalAlignment="Left" Margin="772,17,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="SameSerialNumberValue" TextChanged="SameSerialNumberValue_TextChanged" IsEnabled="False" HorizontalAlignment="Left" Height="24" Margin="907,11,0,0"  VerticalAlignment="Top" Width="132" MaxLines="1" MaxLength="200" RenderTransformOrigin="0.62,0.806"/>
+                    <CheckBox x:Name="SameSerialNumber2CheckBox" Click="SameSerialNumber2CheckBox_Click"  Content="Same Serial Number2" Foreground="Gray" HorizontalAlignment="Left" Margin="1044,17,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="SameSerialNumber2Value" TextChanged="SameSerialNumber2Value_TextChanged" IsEnabled="False" HorizontalAlignment="Left" Height="24" Margin="1185,11,0,0"  VerticalAlignment="Top" Width="130" MaxLines="1" MaxLength="200" RenderTransformOrigin="0.62,0.806"/>
+                    <CheckBox x:Name="SameExpirationPeriodCheckBox" Click="SameExpirationPeriodCheckBox_Click"  Content="Same Expiration Period" Foreground="Gray" HorizontalAlignment="Left" Margin="181,53,0,0" VerticalAlignment="Top"/>
+                    <syncfusion:TimeSpanEdit x:Name="SameExpirationPeridValue" IsEnabled="False" MinValue="0" Value="4:5:0:0" AllowNull="False" Format="d 'Days' h 'Hours'" HorizontalAlignment="Left" Height="30" Margin="330,41,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="214" Background="{x:Null}" MaxLines="1"/>
+                    <CheckBox x:Name="SameQuantityAlarmCheckBox" Click="SameQuantityChdeckBox_Click" Content="Same Quantity Alarm" Foreground="Gray" HorizontalAlignment="Left" Margin="549,53,0,0" VerticalAlignment="Top"/>
+                    <syncfusion:IntegerTextBox x:Name="SameQuantityAlarmValue" ValueChanged="SameQuantityAlarmValue_ValueChanged" IsEnabled="False"  HorizontalAlignment="Left" Height="27"   Margin="689,48,0,0" MinWidth="100" NumberGroupSeparator="," TextWrapping="Wrap" Text="100" VerticalAlignment="Top" Width="50" Background="{x:Null}" SelectionBrush="{x:Null}" MaxValue="2147483647" MinValue="0" FontSize="18">
+                        <syncfusion:IntegerTextBox.BorderBrush>
+                            <LinearGradientBrush EndPoint="0,20" MappingMode="Absolute" StartPoint="0,0">
+                                <GradientStop Color="#FFABADB3" Offset="0.05"/>
+                                <GradientStop Color="#FFE2E3EA" Offset="0.07"/>
+                                <GradientStop Color="Gray" Offset="1"/>
+                            </LinearGradientBrush>
+                        </syncfusion:IntegerTextBox.BorderBrush>
+                    </syncfusion:IntegerTextBox>
+                    <DataGrid  x:Name="NewProductsList"  CanUserAddRows="False" CanUserDeleteRows="True" IsReadOnly="False" AutoGenerateColumns="False" HorizontalAlignment="Right" Height="228" Margin="0,76,0,0" VerticalAlignment="Top" Width="1323" Background="LightGray" >
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Size" Binding="{Binding Size}"/>
+                            <DataGridTextColumn Header="Barcode" Binding="{Binding BarCode}" IsReadOnly="True" />
+                            <DataGridTextColumn Header="Expiration Period" Binding="{Binding ExpirationPeriod}" />
+                            <DataGridTextColumn Header="Alarm Quantity" Binding="{Binding AlarmQuantity}"  />
+                            <DataGridTextColumn Header="Serial Number" Binding="{Binding SerialNumber}"/>
+                            <DataGridTextColumn Header="Serial Number2" Binding="{Binding SerialNumber2}"/>
+                            <DataGridTextColumn Header="Sale Price" Binding="{Binding SalePrice}"/>
+                            <DataGridTextColumn Header="Income Price" Binding="{Binding IncomePrice}"/>
+                        </DataGrid.Columns>
+
+
+                    </DataGrid>
+
+                </Grid>
+            </GroupBox>
+           
+
         </Grid>
-        
-        <GroupBox Header="Stock Info" HorizontalAlignment="Left" Height="204" Margin="12,346,0,0" VerticalAlignment="Top" Width="555">
-            <Grid>
-                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="10,30,0,0" ><Run Text="Store Name : "/></TextBlock>
-                <ComboBox x:Name="StoreNameValue_ModifyProductUC" SelectionChanged="StoreNameValue_ModifyProductUC_SelectionChanged" HorizontalAlignment="Left" Margin="164,35,0,0" VerticalAlignment="Top" Width="207" />
+        <Grid x:Name="CreateNewCategoryGrid" Visibility="Collapsed" Grid.RowSpan="2"  >
+            <Button x:Name="BackToUserGridButton_FromCreateNewCategoryGrid" Click="BackToUserGridButton_FromCreateNewCategoryGrid_Click"  Visibility="Visible" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Green"   VerticalAlignment="Top"  Margin="0,0,1291,0" Height="30"  >
+                <materialDesign:PackIcon Kind="ArrowLeft" Width="20" Height="20"/>
+            </Button>
+            <CreateCategory:CreateCategoryUC HorizontalAlignment="Left" Margin="0,30,0,0" VerticalAlignment="Top" Width="1343"/>
 
-                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="10,83,0,0" ><Run Text="Quantity In this store : "/></TextBlock>
-                <TextBox x:Name="QuantityInThisStoreValue_ModifyProductUC" HorizontalAlignment="Left" Height="24" Margin="265,92,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="78"/>
+        </Grid>
+        <Grid x:Name="CreateNewBrandGrid" Visibility="Collapsed" Grid.RowSpan="2"  >
+            <Button x:Name="BackToUserGridButton_FromCreateNewBrandGrid" Click="BackToUserGridButton_FromCreateNewBrandGrid_Click"  Visibility="Visible" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Green"   VerticalAlignment="Top"  Margin="0,0,1291,0" Height="30"  >
+                <materialDesign:PackIcon Kind="ArrowLeft" Width="20" Height="20"/>
+            </Button>
+            <CreateBrand:CreateBrandUC HorizontalAlignment="Left" Margin="0,30,0,0" VerticalAlignment="Top"/>
+        </Grid>
 
-                <Button x:Name="ConfirmStoreButton_ModifyProductUC" Content="Confirm" Click="ConfirmStoreButton_ModifyProductUC_Click"  HorizontalAlignment="Left"  VerticalAlignment="Top" Width="111" Margin="398,95,0,0"/>
-
-            </Grid>
-        </GroupBox>
 
     </Grid>
 </UserControl>

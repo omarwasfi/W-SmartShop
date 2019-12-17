@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WPF_GUI"
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        Title="Login" Height="400" Width="600" ResizeMode="NoResize" WindowStyle="None" AllowsTransparency="True" Background="Transparent" WindowStartupLocation="CenterScreen" Icon="Assets/Icon.jpg">
+        Title="Login" Height="400" Width="600" ResizeMode="NoResize" WindowStyle="None" AllowsTransparency="True" Background="Transparent" WindowStartupLocation="CenterScreen" Icon="/WPF GUI;component/MainForm/Assets/Icon.png">
     <Grid>
        
         <Rectangle RadiusY="8" RadiusX="8" Fill="White"/>

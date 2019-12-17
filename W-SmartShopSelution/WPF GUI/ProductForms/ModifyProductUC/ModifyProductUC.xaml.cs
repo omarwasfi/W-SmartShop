@@ -15,6 +15,8 @@ using System.Windows.Shapes;
 using Library;
 using WPF_GUI.CreateBrand;
 using WPF_GUI.CreateCategory;
+using ValidationResult = FluentValidation.Results.ValidationResult;
+
 
 namespace WPF_GUI.ModifyProduct
 {
@@ -26,24 +28,15 @@ namespace WPF_GUI.ModifyProduct
 
         #region Main Veriable
 
-        private List<CategoryModel> Categories { get; set; }
-        private List<BrandModel> Brands { get; set; }
+        /// <summary>
+        /// The product that we need to edit or make a similar one of it
+        /// </summary>
+        ProductModel OrignalProduct { get; set; }
 
-        private List<StoreModel> Stores { get; set; }
-
-        private ProductModel Product { get; set; }
-
-        private List<StockModel> ProductStocks { get; set; }
-
-        private List<StockModel> UpdatedStocks { get; set; } = new List<StockModel>();
-
-        private List<StockModel> NewStocks { get; set; } = new List<StockModel>();
-
-        #endregion
-
-        #region Not main ! Veriable
-
-        private List<StockModel> Stocks { get; set; }
+        /// <summary>
+        /// List of the new products
+        /// </summary>
+         List<ProductModel> NewProducts { get; set; }
 
         #endregion
 
@@ -58,450 +51,408 @@ namespace WPF_GUI.ModifyProduct
 
             InitializeComponent();
 
-            Product = product;
+            OrignalProduct = product;
 
             SetInitialValues();
 
         }
 
-        /// <summary>
-        /// Set the initial values 
-        /// Called to update the categoies CB Or brands , Stores
-        /// Product stocks list
-        /// </summary>
+
         private void SetInitialValues()
         {
-            UpdateStocksFromTheDatabase();
 
-            GetProdcutStock();
+            CategoryValue.ItemsSource = null;
+            CategoryValue.ItemsSource = PublicVariables.Categories;
+            CategoryValue.DisplayMemberPath = "Name";
 
+            BrandValue.ItemsSource = null;
+            BrandValue.ItemsSource = PublicVariables.Brands;
+            BrandValue.DisplayMemberPath = "Name";
+
+            CategoryValue.SelectedItem = OrignalProduct.Category;
+            BrandValue.SelectedItem = OrignalProduct.Brand;
+            ProductNameValue.Text = OrignalProduct.Name;
+            QuantityTypeValue.Text = OrignalProduct.QuantityType;
+            SizeValue.Text = OrignalProduct.Size;
+            ProductBarCodeValue.Text = OrignalProduct.BarCode;
+            SerialNumberValue.Text = OrignalProduct.SerialNumber;
+            SerialNumber2Value.Text = OrignalProduct.SerialNumber2;
+            ExpirationPerid.Value = OrignalProduct.ExpirationPeriod;
+            QuantityAlarmValue.Value = OrignalProduct.AlarmQuantity;
+            SalePriceValue.Value = OrignalProduct.SalePrice;
+            IncomePriceValue.Value = OrignalProduct.IncomePrice;
+            DetailsValue.Text = OrignalProduct.Details;
+
+            NewProducts = new List<ProductModel>();
+            QuantityValue.Value = 0;
+            NewProductsList.ItemsSource = null;
+            NewProductsList.ItemsSource = NewProducts;
+
+            SameSizeCheckBox.IsChecked = false;
+            SameSalePriceCheckBox.IsChecked = false;
+            SameIncomePriceCheckBox.IsChecked = false;
+            SameSalePriceCheckBox.IsChecked = false;
+            SameSerialNumberCheckBox.IsChecked = false;
+            SameSerialNumber2CheckBox.IsChecked = false;
+            SameExpirationPeriodCheckBox.IsChecked = false;
+            SameQuantityAlarmCheckBox.IsChecked = false;
+        }
+
+        #region Events
+
+        private void RefreshButton_Click(object sender, RoutedEventArgs e)
+        {
+            SetInitialValues();
+        }
+
+        private void ConfitmButton_Click(object sender, RoutedEventArgs e)
+        {
+            OrignalProduct.Name = ProductNameValue.Text;
+            OrignalProduct.QuantityType = QuantityTypeValue.Text;
+            OrignalProduct.Size = SizeValue.Text;
+            OrignalProduct.Details = DetailsValue.Text;
+            OrignalProduct.SalePrice = SalePriceValue.Value.Value;
+            OrignalProduct.IncomePrice = IncomePriceValue.Value.Value;
+            OrignalProduct.ExpirationPeriod = ExpirationPerid.Value.Value;
+            OrignalProduct.AlarmQuantity = (int)QuantityAlarmValue.Value;
             
-
-            UpdateCategoriesFromThePublicVariables();
-            CategoryValue_ModifyProductUC.ItemsSource = null;
-            CategoryValue_ModifyProductUC.ItemsSource = Categories;
-            CategoryValue_ModifyProductUC.SelectedIndex = Get_CategoryValue_ModifyProductUC_Index(Product.Category);
-            CategoryValue_ModifyProductUC.DisplayMemberPath = "Name";
-
-            UpdateBrandsFromThePublicVariables();
-            BrandValue_ModifyProductUC.ItemsSource = null;
-            BrandValue_ModifyProductUC.ItemsSource = Brands;
-            BrandValue_ModifyProductUC.SelectedIndex = Get_BrandValue_ModifyProductUC_Index(Product.Brand);
-            BrandValue_ModifyProductUC.DisplayMemberPath = "Name";
-
-            UpdateStoresFromTheDatabase();
-            StoreNameValue_ModifyProductUC.ItemsSource = null;
-            StoreNameValue_ModifyProductUC.ItemsSource = Stores;
-            StoreNameValue_ModifyProductUC.DisplayMemberPath = "Name";
-
-
-            ProductNameValue_ModifyProductUC.Text = Product.Name;
-            SerialNumberValue_ModifyProductUC.Text = Product.SerialNumber;
-            SalePriceValue_ModifyProductUC.Text = Product.SalePrice.ToString();
-            IncomeValue_ModifyProductUC.Text = Product.IncomePrice.ToString();
-
-        }
-
-        /// <summary>
-        /// get the index of brand if it in the BrandValue_ModifyProductUC
-        /// </summary>
-        /// <param name="brand"></param>
-        /// <returns> index of this brand </returns>
-        private int Get_BrandValue_ModifyProductUC_Index(BrandModel brand)
-        {
-            int i = 0;
-            var lst = BrandValue_ModifyProductUC.Items.Cast<BrandModel>();
-            foreach (var s in lst)
+            CategoryModel category = (CategoryModel)CategoryValue.SelectedItem;
+            if(category != null)
             {
-                if (s.Id == brand.Id)
-                    return i;
-
-                i++;
+                OrignalProduct.Category = category;
             }
-            return 0;
-        }
-
-        /// <summary>
-        /// get the index of categry if it in the CategoryValue_ModifyProductUC
-        /// </summary>
-        /// <param name="category"></param>
-        /// <returns> index of this category </returns>
-        private int Get_CategoryValue_ModifyProductUC_Index(CategoryModel category)
-        {
-            int i = 0;
-            var lst = CategoryValue_ModifyProductUC.Items.Cast<CategoryModel>();
-            foreach (var s in lst)
+        
+            BrandModel brand = (BrandModel)BrandValue.SelectedItem;
+            if (brand != null)
             {
-                if (s.Id == category.Id)
-                    return i;
-
-                i++;
+                OrignalProduct.Brand = brand;
             }
-            return 0;
-        }
 
-        /// <summary>
-        /// Update the categories list with the public variables
-        /// </summary>
-        private void UpdateCategoriesFromThePublicVariables()
-        {
-            Categories = PublicVariables.Categories;
+            // Update the product
+            GlobalConfig.Connection.UpdateProductDataWithTheDatabase(OrignalProduct);
 
-        }
-
-        /// <summary>
-        /// Update the brands list with the public variables
-        /// </summary>
-        private void UpdateBrandsFromThePublicVariables()
-        {
-            Brands = PublicVariables.Brands;
-        }
-
-
-        /// <summary>
-        /// Update the Stores list from the database
-        /// remove the default store 
-        /// </summary>
-        private void UpdateStoresFromTheDatabase()
-        {
-            Stores = GlobalConfig.Connection.GetAllStores();
-            Stores.RemoveAt(0);
-        }
-
-        /// <summary>
-        /// Get all stock from the database  , set the stocks in public variables
-        /// </summary>
-        private void UpdateStocksFromTheDatabase()
-        {
-            Stocks = GlobalConfig.Connection.GetStocks();
-            PublicVariables.Stocks = null;
-            PublicVariables.Stocks = Stocks;
-        }
-
-        /// <summary>
-        /// Filters the stocks to get the prodcut stocks only
-        /// </summary>
-        private void GetProdcutStock()
-        {
-            ProductStocks = GlobalConfig.Connection.GetStocksByProduct(Stocks, Product);
-        }
-
-
-        /// <summary>
-        /// Each selecttion change , check if the store in the stocks or not 
-        /// if not set the quantity to 0
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void StoreNameValue_ModifyProductUC_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            StoreModel selectedStore = new StoreModel();
-            selectedStore = (StoreModel)StoreNameValue_ModifyProductUC.SelectedItem;
-            if (selectedStore != null)
+            if (NewProducts.Count > 0)
             {
-                foreach (StockModel stock in ProductStocks)
+                bool confirm = true;
+                for (int i = 1; i <= NewProducts.Count; i++)
                 {
-                    if (stock.Store.Id == selectedStore.Id)
+                    ProductModel product = NewProducts[i - 1];
+                    GlobalConfig.ProductValidator = new ProductValidator();
+
+
+                    ValidationResult result = GlobalConfig.ProductValidator.Validate(product);
+
+                    if (result.IsValid == false)
                     {
-                        QuantityInThisStoreValue_ModifyProductUC.Text = stock.Quantity.ToString();
-                        break;
-                    }
-                    else
-                    {
-                        QuantityInThisStoreValue_ModifyProductUC.Text = "0";
-                    }
-                }
-            }
-            
-        }
 
-        /// <summary>
-        /// check if the store in the stock , if it is update the quantity of this stock,
-        /// if not create new stock
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ConfirmStoreButton_ModifyProductUC_Click(object sender, RoutedEventArgs e)
-        {
-            if(StoreNameValue_ModifyProductUC.Text.Length > 0)
-            {
-                int quantity;
-                if (int.TryParse(QuantityInThisStoreValue_ModifyProductUC.Text, out quantity))
-                {
-                    if (quantity >= 0)
-                    {
-                        if (CheckIfTheStoreNameInTheStocks(ProductStocks, StoreNameValue_ModifyProductUC.Text))
-                        {
-                            foreach (StockModel stock in ProductStocks)
-                            {
-                                if (stock.Store.Name == StoreNameValue_ModifyProductUC.Text)
-                                {
-                                    stock.Quantity = quantity;
-                                    UpdatedStocks.Add(stock);
-                                    Stores.Remove((StoreModel)StoreNameValue_ModifyProductUC.SelectedItem);
-                                    StoreNameValue_ModifyProductUC.ItemsSource = null;
-                                    StoreNameValue_ModifyProductUC.ItemsSource = Stores;
-                                    QuantityInThisStoreValue_ModifyProductUC.Text = "";
-
-
-                                }
-
-                            }
-                        }
-                        else
-                        {
-                            StockModel stock = new StockModel();
-                            stock.Quantity = quantity;
-                            stock.Store = (StoreModel)StoreNameValue_ModifyProductUC.SelectedItem;
-                            Stores.Remove((StoreModel)StoreNameValue_ModifyProductUC.SelectedItem);
-                            StoreNameValue_ModifyProductUC.ItemsSource = null;
-                            StoreNameValue_ModifyProductUC.ItemsSource = Stores;
-                            QuantityInThisStoreValue_ModifyProductUC.Text = "";
-                            NewStocks.Add(stock);
-                        }
-
-                        
-                    }
-                    else
-                    {
-                        MessageBox.Show("Quantity Can't be Less than 0");
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Enter the Quantity Again ,  make sure there is no Characters in it {just A number}");
-                    QuantityInThisStoreValue_ModifyProductUC.Text = "";
-
-
-                }
-            }
-            else
-            {
-                MessageBox.Show("Select Store Name");
-            }
-        }
-
-        /// <summary>
-        /// Get list of stocks and store name to check if it in the stocks list or not
-        /// if it is in the stocks list  return true
-        /// if not return fales
-        /// </summary>
-        /// <param name="stocks"></param>
-        /// <param name="storeName"></param>
-        /// <returns></returns>
-        private bool CheckIfTheStoreNameInTheStocks(List<StockModel> stocks , string storeName )
-        {
-            foreach(StockModel stock in stocks)
-            {
-                if(stock.Store.Name == storeName)
-                {
-                    return true;
-                }
-
-            }
-            return false;
-        }
-
-        /// <summary>
-        /// Create new Brand and Update the initial values from the database
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void CreateNewBrandButton_ModifyProductUC_Click(object sender, RoutedEventArgs e)
-        {
-            CreateBrandUC createBrand = new CreateBrandUC();
-            Window window = new Window
-            {
-                Title = "Create Brand",
-                Content = createBrand,
-                SizeToContent = SizeToContent.WidthAndHeight,
-                ResizeMode = ResizeMode.NoResize
-            };
-            window.ShowDialog();
-            SetInitialValues();
-        }
-
-        /// <summary>
-        /// Create new category and Update the initial values from the database
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void CreateNewCategoryButton_ModifyProductUC_Click(object sender, RoutedEventArgs e)
-        {
-            CreateCategoryUC createCategory = new CreateCategoryUC();
-            Window window = new Window
-            {
-                Title = "Create Category",
-                Content = createCategory,
-                SizeToContent = SizeToContent.WidthAndHeight,
-                ResizeMode = ResizeMode.NoResize
-            };
-            window.ShowDialog();
-            SetInitialValues();
-        }
-
-        /// <summary>
-        /// Close the window
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void CloseButton_ModifyProductUC_Click(object sender, RoutedEventArgs e)
-        {
-            var parent = this.Parent as Window;
-            if (parent != null) { parent.DialogResult = true; parent.Close(); }
-        }
-
-        /// <summary>
-        /// Clear the window by set the initial values again
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ClearButton_ModifyProductUC_Click(object sender, RoutedEventArgs e)
-        {
-            SetInitialValues();
-        }
-
-
-        private void ConfirmButton_ModifyProductUC_Click(object sender, RoutedEventArgs e)
-        {
-            bool confirm = true;
-
-            if (ProductNameValue_ModifyProductUC.Text.Length > 0)
-            {
-                
-                if (ProductNameValue_ModifyProductUC.Text == Product.Name || GlobalConfig.Connection.CheckIfTheProductNameUnique(PublicVariables.Products, ProductNameValue_ModifyProductUC.Text) )
-                {
-                    if ( SerialNumberValue_ModifyProductUC.Text == Product.SerialNumber || GlobalConfig.Connection.CheckIfTheProductSerialNumberUnique(PublicVariables.Products, SerialNumberValue_ModifyProductUC.Text))
-                    {
-                        decimal salePrice = new decimal();
-                        decimal incomePrice = new decimal();
-                        if (decimal.TryParse(SalePriceValue_ModifyProductUC.Text, out salePrice))
-                        {
-                            if (salePrice > 0)
-                            {
-                                if (decimal.TryParse(IncomeValue_ModifyProductUC.Text, out incomePrice))
-                                {
-                                    if (incomePrice > 0)
-                                    {
-                                        if (BrandValue_ModifyProductUC.Text.Length < 1)
-                                        {
-                                            BrandValue_ModifyProductUC.SelectedIndex = 0;
-
-                                        }
-                                        if (CategoryValue_ModifyProductUC.Text.Length < 1)
-                                        {
-                                            CategoryValue_ModifyProductUC.SelectedIndex = 0;
-                                        }
-
-                                    }
-                                    else
-                                    {
-                                        MessageBox.Show("Income Price Can't be Less than 0.0001");
-                                        confirm = false;
-                                    }
-                                }
-                                else
-                                {
-                                    MessageBox.Show("Enter the Income Price Again ,  make sure there is no Characters in it {just A number}");
-                                    IncomeValue_ModifyProductUC.Text = "";
-                                    confirm = false;
-                                }
-                            }
-                            else
-                            {
-                                MessageBox.Show("Sale Price Can't be Less than 0.0001");
-                                confirm = false;
-                            }
-                        }
-                        else
-                        {
-                            MessageBox.Show("Enter the sale Price Again ,  make sure there is no Characters in it {just A number}");
-                            SalePriceValue_ModifyProductUC.Text = "";
-
-                            confirm = false;
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("This new Serial number is used in Other Product");
+                        MessageBox.Show("number " + i + " " + result.Errors[0].ErrorMessage);
                         confirm = false;
                     }
+                    else
+                    {
+
+                    }
                 }
-                else
+                if (confirm)
                 {
-                    MessageBox.Show("This New Name is used In other product");
-                    confirm = false;
+                    foreach (ProductModel product in NewProducts)
+                    {
+                        GlobalConfig.Connection.AddProductToTheDatabase(product);
+                    }
                 }
             }
-            else
-            {
-                MessageBox.Show("Product Name can't be less than 1 character");
-                confirm = false;
-            }
 
-            // Update the product with the database
-            // Update Or add the stocks to the databbase 
-            // reset the window
-            if (confirm)
-            {
-                Product.Name = ProductNameValue_ModifyProductUC.Text;
-                Product.SerialNumber = SerialNumberValue_ModifyProductUC.Text;
-                Product.IncomePrice = decimal.Parse(IncomeValue_ModifyProductUC.Text);
-                Product.SalePrice = decimal.Parse(SalePriceValue_ModifyProductUC.Text);
-                Product.Brand = (BrandModel)BrandValue_ModifyProductUC.SelectedItem;
-                Product.Category = (CategoryModel)CategoryValue_ModifyProductUC.SelectedItem;
-
-                // Update the product with the database
-                GlobalConfig.Connection.UpdateProdcutData(Product);
-
-
-
-                // Update the products list in the public variables
-                PublicVariables.Products = GlobalConfig.Connection.GetProducts();
-
-
-                foreach (StockModel stock in NewStocks)
-                {
-                    stock.Product = Product;
-                    // save the stock to the database
-                    stock.Id = GlobalConfig.Connection.AddStockToTheDatabase(stock).Id;
-
-                    
-                }
-
-                foreach (StockModel stock in UpdatedStocks)
-                {
-
-                    GlobalConfig.Connection.UpdateStockData(stock);
-
-                   
-                }
-
-                // Update the login stocks in the public variables
-                PublicVariables.LoginStoreStocks = GlobalConfig.Connection.FilterStocksByStore(PublicVariables.Store);
-
-                // Close the Window
-                var parent = this.Parent as Window;
-                if (parent != null) { parent.DialogResult = true; parent.Close(); }
-
-
-                
-
-            }
-
+            
+            SetInitialValues();
         }
+
+        #endregion
+
         #endregion
 
 
+        #region DifferentBarCodeGrid
+
+        private void UpdateNewSimilarProductsGB()
+        {
+
+            if (SameSizeCheckBox.IsChecked == true)
+            {
+                foreach (ProductModel product in NewProducts)
+                {
+                    product.Size = SameSizeValue.Text;
+                }
+            }
+            if (SameSalePriceCheckBox.IsChecked == true)
+            {
+                foreach (ProductModel product in NewProducts)
+                {
+                    product.SalePrice = (decimal)SameSalePriceValue.Value.Value;
+                }
+
+            }
+            if (SameIncomePriceCheckBox.IsChecked == true)
+            {
+                foreach (ProductModel product in NewProducts)
+                {
+                    product.IncomePrice = (decimal)SameIncomePriceValue.Value.Value;
+                }
+
+            }
+            if (SameSerialNumberCheckBox.IsChecked == true)
+            {
+                foreach (ProductModel product in NewProducts)
+                {
+                    product.SerialNumber = SameSerialNumberValue.Text;
+                }
+
+            }
+            if (SameSerialNumber2CheckBox.IsChecked == true)
+            {
+                foreach (ProductModel product in NewProducts)
+                {
+                    product.SerialNumber2 = SameSerialNumber2Value.Text;
+                }
+
+            }
+            if (SameExpirationPeriodCheckBox.IsChecked == true)
+            {
+                if ((TimeSpan)SameExpirationPeridValue.Value.Value != null)
+                {
+                    foreach (ProductModel product in NewProducts)
+                    {
+                        product.ExpirationPeriod = (TimeSpan)SameExpirationPeridValue.Value.Value;
+                    }
+                }
+
+
+            }
+            if (SameQuantityAlarmCheckBox.IsChecked == true)
+            {
+                foreach (ProductModel product in NewProducts)
+                {
+                    product.AlarmQuantity = (int)SameQuantityAlarmValue.Value.Value;
+                }
+            }
+
+
+            NewProductsList.ItemsSource = null;
+            NewProductsList.ItemsSource = NewProducts;
+        }
+
+        #region DifferentBarCodeGrid Events
+
+        private void QuantityValue_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (QuantityValue.Value.Value > 0)
+            {
+                if (ProductNameValue.Text.Length > 0)
+                {
+                    if (BrandValue.Text.Length < 1)
+                    {
+                        BrandValue.SelectedIndex = 0;
+
+                    }
+                    if (CategoryValue.Text.Length < 1)
+                    {
+                        CategoryValue.SelectedIndex = 0;
+                    }
+
+                    NewProducts = new List<ProductModel>();
+
+                    for (int i = 1; i <= QuantityValue.Value.Value; i++)
+                    {
+                        ProductModel product = new ProductModel();
+                        product.Name = ProductNameValue.Text;
+                        product.Category = (CategoryModel)CategoryValue.SelectedItem;
+                        product.Brand = (BrandModel)BrandValue.SelectedItem;
+                        product.QuantityType = QuantityTypeValue.Text;
+                        product.Size = "";
+                        product.BarCode = Product.CreateBarCode(product, NewProducts);
+                        product.SerialNumber = "";
+                        product.SerialNumber2 = "";
+                        product.Details = DetailsValue.Text;
+                        product.SalePrice = new decimal();
+                        product.IncomePrice = new decimal();
+                        product.ExpirationPeriod = new TimeSpan(0, 0, 0, 0);
+                        product.AlarmQuantity = new int();
+                        NewProducts.Add(product);
+
+                    }
+
+                    UpdateNewSimilarProductsGB();
+
+                }
+                else
+                {
+                    MessageBox.Show("Enter the Product Name First");
+                }
+            }
+        }
+
+        private void SameSizeCheckBox_Click(object sender, RoutedEventArgs e)
+        {
+            if (SameSizeCheckBox.IsEnabled == true)
+            {
+                SameSizeValue.IsEnabled = true;
+            }
+            else
+            {
+                SameSizeValue.IsEnabled = false;
+            }
+        }
+        private void SameSizeValue_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            UpdateNewSimilarProductsGB();
+        }
+
+        private void SameSalePriceCheckBox_Click(object sender, RoutedEventArgs e)
+        {
+            if (SameSalePriceCheckBox.IsChecked == true)
+            {
+                SameSalePriceValue.IsEnabled = true;
+
+            }
+            else
+            {
+                SameSalePriceValue.IsEnabled = false;
+            }
+
+        }
+        private void SameSalePriceValue_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            UpdateNewSimilarProductsGB();
+        }
+
+        private void SameIncomePriceCheckBox_Click(object sender, RoutedEventArgs e)
+        {
+
+            if (SameIncomePriceCheckBox.IsChecked == true)
+            {
+                SameIncomePriceValue.IsEnabled = true;
+
+            }
+            else
+            {
+                SameIncomePriceValue.IsEnabled = false;
+            }
+        }
+        private void SameIncomePriceValue_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            UpdateNewSimilarProductsGB();
+        }
+
+        private void SameSerialNumberCheckBox_Click(object sender, RoutedEventArgs e)
+        {
+            if (SameSerialNumberCheckBox.IsChecked == true)
+            {
+                SameSerialNumberValue.IsEnabled = true;
+
+            }
+            else
+            {
+                SameSerialNumberValue.IsEnabled = false;
+            }
+        }
+        private void SameSerialNumberValue_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            UpdateNewSimilarProductsGB();
+        }
+
+        private void SameSerialNumber2CheckBox_Click(object sender, RoutedEventArgs e)
+        {
+            if (SameSerialNumber2CheckBox.IsChecked == true)
+            {
+                SameSerialNumber2Value.IsEnabled = true;
+
+            }
+            else
+            {
+                SameSerialNumber2Value.IsEnabled = false;
+            }
+        }
+        private void SameSerialNumber2Value_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            UpdateNewSimilarProductsGB();
+        }
+
+        private void SameExpirationPeriodCheckBox_Click(object sender, RoutedEventArgs e)
+        {
+            if (SameExpirationPeriodCheckBox.IsChecked == true)
+            {
+                SameExpirationPeridValue.IsEnabled = true;
+
+            }
+            else
+            {
+                SameExpirationPeridValue.IsEnabled = false;
+            }
+        }
+        private void SameExpirationPeridValue_ValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            UpdateNewSimilarProductsGB();
+        }
+
+        private void SameQuantityChdeckBox_Click(object sender, RoutedEventArgs e)
+        {
+            if (SameQuantityAlarmCheckBox.IsChecked == true)
+            {
+                SameQuantityAlarmValue.IsEnabled = true;
+
+            }
+            else
+            {
+                SameQuantityAlarmValue.IsEnabled = false;
+            }
+        }
+        private void SameQuantityAlarmValue_ValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            UpdateNewSimilarProductsGB();
+        }
 
 
 
 
 
+        #endregion
+
+        #endregion
+
+        #region Grid Switching
+
+        private void CreateNewCategoryButton_CreateProductUC_Click(object sender, RoutedEventArgs e)
+        {
+
+            CreateNewCategoryGrid.Visibility = Visibility.Visible;
+            UserGrid.Visibility = Visibility.Collapsed;
+
+        }
+
+        private void BackToUserGridButton_FromCreateNewCategoryGrid_Click(object sender, RoutedEventArgs e)
+        {
+            CreateNewCategoryGrid.Visibility = Visibility.Collapsed;
+            UserGrid.Visibility = Visibility.Visible;
+            CategoryValue.ItemsSource = null;
+            CategoryValue.ItemsSource = PublicVariables.Categories;
+        }
+
+        private void CreateNewBrandButton_CreateProductUC_Click(object sender, RoutedEventArgs e)
+        {
+            CreateNewBrandGrid.Visibility = Visibility.Visible;
+            UserGrid.Visibility = Visibility.Collapsed;
+        }
+
+        private void BackToUserGridButton_FromCreateNewBrandGrid_Click(object sender, RoutedEventArgs e)
+        {
+            CreateNewBrandGrid.Visibility = Visibility.Collapsed;
+            UserGrid.Visibility = Visibility.Visible;
+            BrandValue.ItemsSource = null;
+            BrandValue.ItemsSource = PublicVariables.Brands;
+        }
 
 
+        #endregion
 
-
-
+      
     }
 }

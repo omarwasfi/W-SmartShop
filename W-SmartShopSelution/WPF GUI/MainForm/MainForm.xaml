@@ -7,7 +7,7 @@
         mc:Ignorable="d" Height="768" Width="1366" Left="0" Top="0" ResizeMode="NoResize" 
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:dragablz="clr-namespace:Dragablz;assembly=Dragablz"
-        WindowStartupLocation="Manual" WindowStyle="None" Icon="Assets/Icon.jpg">
+        WindowStartupLocation="Manual" WindowStyle="None" Icon="Assets/Icon.png">
 
     <Window.Resources>
         <Storyboard x:Key="CloseMenu">
@@ -116,7 +116,7 @@
             </Grid.RenderTransform>
             <ScrollViewer >
                 <StackPanel>
-                    <Image Height="140" Source="Assets/AshesMenuLogo.jpg" Stretch="Fill"/>
+                    <Image Height="186" Source="Assets/AshesMenuLogo.png" Stretch="Uniform"/>
                     <ListView x:Name="MainMenuListView_MainForm" Foreground="#FF313131" FontFamily="Champagne &amp; Limousines" FontSize="18">
                         
                         <ListViewItem x:Name="SellViewItem" Visibility="Collapsed" Height="45" Padding="0" Selected="SellViewItem_Selected">
@@ -221,7 +221,7 @@
                     </ListView>
                 </StackPanel>
             </ScrollViewer>
-            <Button x:Name="ButtonClose" HorizontalAlignment="Left" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" Width="30" Height="30" Padding="0" >
+            <Button x:Name="ButtonClose" HorizontalAlignment="Left" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" Width="30" Height="30" Padding="0" Foreground="#FF3A3A3A" >
                 <materialDesign:PackIcon Kind="Close"/>
             </Button>
         </Grid>

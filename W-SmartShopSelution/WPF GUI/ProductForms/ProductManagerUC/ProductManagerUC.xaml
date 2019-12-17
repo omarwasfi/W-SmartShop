@@ -18,7 +18,7 @@
                     <TextBlock FontSize="17" Text="Create New Product" Margin="30,0,25,10"/>
                 </Grid>
             </Button>
-            <Button x:Name="ModifySelectedButton" Margin="234,637,922,0" VerticalAlignment="Top" Height="33"  >
+            <Button x:Name="ModifySelectedButton" Click="ModifySelectedButton_Click" Margin="234,637,922,0" VerticalAlignment="Top" Height="33"  >
                 <Grid Width="181" Height="33">
                     <materialDesign:PackIcon Kind="ModeEdit" Width="25" Height="25"/>
                     <TextBlock FontSize="17" Text="Modify Selected" Margin="30,2,25,8"/>
@@ -77,6 +77,14 @@
                 <materialDesign:PackIcon Kind="ArrowLeft" Width="20" Height="20"/>
             </Button>
             <CreateProduct:CreateProductUC HorizontalAlignment="Left" Margin="0,30,0,0" VerticalAlignment="Top"/>
+        </Grid>
+
+        <Grid x:Name="ModifyProductGrid" Visibility="Collapsed">
+            <Button x:Name="BackToUserGridButton_FromModifyProductGrid" Click="BackToUserGridButton_FromModifyProductGrid_Click" Visibility="Visible" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Green"   VerticalAlignment="Top"  Margin="0,0,1291,0" Height="30"  >
+                <materialDesign:PackIcon Kind="ArrowLeft" Width="20" Height="20"/>
+            </Button>
+            <ContentControl Name="ModifyProductContentControl" Content="ModifyProductContentControl" HorizontalAlignment="Left" Margin="0,30,0,0" VerticalAlignment="Top" Height="650" Width="1343"/>
+
         </Grid>
     </Grid>
 </UserControl>

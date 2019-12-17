@@ -155,25 +155,26 @@ namespace Library
         /// </summary>
         /// <param name="updatedProduct"></param>
         /// <param name="db"></param>
-        public static void UpdateProdcutData(ProductModel updatedProduct, string db)
+        public static ProductModel UpdateProdcutData(ProductModel updatedProduct, string db)
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnVal(db)))
             {
                 var p = new DynamicParameters();
                 p.Add("@Id", updatedProduct.Id);
                 p.Add("@ProductName", updatedProduct.Name);
-                p.Add("@BarCode", updatedProduct.BarCode);
-                p.Add("@SerialNumber", updatedProduct.SerialNumber);
-                p.Add("@SerialNumber2", updatedProduct.SerialNumber2);
+                p.Add("@QuantityType", updatedProduct.QuantityType);
                 p.Add("@Size", updatedProduct.Size);
                 p.Add("@Details", updatedProduct.Details);
                 p.Add("@SalePrice", updatedProduct.SalePrice);
                 p.Add("@IncomePrice", updatedProduct.IncomePrice);
+                p.Add("@ExpirationPeriodHours", updatedProduct.ExpirationPeriodHours);
+                p.Add("@AlarmQuantity", updatedProduct.AlarmQuantity);
                 p.Add("@BrandId", updatedProduct.Brand.Id);
                 p.Add("@CategoryId", updatedProduct.Category.Id);
                 connection.Execute("dbo.spProduct_Update", p, commandType: CommandType.StoredProcedure);
 
             }
+            return updatedProduct;
         }
 
     }

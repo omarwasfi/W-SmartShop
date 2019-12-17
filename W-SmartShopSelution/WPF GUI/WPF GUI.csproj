@@ -796,12 +796,6 @@
     <Resource Include="Login\Assets\Icon.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="MainForm\Assets\Icon.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="MainForm\Assets\AshesMenuLogo.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Localization\zh-CHT.xml" />
   </ItemGroup>
   <ItemGroup>
@@ -935,6 +929,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Localization\ar.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="MainForm\Assets\AshesMenuLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="MainForm\Assets\Icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
