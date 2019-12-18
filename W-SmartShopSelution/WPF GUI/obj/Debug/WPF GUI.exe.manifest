@@ -126,14 +126,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SmartShopClassLibrary.dll" size="202752">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SmartShopClassLibrary.dll" size="212480">
       <assemblyIdentity name="SmartShopClassLibrary" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>jsUbnVNjKemwGmGkOGO5Sx0ncxWmfDhaDlXSfJDO2Js=</dsig:DigestValue>
+        <dsig:DigestValue>AnfkGiR3/qJIcfvWqmy+1ZLhnwBZFm2QN/slU8MZ0uc=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -1321,7 +1321,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>bpj46CBZepGt8JnwVOLZbGvgjRADrlW0OFiM8lG6hQs=</dsig:DigestValue>
+        <dsig:DigestValue>dTFojV5OpcR1gyF9NzVRFYDNx4UYudZG5KG54IeZz54=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

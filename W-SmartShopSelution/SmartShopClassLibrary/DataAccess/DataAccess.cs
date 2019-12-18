@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Dapper;
 using Library;
-
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace Library
 {
@@ -2034,6 +2034,77 @@ namespace Library
             ShopBillAccess.RemoveShopBill(shopBill,db);
         }
 
+
+        #endregion
+
+        #region Get Products From Exel
+
+        /// <summary>
+        /// 1- productName
+        /// 2- incomePrice
+        /// 3- salePrice
+        /// 4- QuantityType
+        /// 5- BarCode
+        /// 6- Size
+        /// 7- CategoryId
+        /// 8- BrandId
+        /// </summary>
+        public void GetProductsFromExelFileAndAddToTheDatabase()
+        {
+            //Create COM Objects. Create a COM object for everything that is referenced
+            Excel.Application xlApp = new Excel.Application();
+            Excel.Workbook xlWorkbook = xlApp.Workbooks.Open(@"C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\bin\Debug\Products.xlsx");
+            Excel._Worksheet xlWorksheet = xlWorkbook.Sheets[1];
+            Excel.Range xlRange = xlWorksheet.UsedRange;
+
+            for (int i = 1; i <= 615; i++)
+            {
+                ProductModel product = new ProductModel();
+
+                for (int j = 1; j <= 8; j++)
+                {
+                    if(j == 1)
+                    {
+                        product.Name = xlRange.Cells[i, j].Value2.ToString();
+                    }
+                    else if(j == 2)
+                    {
+                        product.IncomePrice = decimal.Parse(xlRange.Cells[i, j].Value2.ToString());
+                    }
+                    else if (j == 3)
+                    {
+                        product.SalePrice = decimal.Parse(xlRange.Cells[i, j].Value2.ToString());
+                    }
+                    else if (j == 4)
+                    {
+                        product.QuantityType = xlRange.Cells[i, j].Value2.ToString();
+                    }
+                    else if (j == 5)
+                    {
+                        product.SerialNumber = xlRange.Cells[i, j].Value2.ToString();
+                    }
+                    else if (j == 6)
+                    {
+                        if(xlRange.Cells[i, j].Value2.ToString() != "NULL")
+                        {
+                            product.Size = xlRange.Cells[i, j].Value2.ToString();
+                        }
+                    }
+                    else if (j == 7)
+                    {
+                        product.Category = PublicVariables.Categories.Find(x=>x.Id == int.Parse(xlRange.Cells[i, j].Value2.ToString()));
+                    }
+                    else if (j == 8)
+                    {
+                        product.Brand = PublicVariables.Brands.Find(x => x.Id == int.Parse(xlRange.Cells[i, j].Value2.ToString()));
+                    }
+                }
+                product.BarCode = CreateBarCode(product);
+                // Save the Product to the database
+                AddProductToTheDatabase(product);
+            }
+           
+        }
 
         #endregion
 

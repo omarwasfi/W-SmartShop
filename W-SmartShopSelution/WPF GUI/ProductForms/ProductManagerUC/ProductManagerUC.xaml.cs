@@ -92,10 +92,22 @@ namespace WPF_GUI.ProductManager
             PrintGrid.Visibility = Visibility.Visible;
             Report.Load(@"ProductsReport.mrt");
             Report.Compile();
+
+            Report["OrganizationName"] = PublicVariables.Organization.Name;
+            Report["OrganizationAddress"] = PublicVariables.Organization.Address;
+            Report["OrganizationPhoneNumber"] = PublicVariables.Organization.PhoneNumber;
+
+            Report["DateTime"] = DateTime.Now.ToShortTimeString();
+
             Report.Render();
             ProductsReportPrint.Report = Report;
         }
 
+        private void BackToUserGridButton_FromPrintGrid_Click(object sender, RoutedEventArgs e)
+        {
+            UserGrid.Visibility = Visibility.Visible;
+            PrintGrid.Visibility = Visibility.Collapsed;
+        }
 
         private void CreateNewProductButton_Click(object sender, RoutedEventArgs e)
         {
@@ -132,8 +144,9 @@ namespace WPF_GUI.ProductManager
         }
 
 
+
         #endregion
 
-
+       
     }
 }

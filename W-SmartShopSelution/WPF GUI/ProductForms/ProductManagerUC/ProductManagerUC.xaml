@@ -66,7 +66,7 @@
         </Grid>
 
         <Grid x:Name="PrintGrid" Visibility="Collapsed">
-            <Button x:Name="BackToUserGridButton_FromPrintGrid"  Visibility="Visible" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Green"   VerticalAlignment="Top"  Margin="0,0,1291,0" Height="30"  >
+            <Button x:Name="BackToUserGridButton_FromPrintGrid" Click="BackToUserGridButton_FromPrintGrid_Click" Visibility="Visible" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Green"   VerticalAlignment="Top"  Margin="0,0,1291,0" Height="30"  >
                 <materialDesign:PackIcon Kind="ArrowLeft" Width="20" Height="20"/>
             </Button>
             <wpfViewer:StiWpfViewerControl x:Name="ProductsReportPrint" HorizontalAlignment="Left" Height="651" Margin="0,29,0,0" VerticalAlignment="Top" Width="1343"/>

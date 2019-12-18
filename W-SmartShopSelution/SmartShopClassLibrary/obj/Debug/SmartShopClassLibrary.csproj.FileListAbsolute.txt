@@ -9,3 +9,4 @@ C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\SmartShopClassLi
 C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\SmartShopClassLibrary\bin\Debug\FluentValidation.dll
 C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\SmartShopClassLibrary\bin\Debug\System.ComponentModel.Annotations.dll
 C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\SmartShopClassLibrary\bin\Debug\FluentValidation.xml
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\SmartShopClassLibrary\obj\Debug\SmartShopClassLibrary.csproj.ResolveComReference.cache
