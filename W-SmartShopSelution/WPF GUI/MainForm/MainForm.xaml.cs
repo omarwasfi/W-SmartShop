@@ -274,6 +274,17 @@ namespace WPF_GUI
 
         }
 
+        private void StaffSalaryManagerViewItem_Selected(object sender, RoutedEventArgs e)
+        {
+            CloseMenu_BeginStoryboard.Storyboard.Begin();
+
+
+            StaffSalaryManagerUC staffSalaryManagerUC  = new StaffSalaryManagerUC();
+            TabItem staffSalaryManagerTab = new TabItem { Header = "Staff Salary Manager" };
+            staffSalaryManagerTab.Content = staffSalaryManagerUC;
+            MainTab.Items.Add(staffSalaryManagerTab);
+        }
+
         private void PeopleViewItem_Selected(object sender, RoutedEventArgs e)
         {
             CloseMenu_BeginStoryboard.Storyboard.Begin();
@@ -316,8 +327,9 @@ namespace WPF_GUI
 
 
 
+
         #endregion
 
-        
+       
     }
 }

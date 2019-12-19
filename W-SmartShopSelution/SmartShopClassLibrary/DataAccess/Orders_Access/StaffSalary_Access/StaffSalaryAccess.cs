@@ -117,5 +117,29 @@ namespace Library
             return staffSalaries;
         }
 
+        /// <summary>
+        /// Add Staff Salary to the database
+        /// </summary>
+        /// <param name="staffSalary"></param>
+        /// <returns></returns>
+        public static StaffSalaryModel AddStaffSalaryToDatabase(StaffSalaryModel staffSalary,string db)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnVal(db)))
+            {
+                var p = new DynamicParameters();
+                p.Add("@StoreId", staffSalary.Store.Id);
+                p.Add("@StaffId", staffSalary.Staff.Id);
+                p.Add("@Date", staffSalary.Date);
+                p.Add("@Salary", staffSalary.Salary);
+                p.Add("@Details", staffSalary.Details);
+                p.Add("@ToStaffId", staffSalary.ToStaff.Id);
+                p.Add("@Id", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
+                connection.Execute("dbo.spStaffSalary_Create", p, commandType: CommandType.StoredProcedure);
+                staffSalary.Id = p.Get<int>("@Id");
+
+            }
+            return staffSalary;
+        }
+
     }
 }

@@ -508,11 +508,17 @@
     <Compile Include="Human\Person\PersonUC.xaml.cs">
       <DependentUpon>PersonUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Orders\In\PaySalary\PaySalaryUC.xaml.cs">
+      <DependentUpon>PaySalaryUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PriceListUC\PriceListUC.xaml.cs">
       <DependentUpon>PriceListUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="Manager\RevenueUC.xaml.cs">
       <DependentUpon>RevenueUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Orders\In\StaffSalaryManager\StaffSalaryManagerUC.xaml.cs">
+      <DependentUpon>StaffSalaryManagerUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="Store\AddStockToStoreUC\AddStockToStoreUC.xaml.cs">
       <DependentUpon>AddStockToStoreUC.xaml</DependentUpon>
@@ -631,11 +637,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Orders\In\PaySalary\PaySalaryUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PriceListUC\PriceListUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Manager\RevenueUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Orders\In\StaffSalaryManager\StaffSalaryManagerUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -936,5 +950,6 @@
   <ItemGroup>
     <Resource Include="MainForm\Assets\Icon.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

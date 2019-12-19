@@ -56,10 +56,27 @@ namespace Library
 
 
         /// <summary>
-        /// -Need Update-All The staff Salaries models 
+        /// Get All The staff Salaries models 
         /// </summary>
-        //List<StaffSalaryModel> StaffSalaries { get;}
+        public List<StaffSalaryModel> GetStaffSalaries 
+        {
+            get
+            {
+                return Staff.GetStaffSalaries(this);
+            }
+                
+        }
 
+        /// <summary>
+        /// Get how much money the Staff Member should receive this month
+        /// </summary>
+        public decimal GetStaffShouldReceiveThisMonth 
+        {
+            get
+            {
+              return  Staff.GetStaffShouldReceiveThisMonth(this);
+            }
+        }
 
 
         /// <summary>

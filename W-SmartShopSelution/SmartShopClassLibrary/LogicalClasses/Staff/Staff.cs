@@ -110,8 +110,32 @@ namespace Library
             return true;
         }
 
-        
+        /// <summary>
+        /// Get All The staff Salaries models 
+        /// </summary>
+        public static List<StaffSalaryModel> GetStaffSalaries(StaffModel staff)
+        {
+            return PublicVariables.StaffSalaries.FindAll(x => x.ToStaff == staff);
+        }
 
+        /// <summary>
+        /// Get how much money the Staff Member should receive this month
+        /// </summary>
+        public static decimal GetStaffShouldReceiveThisMonth(StaffModel staff)
+        {
+            decimal totalReceivedThisMonth = new decimal();
+
+            totalReceivedThisMonth += StaffSalary.TotalReceivedByMonth(staff.GetStaffSalaries, DateTime.Now);
+            
+            if (totalReceivedThisMonth < staff.Salary)
+            {
+                return staff.Salary - totalReceivedThisMonth;
+            }
+            else
+            {
+                return 0;
+            }
+        }
 
     }
 }

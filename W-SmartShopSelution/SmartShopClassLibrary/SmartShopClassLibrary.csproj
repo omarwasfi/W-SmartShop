@@ -137,6 +137,7 @@
     <Compile Include="LogicalClasses\Product\Product.cs" />
     <Compile Include="LogicalClasses\Revenue\Revenue.cs" />
     <Compile Include="LogicalClasses\ShopBill\ShopBill.cs" />
+    <Compile Include="LogicalClasses\StaffSalary\StaffSalary.cs" />
     <Compile Include="LogicalClasses\Staff\Staff.cs" />
     <Compile Include="LogicalClasses\Stock\Stock.cs" />
     <Compile Include="LogicalClasses\StoreStaff\StoreStaff.cs" />
@@ -159,6 +160,7 @@
     <Compile Include="Validation\OrdersValidations\OwnerOrdersValidations\InvestmentValidator.cs" />
     <Compile Include="Validation\OrdersValidations\OwnerOrdersValidations\RevenueValidator.cs" />
     <Compile Include="Validation\OrdersValidations\ShopBillValidations\ShopBillValidator.cs" />
+    <Compile Include="Validation\OrdersValidations\StaffSalaryValidations\StaffSalaryValidator.cs" />
     <Compile Include="Validation\OrdersValidations\StoreTransformsValidations\DeTransformValidator.cs" />
     <Compile Include="Validation\OrdersValidations\StoreTransformsValidations\TransformValidator.cs" />
     <Compile Include="Validation\StoreValidations\ProductValidations\BrandValidator.cs" />
@@ -173,6 +175,7 @@
     <Content Include="SQL Update\EMG.A.v002\Q1.txt" />
     <Content Include="SQL Update\EMG.A.v004\Q1.txt" />
     <Content Include="SQL Update\EMG.A.v005\Q1.txt" />
+    <Content Include="SQL Update\EMG.A.v007\Q1.txt" />
     <Content Include="WPF Logic Planning\InstallmentOrderUC Logic.txt" />
     <Content Include="WPF Logic Planning\SellUCLogic.txt" />
     <Content Include="WPF Planing\FirstPhase.txt" />
@@ -182,9 +185,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="LogicalClasses\StaffSalary\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <COMReference Include="Microsoft.Office.Core">
       <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>

@@ -1639,6 +1639,29 @@ namespace Library
 
         #endregion
 
+        #region StaffSalary
+
+
+        /// <summary>
+        /// add the staffSalary to the database
+        /// add to the publicvariables.StaffSalary
+        /// create the operation of the staffSalary
+        /// add the operation to the publicVariables.Operations
+        /// </summary>
+        /// <param name="staffSalary"></param>
+        /// <returns></returns>
+        public StaffSalaryModel AddStaffSalaryToTheDatabase(StaffSalaryModel staffSalary)
+        {
+            staffSalary = StaffSalaryAccess.AddStaffSalaryToDatabase(staffSalary, db);
+            PublicVariables.StaffSalaries.Add(staffSalary);
+            OperationModel operation = new OperationModel();
+            operation.StaffSalary = staffSalary;
+            PublicVariables.Operations.Add(operation);
+            return staffSalary;
+        }
+
+        #endregion
+
         #region StoreStaff 
 
         /// <summary>

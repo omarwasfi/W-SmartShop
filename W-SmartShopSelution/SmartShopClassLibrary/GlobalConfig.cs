@@ -32,6 +32,7 @@ namespace Library
         public static OrderValidator OrderValidator { get; set;}
         public static OrderProductValidator OrderProductValidator { get; set; }
         public static ShopBillValidator ShopBillValidator { get; set; }
+        public static StaffSalaryValidator StaffSalaryValidator { get; set; }
 
         public static SupplierValidator SupplierValidator { get; set; }
 
@@ -51,13 +52,13 @@ namespace Library
         {
            
 
-            //return ConfigurationManager.ConnectionStrings[name].ConnectionString;
+            return ConfigurationManager.ConnectionStrings[name].ConnectionString;
 
             //string path = Path.GetFullPath(Environment.CurrentDirectory);
-            string databaseName = "SmartShopDatabase.mdf";
+            //string databaseName = "SmartShopDatabase.mdf";
 
             //return @" data source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + path + @"\" + databaseName + ";Integrated Security=True";
-            return @" data source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\SSData"+@"\" + databaseName + ";Integrated Security=True";
+            //return @" data source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\SSData"+@"\" + databaseName + ";Integrated Security=True";
 
 
         }

@@ -33,6 +33,11 @@ namespace Library
         public decimal Salary { get; set; }
 
         /// <summary>
+        /// The detail of this staffSalary
+        /// </summary>
+        public string Details { get; set; }
+
+        /// <summary>
         /// The staff who took the salary
         /// </summary>
         public StaffModel ToStaff { get; set; }
