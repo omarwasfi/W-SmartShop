@@ -320,6 +320,20 @@ namespace WPF_GUI
                 this.DragMove();
         }
 
+        private void NotificationsButton_Click(object sender, RoutedEventArgs e)
+        {
+            if(MainGrid.Visibility == Visibility.Visible)
+            {
+                MainGrid.Visibility = Visibility.Collapsed;
+                NotificationGrid.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                MainGrid.Visibility = Visibility.Visible;
+                NotificationGrid.Visibility = Visibility.Collapsed;
+            }
+        }
+
 
 
 
@@ -330,6 +344,6 @@ namespace WPF_GUI
 
         #endregion
 
-       
+
     }
 }

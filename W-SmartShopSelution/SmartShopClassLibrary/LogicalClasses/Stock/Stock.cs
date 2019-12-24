@@ -71,6 +71,18 @@ namespace Library
         }
 
         /// <summary>
+        /// Get The Expiration period by Expiration Date
+        /// </summary>
+        /// <param name="stock"></param>
+        /// <returns></returns>
+        public static TimeSpan GetExpirationPeriod(StockModel stock)
+        {
+            TimeSpan expirationPeriod = stock.ExpirationDate - DateTime.Now;
+            return expirationPeriod;
+        }
+
+
+        /// <summary>
         /// Get the Expiration state (The days and hours left OR expired !! OR Don't Expire )
         /// </summary>
         /// <param name="stock"></param>
@@ -79,11 +91,9 @@ namespace Library
         {
             if(stock.ExpirationAlarmEnabled == true)
             {
-                TimeSpan inStore = DateTime.Now - stock.Date;
-                TimeSpan timeLeft = stock.ExpirationPeriod - inStore;
-                if(timeLeft > new TimeSpan(0, 0, 0, 0))
+                if(stock.GetExpirationPeriod > new TimeSpan(0, 0, 0, 0))
                 {
-                    return "Days: " + timeLeft.Days + " ,Hours: " + timeLeft.Hours;
+                    return "Days: " + stock.GetExpirationPeriod.Days + " ,Hours: " + stock.GetExpirationPeriod.Hours;
                 }
                 else
                 {
@@ -293,7 +303,6 @@ namespace Library
             return stocks.FindAll(x=>x.Product == product);
         }
         
-
 
 
     }

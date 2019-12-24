@@ -48,43 +48,28 @@ namespace Library
         /// </summary>
         public DateTime Date { get; set; }
 
-        public float ExpirationPeriodHours { set; get; }
-        
-        /// <summary>
-        /// The time of the expiration in in timeSpain
-        /// </summary>
-        public TimeSpan ExpirationPeriod
-        {
-            get
-            {
-                return new TimeSpan(0, (int)ExpirationPeriodHours, 0, 0);
-            }
-            set
-            {
-                ExpirationPeriodHours = (float)value.TotalHours;
-            }
-        }
-
-
-        /// <summary>
-        /// if it's disabled the user will not get notification about the ExpirationPeriod
-        /// </summary>
-        public Boolean ExpirationAlarmEnabled { get; set; }
-
         /// <summary>
         /// The Current Quantity of this product in the store
         /// </summary>
         public float Quantity { get; set; }
 
-        /// <summary>
-        /// The quantity that the user need to be notified at To get more stocks
-        /// </summary>
-        public int AlarmQuantity { get; set; }
+        #region Expiration Notifications
 
         /// <summary>
-        /// if it's disabled the user will not get notification about the AlarmQuantity
+        /// The date of expiration
         /// </summary>
-        public Boolean QuantityAlarmEnabled { get; set; }
+        public DateTime ExpirationDate { set; get; }
+        
+        /// <summary>
+        /// The time of the expiration 
+        /// </summary>
+        public TimeSpan GetExpirationPeriod
+        {
+            get
+            {
+                return Stock.GetExpirationPeriod(this);
+            }
+        }
 
         /// <summary>
         /// Get how much time to be complitly expired
@@ -98,6 +83,35 @@ namespace Library
                 return Stock.ExpirationState(this);
             }
         }
+
+        /// <summary>
+        /// notification Time in hours
+        /// </summary>
+        public DateTime NotificationDate { get; set; }
+
+      
+        /// <summary>
+        /// if it's disabled the user will not get notification about the ExpirationPeriod
+        /// </summary>
+        public Boolean ExpirationAlarmEnabled { get; set; }
+
+        #endregion
+
+        #region Quantity Notifications
+
+
+
+        /// <summary>
+        /// The quantity that the user need to be notified at To get more stocks
+        /// </summary>
+        public int AlarmQuantity { get; set; }
+
+        /// <summary>
+        /// if it's disabled the user will not get notification about the AlarmQuantity
+        /// </summary>
+        public Boolean QuantityAlarmEnabled { get; set; }
+        #endregion
+
 
     }
 }

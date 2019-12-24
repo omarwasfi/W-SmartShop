@@ -46,6 +46,15 @@ namespace Library
         /// <returns></returns>
         public static StockModel AddStockToTheDatabase(StockModel stock,string db)
         {
+            
+            if(stock.ExpirationDate < new DateTime(1999, 1, 1))
+            {
+                stock.ExpirationDate = new DateTime(1999, 1, 1);
+            }
+            if (stock.NotificationDate < new DateTime(1999, 1, 1))
+            {
+                stock.NotificationDate = new DateTime(1999, 1, 1);
+            }
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnVal(db)))
             {
                 var p = new DynamicParameters();
@@ -55,7 +64,8 @@ namespace Library
                 p.Add("@IncomePrice", stock.IncomePrice);
                 p.Add("@SalePrice", stock.SalePrice);
                 p.Add("@Date", stock.Date);
-                p.Add("@ExpirationPeriodHours", stock.ExpirationPeriodHours);
+                p.Add("@ExpirationDate", stock.ExpirationDate);
+                p.Add("@NotificationDate", stock.NotificationDate);
                 p.Add("@ExpirationAlarmEnabled", stock.ExpirationAlarmEnabled);
                 p.Add("@Quantity", stock.Quantity);
                 p.Add("@AlarmQuantity", stock.AlarmQuantity);

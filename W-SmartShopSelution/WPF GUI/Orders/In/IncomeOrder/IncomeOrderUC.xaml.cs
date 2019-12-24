@@ -149,10 +149,26 @@ namespace WPF_GUI
 
             QuantityAlarmCB.IsChecked = false;
             StockQuantityAlarmValue.Value = 5;
+
             StockExpirationPeriodCB.IsChecked = false;
-            StockExpirationPeriodValue.Value = new TimeSpan(30,12,0,0);
-            ExpirationDateValue.DisplayDateStart = DateTime.Now;
-            ExpirationDateValue.IsEnabled = false;
+
+            StockExpirationPeriodValue.IsEnabled = false;
+
+            StockExpirationDateValue.IsEnabled = false;
+            StockExpirationDateValue.DisplayDateStart = DateTime.Now;
+            StockExpirationDateValue.SelectedDate = DateTime.Now.Add(new TimeSpan(30,0,0));
+
+            StockExpirationTimeValue.IsEnabled = false;
+            StockExpirationTimeValue.Value = "12:00";
+            
+            NotifyMeAtDateValue.IsEnabled = false;
+            NotifyMeAtDateValue.DisplayDateStart = DateTime.Now;
+            NotifyMeAtDateValue.SelectedDate = DateTime.Now.Add(new TimeSpan(30, 0, 0));
+
+            NotifyMeAtTime.IsEnabled = false;
+            NotifyMeAtTime.Value = "12:00";
+
+
 
             // Supplier GB
             List<string> supplierSearchTypes = new List<string>();
@@ -367,7 +383,7 @@ namespace WPF_GUI
             StockIncomePriceValue.Value = stock.IncomePrice;
             StockSalePriceValue.Value = stock.SalePrice;
             StockQuantityAlarmValue.Value = stock.AlarmQuantity;
-            StockExpirationPeriodValue.Value = stock.ExpirationPeriod;
+            StockExpirationPeriodValue.Value = stock.GetExpirationPeriod;
         }
 
         private void ClearStock()
@@ -379,10 +395,10 @@ namespace WPF_GUI
             QuantityAlarmCB.IsChecked = false;
             StockQuantityAlarmValue.Value = 5;
             StockExpirationPeriodCB.IsChecked = false;
-            StockExpirationPeriodValue.Value = new TimeSpan(30, 12, 0, 0);
+            //StockExpirationPeriodValue.Value = new TimeSpan(30, 12, 0, 0);
         }
 
-
+        
         #region Events
 
         private void CategoryOrBrandFilterValue_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -496,28 +512,68 @@ namespace WPF_GUI
 
         private void StockExpirationPeriodCB_Checked(object sender, RoutedEventArgs e)
         {
+
+            StockExpirationPeriodCB.IsChecked = true;
+
             StockExpirationPeriodValue.IsEnabled = true;
-            ExpirationDateValue.IsEnabled = true;
+
+            StockExpirationDateValue.IsEnabled = true;
+            StockExpirationDateValue.DisplayDateStart = DateTime.Now;
+
+            StockExpirationTimeValue.IsEnabled = true;
+
+            NotifyMeAtDateValue.IsEnabled = true;
+            NotifyMeAtDateValue.DisplayDateStart = DateTime.Now;
+
+            NotifyMeAtTime.IsEnabled = true;
         }
 
         private void StockExpirationPeriodCB_Unchecked(object sender, RoutedEventArgs e)
         {
-            StockExpirationPeriodValue.IsEnabled = false;
-            ExpirationDateValue.IsEnabled = false;
+            QuantityAlarmCB.IsChecked = false;
+            StockQuantityAlarmValue.Value = 5;
 
+            StockExpirationPeriodCB.IsChecked = false;
+
+            StockExpirationPeriodValue.IsEnabled = false;
+
+            StockExpirationDateValue.IsEnabled = false;
+            StockExpirationDateValue.DisplayDateStart = DateTime.Now;
+            StockExpirationDateValue.SelectedDate = DateTime.Now.Add(new TimeSpan(30, 0, 0));
+
+            StockExpirationTimeValue.IsEnabled = false;
+
+            NotifyMeAtDateValue.IsEnabled = false;
+            NotifyMeAtDateValue.SelectedDate = DateTime.Now.Add(new TimeSpan(30, 0, 0));
+
+            NotifyMeAtTime.IsEnabled = false;
         }
 
         private void ExpirationDateValue_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
-            TimeSpan expirationPeriod = new TimeSpan();
-            expirationPeriod = ExpirationDateValue.SelectedDate.Value - DateTime.Now;
-            
+            DateTime stockExpirationDate = (DateTime)StockExpirationDateValue.SelectedDate;
+            if (stockExpirationDate != null)
+            {
+                DateTime expirationDateTime = new DateTime();
+                expirationDateTime = (DateTime)StockExpirationDateValue.SelectedDate;
+
+                DateTime expirationTime = System.Convert.ToDateTime(StockExpirationTimeValue.Value);
+
+              /*  expirationDateTime =  expirationDateTime.AddHours(expirationTime.Hour);
+                expirationDateTime = expirationDateTime.AddMinutes(expirationTime.Minute);*/
+
+                TimeSpan expirationPeriod = new TimeSpan();
+                expirationPeriod = expirationDateTime - DateTime.Now;
+
                 StockExpirationPeriodValue.Value = expirationPeriod;
-            
-            
+
+                NotifyMeAtDateValue.SelectedDate = (DateTime)StockExpirationDateValue.SelectedDate;
+                NotifyMeAtTime.Value = "12:00";
+            }
+
         }
 
-      
+       
         private void ClearIncomeOrderProductButton_Click(object sender, RoutedEventArgs e)
         {
             ClearProduct();
@@ -553,8 +609,18 @@ namespace WPF_GUI
             stock.Date = DateTime.Now;
             if (StockExpirationPeriodCB.IsChecked == true)
             {
+                DateTime expirationDate = new DateTime();
+                expirationDate = (DateTime)StockExpirationDateValue.SelectedDate;
+                
+                DateTime notifyDate = new DateTime();
+                notifyDate = (DateTime)NotifyMeAtDateValue.SelectedDate;
+
+                stock.NotificationDate = notifyDate;
+
+
                 stock.ExpirationAlarmEnabled = true;
-                stock.ExpirationPeriod = StockExpirationPeriodValue.Value.Value;
+                stock.ExpirationDate = expirationDate;
+
             }
             if (QuantityAlarmCB.IsChecked == true)
             {
@@ -931,8 +997,9 @@ namespace WPF_GUI
 
 
 
+
         #endregion
 
-       
+        
     }
 }

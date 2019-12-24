@@ -112,7 +112,7 @@
 
                     <!-- SBarcode -->
                     <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="0,109.746,0,0" ><Run Text="SBarcode : "/></TextBlock>
-                    <syncfusion:SfTextBoxExt x:Name="SBarCodeSearchValue" SelectionChanged="SBarCodeSearchValue_SelectionChanged" FlowDirection="RightToLeft" HighlightedTextColor="Red" TextHighlightMode="MultipleOccurrence" HorizontalAlignment="Left" Height="29" TextWrapping="Wrap"  VerticalAlignment="Top" Width="98" Margin="118,114,0,0" FontSize="18" Foreground="Black" Background="White" MaxLines="1">
+                    <syncfusion:SfTextBoxExt x:Name="SBarCodeSearchValue" SelectionChanged="SBarCodeSearchValue_SelectionChanged" FlowDirection="RightToLeft" HighlightedTextColor="Red" TextHighlightMode="MultipleOccurrence" HorizontalAlignment="Left" Height="29" TextWrapping="Wrap"  VerticalAlignment="Top" Width="59" Margin="117,113,0,0" FontSize="18" Foreground="Black" Background="White" MaxLines="1">
                         <syncfusion:SfTextBoxExt.BorderBrush>
                             <LinearGradientBrush EndPoint="0,20" MappingMode="Absolute" StartPoint="0,0">
                                 <GradientStop Color="#FFABADB3" Offset="0.05"/>
@@ -121,11 +121,11 @@
                             </LinearGradientBrush>
                         </syncfusion:SfTextBoxExt.BorderBrush>
                     </syncfusion:SfTextBoxExt>
-                    <ComboBox x:Name="SBarCodeFilterValue" SelectionChanged="SBarCodeFilterValue_SelectionChanged" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="17.167" Margin="215.71,115.039,0,0"  />
+                    <ComboBox x:Name="SBarCodeFilterValue" SelectionChanged="SBarCodeFilterValue_SelectionChanged" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="17" Margin="176,114,0,0"  />
 
                     <!-- In Stock -->
-                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="282,110,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" Width="102" ><Run Text="In Stock : "/></TextBlock>
-                    <syncfusion:DoubleTextBox x:Name="InStockValue" IsReadOnly="True" MinValue="0" HorizontalAlignment="Left" Height="28" Margin="389,116,0,0" NumberGroupSeparator="," NumberDecimalDigits="2" NumberDecimalSeparator="." Text="DoubleTextBox" Value="0" VerticalAlignment="Top" Width="60" FontSize="18" MaxLines="1">
+                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="199,110,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" Width="102" ><Run Text="In Stock : "/></TextBlock>
+                    <syncfusion:DoubleTextBox x:Name="InStockValue" IsReadOnly="True" MinValue="0" HorizontalAlignment="Left" Height="28" Margin="306,116,0,0" NumberGroupSeparator="," NumberDecimalDigits="2" NumberDecimalSeparator="." Text="DoubleTextBox" Value="0" VerticalAlignment="Top" Width="60" FontSize="18" MaxLines="1">
                         <syncfusion:DoubleTextBox.BorderBrush>
                             <LinearGradientBrush EndPoint="0,20" MappingMode="Absolute" StartPoint="0,0">
                                 <GradientStop Color="#FFABADB3" Offset="0.05"/>
@@ -136,8 +136,8 @@
                     </syncfusion:DoubleTextBox>
 
                     <!-- Sale Price -->
-                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="0,151.674,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Sale Price : "/></TextBlock>
-                    <syncfusion:CurrencyTextBox x:Name="StockSalePriceValue" IsReadOnly="False" Value="0" CurrencyNegativePattern="8"  CurrencyPositivePattern="3"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="96"  Margin="119.71,157.929,0,0" Height="27" Background="{x:Null}" FontSize="18" SelectionBrush="#FF009688" RenderTransformOrigin="0.68,0.352" MinValue="0" MaxLines="1">
+                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="371,110,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Sale Price : "/></TextBlock>
+                    <syncfusion:CurrencyTextBox x:Name="StockSalePriceValue" IsReadOnly="False" Value="0" CurrencyNegativePattern="8"  CurrencyPositivePattern="3"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="96"  Margin="500,117,0,0" Height="27" Background="{x:Null}" FontSize="18" SelectionBrush="#FF009688" RenderTransformOrigin="0.68,0.352" MinValue="0" MaxLines="1">
                         <syncfusion:CurrencyTextBox.NumberFormat>
                             <Globalization:NumberFormatInfo CurrencyGroupSeparator=" " CurrencyDecimalDigits="2" CurrencyDecimalSeparator="." CurrencySymbol="L.E"/>
                         </syncfusion:CurrencyTextBox.NumberFormat>
@@ -151,8 +151,8 @@
                     </syncfusion:CurrencyTextBox>
 
                     <!-- Income Price -->
-                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="282,152,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Income Price :"/></TextBlock>
-                    <syncfusion:CurrencyTextBox x:Name="StockIncomePriceValue" TextChanged="StockIncomePriceValue_TextChanged" IsReadOnly="False" Value="0"  CurrencyNegativePattern="8"  CurrencyPositivePattern="3"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="96"  Margin="441,159,0,0" Height="27" Background="{x:Null}" FontSize="18" SelectionBrush="#FF009688" RenderTransformOrigin="0.68,0.352" MinValue="0" MaxLines="1">
+                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="601,111,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Income Price :"/></TextBlock>
+                    <syncfusion:CurrencyTextBox x:Name="StockIncomePriceValue" TextChanged="StockIncomePriceValue_TextChanged" IsReadOnly="False" Value="0"  CurrencyNegativePattern="8"  CurrencyPositivePattern="3"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="90"  Margin="760,117,0,0" Height="27" Background="{x:Null}" FontSize="18" SelectionBrush="#FF009688" RenderTransformOrigin="0.68,0.352" MinValue="0" MaxLines="1">
                         <syncfusion:CurrencyTextBox.NumberFormat>
                             <Globalization:NumberFormatInfo CurrencyGroupSeparator=" " CurrencyDecimalDigits="2" CurrencyDecimalSeparator="." CurrencySymbol="L.E"/>
                         </syncfusion:CurrencyTextBox.NumberFormat>
@@ -196,13 +196,13 @@
 
                     <!-- Choose Product Buttons -->
 
-                    <Button x:Name="IncomeOrderProductButton" Click="IncomeOrderProductButton_Click" Content="ADD" HorizontalAlignment="Left" Margin="716,146,0,0" VerticalAlignment="Top" Width="73" Height="34" FontSize="17" FontWeight="Bold"/>
+                    <Button x:Name="IncomeOrderProductButton" Click="IncomeOrderProductButton_Click" Content="ADD" HorizontalAlignment="Left" Margin="496,230,0,0" VerticalAlignment="Top" Width="73" Height="34" FontSize="17" FontWeight="Bold"/>
 
-                    <Button x:Name="ClearIncomeOrderProductButton" Click="ClearIncomeOrderProductButton_Click" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Red"   VerticalAlignment="Top" Height="35" Margin="794,145,10,0"  >
+                    <Button x:Name="ClearIncomeOrderProductButton" Click="ClearIncomeOrderProductButton_Click" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Red"   VerticalAlignment="Top" Height="35" Margin="569,229,235,0"  >
                         <materialDesign:PackIcon Kind="Clear" Width="30" Height="30"/>
                     </Button>
 
-                    <Button x:Name="CreateNewProductButton" Click="CreateNewProductButton_Click" Margin="630,185,9,0" VerticalAlignment="Top" Height="33"  >
+                    <Button x:Name="CreateNewProductButton" Click="CreateNewProductButton_Click" Margin="630,232,9,0" VerticalAlignment="Top" Height="33"  >
                         <Grid Width="215" Height="33">
                             <materialDesign:PackIcon Kind="PlusBox" Width="25" Height="25"/>
                             <TextBlock FontSize="17" Text="Create New Product" Margin="30,0,25,10"/>
@@ -210,8 +210,8 @@
                     </Button>
 
                     <!-- Quantity alarm -->
-                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="263,199,0,0" ><Run Text="Quantity Alarm : "/></TextBlock>
-                    <syncfusion:IntegerTextBox x:Name="StockQuantityAlarmValue" IsEnabled="False"  HorizontalAlignment="Left" Height="23" Margin="491,207,0,0" MinWidth="100" NumberGroupSeparator="," Text="100" VerticalAlignment="Top" Width="100" Background="{x:Null}" SelectionBrush="{x:Null}" MaxValue="2147483647" MinValue="0" MaxLines="1">
+                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="0,148,0,0" ><Run Text="Quantity Alarm : "/></TextBlock>
+                    <syncfusion:IntegerTextBox x:Name="StockQuantityAlarmValue" IsEnabled="False"  HorizontalAlignment="Left" Height="23" Margin="209,158,0,0" MinWidth="100" NumberGroupSeparator="," Text="100" VerticalAlignment="Top" Width="100" Background="{x:Null}" SelectionBrush="{x:Null}" MaxValue="2147483647" MinValue="0" MaxLines="1">
                         <syncfusion:IntegerTextBox.BorderBrush>
                             <LinearGradientBrush EndPoint="0,20" MappingMode="Absolute" StartPoint="0,0">
                                 <GradientStop Color="#FFABADB3" Offset="0.05"/>
@@ -220,11 +220,22 @@
                             </LinearGradientBrush>
                         </syncfusion:IntegerTextBox.BorderBrush>
                     </syncfusion:IntegerTextBox>
-                    <CheckBox x:Name="QuantityAlarmCB" Checked="QuantityAlarmCB_Checked" Unchecked="QuantityAlarmCB_Unchecked" HorizontalAlignment="Left" Margin="468,208,0,0" VerticalAlignment="Top"/>
+                    <CheckBox x:Name="QuantityAlarmCB" Checked="QuantityAlarmCB_Checked" Unchecked="QuantityAlarmCB_Unchecked" HorizontalAlignment="Left" Margin="186,162,0,0" VerticalAlignment="Top"/>
 
                     <!-- Expiration Period alarm -->
-                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="262,232,0,0" ><Run Text="Expiration Period : "/></TextBlock>
-                    <syncfusion:TimeSpanEdit x:Name="StockExpirationPeriodValue" IsEnabled="False" MinValue="0" Value="30:12:0:0" AllowNull="False" Format="d 'Days' h 'Hours'" ShowArrowButtons="False" HorizontalAlignment="Left" Height="30" Margin="491,235,0,0"  VerticalAlignment="Top" Width="201" Background="{x:Null}" MaxLines="1">
+                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="316,148,0,0" Width="185" ><Run Text="Expiration Time : "/></TextBlock>
+                    <CheckBox x:Name="StockExpirationPeriodCB" Checked="StockExpirationPeriodCB_Checked" Unchecked="StockExpirationPeriodCB_Unchecked"  HorizontalAlignment="Left" Margin="501,157,0,0" VerticalAlignment="Top"/>
+                    <DatePicker x:Name="StockExpirationDateValue"  SelectedDateChanged="ExpirationDateValue_SelectedDateChanged" HorizontalAlignment="Left" Margin="524,155,0,0" VerticalAlignment="Top" Width="93" SelectedDateFormat="Short"/>
+                    <syncfusion:SfTimePicker Name="StockExpirationTimeValue"   HorizontalContentAlignment="Center"  Value="15:4"  DropDownHeight="300" AccentBrush="#FF009688" IsEnabled="False" HorizontalAlignment="Left" Margin="620,148,0,0" VerticalAlignment="Top" Width="94" FontSize="18">
+                        <syncfusion:SfTimePicker.BorderBrush>
+                            <LinearGradientBrush EndPoint="0,20" MappingMode="Absolute" StartPoint="0,0">
+                                <GradientStop Color="#FFABADB3" Offset="0.05"/>
+                                <GradientStop Color="#FFE2E3EA" Offset="0.07"/>
+                                <GradientStop Color="Gray" Offset="1"/>
+                            </LinearGradientBrush>
+                        </syncfusion:SfTimePicker.BorderBrush>
+                    </syncfusion:SfTimePicker>
+                    <syncfusion:TimeSpanEdit x:Name="StockExpirationPeriodValue" IsReadOnly="True" IsEnabled="False" Value="30:23:59:59" AllowNull="True" Format="d 'days' h 'hours'" ShowArrowButtons="False" HorizontalAlignment="Left" Height="30" Margin="720,151,0,0"  VerticalAlignment="Top" Width="130" Background="{x:Null}" MaxLines="1">
                         <syncfusion:TimeSpanEdit.BorderBrush>
                             <LinearGradientBrush EndPoint="0,20" MappingMode="Absolute" StartPoint="0,0">
                                 <GradientStop Color="#FFABADB3" Offset="0.05"/>
@@ -233,8 +244,21 @@
                             </LinearGradientBrush>
                         </syncfusion:TimeSpanEdit.BorderBrush>
                     </syncfusion:TimeSpanEdit>
-                    <DatePicker x:Name="ExpirationDateValue" SelectedDateChanged="ExpirationDateValue_SelectedDateChanged" HorizontalAlignment="Left" Margin="706,238,0,0" VerticalAlignment="Top" Width="128" SelectedDateFormat="Short"/>
-                    <CheckBox x:Name="StockExpirationPeriodCB" Checked="StockExpirationPeriodCB_Checked" Unchecked="StockExpirationPeriodCB_Unchecked"  HorizontalAlignment="Left" Margin="468,241,0,0" VerticalAlignment="Top"/>
+
+                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="316,188,0,0" ><Run Text="Notify me at : "/></TextBlock>
+                    <DatePicker x:Name="NotifyMeAtDateValue"  HorizontalAlignment="Left" Margin="531,196,0,0" VerticalAlignment="Top" Width="84" SelectedDateFormat="Short"/>
+                    <syncfusion:SfTimePicker Name="NotifyMeAtTime" Value="15:4" HorizontalContentAlignment="Center" IsEnabled="False" HorizontalAlignment="Left" Margin="620,185,0,0" VerticalAlignment="Top" Width="94" FontSize="18">
+                        <syncfusion:SfTimePicker.BorderBrush>
+                            <LinearGradientBrush EndPoint="0,20" MappingMode="Absolute" StartPoint="0,0">
+                                <GradientStop Color="#FFABADB3" Offset="0.05"/>
+                                <GradientStop Color="#FFE2E3EA" Offset="0.07"/>
+                                <GradientStop Color="Gray" Offset="1"/>
+                            </LinearGradientBrush>
+                        </syncfusion:SfTimePicker.BorderBrush>
+                    </syncfusion:SfTimePicker>
+
+
+
 
                 </Grid>
 
