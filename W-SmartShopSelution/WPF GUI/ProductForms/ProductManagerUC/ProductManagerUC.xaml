@@ -46,13 +46,14 @@
 
 
 
-            <syncfusion:SfDataGrid x:Name="ProductList" AllowResizingColumns="True" ColumnSizer="Star" AllowDraggingColumns="True" Margin="10,34,10,48" AllowFiltering="True" ShowGroupDropArea="True" AutoGenerateColumns="False" Background="#FFD8D8D8">
+            <syncfusion:SfDataGrid x:Name="ProductList" AllowResizingColumns="True" ColumnSizer="AutoLastColumnFill" AllowDraggingColumns="True" Margin="10,34,10,48" AllowFiltering="True" ShowGroupDropArea="True" AutoGenerateColumns="False" Background="#FFD8D8D8">
                 <syncfusion:SfDataGrid.Columns>
+                    <syncfusion:GridTextColumn HeaderText="Serial Number" MappingName="SerialNumber" Width="75" />
                     <syncfusion:GridTextColumn HeaderText="Name" MappingName="Name" />
                     <syncfusion:GridTextColumn HeaderText="Size" MappingName="Size" />
                     <syncfusion:GridTextColumn HeaderText="Barcode" MappingName="BarCode" />
-                    <syncfusion:GridTextColumn HeaderText="Serial Number" MappingName="SerialNumber" />
-                    <syncfusion:GridTextColumn HeaderText="Serial Number 2" MappingName="SerialNumber2" />
+                    <syncfusion:GridTextColumn HeaderText="IncomePrice" MappingName="IncomePrice" />
+                    <syncfusion:GridTextColumn HeaderText="SalePrice" MappingName="SalePrice" />
                     <syncfusion:GridTextColumn HeaderText="Category" MappingName="Category.Name" />
                     <syncfusion:GridTextColumn HeaderText="Brand" MappingName="Brand.Name" />
                     <syncfusion:GridTextColumn HeaderText="Details" MappingName="Details" />

@@ -29,13 +29,14 @@
                 </Button>
 
             </Grid>
-            <syncfusion:SfDataGrid x:Name="StocksList" AllowResizingColumns="True" ColumnSizer="Star" AllowDraggingColumns="True" Margin="10,34,10,48" AllowFiltering="True" ShowGroupDropArea="True" AutoGenerateColumns="False" Background="#FFD8D8D8">
+            <syncfusion:SfDataGrid x:Name="StocksList" AllowResizingColumns="True" ColumnSizer="AutoLastColumnFill" AllowDraggingColumns="True" Margin="10,34,10,48" AllowFiltering="True" ShowGroupDropArea="True" AutoGenerateColumns="False" Background="#FFD8D8D8">
                 <syncfusion:SfDataGrid.Columns>
+                    <syncfusion:GridTextColumn HeaderText="Serial Number" MappingName="Product.SerialNumber" Width="75" />
+                    <syncfusion:GridTextColumn HeaderText="Product Name" MappingName="Product.Name" />
+                    <syncfusion:GridTextColumn HeaderText="Size" MappingName="Product.Size" />
                     <syncfusion:GridTextColumn HeaderText="Category" MappingName="Product.Category.Name" />
                     <syncfusion:GridTextColumn HeaderText="Brand" MappingName="Product.Brand.Name" />
                     <syncfusion:GridTextColumn HeaderText="Barcode" MappingName="Product.BarCode" />
-                    <syncfusion:GridTextColumn HeaderText="Product Name" MappingName="Product.Name" />
-                    <syncfusion:GridTextColumn HeaderText="Size" MappingName="Product.Size" />
                     <syncfusion:GridTextColumn HeaderText="SBarcode" MappingName="SBarCode" />
                     <syncfusion:GridTextColumn HeaderText="In Stock" MappingName="Quantity" />
                     <syncfusion:GridTextColumn HeaderText="Income Price" MappingName="IncomePrice" />

@@ -176,6 +176,7 @@
     <Content Include="SQL Update\EMG.A.v004\Q1.txt" />
     <Content Include="SQL Update\EMG.A.v005\Q1.txt" />
     <Content Include="SQL Update\EMG.A.v007\Q1.txt" />
+    <Content Include="SQL Update\EMG.A.v008\Q1.txt" />
     <Content Include="WPF Logic Planning\InstallmentOrderUC Logic.txt" />
     <Content Include="WPF Logic Planning\SellUCLogic.txt" />
     <Content Include="WPF Planing\FirstPhase.txt" />

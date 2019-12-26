@@ -346,7 +346,20 @@ namespace WPF_GUI
                 ProductDetailsValue.Text = product.Details; 
             }
 
-            StockModel stock = (StockModel)SBarCodeSearchValue.SelectedItem;
+            if (StockSalePriceValue.Value != product.SalePrice)
+            {
+                StockSalePriceValue.Value = 0;
+
+                StockSalePriceValue.Value = product.SalePrice;
+            }
+            if (StockIncomePriceValue.Value != product.IncomePrice)
+            {
+                StockIncomePriceValue.Value = 0;
+
+                StockIncomePriceValue.Value = product.IncomePrice;
+            }
+
+                StockModel stock = (StockModel)SBarCodeSearchValue.SelectedItem;
             if (stock != null && stock.Product != product)
             {
                 ClearStock();

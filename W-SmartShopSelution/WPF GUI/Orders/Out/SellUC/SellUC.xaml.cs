@@ -338,7 +338,7 @@ namespace WPF_GUI.Sell
             ExpirationFilterValue.ItemsSource = FStocks; 
             ExpirationFilterValue.DisplayMemberPath = "ExpirationState";
 
-
+            SBarCodeFilterValue.SelectedIndex = 0;
         }
         private void SetStock(StockModel stock)
         {
