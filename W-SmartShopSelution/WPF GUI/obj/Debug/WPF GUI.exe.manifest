@@ -1314,14 +1314,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="WPF GUI.exe" size="12239784">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="WPF GUI.exe" size="12239272">
       <assemblyIdentity name="WPF GUI" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>sOhzJ4d505Ny5q+vER9DVErAF+F3t/+8HUo2u7MS8u0=</dsig:DigestValue>
+        <dsig:DigestValue>K9U6cp27Di4Ero2oLDRMFxYcIbNeRRTq73wAe0aVlP4=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
