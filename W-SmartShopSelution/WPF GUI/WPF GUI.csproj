@@ -466,6 +466,9 @@
     <Compile Include="CashUC\CashUC.xaml.cs">
       <DependentUpon>CashUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Orders\In\IncomeOrderM\IncomeOrderMUC.xaml.cs">
+      <DependentUpon>IncomeOrderMUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Manager\InvestUC.xaml.cs">
       <DependentUpon>InvestUC.xaml</DependentUpon>
     </Compile>
@@ -578,6 +581,10 @@
       <DependentUpon>TransformUC.xaml</DependentUpon>
     </Compile>
     <Page Include="CashUC\CashUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Orders\In\IncomeOrderM\IncomeOrderMUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

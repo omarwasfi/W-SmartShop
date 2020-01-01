@@ -358,9 +358,40 @@ namespace WPF_GUI.Orders.Out.OrderUC
          
         }
 
-
+            
 
         #region Events
+
+
+        private void ConfitmButton_Click(object sender, RoutedEventArgs e)
+        {
+            SaveTheOrder();
+        }
+
+        private void PrintButton_Click(object sender, RoutedEventArgs e)
+        {
+            if(CustomerWillPayNowValue.Value > 0)
+            {
+                if (MessageBox.Show("Do you want to Save the order  ?", "Confirm", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                {
+                    SaveTheOrder();
+                }
+            }
+            else
+            {
+                PrintTheOrder();
+            }
+
+            
+        }
+        private void BackToNormalGridButton_FromPrintGrid_Click(object sender, RoutedEventArgs e)
+        {
+            UserGrid.Visibility = Visibility.Visible;
+            PrintingGrid.Visibility = Visibility.Collapsed;
+
+            SetInitialValues();
+        }
+
         private void CustomerWillPayNowValue_TextChanged(object sender, TextChangedEventArgs e)
         {
             decimal payNow = CustomerWillPayNowValue.Value.Value;
@@ -400,35 +431,6 @@ namespace WPF_GUI.Orders.Out.OrderUC
             {
                 CustomerWillPayNowValue.Value = CustomerShouldPayValue.Value - payLater;
             }
-        }
-
-        private void ConfitmButton_Click(object sender, RoutedEventArgs e)
-        {
-            SaveTheOrder();
-        }
-
-        private void PrintButton_Click(object sender, RoutedEventArgs e)
-        {
-            if(CustomerWillPayNowValue.Value > 0)
-            {
-                if (MessageBox.Show("Do you want to Save the order  ?", "Confirm", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
-                {
-                    SaveTheOrder();
-                }
-            }
-            else
-            {
-                PrintTheOrder();
-            }
-
-            
-        }
-        private void BackToNormalGridButton_FromPrintGrid_Click(object sender, RoutedEventArgs e)
-        {
-            UserGrid.Visibility = Visibility.Visible;
-            PrintingGrid.Visibility = Visibility.Collapsed;
-
-            SetInitialValues();
         }
 
         private void StoreWillPayNowValue_TextChanged(object sender, TextChangedEventArgs e)
@@ -578,18 +580,17 @@ namespace WPF_GUI.Orders.Out.OrderUC
                 if (RemovedOrderProducts.Exists(x => x.Product.Id == orderProductModel.Product.Id))
                 {
                     RemovedOrderProducts.Find(x => x.Product.Id == orderProductModel.Product.Id).Quantity += orderProductModel.Quantity;
-                    ModifiedOrder.OrderProducts.Remove(orderProductModel);
                 }
                 else
                 {
                     RemovedOrderProducts.Add(orderProductModel);
-                    ModifiedOrder.OrderProducts.Remove(orderProductModel);
                 }
                 if (ModifiedOrder.OrderProducts.Count == 0)
                 {
                     break;
                 }
             }
+            ModifiedOrder.OrderProducts = new List<OrderProductModel>();
             UpdateOrderProducts();
 
         }
@@ -601,18 +602,17 @@ namespace WPF_GUI.Orders.Out.OrderUC
                 if (ModifiedOrder.OrderProducts.Exists(x => x.Product.Id == orderProductModel.Product.Id))
                 {
                     ModifiedOrder.OrderProducts.Find(x => x.Product.Id == orderProductModel.Product.Id).Quantity += orderProductModel.Quantity;
-                    RemovedOrderProducts.Remove(orderProductModel);
                 }
                 else
                 {
                     ModifiedOrder.OrderProducts.Add(orderProductModel);
-                    RemovedOrderProducts.Remove(orderProductModel);
                 }
                 if (RemovedOrderProducts.Count == 0)
                 {
                     break;
                 }
             }
+            RemovedOrderProducts = new List<OrderProductModel>();
             UpdateOrderProducts();
 
         }

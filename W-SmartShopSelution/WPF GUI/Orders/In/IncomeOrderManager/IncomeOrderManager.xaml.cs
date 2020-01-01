@@ -46,11 +46,28 @@ namespace WPF_GUI.Orders.In.IncomeOrderManager
             SetInitialValues();
         }
 
-        private void PrintButton_Click(object sender, RoutedEventArgs e)
-        {
 
+        private void IncomeOrdersList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if ((IncomeOrderModel)IncomeOrdersList.SelectedItem != null)
+            {
+                IncomeOrderModel incomeOrder = (IncomeOrderModel)IncomeOrdersList.SelectedItem;
+                UserGrid.Visibility = Visibility.Collapsed;
+                IncomeOrderGrid.Visibility = Visibility.Visible;
+                IncomeOrderMUC incomeOrderMUC = new IncomeOrderMUC(incomeOrder);
+                IncomeOrderUCContant.Content = incomeOrderMUC;
+
+            }
+        }
+
+        private void BackToNormalGridButton_FromIncomeOrderGrid_Click(object sender, RoutedEventArgs e)
+        {
+            IncomeOrderGrid.Visibility = Visibility.Collapsed;
+            UserGrid.Visibility = Visibility.Visible;
+            SetInitialValues();
         }
         #endregion
+
 
     }
 }

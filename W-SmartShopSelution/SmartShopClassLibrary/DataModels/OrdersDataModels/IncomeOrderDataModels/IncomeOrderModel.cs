@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace Library
 {
+    [Serializable]
+
     public class IncomeOrderModel
     {
         public int Id { get; set; }
@@ -27,6 +29,7 @@ namespace Library
         /// All the payments of this IncomeOrder 
         /// </summary>
         public List<IncomeOrderPaymentModel> IncomeOrderPayments { get; set; }
+      
         /// <summary>
         /// The details of the IncomeOrder
         /// </summary>
@@ -37,6 +40,42 @@ namespace Library
         /// </summary>
         public List<IncomeOrderProductModel> IncomeOrderProducts { get; set; }
 
+        /// <summary>
+        /// Get the incomeOrderState ("DONE" , "Store Should Receive" , "Store Should Pay")
+        /// </summary>
+        public string GetIncomeOrderState
+        {
+            get
+            {
+                if (GetTotalPaid == GetTotalPrice)
+                {
+                    return "DONE";
+                }
+                else if (GetTotalNotPaid > 0)
+                {
+                    return "Store Should Pay";
+                }
+                else if (GetStoreShouldReceive > 0)
+                {
+                    return "Store Should Receive";
+                }
+                else
+                {
+                    return "Something wrong !";
+                }
+            }
+        }
+
+        /// <summary>
+        /// What store should receive ( has a value when the store return a product and the Supplier didn't pay the store the money)
+        /// </summary>
+        public decimal GetStoreShouldReceive
+        {
+            get
+            {
+                return GetTotalPaid - GetTotalPrice;
+            }
+        }
 
 
         /// <summary>

@@ -1,0 +1,29 @@
+﻿
+CREATE PROCEDURE spIncomeOrderPayment_Delete
+		@Id int
+AS
+BEGIN
+
+	SET NOCOUNT ON;
+
+   DELETE FROM IncomeOrderPayment
+	WHERE Id = @Id;
+END
+GO
+-------------------------------------------------------------------------------------------------------------------------
+
+
+CREATE PROCEDURE spIncomeOrderPayment_Update
+	@Id int,
+	@Paid money
+AS
+BEGIN
+
+	SET NOCOUNT ON;
+	
+	UPDATE IncomeOrderPayment
+	SET Paid = @Paid
+	WHERE Id = @Id;
+    
+END
+GO

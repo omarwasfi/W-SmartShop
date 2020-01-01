@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 
 namespace Library
 {
+    [Serializable]
+
     public class IncomeOrderProductModel
     {
         public int Id { get; set; }

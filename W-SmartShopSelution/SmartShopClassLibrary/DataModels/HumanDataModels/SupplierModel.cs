@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace Library
 {
+    [Serializable]
+
     /// <summary>
     /// the supplier Model is a person that supplie the product to the store
     /// Database Id, person model

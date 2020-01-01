@@ -795,6 +795,8 @@ namespace Library
             return incomeOrder;
         }
 
+       
+
         /// <summary>
         /// -OLD-get all the The incomeOrders from the database
         /// - set the supplier
@@ -810,7 +812,6 @@ namespace Library
         {
             return IncomeOrderAccess.GetIncomeOrders(db);
         }
-
 
         /// <summary>
         /// Get incomeOrder with a new Id
@@ -840,6 +841,99 @@ namespace Library
 
         #endregion
 
+        #region IncomeOrderPayment
+
+        /// <summary>
+        /// Add IncomeOrderPayment To the database
+        /// Add to the public variables
+        /// add to the IncomeOrder
+        /// return the  IncomeOrderpayment
+        /// </summary>
+        /// <param name="incomeOrder"></param>
+        /// <param name="incomeOrderPayment"></param>
+        /// <returns></returns>
+        public IncomeOrderPaymentModel AddIncomeOrderPaymentToTheDatabase(IncomeOrderModel incomeOrder, IncomeOrderPaymentModel incomeOrderPayment)
+        {
+            // Save the orderPayment to the database
+            IncomeOrderPaymentAccess.AddIncomeOrderPaymentToTheDatabase(incomeOrderPayment, incomeOrder, db);
+            PublicVariables.IncomeOrderPayments.Add(incomeOrderPayment);
+            incomeOrder.IncomeOrderPayments.Add(incomeOrderPayment);
+            OperationModel operation = new OperationModel
+            {
+                IncomeOrderPayment = incomeOrderPayment
+            };
+            PublicVariables.Operations.Add(operation);
+
+            return incomeOrderPayment;
+        }
+
+        /// <summary>
+        /// If the store should receive money we will reduce the total paid value by Update or remove the incomeOrder.IncomeOrderPayments
+        /// </summary>
+        /// <param name="incomeOrder"></param>
+        /// <returns></returns>
+        public IncomeOrderModel SupplierPayment(IncomeOrderModel incomeOrder, decimal supplierPaid)
+        {
+            // Get the last OrderPayment
+            IncomeOrderPaymentModel incomeOrderPaymentModel = new IncomeOrderPaymentModel();
+            if (incomeOrder.IncomeOrderPayments.Count > 0)
+            {
+                incomeOrderPaymentModel = incomeOrder.IncomeOrderPayments.Last();
+            }
+            foreach (IncomeOrderPaymentModel incomeOrderPayment in incomeOrder.IncomeOrderPayments)
+            {
+                if (incomeOrderPaymentModel.Date < incomeOrderPayment.Date)
+                {
+                    incomeOrderPaymentModel = incomeOrderPayment;
+                }
+            }
+
+
+            while (supplierPaid > 0)
+            {
+                if (incomeOrderPaymentModel.Paid <= supplierPaid)
+                {
+                    supplierPaid -= incomeOrderPaymentModel.Paid;
+
+                    // Remove the orderProducts From the database 
+                    IncomeOrderPaymentAccess.RemoveIncomeOrderPayment(incomeOrderPaymentModel, db);
+
+                    // remove the orderpayment from the Order 
+                    incomeOrder.IncomeOrderPayments.Remove(incomeOrderPaymentModel);
+
+                    // remove the orderpayment from the publicVariables 
+                    PublicVariables.IncomeOrderPayments.Remove(incomeOrderPaymentModel);
+
+                    // remove the orderpayment from the operation of this orderPayment
+                    OperationModel operation = PublicVariables.Operations.Find(x => x.IncomeOrderPayment == incomeOrderPaymentModel);
+                    PublicVariables.Operations.Remove(operation);
+
+                    if (incomeOrder.IncomeOrderPayments.Count > 0)
+                    {
+                        incomeOrderPaymentModel = incomeOrder.IncomeOrderPayments.Last();
+                    }
+                    foreach (IncomeOrderPaymentModel incomeOrderPayment in incomeOrder.IncomeOrderPayments)
+                    {
+                        if (incomeOrderPaymentModel.Date < incomeOrderPayment.Date)
+                        {
+                            incomeOrderPaymentModel = incomeOrderPayment;
+                        }
+                    }
+
+                }
+                else
+                {
+                    incomeOrderPaymentModel.Paid -= supplierPaid;
+                    IncomeOrderPaymentAccess.UpdateIncomeOrderPayment(incomeOrderPaymentModel, db);
+                    supplierPaid = 0;
+                }
+            }
+
+            return incomeOrder;
+        }
+
+
+        #endregion
 
         #region Product Functions
 
@@ -1852,8 +1946,6 @@ namespace Library
             StockAccess.RemoveStockFromTheDatabase(stock, db);
         }
         #endregion
-
-        
 
         #region IncomeOrderProduct
 

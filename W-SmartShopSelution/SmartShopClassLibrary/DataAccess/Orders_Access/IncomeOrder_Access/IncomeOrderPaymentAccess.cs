@@ -108,7 +108,38 @@ namespace Library
             }
             return incomeOrderPayments;
         }
-        
-        
+
+        /// <summary>
+        /// Remove IncomeOrderPayment from the database 
+        /// </summary>
+        /// <param name="incomeOrderPayment"></param>
+        /// <param name="db"></param>
+        public static void RemoveIncomeOrderPayment(IncomeOrderPaymentModel incomeOrderPayment, string db)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnVal(db)))
+            {
+                var p = new DynamicParameters();
+                p.Add("@Id", incomeOrderPayment.Id);
+                connection.Execute("dbo.spIncomeOrderPayment_Delete", p, commandType: CommandType.StoredProcedure);
+            }
+        }
+
+        /// <summary>
+        /// Update the IncomeOrderPayment with the database
+        /// Update the "Paid"
+        /// </summary>
+        /// <param name="incomeOrderPayment"></param>
+        /// <param name="db"></param>
+        public static void UpdateIncomeOrderPayment(IncomeOrderPaymentModel incomeOrderPayment, string db)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnVal(db)))
+            {
+
+                var p = new DynamicParameters();
+                p.Add("@Id", incomeOrderPayment.Id);
+                p.Add("@Paid", incomeOrderPayment.Paid);
+                connection.Execute("dbo.spIncomeOrderPayment_Update", p, commandType: CommandType.StoredProcedure);
+            }
+        }
     }
 }

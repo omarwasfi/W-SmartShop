@@ -20,7 +20,7 @@
                     <materialDesign:PackIcon Kind="Reload" Width="20" Height="20"/>
                 </Button>
 
-                <Button x:Name="PrintButton" Click="PrintButton_Click" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray"   VerticalAlignment="Top"  Margin="115,0,55,0" Height="25"  >
+                <Button x:Name="PrintButton" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray"   VerticalAlignment="Top"  Margin="115,0,55,0" Height="25"  >
                     <materialDesign:PackIcon Kind="Printer" Width="20" Height="20"/>
                 </Button>
 
@@ -30,11 +30,11 @@
 
             </Grid>
             
-            <syncfusion:SfDataGrid x:Name="IncomeOrdersList" AllowResizingColumns="True" ColumnSizer="AutoWithLastColumnFill" AllowDraggingColumns="True" Margin="10,29,10,10" AllowFiltering="True" ShowGroupDropArea="True" AutoGenerateColumns="False" Background="#FFD8D8D8">
+            <syncfusion:SfDataGrid x:Name="IncomeOrdersList" MouseDoubleClick="IncomeOrdersList_MouseDoubleClick" AllowResizingColumns="True" ColumnSizer="AutoWithLastColumnFill" AllowDraggingColumns="True" Margin="10,29,10,10" AllowFiltering="True" ShowGroupDropArea="True" AutoGenerateColumns="False" Background="#FFD8D8D8">
                 <syncfusion:SfDataGrid.Columns>
                     <syncfusion:GridTextColumn HeaderText="ID" MappingName="Id" />
-                    <syncfusion:GridTextColumn HeaderText="Date" MappingName="DateTimeOfTheOrder" />
-                    <syncfusion:GridTextColumn HeaderText="Supplier" MappingName="Customer.Person.FullName" />
+                    <syncfusion:GridTextColumn HeaderText="Date" MappingName="Date" />
+                    <syncfusion:GridTextColumn HeaderText="Supplier" MappingName="Supplier.Person.FullName" />
                     <syncfusion:GridTextColumn HeaderText="Staff" MappingName="Staff.Person.FullName" />
                     <syncfusion:GridTextColumn HeaderText="Store" MappingName="Store.Name" />
                     <syncfusion:GridTextColumn HeaderText="Total Price" MappingName="GetTotalPrice" />
@@ -75,5 +75,14 @@
             </syncfusion:SfDataGrid>
 
         </Grid>
+
+        <Grid x:Name="IncomeOrderGrid" Visibility="Collapsed" >
+            <Button x:Name="BackToNormalGridButton_FromIncomeOrderGrid" Click="BackToNormalGridButton_FromIncomeOrderGrid_Click"  Visibility="Visible" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Green"   VerticalAlignment="Top"  Margin="0,0,1287,0" Height="25"  >
+                <materialDesign:PackIcon Kind="ArrowLeft" Width="20" Height="20"/>
+            </Button>
+            <ContentControl Name="IncomeOrderUCContant" Content="ContentControl" HorizontalAlignment="Left" Margin="0,25,0,0" VerticalAlignment="Top" Height="655" Width="1343"/>
+
+        </Grid>
+
     </Grid>
 </UserControl>

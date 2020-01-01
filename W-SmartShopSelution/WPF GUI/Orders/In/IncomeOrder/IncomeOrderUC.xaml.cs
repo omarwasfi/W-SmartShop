@@ -95,6 +95,7 @@ namespace WPF_GUI
 
             ProductNameSearchValue.ItemsSource = null;
             ProductNameSearchValue.ItemsSource = PublicVariables.Products;
+            ProductNameSearchValue.SearchCondition = Syncfusion.UI.Xaml.Grid.SearchCondition.Contains;
             ProductNameSearchValue.DisplayMember = "Name";
 
 
