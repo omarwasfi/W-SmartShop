@@ -16,7 +16,7 @@ namespace Library
         /// </summary>
         /// <param name="staff"></param>
         /// <returns></returns>
-      public static List<OperationModel> FilterOperationsByStaff(StaffModel staff)
+        public static List<OperationModel> FilterOperationsByStaff(StaffModel staff)
       {
          return PublicVariables.Operations.FindAll(x => x.GetStaff == staff);
       }
@@ -137,5 +137,38 @@ namespace Library
             }
         }
 
+        /// <summary>
+        /// Get all Orders of this staff
+        /// </summary>
+        /// <param name="staff"></param>
+        /// <returns></returns>
+        public static List<OrderModel> GetOrders(StaffModel staff)
+        {
+            return PublicVariables.Orders.FindAll(x => x.Staff.Id == staff.Id);
+        }
+
+        /// <summary>
+        /// Filter the staff orders by the time Period between the two dateTime
+        /// </summary>
+        /// <param name="staff">the staff model that we need it's orders to be filted</param>
+        /// <param name="from">the start date</param>
+        /// <param name="to"> the end date</param>
+        /// <returns></returns>
+        public static List<OrderModel> FilterOrders(StaffModel staff, DateTime from, DateTime to)
+        {
+            return staff.GetOrders.FindAll(x => x.DateTimeOfTheOrder > from && x.DateTimeOfTheOrder < to);
+        }
+
+        /// <summary>
+        /// Get the count of orders in specific period
+        /// </summary>
+        /// <param name="staff"></param>
+        /// <param name="from"></param>
+        /// <param name="to"></param>
+        /// <returns></returns>
+        public static int GetTheOrdersCount(StaffModel staff, DateTime from, DateTime to)
+        {
+            return FilterOrders(staff, from, to).Count;
+        }
     }
 }

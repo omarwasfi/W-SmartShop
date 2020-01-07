@@ -128,6 +128,17 @@ namespace Library
         }
 
         /// <summary>
+        /// The actual profit that the customer paid means( if the totalPaid more than the incomePrice -> actual profit = totalPaid - incomePrice)
+        /// </summary>
+        public decimal GetReceivedProfit
+        {
+            get
+            {
+               return Order.GetReceivedProfit(this);
+            }
+        }
+
+        /// <summary>
         /// Calculate the total Price from each OrderProduct
         /// </summary>
         public decimal GetTotalPrice

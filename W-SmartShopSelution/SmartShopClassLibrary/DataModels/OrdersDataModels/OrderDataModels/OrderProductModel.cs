@@ -79,6 +79,16 @@ namespace Library
             
         }
 
+        /// <summary>
+        /// Calculate the IncomePrice for the OrderProduct  GetIncomePrice * (decimal)Quantity
+        /// </summary>
+        public decimal GetTotalIncomePrice
+        {
+            get
+            {
+              return GetIncomePrice * (decimal)Quantity;
+            }
+        }
 
 
     }

@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace Library
 {
-
+    /// <summary>
+    /// Every thing about the store.
+    /// </summary>
     [Serializable]
     public class StoreModel
     {
@@ -80,6 +82,17 @@ namespace Library
         }
 
         /// <summary>
+        /// Get the count of the Orders
+        /// </summary>
+        public int GetOrdersCount
+        {
+            get
+            {
+                return GetOrders.Count;
+            }
+        }
+
+        /// <summary>
         ///  All IncomeOrders Done by this store
         /// </summary>
         public List<IncomeOrderModel> GetIncomeOrders 
@@ -98,6 +111,17 @@ namespace Library
             get
             {
                 return Store.GetShopBills(this);
+            }
+        }
+
+        /// <summary>
+        /// Get the value of the shopBills
+        /// </summary>
+        public decimal GetTotalShopBillsValue
+        {
+            get
+            {
+                return Store.GetTotalShopBillsValue(this);
             }
         }
 
@@ -222,7 +246,16 @@ namespace Library
             }
         }
 
-      
+        /// <summary>
+        /// Get the total sells value of all the orders
+        /// </summary>
+        public decimal GetTotalSellsValue
+        {
+            get
+            {
+                return Store.GetTotalSellsValue(this);
+            }
+        }
 
         /// <summary>
         /// Calculate the Total of Paid Order 
@@ -231,7 +264,7 @@ namespace Library
         {
             get
             {
-                return Store.GetTotalPaidOrders(this);
+                return Store.GetTotalPaidOrdersValue(this);
             }
         }
 
@@ -243,6 +276,28 @@ namespace Library
             get
             {
                 return Store.GetNotPaidOrdersValue(this);
+            }
+        }
+
+        /// <summary>
+        ///  The actual profit that the customer paid means( if the totalPaid more than the incomePrice -> actual profit = totalPaid - incomePrice)
+        /// </summary>
+        public decimal GetTotalReceivedProfit
+        {
+            get
+            {
+                return Store.GetTotalReceivedProfit(this);
+            }
+        }
+
+        /// <summary>
+        /// Gets the total sells without the profits
+        /// </summary>
+        public decimal GetSellsWihtoutProfits
+        {
+            get
+            {
+               return Store.GetSellsWihtoutProfits(this);
             }
         }
 

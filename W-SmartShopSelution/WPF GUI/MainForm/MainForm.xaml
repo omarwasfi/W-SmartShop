@@ -13,7 +13,7 @@
     <Window.Resources>
         <Storyboard x:Key="CloseMenu">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="GridMenu">
-                <EasingDoubleKeyFrame KeyTime="0" Value="250"/>
+                <EasingDoubleKeyFrame KeyTime="0" Value="260"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0"/>
             </DoubleAnimationUsingKeyFrames>
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="GridBackground">
@@ -24,7 +24,7 @@
         <Storyboard x:Key="OpenMenu">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="GridMenu">
                 <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="250"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="260"/>
             </DoubleAnimationUsingKeyFrames>
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="GridBackground">
                 <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
@@ -112,7 +112,7 @@
         </Grid>
         <Grid x:Name="NotificationGrid" Visibility="Collapsed" Margin="10,22,10,10" Grid.Row="1" />
 
-        <Grid x:Name="GridMenu" Width="250" HorizontalAlignment="Left" Margin="-250 0 0 0" Background="White" RenderTransformOrigin="0.5,0.5" Grid.RowSpan="2">
+        <Grid x:Name="GridMenu" Width="260" HorizontalAlignment="Left" Margin="-260,0,0,0" Background="White" RenderTransformOrigin="0.5,0.5" Grid.RowSpan="2">
             <Grid.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -122,51 +122,9 @@
                 </TransformGroup>
             </Grid.RenderTransform>
             <ScrollViewer >
-                <StackPanel>
+                <StackPanel Width="260">
                     <Image Height="186" Source="Assets/AshesMenuLogo.png" Stretch="Uniform"/>
                     <ListView x:Name="MainMenuListView_MainForm" Foreground="#FF313131" FontFamily="Champagne &amp; Limousines" FontSize="18">
-
-                        <ListViewItem x:Name="SellViewItem" Visibility="Collapsed" Height="45" Padding="0" Selected="SellViewItem_Selected">
-                            <StackPanel Orientation="Horizontal" Margin="10 0">
-                                <materialDesign:PackIcon Kind="Money100" Width="20" Height="20" Foreground="Gray" Margin="5" VerticalAlignment="Center"/>
-                                <TextBlock Text="Sell" Margin="10"/>
-                            </StackPanel>
-                        </ListViewItem>
-
-                        <ListViewItem x:Name="SellingOrdersManagerViewItem" Visibility="Visible" Height="45" Padding="0" Selected="OrderManagerViewItem_Selected">
-                            <StackPanel Orientation="Horizontal" Margin="10 0">
-                                <materialDesign:PackIcon Kind="Orbit" Width="20" Height="20" Foreground="Gray" Margin="5" VerticalAlignment="Center"/>
-                                <TextBlock Text="Sell Orders Manager" Margin="10"/>
-                            </StackPanel>
-                        </ListViewItem>
-
-                        <ListViewItem x:Name="CashUCViewItem" Visibility="Visible" Height="45" Padding="0" Selected="CashUCViewItem_Selected">
-                            <StackPanel Orientation="Horizontal" Margin="10 0">
-                                <materialDesign:PackIcon Kind="AttachMoney" Width="20" Height="20" Foreground="Gray" Margin="5" VerticalAlignment="Center"/>
-                                <TextBlock Text="cash Flow" Margin="10"/>
-                            </StackPanel>
-                        </ListViewItem>
-
-                        <ListViewItem x:Name="ManagerViewItem" Selected="ManagerViewItem_Selected" Visibility="Visible" Height="45" Padding="0" >
-                            <StackPanel Orientation="Horizontal" Margin="10 0">
-                                <materialDesign:PackIcon Kind="ChartBar" Width="20" Height="20" Foreground="Gray" Margin="5" VerticalAlignment="Center"/>
-                                <TextBlock Text="Manager" Margin="10"/>
-                            </StackPanel>
-                        </ListViewItem>
-
-                        <ListViewItem x:Name="InventoryViewItem" Visibility="Collapsed" Height="45" Padding="0" Selected="InventoryViewItem_Selected" >
-                            <StackPanel Orientation="Horizontal" Margin="10 0">
-                                <materialDesign:PackIcon Kind="Store" Width="20" Height="20" Foreground="Gray" Margin="5" VerticalAlignment="Center"/>
-                                <TextBlock Text="Inventory" Margin="10"/>
-                            </StackPanel>
-                        </ListViewItem>
-
-                        <ListViewItem x:Name="GlobalInventoryViewItem" Visibility="Collapsed" Height="45" Padding="0" Selected="GlobalInventoryViewItem_Selected" >
-                            <StackPanel Orientation="Horizontal" Margin="10 0">
-                                <materialDesign:PackIcon Kind="Globe" Width="20" Height="20" Foreground="Gray" Margin="5" VerticalAlignment="Center"/>
-                                <TextBlock Text="Global Inventory" Margin="10"/>
-                            </StackPanel>
-                        </ListViewItem>
 
                         <ListViewItem x:Name="IncomeOrderViewItem" Visibility="Visible" Height="45" Padding="0" Selected="IncomeOrderViewItem_Selected" >
                             <StackPanel Orientation="Horizontal" Margin="10 0">
@@ -175,24 +133,17 @@
                             </StackPanel>
                         </ListViewItem>
 
-                        <ListViewItem x:Name="IncomeOrderManagerViewItem" Visibility="Visible" Height="45" Padding="0" Selected="IncomeOrderManagerViewItem_Selected" >
+                        <ListViewItem x:Name="SellViewItem" Visibility="Visible" Height="45" Padding="0" Selected="SellViewItem_Selected">
                             <StackPanel Orientation="Horizontal" Margin="10 0">
-                                <materialDesign:PackIcon Kind="InboxArrowDown" Width="20" Height="20" Foreground="Gray" Margin="5" VerticalAlignment="Center"/>
-                                <TextBlock Text="Income Orders" Margin="10"/>
+                                <materialDesign:PackIcon Kind="Money100" Width="20" Height="20" Foreground="Gray" Margin="5" VerticalAlignment="Center"/>
+                                <TextBlock Text="Sell Order" Margin="10"/>
                             </StackPanel>
                         </ListViewItem>
 
-                        <ListViewItem x:Name="BillsManagerViewItem" Visibility="Visible" Height="45" Padding="0" Selected="BillsManagerViewItem_Selected" >
+                        <ListViewItem x:Name="InventoryViewItem" Visibility="Visible" Height="45" Padding="0" Selected="InventoryViewItem_Selected" >
                             <StackPanel Orientation="Horizontal" Margin="10 0">
-                                <materialDesign:PackIcon Kind="Qi" Width="20" Height="20" Foreground="Gray" Margin="5" VerticalAlignment="Center"/>
-                                <TextBlock Text="Bills Manager" Margin="10"/>
-                            </StackPanel>
-                        </ListViewItem>
-
-                        <ListViewItem x:Name="StaffSalaryManagerViewItem" Visibility="Visible" Height="45" Padding="0" Selected="StaffSalaryManagerViewItem_Selected" >
-                            <StackPanel Orientation="Horizontal" Margin="10 0">
-                                <materialDesign:PackIcon Kind="Table" Width="20" Height="20" Foreground="Gray" Margin="5" VerticalAlignment="Center"/>
-                                <TextBlock Text="Staff Salary" Margin="10"/>
+                                <materialDesign:PackIcon Kind="Store" Width="20" Height="20" Foreground="Gray" Margin="5" VerticalAlignment="Center"/>
+                                <TextBlock Text="Inventory" Margin="10"/>
                             </StackPanel>
                         </ListViewItem>
 
@@ -203,6 +154,71 @@
                             </StackPanel>
                         </ListViewItem>
 
+                        <ListViewItem x:Name="IncomeOrderManagerViewItem" Visibility="Visible" Height="45" Padding="0" Selected="IncomeOrderManagerViewItem_Selected" >
+                            <StackPanel Orientation="Horizontal" Margin="10 0">
+                                <materialDesign:PackIcon Kind="InboxArrowDown" Width="20" Height="20" Foreground="Gray" Margin="5" VerticalAlignment="Center"/>
+                                <TextBlock Text="Income Order Manager" Margin="10"/>
+                            </StackPanel>
+                        </ListViewItem>
+
+
+                        <ListViewItem x:Name="SellingOrdersManagerViewItem" Visibility="Visible" Height="45" Padding="0" Selected="OrderManagerViewItem_Selected">
+                            <StackPanel Orientation="Horizontal" Margin="10 0">
+                                <materialDesign:PackIcon Kind="Orbit" Width="20" Height="20" Foreground="Gray" Margin="5" VerticalAlignment="Center"/>
+                                <TextBlock Text="Sell Orders Manager" Margin="10"/>
+                            </StackPanel>
+                        </ListViewItem>
+                        
+                        <ListViewItem x:Name="BillsManagerViewItem" Visibility="Visible" Height="45" Padding="0" Selected="BillsManagerViewItem_Selected" >
+                            <StackPanel Orientation="Horizontal" Margin="10 0">
+                                <materialDesign:PackIcon Kind="Qi" Width="20" Height="20" Foreground="Gray" Margin="5" VerticalAlignment="Center"/>
+                                <TextBlock Text="Bills" Margin="10"/>
+                            </StackPanel>
+                        </ListViewItem>
+
+                        <ListViewItem x:Name="LineViewItem" Visibility="Visible" Height="8" Padding="0" >
+                            <StackPanel Orientation="Horizontal" Margin="10 0">
+                                <Button Width="230" Height="3"></Button>
+                            </StackPanel>
+                        </ListViewItem>
+
+                        <ListViewItem x:Name="ProductsManagerViewItem" Visibility="Visible" Height="45" Padding="0" Selected="ProductsViewItem_Selected" >
+                            <StackPanel Orientation="Horizontal" Margin="10 0">
+                                <materialDesign:PackIcon Kind="Package" Width="20" Height="20" Foreground="Gray" Margin="5" VerticalAlignment="Center"/>
+                                <TextBlock Text="Products" Margin="10"/>
+                            </StackPanel>
+                        </ListViewItem>
+                        
+                        <ListViewItem x:Name="CashUCViewItem" Visibility="Visible" Height="45" Padding="0" Selected="CashUCViewItem_Selected">
+                            <StackPanel Orientation="Horizontal" Margin="10 0">
+                                <materialDesign:PackIcon Kind="AttachMoney" Width="20" Height="20" Foreground="Gray" Margin="5" VerticalAlignment="Center"/>
+                                <TextBlock Text="cash Flow" Margin="10"/>
+                            </StackPanel>
+                        </ListViewItem>
+
+                       
+
+                       
+
+                        <ListViewItem x:Name="GlobalInventoryViewItem" Visibility="Collapsed" Height="45" Padding="0" Selected="GlobalInventoryViewItem_Selected" >
+                            <StackPanel Orientation="Horizontal" Margin="10 0">
+                                <materialDesign:PackIcon Kind="Globe" Width="20" Height="20" Foreground="Gray" Margin="5" VerticalAlignment="Center"/>
+                                <TextBlock Text="Global Inventory" Margin="10"/>
+                            </StackPanel>
+                        </ListViewItem>
+
+
+ 
+
+                        <ListViewItem x:Name="StaffSalaryManagerViewItem" Visibility="Visible" Height="45" Padding="0" Selected="StaffSalaryManagerViewItem_Selected" >
+                            <StackPanel Orientation="Horizontal" Margin="10 0">
+                                <materialDesign:PackIcon Kind="Table" Width="20" Height="20" Foreground="Gray" Margin="5" VerticalAlignment="Center"/>
+                                <TextBlock Text="Staff Salary" Margin="10"/>
+                            </StackPanel>
+                        </ListViewItem>
+
+                      
+
                         <ListViewItem x:Name="PriceListViewItem" Visibility="Collapsed" Height="45" Padding="0" Selected="PriceListViewItem_Selected" >
                             <StackPanel Orientation="Horizontal" Margin="10 0">
                                 <materialDesign:PackIcon Kind="Printer" Width="20" Height="20" Foreground="Gray" Margin="5" VerticalAlignment="Center"/>
@@ -210,10 +226,12 @@
                             </StackPanel>
                         </ListViewItem>
 
-                        <ListViewItem x:Name="ProductsManagerViewItem" Visibility="Collapsed" Height="45" Padding="0" Selected="ProductsViewItem_Selected" >
+                        
+                        
+                        <ListViewItem x:Name="ManagerViewItem" Selected="ManagerViewItem_Selected" Visibility="Visible" Height="45" Padding="0" >
                             <StackPanel Orientation="Horizontal" Margin="10 0">
-                                <materialDesign:PackIcon Kind="Package" Width="20" Height="20" Foreground="Gray" Margin="5" VerticalAlignment="Center"/>
-                                <TextBlock Text="Products Manager" Margin="10"/>
+                                <materialDesign:PackIcon Kind="ChartBar" Width="20" Height="20" Foreground="Gray" Margin="5" VerticalAlignment="Center"/>
+                                <TextBlock Text="Manager" Margin="10"/>
                             </StackPanel>
                         </ListViewItem>
 

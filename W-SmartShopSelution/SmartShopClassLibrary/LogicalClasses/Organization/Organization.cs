@@ -52,6 +52,21 @@ namespace Library
             return totalNotPaid;
         }
 
+        /// <summary>
+        /// Get the number of the orders happend in the organization(the count of orders of all stores)
+        /// </summary>
+        /// <param name="organization"></param>
+        /// <returns></returns>
+        public static int GetOrderCount(OrganizationModel organization)
+        {
+            int ordersCount = new int();
+            foreach(StoreModel store in organization.GetStores)
+            {
+                ordersCount += store.GetOrdersCount;
+            }
+            return ordersCount;
+        }
+
         public static decimal GetLoans(OrganizationModel organization)
         {
             decimal totalLoans = new decimal();

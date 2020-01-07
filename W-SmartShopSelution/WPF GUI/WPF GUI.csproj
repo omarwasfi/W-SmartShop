@@ -15,6 +15,8 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
     <IsWebBootstrapper>false</IsWebBootstrapper>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
     <PublishUrl>C:\Users\omerw\Documents\GitHub\W-SmartShop\Test\1st\Pre\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -30,8 +32,6 @@
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -69,375 +69,493 @@
       <HintPath>..\packages\Dragablz.0.0.3.203\lib\net45\Dragablz.dll</HintPath>
     </Reference>
     <Reference Include="FluentValidation, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0, processorArchitecture=MSIL">
-      <HintPath>..\packages\FluentValidation.8.5.1\lib\net45\FluentValidation.dll</HintPath>
+      <HintPath>..\packages\FluentValidation.8.6.1\lib\net45\FluentValidation.dll</HintPath>
     </Reference>
     <Reference Include="LibExcel, Version=1.0.0.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
-      <HintPath>..\packages\Stimulsoft.Reports.Engine.2019.3.1\lib\net45\LibExcel.dll</HintPath>
+      <HintPath>..\packages\Stimulsoft.Reports.Engine.2020.1.1\lib\net45\LibExcel.dll</HintPath>
     </Reference>
-    <Reference Include="MaterialDesignColors, Version=1.2.0.325, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MaterialDesignColors.1.2.0\lib\net45\MaterialDesignColors.dll</HintPath>
+    <Reference Include="MaterialDesignColors, Version=1.2.2.920, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignColors.1.2.2\lib\net45\MaterialDesignColors.dll</HintPath>
     </Reference>
-    <Reference Include="MaterialDesignThemes.Wpf, Version=2.6.0.325, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MaterialDesignThemes.2.6.0\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
+    <Reference Include="MaterialDesignThemes.Wpf, Version=3.0.1.920, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignThemes.3.0.1\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
     </Reference>
     <Reference Include="ReachFramework" />
-    <Reference Include="Stimulsoft.Base, Version=2019.3.1.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
-      <HintPath>..\packages\Stimulsoft.Reports.Net.2019.3.1\lib\net45\Stimulsoft.Base.dll</HintPath>
+    <Reference Include="Stimulsoft.Base, Version=2020.1.1.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stimulsoft.Dashboards.Win.2020.1.1\lib\net45\Stimulsoft.Base.dll</HintPath>
     </Reference>
-    <Reference Include="Stimulsoft.Controls, Version=2019.3.1.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
-      <HintPath>..\packages\Stimulsoft.Reports.Net.2019.3.1\lib\net45\Stimulsoft.Controls.dll</HintPath>
+    <Reference Include="Stimulsoft.Client.Designer, Version=2020.1.1.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stimulsoft.Reports.Wpf.2020.1.1\lib\net45\Stimulsoft.Client.Designer.dll</HintPath>
     </Reference>
-    <Reference Include="Stimulsoft.Controls.Win, Version=2019.3.1.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
-      <HintPath>..\packages\Stimulsoft.Reports.Net.2019.3.1\lib\net45\Stimulsoft.Controls.Win.dll</HintPath>
+    <Reference Include="Stimulsoft.Controls, Version=2020.1.1.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stimulsoft.Reports.Net.2020.1.1\lib\net45\Stimulsoft.Controls.dll</HintPath>
     </Reference>
-    <Reference Include="Stimulsoft.Dashboard, Version=2019.3.1.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL" />
-    <Reference Include="Stimulsoft.Dashboard.Drawing.Wpf, Version=2019.3.1.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL" />
-    <Reference Include="Stimulsoft.Dashboard.Export, Version=2019.3.1.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL" />
-    <Reference Include="stimulsoft.dashboard.viewer.wpf, Version=2019.3.1.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL" />
-    <Reference Include="Stimulsoft.Data, Version=2019.3.1.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
-      <HintPath>..\packages\Stimulsoft.Reports.Engine.2019.3.1\lib\net45\Stimulsoft.Data.dll</HintPath>
+    <Reference Include="Stimulsoft.Controls.Win, Version=2020.1.1.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stimulsoft.Reports.Net.2020.1.1\lib\net45\Stimulsoft.Controls.Win.dll</HintPath>
     </Reference>
-    <Reference Include="Stimulsoft.Database, Version=2019.3.1.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
-      <HintPath>..\packages\Stimulsoft.Reports.Net.2019.3.1\lib\net45\Stimulsoft.Database.dll</HintPath>
+    <Reference Include="Stimulsoft.Dashboard, Version=2020.1.1.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stimulsoft.Dashboards.Win.2020.1.1\lib\net45\Stimulsoft.Dashboard.dll</HintPath>
     </Reference>
-    <Reference Include="Stimulsoft.Design, Version=2019.3.1.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
-      <HintPath>..\packages\Stimulsoft.Reports.Net.2019.3.1\lib\net45\Stimulsoft.Design.dll</HintPath>
+    <Reference Include="Stimulsoft.Dashboard.Design, Version=2020.1.1.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stimulsoft.Dashboards.Win.2020.1.1\lib\net45\Stimulsoft.Dashboard.Design.dll</HintPath>
     </Reference>
-    <Reference Include="Stimulsoft.Editor, Version=2019.3.1.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
-      <HintPath>..\packages\Stimulsoft.Reports.Net.2019.3.1\lib\net45\Stimulsoft.Editor.dll</HintPath>
+    <Reference Include="Stimulsoft.Dashboard.Drawing, Version=2020.1.1.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stimulsoft.Dashboards.Win.2020.1.1\lib\net45\Stimulsoft.Dashboard.Drawing.dll</HintPath>
     </Reference>
-    <Reference Include="Stimulsoft.Map, Version=2019.3.1.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
-      <HintPath>..\packages\Stimulsoft.Reports.Engine.2019.3.1\lib\net45\Stimulsoft.Map.dll</HintPath>
+    <Reference Include="Stimulsoft.Dashboard.Drawing.Wpf, Version=2020.1.1.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stimulsoft.Dashboards.Win.2020.1.1\lib\net45\Stimulsoft.Dashboard.Drawing.Wpf.dll</HintPath>
     </Reference>
-    <Reference Include="Stimulsoft.Report, Version=2019.3.1.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
-      <HintPath>..\packages\Stimulsoft.Reports.Net.2019.3.1\lib\net45\Stimulsoft.Report.dll</HintPath>
+    <Reference Include="Stimulsoft.Dashboard.Export, Version=2020.1.1.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stimulsoft.Dashboards.Win.2020.1.1\lib\net45\Stimulsoft.Dashboard.Export.dll</HintPath>
     </Reference>
-    <Reference Include="Stimulsoft.Report.Check, Version=2019.3.1.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
-      <HintPath>..\packages\Stimulsoft.Reports.Engine.2019.3.1\lib\net45\Stimulsoft.Report.Check.dll</HintPath>
+    <Reference Include="Stimulsoft.Dashboard.Viewer, Version=2020.1.1.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stimulsoft.Dashboards.Win.2020.1.1\lib\net45\Stimulsoft.Dashboard.Viewer.dll</HintPath>
     </Reference>
-    <Reference Include="Stimulsoft.Report.Design, Version=2019.3.1.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
-      <HintPath>..\packages\Stimulsoft.Reports.Net.2019.3.1\lib\net45\Stimulsoft.Report.Design.dll</HintPath>
+    <Reference Include="Stimulsoft.Dashboard.Viewer.Wpf, Version=2020.1.1.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stimulsoft.Dashboards.Win.2020.1.1\lib\net45\Stimulsoft.Dashboard.Viewer.Wpf.dll</HintPath>
     </Reference>
-    <Reference Include="Stimulsoft.Report.Helper, Version=2019.3.1.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
-      <HintPath>..\packages\Stimulsoft.Reports.Engine.2019.3.1\lib\net45\Stimulsoft.Report.Helper.dll</HintPath>
+    <Reference Include="Stimulsoft.Data, Version=2020.1.1.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stimulsoft.Reports.Engine.2020.1.1\lib\net45\Stimulsoft.Data.dll</HintPath>
     </Reference>
-    <Reference Include="Stimulsoft.Report.Web, Version=2019.3.1.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
-      <HintPath>..\packages\Stimulsoft.Reports.Net.2019.3.1\lib\net45\Stimulsoft.Report.Web.dll</HintPath>
+    <Reference Include="Stimulsoft.Database, Version=2020.1.1.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stimulsoft.Reports.Net.2020.1.1\lib\net45\Stimulsoft.Database.dll</HintPath>
     </Reference>
-    <Reference Include="Stimulsoft.Report.Win, Version=2019.3.1.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
-      <HintPath>..\packages\Stimulsoft.Reports.Net.2019.3.1\lib\net45\Stimulsoft.Report.Win.dll</HintPath>
+    <Reference Include="Stimulsoft.Database.Wpf, Version=2020.1.1.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stimulsoft.Reports.Wpf.2020.1.1\lib\net45\Stimulsoft.Database.Wpf.dll</HintPath>
     </Reference>
-    <Reference Include="stimulsoft.report.wpf, Version=2019.3.1.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL" />
-    <Reference Include="Svg, Version=2.2.1.39233, Culture=neutral, PublicKeyToken=12a0bac221edeae2, processorArchitecture=MSIL">
-      <HintPath>..\packages\Stimulsoft.Reports.Engine.2019.3.1\lib\net45\Svg.dll</HintPath>
+    <Reference Include="Stimulsoft.Design, Version=2020.1.1.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stimulsoft.Reports.Net.2020.1.1\lib\net45\Stimulsoft.Design.dll</HintPath>
     </Reference>
-    <Reference Include="Syncfusion.Calculate.Base, Version=17.3460.0.14, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
-      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.3.0.14\Assemblies\4.6\Syncfusion.Calculate.Base.dll</HintPath>
+    <Reference Include="Stimulsoft.Editor, Version=2020.1.1.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stimulsoft.Reports.Net.2020.1.1\lib\net45\Stimulsoft.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Stimulsoft.Editor.Wpf, Version=2020.1.1.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stimulsoft.Reports.Wpf.2020.1.1\lib\net45\Stimulsoft.Editor.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="Stimulsoft.Map, Version=2020.1.1.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stimulsoft.Reports.Engine.2020.1.1\lib\net45\Stimulsoft.Map.dll</HintPath>
+    </Reference>
+    <Reference Include="Stimulsoft.Report, Version=2020.1.1.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stimulsoft.Dashboards.Win.2020.1.1\lib\net45\Stimulsoft.Report.dll</HintPath>
+    </Reference>
+    <Reference Include="Stimulsoft.Report.Check, Version=2020.1.1.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stimulsoft.Reports.Engine.2020.1.1\lib\net45\Stimulsoft.Report.Check.dll</HintPath>
+    </Reference>
+    <Reference Include="Stimulsoft.Report.Design, Version=2020.1.1.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stimulsoft.Reports.Net.2020.1.1\lib\net45\Stimulsoft.Report.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Stimulsoft.Report.Helper, Version=2020.1.1.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stimulsoft.Reports.Engine.2020.1.1\lib\net45\Stimulsoft.Report.Helper.dll</HintPath>
+    </Reference>
+    <Reference Include="Stimulsoft.Report.Web, Version=2020.1.1.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stimulsoft.Reports.Net.2020.1.1\lib\net45\Stimulsoft.Report.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="Stimulsoft.Report.Win, Version=2020.1.1.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stimulsoft.Dashboards.Win.2020.1.1\lib\net45\Stimulsoft.Report.Win.dll</HintPath>
+    </Reference>
+    <Reference Include="Stimulsoft.Report.Wpf, Version=2020.1.1.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stimulsoft.Dashboards.Win.2020.1.1\lib\net45\Stimulsoft.Report.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="Stimulsoft.Report.Wpf.BlackTheme, Version=2020.1.1.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stimulsoft.Reports.Wpf.2020.1.1\lib\net45\Stimulsoft.Report.Wpf.BlackTheme.dll</HintPath>
+    </Reference>
+    <Reference Include="Stimulsoft.Report.Wpf.Office2003BlueTheme, Version=2020.1.1.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stimulsoft.Reports.Wpf.2020.1.1\lib\net45\Stimulsoft.Report.Wpf.Office2003BlueTheme.dll</HintPath>
+    </Reference>
+    <Reference Include="Stimulsoft.Report.Wpf.Office2003OliveGreenTheme, Version=2020.1.1.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stimulsoft.Reports.Wpf.2020.1.1\lib\net45\Stimulsoft.Report.Wpf.Office2003OliveGreenTheme.dll</HintPath>
+    </Reference>
+    <Reference Include="Stimulsoft.Report.Wpf.Office2003SilverTheme, Version=2020.1.1.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stimulsoft.Reports.Wpf.2020.1.1\lib\net45\Stimulsoft.Report.Wpf.Office2003SilverTheme.dll</HintPath>
+    </Reference>
+    <Reference Include="Stimulsoft.Report.Wpf.Office2007BlackTheme, Version=2020.1.1.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stimulsoft.Reports.Wpf.2020.1.1\lib\net45\Stimulsoft.Report.Wpf.Office2007BlackTheme.dll</HintPath>
+    </Reference>
+    <Reference Include="Stimulsoft.Report.Wpf.Office2007BlueTheme, Version=2020.1.1.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stimulsoft.Reports.Wpf.2020.1.1\lib\net45\Stimulsoft.Report.Wpf.Office2007BlueTheme.dll</HintPath>
+    </Reference>
+    <Reference Include="Stimulsoft.Report.Wpf.Office2007SilverTheme, Version=2020.1.1.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stimulsoft.Reports.Wpf.2020.1.1\lib\net45\Stimulsoft.Report.Wpf.Office2007SilverTheme.dll</HintPath>
+    </Reference>
+    <Reference Include="Stimulsoft.Report.Wpf.Office2010BlueTheme, Version=2020.1.1.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stimulsoft.Reports.Wpf.2020.1.1\lib\net45\Stimulsoft.Report.Wpf.Office2010BlueTheme.dll</HintPath>
+    </Reference>
+    <Reference Include="Stimulsoft.Report.Wpf.Office2010WhiteTheme, Version=2020.1.1.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stimulsoft.Reports.Wpf.2020.1.1\lib\net45\Stimulsoft.Report.Wpf.Office2010WhiteTheme.dll</HintPath>
+    </Reference>
+    <Reference Include="Stimulsoft.Report.WpfDesign, Version=2020.1.1.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stimulsoft.Reports.Wpf.2020.1.1\lib\net45\Stimulsoft.Report.WpfDesign.dll</HintPath>
+    </Reference>
+    <Reference Include="Svg, Version=2.4.3.29446, Culture=neutral, PublicKeyToken=12a0bac221edeae2, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stimulsoft.Reports.Engine.2020.1.1\lib\net45\Svg.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Calculate.Base, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.Calculate.Base.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Syncfusion.Chart.Wpf, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.Chart.Wpf.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Syncfusion.Compression.Base, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.Compression.Base.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Syncfusion.Data.WPF, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.Data.WPF.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Syncfusion.Diagram.Wpf, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.Diagram.Wpf.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Syncfusion.DocIO.Base, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.DocIO.Base.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Syncfusion.DocIO.Wpf, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.DocIO.Wpf.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Syncfusion.Edit.Wpf, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.Edit.Wpf.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Syncfusion.Gantt.Wpf, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.Gantt.Wpf.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Syncfusion.Gauge.Wpf, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.Gauge.Wpf.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Syncfusion.Grid.Wpf, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.Grid.Wpf.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Syncfusion.GridCommon.Wpf, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.GridCommon.Wpf.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Syncfusion.Linq.Base, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.Linq.Base.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Syncfusion.OfficeChart.Base, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.OfficeChart.Base.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Syncfusion.Olap.Base, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.Olap.Base.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Syncfusion.OlapChart.Wpf, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.OlapChart.Wpf.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Syncfusion.Chart.Wpf, Version=17.3460.0.14, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
-      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.3.0.14\Assemblies\4.6\Syncfusion.Chart.Wpf.dll</HintPath>
+    <Reference Include="Syncfusion.OlapChartConverter.Wpf, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.OlapChartConverter.Wpf.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Syncfusion.Compression.Base, Version=17.3460.0.14, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
-      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.3.0.14\Assemblies\4.6\Syncfusion.Compression.Base.dll</HintPath>
+    <Reference Include="Syncfusion.OlapClient.Wpf, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.OlapClient.Wpf.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Syncfusion.Data.WPF, Version=17.3460.0.14, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
-      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.3.0.14\Assemblies\4.6\Syncfusion.Data.WPF.dll</HintPath>
+    <Reference Include="Syncfusion.OlapGauge.Wpf, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.OlapGauge.Wpf.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Syncfusion.Diagram.Wpf, Version=17.3460.0.14, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
-      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.3.0.14\Assemblies\4.6\Syncfusion.Diagram.Wpf.dll</HintPath>
+    <Reference Include="Syncfusion.OlapGrid.Wpf, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.OlapGrid.Wpf.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Syncfusion.DocIO.Base, Version=17.3460.0.14, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
-      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.3.0.14\Assemblies\4.6\Syncfusion.DocIO.Base.dll</HintPath>
+    <Reference Include="Syncfusion.OlapGridCommon.Wpf, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.OlapGridCommon.Wpf.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Syncfusion.DocIO.Wpf, Version=17.3460.0.14, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
-      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.3.0.14\Assemblies\4.6\Syncfusion.DocIO.Wpf.dll</HintPath>
+    <Reference Include="Syncfusion.OlapGridConverter.Wpf, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.OlapGridConverter.Wpf.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Syncfusion.Edit.Wpf, Version=17.3460.0.14, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
-      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.3.0.14\Assemblies\4.6\Syncfusion.Edit.Wpf.dll</HintPath>
+    <Reference Include="Syncfusion.OlapShared.Wpf, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.OlapShared.Wpf.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Syncfusion.Gantt.Wpf, Version=17.3460.0.14, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
-      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.3.0.14\Assemblies\4.6\Syncfusion.Gantt.Wpf.dll</HintPath>
+    <Reference Include="Syncfusion.OlapTools.Wpf, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.OlapTools.Wpf.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Syncfusion.Gauge.Wpf, Version=17.3460.0.14, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
-      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.3.0.14\Assemblies\4.6\Syncfusion.Gauge.Wpf.dll</HintPath>
+    <Reference Include="Syncfusion.Pdf.Base, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.Pdf.Base.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Syncfusion.Grid.Wpf, Version=17.3460.0.14, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
-      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.3.0.14\Assemblies\4.6\Syncfusion.Grid.Wpf.dll</HintPath>
+    <Reference Include="Syncfusion.PdfViewer.Wpf, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.PdfViewer.Wpf.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Syncfusion.GridCommon.Wpf, Version=17.3460.0.14, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
-      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.3.0.14\Assemblies\4.6\Syncfusion.GridCommon.Wpf.dll</HintPath>
+    <Reference Include="Syncfusion.PivotAnalysis.Base, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.PivotAnalysis.Base.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Syncfusion.Linq.Base, Version=17.3460.0.14, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
-      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.3.0.14\Assemblies\4.6\Syncfusion.Linq.Base.dll</HintPath>
+    <Reference Include="Syncfusion.PivotAnalysis.Wpf, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.PivotAnalysis.Wpf.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Syncfusion.OfficeChart.Base, Version=17.3460.0.14, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
-      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.3.0.14\Assemblies\4.6\Syncfusion.OfficeChart.Base.dll</HintPath>
+    <Reference Include="Syncfusion.PivotGridConverter.Wpf, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.PivotGridConverter.Wpf.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Syncfusion.Olap.Base, Version=17.3460.0.14, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
-      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.3.0.14\Assemblies\4.6\Syncfusion.Olap.Base.dll</HintPath>
+    <Reference Include="Syncfusion.Presentation.Base, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.Presentation.Base.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Syncfusion.OlapChart.Wpf, Version=17.3460.0.14, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
-      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.3.0.14\Assemblies\4.6\Syncfusion.OlapChart.Wpf.dll</HintPath>
+    <Reference Include="Syncfusion.ProjIO.Base, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.ProjIO.Base.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Syncfusion.OlapChartConverter.Wpf, Version=17.3460.0.14, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
-      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.3.0.14\Assemblies\4.6\Syncfusion.OlapChartConverter.Wpf.dll</HintPath>
+    <Reference Include="Syncfusion.PropertyGrid.Wpf, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.PropertyGrid.Wpf.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Syncfusion.OlapClient.Wpf, Version=17.3460.0.14, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
-      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.3.0.14\Assemblies\4.6\Syncfusion.OlapClient.Wpf.dll</HintPath>
+    <Reference Include="Syncfusion.ReportControls.WPF, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.ReportControls.WPF.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Syncfusion.OlapGauge.Wpf, Version=17.3460.0.14, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
-      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.3.0.14\Assemblies\4.6\Syncfusion.OlapGauge.Wpf.dll</HintPath>
+    <Reference Include="Syncfusion.ReportDesigner.WPF, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.ReportDesigner.WPF.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Syncfusion.OlapGrid.Wpf, Version=17.3460.0.14, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
-      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.3.0.14\Assemblies\4.6\Syncfusion.OlapGrid.Wpf.dll</HintPath>
+    <Reference Include="Syncfusion.ReportViewer.WPF, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.ReportViewer.WPF.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Syncfusion.OlapGridCommon.Wpf, Version=17.3460.0.14, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
-      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.3.0.14\Assemblies\4.6\Syncfusion.OlapGridCommon.Wpf.dll</HintPath>
+    <Reference Include="Syncfusion.ReportWriter.Base, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.ReportWriter.Base.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Syncfusion.OlapGridConverter.Wpf, Version=17.3460.0.14, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
-      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.3.0.14\Assemblies\4.6\Syncfusion.OlapGridConverter.Wpf.dll</HintPath>
+    <Reference Include="Syncfusion.RichTextBoxAdv.WPF, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.RichTextBoxAdv.WPF.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Syncfusion.OlapShared.Wpf, Version=17.3460.0.14, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
-      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.3.0.14\Assemblies\4.6\Syncfusion.OlapShared.Wpf.dll</HintPath>
+    <Reference Include="Syncfusion.Schedule.Wpf, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.Schedule.Wpf.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Syncfusion.OlapTools.Wpf, Version=17.3460.0.14, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
-      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.3.0.14\Assemblies\4.6\Syncfusion.OlapTools.Wpf.dll</HintPath>
+    <Reference Include="Syncfusion.SfAccordion.WPF, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.SfAccordion.WPF.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Syncfusion.Pdf.Base, Version=17.3460.0.14, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
-      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.3.0.14\Assemblies\4.6\Syncfusion.Pdf.Base.dll</HintPath>
+    <Reference Include="Syncfusion.SfBarcode.Wpf, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.SfBarcode.Wpf.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Syncfusion.PdfViewer.Wpf, Version=17.3460.0.14, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
-      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.3.0.14\Assemblies\4.6\Syncfusion.PdfViewer.Wpf.dll</HintPath>
+    <Reference Include="Syncfusion.SfBulletGraph.WPF, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.SfBulletGraph.WPF.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Syncfusion.PivotAnalysis.Base, Version=17.3460.0.14, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
-      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.3.0.14\Assemblies\4.6\Syncfusion.PivotAnalysis.Base.dll</HintPath>
+    <Reference Include="Syncfusion.SfBusyIndicator.WPF, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.SfBusyIndicator.WPF.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Syncfusion.PivotAnalysis.Wpf, Version=17.3460.0.14, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
-      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.3.0.14\Assemblies\4.6\Syncfusion.PivotAnalysis.Wpf.dll</HintPath>
+    <Reference Include="Syncfusion.SfCellGrid.WPF, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.SfCellGrid.WPF.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Syncfusion.PivotGridConverter.Wpf, Version=17.3460.0.14, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
-      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.3.0.14\Assemblies\4.6\Syncfusion.PivotGridConverter.Wpf.dll</HintPath>
+    <Reference Include="Syncfusion.SfChart.Wpf, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.SfChart.Wpf.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Syncfusion.Presentation.Base, Version=17.3460.0.14, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
-      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.3.0.14\Assemblies\4.6\Syncfusion.Presentation.Base.dll</HintPath>
+    <Reference Include="Syncfusion.SfChromelessWindow.WPF, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.SfChromelessWindow.WPF.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Syncfusion.ProjIO.Base, Version=17.3460.0.14, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
-      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.3.0.14\Assemblies\4.6\Syncfusion.ProjIO.Base.dll</HintPath>
+    <Reference Include="Syncfusion.SfColorPalette.WPF, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.SfColorPalette.WPF.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Syncfusion.PropertyGrid.Wpf, Version=17.3460.0.14, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
-      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.3.0.14\Assemblies\4.6\Syncfusion.PropertyGrid.Wpf.dll</HintPath>
+    <Reference Include="Syncfusion.SfDiagram.WPF, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.SfDiagram.WPF.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Syncfusion.ReportControls.WPF, Version=17.3460.0.14, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
-      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.3.0.14\Assemblies\4.6\Syncfusion.ReportControls.WPF.dll</HintPath>
+    <Reference Include="Syncfusion.SfGauge.WPF, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.SfGauge.WPF.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Syncfusion.ReportDesigner.WPF, Version=17.3460.0.14, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
-      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.3.0.14\Assemblies\4.6\Syncfusion.ReportDesigner.WPF.dll</HintPath>
+    <Reference Include="Syncfusion.SfGrid.WPF, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.SfGrid.WPF.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Syncfusion.ReportViewer.WPF, Version=17.3460.0.14, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
-      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.3.0.14\Assemblies\4.6\Syncfusion.ReportViewer.WPF.dll</HintPath>
+    <Reference Include="Syncfusion.SfGridCommon.WPF, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.SfGridCommon.WPF.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Syncfusion.ReportWriter.Base, Version=17.3460.0.14, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
-      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.3.0.14\Assemblies\4.6\Syncfusion.ReportWriter.Base.dll</HintPath>
+    <Reference Include="Syncfusion.SfHeatMap.WPF, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.SfHeatMap.WPF.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Syncfusion.RichTextBoxAdv.WPF, Version=17.3460.0.14, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
-      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.3.0.14\Assemblies\4.6\Syncfusion.RichTextBoxAdv.WPF.dll</HintPath>
+    <Reference Include="Syncfusion.SfHubTile.WPF, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.SfHubTile.WPF.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Syncfusion.Schedule.Wpf, Version=17.3460.0.14, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
-      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.3.0.14\Assemblies\4.6\Syncfusion.Schedule.Wpf.dll</HintPath>
+    <Reference Include="Syncfusion.SfInput.WPF, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.SfInput.WPF.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Syncfusion.SfAccordion.WPF, Version=17.3460.0.14, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
-      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.3.0.14\Assemblies\4.6\Syncfusion.SfAccordion.WPF.dll</HintPath>
+    <Reference Include="Syncfusion.SfKanban.Wpf, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.SfKanban.Wpf.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Syncfusion.SfBarcode.Wpf, Version=17.3460.0.14, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
-      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.3.0.14\Assemblies\4.6\Syncfusion.SfBarcode.Wpf.dll</HintPath>
+    <Reference Include="Syncfusion.SfMaps.WPF, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.SfMaps.WPF.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Syncfusion.SfBulletGraph.WPF, Version=17.3460.0.14, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
-      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.3.0.14\Assemblies\4.6\Syncfusion.SfBulletGraph.WPF.dll</HintPath>
+    <Reference Include="Syncfusion.SfNavigationDrawer.WPF, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.SfNavigationDrawer.WPF.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Syncfusion.SfBusyIndicator.WPF, Version=17.3460.0.14, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
-      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.3.0.14\Assemblies\4.6\Syncfusion.SfBusyIndicator.WPF.dll</HintPath>
+    <Reference Include="Syncfusion.SfProgressBar.Wpf, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.SfProgressBar.Wpf.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Syncfusion.SfCellGrid.WPF, Version=17.3460.0.14, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
-      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.3.0.14\Assemblies\4.6\Syncfusion.SfCellGrid.WPF.dll</HintPath>
+    <Reference Include="Syncfusion.SfRadialMenu.WPF, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.SfRadialMenu.WPF.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Syncfusion.SfChart.Wpf, Version=17.3460.0.14, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
-      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.3.0.14\Assemblies\4.6\Syncfusion.SfChart.Wpf.dll</HintPath>
+    <Reference Include="Syncfusion.SfRichTextBoxAdv.WPF, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.SfRichTextBoxAdv.WPF.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Syncfusion.SfChromelessWindow.WPF, Version=17.3460.0.14, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
-      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.3.0.14\Assemblies\4.6\Syncfusion.SfChromelessWindow.WPF.dll</HintPath>
+    <Reference Include="Syncfusion.SfRichTextRibbon.WPF, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.SfRichTextRibbon.WPF.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Syncfusion.SfColorPalette.WPF, Version=17.3460.0.14, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
-      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.3.0.14\Assemblies\4.6\Syncfusion.SfColorPalette.WPF.dll</HintPath>
+    <Reference Include="Syncfusion.SfSchedule.WPF, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.SfSchedule.WPF.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Syncfusion.SfDiagram.WPF, Version=17.3460.0.14, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
-      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.3.0.14\Assemblies\4.6\Syncfusion.SfDiagram.WPF.dll</HintPath>
+    <Reference Include="Syncfusion.SfShared.WPF, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.SfShared.WPF.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Syncfusion.SfGauge.WPF, Version=17.3460.0.14, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
-      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.3.0.14\Assemblies\4.6\Syncfusion.SfGauge.WPF.dll</HintPath>
+    <Reference Include="Syncfusion.SfSkinManager.Wpf, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.SfSkinManager.Wpf.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Syncfusion.SfGrid.WPF, Version=17.3460.0.14, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
-      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.3.0.14\Assemblies\4.6\Syncfusion.SfGrid.WPF.dll</HintPath>
+    <Reference Include="Syncfusion.SfSmithChart.Wpf, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.SfSmithChart.Wpf.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Syncfusion.SfGridCommon.WPF, Version=17.3460.0.14, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
-      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.3.0.14\Assemblies\4.6\Syncfusion.SfGridCommon.WPF.dll</HintPath>
+    <Reference Include="Syncfusion.SfSpellChecker.WPF, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.SfSpellChecker.WPF.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Syncfusion.SfHeatMap.WPF, Version=17.3460.0.14, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
-      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.3.0.14\Assemblies\4.6\Syncfusion.SfHeatMap.WPF.dll</HintPath>
+    <Reference Include="Syncfusion.SfSpreadsheet.WPF, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.SfSpreadsheet.WPF.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Syncfusion.SfHubTile.WPF, Version=17.3460.0.14, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
-      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.3.0.14\Assemblies\4.6\Syncfusion.SfHubTile.WPF.dll</HintPath>
+    <Reference Include="Syncfusion.SfTreeMap.WPF, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.SfTreeMap.WPF.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Syncfusion.SfInput.WPF, Version=17.3460.0.14, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
-      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.3.0.14\Assemblies\4.6\Syncfusion.SfInput.WPF.dll</HintPath>
+    <Reference Include="Syncfusion.SfTreeNavigator.WPF, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.SfTreeNavigator.WPF.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Syncfusion.SfKanban.Wpf, Version=17.3460.0.14, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
-      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.3.0.14\Assemblies\4.6\Syncfusion.SfKanban.Wpf.dll</HintPath>
+    <Reference Include="Syncfusion.Shared.Base, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.Shared.Base.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Syncfusion.SfMaps.WPF, Version=17.3460.0.14, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
-      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.3.0.14\Assemblies\4.6\Syncfusion.SfMaps.WPF.dll</HintPath>
+    <Reference Include="Syncfusion.Shared.MVVM.WPF, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.Shared.MVVM.WPF.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Syncfusion.SfNavigationDrawer.WPF, Version=17.3460.0.14, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
-      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.3.0.14\Assemblies\4.6\Syncfusion.SfNavigationDrawer.WPF.dll</HintPath>
+    <Reference Include="Syncfusion.Shared.Wpf, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.Shared.Wpf.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Syncfusion.SfProgressBar.Wpf, Version=17.3460.0.14, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
-      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.3.0.14\Assemblies\4.6\Syncfusion.SfProgressBar.Wpf.dll</HintPath>
+    <Reference Include="Syncfusion.SpellChecker.Base, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.SpellChecker.Base.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Syncfusion.SfRadialMenu.WPF, Version=17.3460.0.14, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
-      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.3.0.14\Assemblies\4.6\Syncfusion.SfRadialMenu.WPF.dll</HintPath>
+    <Reference Include="Syncfusion.Themes.Blend.Wpf, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.Themes.Blend.Wpf.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Syncfusion.SfRichTextBoxAdv.WPF, Version=17.3460.0.14, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
-      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.3.0.14\Assemblies\4.6\Syncfusion.SfRichTextBoxAdv.WPF.dll</HintPath>
+    <Reference Include="Syncfusion.Themes.Lime.Wpf, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.Themes.Lime.Wpf.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Syncfusion.SfRichTextRibbon.WPF, Version=17.3460.0.14, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
-      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.3.0.14\Assemblies\4.6\Syncfusion.SfRichTextRibbon.WPF.dll</HintPath>
+    <Reference Include="Syncfusion.Themes.Metro.Wpf, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.Themes.Metro.Wpf.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Syncfusion.SfSchedule.WPF, Version=17.3460.0.14, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
-      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.3.0.14\Assemblies\4.6\Syncfusion.SfSchedule.WPF.dll</HintPath>
+    <Reference Include="Syncfusion.Themes.Office2010Black.Wpf, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.Themes.Office2010Black.Wpf.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Syncfusion.SfShared.WPF, Version=17.3460.0.14, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
-      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.3.0.14\Assemblies\4.6\Syncfusion.SfShared.WPF.dll</HintPath>
+    <Reference Include="Syncfusion.Themes.Office2010Blue.Wpf, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.Themes.Office2010Blue.Wpf.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Syncfusion.SfSkinManager.Wpf, Version=17.3460.0.14, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
-      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.3.0.14\Assemblies\4.6\Syncfusion.SfSkinManager.Wpf.dll</HintPath>
+    <Reference Include="Syncfusion.Themes.Office2010Silver.Wpf, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.Themes.Office2010Silver.Wpf.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Syncfusion.SfSmithChart.Wpf, Version=17.3460.0.14, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
-      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.3.0.14\Assemblies\4.6\Syncfusion.SfSmithChart.Wpf.dll</HintPath>
+    <Reference Include="Syncfusion.Themes.Office2013DarkGray.Wpf, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.Themes.Office2013DarkGray.Wpf.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Syncfusion.SfSpellChecker.WPF, Version=17.3460.0.14, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
-      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.3.0.14\Assemblies\4.6\Syncfusion.SfSpellChecker.WPF.dll</HintPath>
+    <Reference Include="Syncfusion.Themes.Office2013LightGray.Wpf, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.Themes.Office2013LightGray.Wpf.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Syncfusion.SfSpreadsheet.WPF, Version=17.3460.0.14, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
-      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.3.0.14\Assemblies\4.6\Syncfusion.SfSpreadsheet.WPF.dll</HintPath>
+    <Reference Include="Syncfusion.Themes.Office2013White.Wpf, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.Themes.Office2013White.Wpf.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Syncfusion.SfTreeMap.WPF, Version=17.3460.0.14, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
-      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.3.0.14\Assemblies\4.6\Syncfusion.SfTreeMap.WPF.dll</HintPath>
+    <Reference Include="Syncfusion.Themes.Office2016Colorful.Wpf, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.Themes.Office2016Colorful.Wpf.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Syncfusion.SfTreeNavigator.WPF, Version=17.3460.0.14, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
-      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.3.0.14\Assemblies\4.6\Syncfusion.SfTreeNavigator.WPF.dll</HintPath>
+    <Reference Include="Syncfusion.Themes.Office2016DarkGray.Wpf, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.Themes.Office2016DarkGray.Wpf.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Syncfusion.Shared.Base, Version=17.3460.0.14, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
-      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.3.0.14\Assemblies\4.6\Syncfusion.Shared.Base.dll</HintPath>
+    <Reference Include="Syncfusion.Themes.Office2016White.Wpf, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.Themes.Office2016White.Wpf.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Syncfusion.Shared.MVVM.WPF, Version=17.3460.0.14, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
-      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.3.0.14\Assemblies\4.6\Syncfusion.Shared.MVVM.WPF.dll</HintPath>
+    <Reference Include="Syncfusion.Themes.Office365.Wpf, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.Themes.Office365.Wpf.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Syncfusion.Shared.Wpf, Version=17.3460.0.14, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
-      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.3.0.14\Assemblies\4.6\Syncfusion.Shared.Wpf.dll</HintPath>
+    <Reference Include="Syncfusion.Themes.Saffron.Wpf, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.Themes.Saffron.Wpf.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Syncfusion.SpellChecker.Base, Version=17.3460.0.14, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
-      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.3.0.14\Assemblies\4.6\Syncfusion.SpellChecker.Base.dll</HintPath>
+    <Reference Include="Syncfusion.Themes.VisualStudio2013.Wpf, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.Themes.VisualStudio2013.Wpf.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Syncfusion.Themes.Metro.Wpf, Version=17.3460.0.14, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
-      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.3.0.14\Assemblies\4.6\Syncfusion.Themes.Metro.Wpf.dll</HintPath>
+    <Reference Include="Syncfusion.Themes.VisualStudio2015.Wpf, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.Themes.VisualStudio2015.Wpf.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Syncfusion.Tools.Wpf, Version=17.3460.0.14, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
-      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.3.0.14\Assemblies\4.6\Syncfusion.Tools.Wpf.dll</HintPath>
+    <Reference Include="Syncfusion.Tools.Wpf, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.Tools.Wpf.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Syncfusion.XlsIO.Base, Version=17.3460.0.14, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
-      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.3.0.14\Assemblies\4.6\Syncfusion.XlsIO.Base.dll</HintPath>
+    <Reference Include="Syncfusion.XlsIO.Base, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.XlsIO.Base.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Syncfusion.XlsIO.Wpf, Version=17.3460.0.14, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
-      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.3.0.14\Assemblies\4.6\Syncfusion.XlsIO.Wpf.dll</HintPath>
+    <Reference Include="Syncfusion.XlsIO.Wpf, Version=17.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\17.4.0.39\Assemblies\4.6\Syncfusion.XlsIO.Wpf.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.ComponentModel.Annotations.4.6.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
+      <HintPath>..\packages\System.ComponentModel.Annotations.4.7.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
     </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
@@ -817,6 +935,12 @@
     <Resource Include="Login\Assets\Icon.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="MainForm\Assets\AshesMenuLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="MainForm\Assets\Icon.png" />
+  </ItemGroup>
+  <ItemGroup>
     <Resource Include="Localization\zh-CHT.xml" />
   </ItemGroup>
   <ItemGroup>
@@ -835,9 +959,6 @@
     <Resource Include="Localization\sv.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Localization\sv.ext.xml" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Localization\sr.xml" />
   </ItemGroup>
   <ItemGroup>
@@ -845,9 +966,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Localization\ru.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Localization\ru.ext.xml" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Localization\ro.xml" />
@@ -874,16 +992,10 @@
     <Resource Include="Localization\ko.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Localization\ko.ext.xml" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Localization\ka.xml" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Localization\ja.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Localization\ja.ext.xml" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Localization\it.xml" />
@@ -904,9 +1016,6 @@
     <Resource Include="Localization\fr.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Localization\fr.ext.xml" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Localization\fa.xml" />
   </ItemGroup>
   <ItemGroup>
@@ -919,9 +1028,6 @@
     <Resource Include="Localization\en.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Localization\en.ext.xml" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Localization\en-GB.xml" />
   </ItemGroup>
   <ItemGroup>
@@ -929,9 +1035,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Localization\de.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Localization\de.ext.xml" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Localization\cs.xml" />
@@ -951,12 +1054,12 @@
   <ItemGroup>
     <Resource Include="Localization\ar.xml" />
   </ItemGroup>
-  <ItemGroup>
-    <Resource Include="MainForm\Assets\AshesMenuLogo.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="MainForm\Assets\Icon.png" />
-  </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\MaterialDesignThemes.3.0.1\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.3.0.1\build\MaterialDesignThemes.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\MaterialDesignThemes.3.0.1\build\MaterialDesignThemes.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\MaterialDesignThemes.3.0.1\build\MaterialDesignThemes.targets'))" />
+  </Target>
 </Project>

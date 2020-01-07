@@ -13,7 +13,7 @@
 
 
 
-        <Grid x:Name="UserGrid" Visibility="Visible" >
+        <Grid x:Name="UserGrid" Visibility="Collapsed" >
             <Grid Margin="1117,0,0,651">
                 <Button x:Name="CloseTabButton" Visibility="Collapsed" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Red"   VerticalAlignment="Top"  Margin="3,0,170,0" Height="25"  >
                     <materialDesign:PackIcon Kind="Close" Width="20" Height="20"/>
@@ -137,8 +137,8 @@
                     <ComboBox x:Name="InStockFilterValue" SelectionChanged="InStockFilterValue_SelectionChanged" IsTextSearchEnabled="True" TextSearch.TextPath="Name" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="17" Margin="436,82,0,0"  />
 
                     <!-- Sale Price -->
-                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="458,77,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Sale Price : "/></TextBlock>
-                    <syncfusion:CurrencyTextBox x:Name="StockSalePriceValue" TextChanged="StockSalePriceValue_TextChanged" IsReadOnly="False" Value="0" CurrencyNegativePattern="8"  CurrencyPositivePattern="3"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="125"  Margin="587,83,0,0" Height="27" Background="{x:Null}" FontSize="18" SelectionBrush="#FF009688" RenderTransformOrigin="0.68,0.352" MinValue="0" MaxLines="1">
+                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="771,77,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Sale Price : "/></TextBlock>
+                    <syncfusion:CurrencyTextBox x:Name="StockSalePriceValue" TextChanged="StockSalePriceValue_TextChanged" IsReadOnly="False" Value="0" CurrencyNegativePattern="8"  CurrencyPositivePattern="3"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="125"  Margin="900,83,0,0" Height="27" Background="{x:Null}" FontSize="18" SelectionBrush="#FF009688" RenderTransformOrigin="0.68,0.352" MinValue="0" MaxLines="1">
                         <syncfusion:CurrencyTextBox.NumberFormat>
                             <Globalization:NumberFormatInfo CurrencyGroupSeparator=" " CurrencyDecimalDigits="2" CurrencyDecimalSeparator="." CurrencySymbol="L.E"/>
                         </syncfusion:CurrencyTextBox.NumberFormat>
@@ -150,11 +150,11 @@
                             </LinearGradientBrush>
                         </syncfusion:CurrencyTextBox.BorderBrush>
                     </syncfusion:CurrencyTextBox>
-                    <ComboBox x:Name="StockSalePriceFilterValue" SelectionChanged="StockSalePriceFilterValue_SelectionChanged" IsTextSearchEnabled="True" TextSearch.TextPath="SalePrice" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="17" Margin="712,82,0,0"  />
+                    <ComboBox x:Name="StockSalePriceFilterValue" SelectionChanged="StockSalePriceFilterValue_SelectionChanged" IsTextSearchEnabled="True" TextSearch.TextPath="SalePrice" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="17" Margin="1025,82,0,0"  />
 
                     <!-- Income Price -->
-                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="734,77,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Income Price :"/></TextBlock>
-                    <syncfusion:CurrencyTextBox x:Name="StockIncomePriceValue"  IsReadOnly="True" Value="0"  CurrencyNegativePattern="8"  CurrencyPositivePattern="3"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="125"  Margin="893,83,0,0" Height="27" Background="{x:Null}" FontSize="18" SelectionBrush="#FF009688" RenderTransformOrigin="0.68,0.352" MinValue="0" MaxLines="1">
+                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="465,77,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Income Price :"/></TextBlock>
+                    <syncfusion:CurrencyTextBox x:Name="StockIncomePriceValue"  IsReadOnly="True" Value="0"  CurrencyNegativePattern="8"  CurrencyPositivePattern="3"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="125"  Margin="624,83,0,0" Height="27" Background="{x:Null}" FontSize="18" SelectionBrush="#FF009688" RenderTransformOrigin="0.68,0.352" MinValue="0" MaxLines="1">
                         <syncfusion:CurrencyTextBox.NumberFormat>
                             <Globalization:NumberFormatInfo CurrencyGroupSeparator=" " CurrencyDecimalDigits="2" CurrencyDecimalSeparator="." CurrencySymbol="L.E"/>
                         </syncfusion:CurrencyTextBox.NumberFormat>
@@ -166,7 +166,7 @@
                             </LinearGradientBrush>
                         </syncfusion:CurrencyTextBox.BorderBrush>
                     </syncfusion:CurrencyTextBox>
-                    <ComboBox x:Name="StockInomePriceFilterValue" SelectionChanged="StockInomePriceFilterValue_SelectionChanged"  IsTextSearchEnabled="True" TextSearch.TextPath="IncomePrice" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="17" Margin="1018,82,0,0"  />
+                    <ComboBox x:Name="StockInomePriceFilterValue" SelectionChanged="StockInomePriceFilterValue_SelectionChanged"  IsTextSearchEnabled="True" TextSearch.TextPath="IncomePrice" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="17" Margin="749,82,0,0"  />
 
                     <!-- Expiration -->
                     <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="1040,77,0,0" ><Run Text="Expiration : "/></TextBlock>
@@ -373,13 +373,27 @@
             </syncfusion:CurrencyTextBox>
         </Grid>
 
-        <Grid x:Name="PrintGrid" Visibility="Collapsed" >
+        <Grid x:Name="PrintGrid" Visibility="Visible" >
 
             <Button x:Name="BackToNormalGridButton" Click="BackToNormalGridButton_Click"  Visibility="Visible" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Green"   VerticalAlignment="Top"  Margin="0,0,1287,0" Height="25"  >
                 <materialDesign:PackIcon Kind="ArrowLeft" Width="20" Height="20"/>
             </Button>
 
             <wpfViewer:StiWpfViewerControl x:Name="SellOrderReportPrint" HorizontalAlignment="Left" Height="655" Margin="0,25,0,0" VerticalAlignment="Top" Width="1343"/>
+
+            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="61,0,0,0" RenderTransformOrigin="0.596,0.438" FontSize="18" Height="25" ><Run Text="Order number: "/></TextBlock>
+            <TextBox x:Name="OrganizationOrdersCountValue" IsReadOnly="True" HorizontalAlignment="Left" Height="25" Margin="183,0,0,0" Text="" VerticalAlignment="Top" Width="60" MaxLength="500" MaxLines="1"  />
+
+            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="259,0,0,0" RenderTransformOrigin="0.596,0.438" FontSize="18" Height="25" ><Run Text="Order number to this customer : "/></TextBlock>
+            <TextBox x:Name="SelectedCustomerOrdersCountValue" IsReadOnly="True" HorizontalAlignment="Left" Height="25" Margin="520,0,0,0" Text="" VerticalAlignment="Top" Width="60" MaxLength="500" MaxLines="1"  />
+
+            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="585,0,0,0" RenderTransformOrigin="0.596,0.438" FontSize="18" Height="25" ><Run Text="Order number Today :"/></TextBlock>
+            <TextBox x:Name="OrderCountTodayValue" IsReadOnly="True" HorizontalAlignment="Left" Height="25" Margin="764,0,0,0" Text="" VerticalAlignment="Top" Width="60" MaxLength="500" MaxLines="1"  />
+
+            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="830,0,0,0" RenderTransformOrigin="0.596,0.438" FontSize="18" Height="25" ><Run Text="Order number :"/></TextBlock>
+            <TextBox x:Name="StaffOrderCountTodayValue" IsReadOnly="True" HorizontalAlignment="Left" Height="25" Margin="957,0,0,0" Text="" VerticalAlignment="Top" Width="60" MaxLength="500" MaxLines="1"  />
+            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="1017,0,0,0" RenderTransformOrigin="0.596,0.438" FontSize="18" Height="25" ><Run Text="To:"/></TextBlock>
+            <TextBlock x:Name="StaffNameValue" HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="1044,0,0,0" RenderTransformOrigin="0.596,0.438" FontSize="18" Height="25" ><Run Text="Staff Name"/></TextBlock>
         </Grid>
 
         <Grid x:Name="CreateCustomerGrid" Visibility="Collapsed">
@@ -390,6 +404,6 @@
         </Grid>
 
         <Grid x:Name="SelectedCustomerLogGrid" Visibility="Collapsed"/>
-
+       
     </Grid>
 </UserControl>

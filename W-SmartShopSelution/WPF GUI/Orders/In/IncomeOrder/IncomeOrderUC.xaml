@@ -136,8 +136,8 @@
                     </syncfusion:DoubleTextBox>
 
                     <!-- Sale Price -->
-                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="371,110,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Sale Price : "/></TextBlock>
-                    <syncfusion:CurrencyTextBox x:Name="StockSalePriceValue" IsReadOnly="False" Value="0" CurrencyNegativePattern="8"  CurrencyPositivePattern="3"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="96"  Margin="500,117,0,0" Height="27" Background="{x:Null}" FontSize="18" SelectionBrush="#FF009688" RenderTransformOrigin="0.68,0.352" MinValue="0" MaxLines="1">
+                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="625,110,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Sale Price : "/></TextBlock>
+                    <syncfusion:CurrencyTextBox x:Name="StockSalePriceValue" IsReadOnly="False" Value="0" CurrencyNegativePattern="8"  CurrencyPositivePattern="3"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="96"  Margin="754,117,0,0" Height="27" Background="{x:Null}" FontSize="18" SelectionBrush="#FF009688" RenderTransformOrigin="0.68,0.352" MinValue="0" MaxLines="1">
                         <syncfusion:CurrencyTextBox.NumberFormat>
                             <Globalization:NumberFormatInfo CurrencyGroupSeparator=" " CurrencyDecimalDigits="2" CurrencyDecimalSeparator="." CurrencySymbol="L.E"/>
                         </syncfusion:CurrencyTextBox.NumberFormat>
@@ -151,8 +151,8 @@
                     </syncfusion:CurrencyTextBox>
 
                     <!-- Income Price -->
-                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="601,111,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Income Price :"/></TextBlock>
-                    <syncfusion:CurrencyTextBox x:Name="StockIncomePriceValue" TextChanged="StockIncomePriceValue_TextChanged" IsReadOnly="False" Value="0"  CurrencyNegativePattern="8"  CurrencyPositivePattern="3"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="90"  Margin="760,117,0,0" Height="27" Background="{x:Null}" FontSize="18" SelectionBrush="#FF009688" RenderTransformOrigin="0.68,0.352" MinValue="0" MaxLines="1">
+                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="372,111,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Income Price :"/></TextBlock>
+                    <syncfusion:CurrencyTextBox x:Name="StockIncomePriceValue" TextChanged="StockIncomePriceValue_TextChanged" IsReadOnly="False" Value="0"  CurrencyNegativePattern="8"  CurrencyPositivePattern="3"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="90"  Margin="531,117,0,0" Height="27" Background="{x:Null}" FontSize="18" SelectionBrush="#FF009688" RenderTransformOrigin="0.68,0.352" MinValue="0" MaxLines="1">
                         <syncfusion:CurrencyTextBox.NumberFormat>
                             <Globalization:NumberFormatInfo CurrencyGroupSeparator=" " CurrencyDecimalDigits="2" CurrencyDecimalSeparator="." CurrencySymbol="L.E"/>
                         </syncfusion:CurrencyTextBox.NumberFormat>

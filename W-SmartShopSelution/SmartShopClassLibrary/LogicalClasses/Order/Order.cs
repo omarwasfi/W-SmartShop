@@ -40,6 +40,27 @@ namespace Library
         }
 
         /// <summary>
+        /// The actual profit that the customer paid means( if the totalPaid more than the incomePrice -> actual profit = totalPaid - incomePrice)
+        /// </summary>
+        public static decimal GetReceivedProfit(OrderModel order)
+        {
+            decimal receivedProfit = new decimal();
+            decimal totalIncomePrice = new decimal();
+
+            foreach(OrderProductModel orderProduct in order.OrderProducts)
+            {
+                totalIncomePrice += orderProduct.GetTotalIncomePrice;
+            }
+
+            if(order.GetTotalPaid > totalIncomePrice)
+            {
+                receivedProfit = order.GetTotalPaid - totalIncomePrice;
+            }
+
+            return receivedProfit;
+        }
+
+        /// <summary>
         /// Filter list of orders by Customer
         /// </summary>
         /// <param name="orders"></param>

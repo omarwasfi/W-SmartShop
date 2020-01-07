@@ -5,7 +5,7 @@
     <Databases isList="true" count="1">
       <MS_x0020_SQL Ref="2" type="Stimulsoft.Report.Dictionary.StiSqlDatabase" isKey="true">
         <Alias>MS SQL</Alias>
-        <ConnectionStringEncrypted>4xrNCchQwplpFdG9egThXtVw0e9FTEKZ4XehxPHQ4CPGeNHrzkqTXX9cJczrTGJG3ni1CEhKQ01wbSWA/xx3L+x62cvdaXp583s=</ConnectionStringEncrypted>
+        <ConnectionStringEncrypted>4xrNCchKwplpFdG9+wThXtVw10xFTEHNRnehdPHk4BfGePsLzlaTmPFcSczrTGJ72Hi1CE9KQ135S6GEdoSqL+R62QBidUKB+Q==</ConnectionStringEncrypted>
         <Name>MS SQL</Name>
       </MS_x0020_SQL>
     </Databases>
@@ -845,13 +845,13 @@ WHERE OrderProduct.OrderId = '{OrderId}'</SqlCommand>
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>12/5/2019 10:44:35 AM</ReportChanged>
+  <ReportChanged>1/3/2020 11:16:56 AM</ReportChanged>
   <ReportCreated>9/16/2019 6:37:47 AM</ReportCreated>
   <ReportFile>C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\Orders\Out\SellUC\SellOrderReportARforEMG.mrt</ReportFile>
-  <ReportGuid>fb46915757f84f1ab7a58869d6a95f4b</ReportGuid>
+  <ReportGuid>2f3582c9218e4aeda4b1dc1f3e7a263d</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Inches</ReportUnit>
-  <ReportVersion>2019.3.1.0</ReportVersion>
+  <ReportVersion>2020.1.1.0</ReportVersion>
   <Script>using System;
 using System.Drawing;
 using System.Windows.Forms;

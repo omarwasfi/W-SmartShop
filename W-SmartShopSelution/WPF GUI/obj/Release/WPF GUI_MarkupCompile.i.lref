@@ -1,12 +1,25 @@
-﻿
+﻿C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\obj\Release\GeneratedInternalTypeHelper.g.i.cs
 FC:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\App.xaml;;
 FC:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\CashUC\CashUC.xaml;;
+FC:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\Orders\In\IncomeOrderM\IncomeOrderMUC.xaml;;
+FC:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\Manager\InvestUC.xaml;;
+FC:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\Manager\DeTransformUC.xaml;;
+FC:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\Human\CreatePersonUC\CreatePersonUC.xaml;;
+FC:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\Human\PeopleUC\PeopleUC.xaml;;
 FC:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\Installament\InstallmentCollectingUC\InstallmentCollectingUC.xaml;;
+FC:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\Manager\ManagerUC.xaml;;
 FC:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\Orders\In\BillsManagerUC\BillsManagerUC.xaml;;
+FC:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\Orders\In\IncomeOrderManager\IncomeOrderManager.xaml;;
+FC:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\Orders\In\ModifyBill\ModifyBillUC.xaml;;
 FC:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\Orders\In\PayBillUC\PayBillUC.xaml;;
 FC:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\Orders\Out\InstallmentOrderUC\InstallmentOrderUC.xaml;;
 FC:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\Orders\Out\OrderUC\OrderUC.xaml;;
 FC:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\Orders\Out\SellingOrdersManagerUC\SellingOrdersManagerUC.xaml;;
+FC:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\Human\Person\PersonUC.xaml;;
+FC:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\Orders\In\PaySalary\PaySalaryUC.xaml;;
+FC:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\PriceListUC\PriceListUC.xaml;;
+FC:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\Manager\RevenueUC.xaml;;
+FC:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\Orders\In\StaffSalaryManager\StaffSalaryManagerUC.xaml;;
 FC:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\Store\AddStockToStoreUC\AddStockToStoreUC.xaml;;
 FC:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\Human\Supplier\CreateSupplierUC\CreateSupplierUC.xaml;;
 FC:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\Human\Customer\CustomerLogUC\CustomerLogUC.xaml;;
@@ -27,4 +40,5 @@ FC:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\Orders\
 FC:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\Human\Staff\ModifyStaffUC\ModifyStaffUC.xaml;;
 FC:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\Human\Staff\StaffsManagerUC\StaffsManagerUC.xaml;;
 FC:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\Human\Supplier\SupplierLogUC\SupplierLogUC.xaml;;
+FC:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\WPF GUI\Manager\TransformUC.xaml;;
 

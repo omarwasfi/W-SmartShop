@@ -139,7 +139,7 @@ namespace WPF_GUI
             CloseMenu_BeginStoryboard.Storyboard.Begin();
 
             SellUC sellUc = new SellUC();
-            TabItem sellTab = new TabItem { Header = "Sell Tab" };
+            TabItem sellTab = new TabItem { Header = "Sell Order" };
             sellTab.Content = sellUc;
             MainTab.Items.Add(sellTab);
 
@@ -151,7 +151,7 @@ namespace WPF_GUI
             CloseMenu_BeginStoryboard.Storyboard.Begin();
 
             SellingOrdersManagerUC sellOrdersManagerUc = new SellingOrdersManagerUC();
-            TabItem sellOrdersManagerTab = new TabItem { Header = "Selling Orders Manager Tab" };
+            TabItem sellOrdersManagerTab = new TabItem { Header = "Selling Orders Manager" };
             sellOrdersManagerTab.Content = sellOrdersManagerUc;
             MainTab.Items.Add(sellOrdersManagerTab);
 
@@ -164,7 +164,7 @@ namespace WPF_GUI
             CloseMenu_BeginStoryboard.Storyboard.Begin();
 
             InventoryUC inventoryUC = new InventoryUC();
-            TabItem inventoryTab = new TabItem { Header = "Inventory Tab" };
+            TabItem inventoryTab = new TabItem { Header = "Inventory" };
             inventoryTab.Content = inventoryUC;
             MainTab.Items.Add(inventoryTab);
 
@@ -188,7 +188,7 @@ namespace WPF_GUI
             CloseMenu_BeginStoryboard.Storyboard.Begin();
 
             ProductManagerUC productManagerUC = new ProductManagerUC();
-            TabItem productManagerTab = new TabItem { Header = "Products Tab" };
+            TabItem productManagerTab = new TabItem { Header = "Products" };
             productManagerTab.Content = productManagerUC;
             MainTab.Items.Add(productManagerTab);
 

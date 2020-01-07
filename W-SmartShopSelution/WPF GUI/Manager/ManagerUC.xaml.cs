@@ -42,8 +42,22 @@ namespace WPF_GUI
             NotPaidOrderValue.Value = PublicVariables.Organization.GetNotPaidOrdersValue;
             LoansValue.Value = PublicVariables.Organization.GetLoans;
             FreeMoneyValue.Value = PublicVariables.Organization.GetFreeMoney;
+
             StoreNameValue.Text = PublicVariables.Store.Name;
             StoreShopeeWalletValue.Value = PublicVariables.Store.GetShopeeWallet;
+            StoreStockValue.Value = PublicVariables.Store.GetStocksIncomeValue;
+
+            StoreTotalSellsValue.Value = PublicVariables.Store.GetTotalSellsValue;
+            TotalProfitValue.Value = PublicVariables.Store.GetTotalReceivedProfit;
+            TotalPaidValue.Value = PublicVariables.Store.GetTotalPaidOrders;
+            TotalNotPaidValue.Value = PublicVariables.Store.GetNotPaidOrdersValue;
+            TotalSellsWithoutProfitsValue.Value = PublicVariables.Store.GetSellsWihtoutProfits;
+            BillsValue.Value = PublicVariables.Store.GetTotalShopBillsValue;
+            //StaffSalariesValue.Value = PublicVariables.Store.GetStaffSalaries;
+            //IncomeOrdersValue.Value = PublicVariables.Store.;
+            TotalPaidIncomeOrdersValue.Value = PublicVariables.Store.GetTotalPaidIncomeOrdersValue;
+            TotalLoansValue.Value = PublicVariables.Store.GetLoans;
+
         }
 
         #endregion
@@ -100,8 +114,12 @@ namespace WPF_GUI
         }
 
 
-        #endregion
+        private void RefreshButton_Click(object sender, RoutedEventArgs e)
+        {
+            SetInitialValues();
+        }
 
+        #endregion
 
     }
 }

@@ -54,6 +54,16 @@ namespace Library
 
         #region non database related
 
+        /// <summary>
+        /// Get all the orders that this staff did
+        /// </summary>
+        public List<OrderModel> GetOrders
+        {
+            get
+            {
+              return  Staff.GetOrders(this);
+            }
+        }
 
         /// <summary>
         /// Get All The staff Salaries models 

@@ -79,6 +79,18 @@ namespace Library
                 return Organization.GetNotPaidOrderValue(this);
             } 
         }
+
+        /// <summary>
+        /// Get the count of all the orders done by all stores
+        /// </summary>
+        public int GetOrdersCount
+        {
+            get
+            {
+               return Organization.GetOrderCount(this);
+            }
+        }
+
         /// <summary>
         /// The Value of the stocks as cash (the total IncomePrice Of All Stocks)
         /// </summary>
@@ -122,5 +134,6 @@ namespace Library
             { return Organization.GetPeopleNotSuppliers(this); 
             } 
         }
+
     }
 }

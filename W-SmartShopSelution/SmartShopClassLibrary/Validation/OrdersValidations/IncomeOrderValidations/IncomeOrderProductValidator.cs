@@ -21,7 +21,6 @@ namespace Library
             RuleFor(p => p.IncomePrice)
             .Cascade(CascadeMode.StopOnFirstFailure)
             .NotNull().WithMessage("Enter The  {PropertyName}")
-            .NotEmpty().WithMessage("Ener The  {PropertyName}")
             .GreaterThanOrEqualTo(0).WithMessage(" The  {PropertyName} can't be less than 0");
 
             RuleFor(p => p.Quantity)

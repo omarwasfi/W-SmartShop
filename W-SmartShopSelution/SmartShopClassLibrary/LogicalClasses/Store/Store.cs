@@ -113,6 +113,23 @@ namespace Library
         }
 
         /// <summary>
+        /// Get the total shopBills value 
+        /// </summary>
+        /// <param name="store"></param>
+        /// <returns></returns>
+        public static decimal GetTotalShopBillsValue(StoreModel store)
+        {
+            decimal totalShopBills = new decimal();
+
+            foreach(ShopBillModel shopBill in GetShopBills(store))
+            {
+                totalShopBills += shopBill.TotalMoney;
+            }
+
+            return totalShopBills;
+        }
+
+        /// <summary>
         /// Get all staffSalaries of this store
         /// </summary>
         /// <param name="store"></param>
@@ -248,11 +265,28 @@ namespace Library
         }
 
         /// <summary>
+        /// Get the total sells value of all the orders
+        /// </summary>
+        /// <param name="store"></param>
+        /// <returns></returns>
+        public static decimal GetTotalSellsValue(StoreModel store)
+        {
+            decimal totalSells = new decimal();
+
+            foreach(OrderModel order in store.GetOrders)
+            {
+                totalSells += order.GetTotalPrice;
+            }
+
+            return totalSells;
+        }
+
+        /// <summary>
         /// Get total paid orders of this store
         /// </summary>
         /// <param name="store"></param>
         /// <returns></returns>
-        public static decimal GetTotalPaidOrders(StoreModel store)
+        public static decimal GetTotalPaidOrdersValue(StoreModel store)
         {
             decimal totalPaid = new decimal();
             foreach(OrderModel order in store.GetOrders)
@@ -277,6 +311,65 @@ namespace Library
             return totalNotPaid;
         }
 
+        /// <summary>
+        /// Filter the store orders by the time Period between the two dateTime
+        /// </summary>
+        /// <param name="store">the store model that we need it's orders to be filted</param>
+        /// <param name="from">the start date</param>
+        /// <param name="to"> the end date</param>
+        /// <returns></returns>
+        public static List<OrderModel>FilterOrders(StoreModel store,DateTime from , DateTime to)
+        {
+            return store.GetOrders.FindAll(x => x.DateTimeOfTheOrder > from && x.DateTimeOfTheOrder < to);
+        }
+
+        /// <summary>
+        /// Get the count of orders in specific period
+        /// </summary>
+        /// <param name="store"></param>
+        /// <param name="from"></param>
+        /// <param name="to"></param>
+        /// <returns></returns>
+        public static int GetTheOrdersCount(StoreModel store, DateTime from , DateTime to)
+        {
+           return FilterOrders(store,from,to).Count;
+        }
+
+        /// <summary>
+        ///  The actual profit that the customer paid means( if the totalPaid more than the incomePrice -> actual profit = totalPaid - incomePrice)
+        /// </summary>
+        /// <param name="store"></param>
+        /// <returns></returns>
+        public static decimal GetTotalReceivedProfit(StoreModel store)
+        {
+            decimal totalReceivedProfit = new decimal();
+
+            foreach(OrderModel order in store.GetOrders)
+            {
+                totalReceivedProfit += order.GetReceivedProfit;
+            }
+
+            return totalReceivedProfit;
+        }
+
+        /// <summary>
+        /// if the total received profits more than 0
+        /// return the GetTotalPaidOrdersValue - total recievedProfits
+        /// else return the GetTotalPaidOrdersValue
+        /// </summary>
+        /// <param name="store"></param>
+        /// <returns></returns>
+        public static decimal GetSellsWihtoutProfits(StoreModel store)
+        {
+            if(GetTotalReceivedProfit(store) > 0)
+            {
+                return GetTotalPaidOrdersValue(store) - GetTotalReceivedProfit(store);
+            }
+            else
+            {
+                return GetTotalPaidOrdersValue(store);
+            }
+        }
 
         /// <summary>
         /// Calculate All the paid amount of money in the incomeOrder

@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Dapper;
 using Library;
-using Excel = Microsoft.Office.Interop.Excel;
+//using Excel = Microsoft.Office.Interop.Excel;
 
 namespace Library
 {
@@ -2153,7 +2153,7 @@ namespace Library
         #endregion
 
         #region Get Products From Exel
-
+        /*
         /// <summary>
         /// 1- productName
         /// 2- incomePrice
@@ -2220,7 +2220,7 @@ namespace Library
             }
            
         }
-
+        */
         #endregion
 
     }

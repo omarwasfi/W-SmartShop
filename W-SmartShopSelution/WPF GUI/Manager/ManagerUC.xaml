@@ -11,7 +11,7 @@
              d:DesignHeight="680" d:DesignWidth="1343">
     <Grid Background="White">
         <Grid Name="UserGrid" Visibility="Visible">
-            
+
             <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="10,10,0,0" ><Run Text="Capital : "/></TextBlock>
             <syncfusion:CurrencyTextBox Name="CapitalValue"  IsReadOnly="True" CurrencyNegativePattern="8"  CurrencyPositivePattern="3"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="155" Value="1234567" Margin="105,17,0,0" Height="27" Background="White" FontSize="18" SelectionBrush="#FF009688">
                 <syncfusion:CurrencyTextBox.NumberFormat>
@@ -32,21 +32,21 @@
                     <numberformat:NumberFormatInfo CurrencyGroupSeparator=" " CurrencyDecimalDigits="2" CurrencyDecimalSeparator="." CurrencySymbol="L.E"/>
                 </syncfusion:CurrencyTextBox.NumberFormat>
             </syncfusion:CurrencyTextBox>
-            
+
             <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="671,70,0,0" Text="Not Paid Orders : " />
             <syncfusion:CurrencyTextBox x:Name="NotPaidOrderValue" IsReadOnly="True" CurrencyNegativePattern="8"  CurrencyPositivePattern="3"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="155" Value="1234567" Margin="867,76,0,0" Height="27" Background="White" FontSize="18" SelectionBrush="#FF009688">
                 <syncfusion:CurrencyTextBox.NumberFormat>
                     <numberformat:NumberFormatInfo CurrencyGroupSeparator=" " CurrencyDecimalDigits="2" CurrencyDecimalSeparator="." CurrencySymbol="L.E"/>
                 </syncfusion:CurrencyTextBox.NumberFormat>
             </syncfusion:CurrencyTextBox>
-            
+
             <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="1032,70,0,0" Text="Loans : " />
             <syncfusion:CurrencyTextBox x:Name="LoansValue" IsReadOnly="True" CurrencyNegativePattern="8"  CurrencyPositivePattern="3"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="155" Value="1234567" Margin="1115,77,0,0" Height="27" Background="White" FontSize="18" SelectionBrush="#FF009688">
                 <syncfusion:CurrencyTextBox.NumberFormat>
                     <numberformat:NumberFormatInfo CurrencyGroupSeparator=" " CurrencyDecimalDigits="2" CurrencyDecimalSeparator="." CurrencySymbol="L.E"/>
                 </syncfusion:CurrencyTextBox.NumberFormat>
             </syncfusion:CurrencyTextBox>
-            
+
             <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="8,129,0,0" Text="Free Money :" />
             <syncfusion:CurrencyTextBox x:Name="FreeMoneyValue" IsReadOnly="True" CurrencyNegativePattern="8"  CurrencyPositivePattern="3"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="155" Value="1234567" Margin="155,136,0,0" Height="27" Background="White" FontSize="18" SelectionBrush="#FF009688" RenderTransformOrigin="0.68,0.352">
                 <syncfusion:CurrencyTextBox.NumberFormat>
@@ -57,21 +57,111 @@
             <Button x:Name="InvestButton" Click="InvestButton_Click" Content="Invest" HorizontalAlignment="Left" Margin="320,129,0,0" VerticalAlignment="Top" Width="94" Height="34" FontSize="20" />
             <Button x:Name="RevenueButton" Click="RevenueButton_Click" Content="Revenue" HorizontalAlignment="Left" Margin="419,129,0,0" VerticalAlignment="Top" Width="114" Height="34" FontSize="20" />
 
-            <Border BorderBrush="#FF009688" BorderThickness="1" HorizontalAlignment="Left" Height="136" Margin="10,201,0,0" VerticalAlignment="Top" Width="651"/>
-            <TextBlock x:Name="StoreNameValue" HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="207,219,0,0" Text="Store Name" />
-            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="21,251,0,0" Text="Shoppe Wallet  : " />
-            <syncfusion:CurrencyTextBox x:Name="StoreShopeeWalletValue" IsReadOnly="True" CurrencyNegativePattern="8"  CurrencyPositivePattern="3"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="155" Value="1234567" Margin="207,258,0,0" Height="27" Background="White" FontSize="18" SelectionBrush="#FF009688">
-                <syncfusion:CurrencyTextBox.NumberFormat>
-                    <numberformat:NumberFormatInfo CurrencyGroupSeparator=" " CurrencyDecimalDigits="2" CurrencyDecimalSeparator="." CurrencySymbol="L.E"/>
-                </syncfusion:CurrencyTextBox.NumberFormat>
-            </syncfusion:CurrencyTextBox>
+            <Border BorderBrush="#FF009688" BorderThickness="1" HorizontalAlignment="Left" Height="332" Margin="10,201,0,0" VerticalAlignment="Top" Width="1323">
+                <Grid Margin="0,0,0,0">
+                    <TextBlock x:Name="StoreNameValue" HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="10,10,0,0" Text="Store Name" />
+                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="10,48,0,0" Text="Shoppe Wallet  : " />
+                    <syncfusion:CurrencyTextBox x:Name="StoreShopeeWalletValue" IsReadOnly="True" CurrencyNegativePattern="8"  CurrencyPositivePattern="3"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="155" Value="1234567" Margin="201,54,0,0" Height="27" Background="White" FontSize="18" SelectionBrush="#FF009688">
+                        <syncfusion:CurrencyTextBox.NumberFormat>
+                            <numberformat:NumberFormatInfo CurrencyGroupSeparator=" " CurrencyDecimalDigits="2" CurrencyDecimalSeparator="." CurrencySymbol="L.E"/>
+                        </syncfusion:CurrencyTextBox.NumberFormat>
+                    </syncfusion:CurrencyTextBox>
+
+                    <Button x:Name="TransformButton" Click="TransformButton_Click" Content="Transform" HorizontalAlignment="Left" Margin="10,86,0,0" VerticalAlignment="Top" Width="126" Height="33" FontSize="20" />
+                    <Button x:Name="DeTransformButton" Click="DeTransformButton_Click" Content="Detransform" HorizontalAlignment="Left" Margin="141,86,0,0" VerticalAlignment="Top" Width="148" Height="33" FontSize="20" />
+
+                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="10,124,0,0" ><Run Text="Stock Value : "/></TextBlock>
+                    <syncfusion:CurrencyTextBox x:Name="StoreStockValue"  IsReadOnly="True" CurrencyNegativePattern="8"  CurrencyPositivePattern="3"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="155" Value="1234567" Margin="201,130,0,0" Height="27" Background="White" FontSize="18" SelectionBrush="#FF009688">
+                        <syncfusion:CurrencyTextBox.NumberFormat>
+                            <numberformat:NumberFormatInfo CurrencyGroupSeparator=" " CurrencyDecimalDigits="2" CurrencyDecimalSeparator="." CurrencySymbol="L.E"/>
+                        </syncfusion:CurrencyTextBox.NumberFormat>
+                    </syncfusion:CurrencyTextBox>
+
+                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="463,10,0,0" ><Run Text="From : "/></TextBlock>
+                    <DatePicker x:Name="StartDateValue" HorizontalAlignment="Left" Margin="544,18,0,0" VerticalAlignment="Top" Width="97"/>
+                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="646,10,0,0" ><Run Text="To : "/></TextBlock>
+                    <DatePicker x:Name="EndDateValue" HorizontalAlignment="Left" Margin="695,18,0,0" VerticalAlignment="Top" Width="109"/>
+
+                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="463,48,0,0" Text="Sells : " />
+                    <syncfusion:CurrencyTextBox x:Name="StoreTotalSellsValue"  IsReadOnly="True" CurrencyNegativePattern="8"  CurrencyPositivePattern="3"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="140" Value="1234567" Margin="705,54,0,0" Height="27" Background="White" FontSize="18" SelectionBrush="#FF009688">
+                        <syncfusion:CurrencyTextBox.NumberFormat>
+                            <numberformat:NumberFormatInfo CurrencyGroupSeparator=" " CurrencyDecimalDigits="2" CurrencyDecimalSeparator="." CurrencySymbol="L.E"/>
+                        </syncfusion:CurrencyTextBox.NumberFormat>
+                    </syncfusion:CurrencyTextBox>
+                    
+                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="463,86,0,0" Text="Profits : " />
+                    <syncfusion:CurrencyTextBox x:Name="TotalProfitValue"  IsReadOnly="True" CurrencyNegativePattern="8"  CurrencyPositivePattern="3"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="143" Value="1234567" Margin="705,92,0,0" Height="27" Background="White" FontSize="18" SelectionBrush="#FF009688">
+                        <syncfusion:CurrencyTextBox.NumberFormat>
+                            <numberformat:NumberFormatInfo CurrencyGroupSeparator=" " CurrencyDecimalDigits="2" CurrencyDecimalSeparator="." CurrencySymbol="L.E"/>
+                        </syncfusion:CurrencyTextBox.NumberFormat>
+                    </syncfusion:CurrencyTextBox>
+
+                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="877,48,0,0" Text="Total paid : " />
+                    <syncfusion:CurrencyTextBox x:Name="TotalPaidValue"  IsReadOnly="True" CurrencyNegativePattern="8"  CurrencyPositivePattern="3"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="140" Value="1234567" Margin="1055,54,0,0" Height="27" Background="White" FontSize="18" SelectionBrush="#FF009688">
+                        <syncfusion:CurrencyTextBox.NumberFormat>
+                            <numberformat:NumberFormatInfo CurrencyGroupSeparator=" " CurrencyDecimalDigits="2" CurrencyDecimalSeparator="." CurrencySymbol="L.E"/>
+                        </syncfusion:CurrencyTextBox.NumberFormat>
+                    </syncfusion:CurrencyTextBox>
+
+                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="877,86,0,0" Text="Total not paid : " />
+                    <syncfusion:CurrencyTextBox x:Name="TotalNotPaidValue"  IsReadOnly="True" CurrencyNegativePattern="8"  CurrencyPositivePattern="3"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="143" Value="1234567" Margin="1055,92,0,0" Height="27" Background="White" FontSize="18" SelectionBrush="#FF009688">
+                        <syncfusion:CurrencyTextBox.NumberFormat>
+                            <numberformat:NumberFormatInfo CurrencyGroupSeparator=" " CurrencyDecimalDigits="2" CurrencyDecimalSeparator="." CurrencySymbol="L.E"/>
+                        </syncfusion:CurrencyTextBox.NumberFormat>
+                    </syncfusion:CurrencyTextBox>
+
+                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="463,124,0,0" Text="Sells without profits : " />
+                    <syncfusion:CurrencyTextBox x:Name="TotalSellsWithoutProfitsValue"  IsReadOnly="True" CurrencyNegativePattern="8"  CurrencyPositivePattern="3"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="143" Value="1234567" Margin="705,130,0,0" Height="27" Background="White" FontSize="18" SelectionBrush="#FF009688">
+                        <syncfusion:CurrencyTextBox.NumberFormat>
+                            <numberformat:NumberFormatInfo CurrencyGroupSeparator=" " CurrencyDecimalDigits="2" CurrencyDecimalSeparator="." CurrencySymbol="L.E"/>
+                        </syncfusion:CurrencyTextBox.NumberFormat>
+                    </syncfusion:CurrencyTextBox>
+                    
+                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="463,162,0,0" Text="Bills : " />
+                    <syncfusion:CurrencyTextBox x:Name="BillsValue"  IsReadOnly="True" CurrencyNegativePattern="8"  CurrencyPositivePattern="3"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="143" Value="1234567" Margin="705,168,0,0" Height="27" Background="White" FontSize="18" SelectionBrush="#FF009688">
+                        <syncfusion:CurrencyTextBox.NumberFormat>
+                            <numberformat:NumberFormatInfo CurrencyGroupSeparator=" " CurrencyDecimalDigits="2" CurrencyDecimalSeparator="." CurrencySymbol="L.E"/>
+                        </syncfusion:CurrencyTextBox.NumberFormat>
+                    </syncfusion:CurrencyTextBox>
+                    
+                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="463,200,0,0" Text="Staff Salaries : " />
+                    <syncfusion:CurrencyTextBox x:Name="StaffSalariesValue" IsEnabled="False" IsReadOnly="True" CurrencyNegativePattern="8"  CurrencyPositivePattern="3"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="143" Value="1234567" Margin="705,206,0,0" Height="27" Background="White" FontSize="18" SelectionBrush="#FF009688">
+                        <syncfusion:CurrencyTextBox.NumberFormat>
+                            <numberformat:NumberFormatInfo CurrencyGroupSeparator=" " CurrencyDecimalDigits="2" CurrencyDecimalSeparator="." CurrencySymbol="L.E"/>
+                        </syncfusion:CurrencyTextBox.NumberFormat>
+                    </syncfusion:CurrencyTextBox>
+
+                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="463,238,0,0" Text="Income Orders : " />
+                    <syncfusion:CurrencyTextBox x:Name="TotalIncomeOrdersValue" IsEnabled="False" IsReadOnly="True" CurrencyNegativePattern="8"  CurrencyPositivePattern="3"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="143" Value="1234567" Margin="705,244,0,0" Height="27" Background="White" FontSize="18" SelectionBrush="#FF009688">
+                        <syncfusion:CurrencyTextBox.NumberFormat>
+                            <numberformat:NumberFormatInfo CurrencyGroupSeparator=" " CurrencyDecimalDigits="2" CurrencyDecimalSeparator="." CurrencySymbol="L.E"/>
+                        </syncfusion:CurrencyTextBox.NumberFormat>
+                    </syncfusion:CurrencyTextBox>
+
+                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="877,238,0,0" Text="Total paid : " />
+                    <syncfusion:CurrencyTextBox x:Name="TotalPaidIncomeOrdersValue"  IsReadOnly="True" CurrencyNegativePattern="8"  CurrencyPositivePattern="3"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="143" Value="1234567" Margin="1055,244,0,0" Height="27" Background="White" FontSize="18" SelectionBrush="#FF009688">
+                        <syncfusion:CurrencyTextBox.NumberFormat>
+                            <numberformat:NumberFormatInfo CurrencyGroupSeparator=" " CurrencyDecimalDigits="2" CurrencyDecimalSeparator="." CurrencySymbol="L.E"/>
+                        </syncfusion:CurrencyTextBox.NumberFormat>
+                    </syncfusion:CurrencyTextBox>
+                    
+                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="877,276,0,0" Text="Total Loans : " />               
+                    <syncfusion:CurrencyTextBox x:Name="TotalLoansValue"  IsReadOnly="True" CurrencyNegativePattern="8"  CurrencyPositivePattern="3"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="143" Value="1234567" Margin="1055,282,0,0" Height="27" Background="White" FontSize="18" SelectionBrush="#FF009688">
+                        <syncfusion:CurrencyTextBox.NumberFormat>
+                            <numberformat:NumberFormatInfo CurrencyGroupSeparator=" " CurrencyDecimalDigits="2" CurrencyDecimalSeparator="." CurrencySymbol="L.E"/>
+                        </syncfusion:CurrencyTextBox.NumberFormat>
+                    </syncfusion:CurrencyTextBox>
+
+                </Grid>
+            </Border>
+
 
             <Grid Margin="1117,0,0,652">
                 <Button x:Name="CloseButton" Visibility="Collapsed" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Red"   VerticalAlignment="Top"  Margin="3,0,170,0" Height="25"  >
                     <materialDesign:PackIcon Kind="Close" Width="20" Height="20"/>
                 </Button>
 
-                <Button x:Name="RefreshButton"   Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray"   VerticalAlignment="Top"  Margin="171,0,0,0" Height="25"  >
+                <Button x:Name="RefreshButton" Click="RefreshButton_Click"  Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray"   VerticalAlignment="Top"  Margin="171,0,0,0" Height="25"  >
                     <materialDesign:PackIcon Kind="Reload" Width="20" Height="20"/>
                 </Button>
 
@@ -84,9 +174,7 @@
                 </Button>
 
             </Grid>
-            
-            <Button x:Name="TransformButton" Click="TransformButton_Click" Content="Transform" HorizontalAlignment="Left" Margin="367,251,0,0" VerticalAlignment="Top" Width="126" Height="33" FontSize="20" />
-            <Button x:Name="DeTransformButton" Click="DeTransformButton_Click" Content="Detransform" HorizontalAlignment="Left" Margin="498,251,0,0" VerticalAlignment="Top" Width="151" Height="33" FontSize="20" />
+
 
         </Grid>
         <Grid Name="InvestGrid" Visibility="Collapsed">

@@ -848,6 +848,12 @@ namespace WPF_GUI.Sell
             UserGrid.Visibility = Visibility.Collapsed;
             PrintGrid.Visibility = Visibility.Visible;
 
+            // Set the order Count Values
+            OrganizationOrdersCountValue.Text = PublicVariables.Organization.GetOrdersCount.ToString();
+            SelectedCustomerOrdersCountValue.Text = order.Customer.GetOrders.Count.ToString();
+            OrderCountTodayValue.Text = Store.GetTheOrdersCount(PublicVariables.Store, DateTime.Today, DateTime.Today + new TimeSpan(1,0,0,0)).ToString();
+            StaffOrderCountTodayValue.Text = Library.Staff.GetTheOrdersCount(PublicVariables.Staff, DateTime.Today, DateTime.Today + new TimeSpan(1, 0, 0, 0)).ToString();
+            StaffNameValue.Text = PublicVariables.Staff.Person.FullName;
 
             StiReport report = new StiReport();
             // add the data to the datastore
