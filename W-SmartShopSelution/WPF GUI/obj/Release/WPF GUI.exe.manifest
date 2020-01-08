@@ -126,14 +126,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SmartShopClassLibrary.dll" size="196096">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SmartShopClassLibrary.dll" size="198144">
       <assemblyIdentity name="SmartShopClassLibrary" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>whUWpzLenlfiHF1bkeATi0ZV01buLhcm/sFfGf6wqZY=</dsig:DigestValue>
+        <dsig:DigestValue>dYw8oWYckQUSBhzdPjlfWY0wT0h/HMYfD03YRL/7noA=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -1674,14 +1674,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="WPF GUI.exe" size="11190184">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="WPF GUI.exe" size="11197864">
       <assemblyIdentity name="WPF GUI" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>vTMa+RQrLAQVKp2J/3Rh0lGHY8pY4KbMzLwKnsmmlmE=</dsig:DigestValue>
+        <dsig:DigestValue>o9zTe9EUseFmFiP7pY25Dby5OoWS+17sbSH2aQPv3+w=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
