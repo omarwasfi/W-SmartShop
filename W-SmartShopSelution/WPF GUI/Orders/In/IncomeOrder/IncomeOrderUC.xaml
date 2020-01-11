@@ -167,7 +167,7 @@
 
                     <!-- Quantity -->
                     <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" Margin="0,192,0,0" RenderTransformOrigin="0.596,0.438" FontSize="25" ><Run Text="Quantity : "/></TextBlock>
-                    <syncfusion:DoubleTextBox x:Name="IncomeOrderProductQuantityValue" TextChanged="IncomeOrderProductQuantityValue_TextChanged" MinValue="0" HorizontalAlignment="Left" Height="27" Margin="114,198,0,0" NumberGroupSeparator="," NumberDecimalDigits="2" NumberDecimalSeparator="." Text="DoubleTextBox" Value="0" VerticalAlignment="Top" Width="60" FontSize="18" MaxLines="1">
+                    <syncfusion:DoubleTextBox x:Name="IncomeOrderProductQuantityValue" ValueChanged="IncomeOrderProductQuantityValue_ValueChanged" MinValue="0" HorizontalAlignment="Left" Height="27" Margin="114,198,0,0" NumberGroupSeparator="," NumberDecimalDigits="2" NumberDecimalSeparator="." Text="DoubleTextBox" Value="0" VerticalAlignment="Top" Width="60" FontSize="18" MaxLines="1">
                         <syncfusion:DoubleTextBox.BorderBrush>
                             <LinearGradientBrush EndPoint="0,20" MappingMode="Absolute" StartPoint="0,0">
                                 <GradientStop Color="#FFABADB3" Offset="0.05"/>

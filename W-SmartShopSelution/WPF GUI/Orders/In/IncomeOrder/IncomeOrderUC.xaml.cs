@@ -601,14 +601,17 @@ namespace WPF_GUI
             }
         }
 
-        private void IncomeOrderProductQuantityValue_TextChanged(object sender, TextChangedEventArgs e)
+        private void IncomeOrderProductQuantityValue_ValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-
             if (IncomeOrderProductQuantityValue.Value != null && StockIncomePriceValue.Value != null)
             {
-                IncomeOrderProductTotalPriceValue.Value = (decimal)IncomeOrderProductQuantityValue.Value * StockIncomePriceValue.Value;
+                if(IncomeOrderProductTotalPriceValue != null)
+                {
+                    IncomeOrderProductTotalPriceValue.Value = (decimal)IncomeOrderProductQuantityValue.Value * StockIncomePriceValue.Value;
+                }
+                
 
-            }        
+            }
         }
 
         private void IncomeOrderProductButton_Click(object sender, RoutedEventArgs e)
@@ -1007,6 +1010,7 @@ namespace WPF_GUI
             SupplierSearchValue.DisplayMember = "Person.FullName";
 
         }
+
 
 
 

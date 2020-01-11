@@ -538,7 +538,10 @@ namespace WPF_GUI.Sell
             }
         }
 
-        private void DiscountValue_TextChanged(object sender, TextChangedEventArgs e)
+        
+
+
+        private void DiscountValue_ValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             decimal discount = DiscountValue.Value.Value;
             StockModel stock = (StockModel)SBarCodeSearchValue.SelectedItem;
@@ -565,9 +568,9 @@ namespace WPF_GUI.Sell
             }
         }
 
-        private void OrderProductQuantityValue_TextChanged(object sender, TextChangedEventArgs e)
+        private void OrderProductQuantityValue_ValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            if (OrderProductQuantityValue.Value != null && StockIncomePriceValue.Value != null)
+            if (OrderProductQuantityValue.Value != null && StockSalePriceValue.Value != null)
             {
                 StockModel stock = (StockModel)SBarCodeSearchValue.SelectedItem;
                 if (stock != null)
@@ -575,10 +578,11 @@ namespace WPF_GUI.Sell
                     if (OrderProductQuantityValue.Value.Value > stock.Quantity)
                     {
                         OrderProductQuantityValue.Value = stock.Quantity;
+                        OrderProductQuantityValue.Text = stock.Quantity.ToString();
                     }
-                    OrderProductTotalPriceValue.Value = (decimal)OrderProductQuantityValue.Value * StockIncomePriceValue.Value;
+                    OrderProductTotalPriceValue.Value = (decimal)OrderProductQuantityValue.Value * StockSalePriceValue.Value;
                 }
-                   
+
             }
         }
 
@@ -1016,9 +1020,11 @@ namespace WPF_GUI.Sell
 
 
 
+
+
         #endregion
 
-
+      
     }
 
 }

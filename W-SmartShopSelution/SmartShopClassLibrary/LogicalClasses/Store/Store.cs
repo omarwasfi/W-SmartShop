@@ -103,6 +103,23 @@ namespace Library
         }
 
         /// <summary>
+        /// Get the total incomeOrdersValue of the store
+        /// </summary>
+        /// <param name="store"></param>
+        /// <returns></returns>
+        public static decimal GetTotalIncomeOrdersValue(StoreModel store)
+        {
+            decimal totalIncomeOrderValue = new decimal();
+
+            foreach(IncomeOrderModel incomeOrder in store.GetIncomeOrders)
+            {
+                totalIncomeOrderValue += incomeOrder.GetTotalPrice;
+            }
+
+            return totalIncomeOrderValue;
+        }
+
+        /// <summary>
         /// Get all ShopBills of this store
         /// </summary>
         /// <param name="store"></param>
@@ -137,6 +154,23 @@ namespace Library
         public static List<StaffSalaryModel> GetStaffSalaries(StoreModel store)
         {
             return PublicVariables.StaffSalaries.FindAll(x => x.Store.Id == store.Id);
+        }
+
+        /// <summary>
+        /// Get the total staffsalaries value
+        /// </summary>
+        /// <param name="store"></param>
+        /// <returns></returns>
+        public static decimal GetStaffSalaryValue(StoreModel store)
+        {
+            decimal totalStaffSalary = new decimal();
+
+            foreach(StaffSalaryModel staffSalary in store.GetStaffSalaries)
+            {
+                totalStaffSalary += staffSalary.Salary;
+            }
+
+            return totalStaffSalary;
         }
 
         /// <summary>

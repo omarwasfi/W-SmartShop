@@ -125,14 +125,14 @@
                     </syncfusion:CurrencyTextBox>
                     
                     <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="463,200,0,0" Text="Staff Salaries : " />
-                    <syncfusion:CurrencyTextBox x:Name="StaffSalariesValue" IsEnabled="False" IsReadOnly="True" CurrencyNegativePattern="8"  CurrencyPositivePattern="3"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="143" Value="1234567" Margin="705,206,0,0" Height="27" Background="White" FontSize="18" SelectionBrush="#FF009688">
+                    <syncfusion:CurrencyTextBox x:Name="StaffSalariesValue"  IsReadOnly="True" CurrencyNegativePattern="8"  CurrencyPositivePattern="3"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="143" Value="1234567" Margin="705,206,0,0" Height="27" Background="White" FontSize="18" SelectionBrush="#FF009688">
                         <syncfusion:CurrencyTextBox.NumberFormat>
                             <numberformat:NumberFormatInfo CurrencyGroupSeparator=" " CurrencyDecimalDigits="2" CurrencyDecimalSeparator="." CurrencySymbol="L.E"/>
                         </syncfusion:CurrencyTextBox.NumberFormat>
                     </syncfusion:CurrencyTextBox>
 
                     <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070" RenderTransformOrigin="0.596,0.438" FontSize="25" Margin="463,238,0,0" Text="Income Orders : " />
-                    <syncfusion:CurrencyTextBox x:Name="TotalIncomeOrdersValue" IsEnabled="False" IsReadOnly="True" CurrencyNegativePattern="8"  CurrencyPositivePattern="3"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="143" Value="1234567" Margin="705,244,0,0" Height="27" Background="White" FontSize="18" SelectionBrush="#FF009688">
+                    <syncfusion:CurrencyTextBox x:Name="TotalIncomeOrdersValue" IsReadOnly="True" CurrencyNegativePattern="8"  CurrencyPositivePattern="3"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="143" Value="1234567" Margin="705,244,0,0" Height="27" Background="White" FontSize="18" SelectionBrush="#FF009688">
                         <syncfusion:CurrencyTextBox.NumberFormat>
                             <numberformat:NumberFormatInfo CurrencyGroupSeparator=" " CurrencyDecimalDigits="2" CurrencyDecimalSeparator="." CurrencySymbol="L.E"/>
                         </syncfusion:CurrencyTextBox.NumberFormat>

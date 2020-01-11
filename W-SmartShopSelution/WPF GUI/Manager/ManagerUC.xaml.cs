@@ -53,8 +53,8 @@ namespace WPF_GUI
             TotalNotPaidValue.Value = PublicVariables.Store.GetNotPaidOrdersValue;
             TotalSellsWithoutProfitsValue.Value = PublicVariables.Store.GetSellsWihtoutProfits;
             BillsValue.Value = PublicVariables.Store.GetTotalShopBillsValue;
-            //StaffSalariesValue.Value = PublicVariables.Store.GetStaffSalaries;
-            //IncomeOrdersValue.Value = PublicVariables.Store.;
+            StaffSalariesValue.Value = PublicVariables.Store.GetStaffSalariesValue;
+            TotalIncomeOrdersValue.Value = PublicVariables.Store.GetTotalIncomeOrderValue;
             TotalPaidIncomeOrdersValue.Value = PublicVariables.Store.GetTotalPaidIncomeOrdersValue;
             TotalLoansValue.Value = PublicVariables.Store.GetLoans;
 

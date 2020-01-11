@@ -103,6 +103,14 @@ namespace Library
             } 
         }
 
+        public decimal GetTotalIncomeOrderValue
+        {
+            get
+            {
+                return Store.GetTotalIncomeOrdersValue(this);
+            }
+        }
+
         /// <summary>
         /// all the shopBills by this store
         /// </summary>
@@ -133,6 +141,17 @@ namespace Library
             get
             {
                 return Store.GetStaffSalaries(this);
+            }
+        }
+
+        /// <summary>
+        /// Get the total value of the staffSalaries
+        /// </summary>
+        public decimal GetStaffSalariesValue
+        {
+            get
+            {
+            return Store.GetStaffSalaryValue(this);
             }
         }
 
