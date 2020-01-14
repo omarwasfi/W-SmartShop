@@ -700,7 +700,7 @@ namespace WPF_GUI
             totalPrice += shippingExpenses;
             IncomeOrderTotalPriceValue.Value = totalPrice;
 
-           if(CashRadioButton.IsChecked == true)
+            if (CashRadioButton.IsChecked == true)
             {
                 StoreWillPayNowValue.Value = totalPrice;
                 StoreWillPayLaterValue.Value = 0;
@@ -711,6 +711,15 @@ namespace WPF_GUI
                 StoreWillPayNowValue.Value = 0;
                 StoreWillPayLaterValue.Value = totalPrice;
             }
+
+            // Scrol to the last
+            if (IncomeOrderProductRecords.Count > 0)
+            {
+                IncomeOrderProductRecordsList.ScrollIntoView(IncomeOrderProductRecords.Last());
+            }
+            
+
+         
         }
 
         private void CashRadioButton_Checked(object sender, RoutedEventArgs e)

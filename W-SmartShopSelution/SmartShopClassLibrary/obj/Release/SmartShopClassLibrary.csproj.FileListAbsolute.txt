@@ -9,3 +9,8 @@ C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\SmartShopClassLi
 C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\SmartShopClassLibrary\bin\Release\FluentValidation.xml
 C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\SmartShopClassLibrary\bin\Release\Dapper.dll
 C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\SmartShopClassLibrary\bin\Release\Dapper.xml
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\SmartShopClassLibrary\bin\Release\MaterialDesignColors.dll
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\SmartShopClassLibrary\bin\Release\MaterialDesignThemes.Wpf.dll
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\SmartShopClassLibrary\bin\Release\MaterialDesignColors.pdb
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\SmartShopClassLibrary\bin\Release\MaterialDesignThemes.Wpf.pdb
+C:\Users\omerw\Documents\GitHub\W-SmartShop\W-SmartShopSelution\SmartShopClassLibrary\bin\Release\MaterialDesignThemes.Wpf.xml

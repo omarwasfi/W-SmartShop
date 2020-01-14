@@ -724,6 +724,12 @@ namespace WPF_GUI.Sell
                 CustomerWillPayLaterValue.Value = totalPrice;
             }
 
+            // Scrol to the last
+            if (OrderProductRecords.Count > 0)
+            {
+                OrderProductRecordList.ScrollIntoView(OrderProductRecords.Last());
+            }
+
         }
 
         /// <summary>

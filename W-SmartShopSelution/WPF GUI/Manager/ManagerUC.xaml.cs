@@ -39,8 +39,8 @@ namespace WPF_GUI
             CapitalValue.Value = PublicVariables.Organization.GetCapital;
             StockValue.Value = PublicVariables.Organization.GetStockValue;
             ShopeeWalletValue.Value = PublicVariables.Organization.GetShopeeWalletValue;
-            NotPaidOrderValue.Value = PublicVariables.Organization.GetNotPaidOrdersValue;
-            LoansValue.Value = PublicVariables.Organization.GetLoans;
+            OrganizationTotalNotPaidValue.Value = PublicVariables.Organization.GetNotPaidOrdersValue;
+            OrganizationTotalLoansValue.Value = PublicVariables.Organization.GetLoans;
             FreeMoneyValue.Value = PublicVariables.Organization.GetFreeMoney;
 
             StoreNameValue.Text = PublicVariables.Store.Name;
